@@ -83,14 +83,9 @@ For Lab #C, students compete on the Customized Computing Challenge (CCC) [[4]](#
 |                        Topics (Links)                        |        Students         |
 | :----------------------------------------------------------: | :---------------------: |
 | [Cordic](https://github.com/yochenglin/HLS_LabC_cordic), [CANNY](https://github.com/yochenglin/HLS_LabC_canny), [Betweenness](https://github.com/yochenglin/HLS_LabC_betweenness) | 林亮昕、林祐丞 |
-| [Spike Sorting Acceleration Beamforming Acceleration](https://github.com/jieyunma/AAHLS_final) | 呂易縉、馬婕芸、 賴聖耘 |
-| [2D Mesh Interconnection Network on Chip](https://github.com/andy39866821/Vitis-HLS-2D-Mesh-NoC-Implementation) |     鍾宇騫、許鏡瑋      |
-| [OFDM Implemented by HLS](https://github.com/Yichieh0/OFDM_Implemented_by_HLS) | 周沛毅、徐宜婕、陳成彬  |
-| [Wireless Communication System with Encryption](https://github.com/caota985107/HLS_AES_MIMO) | 陳思熙、吳秉豐、江威霖  |
-| [Face Detection](https://github.com/pckuo95/HLS_Final_team_06) | 郭柏辰、林彥岑、徐浩庭  |
-| [Monte Carlo Financial Models on U50](https://github.com/EvanLu0815/Final_monteCarloFinancialModel) |         呂依凡          |
-| [Scalable Matrix Multiplication Accelerator](https://github.com/jasonlo0509/gemm_hls) | 羅允辰、李冠霈、王睿瑄  |
-
+| [Cordic, FAST, Serialization](https://github.com/alanlo980510/HLS_LabC) | 羅翊誠、張承洋、王婕恩 |
+| [DFT, CANNY, Serialization](https://github.com/lspss9950101/HLS-LabC) | 王景平、黃其澤、陳維隆 |
+| [DFT, HARRIS, Betweenness](https://github.com/Chang-Tun-Yu/HLS-Team4-LabC) | 朱怡蓁、張惇宥 |
 
 
 ## References
