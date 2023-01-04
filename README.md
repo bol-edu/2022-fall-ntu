@@ -56,10 +56,10 @@ For Lab #B, students practiced the labs in Vitis-Tutorials [[2]](#[2]) & pp4 fpg
 
 |          Topics (Links to folders in Xilinx official repository)          |                       Students (Links)                       |
 | :----------------------------------------------------------: | :----------------------------------------------------------: |
-| [systolic_array](https://github.com/Xilinx/Vitis_Accel_Examples/tree/master/cpp_kernels/systolic_array) | [陳奕達]() |
-| [Cholesky Algorithm](https://github.com/Xilinx/Vitis-Tutorials/tree/2021.2/Hardware_Acceleration/Design_Tutorials/06-cholesky-accel) | [黃其澤]() |
-| [Bloom Filter](https://github.com/Xilinx/Vitis-Tutorials/tree/2022.1/Hardware_Acceleration/Design_Tutorials/02-bloom) | [張惇宥]() |
-| [Convolution Filtering](https://github.com/Xilinx/Vitis-Tutorials/blob/2022.1/Hardware_Acceleration/Design_Tutorials/01-convolution-tutorial/README.md) | [吳泓毅]() | 
+| [systolic_array](https://github.com/Xilinx/Vitis_Accel_Examples/tree/master/cpp_kernels/systolic_array) | [陳奕達](https://github.com/poppin-mice/LabB_Systolic_Array) |
+| [Cholesky Algorithm](https://github.com/Xilinx/Vitis-Tutorials/tree/2021.2/Hardware_Acceleration/Design_Tutorials/06-cholesky-accel) | [黃其澤](https://github.com/ChiTseHuang/LabB_Cholesky_Algorithm/tree/master) |
+| [Bloom Filter](https://github.com/Xilinx/Vitis-Tutorials/tree/2022.1/Hardware_Acceleration/Design_Tutorials/02-bloom) | [張惇宥](https://github.com/Chang-Tun-Yu/AAHLS-LAB-B) |
+| [Convolution Filtering](https://github.com/Xilinx/Vitis-Tutorials/blob/2022.1/Hardware_Acceleration/Design_Tutorials/01-convolution-tutorial/README.md) | [吳泓毅](https://github.com/Anderson-Wu/AAHLS_LAB_B) | 
 |           [FIR](https://pp4fpgas.readthedocs.io/en/latest/project1.html)            |    [蔡岳峰](https://github.com/yuehfeng1114/2022HLS-LAB-B-FIR-design)     |
 |          [CORDIC](https://github.com/KastnerRG/Read_the_docs/tree/master/project_files/project2/cordic)          |    [許家維](https://github.com/Jarwy/2022FALL_HLS_LabB)     |
 |           [DFT](https://github.com/KastnerRG/Read_the_docs/tree/master/project_files/project3)            |     [朱怡蓁](https://github.com/piggy0622/Lab-B)     |
