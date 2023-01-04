@@ -9,7 +9,7 @@
 - [About This Repository](#about-this-repository)
 - [Lab #A - UG871](#lab-a---ug871)
 - [Lab #A - Vitis Tutorials](#lab-A---vitis-tutorials)
-- [Lab #B - Vitis Tutorial & PP4 FPGAs](#lab-B---vitis-tutorial---pp4-fpgas)
+- [Lab #B - Vitis Tutorial & PP4 FPGAs](#lab-B---vitis-tutorial-pp4-fpgas)
 - [Lab #C - Vitis Libraries](#lab-c---vitis-libraries)
 - [Final Projects](#final-projects)
 - [References](#references)
@@ -50,7 +50,7 @@ For Lab #A, students practiced the labs in Vitis-Tutorials [[2]](#[2]) and tried
 | [Dataflow Debug and Optimization](https://github.com/Xilinx/Vitis-Tutorials/tree/2022.1/Hardware_Acceleration/Feature_Tutorials/03-dataflow_debug_and_optimization) |       [許家維](https://github.com/Jarwy/2022HLS_LabA)        |
 | [Host Code Optimization](https://github.com/Xilinx/Vitis-Tutorials/tree/2022.1/Hardware_Acceleration/Design_Tutorials/07-host-code-opt) | [陳奕達](https://github.com/poppin-mice/LabA_Host_Code_Optimization.git) |
 
-## Lab #B - Vitis Tutorial & PP4 FPGAs
+## Lab #B - Vitis Tutorial PP4 FPGAs
 
 For Lab #B, students practiced the labs in Vitis-Tutorials [[2]](#[2]) & pp4 fpgas [[3]](#[3]) and tried to analyze the designs or improve them.
 
