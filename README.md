@@ -56,12 +56,12 @@ For Lab #B, students practiced the labs in Vitis-Tutorials [[2]](#[2]) & pp4 fpg
 
 |          Topics (Links to folders in Xilinx official repository)          |                       Students (Links)                       |
 | :----------------------------------------------------------: | :----------------------------------------------------------: |
-|           [FIR](https://pp4fpgas.readthedocs.io/en/latest/project1.html)            |    [蔡岳峰](https://github.com/SzuHsi/AAHLS_LabB_cordic)     |
-|          [CORDIC](https://github.com/KastnerRG/Read_the_docs/tree/master/project_files/project2/cordic)          |    [許家維](https://github.com/SzuHsi/AAHLS_LabB_cordic)     |
-|           [DFT](https://github.com/KastnerRG/Read_the_docs/tree/master/project_files/project3)            |     [朱怡蓁](https://github.com/StanTeng/AAHLS_labB_DFT)     |
-|  [FFT](https://pp4fpgas.readthedocs.io/en/latest/project4.html)   | [王景平](https://github.com/andy39866821/AAHLS-LabB-Matrix-Multiplication) |
-| [Sparse Matrix Vector Multiplication]() | [范育瑋](https://github.com/caota985107/prefix-sum-and-histogram) |
-|      [Matrix Multiplication](https://github.com/KastnerRG/Read_the_docs/tree/master/project_files/matrix_mul_dpcpp)       | [張承洋](https://github.com/EvanLu0815/HLS/tree/main/LABB_video_processing) |
+|           [FIR](https://pp4fpgas.readthedocs.io/en/latest/project1.html)            |    [蔡岳峰](https://github.com/yuehfeng1114/2022HLS-LAB-B-FIR-design)     |
+|          [CORDIC](https://github.com/KastnerRG/Read_the_docs/tree/master/project_files/project2/cordic)          |    [許家維](https://github.com/Jarwy/2022FALL_HLS_LabB)     |
+|           [DFT](https://github.com/KastnerRG/Read_the_docs/tree/master/project_files/project3)            |     [朱怡蓁](https://github.com/piggy0622/Lab-B)     |
+|  [FFT](https://pp4fpgas.readthedocs.io/en/latest/project4.html)   | [王景平](https://github.com/lspss9950101/HLS-LabB-Fast-Fourier-Transform) |
+| [Sparse Matrix Vector Multiplication](https://github.com/KastnerRG/pp4fpgas/tree/master/examples) | [范育瑋]() |
+|      [Matrix Multiplication](https://github.com/KastnerRG/Read_the_docs/tree/master/project_files/matrix_mul_dpcpp)       | [張承洋](https://github.com/b04901056/AAHLS_LabB) |
 
 ## Lab #C - Vitis Libraries
 
