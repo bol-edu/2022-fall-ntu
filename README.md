@@ -3,7 +3,6 @@
 <h3 align="center">National Tsing Hua University, 2022 Spring</h3>
 
 
-
 ## Table of Content
 
 - [About This Repository](#about-this-repository)
