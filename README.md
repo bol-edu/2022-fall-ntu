@@ -9,7 +9,7 @@
 - [About This Repository](#about-this-repository)
 - [Lab #A - UG871](#lab-a---ug871)
 - [Lab #A - Vitis Tutorials](#lab-A---vitis-tutorials)
-- [Lab #B - Vitis Tutorial & PP4 FPGAs](#lab-B---Vitis-Tutorial-&-pp4-fpgas)
+- [Lab #B - Vitis Tutorial & PP4 FPGAs](#lab-B---vitis-tutorial---pp4-fpgas)
 - [Lab #C - Vitis Libraries](#lab-c---vitis-libraries)
 - [Final Projects](#final-projects)
 - [References](#references)
