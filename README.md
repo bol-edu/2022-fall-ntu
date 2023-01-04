@@ -57,12 +57,11 @@ For Lab #B, students practiced the labs in Vitis-Tutorials [[2]](#[2]) & pp4 fpg
 |          Topics (Links to folders in Xilinx official repository)          |                       Students (Links)                       |
 | :----------------------------------------------------------: | :----------------------------------------------------------: |
 |           [FIR](https://pp4fpgas.readthedocs.io/en/latest/project1.html)            |    [蔡岳峰](https://github.com/SzuHsi/AAHLS_LabB_cordic)     |
-|          [CORDIC](https://github.com/KastnerRG/Read_the_docs/tree/master/project_files/project2/cordic)          |    [陳思熙](https://github.com/SzuHsi/AAHLS_LabB_cordic)     |
-|           DFT            |     [鄧向凱](https://github.com/StanTeng/AAHLS_labB_DFT)     |
-|  Matrix Multiplication   | [鍾宇騫](https://github.com/andy39866821/AAHLS-LabB-Matrix-Multiplication) |
-| Prefix Sum and Histogram | [江威霖](https://github.com/caota985107/prefix-sum-and-histogram) |
-|       Video System       | [呂依凡](https://github.com/EvanLu0815/HLS/tree/main/LABB_video_processing) |
-|    Sorting Algorithm     |   [吳秉豐](https://github.com/bobwu0224/HLS_lab_B_sorting)   |
+|          [CORDIC](https://github.com/KastnerRG/Read_the_docs/tree/master/project_files/project2/cordic)          |    [許家維](https://github.com/SzuHsi/AAHLS_LabB_cordic)     |
+|           [DFT](https://github.com/KastnerRG/Read_the_docs/tree/master/project_files/project3)            |     [朱怡蓁](https://github.com/StanTeng/AAHLS_labB_DFT)     |
+|  [FFT](https://pp4fpgas.readthedocs.io/en/latest/project4.html)   | [王景平](https://github.com/andy39866821/AAHLS-LabB-Matrix-Multiplication) |
+| [Sparse Matrix Vector Multiplication]() | [范育瑋](https://github.com/caota985107/prefix-sum-and-histogram) |
+|      [Matrix Multiplication](https://github.com/KastnerRG/Read_the_docs/tree/master/project_files/matrix_mul_dpcpp)       | [張承洋](https://github.com/EvanLu0815/HLS/tree/main/LABB_video_processing) |
 
 ## Lab #C - Vitis Libraries
 
