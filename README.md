@@ -73,9 +73,10 @@ For Lab #C, students compete on the Customized Computing Challenge (CCC) [[4]](#
 
 |                        Topics (Links)                        |        Students         |
 | :----------------------------------------------------------: | :---------------------: |
-| [Vitis BLAS Library](https://github.com/hank871116/HLS_LAB_C_blas) | 呂政和、林致佑、 鄧向凱 |
-| [Vitis Data Analytics Library](https://github.com/Luyee24/HLS_Lab_C) | 呂易縉、馬婕芸、 賴聖耘 |
-| [Vitis Data Compression Library](https://github.com/andy39866821/AAHLS-LabC-Vitis-Library-Data-Compression) |     鍾宇騫、許鏡瑋      |
+| [Cordic](https://github.com/yochenglin/HLS_LabC_cordic), [CANNY](https://github.com/yochenglin/HLS_LabC_canny), [Betweenness](https://github.com/yochenglin/HLS_LabC_betweenness) | 林亮昕、林祐丞 |
+| [Cordic, FAST, Serialization](https://github.com/alanlo980510/HLS_LabC) | 羅翊誠、張承洋、王婕恩 |
+| [DFT, CANNY, Serialization](https://github.com/lspss9950101/HLS-LabC) | 王景平、黃其澤、陳維隆 |
+| [DFT, HARRIS, Betweenness](https://github.com/Chang-Tun-Yu/HLS-Team4-LabC) | 朱怡蓁、張惇宥 |
 
 
 ## Final Projects
