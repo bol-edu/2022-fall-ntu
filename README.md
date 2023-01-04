@@ -69,7 +69,7 @@ For Lab #B, students practiced the labs in Vitis-Tutorials [[2]](#[2]) & pp4 fpg
 
 ## Lab #C - Customized Computing Challenge
 
-For Lab #C, students tried out the Vitis Libraries [[4]](#[4]) and used them to build an end-to-end application acceleration.
+For Lab #C, students compete on the Customized Computing Challenge (CCC) [[4]](#[4]) and tried to analyze the designs or improve them.
 
 |                        Topics (Links)                        |        Students         |
 | :----------------------------------------------------------: | :---------------------: |
@@ -107,4 +107,4 @@ For Lab #C, students tried out the Vitis Libraries [[4]](#[4]) and used them to 
 
 <a id="[3]">[3]</a> PP4 FPGAs (https://github.com/KastnerRG/pp4fpgas/tree/master/examples)
 
-<a id="[4]">[4]</a> Xilinx Vitis Libraries (https://github.com/Xilinx/Vitis_Libraries)
+<a id="[4]">[4]</a> Customized Computing Challenge (CCC) (https://xupsh.github.io/ccc/)
