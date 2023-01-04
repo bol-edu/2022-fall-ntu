@@ -10,7 +10,7 @@
 - [Lab #A - UG871](#lab-a---ug871)
 - [Lab #A - Vitis Tutorials](#lab-A---vitis-tutorials)
 - [Lab #B - Vitis Tutorial and PP4 FPGAs](#lab-B---vitis-tutorial-and-pp4-fpgas)
-- [Lab #C - Vitis Libraries](#lab-c---vitis-libraries)
+- [Lab #C - Customized Computing Challenge (CCC)](#lab-c---customized-computing-challenge-(CCC))
 - [Final Projects](#final-projects)
 - [References](#references)
 
@@ -67,7 +67,7 @@ For Lab #B, students practiced the labs in Vitis-Tutorials [[2]](#[2]) & pp4 fpg
 | [Sparse Matrix Vector Multiplication](https://github.com/KastnerRG/pp4fpgas/tree/master/examples) | [范育瑋]() |
 |      [Matrix Multiplication](https://github.com/KastnerRG/Read_the_docs/tree/master/project_files/matrix_mul_dpcpp)       | [張承洋](https://github.com/b04901056/AAHLS_LabB) |
 
-## Lab #C - Vitis Libraries
+## Lab #C - Customized Computing Challenge (CCC)
 
 For Lab #C, students tried out the Vitis Libraries [[4]](#[4]) and used them to build an end-to-end application acceleration.
 
