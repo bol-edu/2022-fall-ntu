@@ -18,7 +18,7 @@
 
 ## About This Repository
 
-This repository is a collection of students' labs and final projects from the course ***"Application Acceleration with High-Level Synthesis"*** taught in the Graduate Institute of Electrical Engineering, National Tsing Hua University.
+This repository is a collection of students' labs and final projects from the course ***"Application Acceleration with High-Level Synthesis"*** taught in the Graduate Institute of Electrical Engineering, National Taiwan University.
 
 Files in this repository are snapshots of their original repositories at the end of the semester, in case the original links are failed. 
 
@@ -34,7 +34,7 @@ For Lab #A, students practiced the labs in UG871 [[1]](#[1]) and tried to analyz
 
 |             Topics              |                       Students (Links)                       |
 | :-----------------------------: | :----------------------------------------------------------: |
-|       Interface Synthesis       |      [賴聖耘](https://github.com/sdfhgdfhjsfg/HLS_NTHU)      |
+|       Interface Synthesis       |      [王景平](https://github.com/lspss9950101/HLS-LabA-Interface-Synthesis)      |
 |         Design Analysis         | [羅允辰](https://github.com/jasonlo0509/DCT_HLS_Optimization) |
 |       Design Optimization       |   [許鏡瑋](https://github.com/hsuyuri/110061901_lab_a.git)   |
 |  Using HLS IP in IP Integrator  |     [周沛毅](https://github.com/chou111064529/HLS_LABA)      |
