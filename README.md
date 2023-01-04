@@ -50,13 +50,14 @@ For Lab #A, students practiced the labs in Vitis-Tutorials [[2]](#[2]) and tried
 | [Dataflow Debug and Optimization](https://github.com/Xilinx/Vitis-Tutorials/tree/2022.1/Hardware_Acceleration/Feature_Tutorials/03-dataflow_debug_and_optimization) |       [許家維](https://github.com/Jarwy/2022HLS_LabA)        |
 | [Host Code Optimization](https://github.com/Xilinx/Vitis-Tutorials/tree/2022.1/Hardware_Acceleration/Design_Tutorials/07-host-code-opt) | [陳奕達](https://github.com/poppin-mice/LabA_Host_Code_Optimization.git) |
 
-## Lab #B - PP4 FPGAs
+## Lab #B - Vitis Tutorial & PP4 FPGAs
 
-For Lab #B, students practiced the labs in pp4 fpgas [[3]](#[3]) and tried to analyze the designs or improve them.
+For Lab #B, students practiced the labs in Vitis-Tutorials [[2]](#[2]) & pp4 fpgas [[3]](#[3]) and tried to analyze the designs or improve them.
 
-|          Topics          |                       Students (Links)                       |
-| :----------------------: | :----------------------------------------------------------: |
-|          CORDIC          |    [陳思熙](https://github.com/SzuHsi/AAHLS_LabB_cordic)     |
+|          Topics (Links to folders in Xilinx official repository)          |                       Students (Links)                       |
+| :----------------------------------------------------------: | :----------------------------------------------------------: |
+|           [FIR](https://pp4fpgas.readthedocs.io/en/latest/project1.html)            |    [蔡岳峰](https://github.com/SzuHsi/AAHLS_LabB_cordic)     |
+|          [CORDIC](https://github.com/KastnerRG/Read_the_docs/tree/master/project_files/project2/cordic)          |    [陳思熙](https://github.com/SzuHsi/AAHLS_LabB_cordic)     |
 |           DFT            |     [鄧向凱](https://github.com/StanTeng/AAHLS_labB_DFT)     |
 |  Matrix Multiplication   | [鍾宇騫](https://github.com/andy39866821/AAHLS-LabB-Matrix-Multiplication) |
 | Prefix Sum and Histogram | [江威霖](https://github.com/caota985107/prefix-sum-and-histogram) |
