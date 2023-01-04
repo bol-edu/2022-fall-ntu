@@ -48,15 +48,7 @@ For Lab #A, students practiced the labs in Vitis-Tutorials [[2]](#[2]) and tried
 | :----------------------------------------------------------: | :----------------------------------------------------------: |
 | [RTL kernel workflow and Mixing C++ and RTL Kernels](https://github.com/Xilinx/Vitis-Tutorials/tree/2022.1/Hardware_Acceleration/Feature_Tutorials/02-mixing-c-rtl-kernels) | [郭霖璟](https://github.com/alankuo04/AAHLS_LabA) |
 | [Dataflow Debug and Optimization](https://github.com/Xilinx/Vitis-Tutorials/tree/2022.1/Hardware_Acceleration/Feature_Tutorials/03-dataflow_debug_and_optimization) |       [許家維](https://github.com/Jarwy/2022HLS_LabA)        |
-| [Host Memory Access](https://github.com/Xilinx/Vitis-Tutorials/tree/2021.2/Hardware_Acceleration/Feature_Tutorials/08-using-hostmem) | [林彥岑](https://github.com/yclin629/High-Level-Synthesis--Host-Memory-Access) |
-| [streaming_free_running_k2k](https://github.com/Xilinx/Vitis_Accel_Examples/tree/master/host/streaming_free_running_k2k) |        [徐浩庭](https://github.com/TimHsu28/Tim-Hsu)         |
-| [loop_reorder](https://github.com/Xilinx/Vitis_Accel_Examples/tree/master/cpp_kernels/loop_reorder) | [王睿瑄](https://github.com/rhsuanwang/HLS_Lab_B_Loop_Reorder) |
-| [systolic_array](https://github.com/Xilinx/Vitis_Accel_Examples/tree/master/cpp_kernels/systolic_array) |  [李冠霈](https://github.com/kuanpei/Lab_B_Systolic_array)   |
-| [Cholesky Algorithm](https://github.com/Xilinx/Vitis-Tutorials/tree/2021.2/Hardware_Acceleration/Design_Tutorials/06-cholesky-accel) |     [呂政和](https://github.com/hank871116/HLS_LAB_B_5)      |
-| [Bloom Filter](https://github.com/Xilinx/Vitis-Tutorials/tree/2021.2/Hardware_Acceleration/Design_Tutorials/02-bloom) | [林致佑](https://github.com/ChihyuLin0211/Lab_B_Vitis_Tutorials_02_Bloom) |
-| [Convolution Filtering](https://github.com/Xilinx/Vitis-Tutorials/tree/2021.2/Hardware_Acceleration/Design_Tutorials/01-convolution-tutorial) |        [呂易縉](https://github.com/Luyee24/HLS_Lab_B)        |
-
-
+| [Host Code Optimization](https://github.com/Xilinx/Vitis-Tutorials/tree/2022.1/Hardware_Acceleration/Design_Tutorials/07-host-code-opt) | [陳奕達](https://github.com/poppin-mice/LabA_Host_Code_Optimization.git) |
 
 ## Lab #B - PP4 FPGAs
 
