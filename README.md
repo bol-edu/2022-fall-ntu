@@ -35,10 +35,8 @@ For Lab #A, students practiced the labs in UG871 [[1]](#[1]) and tried to analyz
 |             Topics              |                       Students (Links)                       |
 | :-----------------------------: | :----------------------------------------------------------: |
 |       Interface Synthesis       |      [王景平](https://github.com/lspss9950101/HLS-LabA-Interface-Synthesis)      |
-|         Design Analysis         | [羅允辰](https://github.com/jasonlo0509/DCT_HLS_Optimization) |
-|       Design Optimization       |   [許鏡瑋](https://github.com/hsuyuri/110061901_lab_a.git)   |
-|  Using HLS IP in IP Integrator  |     [周沛毅](https://github.com/chou111064529/HLS_LABA)      |
-| Using HLS IP in Zynq SoC Design |        [郭柏辰](https://github.com/pckuo95/HLS_labA)         |
+|         Design Analysis         | [王婕恩](https://github.com/jasonlo0509/DCT_HLS_Optimization) |
+|       Design Optimization       |   [張承洋](https://github.com/hsuyuri/110061901_lab_a.git)   |
 
 
 
