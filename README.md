@@ -1,6 +1,6 @@
 <h1 align="center">Application Acceleration with High-Level Synthesis</h1>
 
-<h3 align="center">National Tsing Hua University, 2022 Spring</h3>
+<h3 align="center">National Taiwan University, 2022 Full</h3>
 
 
 
@@ -9,7 +9,7 @@
 - [About This Repository](#about-this-repository)
 - [Lab #A - UG871](#lab-a---ug871)
 - [Lab #A - Vitis Tutorials](#lab-A---vitis-tutorials)
-- [Lab #B - Vitis Tutorial & PP4 FPGAs](#lab-B---pp4-fpgas)
+- [Lab #B - Vitis Tutorial & PP4 FPGAs](#lab-B---Vitis-Tutorial-&-pp4-fpgas)
 - [Lab #C - Vitis Libraries](#lab-c---vitis-libraries)
 - [Final Projects](#final-projects)
 - [References](#references)
