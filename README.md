@@ -47,7 +47,7 @@ For Lab #A, students practiced the labs in Vitis-Tutorials [[2]](#[2]) and tried
 |   Topics (Links to folders in Xilinx official repository)    |                       Students (Links)                       |
 | :----------------------------------------------------------: | :----------------------------------------------------------: |
 | [RTL kernel workflow and Mixing C++ and RTL Kernels](https://github.com/Xilinx/Vitis-Tutorials/tree/2022.1/Hardware_Acceleration/Feature_Tutorials/02-mixing-c-rtl-kernels) | [郭霖璟](https://github.com/alankuo04/AAHLS_LabA) |
-| [Vitis HLS Analysis and Optimization](https://github.com/Xilinx/Vitis-Tutorials/blob/2021.2/Hardware_Acceleration/Feature_Tutorials/03-dataflow_debug_and_optimization/README.md) |       [陳成彬](https://github.com/ben60915/LabA-no.8)        |
+| [Dataflow Debug and Optimization](https://github.com/Xilinx/Vitis-Tutorials/tree/2022.1/Hardware_Acceleration/Feature_Tutorials/03-dataflow_debug_and_optimization) |       [許家維](https://github.com/Jarwy/2022HLS_LabA)        |
 | [Host Memory Access](https://github.com/Xilinx/Vitis-Tutorials/tree/2021.2/Hardware_Acceleration/Feature_Tutorials/08-using-hostmem) | [林彥岑](https://github.com/yclin629/High-Level-Synthesis--Host-Memory-Access) |
 | [streaming_free_running_k2k](https://github.com/Xilinx/Vitis_Accel_Examples/tree/master/host/streaming_free_running_k2k) |        [徐浩庭](https://github.com/TimHsu28/Tim-Hsu)         |
 | [loop_reorder](https://github.com/Xilinx/Vitis_Accel_Examples/tree/master/cpp_kernels/loop_reorder) | [王睿瑄](https://github.com/rhsuanwang/HLS_Lab_B_Loop_Reorder) |
