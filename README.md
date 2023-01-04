@@ -76,19 +76,13 @@ For Lab #C, students compete on the Customized Computing Challenge (CCC) [[4]](#
 | [Vitis BLAS Library](https://github.com/hank871116/HLS_LAB_C_blas) | 呂政和、林致佑、 鄧向凱 |
 | [Vitis Data Analytics Library](https://github.com/Luyee24/HLS_Lab_C) | 呂易縉、馬婕芸、 賴聖耘 |
 | [Vitis Data Compression Library](https://github.com/andy39866821/AAHLS-LabC-Vitis-Library-Data-Compression) |     鍾宇騫、許鏡瑋      |
-| [Vitis DSP Library](https://github.com/ben60915/HLS-Lab_C-dsp-library-report) | 周沛毅、徐宜婕、陳成彬  |
-| [Vitis CODEC Library](https://github.com/bobwu0224/HLS_lab_C_Codec) | 陳思熙、吳秉豐、江威霖  |
-|   [Vitis HPC Library](https://github.com/pckuo95/HLS_LabC)   |         郭柏辰          |
-| [Vitis Quantitative Finance Library](https://github.com/EvanLu0815/labC_quantitativeFinance) | 呂依凡、林彥岑、徐浩庭  |
-| [Vitis Vision Library](https://github.com/rhsuanwang/Lab-C_vision_color_detect) | 羅允辰、李冠霈、王睿瑄  |
-
 
 
 ## Final Projects
 
 |                        Topics (Links)                        |        Students         |
 | :----------------------------------------------------------: | :---------------------: |
-| [Image Captioner](https://github.com/hank871116/HLS_final_project) | 呂政和、林致佑、 鄧向凱 |
+| [Cordic](https://github.com/yochenglin/HLS_LabC_cordic), [CANNY](https://github.com/yochenglin/HLS_LabC_canny), [Betweenness](https://github.com/yochenglin/HLS_LabC_betweenness) | 林亮昕、林祐丞 |
 | [Spike Sorting Acceleration Beamforming Acceleration](https://github.com/jieyunma/AAHLS_final) | 呂易縉、馬婕芸、 賴聖耘 |
 | [2D Mesh Interconnection Network on Chip](https://github.com/andy39866821/Vitis-HLS-2D-Mesh-NoC-Implementation) |     鍾宇騫、許鏡瑋      |
 | [OFDM Implemented by HLS](https://github.com/Yichieh0/OFDM_Implemented_by_HLS) | 周沛毅、徐宜婕、陳成彬  |
