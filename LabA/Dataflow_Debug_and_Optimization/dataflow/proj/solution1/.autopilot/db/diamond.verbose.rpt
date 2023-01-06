@@ -1,0 +1,634 @@
+
+
+================================================================
+== Vitis HLS Report for 'diamond'
+================================================================
+* Date:           Thu Oct 13 09:29:17 2022
+
+* Version:        2022.1 (Build 3526262 on Mon Apr 18 15:47:01 MDT 2022)
+* Project:        proj
+* Solution:       solution1 (Vivado IP Flow Target)
+* Product family: virtexuplus
+* Target device:  xcvu9p-flga2104-2-i
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing: 
+    * Summary: 
+    +--------+---------+----------+------------+
+    |  Clock |  Target | Estimated| Uncertainty|
+    +--------+---------+----------+------------+
+    |ap_clk  |  5.00 ns|  1.843 ns|     1.35 ns|
+    +--------+---------+----------+------------+
+
++ Latency: 
+    * Summary: 
+    +---------+---------+----------+----------+-----+-----+----------+
+    |  Latency (cycles) |  Latency (absolute) |  Interval | Pipeline |
+    |   min   |   max   |    min   |    max   | min | max |   Type   |
+    +---------+---------+----------+----------+-----+-----+----------+
+    |      152|      155|  0.760 us|  0.775 us|   50|   50|  dataflow|
+    +---------+---------+----------+----------+-----+-----+----------+
+
+    + Detail: 
+        * Instance: 
+        +----------+-------+---------+---------+----------+----------+-----+-----+------------------------------------------+
+        |          |       |  Latency (cycles) |  Latency (absolute) |  Interval |                 Pipeline                 |
+        | Instance | Module|   min   |   max   |    min   |    max   | min | max |                   Type                   |
+        +----------+-------+---------+---------+----------+----------+-----+-----+------------------------------------------+
+        |funcA_U0  |funcA  |       50|       51|  0.250 us|  0.255 us|   50|   50|  loop rewind stp(delay=0 clock cycles(s))|
+        |funcB_U0  |funcB  |       50|       51|  0.250 us|  0.255 us|   50|   50|  loop rewind stp(delay=0 clock cycles(s))|
+        |funcC_U0  |funcC  |       50|       51|  0.250 us|  0.255 us|   50|   50|  loop rewind stp(delay=0 clock cycles(s))|
+        |funcD_U0  |funcD  |       50|       51|  0.250 us|  0.255 us|   50|   50|  loop rewind stp(delay=0 clock cycles(s))|
+        +----------+-------+---------+---------+----------+----------+-----+-----+------------------------------------------+
+
+        * Loop: 
+        N/A
+
+
+
+================================================================
+== Utilization Estimates
+================================================================
+* Summary: 
++---------------------+---------+------+---------+---------+-----+
+|         Name        | BRAM_18K|  DSP |    FF   |   LUT   | URAM|
++---------------------+---------+------+---------+---------+-----+
+|DSP                  |        -|     -|        -|        -|    -|
+|Expression           |        -|     -|        0|       14|    -|
+|FIFO                 |        -|     -|        -|        -|    -|
+|Instance             |        -|     -|      128|      458|    -|
+|Memory               |        0|     -|       64|      136|    0|
+|Multiplexer          |        -|     -|        -|       18|    -|
+|Register             |        -|     -|        2|        -|    -|
++---------------------+---------+------+---------+---------+-----+
+|Total                |        0|     0|      194|      626|    0|
++---------------------+---------+------+---------+---------+-----+
+|Available SLR        |     1440|  2280|   788160|   394080|  320|
++---------------------+---------+------+---------+---------+-----+
+|Utilization SLR (%)  |        0|     0|       ~0|       ~0|    0|
++---------------------+---------+------+---------+---------+-----+
+|Available            |     4320|  6840|  2364480|  1182240|  960|
++---------------------+---------+------+---------+---------+-----+
+|Utilization (%)      |        0|     0|       ~0|       ~0|    0|
++---------------------+---------+------+---------+---------+-----+
+
++ Detail: 
+    * Instance: 
+    +----------+-------+---------+----+----+-----+-----+
+    | Instance | Module| BRAM_18K| DSP| FF | LUT | URAM|
+    +----------+-------+---------+----+----+-----+-----+
+    |funcA_U0  |funcA  |        0|   0|  32|  122|    0|
+    |funcB_U0  |funcB  |        0|   0|  32|  122|    0|
+    |funcC_U0  |funcC  |        0|   0|  32|   92|    0|
+    |funcD_U0  |funcD  |        0|   0|  32|  122|    0|
+    +----------+-------+---------+----+----+-----+-----+
+    |Total     |       |        0|   0| 128|  458|    0|
+    +----------+-------+---------+----+----+-----+-----+
+
+    * DSP: 
+    N/A
+
+    * Memory: 
+    +-------+------------------+---------+----+----+-----+------+-----+------+-------------+
+    | Memory|      Module      | BRAM_18K| FF | LUT| URAM| Words| Bits| Banks| W*Bits*Banks|
+    +-------+------------------+---------+----+----+-----+------+-----+------+-------------+
+    |c1_U   |c1_RAM_AUTO_1R1W  |        0|  16|  34|    0|   100|    8|     1|          800|
+    |c3_U   |c1_RAM_AUTO_1R1W  |        0|  16|  34|    0|   100|    8|     1|          800|
+    |c2_U   |c2_RAM_AUTO_1R1W  |        0|  16|  34|    0|   100|    6|     1|          600|
+    |c4_U   |c4_RAM_AUTO_1R1W  |        0|  16|  34|    0|   100|    7|     1|          700|
+    +-------+------------------+---------+----+----+-----+------+-----+------+-------------+
+    |Total  |                  |        0|  64| 136|    0|   400|   29|     4|         2900|
+    +-------+------------------+---------+----+----+-----+------+-----+------+-------------+
+
+    * FIFO: 
+    N/A
+
+    * Expression: 
+    +--------------------------+----------+----+---+----+------------+------------+
+    |       Variable Name      | Operation| DSP| FF| LUT| Bitwidth P0| Bitwidth P1|
+    +--------------------------+----------+----+---+----+------------+------------+
+    |ap_channel_done_c1        |       and|   0|  0|   2|           1|           1|
+    |ap_channel_done_c2        |       and|   0|  0|   2|           1|           1|
+    |ap_idle                   |       and|   0|  0|   2|           1|           1|
+    |funcA_U0_ap_continue      |       and|   0|  0|   2|           1|           1|
+    |funcD_U0_ap_start         |       and|   0|  0|   2|           1|           1|
+    |ap_sync_channel_write_c1  |        or|   0|  0|   2|           1|           1|
+    |ap_sync_channel_write_c2  |        or|   0|  0|   2|           1|           1|
+    +--------------------------+----------+----+---+----+------------+------------+
+    |Total                     |          |   0|  0|  14|           7|           7|
+    +--------------------------+----------+----+---+----+------------+------------+
+
+    * Multiplexer: 
+    +------------------------------+----+-----------+-----+-----------+
+    |             Name             | LUT| Input Size| Bits| Total Bits|
+    +------------------------------+----+-----------+-----+-----------+
+    |ap_sync_reg_channel_write_c1  |   9|          2|    1|          2|
+    |ap_sync_reg_channel_write_c2  |   9|          2|    1|          2|
+    +------------------------------+----+-----------+-----+-----------+
+    |Total                         |  18|          4|    2|          4|
+    +------------------------------+----+-----------+-----+-----------+
+
+    * Register: 
+    +------------------------------+---+----+-----+-----------+
+    |             Name             | FF| LUT| Bits| Const Bits|
+    +------------------------------+---+----+-----+-----------+
+    |ap_sync_reg_channel_write_c1  |  1|   0|    1|          0|
+    |ap_sync_reg_channel_write_c2  |  1|   0|    1|          0|
+    +------------------------------+---+----+-----+-----------+
+    |Total                         |  2|   0|    2|          0|
+    +------------------------------+---+----+-----+-----------+
+
+
+
+================================================================
+== Interface
+================================================================
+* Summary: 
++-----------------+-----+-----+------------+--------------+--------------+
+|    RTL Ports    | Dir | Bits|  Protocol  | Source Object|    C Type    |
++-----------------+-----+-----+------------+--------------+--------------+
+|ap_clk           |   in|    1|  ap_ctrl_hs|       diamond|  return value|
+|ap_rst           |   in|    1|  ap_ctrl_hs|       diamond|  return value|
+|ap_start         |   in|    1|  ap_ctrl_hs|       diamond|  return value|
+|ap_done          |  out|    1|  ap_ctrl_hs|       diamond|  return value|
+|ap_ready         |  out|    1|  ap_ctrl_hs|       diamond|  return value|
+|ap_idle          |  out|    1|  ap_ctrl_hs|       diamond|  return value|
+|vecIn_address0   |  out|    7|   ap_memory|         vecIn|         array|
+|vecIn_ce0        |  out|    1|   ap_memory|         vecIn|         array|
+|vecIn_d0         |  out|    8|   ap_memory|         vecIn|         array|
+|vecIn_q0         |   in|    8|   ap_memory|         vecIn|         array|
+|vecIn_we0        |  out|    1|   ap_memory|         vecIn|         array|
+|vecIn_address1   |  out|    7|   ap_memory|         vecIn|         array|
+|vecIn_ce1        |  out|    1|   ap_memory|         vecIn|         array|
+|vecIn_d1         |  out|    8|   ap_memory|         vecIn|         array|
+|vecIn_q1         |   in|    8|   ap_memory|         vecIn|         array|
+|vecIn_we1        |  out|    1|   ap_memory|         vecIn|         array|
+|vecOut_address0  |  out|    7|   ap_memory|        vecOut|         array|
+|vecOut_ce0       |  out|    1|   ap_memory|        vecOut|         array|
+|vecOut_d0        |  out|    8|   ap_memory|        vecOut|         array|
+|vecOut_q0        |   in|    8|   ap_memory|        vecOut|         array|
+|vecOut_we0       |  out|    1|   ap_memory|        vecOut|         array|
+|vecOut_address1  |  out|    7|   ap_memory|        vecOut|         array|
+|vecOut_ce1       |  out|    1|   ap_memory|        vecOut|         array|
+|vecOut_d1        |  out|    8|   ap_memory|        vecOut|         array|
+|vecOut_q1        |   in|    8|   ap_memory|        vecOut|         array|
+|vecOut_we1       |  out|    1|   ap_memory|        vecOut|         array|
++-----------------+-----+-----+------------+--------------+--------------+
+
+============================================================
++ Verbose Summary: Synthesis Manager
+============================================================
+InlineROM: 1
+ExposeGlobal: 0
+============================================================
++ Verbose Summary: CDFG Model
+============================================================
+IsTopModel: 1
+ResetActiveHigh: 1
+IsCombinational: 2
+IsDatapathOnly: 2
+HasWiredReturn: 1
+HasMFsm: 0
+HasVarLatency: 1
+IsPipeline: 0
+IsRtlPipelined: 0
+IsInstanceOverlapped: 0
+IsDontTouch: 0
+HasImplIP: 0
+IsGatedGlobalClock: 0
+
+
+============================================================
++ Verbose Summary: Schedule
+============================================================
+* Number of FSM states : 6
+* Pipeline : 0
+* Dataflow Pipeline: 1
+  DF-Pipeline-0: Size = 6, States = { 1 2 3 4 5 6 }
+
+* FSM state transitions: 
+1 --> 2 
+2 --> 3 
+3 --> 4 
+4 --> 5 
+5 --> 6 
+6 --> 
+
+* FSM state operations: 
+
+State 1 <SV = 0> <Delay = 0.56>
+ST_1 : Operation 7 [1/1] (0.56ns)   --->   "%c1 = alloca i64 1" [diamond.cpp:21]   --->   Operation 7 'alloca' 'c1' <Predicate = true> <Delay = 0.56>
+ST_1 : Operation 8 [1/1] (0.56ns)   --->   "%c2 = alloca i64 1" [diamond.cpp:21]   --->   Operation 8 'alloca' 'c2' <Predicate = true> <Delay = 0.56>
+ST_1 : Operation 9 [1/1] (0.56ns)   --->   "%c3 = alloca i64 1" [diamond.cpp:21]   --->   Operation 9 'alloca' 'c3' <Predicate = true> <Delay = 0.56>
+ST_1 : Operation 10 [1/1] (0.56ns)   --->   "%c4 = alloca i64 1" [diamond.cpp:21]   --->   Operation 10 'alloca' 'c4' <Predicate = true> <Delay = 0.56>
+ST_1 : Operation 11 [2/2] (0.00ns)   --->   "%call_ln26 = call void @funcA, i8 %vecIn, i8 %c1, i6 %c2" [diamond.cpp:26]   --->   Operation 11 'call' 'call_ln26' <Predicate = true> <Delay = 0.00> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+
+State 2 <SV = 1> <Delay = 0.00>
+ST_2 : Operation 12 [1/2] (0.00ns)   --->   "%call_ln26 = call void @funcA, i8 %vecIn, i8 %c1, i6 %c2" [diamond.cpp:26]   --->   Operation 12 'call' 'call_ln26' <Predicate = true> <Delay = 0.00> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+
+State 3 <SV = 2> <Delay = 0.00>
+ST_3 : Operation 13 [2/2] (0.00ns)   --->   "%call_ln27 = call void @funcB, i8 %c1, i8 %c3" [diamond.cpp:27]   --->   Operation 13 'call' 'call_ln27' <Predicate = true> <Delay = 0.00> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+ST_3 : Operation 14 [2/2] (0.00ns)   --->   "%call_ln28 = call void @funcC, i6 %c2, i7 %c4" [diamond.cpp:28]   --->   Operation 14 'call' 'call_ln28' <Predicate = true> <Delay = 0.00> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+
+State 4 <SV = 3> <Delay = 0.00>
+ST_4 : Operation 15 [1/2] (0.00ns)   --->   "%call_ln27 = call void @funcB, i8 %c1, i8 %c3" [diamond.cpp:27]   --->   Operation 15 'call' 'call_ln27' <Predicate = true> <Delay = 0.00> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+ST_4 : Operation 16 [1/2] (0.00ns)   --->   "%call_ln28 = call void @funcC, i6 %c2, i7 %c4" [diamond.cpp:28]   --->   Operation 16 'call' 'call_ln28' <Predicate = true> <Delay = 0.00> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+
+State 5 <SV = 4> <Delay = 0.00>
+ST_5 : Operation 17 [2/2] (0.00ns)   --->   "%call_ln29 = call void @funcD, i8 %c3, i7 %c4, i8 %vecOut" [diamond.cpp:29]   --->   Operation 17 'call' 'call_ln29' <Predicate = true> <Delay = 0.00> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+
+State 6 <SV = 5> <Delay = 0.00>
+ST_6 : Operation 18 [1/1] (0.00ns)   --->   "%specdataflowpipeline_ln22 = specdataflowpipeline void @_ssdm_op_SpecDataflowPipeline, i32 4294967295, i32 0, void @empty_0" [diamond.cpp:22]   --->   Operation 18 'specdataflowpipeline' 'specdataflowpipeline_ln22' <Predicate = true> <Delay = 0.00>
+ST_6 : Operation 19 [1/1] (0.00ns)   --->   "%spectopmodule_ln19 = spectopmodule void @_ssdm_op_SpecTopModule, void @empty_1" [diamond.cpp:19]   --->   Operation 19 'spectopmodule' 'spectopmodule_ln19' <Predicate = true> <Delay = 0.00>
+ST_6 : Operation 20 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i8 %vecIn, void @empty, i32 0, i32 0, void @empty_0, i32 4294967295, i32 0, void @empty_0, void @empty_0, void @empty_0, i32 0, i32 0, i32 0, i32 0, void @empty_0, void @empty_0, i32 4294967295, i32 0"   --->   Operation 20 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_6 : Operation 21 [1/1] (0.00ns)   --->   "%specbitsmap_ln0 = specbitsmap void @_ssdm_op_SpecBitsMap, i8 %vecIn"   --->   Operation 21 'specbitsmap' 'specbitsmap_ln0' <Predicate = true> <Delay = 0.00>
+ST_6 : Operation 22 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i8 %vecOut, void @empty, i32 0, i32 0, void @empty_0, i32 4294967295, i32 0, void @empty_0, void @empty_0, void @empty_0, i32 0, i32 0, i32 0, i32 0, void @empty_0, void @empty_0, i32 4294967295, i32 0"   --->   Operation 22 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_6 : Operation 23 [1/1] (0.00ns)   --->   "%specbitsmap_ln0 = specbitsmap void @_ssdm_op_SpecBitsMap, i8 %vecOut"   --->   Operation 23 'specbitsmap' 'specbitsmap_ln0' <Predicate = true> <Delay = 0.00>
+ST_6 : Operation 24 [1/2] (0.00ns)   --->   "%call_ln29 = call void @funcD, i8 %c3, i7 %c4, i8 %vecOut" [diamond.cpp:29]   --->   Operation 24 'call' 'call_ln29' <Predicate = true> <Delay = 0.00> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+ST_6 : Operation 25 [1/1] (0.00ns)   --->   "%ret_ln30 = ret" [diamond.cpp:30]   --->   Operation 25 'ret' 'ret_ln30' <Predicate = true> <Delay = 0.00>
+
+
+============================================================
++ Verbose Summary: Binding
+============================================================
+STG Binding: 
+---------------- STG Properties BEGIN ----------------
+- Is combinational: 0
+- Is one-state seq: 0
+- Is datapath-only: 0
+- Is pipelined: 0
+- Is top level: 1
+Port [ Return ] is wired: 1; IO mode=ap_ctrl_hs:ce=0
+Port [ vecIn]:  wired=1; compound=1; hidden=0; nouse=0; global=0; static=0; extern=0; dir=0; type=1; pingpong=0; private_global=0; MemPort=[11]; IO mode=ap_memory:ce=0
+Port [ vecOut]:  wired=1; compound=1; hidden=0; nouse=0; global=0; static=0; extern=0; dir=1; type=1; pingpong=0; private_global=0; MemPort=[00]; IO mode=ap_memory:ce=0
+---------------- STG Properties END ------------------
+
+---------------- Datapath Model BEGIN ----------------
+
+<LifeTime>
+<method=bitvector/>
+c1                        (alloca              ) [ 0011100]
+c2                        (alloca              ) [ 0011100]
+c3                        (alloca              ) [ 0011111]
+c4                        (alloca              ) [ 0011111]
+call_ln26                 (call                ) [ 0000000]
+call_ln27                 (call                ) [ 0000000]
+call_ln28                 (call                ) [ 0000000]
+specdataflowpipeline_ln22 (specdataflowpipeline) [ 0000000]
+spectopmodule_ln19        (spectopmodule       ) [ 0000000]
+specinterface_ln0         (specinterface       ) [ 0000000]
+specbitsmap_ln0           (specbitsmap         ) [ 0000000]
+specinterface_ln0         (specinterface       ) [ 0000000]
+specbitsmap_ln0           (specbitsmap         ) [ 0000000]
+call_ln29                 (call                ) [ 0000000]
+ret_ln30                  (ret                 ) [ 0000000]
+</LifeTime>
+
+<model>
+
+<comp_list>
+<comp id="0" class="1000" name="vecIn">
+<pin_list>
+<pin id="1" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="vecIn"/><MemPortTyVec>1 1 </MemPortTyVec>
+</StgValue>
+</bind>
+</comp>
+
+<comp id="2" class="1000" name="vecOut">
+<pin_list>
+<pin id="3" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="vecOut"/><MemPortTyVec>0 0 </MemPortTyVec>
+</StgValue>
+</bind>
+</comp>
+
+<comp id="4" class="1001" name="const_4">
+<pin_list>
+<pin id="5" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name=""/></StgValue>
+</bind>
+</comp>
+
+<comp id="6" class="1001" name="const_6">
+<pin_list>
+<pin id="7" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="funcA"/></StgValue>
+</bind>
+</comp>
+
+<comp id="8" class="1001" name="const_8">
+<pin_list>
+<pin id="9" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="funcB"/></StgValue>
+</bind>
+</comp>
+
+<comp id="10" class="1001" name="const_10">
+<pin_list>
+<pin id="11" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="funcC"/></StgValue>
+</bind>
+</comp>
+
+<comp id="12" class="1001" name="const_12">
+<pin_list>
+<pin id="13" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="funcD"/></StgValue>
+</bind>
+</comp>
+
+<comp id="14" class="1001" name="const_14">
+<pin_list>
+<pin id="15" dir="1" index="0" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="_ssdm_op_SpecDataflowPipeline"/></StgValue>
+</bind>
+</comp>
+
+<comp id="16" class="1001" name="const_16">
+<pin_list>
+<pin id="17" dir="1" index="0" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name=""/></StgValue>
+</bind>
+</comp>
+
+<comp id="18" class="1001" name="const_18">
+<pin_list>
+<pin id="19" dir="1" index="0" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name=""/></StgValue>
+</bind>
+</comp>
+
+<comp id="20" class="1001" name="const_20">
+<pin_list>
+<pin id="21" dir="1" index="0" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="empty_0"/></StgValue>
+</bind>
+</comp>
+
+<comp id="22" class="1001" name="const_22">
+<pin_list>
+<pin id="23" dir="1" index="0" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="_ssdm_op_SpecTopModule"/></StgValue>
+</bind>
+</comp>
+
+<comp id="24" class="1001" name="const_24">
+<pin_list>
+<pin id="25" dir="1" index="0" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="empty_1"/></StgValue>
+</bind>
+</comp>
+
+<comp id="26" class="1001" name="const_26">
+<pin_list>
+<pin id="27" dir="1" index="0" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="_ssdm_op_SpecInterface"/></StgValue>
+</bind>
+</comp>
+
+<comp id="28" class="1001" name="const_28">
+<pin_list>
+<pin id="29" dir="1" index="0" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="empty"/></StgValue>
+</bind>
+</comp>
+
+<comp id="30" class="1001" name="const_30">
+<pin_list>
+<pin id="31" dir="1" index="0" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="_ssdm_op_SpecBitsMap"/></StgValue>
+</bind>
+</comp>
+
+<comp id="32" class="1004" name="c1_alloca_fu_32">
+<pin_list>
+<pin id="33" dir="0" index="0" bw="1" slack="0"/>
+<pin id="34" dir="1" index="1" bw="8" slack="0"/>
+</pin_list>
+<bind>
+<opcode="alloca(26) " fcode="alloca"/>
+<opset="c1/1 "/>
+</bind>
+</comp>
+
+<comp id="36" class="1004" name="c2_alloca_fu_36">
+<pin_list>
+<pin id="37" dir="0" index="0" bw="1" slack="0"/>
+<pin id="38" dir="1" index="1" bw="6" slack="0"/>
+</pin_list>
+<bind>
+<opcode="alloca(26) " fcode="alloca"/>
+<opset="c2/1 "/>
+</bind>
+</comp>
+
+<comp id="40" class="1004" name="c3_alloca_fu_40">
+<pin_list>
+<pin id="41" dir="0" index="0" bw="1" slack="0"/>
+<pin id="42" dir="1" index="1" bw="8" slack="2147483647"/>
+</pin_list>
+<bind>
+<opcode="alloca(26) " fcode="alloca"/>
+<opset="c3/1 "/>
+</bind>
+</comp>
+
+<comp id="44" class="1004" name="c4_alloca_fu_44">
+<pin_list>
+<pin id="45" dir="0" index="0" bw="1" slack="0"/>
+<pin id="46" dir="1" index="1" bw="7" slack="2147483647"/>
+</pin_list>
+<bind>
+<opcode="alloca(26) " fcode="alloca"/>
+<opset="c4/1 "/>
+</bind>
+</comp>
+
+<comp id="48" class="1004" name="grp_funcA_fu_48">
+<pin_list>
+<pin id="49" dir="0" index="0" bw="0" slack="0"/>
+<pin id="50" dir="0" index="1" bw="8" slack="0"/>
+<pin id="51" dir="0" index="2" bw="8" slack="0"/>
+<pin id="52" dir="0" index="3" bw="6" slack="0"/>
+<pin id="53" dir="1" index="4" bw="0" slack="2147483647"/>
+</pin_list>
+<bind>
+<opcode="call(48) " fcode="call"/>
+<opset="call_ln26/1 "/>
+</bind>
+</comp>
+
+<comp id="58" class="1004" name="grp_funcB_fu_58">
+<pin_list>
+<pin id="59" dir="0" index="0" bw="0" slack="0"/>
+<pin id="60" dir="0" index="1" bw="8" slack="2147483647"/>
+<pin id="61" dir="0" index="2" bw="8" slack="2147483647"/>
+<pin id="62" dir="1" index="3" bw="0" slack="2147483647"/>
+</pin_list>
+<bind>
+<opcode="call(48) " fcode="call"/>
+<opset="call_ln27/3 "/>
+</bind>
+</comp>
+
+<comp id="64" class="1004" name="grp_funcC_fu_64">
+<pin_list>
+<pin id="65" dir="0" index="0" bw="0" slack="0"/>
+<pin id="66" dir="0" index="1" bw="6" slack="2147483647"/>
+<pin id="67" dir="0" index="2" bw="7" slack="2147483647"/>
+<pin id="68" dir="1" index="3" bw="0" slack="2147483647"/>
+</pin_list>
+<bind>
+<opcode="call(48) " fcode="call"/>
+<opset="call_ln28/3 "/>
+</bind>
+</comp>
+
+<comp id="70" class="1004" name="grp_funcD_fu_70">
+<pin_list>
+<pin id="71" dir="0" index="0" bw="0" slack="0"/>
+<pin id="72" dir="0" index="1" bw="8" slack="2147483647"/>
+<pin id="73" dir="0" index="2" bw="7" slack="2147483647"/>
+<pin id="74" dir="0" index="3" bw="8" slack="0"/>
+<pin id="75" dir="1" index="4" bw="0" slack="2147483647"/>
+</pin_list>
+<bind>
+<opcode="call(48) " fcode="call"/>
+<opset="call_ln29/5 "/>
+</bind>
+</comp>
+
+</comp_list>
+
+<net_list>
+<net id="35"><net_src comp="4" pin="0"/><net_sink comp="32" pin=0"/></net>
+
+<net id="39"><net_src comp="4" pin="0"/><net_sink comp="36" pin=0"/></net>
+
+<net id="43"><net_src comp="4" pin="0"/><net_sink comp="40" pin=0"/></net>
+
+<net id="47"><net_src comp="4" pin="0"/><net_sink comp="44" pin=0"/></net>
+
+<net id="54"><net_src comp="6" pin="0"/><net_sink comp="48" pin=0"/></net>
+
+<net id="55"><net_src comp="0" pin="0"/><net_sink comp="48" pin=1"/></net>
+
+<net id="56"><net_src comp="32" pin="1"/><net_sink comp="48" pin=2"/></net>
+
+<net id="57"><net_src comp="36" pin="1"/><net_sink comp="48" pin=3"/></net>
+
+<net id="63"><net_src comp="8" pin="0"/><net_sink comp="58" pin=0"/></net>
+
+<net id="69"><net_src comp="10" pin="0"/><net_sink comp="64" pin=0"/></net>
+
+<net id="76"><net_src comp="12" pin="0"/><net_sink comp="70" pin=0"/></net>
+
+<net id="77"><net_src comp="2" pin="0"/><net_sink comp="70" pin=3"/></net>
+
+</net_list>
+
+</model> 
+---------------- Datapath Model END ------------------
+
+* FSMD analyzer results:
+  - Output states:
+	Port: vecOut | {5 6 }
+ - Input state : 
+	Port: diamond : vecIn | {1 2 }
+  - Chain level:
+	State 1
+		call_ln26 : 1
+	State 2
+	State 3
+	State 4
+	State 5
+	State 6
+
+
+============================================================
++ Verbose Summary: Datapath Resource usage 
+============================================================
+
+* Functional unit list:
+|----------|-----------------|---------|---------|---------|
+| Operation| Functional Unit |  Delay  |    FF   |   LUT   |
+|----------|-----------------|---------|---------|---------|
+|          | grp_funcA_fu_48 |  0.774  |   157   |    72   |
+|   call   | grp_funcB_fu_58 |  0.774  |   157   |    72   |
+|          | grp_funcC_fu_64 |  0.774  |   157   |    42   |
+|          | grp_funcD_fu_70 |  1.548  |   171   |    90   |
+|----------|-----------------|---------|---------|---------|
+|   Total  |                 |   3.87  |   642   |   276   |
+|----------|-----------------|---------|---------|---------|
+
+Memories:
++----+--------+--------+--------+--------+
+|    |  BRAM  |   FF   |   LUT  |  URAM  |
++----+--------+--------+--------+--------+
+| c1 |    0   |   16   |   34   |    0   |
+| c2 |    0   |   16   |   34   |    0   |
+| c3 |    0   |   16   |   34   |    0   |
+| c4 |    0   |   16   |   34   |    0   |
++----+--------+--------+--------+--------+
+|Total|    0   |   64   |   136  |    0   |
++----+--------+--------+--------+--------+
+
+* Register list:
+N/A
+
+* Multiplexer (MUX) list: 
+|--------|------|------|------|--------|
+|  Comp  |  Pin | Size |  BW  | S x BW |
+|--------|------|------|------|--------|
+|  Total |      |      |      |    0   |
+|--------|------|------|------|--------|
+
+
+
+* Summary:
++-----------+--------+--------+--------+--------+--------+
+|           |  BRAM  |  Delay |   FF   |   LUT  |  URAM  |
++-----------+--------+--------+--------+--------+--------+
+|  Function |    -   |    3   |   642  |   276  |    -   |
+|   Memory  |    0   |    -   |   64   |   136  |    0   |
+|Multiplexer|    -   |    -   |    -   |    -   |    -   |
+|  Register |    -   |    -   |    -   |    -   |    -   |
++-----------+--------+--------+--------+--------+--------+
+|   Total   |    0   |    3   |   706  |   412  |    0   |
++-----------+--------+--------+--------+--------+--------+

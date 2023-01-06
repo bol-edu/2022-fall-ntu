@@ -1,0 +1,709 @@
+==============================================================
+Vivado(TM) HLS - High-Level Synthesis from C, C++ and SystemC v2020.1 (64-bit)
+Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
+==============================================================
+INFO: [SYN 201-201] Setting up clock 'default' with a period of 13.333ns.
+INFO: [HLS 200-10] Setting target device to 'xcvu9p-flgb2104-1-e'
+INFO: [SCHED 204-61] Option 'relax_ii_for_timing' is enabled, will increase II to preserve clock frequency constraints.
+INFO: [HLS 200-10] Analyzing design file 'matrixmul.cpp' ... 
+INFO: [HLS 200-111] Finished Linking Time (s): cpu = 00:00:03 ; elapsed = 00:00:08 . Memory (MB): peak = 955.375 ; gain = 861.695
+INFO: [HLS 200-111] Finished Checking Pragmas Time (s): cpu = 00:00:03 ; elapsed = 00:00:08 . Memory (MB): peak = 955.375 ; gain = 861.695
+INFO: [HLS 200-10] Starting code transformations ...
+INFO: [HLS 200-111] Finished Standard Transforms Time (s): cpu = 00:00:03 ; elapsed = 00:00:08 . Memory (MB): peak = 955.375 ; gain = 861.695
+INFO: [HLS 200-10] Checking synthesizability ...
+INFO: [HLS 200-111] Finished Checking Synthesizability Time (s): cpu = 00:00:03 ; elapsed = 00:00:08 . Memory (MB): peak = 955.375 ; gain = 861.695
+INFO: [XFORM 203-502] Unrolling all sub-loops inside loop 'Col' (matrixmul.cpp:66) in function 'matrixmul' for pipelining.
+INFO: [HLS 200-489] Unrolling loop 'Cache_Row' (matrixmul.cpp:73) in function 'matrixmul' completely with a factor of 3.
+INFO: [HLS 200-489] Unrolling loop 'Cache_Col' (matrixmul.cpp:78) in function 'matrixmul' completely with a factor of 3.
+INFO: [HLS 200-489] Unrolling loop 'Product' (matrixmul.cpp:80) in function 'matrixmul' completely with a factor of 3.
+INFO: [XFORM 203-102] Partitioning array 'a_row' (matrixmul.cpp:58) automatically.
+INFO: [XFORM 203-131] Reshaping array 'b' (matrixmul.cpp:50) in dimension 1 completely.
+INFO: [XFORM 203-131] Reshaping array 'a' (matrixmul.cpp:49) in dimension 2 completely.
+WARNING: [XFORM 203-124] Array  'a': may have improper streaming access(es), possible reasons: (1) some entries are accessed more than once; (2) some entries are not used; (3) the entries are not accessed in sequential order.
+WARNING: [XFORM 203-124] Array  'b': may have improper streaming access(es), possible reasons: (1) some entries are accessed more than once; (2) some entries are not used; (3) the entries are not accessed in sequential order.
+INFO: [HLS 200-111] Finished Pre-synthesis Time (s): cpu = 00:00:03 ; elapsed = 00:00:09 . Memory (MB): peak = 955.375 ; gain = 861.695
+INFO: [XFORM 203-541] Flattening a loop nest 'Row' (matrixmul.cpp:64:36) in function 'matrixmul'.
+INFO: [HLS 200-472] Inferring partial write operation for 'b_copy' (matrixmul.cpp:78:16)
+INFO: [XFORM 203-531] Rewinding loop 'Row_Col' in function 'matrixmul'.
+INFO: [HLS 200-111] Finished Architecture Synthesis Time (s): cpu = 00:00:04 ; elapsed = 00:00:09 . Memory (MB): peak = 955.375 ; gain = 861.695
+INFO: [HLS 200-10] Starting hardware synthesis ...
+INFO: [HLS 200-10] Synthesizing 'matrixmul' ...
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'matrixmul' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-61] Pipelining loop 'Row_Col'.
+WARNING: [SCHED 204-69] Unable to schedule 'store' operation ('b_copy_addr_2_write_ln78', matrixmul.cpp:78) of variable 'tmp_6', matrixmul.cpp:78 on array 'b_copy', matrixmul.cpp:60 due to limited memory ports. Please consider using a memory core with more ports or partitioning the array 'b_copy'.
+INFO: [SCHED 204-61] Pipelining result : Target II = 1, Final II = 3, Depth = 6.
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111]  Elapsed time: 9.222 seconds; current allocated memory: 104.309 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111]  Elapsed time: 0.149 seconds; current allocated memory: 104.691 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'matrixmul' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-500] Setting interface mode on port 'matrixmul/a' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'matrixmul/b' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'matrixmul/res' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on function 'matrixmul' to 'ap_ctrl_hs'.
+INFO: [SYN 201-210] Renamed object name 'matrixmul_mac_muladd_8s_8s_16s_16_1_1' to 'matrixmul_mac_mulbkb' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'matrixmul_mac_muladd_8s_8s_16ns_16_1_1' to 'matrixmul_mac_mulcud' due to the length limit 20
+INFO: [RTGEN 206-100] Generating core module 'matrixmul_mac_mulbkb': 1 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'matrixmul_mac_mulcud': 1 instance(s).
+INFO: [RTGEN 206-100] Finished creating RTL model for 'matrixmul'.
+INFO: [HLS 200-111]  Elapsed time: 0.213 seconds; current allocated memory: 105.357 MB.
+INFO: [HLS 200-790] **** Loop Constraint Status: All loop constraints were NOT satisfied.
+INFO: [HLS 200-789] **** Estimated Fmax: 202.10 MHz
+INFO: [RTMG 210-278] Implementing memory 'matrixmul_b_copy_ram (RAM)' using block RAMs.
+INFO: [HLS 200-111] Finished generating all RTL models Time (s): cpu = 00:00:05 ; elapsed = 00:00:11 . Memory (MB): peak = 955.375 ; gain = 861.695
+INFO: [VHDL 208-304] Generating VHDL RTL for matrixmul.
+INFO: [VLOG 209-307] Generating Verilog RTL for matrixmul.
+INFO: [HLS 200-112] Total elapsed time: 11.41 seconds; peak allocated memory: 105.357 MB.
+==============================================================
+Vivado(TM) HLS - High-Level Synthesis from C, C++ and SystemC v2020.1 (64-bit)
+Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
+==============================================================
+INFO: [SYN 201-201] Setting up clock 'default' with a period of 13.333ns.
+INFO: [HLS 200-10] Setting target device to 'xcvu9p-flgb2104-1-e'
+INFO: [SCHED 204-61] Option 'relax_ii_for_timing' is enabled, will increase II to preserve clock frequency constraints.
+INFO: [HLS 200-10] Analyzing design file 'matrixmul.cpp' ... 
+INFO: [HLS 200-111] Finished Linking Time (s): cpu = 00:00:03 ; elapsed = 00:00:08 . Memory (MB): peak = 955.027 ; gain = 858.828
+INFO: [HLS 200-111] Finished Checking Pragmas Time (s): cpu = 00:00:03 ; elapsed = 00:00:08 . Memory (MB): peak = 955.027 ; gain = 858.828
+INFO: [HLS 200-10] Starting code transformations ...
+INFO: [HLS 200-111] Finished Standard Transforms Time (s): cpu = 00:00:03 ; elapsed = 00:00:08 . Memory (MB): peak = 955.027 ; gain = 858.828
+INFO: [HLS 200-10] Checking synthesizability ...
+INFO: [HLS 200-111] Finished Checking Synthesizability Time (s): cpu = 00:00:03 ; elapsed = 00:00:08 . Memory (MB): peak = 955.027 ; gain = 858.828
+INFO: [XFORM 203-502] Unrolling all sub-loops inside loop 'Col' (matrixmul.cpp:66) in function 'matrixmul' for pipelining.
+INFO: [HLS 200-489] Unrolling loop 'Cache_Row' (matrixmul.cpp:73) in function 'matrixmul' completely with a factor of 3.
+INFO: [HLS 200-489] Unrolling loop 'Cache_Col' (matrixmul.cpp:78) in function 'matrixmul' completely with a factor of 3.
+INFO: [HLS 200-489] Unrolling loop 'Product' (matrixmul.cpp:80) in function 'matrixmul' completely with a factor of 3.
+INFO: [XFORM 203-102] Partitioning array 'a_row' (matrixmul.cpp:58) automatically.
+INFO: [XFORM 203-131] Reshaping array 'b' (matrixmul.cpp:50) in dimension 1 completely.
+INFO: [XFORM 203-131] Reshaping array 'a' (matrixmul.cpp:49) in dimension 2 completely.
+WARNING: [XFORM 203-124] Array  'a': may have improper streaming access(es), possible reasons: (1) some entries are accessed more than once; (2) some entries are not used; (3) the entries are not accessed in sequential order.
+WARNING: [XFORM 203-124] Array  'b': may have improper streaming access(es), possible reasons: (1) some entries are accessed more than once; (2) some entries are not used; (3) the entries are not accessed in sequential order.
+INFO: [HLS 200-111] Finished Pre-synthesis Time (s): cpu = 00:00:03 ; elapsed = 00:00:09 . Memory (MB): peak = 955.027 ; gain = 858.828
+INFO: [XFORM 203-541] Flattening a loop nest 'Row' (matrixmul.cpp:64:36) in function 'matrixmul'.
+INFO: [HLS 200-472] Inferring partial write operation for 'b_copy' (matrixmul.cpp:78:16)
+INFO: [XFORM 203-531] Rewinding loop 'Row_Col' in function 'matrixmul'.
+INFO: [HLS 200-111] Finished Architecture Synthesis Time (s): cpu = 00:00:04 ; elapsed = 00:00:09 . Memory (MB): peak = 955.027 ; gain = 858.828
+INFO: [HLS 200-10] Starting hardware synthesis ...
+INFO: [HLS 200-10] Synthesizing 'matrixmul' ...
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'matrixmul' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-61] Pipelining loop 'Row_Col'.
+WARNING: [SCHED 204-69] Unable to schedule 'store' operation ('b_copy_addr_2_write_ln78', matrixmul.cpp:78) of variable 'tmp_6', matrixmul.cpp:78 on array 'b_copy', matrixmul.cpp:60 due to limited memory ports. Please consider using a memory core with more ports or partitioning the array 'b_copy'.
+INFO: [SCHED 204-61] Pipelining result : Target II = 1, Final II = 3, Depth = 6.
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111]  Elapsed time: 9.173 seconds; current allocated memory: 104.364 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111]  Elapsed time: 0.14 seconds; current allocated memory: 104.772 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'matrixmul' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-500] Setting interface mode on port 'matrixmul/a' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'matrixmul/b' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'matrixmul/res' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on function 'matrixmul' to 'ap_ctrl_hs'.
+INFO: [SYN 201-210] Renamed object name 'matrixmul_mac_muladd_8s_8s_16s_16_1_1' to 'matrixmul_mac_mulbkb' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'matrixmul_mac_muladd_8s_8s_16ns_16_1_1' to 'matrixmul_mac_mulcud' due to the length limit 20
+INFO: [RTGEN 206-100] Generating core module 'matrixmul_mac_mulbkb': 1 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'matrixmul_mac_mulcud': 1 instance(s).
+INFO: [RTGEN 206-100] Finished creating RTL model for 'matrixmul'.
+INFO: [HLS 200-111]  Elapsed time: 0.208 seconds; current allocated memory: 105.441 MB.
+INFO: [HLS 200-790] **** Loop Constraint Status: All loop constraints were NOT satisfied.
+INFO: [HLS 200-789] **** Estimated Fmax: 202.10 MHz
+INFO: [RTMG 210-278] Implementing memory 'matrixmul_b_copy_ram (RAM)' using block RAMs.
+INFO: [HLS 200-111] Finished generating all RTL models Time (s): cpu = 00:00:05 ; elapsed = 00:00:11 . Memory (MB): peak = 955.027 ; gain = 858.828
+INFO: [VHDL 208-304] Generating VHDL RTL for matrixmul.
+INFO: [VLOG 209-307] Generating Verilog RTL for matrixmul.
+INFO: [HLS 200-112] Total elapsed time: 11.369 seconds; peak allocated memory: 105.441 MB.
+==============================================================
+Vivado(TM) HLS - High-Level Synthesis from C, C++ and SystemC v2020.1 (64-bit)
+Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
+==============================================================
+INFO: [SYN 201-201] Setting up clock 'default' with a period of 13.333ns.
+INFO: [HLS 200-10] Setting target device to 'xcvu9p-flgb2104-1-e'
+INFO: [SCHED 204-61] Option 'relax_ii_for_timing' is enabled, will increase II to preserve clock frequency constraints.
+INFO: [HLS 200-10] Analyzing design file 'matrixmul.cpp' ... 
+INFO: [HLS 200-111] Finished Linking Time (s): cpu = 00:00:03 ; elapsed = 00:00:08 . Memory (MB): peak = 955.676 ; gain = 861.836
+INFO: [HLS 200-111] Finished Checking Pragmas Time (s): cpu = 00:00:03 ; elapsed = 00:00:08 . Memory (MB): peak = 955.676 ; gain = 861.836
+INFO: [HLS 200-10] Starting code transformations ...
+INFO: [HLS 200-111] Finished Standard Transforms Time (s): cpu = 00:00:03 ; elapsed = 00:00:08 . Memory (MB): peak = 955.676 ; gain = 861.836
+INFO: [HLS 200-10] Checking synthesizability ...
+INFO: [HLS 200-111] Finished Checking Synthesizability Time (s): cpu = 00:00:03 ; elapsed = 00:00:08 . Memory (MB): peak = 955.676 ; gain = 861.836
+INFO: [XFORM 203-502] Unrolling all sub-loops inside loop 'Col' (matrixmul.cpp:66) in function 'matrixmul' for pipelining.
+INFO: [HLS 200-489] Unrolling loop 'Cache_Row' (matrixmul.cpp:73) in function 'matrixmul' completely with a factor of 3.
+INFO: [HLS 200-489] Unrolling loop 'Cache_Col' (matrixmul.cpp:78) in function 'matrixmul' completely with a factor of 3.
+INFO: [HLS 200-489] Unrolling loop 'Product' (matrixmul.cpp:80) in function 'matrixmul' completely with a factor of 3.
+INFO: [XFORM 203-102] Partitioning array 'a_row' (matrixmul.cpp:58) automatically.
+INFO: [XFORM 203-131] Reshaping array 'b' (matrixmul.cpp:50) in dimension 1 completely.
+INFO: [XFORM 203-131] Reshaping array 'b_copy' (matrixmul.cpp:60) in dimension 1 completely.
+INFO: [XFORM 203-131] Reshaping array 'a' (matrixmul.cpp:49) in dimension 2 completely.
+WARNING: [XFORM 203-124] Array  'a': may have improper streaming access(es), possible reasons: (1) some entries are accessed more than once; (2) some entries are not used; (3) the entries are not accessed in sequential order.
+WARNING: [XFORM 203-124] Array  'b': may have improper streaming access(es), possible reasons: (1) some entries are accessed more than once; (2) some entries are not used; (3) the entries are not accessed in sequential order.
+INFO: [HLS 200-111] Finished Pre-synthesis Time (s): cpu = 00:00:03 ; elapsed = 00:00:09 . Memory (MB): peak = 955.676 ; gain = 861.836
+INFO: [XFORM 203-541] Flattening a loop nest 'Row' (matrixmul.cpp:64:36) in function 'matrixmul'.
+INFO: [XFORM 203-531] Rewinding loop 'Row_Col' in function 'matrixmul'.
+INFO: [HLS 200-111] Finished Architecture Synthesis Time (s): cpu = 00:00:04 ; elapsed = 00:00:09 . Memory (MB): peak = 955.676 ; gain = 861.836
+INFO: [HLS 200-10] Starting hardware synthesis ...
+INFO: [HLS 200-10] Synthesizing 'matrixmul' ...
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'matrixmul' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-61] Pipelining loop 'Row_Col'.
+INFO: [SCHED 204-61] Pipelining result : Target II = 1, Final II = 1, Depth = 2.
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111]  Elapsed time: 9.262 seconds; current allocated memory: 105.165 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111]  Elapsed time: 0.158 seconds; current allocated memory: 105.871 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'matrixmul' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-500] Setting interface mode on port 'matrixmul/a' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'matrixmul/b' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'matrixmul/res' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on function 'matrixmul' to 'ap_ctrl_hs'.
+INFO: [SYN 201-210] Renamed object name 'matrixmul_mac_muladd_8s_8s_16s_16_1_1' to 'matrixmul_mac_mulbkb' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'matrixmul_mac_muladd_8s_8s_16ns_16_1_1' to 'matrixmul_mac_mulcud' due to the length limit 20
+INFO: [RTGEN 206-100] Generating core module 'matrixmul_mac_mulbkb': 1 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'matrixmul_mac_mulcud': 1 instance(s).
+INFO: [RTGEN 206-100] Finished creating RTL model for 'matrixmul'.
+INFO: [HLS 200-111]  Elapsed time: 0.295 seconds; current allocated memory: 107.189 MB.
+INFO: [HLS 200-790] **** Loop Constraint Status: All loop constraints were satisfied.
+INFO: [HLS 200-789] **** Estimated Fmax: 89.56 MHz
+INFO: [HLS 200-111] Finished generating all RTL models Time (s): cpu = 00:00:06 ; elapsed = 00:00:12 . Memory (MB): peak = 955.676 ; gain = 861.836
+INFO: [VHDL 208-304] Generating VHDL RTL for matrixmul.
+INFO: [VLOG 209-307] Generating Verilog RTL for matrixmul.
+INFO: [HLS 200-112] Total elapsed time: 12.145 seconds; peak allocated memory: 107.189 MB.
+==============================================================
+Vivado(TM) HLS - High-Level Synthesis from C, C++ and SystemC v2020.1 (64-bit)
+Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
+==============================================================
+INFO: [SYN 201-201] Setting up clock 'default' with a period of 13.333ns.
+INFO: [HLS 200-10] Setting target device to 'xcvu9p-flgb2104-1-e'
+INFO: [SCHED 204-61] Option 'relax_ii_for_timing' is enabled, will increase II to preserve clock frequency constraints.
+INFO: [HLS 200-10] Analyzing design file 'matrixmul.cpp' ... 
+ERROR: [HLS 200-70] When using type 'block' or 'cyclic' reshaping, please specify a factor value.
+ERROR: [HLS 200-70] '#pragma HLS ARRAY_RESHAPE variable=&b_copy cyclic dim=1' is not a valid pragma.
+==============================================================
+Vivado(TM) HLS - High-Level Synthesis from C, C++ and SystemC v2020.1 (64-bit)
+Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
+==============================================================
+INFO: [SYN 201-201] Setting up clock 'default' with a period of 13.333ns.
+INFO: [HLS 200-10] Setting target device to 'xcvu9p-flgb2104-1-e'
+INFO: [SCHED 204-61] Option 'relax_ii_for_timing' is enabled, will increase II to preserve clock frequency constraints.
+INFO: [HLS 200-10] Analyzing design file 'matrixmul.cpp' ... 
+INFO: [HLS 200-111] Finished Linking Time (s): cpu = 00:00:03 ; elapsed = 00:00:08 . Memory (MB): peak = 955.273 ; gain = 861.590
+INFO: [HLS 200-111] Finished Checking Pragmas Time (s): cpu = 00:00:03 ; elapsed = 00:00:08 . Memory (MB): peak = 955.273 ; gain = 861.590
+INFO: [HLS 200-10] Starting code transformations ...
+INFO: [HLS 200-111] Finished Standard Transforms Time (s): cpu = 00:00:03 ; elapsed = 00:00:08 . Memory (MB): peak = 955.273 ; gain = 861.590
+INFO: [HLS 200-10] Checking synthesizability ...
+INFO: [HLS 200-111] Finished Checking Synthesizability Time (s): cpu = 00:00:03 ; elapsed = 00:00:08 . Memory (MB): peak = 955.273 ; gain = 861.590
+INFO: [XFORM 203-502] Unrolling all sub-loops inside loop 'Col' (matrixmul.cpp:66) in function 'matrixmul' for pipelining.
+INFO: [HLS 200-489] Unrolling loop 'Cache_Row' (matrixmul.cpp:73) in function 'matrixmul' completely with a factor of 3.
+INFO: [HLS 200-489] Unrolling loop 'Cache_Col' (matrixmul.cpp:78) in function 'matrixmul' completely with a factor of 3.
+INFO: [HLS 200-489] Unrolling loop 'Product' (matrixmul.cpp:80) in function 'matrixmul' completely with a factor of 3.
+INFO: [XFORM 203-102] Partitioning array 'a_row' (matrixmul.cpp:58) automatically.
+INFO: [XFORM 203-131] Reshaping array 'b' (matrixmul.cpp:50) in dimension 1 completely.
+INFO: [XFORM 203-131] Reshaping array 'b_copy' (matrixmul.cpp:60) in dimension 1 with a cyclic factor of 2.
+INFO: [XFORM 203-131] Reshaping array 'a' (matrixmul.cpp:49) in dimension 2 completely.
+WARNING: [XFORM 203-124] Array  'a': may have improper streaming access(es), possible reasons: (1) some entries are accessed more than once; (2) some entries are not used; (3) the entries are not accessed in sequential order.
+WARNING: [XFORM 203-124] Array  'b': may have improper streaming access(es), possible reasons: (1) some entries are accessed more than once; (2) some entries are not used; (3) the entries are not accessed in sequential order.
+INFO: [HLS 200-111] Finished Pre-synthesis Time (s): cpu = 00:00:03 ; elapsed = 00:00:09 . Memory (MB): peak = 955.273 ; gain = 861.590
+INFO: [XFORM 203-541] Flattening a loop nest 'Row' (matrixmul.cpp:64:36) in function 'matrixmul'.
+INFO: [HLS 200-472] Inferring partial write operation for 'b_copy' (matrixmul.cpp:78:16)
+INFO: [XFORM 203-531] Rewinding loop 'Row_Col' in function 'matrixmul'.
+INFO: [HLS 200-111] Finished Architecture Synthesis Time (s): cpu = 00:00:04 ; elapsed = 00:00:09 . Memory (MB): peak = 955.273 ; gain = 861.590
+INFO: [HLS 200-10] Starting hardware synthesis ...
+INFO: [HLS 200-10] Synthesizing 'matrixmul' ...
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'matrixmul' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-61] Pipelining loop 'Row_Col'.
+WARNING: [SCHED 204-68] The II Violation in module 'matrixmul' (Loop: Row_Col): Unable to enforce a carried dependence constraint (II = 1, distance = 1, offset = 1)
+   between 'store' operation ('b_copy_addr_1_write_ln78', matrixmul.cpp:78) of constant <constant:_ssdm_op_Write.bram.i16> on array 'b_copy', matrixmul.cpp:60 and 'store' operation ('b_copy_addr_write_ln78', matrixmul.cpp:78) of constant <constant:_ssdm_op_Write.bram.i16> on array 'b_copy', matrixmul.cpp:60.
+WARNING: [SCHED 204-68] The II Violation in module 'matrixmul' (Loop: Row_Col): Unable to enforce a carried dependence constraint (II = 2, distance = 1, offset = 1)
+   between 'store' operation ('b_copy_addr_2_write_ln78', matrixmul.cpp:78) of constant <constant:_ssdm_op_Write.bram.i16> on array 'b_copy', matrixmul.cpp:60 and 'store' operation ('b_copy_addr_write_ln78', matrixmul.cpp:78) of constant <constant:_ssdm_op_Write.bram.i16> on array 'b_copy', matrixmul.cpp:60.
+WARNING: [SCHED 204-69] Unable to schedule 'store' operation ('b_copy_addr_write_ln78', matrixmul.cpp:78) of constant <constant:_ssdm_op_Write.bram.i16> on array 'b_copy', matrixmul.cpp:60 due to limited memory ports. Please consider using a memory core with more ports or partitioning the array 'b_copy'.
+INFO: [SCHED 204-61] Pipelining result : Target II = 1, Final II = 4, Depth = 9.
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111]  Elapsed time: 9.388 seconds; current allocated memory: 105.640 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111]  Elapsed time: 0.157 seconds; current allocated memory: 106.442 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'matrixmul' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-500] Setting interface mode on port 'matrixmul/a' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'matrixmul/b' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'matrixmul/res' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on function 'matrixmul' to 'ap_ctrl_hs'.
+INFO: [SYN 201-210] Renamed object name 'matrixmul_mac_muladd_8s_8s_16s_16_1_1' to 'matrixmul_mac_mulbkb' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'matrixmul_mac_muladd_8s_8s_16ns_16_1_1' to 'matrixmul_mac_mulcud' due to the length limit 20
+INFO: [RTGEN 206-100] Generating core module 'matrixmul_mac_mulbkb': 1 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'matrixmul_mac_mulcud': 1 instance(s).
+INFO: [RTGEN 206-100] Finished creating RTL model for 'matrixmul'.
+INFO: [HLS 200-111]  Elapsed time: 0.278 seconds; current allocated memory: 107.917 MB.
+INFO: [HLS 200-790] **** Loop Constraint Status: All loop constraints were NOT satisfied.
+INFO: [HLS 200-789] **** Estimated Fmax: 189.43 MHz
+INFO: [RTMG 210-278] Implementing memory 'matrixmul_b_copy_ram (RAM)' using block RAMs.
+INFO: [HLS 200-111] Finished generating all RTL models Time (s): cpu = 00:00:06 ; elapsed = 00:00:12 . Memory (MB): peak = 955.273 ; gain = 861.590
+INFO: [VHDL 208-304] Generating VHDL RTL for matrixmul.
+INFO: [VLOG 209-307] Generating Verilog RTL for matrixmul.
+INFO: [HLS 200-112] Total elapsed time: 12.328 seconds; peak allocated memory: 107.917 MB.
+==============================================================
+Vivado(TM) HLS - High-Level Synthesis from C, C++ and SystemC v2020.1 (64-bit)
+Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
+==============================================================
+INFO: [SYN 201-201] Setting up clock 'default' with a period of 13.333ns.
+INFO: [HLS 200-10] Setting target device to 'xcvu9p-flgb2104-1-e'
+INFO: [SCHED 204-61] Option 'relax_ii_for_timing' is enabled, will increase II to preserve clock frequency constraints.
+INFO: [HLS 200-10] Analyzing design file 'matrixmul.cpp' ... 
+INFO: [HLS 200-111] Finished Linking Time (s): cpu = 00:00:03 ; elapsed = 00:00:08 . Memory (MB): peak = 955.281 ; gain = 862.043
+INFO: [HLS 200-111] Finished Checking Pragmas Time (s): cpu = 00:00:03 ; elapsed = 00:00:08 . Memory (MB): peak = 955.281 ; gain = 862.043
+INFO: [HLS 200-10] Starting code transformations ...
+INFO: [HLS 200-111] Finished Standard Transforms Time (s): cpu = 00:00:03 ; elapsed = 00:00:08 . Memory (MB): peak = 955.281 ; gain = 862.043
+INFO: [HLS 200-10] Checking synthesizability ...
+INFO: [HLS 200-111] Finished Checking Synthesizability Time (s): cpu = 00:00:03 ; elapsed = 00:00:08 . Memory (MB): peak = 955.281 ; gain = 862.043
+INFO: [XFORM 203-502] Unrolling all sub-loops inside loop 'Col' (matrixmul.cpp:66) in function 'matrixmul' for pipelining.
+INFO: [HLS 200-489] Unrolling loop 'Cache_Row' (matrixmul.cpp:73) in function 'matrixmul' completely with a factor of 3.
+INFO: [HLS 200-489] Unrolling loop 'Cache_Col' (matrixmul.cpp:78) in function 'matrixmul' completely with a factor of 3.
+INFO: [HLS 200-489] Unrolling loop 'Product' (matrixmul.cpp:80) in function 'matrixmul' completely with a factor of 3.
+INFO: [XFORM 203-102] Partitioning array 'a_row' (matrixmul.cpp:58) automatically.
+ERROR: [XFORM 203-133] Cannot reshape array 'b_copy' (matrixmul.cpp:60): array does not have dimension 1.
+ERROR: [HLS 200-70] Pre-synthesis failed.
+==============================================================
+Vivado(TM) HLS - High-Level Synthesis from C, C++ and SystemC v2020.1 (64-bit)
+Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
+==============================================================
+INFO: [SYN 201-201] Setting up clock 'default' with a period of 13.333ns.
+INFO: [HLS 200-10] Setting target device to 'xcvu9p-flgb2104-1-e'
+INFO: [SCHED 204-61] Option 'relax_ii_for_timing' is enabled, will increase II to preserve clock frequency constraints.
+INFO: [HLS 200-10] Analyzing design file 'matrixmul.cpp' ... 
+INFO: [HLS 200-111] Finished Linking Time (s): cpu = 00:00:03 ; elapsed = 00:00:08 . Memory (MB): peak = 955.023 ; gain = 861.723
+INFO: [HLS 200-111] Finished Checking Pragmas Time (s): cpu = 00:00:03 ; elapsed = 00:00:08 . Memory (MB): peak = 955.023 ; gain = 861.723
+INFO: [HLS 200-10] Starting code transformations ...
+INFO: [HLS 200-111] Finished Standard Transforms Time (s): cpu = 00:00:03 ; elapsed = 00:00:09 . Memory (MB): peak = 955.023 ; gain = 861.723
+INFO: [HLS 200-10] Checking synthesizability ...
+INFO: [HLS 200-111] Finished Checking Synthesizability Time (s): cpu = 00:00:03 ; elapsed = 00:00:09 . Memory (MB): peak = 955.023 ; gain = 861.723
+INFO: [XFORM 203-502] Unrolling all sub-loops inside loop 'Col' (matrixmul.cpp:66) in function 'matrixmul' for pipelining.
+INFO: [HLS 200-489] Unrolling loop 'Cache_Row' (matrixmul.cpp:73) in function 'matrixmul' completely with a factor of 3.
+INFO: [HLS 200-489] Unrolling loop 'Cache_Col' (matrixmul.cpp:78) in function 'matrixmul' completely with a factor of 3.
+INFO: [HLS 200-489] Unrolling loop 'Product' (matrixmul.cpp:80) in function 'matrixmul' completely with a factor of 3.
+INFO: [XFORM 203-102] Partitioning array 'a_row' (matrixmul.cpp:58) automatically.
+INFO: [XFORM 203-131] Reshaping array 'b' (matrixmul.cpp:50) in dimension 1 completely.
+INFO: [XFORM 203-131] Reshaping array 'b_copy' (matrixmul.cpp:60) in dimension 1 with a block factor of 3.
+INFO: [XFORM 203-131] Reshaping array 'a' (matrixmul.cpp:49) in dimension 2 completely.
+INFO: [XFORM 203-102] Automatically partitioning small array 'b_copy' (matrixmul.cpp:60) completely based on array size.
+INFO: [XFORM 203-101] Partitioning array 'b_copy' (matrixmul.cpp:60) in dimension 1 completely.
+WARNING: [XFORM 203-124] Array  'a': may have improper streaming access(es), possible reasons: (1) some entries are accessed more than once; (2) some entries are not used; (3) the entries are not accessed in sequential order.
+WARNING: [XFORM 203-124] Array  'b': may have improper streaming access(es), possible reasons: (1) some entries are accessed more than once; (2) some entries are not used; (3) the entries are not accessed in sequential order.
+INFO: [HLS 200-111] Finished Pre-synthesis Time (s): cpu = 00:00:03 ; elapsed = 00:00:09 . Memory (MB): peak = 955.023 ; gain = 861.723
+INFO: [XFORM 203-541] Flattening a loop nest 'Row' (matrixmul.cpp:64:36) in function 'matrixmul'.
+INFO: [XFORM 203-531] Rewinding loop 'Row_Col' in function 'matrixmul'.
+INFO: [HLS 200-111] Finished Architecture Synthesis Time (s): cpu = 00:00:04 ; elapsed = 00:00:09 . Memory (MB): peak = 955.023 ; gain = 861.723
+INFO: [HLS 200-10] Starting hardware synthesis ...
+INFO: [HLS 200-10] Synthesizing 'matrixmul' ...
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'matrixmul' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-61] Pipelining loop 'Row_Col'.
+INFO: [SCHED 204-61] Pipelining result : Target II = 1, Final II = 1, Depth = 2.
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111]  Elapsed time: 9.694 seconds; current allocated memory: 105.505 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111]  Elapsed time: 0.162 seconds; current allocated memory: 106.270 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'matrixmul' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-500] Setting interface mode on port 'matrixmul/a' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'matrixmul/b' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'matrixmul/res' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on function 'matrixmul' to 'ap_ctrl_hs'.
+INFO: [SYN 201-210] Renamed object name 'matrixmul_mac_muladd_8s_8s_16s_16_1_1' to 'matrixmul_mac_mulbkb' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'matrixmul_mac_muladd_8s_8s_16ns_16_1_1' to 'matrixmul_mac_mulcud' due to the length limit 20
+INFO: [RTGEN 206-100] Generating core module 'matrixmul_mac_mulbkb': 1 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'matrixmul_mac_mulcud': 1 instance(s).
+INFO: [RTGEN 206-100] Finished creating RTL model for 'matrixmul'.
+INFO: [HLS 200-111]  Elapsed time: 0.279 seconds; current allocated memory: 107.699 MB.
+INFO: [HLS 200-790] **** Loop Constraint Status: All loop constraints were satisfied.
+INFO: [HLS 200-789] **** Estimated Fmax: 91.93 MHz
+INFO: [HLS 200-111] Finished generating all RTL models Time (s): cpu = 00:00:06 ; elapsed = 00:00:12 . Memory (MB): peak = 955.023 ; gain = 861.723
+INFO: [VHDL 208-304] Generating VHDL RTL for matrixmul.
+INFO: [VLOG 209-307] Generating Verilog RTL for matrixmul.
+INFO: [HLS 200-112] Total elapsed time: 12.553 seconds; peak allocated memory: 107.699 MB.
+==============================================================
+Vivado(TM) HLS - High-Level Synthesis from C, C++ and SystemC v2020.1 (64-bit)
+Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
+==============================================================
+INFO: [SYN 201-201] Setting up clock 'default' with a period of 13.333ns.
+INFO: [HLS 200-10] Setting target device to 'xcvu9p-flgb2104-1-e'
+INFO: [SCHED 204-61] Option 'relax_ii_for_timing' is enabled, will increase II to preserve clock frequency constraints.
+INFO: [HLS 200-10] Analyzing design file 'matrixmul.cpp' ... 
+INFO: [HLS 200-111] Finished Linking Time (s): cpu = 00:00:03 ; elapsed = 00:00:08 . Memory (MB): peak = 955.824 ; gain = 862.223
+INFO: [HLS 200-111] Finished Checking Pragmas Time (s): cpu = 00:00:03 ; elapsed = 00:00:08 . Memory (MB): peak = 955.824 ; gain = 862.223
+INFO: [HLS 200-10] Starting code transformations ...
+INFO: [HLS 200-111] Finished Standard Transforms Time (s): cpu = 00:00:03 ; elapsed = 00:00:08 . Memory (MB): peak = 955.824 ; gain = 862.223
+INFO: [HLS 200-10] Checking synthesizability ...
+INFO: [HLS 200-111] Finished Checking Synthesizability Time (s): cpu = 00:00:03 ; elapsed = 00:00:08 . Memory (MB): peak = 955.824 ; gain = 862.223
+INFO: [XFORM 203-502] Unrolling all sub-loops inside loop 'Col' (matrixmul.cpp:66) in function 'matrixmul' for pipelining.
+INFO: [HLS 200-489] Unrolling loop 'Cache_Row' (matrixmul.cpp:73) in function 'matrixmul' completely with a factor of 3.
+INFO: [HLS 200-489] Unrolling loop 'Cache_Col' (matrixmul.cpp:78) in function 'matrixmul' completely with a factor of 3.
+INFO: [HLS 200-489] Unrolling loop 'Product' (matrixmul.cpp:80) in function 'matrixmul' completely with a factor of 3.
+INFO: [XFORM 203-102] Partitioning array 'a_row' (matrixmul.cpp:58) automatically.
+INFO: [XFORM 203-131] Reshaping array 'b' (matrixmul.cpp:50) in dimension 1 completely.
+INFO: [XFORM 203-131] Reshaping array 'b_copy' (matrixmul.cpp:60) in dimension 1 with a block factor of 3.
+INFO: [XFORM 203-131] Reshaping array 'a' (matrixmul.cpp:49) in dimension 2 completely.
+INFO: [XFORM 203-102] Automatically partitioning small array 'b_copy' (matrixmul.cpp:60) completely based on array size.
+INFO: [XFORM 203-101] Partitioning array 'b_copy' (matrixmul.cpp:60) in dimension 1 completely.
+WARNING: [XFORM 203-124] Array  'a': may have improper streaming access(es), possible reasons: (1) some entries are accessed more than once; (2) some entries are not used; (3) the entries are not accessed in sequential order.
+WARNING: [XFORM 203-124] Array  'b': may have improper streaming access(es), possible reasons: (1) some entries are accessed more than once; (2) some entries are not used; (3) the entries are not accessed in sequential order.
+INFO: [XFORM 203-401] Performing if-conversion on hyperblock from (matrixmul.cpp:78:16) in function 'matrixmul'... converting 13 basic blocks.
+INFO: [HLS 200-111] Finished Pre-synthesis Time (s): cpu = 00:00:03 ; elapsed = 00:00:09 . Memory (MB): peak = 955.824 ; gain = 862.223
+INFO: [XFORM 203-541] Flattening a loop nest 'Row' (matrixmul.cpp:64:36) in function 'matrixmul'.
+INFO: [XFORM 203-531] Rewinding loop 'Row_Col' in function 'matrixmul'.
+INFO: [HLS 200-111] Finished Architecture Synthesis Time (s): cpu = 00:00:03 ; elapsed = 00:00:09 . Memory (MB): peak = 955.824 ; gain = 862.223
+INFO: [HLS 200-10] Starting hardware synthesis ...
+INFO: [HLS 200-10] Synthesizing 'matrixmul' ...
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'matrixmul' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-61] Pipelining loop 'Row_Col'.
+INFO: [SCHED 204-61] Pipelining result : Target II = 1, Final II = 1, Depth = 2.
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111]  Elapsed time: 9.063 seconds; current allocated memory: 104.420 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111]  Elapsed time: 0.115 seconds; current allocated memory: 104.848 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'matrixmul' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-500] Setting interface mode on port 'matrixmul/a' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'matrixmul/b' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'matrixmul/res' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on function 'matrixmul' to 'ap_ctrl_hs'.
+INFO: [SYN 201-210] Renamed object name 'matrixmul_mux_32_24_1_1' to 'matrixmul_mux_32_bkb' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'matrixmul_mac_muladd_8s_8s_16s_16_1_1' to 'matrixmul_mac_mulcud' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'matrixmul_mac_muladd_8s_8s_16ns_16_1_1' to 'matrixmul_mac_muldEe' due to the length limit 20
+INFO: [RTGEN 206-100] Generating core module 'matrixmul_mac_mulcud': 1 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'matrixmul_mac_muldEe': 1 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'matrixmul_mux_32_bkb': 4 instance(s).
+INFO: [RTGEN 206-100] Finished creating RTL model for 'matrixmul'.
+INFO: [HLS 200-111]  Elapsed time: 0.21 seconds; current allocated memory: 105.615 MB.
+INFO: [HLS 200-790] **** Loop Constraint Status: All loop constraints were satisfied.
+INFO: [HLS 200-789] **** Estimated Fmax: 114.39 MHz
+INFO: [HLS 200-111] Finished generating all RTL models Time (s): cpu = 00:00:05 ; elapsed = 00:00:11 . Memory (MB): peak = 955.824 ; gain = 862.223
+INFO: [VHDL 208-304] Generating VHDL RTL for matrixmul.
+INFO: [VLOG 209-307] Generating Verilog RTL for matrixmul.
+INFO: [HLS 200-112] Total elapsed time: 11.16 seconds; peak allocated memory: 105.615 MB.
+==============================================================
+Vivado(TM) HLS - High-Level Synthesis from C, C++ and SystemC v2020.1 (64-bit)
+Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
+==============================================================
+INFO: [SYN 201-201] Setting up clock 'default' with a period of 13.333ns.
+INFO: [HLS 200-10] Setting target device to 'xcvu9p-flgb2104-1-e'
+INFO: [SCHED 204-61] Option 'relax_ii_for_timing' is enabled, will increase II to preserve clock frequency constraints.
+INFO: [HLS 200-10] Analyzing design file 'matrixmul.cpp' ... 
+INFO: [HLS 200-111] Finished Linking Time (s): cpu = 00:00:03 ; elapsed = 00:00:08 . Memory (MB): peak = 955.074 ; gain = 861.098
+INFO: [HLS 200-111] Finished Checking Pragmas Time (s): cpu = 00:00:03 ; elapsed = 00:00:08 . Memory (MB): peak = 955.074 ; gain = 861.098
+INFO: [HLS 200-10] Starting code transformations ...
+INFO: [HLS 200-111] Finished Standard Transforms Time (s): cpu = 00:00:03 ; elapsed = 00:00:08 . Memory (MB): peak = 955.074 ; gain = 861.098
+INFO: [HLS 200-10] Checking synthesizability ...
+INFO: [HLS 200-111] Finished Checking Synthesizability Time (s): cpu = 00:00:03 ; elapsed = 00:00:08 . Memory (MB): peak = 955.074 ; gain = 861.098
+INFO: [XFORM 203-502] Unrolling all sub-loops inside loop 'Col' (matrixmul.cpp:66) in function 'matrixmul' for pipelining.
+INFO: [HLS 200-489] Unrolling loop 'Cache_Row' (matrixmul.cpp:73) in function 'matrixmul' completely with a factor of 3.
+INFO: [HLS 200-489] Unrolling loop 'Cache_Col' (matrixmul.cpp:78) in function 'matrixmul' completely with a factor of 3.
+INFO: [HLS 200-489] Unrolling loop 'Product' (matrixmul.cpp:80) in function 'matrixmul' completely with a factor of 3.
+INFO: [XFORM 203-102] Partitioning array 'a_row' (matrixmul.cpp:58) automatically.
+INFO: [XFORM 203-131] Reshaping array 'b' (matrixmul.cpp:50) in dimension 1 completely.
+INFO: [XFORM 203-131] Reshaping array 'b_copy' (matrixmul.cpp:60) in dimension 1 with a cyclic factor of 3.
+INFO: [XFORM 203-131] Reshaping array 'a' (matrixmul.cpp:49) in dimension 2 completely.
+INFO: [XFORM 203-501] Unrolling loop 'Col' (matrixmul.cpp:66) in function 'matrixmul': changing partial unrolling into complete unrolling since the unrolling factor (=3) is no less than the loop trip count (=3).
+INFO: [HLS 200-489] Unrolling loop 'Col' (matrixmul.cpp:66) in function 'matrixmul' completely with a factor of 3.
+WARNING: [XFORM 203-505] Pipeline directive for loop 'Col' (matrixmul.cpp:66) in function 'matrixmul' has been removed because the loop is unrolled completely.
+INFO: [XFORM 203-102] Automatically partitioning small array 'b_copy' (matrixmul.cpp:60) completely based on array size.
+INFO: [XFORM 203-101] Partitioning array 'b_copy' (matrixmul.cpp:60) in dimension 1 completely.
+WARNING: [XFORM 203-124] Array  'b': may have improper streaming access(es), possible reasons: (1) some entries are accessed more than once; (2) some entries are not used; (3) the entries are not accessed in sequential order.
+INFO: [HLS 200-111] Finished Pre-synthesis Time (s): cpu = 00:00:03 ; elapsed = 00:00:09 . Memory (MB): peak = 955.074 ; gain = 861.098
+INFO: [XFORM 203-531] Rewinding loop 'Row' (matrixmul.cpp:64) in function 'matrixmul'.
+WARNING: [XFORM 203-561] Ignored multiple trip count directives for loop 'Row' in function 'matrixmul'.
+INFO: [HLS 200-111] Finished Architecture Synthesis Time (s): cpu = 00:00:04 ; elapsed = 00:00:09 . Memory (MB): peak = 955.074 ; gain = 861.098
+INFO: [HLS 200-10] Starting hardware synthesis ...
+INFO: [HLS 200-10] Synthesizing 'matrixmul' ...
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'matrixmul' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111]  Elapsed time: 9.276 seconds; current allocated memory: 104.356 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111]  Elapsed time: 0.097 seconds; current allocated memory: 104.768 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'matrixmul' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-500] Setting interface mode on port 'matrixmul/a' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'matrixmul/b' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'matrixmul/res' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on function 'matrixmul' to 'ap_ctrl_hs'.
+INFO: [SYN 201-210] Renamed object name 'matrixmul_mac_muladd_8s_8s_16s_16_1_1' to 'matrixmul_mac_mulbkb' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'matrixmul_mac_muladd_8s_8s_16ns_16_1_1' to 'matrixmul_mac_mulcud' due to the length limit 20
+INFO: [RTGEN 206-100] Generating core module 'matrixmul_mac_mulbkb': 3 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'matrixmul_mac_mulcud': 3 instance(s).
+INFO: [RTGEN 206-100] Finished creating RTL model for 'matrixmul'.
+INFO: [HLS 200-111]  Elapsed time: 0.135 seconds; current allocated memory: 105.402 MB.
+INFO: [HLS 200-790] **** Loop Constraint Status: All loop constraints were satisfied.
+INFO: [HLS 200-789] **** Estimated Fmax: 90.53 MHz
+INFO: [HLS 200-111] Finished generating all RTL models Time (s): cpu = 00:00:05 ; elapsed = 00:00:12 . Memory (MB): peak = 955.074 ; gain = 861.098
+INFO: [VHDL 208-304] Generating VHDL RTL for matrixmul.
+INFO: [VLOG 209-307] Generating Verilog RTL for matrixmul.
+INFO: [HLS 200-112] Total elapsed time: 11.589 seconds; peak allocated memory: 105.402 MB.
+==============================================================
+Vivado(TM) HLS - High-Level Synthesis from C, C++ and SystemC v2020.1 (64-bit)
+Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
+==============================================================
+INFO: [SYN 201-201] Setting up clock 'default' with a period of 13.333ns.
+INFO: [HLS 200-10] Setting target device to 'xcvu9p-flgb2104-1-e'
+INFO: [SCHED 204-61] Option 'relax_ii_for_timing' is enabled, will increase II to preserve clock frequency constraints.
+INFO: [HLS 200-10] Analyzing design file 'matrixmul.cpp' ... 
+INFO: [HLS 200-111] Finished Linking Time (s): cpu = 00:00:04 ; elapsed = 00:00:09 . Memory (MB): peak = 955.289 ; gain = 861.738
+INFO: [HLS 200-111] Finished Checking Pragmas Time (s): cpu = 00:00:04 ; elapsed = 00:00:09 . Memory (MB): peak = 955.289 ; gain = 861.738
+INFO: [HLS 200-10] Starting code transformations ...
+INFO: [HLS 200-111] Finished Standard Transforms Time (s): cpu = 00:00:04 ; elapsed = 00:00:10 . Memory (MB): peak = 955.289 ; gain = 861.738
+INFO: [HLS 200-10] Checking synthesizability ...
+INFO: [HLS 200-111] Finished Checking Synthesizability Time (s): cpu = 00:00:04 ; elapsed = 00:00:10 . Memory (MB): peak = 955.289 ; gain = 861.738
+INFO: [XFORM 203-502] Unrolling all sub-loops inside loop 'Col' (matrixmul.cpp:66) in function 'matrixmul' for pipelining.
+INFO: [HLS 200-489] Unrolling loop 'Cache_Row' (matrixmul.cpp:73) in function 'matrixmul' completely with a factor of 3.
+INFO: [HLS 200-489] Unrolling loop 'Cache_Col' (matrixmul.cpp:78) in function 'matrixmul' completely with a factor of 3.
+INFO: [HLS 200-489] Unrolling loop 'Product' (matrixmul.cpp:80) in function 'matrixmul' completely with a factor of 3.
+INFO: [XFORM 203-102] Partitioning array 'a_row' (matrixmul.cpp:58) automatically.
+INFO: [XFORM 203-131] Reshaping array 'b' (matrixmul.cpp:50) in dimension 1 completely.
+INFO: [XFORM 203-131] Reshaping array 'b_copy' (matrixmul.cpp:60) in dimension 1 with a cyclic factor of 2.
+INFO: [XFORM 203-131] Reshaping array 'a' (matrixmul.cpp:49) in dimension 2 completely.
+INFO: [XFORM 203-501] Unrolling loop 'Col' (matrixmul.cpp:66) in function 'matrixmul' partially with a factor of 2.
+WARNING: [XFORM 203-124] Array  'a': may have improper streaming access(es), possible reasons: (1) some entries are accessed more than once; (2) some entries are not used; (3) the entries are not accessed in sequential order.
+WARNING: [XFORM 203-124] Array  'b': may have improper streaming access(es), possible reasons: (1) some entries are accessed more than once; (2) some entries are not used; (3) the entries are not accessed in sequential order.
+WARNING: [XFORM 203-124] Array  'res': may have improper streaming access(es), possible reasons: (1) some entries are accessed more than once; (2) some entries are not used; (3) the entries are not accessed in sequential order.
+INFO: [HLS 200-111] Finished Pre-synthesis Time (s): cpu = 00:00:04 ; elapsed = 00:00:10 . Memory (MB): peak = 955.289 ; gain = 861.738
+WARNING: [XFORM 203-542] Cannot flatten a loop nest 'Row' (matrixmul.cpp:64:36) in function 'matrixmul' : 
+
+the outer loop is not a perfect loop because there is nontrivial logic before entering the inner loop.
+INFO: [HLS 200-472] Inferring partial write operation for 'b_copy' (matrixmul.cpp:78:16)
+WARNING: [XFORM 203-532] Unable to rewind loop 'Row' (matrixmul.cpp:64) in function 'matrixmul': loop nest is not flattened.
+INFO: [HLS 200-111] Finished Architecture Synthesis Time (s): cpu = 00:00:05 ; elapsed = 00:00:11 . Memory (MB): peak = 955.289 ; gain = 861.738
+INFO: [HLS 200-10] Starting hardware synthesis ...
+INFO: [HLS 200-10] Synthesizing 'matrixmul' ...
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'matrixmul' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-61] Pipelining loop 'Col'.
+WARNING: [SCHED 204-68] The II Violation in module 'matrixmul' (Loop: Col): Unable to enforce a carried dependence constraint (II = 1, distance = 1, offset = 1)
+   between 'store' operation ('b_copy_addr_1_write_ln78', matrixmul.cpp:78) of constant <constant:_ssdm_op_Write.bram.i16> on array 'b_copy', matrixmul.cpp:60 and 'store' operation ('b_copy_addr_write_ln78', matrixmul.cpp:78) of constant <constant:_ssdm_op_Write.bram.i16> on array 'b_copy', matrixmul.cpp:60.
+WARNING: [SCHED 204-68] The II Violation in module 'matrixmul' (Loop: Col): Unable to enforce a carried dependence constraint (II = 2, distance = 1, offset = 0)
+   between 'load' operation ('b_copy_load_1', matrixmul.cpp:81) on array 'b_copy', matrixmul.cpp:60 and 'store' operation ('b_copy_addr_write_ln78', matrixmul.cpp:78) of constant <constant:_ssdm_op_Write.bram.i16> on array 'b_copy', matrixmul.cpp:60.
+WARNING: [SCHED 204-68] The II Violation in module 'matrixmul' (Loop: Col): Unable to enforce a carried dependence constraint (II = 3, distance = 1, offset = 1)
+   between 'store' operation ('b_copy_addr_7_write_ln78', matrixmul.cpp:78) of constant <constant:_ssdm_op_Write.bram.i16> on array 'b_copy', matrixmul.cpp:60 and 'store' operation ('b_copy_addr_write_ln78', matrixmul.cpp:78) of constant <constant:_ssdm_op_Write.bram.i16> on array 'b_copy', matrixmul.cpp:60.
+WARNING: [SCHED 204-68] The II Violation in module 'matrixmul' (Loop: Col): Unable to enforce a carried dependence constraint (II = 4, distance = 1, offset = 1)
+   between 'store' operation ('b_copy_addr_7_write_ln78', matrixmul.cpp:78) of constant <constant:_ssdm_op_Write.bram.i16> on array 'b_copy', matrixmul.cpp:60 and 'store' operation ('b_copy_addr_write_ln78', matrixmul.cpp:78) of constant <constant:_ssdm_op_Write.bram.i16> on array 'b_copy', matrixmul.cpp:60.
+WARNING: [SCHED 204-69] Unable to schedule 'load' operation ('b_copy_load_1', matrixmul.cpp:81) on array 'b_copy', matrixmul.cpp:60 due to limited memory ports. Please consider using a memory core with more ports or partitioning the array 'b_copy'.
+INFO: [SCHED 204-61] Pipelining result : Target II = 1, Final II = 7, Depth = 11.
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111]  Elapsed time: 11.211 seconds; current allocated memory: 105.208 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111]  Elapsed time: 0.139 seconds; current allocated memory: 105.708 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'matrixmul' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-500] Setting interface mode on port 'matrixmul/a' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'matrixmul/b' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'matrixmul/res' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on function 'matrixmul' to 'ap_ctrl_hs'.
+INFO: [SYN 201-210] Renamed object name 'matrixmul_mac_muladd_8s_8s_16ns_16_1_1' to 'matrixmul_mac_mulbkb' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'matrixmul_mac_muladd_8s_8s_16s_16_1_1' to 'matrixmul_mac_mulcud' due to the length limit 20
+INFO: [RTGEN 206-100] Generating core module 'matrixmul_mac_mulbkb': 2 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'matrixmul_mac_mulcud': 2 instance(s).
+INFO: [RTGEN 206-100] Finished creating RTL model for 'matrixmul'.
+INFO: [HLS 200-111]  Elapsed time: 0.204 seconds; current allocated memory: 106.756 MB.
+INFO: [HLS 200-790] **** Loop Constraint Status: All loop constraints were NOT satisfied.
+INFO: [HLS 200-789] **** Estimated Fmax: 202.10 MHz
+INFO: [RTMG 210-278] Implementing memory 'matrixmul_b_copy_ram (RAM)' using block RAMs.
+INFO: [HLS 200-111] Finished generating all RTL models Time (s): cpu = 00:00:07 ; elapsed = 00:00:14 . Memory (MB): peak = 955.289 ; gain = 861.738
+INFO: [VHDL 208-304] Generating VHDL RTL for matrixmul.
+INFO: [VLOG 209-307] Generating Verilog RTL for matrixmul.
+INFO: [HLS 200-112] Total elapsed time: 14.536 seconds; peak allocated memory: 106.756 MB.
+==============================================================
+Vivado(TM) HLS - High-Level Synthesis from C, C++ and SystemC v2020.1 (64-bit)
+Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
+==============================================================
+INFO: [SYN 201-201] Setting up clock 'default' with a period of 13.333ns.
+INFO: [HLS 200-10] Setting target device to 'xcvu9p-flgb2104-1-e'
+INFO: [SCHED 204-61] Option 'relax_ii_for_timing' is enabled, will increase II to preserve clock frequency constraints.
+INFO: [HLS 200-10] Analyzing design file 'matrixmul.cpp' ... 
+INFO: [HLS 200-111] Finished Linking Time (s): cpu = 00:00:04 ; elapsed = 00:00:08 . Memory (MB): peak = 955.953 ; gain = 862.430
+INFO: [HLS 200-111] Finished Checking Pragmas Time (s): cpu = 00:00:04 ; elapsed = 00:00:08 . Memory (MB): peak = 955.953 ; gain = 862.430
+INFO: [HLS 200-10] Starting code transformations ...
+INFO: [HLS 200-111] Finished Standard Transforms Time (s): cpu = 00:00:04 ; elapsed = 00:00:09 . Memory (MB): peak = 955.953 ; gain = 862.430
+INFO: [HLS 200-10] Checking synthesizability ...
+INFO: [HLS 200-111] Finished Checking Synthesizability Time (s): cpu = 00:00:04 ; elapsed = 00:00:09 . Memory (MB): peak = 955.953 ; gain = 862.430
+INFO: [XFORM 203-502] Unrolling all sub-loops inside loop 'Col' (matrixmul.cpp:65) in function 'matrixmul' for pipelining.
+INFO: [HLS 200-489] Unrolling loop 'Cache_Row' (matrixmul.cpp:72) in function 'matrixmul' completely with a factor of 3.
+INFO: [HLS 200-489] Unrolling loop 'Cache_Col' (matrixmul.cpp:77) in function 'matrixmul' completely with a factor of 3.
+INFO: [HLS 200-489] Unrolling loop 'Product' (matrixmul.cpp:79) in function 'matrixmul' completely with a factor of 3.
+INFO: [XFORM 203-102] Partitioning array 'a_row' (matrixmul.cpp:58) automatically.
+INFO: [XFORM 203-131] Reshaping array 'b' (matrixmul.cpp:50) in dimension 1 completely.
+INFO: [XFORM 203-131] Reshaping array 'b_copy' (matrixmul.cpp:59) in dimension 1 completely.
+INFO: [XFORM 203-131] Reshaping array 'a' (matrixmul.cpp:49) in dimension 2 completely.
+INFO: [XFORM 203-102] Automatically partitioning small array 'b_copy' (matrixmul.cpp:59) completely based on array size.
+INFO: [XFORM 203-101] Partitioning array 'b_copy' (matrixmul.cpp:59) in dimension 1 completely.
+WARNING: [XFORM 203-124] Array  'a': may have improper streaming access(es), possible reasons: (1) some entries are accessed more than once; (2) some entries are not used; (3) the entries are not accessed in sequential order.
+WARNING: [XFORM 203-124] Array  'b': may have improper streaming access(es), possible reasons: (1) some entries are accessed more than once; (2) some entries are not used; (3) the entries are not accessed in sequential order.
+INFO: [XFORM 203-401] Performing if-conversion on hyperblock from (matrixmul.cpp:77:16) in function 'matrixmul'... converting 13 basic blocks.
+INFO: [HLS 200-111] Finished Pre-synthesis Time (s): cpu = 00:00:04 ; elapsed = 00:00:10 . Memory (MB): peak = 955.953 ; gain = 862.430
+INFO: [XFORM 203-541] Flattening a loop nest 'Row' (matrixmul.cpp:63:36) in function 'matrixmul'.
+INFO: [XFORM 203-531] Rewinding loop 'Row_Col' in function 'matrixmul'.
+INFO: [HLS 200-111] Finished Architecture Synthesis Time (s): cpu = 00:00:04 ; elapsed = 00:00:10 . Memory (MB): peak = 955.953 ; gain = 862.430
+INFO: [HLS 200-10] Starting hardware synthesis ...
+INFO: [HLS 200-10] Synthesizing 'matrixmul' ...
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'matrixmul' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-61] Pipelining loop 'Row_Col'.
+INFO: [SCHED 204-61] Pipelining result : Target II = 1, Final II = 1, Depth = 2.
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111]  Elapsed time: 10.071 seconds; current allocated memory: 104.402 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111]  Elapsed time: 0.099 seconds; current allocated memory: 104.846 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'matrixmul' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-500] Setting interface mode on port 'matrixmul/a' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'matrixmul/b' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'matrixmul/res' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on function 'matrixmul' to 'ap_ctrl_hs'.
+INFO: [SYN 201-210] Renamed object name 'matrixmul_mux_32_24_1_1' to 'matrixmul_mux_32_bkb' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'matrixmul_mac_muladd_8s_8s_16s_16_1_1' to 'matrixmul_mac_mulcud' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'matrixmul_mac_muladd_8s_8s_16ns_16_1_1' to 'matrixmul_mac_muldEe' due to the length limit 20
+INFO: [RTGEN 206-100] Generating core module 'matrixmul_mac_mulcud': 1 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'matrixmul_mac_muldEe': 1 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'matrixmul_mux_32_bkb': 4 instance(s).
+INFO: [RTGEN 206-100] Finished creating RTL model for 'matrixmul'.
+INFO: [HLS 200-111]  Elapsed time: 0.172 seconds; current allocated memory: 105.612 MB.
+INFO: [HLS 200-790] **** Loop Constraint Status: All loop constraints were satisfied.
+INFO: [HLS 200-789] **** Estimated Fmax: 114.39 MHz
+INFO: [HLS 200-111] Finished generating all RTL models Time (s): cpu = 00:00:06 ; elapsed = 00:00:12 . Memory (MB): peak = 955.953 ; gain = 862.430
+INFO: [VHDL 208-304] Generating VHDL RTL for matrixmul.
+INFO: [VLOG 209-307] Generating Verilog RTL for matrixmul.
+INFO: [HLS 200-112] Total elapsed time: 12.186 seconds; peak allocated memory: 105.612 MB.
+==============================================================
+Vivado(TM) HLS - High-Level Synthesis from C, C++ and SystemC v2020.1 (64-bit)
+Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
+==============================================================
+INFO: [SYN 201-201] Setting up clock 'default' with a period of 13.333ns.
+INFO: [HLS 200-10] Setting target device to 'xcvu9p-flgb2104-1-e'
+INFO: [SCHED 204-61] Option 'relax_ii_for_timing' is enabled, will increase II to preserve clock frequency constraints.
+INFO: [HLS 200-10] Analyzing design file 'matrixmul.cpp' ... 
+INFO: [HLS 200-111] Finished Linking Time (s): cpu = 00:00:04 ; elapsed = 00:00:10 . Memory (MB): peak = 955.000 ; gain = 861.492
+INFO: [HLS 200-111] Finished Checking Pragmas Time (s): cpu = 00:00:04 ; elapsed = 00:00:10 . Memory (MB): peak = 955.000 ; gain = 861.492
+INFO: [HLS 200-10] Starting code transformations ...
+INFO: [HLS 200-111] Finished Standard Transforms Time (s): cpu = 00:00:04 ; elapsed = 00:00:10 . Memory (MB): peak = 955.000 ; gain = 861.492
+INFO: [HLS 200-10] Checking synthesizability ...
+INFO: [HLS 200-111] Finished Checking Synthesizability Time (s): cpu = 00:00:04 ; elapsed = 00:00:10 . Memory (MB): peak = 955.000 ; gain = 861.492
+INFO: [XFORM 203-502] Unrolling all sub-loops inside loop 'Col' (matrixmul.cpp:65) in function 'matrixmul' for pipelining.
+INFO: [HLS 200-489] Unrolling loop 'Cache_Row' (matrixmul.cpp:72) in function 'matrixmul' completely with a factor of 3.
+INFO: [HLS 200-489] Unrolling loop 'Cache_Col' (matrixmul.cpp:77) in function 'matrixmul' completely with a factor of 3.
+INFO: [HLS 200-489] Unrolling loop 'Product' (matrixmul.cpp:79) in function 'matrixmul' completely with a factor of 3.
+INFO: [XFORM 203-102] Partitioning array 'a_row' (matrixmul.cpp:58) automatically.
+INFO: [XFORM 203-102] Partitioning array 'b_copy' (matrixmul.cpp:59) in dimension 1 automatically.
+INFO: [XFORM 203-131] Reshaping array 'b' (matrixmul.cpp:50) in dimension 1 completely.
+INFO: [XFORM 203-131] Reshaping array 'a' (matrixmul.cpp:49) in dimension 2 completely.
+INFO: [XFORM 203-102] Automatically partitioning small array 'b_copy.0' (matrixmul.cpp:59) completely based on array size.
+INFO: [XFORM 203-102] Automatically partitioning small array 'b_copy.1' (matrixmul.cpp:59) completely based on array size.
+INFO: [XFORM 203-102] Automatically partitioning small array 'b_copy.2' (matrixmul.cpp:59) completely based on array size.
+INFO: [XFORM 203-101] Partitioning array 'b_copy.0' (matrixmul.cpp:59) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'b_copy.1' (matrixmul.cpp:59) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'b_copy.2' (matrixmul.cpp:59) in dimension 1 completely.
+WARNING: [XFORM 203-124] Array  'a': may have improper streaming access(es), possible reasons: (1) some entries are accessed more than once; (2) some entries are not used; (3) the entries are not accessed in sequential order.
+WARNING: [XFORM 203-124] Array  'b': may have improper streaming access(es), possible reasons: (1) some entries are accessed more than once; (2) some entries are not used; (3) the entries are not accessed in sequential order.
+INFO: [XFORM 203-401] Performing if-conversion on hyperblock from (matrixmul.cpp:77:16) in function 'matrixmul'... converting 5 basic blocks.
+INFO: [HLS 200-111] Finished Pre-synthesis Time (s): cpu = 00:00:04 ; elapsed = 00:00:11 . Memory (MB): peak = 955.000 ; gain = 861.492
+INFO: [XFORM 203-541] Flattening a loop nest 'Row' (matrixmul.cpp:63:36) in function 'matrixmul'.
+INFO: [HLS 200-111] Finished Architecture Synthesis Time (s): cpu = 00:00:05 ; elapsed = 00:00:11 . Memory (MB): peak = 955.000 ; gain = 861.492
+INFO: [HLS 200-10] Starting hardware synthesis ...
+INFO: [HLS 200-10] Synthesizing 'matrixmul' ...
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'matrixmul' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-61] Pipelining loop 'Row_Col'.
+INFO: [SCHED 204-61] Pipelining result : Target II = 1, Final II = 1, Depth = 3.
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111]  Elapsed time: 11.322 seconds; current allocated memory: 104.423 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111]  Elapsed time: 0.131 seconds; current allocated memory: 104.846 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'matrixmul' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-500] Setting interface mode on port 'matrixmul/a' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'matrixmul/b' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'matrixmul/res' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on function 'matrixmul' to 'ap_ctrl_hs'.
+INFO: [SYN 201-210] Renamed object name 'matrixmul_mux_32_8_1_1' to 'matrixmul_mux_32_bkb' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'matrixmul_mac_muladd_8s_8s_16s_16_1_1' to 'matrixmul_mac_mulcud' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'matrixmul_mac_muladd_8s_8s_16ns_16_1_1' to 'matrixmul_mac_muldEe' due to the length limit 20
+INFO: [RTGEN 206-100] Generating core module 'matrixmul_mac_mulcud': 1 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'matrixmul_mac_muldEe': 1 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'matrixmul_mux_32_bkb': 3 instance(s).
+INFO: [RTGEN 206-100] Finished creating RTL model for 'matrixmul'.
+INFO: [HLS 200-111]  Elapsed time: 0.171 seconds; current allocated memory: 105.629 MB.
+INFO: [HLS 200-790] **** Loop Constraint Status: All loop constraints were satisfied.
+INFO: [HLS 200-789] **** Estimated Fmax: 114.39 MHz
+INFO: [HLS 200-111] Finished generating all RTL models Time (s): cpu = 00:00:07 ; elapsed = 00:00:14 . Memory (MB): peak = 955.000 ; gain = 861.492
+INFO: [VHDL 208-304] Generating VHDL RTL for matrixmul.
+INFO: [VLOG 209-307] Generating Verilog RTL for matrixmul.
+INFO: [HLS 200-112] Total elapsed time: 13.847 seconds; peak allocated memory: 105.629 MB.

@@ -1,0 +1,198 @@
+
+
+================================================================
+== Synthesis Summary Report of 'dut'
+================================================================
++ General Information: 
+    * Date:           Sat Nov 12 21:20:47 2022
+    * Version:        2022.1 (Build 3526262 on Mon Apr 18 15:48:16 MDT 2022)
+    * Project:        serialization.prj
+    * Solution:       solution1 (Vitis Kernel Flow Target)
+    * Product family: zynq
+    * Target device:  xc7z020-clg400-1
+    
+
++ Performance & Resource Estimates: 
+    
+    PS: '+' for module; 'o' for loop; '*' for dataflow
+    +----------------------------------+------+------+---------+-----------+----------+---------+--------+----------+----------+----+-----------+-----------+-----+
+    |              Modules             | Issue|      | Latency |  Latency  | Iteration|         |  Trip  |          |          |    |           |           |     |
+    |              & Loops             | Type | Slack| (cycles)|    (ns)   |  Latency | Interval|  Count | Pipelined|   BRAM   | DSP|     FF    |    LUT    | URAM|
+    +----------------------------------+------+------+---------+-----------+----------+---------+--------+----------+----------+----+-----------+-----------+-----+
+    |+ dut                             |     -|  0.09|   194553|  1.362e+06|         -|   194554|       -|        no|  37 (13%)|   -|  758 (~0%)|  3512 (6%)|    -|
+    | + dut_Pipeline_1                 |     -|  1.65|     8002|  5.601e+04|         -|     8002|       -|        no|         -|   -|   15 (~0%)|   53 (~0%)|    -|
+    |  o Loop 1                        |     -|  7.00|     8000|  5.600e+04|         1|        1|    8000|       yes|         -|   -|          -|          -|    -|
+    | + dut_Pipeline_2                 |     -|  1.65|     8002|  5.601e+04|         -|     8002|       -|        no|         -|   -|   15 (~0%)|   53 (~0%)|    -|
+    |  o Loop 1                        |     -|  7.00|     8000|  5.600e+04|         1|        1|    8000|       yes|         -|   -|          -|          -|    -|
+    | + dut_Pipeline_3                 |     -|  1.65|     8002|  5.601e+04|         -|     8002|       -|        no|         -|   -|   15 (~0%)|   53 (~0%)|    -|
+    |  o Loop 1                        |     -|  7.00|     8000|  5.600e+04|         1|        1|    8000|       yes|         -|   -|          -|          -|    -|
+    | + dut_Pipeline_4                 |     -|  1.65|     8002|  5.601e+04|         -|     8002|       -|        no|         -|   -|   15 (~0%)|   53 (~0%)|    -|
+    |  o Loop 1                        |     -|  7.00|     8000|  5.600e+04|         1|        1|    8000|       yes|         -|   -|          -|          -|    -|
+    | + dut_Pipeline_5                 |     -|  1.76|     4010|  2.807e+04|         -|     4010|       -|        no|         -|   -|   14 (~0%)|   51 (~0%)|    -|
+    |  o Loop 1                        |     -|  7.00|     4008|  2.806e+04|         1|        1|    4008|       yes|         -|   -|          -|          -|    -|
+    | + dut_Pipeline_6                 |     -|  1.76|     4010|  2.807e+04|         -|     4010|       -|        no|         -|   -|   14 (~0%)|   51 (~0%)|    -|
+    |  o Loop 1                        |     -|  7.00|     4008|  2.806e+04|         1|        1|    4008|       yes|         -|   -|          -|          -|    -|
+    | + dut_Pipeline_7                 |     -|  1.97|     1002|  7.014e+03|         -|     1002|       -|        no|         -|   -|   12 (~0%)|   51 (~0%)|    -|
+    |  o Loop 1                        |     -|  7.00|     1000|  7.000e+03|         1|        1|    1000|       yes|         -|   -|          -|          -|    -|
+    | + dut_Pipeline_8                 |     -|  1.43|    24530|  1.717e+05|         -|    24530|       -|        no|         -|   -|   17 (~0%)|   59 (~0%)|    -|
+    |  o Loop 1                        |     -|  7.00|    24528|  1.717e+05|         1|        1|   24528|       yes|         -|   -|          -|          -|    -|
+    | + dut_Pipeline_VITIS_LOOP_37_1   |     -|  0.09|   104470|  7.313e+05|         -|   104470|       -|        no|         -|   -|  463 (~0%)|  1312 (2%)|    -|
+    |  o VITIS_LOOP_37_1               |     -|  7.00|   104468|  7.313e+05|         3|        1|  104467|       yes|         -|   -|          -|          -|    -|
+    | + dut_Pipeline_VITIS_LOOP_123_3  |     -|  1.80|    65546|  4.588e+05|         -|    65546|       -|        no|         -|   -|   33 (~0%)|   598 (1%)|    -|
+    |  o VITIS_LOOP_123_3              |     -|  7.00|    65544|  4.588e+05|         2|        1|   65544|       yes|         -|   -|          -|          -|    -|
+    +----------------------------------+------+------+---------+-----------+----------+---------+--------+----------+----------+----+-----------+-----------+-----+
+
+
+================================================================
+== HW Interfaces
+================================================================
+* S_AXILITE Interfaces
++---------------+------------+---------------+--------+----------+
+| Interface     | Data Width | Address Width | Offset | Register |
++---------------+------------+---------------+--------+----------+
+| s_axi_control | 32         | 5             | 16     | 0        |
++---------------+------------+---------------+--------+----------+
+
+* S_AXILITE Registers
++---------------+----------+--------+-------+--------+----------------------------------+------------------------------------------------------------------------------------+
+| Interface     | Register | Offset | Width | Access | Description                      | Bit Fields                                                                         |
++---------------+----------+--------+-------+--------+----------------------------------+------------------------------------------------------------------------------------+
+| s_axi_control | CTRL     | 0x00   | 32    | RW     | Control signals                  | 0=AP_START 1=AP_DONE 2=AP_IDLE 3=AP_READY 4=AP_CONTINUE 7=AUTO_RESTART 9=INTERRUPT |
+| s_axi_control | GIER     | 0x04   | 32    | RW     | Global Interrupt Enable Register | 0=Enable                                                                           |
+| s_axi_control | IP_IER   | 0x08   | 32    | RW     | IP Interrupt Enable Register     | 0=CHAN0_INT_EN 1=CHAN1_INT_EN                                                      |
+| s_axi_control | IP_ISR   | 0x0c   | 32    | RW     | IP Interrupt Status Register     | 0=CHAN0_INT_ST 1=CHAN1_INT_ST                                                      |
+| s_axi_control | src_sz   | 0x10   | 32    | W      | Data signal of src_sz            |                                                                                    |
++---------------+----------+--------+-------+--------+----------------------------------+------------------------------------------------------------------------------------+
+
+* AXIS
++-----------+---------------+-------+--------+--------+
+| Interface | Register Mode | TDATA | TREADY | TVALID |
++-----------+---------------+-------+--------+--------+
+| dst_buff  | both          | 8     | 1      | 1      |
+| src_buff  | both          | 8     | 1      | 1      |
++-----------+---------------+-------+--------+--------+
+
+* TOP LEVEL CONTROL
++-----------+---------------+-----------+
+| Interface | Type          | Ports     |
++-----------+---------------+-----------+
+| ap_clk    | clock         | ap_clk    |
+| ap_rst_n  | reset         | ap_rst_n  |
+| interrupt | interrupt     | interrupt |
+| ap_ctrl   | ap_ctrl_chain |           |
++-----------+---------------+-----------+
+
+
+================================================================
+== SW I/O Information
+================================================================
+* Top Function Arguments
++----------+-----------+----------+
+| Argument | Direction | Datatype |
++----------+-----------+----------+
+| src_buff | in        | char*    |
+| src_sz   | in        | int      |
+| dst_buff | out       | char*    |
++----------+-----------+----------+
+
+* SW-to-HW Mapping
++----------+---------------+-----------+----------------------------------+
+| Argument | HW Interface  | HW Type   | HW Info                          |
++----------+---------------+-----------+----------------------------------+
+| src_buff | src_buff      | interface |                                  |
+| src_sz   | s_axi_control | register  | name=src_sz offset=0x10 range=32 |
+| dst_buff | dst_buff      | interface |                                  |
++----------+---------------+-----------+----------------------------------+
+
+
+================================================================
+== M_AXI Burst Information
+================================================================
+ Note: All burst requests might be further partitioned into multiple requests during RTL generation based on max_read_burst_length or max_write_burst_length settings.
+
+  No burst in design
+
+================================================================
+== Bind Op Report
+================================================================
++----------------------------------+-----+--------+--------------------+-----+--------+---------+
+| Name                             | DSP | Pragma | Variable           | Op  | Impl   | Latency |
++----------------------------------+-----+--------+--------------------+-----+--------+---------+
+| + dut                            | 0   |        |                    |     |        |         |
+|   sub_fu_231_p2                  | -   |        | sub                | add | fabric | 0       |
+|  + dut_Pipeline_1                | 0   |        |                    |     |        |         |
+|    empty_38_fu_58_p2             | -   |        | empty_38           | add | fabric | 0       |
+|  + dut_Pipeline_2                | 0   |        |                    |     |        |         |
+|    empty_36_fu_58_p2             | -   |        | empty_36           | add | fabric | 0       |
+|  + dut_Pipeline_3                | 0   |        |                    |     |        |         |
+|    empty_34_fu_58_p2             | -   |        | empty_34           | add | fabric | 0       |
+|  + dut_Pipeline_4                | 0   |        |                    |     |        |         |
+|    empty_32_fu_58_p2             | -   |        | empty_32           | add | fabric | 0       |
+|  + dut_Pipeline_5                | 0   |        |                    |     |        |         |
+|    empty_30_fu_58_p2             | -   |        | empty_30           | add | fabric | 0       |
+|  + dut_Pipeline_6                | 0   |        |                    |     |        |         |
+|    empty_28_fu_58_p2             | -   |        | empty_28           | add | fabric | 0       |
+|  + dut_Pipeline_7                | 0   |        |                    |     |        |         |
+|    empty_26_fu_58_p2             | -   |        | empty_26           | add | fabric | 0       |
+|  + dut_Pipeline_8                | 0   |        |                    |     |        |         |
+|    empty_23_fu_118_p2            | -   |        | empty_23           | add | fabric | 0       |
+|  + dut_Pipeline_VITIS_LOOP_37_1  | 0   |        |                    |     |        |         |
+|    add_ln37_fu_808_p2            | -   |        | add_ln37           | add | fabric | 0       |
+|    string_1_idx_1_fu_1071_p2     | -   |        | string_1_idx_1     | add | fabric | 0       |
+|    add_ln113_fu_1085_p2          | -   |        | add_ln113          | add | fabric | 0       |
+|    add_ln113_1_fu_1113_p2        | -   |        | add_ln113_1        | add | fabric | 0       |
+|    add_ln113_2_fu_1137_p2        | -   |        | add_ln113_2        | add | fabric | 0       |
+|    add_ln113_3_fu_1161_p2        | -   |        | add_ln113_3        | add | fabric | 0       |
+|    add_ln113_4_fu_1452_p2        | -   |        | add_ln113_4        | add | fabric | 0       |
+|    add_ln113_5_fu_1475_p2        | -   |        | add_ln113_5        | add | fabric | 0       |
+|    add_ln113_6_fu_1498_p2        | -   |        | add_ln113_6        | add | fabric | 0       |
+|    string_2_idx_1_fu_1201_p2     | -   |        | string_2_idx_1     | add | fabric | 0       |
+|    string_pos_2_idx_1_fu_1287_p2 | -   |        | string_pos_2_idx_1 | add | fabric | 0       |
+|    row_id_1_fu_1293_p2           | -   |        | row_id_1           | add | fabric | 0       |
+|    accu_length_fu_1351_p2        | -   |        | accu_length        | add | fabric | 0       |
+|    add_ln72_1_fu_1357_p2         | -   |        | add_ln72_1         | add | fabric | 0       |
+|    string_pos_1_d1               | -   |        | add_ln78           | add | fabric | 0       |
+|    string_pos_1_idx_1_fu_1409_p2 | -   |        | string_pos_1_idx_1 | add | fabric | 0       |
+|    accu_length_2_fu_1425_p2      | -   |        | accu_length_2      | add | fabric | 0       |
+|    add_ln18_fu_870_p2            | -   |        | add_ln18           | add | fabric | 0       |
+|  + dut_Pipeline_VITIS_LOOP_123_3 | 0   |        |                    |     |        |         |
+|    add_ln123_fu_379_p2           | -   |        | add_ln123          | add | fabric | 0       |
+|    add_ln142_fu_447_p2           | -   |        | add_ln142          | add | fabric | 0       |
+|    add_ln151_fu_470_p2           | -   |        | add_ln151          | add | fabric | 0       |
+|    add_ln148_fu_494_p2           | -   |        | add_ln148          | add | fabric | 0       |
+|    add_ln145_fu_505_p2           | -   |        | add_ln145          | add | fabric | 0       |
+|    add_ln139_fu_516_p2           | -   |        | add_ln139          | add | fabric | 0       |
+|    add_ln136_fu_527_p2           | -   |        | add_ln136          | add | fabric | 0       |
+|    add_ln133_fu_538_p2           | -   |        | add_ln133          | add | fabric | 0       |
+|    add_ln166_fu_573_p2           | -   |        | add_ln166          | add | fabric | 0       |
+|    add_ln163_fu_597_p2           | -   |        | add_ln163          | add | fabric | 0       |
+|    add_ln160_fu_608_p2           | -   |        | add_ln160          | add | fabric | 0       |
++----------------------------------+-----+--------+--------------------+-----+--------+---------+
+
+
+================================================================
+== Bind Storage Report
+================================================================
++------------------+------+------+--------+--------------+---------+------+---------+
+| Name             | BRAM | URAM | Pragma | Variable     | Storage | Impl | Latency |
++------------------+------+------+--------+--------------+---------+------+---------+
+| + dut            | 37   | 0    |        |              |         |      |         |
+|   int_1_U        | 4    | -    |        | int_1        | ram_1p  | auto | 1       |
+|   int_2_U        | 4    | -    |        | int_2        | ram_1p  | auto | 1       |
+|   double_1_U     | 4    | -    |        | double_1     | ram_1p  | auto | 1       |
+|   double_2_U     | 4    | -    |        | double_2     | ram_1p  | auto | 1       |
+|   string_pos_1_U | 2    | -    |        | string_pos_1 | ram_t2p | auto | 1       |
+|   string_pos_2_U | 2    | -    |        | string_pos_2 | ram_t2p | auto | 1       |
+|   string_1_U     | 1    | -    |        | string_1     | ram_1p  | auto | 1       |
+|   string_2_U     | 4    | -    |        | string_2     | ram_t2p | auto | 1       |
+|   string_2_1_U   | 4    | -    |        | string_2_1   | ram_t2p | auto | 1       |
+|   string_2_2_U   | 4    | -    |        | string_2_2   | ram_t2p | auto | 1       |
+|   string_2_3_U   | 4    | -    |        | string_2_3   | ram_t2p | auto | 1       |
++------------------+------+------+--------+--------------+---------+------+---------+
+
+
+================================================================
+== Pragma Report
+================================================================
+  No pragmas found
+

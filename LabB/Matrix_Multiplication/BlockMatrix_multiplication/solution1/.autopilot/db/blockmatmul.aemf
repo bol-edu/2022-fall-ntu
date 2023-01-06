@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cdfg:DBCdfg xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:cdfg="http://www.autoesl.com/DBCdfg" timeStamp="1666123365334">
+  <ports id="1" name="Arows_V_a_0" type="PortType" originalName="Arows.V.a[0]" coreName="FIFO" bitwidth="32" iftype="IfTypeRom">
+    <dataOutputObjs>call</dataOutputObjs>
+  </ports>
+  <ports id="2" name="Arows_V_a_1" type="PortType" originalName="Arows.V.a[1]" coreName="FIFO" bitwidth="32" iftype="IfTypeRom">
+    <dataOutputObjs>call</dataOutputObjs>
+  </ports>
+  <ports id="3" name="Arows_V_a_2" type="PortType" originalName="Arows.V.a[2]" coreName="FIFO" bitwidth="32" iftype="IfTypeRom">
+    <dataOutputObjs>call</dataOutputObjs>
+  </ports>
+  <ports id="4" name="Arows_V_a_3" type="PortType" originalName="Arows.V.a[3]" coreName="FIFO" bitwidth="32" iftype="IfTypeRom">
+    <dataOutputObjs>call</dataOutputObjs>
+  </ports>
+  <ports id="5" name="Bcols_V_a_0" type="PortType" originalName="Bcols.V.a[0]" coreName="FIFO" bitwidth="32" iftype="IfTypeRom">
+    <dataOutputObjs>call</dataOutputObjs>
+  </ports>
+  <ports id="6" name="Bcols_V_a_1" type="PortType" originalName="Bcols.V.a[1]" coreName="FIFO" bitwidth="32" iftype="IfTypeRom">
+    <dataOutputObjs>call</dataOutputObjs>
+  </ports>
+  <ports id="7" name="Bcols_V_a_2" type="PortType" originalName="Bcols.V.a[2]" coreName="FIFO" bitwidth="32" iftype="IfTypeRom">
+    <dataOutputObjs>call</dataOutputObjs>
+  </ports>
+  <ports id="8" name="Bcols_V_a_3" type="PortType" originalName="Bcols.V.a[3]" coreName="FIFO" bitwidth="32" iftype="IfTypeRom">
+    <dataOutputObjs>call</dataOutputObjs>
+  </ports>
+  <ports id="9" name="ABpartial_out" type="PortType" originalName="ABpartial.out" coreName="RAM" bitwidth="32" direction="DirOut" iftype="IfTypeRegister" arraysize="16">
+    <dataInputObjs>call</dataInputObjs>
+  </ports>
+  <ports id="10" name="it" type="PortType" originalName="it" bitwidth="32">
+    <dataOutputObjs>read</dataOutputObjs>
+  </ports>
+  <edges id="41" source_obj="//@ports.9" sink_obj="//@regions.0/@basic_blocks.0/@node_objs.0"/>
+  <edges id="46" source_obj="//@regions.0/@basic_blocks.0/@node_objs.1" sink_obj="//@regions.0/@basic_blocks.0/@node_objs.2"/>
+  <edges id="47" source_obj="//@regions.0/@basic_blocks.0/@node_objs.0" sink_obj="//@regions.0/@basic_blocks.0/@node_objs.2"/>
+  <edges id="48" source_obj="//@ports.0" sink_obj="//@regions.0/@basic_blocks.0/@node_objs.2"/>
+  <edges id="49" source_obj="//@ports.1" sink_obj="//@regions.0/@basic_blocks.0/@node_objs.2"/>
+  <edges id="50" source_obj="//@ports.2" sink_obj="//@regions.0/@basic_blocks.0/@node_objs.2"/>
+  <edges id="51" source_obj="//@ports.3" sink_obj="//@regions.0/@basic_blocks.0/@node_objs.2"/>
+  <edges id="52" source_obj="//@ports.4" sink_obj="//@regions.0/@basic_blocks.0/@node_objs.2"/>
+  <edges id="53" source_obj="//@ports.5" sink_obj="//@regions.0/@basic_blocks.0/@node_objs.2"/>
+  <edges id="54" source_obj="//@ports.6" sink_obj="//@regions.0/@basic_blocks.0/@node_objs.2"/>
+  <edges id="55" source_obj="//@ports.7" sink_obj="//@regions.0/@basic_blocks.0/@node_objs.2"/>
+  <edges id="58" source_obj="//@regions.0/@basic_blocks.0/@node_objs.1" sink_obj="//@regions.0/@basic_blocks.0/@node_objs.3"/>
+  <edges id="59" source_obj="//@regions.0/@basic_blocks.0/@node_objs.3" sink_obj="//@ports.8"/>
+  <edges id="60" sink_obj="//@regions.0/@basic_blocks.0/@node_objs.2"/>
+  <regions anchor_node="-1" region_type="16" typeName="Dataflow" id="112" RegionName="blockmatmul">
+    <basic_blocks id="38" name="blockmatmul" type="BlockType">
+      <node_objs xsi:type="cdfg:CdfgNode" id="33" name="it_read" originalName="it" bitwidth="32" opcode="read" m_display="0" m_topoIndex="1" m_clusterGroupNumber="-1">
+        <dataInputObjs>it</dataInputObjs>
+        <dataOutputObjs>call</dataOutputObjs>
+      </node_objs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="34" name="AB" rtlName="AB_U" coreName="RAM" bitwidth="32" opcode="alloca" m_display="0" m_topoIndex="2" m_clusterGroupNumber="-1">
+        <dataOutputObjs>call</dataOutputObjs>
+        <dataOutputObjs>call</dataOutputObjs>
+        <constName>empty</constName>
+      </node_objs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="35" name="_ln0" rtlName="Loop_memset_AB_proc8_U0" opcode="call" nodeLatency="1" m_display="0" m_topoIndex="3" m_clusterGroupNumber="-1">
+        <dataInputObjs>alloca</dataInputObjs>
+        <dataInputObjs>read</dataInputObjs>
+        <dataInputObjs>Arows_V_a_0</dataInputObjs>
+        <dataInputObjs>Arows_V_a_1</dataInputObjs>
+        <dataInputObjs>Arows_V_a_2</dataInputObjs>
+        <dataInputObjs>Arows_V_a_3</dataInputObjs>
+        <dataInputObjs>Bcols_V_a_0</dataInputObjs>
+        <dataInputObjs>Bcols_V_a_1</dataInputObjs>
+        <dataInputObjs>Bcols_V_a_2</dataInputObjs>
+        <dataInputObjs>Bcols_V_a_3</dataInputObjs>
+        <constName>Loop_memset_AB_proc8</constName>
+      </node_objs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="36" name="_ln0" rtlName="Loop_writeoutput_pro_U0" opcode="call" nodeLabel="2.0" nodeLatency="1" m_display="0" m_topoIndex="4" m_clusterGroupNumber="-1">
+        <dataInputObjs>alloca</dataInputObjs>
+        <dataOutputObjs>ABpartial_out</dataOutputObjs>
+        <constName>Loop_writeoutput_pro</constName>
+      </node_objs>
+      <node_objs xsi:type="cdfg:CdfgNode" id="37" name="_ln39" lineNumber="39" fileName="BlockMatrix_design.cpp" fileDirectory=".." contextFuncName="blockmatmul" opcode="ret" nodeLabel="3.0" m_display="0" m_topoIndex="5" m_clusterGroupNumber="-1">
+        <inlineStackInfo fileName="BlockMatrix_design.cpp" linenumber="39" fileDirectory="C:\Users\kevin\Desktop\Vivado\2020.1\Matrix_Multiplication\script" functionName="blockmatmul"/>
+      </node_objs>
+      <fileValidLineNumbers fileName="BlockMatrix_design.cpp">
+        <validLinenumbers>39</validLinenumbers>
+      </fileValidLineNumbers>
+    </basic_blocks>
+  </regions>
+  <ScheduleInfo time="0"/>
+  <ScheduleInfo time="1"/>
+  <ScheduleInfo time="2"/>
+  <ScheduleInfo time="3"/>
+  <regnodes realName="it_read_reg_95">
+    <nodeIds>33</nodeIds>
+  </regnodes>
+  <expressionNodes realName="AB_alloca_fu_52">
+    <nodeIds>34</nodeIds>
+  </expressionNodes>
+  <moduleNodes realName="grp_Loop_writeoutput_pro_fu_88">
+    <nodeIds>36</nodeIds>
+  </moduleNodes>
+  <moduleNodes realName="grp_Loop_memset_AB_proc8_fu_62">
+    <nodeIds>35</nodeIds>
+  </moduleNodes>
+  <ioNodes realName="it_read_read_fu_56">
+    <nodeIds>33</nodeIds>
+  </ioNodes>
+  <memoryPorts dataString="A" portID="100">
+    <nodeIds>35</nodeIds>
+  </memoryPorts>
+  <ioPorts name="Arows_V_a_0">
+    <contents name="call">
+      <nodeIds>35</nodeIds>
+    </contents>
+  </ioPorts>
+  <ioPorts name="Arows_V_a_1">
+    <contents name="call">
+      <nodeIds>35</nodeIds>
+    </contents>
+  </ioPorts>
+  <ioPorts name="Arows_V_a_2">
+    <contents name="call">
+      <nodeIds>35</nodeIds>
+    </contents>
+  </ioPorts>
+  <ioPorts name="Arows_V_a_3">
+    <contents name="call">
+      <nodeIds>35</nodeIds>
+    </contents>
+  </ioPorts>
+  <ioPorts name="Bcols_V_a_0">
+    <contents name="call">
+      <nodeIds>35</nodeIds>
+    </contents>
+  </ioPorts>
+  <ioPorts name="Bcols_V_a_1">
+    <contents name="call">
+      <nodeIds>35</nodeIds>
+    </contents>
+  </ioPorts>
+  <ioPorts name="Bcols_V_a_2">
+    <contents name="call">
+      <nodeIds>35</nodeIds>
+    </contents>
+  </ioPorts>
+  <ioPorts name="Bcols_V_a_3">
+    <contents name="call">
+      <nodeIds>35</nodeIds>
+    </contents>
+  </ioPorts>
+  <ioPorts name="it">
+    <contents name="read">
+      <nodeIds>33</nodeIds>
+    </contents>
+  </ioPorts>
+  <fsm>
+    <states id="1">
+      <operations id="33" stage="1" latency="1"/>
+      <operations id="34" stage="1" latency="1"/>
+      <operations id="35" stage="2" latency="2"/>
+    </states>
+    <states id="2">
+      <operations id="35" stage="1" latency="2"/>
+    </states>
+    <states id="3">
+      <operations id="36" stage="2" latency="2"/>
+    </states>
+    <states id="4">
+      <operations id="13" stage="1" latency="1"/>
+      <operations id="14" stage="1" latency="1"/>
+      <operations id="15" stage="1" latency="1"/>
+      <operations id="16" stage="1" latency="1"/>
+      <operations id="17" stage="1" latency="1"/>
+      <operations id="18" stage="1" latency="1"/>
+      <operations id="19" stage="1" latency="1"/>
+      <operations id="20" stage="1" latency="1"/>
+      <operations id="21" stage="1" latency="1"/>
+      <operations id="22" stage="1" latency="1"/>
+      <operations id="23" stage="1" latency="1"/>
+      <operations id="24" stage="1" latency="1"/>
+      <operations id="25" stage="1" latency="1"/>
+      <operations id="26" stage="1" latency="1"/>
+      <operations id="27" stage="1" latency="1"/>
+      <operations id="28" stage="1" latency="1"/>
+      <operations id="29" stage="1" latency="1"/>
+      <operations id="30" stage="1" latency="1"/>
+      <operations id="31" stage="1" latency="1"/>
+      <operations id="32" stage="1" latency="1"/>
+      <operations id="36" stage="1" latency="2"/>
+      <operations id="37" stage="1" latency="1"/>
+    </states>
+    <transitions inState="1" outState="2">
+      <condition id="-1"/>
+    </transitions>
+    <transitions inState="2" outState="3">
+      <condition id="-1"/>
+    </transitions>
+    <transitions inState="3" outState="4">
+      <condition id="-1"/>
+    </transitions>
+  </fsm>
+  <CFGRegionsRoot>
+    <cfgRegions mId="1" mTag="blockmatmul" mII="-1" mDepth="-1" mMinTripCount="-1" mMaxTripCount="-1" mMinLatency="190" mMaxLatency="207" mIsDfPipe="true">
+      <basicBlocks>38</basicBlocks>
+      <mDfPipe allPipePinInst="//@CFGRegionsRoot/@cfgRegions.0/@mDfPipe/@processe_list.0/@pins.0/@inst //@CFGRegionsRoot/@cfgRegions.0/@mDfPipe/@processe_list.1/@pins.0/@inst">
+        <processe_list name="Loop_memset_AB_proc8_U0" ssdmobj_id="35">
+          <pins>
+            <port name="AB" dir="DirInOut" type="MEMType"/>
+            <inst name="Loop_memset_AB_proc8_U0" ssdmobj_id="35" object_id="_44"/>
+          </pins>
+          <pins>
+            <port name="it" dir="DirEnd"/>
+            <inst name="Loop_memset_AB_proc8_U0" ssdmobj_id="35" object_id="_44"/>
+          </pins>
+          <pins>
+            <port name="Arows_V_a_0"/>
+            <inst name="Loop_memset_AB_proc8_U0" ssdmobj_id="35" object_id="_44"/>
+          </pins>
+          <pins>
+            <port name="Arows_V_a_1"/>
+            <inst name="Loop_memset_AB_proc8_U0" ssdmobj_id="35" object_id="_44"/>
+          </pins>
+          <pins>
+            <port name="Arows_V_a_2"/>
+            <inst name="Loop_memset_AB_proc8_U0" ssdmobj_id="35" object_id="_44"/>
+          </pins>
+          <pins>
+            <port name="Arows_V_a_3"/>
+            <inst name="Loop_memset_AB_proc8_U0" ssdmobj_id="35" object_id="_44"/>
+          </pins>
+          <pins>
+            <port name="Bcols_V_a_0"/>
+            <inst name="Loop_memset_AB_proc8_U0" ssdmobj_id="35" object_id="_44"/>
+          </pins>
+          <pins>
+            <port name="Bcols_V_a_1"/>
+            <inst name="Loop_memset_AB_proc8_U0" ssdmobj_id="35" object_id="_44"/>
+          </pins>
+          <pins>
+            <port name="Bcols_V_a_2"/>
+            <inst name="Loop_memset_AB_proc8_U0" ssdmobj_id="35" object_id="_44"/>
+          </pins>
+          <pins>
+            <port name="Bcols_V_a_3"/>
+            <inst name="Loop_memset_AB_proc8_U0" ssdmobj_id="35" object_id="_44"/>
+          </pins>
+          <pins>
+            <port name="A" dir="DirInOut" type="MEMType"/>
+            <inst name="Loop_memset_AB_proc8_U0" ssdmobj_id="35" object_id="_44"/>
+          </pins>
+        </processe_list>
+        <processe_list name="Loop_writeoutput_pro_U0" ssdmobj_id="36">
+          <pins>
+            <port name="AB" dir="DirInOut"/>
+            <inst name="Loop_writeoutput_pro_U0" ssdmobj_id="36" object_id="_68"/>
+          </pins>
+          <pins>
+            <port name="ABpartial_out" dir="DirInOut" type="BUSType"/>
+            <inst name="Loop_writeoutput_pro_U0" ssdmobj_id="36" object_id="_68"/>
+          </pins>
+        </processe_list>
+        <channel_list depth="0" bitwidth="0" type="PIPO" name="AB" ssdmobj_id="34">
+          <source>
+            <port name="in" dir="DirEnd"/>
+            <inst name="Loop_memset_AB_proc8_U0" ssdmobj_id="35" object_id="_44"/>
+          </source>
+          <sink>
+            <port name="out" dir="DirEnd" type="BUSType"/>
+            <inst name="Loop_writeoutput_pro_U0" ssdmobj_id="36" object_id="_68"/>
+          </sink>
+        </channel_list>
+      </mDfPipe>
+    </cfgRegions>
+  </CFGRegionsRoot>
+</cdfg:DBCdfg>

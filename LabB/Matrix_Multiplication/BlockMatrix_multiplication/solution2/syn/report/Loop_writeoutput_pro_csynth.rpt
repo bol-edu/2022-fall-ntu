@@ -1,0 +1,167 @@
+
+
+================================================================
+== Vivado HLS Report for 'Loop_writeoutput_pro'
+================================================================
+* Date:           Wed Oct 19 18:03:37 2022
+
+* Version:        2020.1 (Build 2897737 on Wed May 27 20:21:37 MDT 2020)
+* Project:        BlockMatrix_multiplication
+* Solution:       solution2
+* Product family: zynq
+* Target device:  xc7z020-clg400-1
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing: 
+    * Summary: 
+    +--------+----------+----------+------------+
+    |  Clock |  Target  | Estimated| Uncertainty|
+    +--------+----------+----------+------------+
+    |ap_clk  | 10.00 ns | 4.644 ns |   1.25 ns  |
+    +--------+----------+----------+------------+
+
++ Latency: 
+    * Summary: 
+    +---------+---------+----------+----------+-----+-----+---------+
+    |  Latency (cycles) |  Latency (absolute) |  Interval | Pipeline|
+    |   min   |   max   |    min   |    max   | min | max |   Type  |
+    +---------+---------+----------+----------+-----+-----+---------+
+    |       10|       10| 0.100 us | 0.100 us |   10|   10|   none  |
+    +---------+---------+----------+----------+-----+-----+---------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        +---------------+---------+---------+----------+-----------+-----------+------+----------+
+        |               |  Latency (cycles) | Iteration|  Initiation Interval  | Trip |          |
+        |   Loop Name   |   min   |   max   |  Latency |  achieved |   target  | Count| Pipelined|
+        +---------------+---------+---------+----------+-----------+-----------+------+----------+
+        |- writeoutput  |        8|        8|         3|          2|          1|     4|    yes   |
+        +---------------+---------+---------+----------+-----------+-----------+------+----------+
+
+
+
+================================================================
+== Utilization Estimates
+================================================================
+* Summary: 
++-----------------+---------+-------+--------+-------+-----+
+|       Name      | BRAM_18K| DSP48E|   FF   |  LUT  | URAM|
++-----------------+---------+-------+--------+-------+-----+
+|DSP              |        -|      -|       -|      -|    -|
+|Expression       |        -|      -|       0|     40|    -|
+|FIFO             |        -|      -|       -|      -|    -|
+|Instance         |        -|      -|       -|      -|    -|
+|Memory           |        -|      -|       -|      -|    -|
+|Multiplexer      |        -|      -|       -|    123|    -|
+|Register         |        -|      -|      29|      -|    -|
++-----------------+---------+-------+--------+-------+-----+
+|Total            |        0|      0|      29|    163|    0|
++-----------------+---------+-------+--------+-------+-----+
+|Available        |      280|    220|  106400|  53200|    0|
++-----------------+---------+-------+--------+-------+-----+
+|Utilization (%)  |        0|      0|   ~0   |   ~0  |    0|
++-----------------+---------+-------+--------+-------+-----+
+
++ Detail: 
+    * Instance: 
+    N/A
+
+    * DSP48E: 
+    N/A
+
+    * Memory: 
+    N/A
+
+    * FIFO: 
+    N/A
+
+    * Expression: 
+    +---------------------+----------+-------+---+----+------------+------------+
+    |    Variable Name    | Operation| DSP48E| FF| LUT| Bitwidth P0| Bitwidth P1|
+    +---------------------+----------+-------+---+----+------------+------------+
+    |i_fu_149_p2          |     +    |      0|  0|  12|           3|           1|
+    |icmp_ln33_fu_143_p2  |   icmp   |      0|  0|   9|           3|           4|
+    |ap_block_state1      |    or    |      0|  0|   2|           1|           1|
+    |or_ln35_1_fu_183_p2  |    or    |      0|  0|   5|           5|           2|
+    |or_ln35_2_fu_197_p2  |    or    |      0|  0|   5|           5|           2|
+    |or_ln35_fu_168_p2    |    or    |      0|  0|   5|           5|           1|
+    |ap_enable_pp0        |    xor   |      0|  0|   2|           1|           2|
+    +---------------------+----------+-------+---+----+------------+------------+
+    |Total                |          |      0|  0|  40|          23|          13|
+    +---------------------+----------+-------+---+----+------------+------------+
+
+    * Multiplexer: 
+    +-------------------------------+----+-----------+-----+-----------+
+    |              Name             | LUT| Input Size| Bits| Total Bits|
+    +-------------------------------+----+-----------+-----+-----------+
+    |AB_address0                    |  15|          3|    4|         12|
+    |AB_address1                    |  15|          3|    4|         12|
+    |ABpartial_out_address0         |  15|          3|    4|         12|
+    |ABpartial_out_address1         |  15|          3|    4|         12|
+    |ap_NS_fsm                      |  27|          5|    1|          5|
+    |ap_done                        |   9|          2|    1|          2|
+    |ap_enable_reg_pp0_iter1        |   9|          2|    1|          2|
+    |ap_phi_mux_i3_0_phi_fu_136_p4  |   9|          2|    3|          6|
+    |i3_0_reg_132                   |   9|          2|    3|          6|
+    +-------------------------------+----+-----------+-----+-----------+
+    |Total                          | 123|         25|   25|         69|
+    +-------------------------------+----+-----------+-----+-----------+
+
+    * Register: 
+    +-------------------------+---+----+-----+-----------+
+    |           Name          | FF| LUT| Bits| Const Bits|
+    +-------------------------+---+----+-----+-----------+
+    |ap_CS_fsm                |  4|   0|    4|          0|
+    |ap_done_reg              |  1|   0|    1|          0|
+    |ap_enable_reg_pp0_iter0  |  1|   0|    1|          0|
+    |ap_enable_reg_pp0_iter1  |  1|   0|    1|          0|
+    |i3_0_reg_132             |  3|   0|    3|          0|
+    |i_reg_215                |  3|   0|    3|          0|
+    |icmp_ln33_reg_211        |  1|   0|    1|          0|
+    |tmp_1_reg_236            |  3|   0|   64|         61|
+    |tmp_3_reg_246            |  3|   0|   64|         61|
+    |tmp_4_reg_256            |  3|   0|   64|         61|
+    |tmp_reg_220              |  3|   0|    5|          2|
+    |zext_ln35_reg_226        |  3|   0|   64|         61|
+    +-------------------------+---+----+-----+-----------+
+    |Total                    | 29|   0|  275|        246|
+    +-------------------------+---+----+-----+-----------+
+
+
+
+================================================================
+== Interface
+================================================================
+* Summary: 
++------------------------+-----+-----+------------+----------------------+--------------+
+|        RTL Ports       | Dir | Bits|  Protocol  |     Source Object    |    C Type    |
++------------------------+-----+-----+------------+----------------------+--------------+
+|ap_clk                  |  in |    1| ap_ctrl_hs | Loop_writeoutput_pro | return value |
+|ap_rst                  |  in |    1| ap_ctrl_hs | Loop_writeoutput_pro | return value |
+|ap_start                |  in |    1| ap_ctrl_hs | Loop_writeoutput_pro | return value |
+|ap_done                 | out |    1| ap_ctrl_hs | Loop_writeoutput_pro | return value |
+|ap_continue             |  in |    1| ap_ctrl_hs | Loop_writeoutput_pro | return value |
+|ap_idle                 | out |    1| ap_ctrl_hs | Loop_writeoutput_pro | return value |
+|ap_ready                | out |    1| ap_ctrl_hs | Loop_writeoutput_pro | return value |
+|AB_address0             | out |    4|  ap_memory |          AB          |     array    |
+|AB_ce0                  | out |    1|  ap_memory |          AB          |     array    |
+|AB_q0                   |  in |   32|  ap_memory |          AB          |     array    |
+|AB_address1             | out |    4|  ap_memory |          AB          |     array    |
+|AB_ce1                  | out |    1|  ap_memory |          AB          |     array    |
+|AB_q1                   |  in |   32|  ap_memory |          AB          |     array    |
+|ABpartial_out_address0  | out |    4|  ap_memory |     ABpartial_out    |     array    |
+|ABpartial_out_ce0       | out |    1|  ap_memory |     ABpartial_out    |     array    |
+|ABpartial_out_we0       | out |    1|  ap_memory |     ABpartial_out    |     array    |
+|ABpartial_out_d0        | out |   32|  ap_memory |     ABpartial_out    |     array    |
+|ABpartial_out_address1  | out |    4|  ap_memory |     ABpartial_out    |     array    |
+|ABpartial_out_ce1       | out |    1|  ap_memory |     ABpartial_out    |     array    |
+|ABpartial_out_we1       | out |    1|  ap_memory |     ABpartial_out    |     array    |
+|ABpartial_out_d1        | out |   32|  ap_memory |     ABpartial_out    |     array    |
++------------------------+-----+-----+------------+----------------------+--------------+
+

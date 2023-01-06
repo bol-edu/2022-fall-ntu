@@ -1,0 +1,215 @@
+
+
+================================================================
+== Vivado HLS Report for 'matrixmul'
+================================================================
+* Date:           Thu Oct 13 23:44:48 2022
+
+* Version:        2020.1 (Build 2897737 on Wed May 27 20:21:37 MDT 2020)
+* Project:        matrixmul_prj
+* Solution:       solution4_cyclic
+* Product family: virtexuplus
+* Target device:  xcvu9p-flgb2104-1-e
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing: 
+    * Summary: 
+    +--------+----------+----------+------------+
+    |  Clock |  Target  | Estimated| Uncertainty|
+    +--------+----------+----------+------------+
+    |ap_clk  | 13.33 ns | 7.566 ns |   1.67 ns  |
+    +--------+----------+----------+------------+
+
++ Latency: 
+    * Summary: 
+    +---------+---------+----------+----------+-----+-----+---------+
+    |  Latency (cycles) |  Latency (absolute) |  Interval | Pipeline|
+    |   min   |   max   |    min   |    max   | min | max |   Type  |
+    +---------+---------+----------+----------+-----+-----+---------+
+    |       11|       11| 0.147 us | 0.147 us |   11|   11|   none  |
+    +---------+---------+----------+----------+-----+-----+---------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        +-----------+---------+---------+----------+-----------+-----------+------+----------+
+        |           |  Latency (cycles) | Iteration|  Initiation Interval  | Trip |          |
+        | Loop Name |   min   |   max   |  Latency |  achieved |   target  | Count| Pipelined|
+        +-----------+---------+---------+----------+-----------+-----------+------+----------+
+        |- Row_Col  |        9|        9|         2|          1|          1|     9|    yes   |
+        +-----------+---------+---------+----------+-----------+-----------+------+----------+
+
+============================================================
++ Verbose Summary: Synthesis Manager
+============================================================
+InlineROM: 1
+ExposeGlobal: 0
+============================================================
++ Verbose Summary: CDFG Model
+============================================================
+IsTopModel: 1
+ResetActiveHigh: 1
+IsCombinational: 0
+IsDatapathOnly: 0
+HasWiredReturn: 1
+HasMFsm: 0
+HasVarLatency: 1
+IsPipeline: 0
+IsRtlPipelined: 0
+IsInstanceOverlapped: 0
+IsDontTouch: 0
+HasImplIP: 0
+IsGatedGlobalClock: 0
+
++ Individual pipeline summary: 
+  * Pipeline-0: initiation interval (II) = 1, depth = 2
+
+
+============================================================
++ Verbose Summary: Schedule
+============================================================
+* Number of FSM states : 4
+* Pipeline : 1
+  Pipeline-0 : II = 1, D = 2, States = { 2 3 }
+* Dataflow Pipeline: 0
+
+* FSM state transitions: 
+1 --> 2 
+2 --> 4 3 
+3 --> 2 
+4 --> 
+
+* FSM state operations: 
+
+State 1 <SV = 0> <Delay = 0.73>
+ST_1 : Operation 5 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecBitsMap([6 x i16]* %b), !map !7"   --->   Operation 5 'specbitsmap' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 6 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecBitsMap([6 x i16]* %a), !map !22"   --->   Operation 6 'specbitsmap' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 7 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecBitsMap([9 x i16]* %res), !map !33"   --->   Operation 7 'specbitsmap' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 8 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecTopModule([10 x i8]* @matrixmul_str) nounwind"   --->   Operation 8 'spectopmodule' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 9 [1/1] (0.73ns)   --->   "br label %1" [matrixmul.cpp:54]   --->   Operation 9 'br' <Predicate = true> <Delay = 0.73>
+
+State 2 <SV = 1> <Delay = 2.18>
+ST_2 : Operation 10 [1/1] (0.00ns)   --->   "%indvar_flatten = phi i4 [ 0, %0 ], [ %add_ln54, %Col ]" [matrixmul.cpp:54]   --->   Operation 10 'phi' 'indvar_flatten' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 11 [1/1] (0.00ns)   --->   "%i_0 = phi i2 [ 0, %0 ], [ %select_ln57_1, %Col ]" [matrixmul.cpp:57]   --->   Operation 11 'phi' 'i_0' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 12 [1/1] (0.00ns)   --->   "%j_0 = phi i2 [ 0, %0 ], [ %j, %Col ]"   --->   Operation 12 'phi' 'j_0' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 13 [1/1] (0.72ns)   --->   "%icmp_ln54 = icmp eq i4 %indvar_flatten, -7" [matrixmul.cpp:54]   --->   Operation 13 'icmp' 'icmp_ln54' <Predicate = true> <Delay = 0.72> <Core = "Cmp">   --->   Core 25 'Cmp' <Latency = 0> <II = 1> <Delay = 0.39> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 14 [1/1] (0.80ns)   --->   "%add_ln54 = add i4 %indvar_flatten, 1" [matrixmul.cpp:54]   --->   Operation 14 'add' 'add_ln54' <Predicate = true> <Delay = 0.80> <Core = "AddSub">   --->   Core 14 'AddSub' <Latency = 0> <II = 1> <Delay = 0.62> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 15 [1/1] (0.00ns)   --->   "br i1 %icmp_ln54, label %2, label %Col" [matrixmul.cpp:54]   --->   Operation 15 'br' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 16 [1/1] (0.62ns)   --->   "%i = add i2 1, %i_0" [matrixmul.cpp:54]   --->   Operation 16 'add' 'i' <Predicate = (!icmp_ln54)> <Delay = 0.62> <Core = "AddSub">   --->   Core 14 'AddSub' <Latency = 0> <II = 1> <Delay = 0.62> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 17 [1/1] (0.39ns)   --->   "%icmp_ln56 = icmp eq i2 %j_0, -1" [matrixmul.cpp:56]   --->   Operation 17 'icmp' 'icmp_ln56' <Predicate = (!icmp_ln54)> <Delay = 0.39> <Core = "Cmp">   --->   Core 25 'Cmp' <Latency = 0> <II = 1> <Delay = 0.39> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 18 [1/1] (0.34ns)   --->   "%select_ln57 = select i1 %icmp_ln56, i2 0, i2 %j_0" [matrixmul.cpp:57]   --->   Operation 18 'select' 'select_ln57' <Predicate = (!icmp_ln54)> <Delay = 0.34> <Core = "Sel">   --->   Core 26 'Sel' <Latency = 0> <II = 1> <Delay = 0.34> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+ST_2 : Operation 19 [1/1] (0.34ns)   --->   "%select_ln57_1 = select i1 %icmp_ln56, i2 %i, i2 %i_0" [matrixmul.cpp:57]   --->   Operation 19 'select' 'select_ln57_1' <Predicate = (!icmp_ln54)> <Delay = 0.34> <Core = "Sel">   --->   Core 26 'Sel' <Latency = 0> <II = 1> <Delay = 0.34> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+ST_2 : Operation 20 [1/1] (0.00ns)   --->   "%tmp = call i3 @_ssdm_op_BitConcatenate.i3.i2.i1(i2 %select_ln57_1, i1 false)" [matrixmul.cpp:60]   --->   Operation 20 'bitconcatenate' 'tmp' <Predicate = (!icmp_ln54)> <Delay = 0.00>
+ST_2 : Operation 21 [1/1] (0.00ns)   --->   "%zext_ln60 = zext i3 %tmp to i64" [matrixmul.cpp:60]   --->   Operation 21 'zext' 'zext_ln60' <Predicate = (!icmp_ln54)> <Delay = 0.00>
+ST_2 : Operation 22 [1/1] (0.00ns)   --->   "%a_addr = getelementptr [6 x i16]* %a, i64 0, i64 %zext_ln60" [matrixmul.cpp:60]   --->   Operation 22 'getelementptr' 'a_addr' <Predicate = (!icmp_ln54)> <Delay = 0.00>
+ST_2 : Operation 23 [1/1] (0.00ns)   --->   "%or_ln60 = or i3 %tmp, 1" [matrixmul.cpp:60]   --->   Operation 23 'or' 'or_ln60' <Predicate = (!icmp_ln54)> <Delay = 0.00>
+ST_2 : Operation 24 [1/1] (0.00ns)   --->   "%tmp_8 = call i64 @_ssdm_op_BitConcatenate.i64.i61.i3(i61 0, i3 %or_ln60)" [matrixmul.cpp:60]   --->   Operation 24 'bitconcatenate' 'tmp_8' <Predicate = (!icmp_ln54)> <Delay = 0.00>
+ST_2 : Operation 25 [1/1] (0.00ns)   --->   "%a_addr_1 = getelementptr [6 x i16]* %a, i64 0, i64 %tmp_8" [matrixmul.cpp:60]   --->   Operation 25 'getelementptr' 'a_addr_1' <Predicate = (!icmp_ln54)> <Delay = 0.00>
+ST_2 : Operation 26 [1/1] (0.00ns)   --->   "%zext_ln57_1 = zext i2 %select_ln57 to i64" [matrixmul.cpp:57]   --->   Operation 26 'zext' 'zext_ln57_1' <Predicate = (!icmp_ln54)> <Delay = 0.00>
+ST_2 : Operation 27 [1/1] (0.00ns)   --->   "%zext_ln60_3 = zext i2 %select_ln57 to i3" [matrixmul.cpp:60]   --->   Operation 27 'zext' 'zext_ln60_3' <Predicate = (!icmp_ln54)> <Delay = 0.00>
+ST_2 : Operation 28 [1/1] (0.00ns)   --->   "%b_addr = getelementptr [6 x i16]* %b, i64 0, i64 %zext_ln57_1" [matrixmul.cpp:60]   --->   Operation 28 'getelementptr' 'b_addr' <Predicate = (!icmp_ln54)> <Delay = 0.00>
+ST_2 : Operation 29 [1/1] (0.71ns)   --->   "%add_ln60_2 = add i3 3, %zext_ln60_3" [matrixmul.cpp:60]   --->   Operation 29 'add' 'add_ln60_2' <Predicate = (!icmp_ln54)> <Delay = 0.71> <Core = "AddSub">   --->   Core 14 'AddSub' <Latency = 0> <II = 1> <Delay = 0.62> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 30 [1/1] (0.00ns)   --->   "%zext_ln60_4 = zext i3 %add_ln60_2 to i64" [matrixmul.cpp:60]   --->   Operation 30 'zext' 'zext_ln60_4' <Predicate = (!icmp_ln54)> <Delay = 0.00>
+ST_2 : Operation 31 [1/1] (0.00ns)   --->   "%b_addr_1 = getelementptr [6 x i16]* %b, i64 0, i64 %zext_ln60_4" [matrixmul.cpp:60]   --->   Operation 31 'getelementptr' 'b_addr_1' <Predicate = (!icmp_ln54)> <Delay = 0.00>
+ST_2 : Operation 32 [2/2] (0.73ns)   --->   "%a_load = load i16* %a_addr, align 2" [matrixmul.cpp:60]   --->   Operation 32 'load' 'a_load' <Predicate = (!icmp_ln54)> <Delay = 0.73> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.73> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 16> <Depth = 9> <RAM>
+ST_2 : Operation 33 [2/2] (0.73ns)   --->   "%b_load = load i16* %b_addr, align 2" [matrixmul.cpp:60]   --->   Operation 33 'load' 'b_load' <Predicate = (!icmp_ln54)> <Delay = 0.73> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.73> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 16> <Depth = 9> <RAM>
+ST_2 : Operation 34 [2/2] (0.73ns)   --->   "%a_load_1 = load i16* %a_addr_1, align 2" [matrixmul.cpp:60]   --->   Operation 34 'load' 'a_load_1' <Predicate = (!icmp_ln54)> <Delay = 0.73> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.73> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 16> <Depth = 9> <RAM>
+ST_2 : Operation 35 [2/2] (0.73ns)   --->   "%b_load_1 = load i16* %b_addr_1, align 2" [matrixmul.cpp:60]   --->   Operation 35 'load' 'b_load_1' <Predicate = (!icmp_ln54)> <Delay = 0.73> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.73> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 16> <Depth = 9> <RAM>
+ST_2 : Operation 36 [1/1] (0.62ns)   --->   "%j = add i2 1, %select_ln57" [matrixmul.cpp:56]   --->   Operation 36 'add' 'j' <Predicate = (!icmp_ln54)> <Delay = 0.62> <Core = "AddSub">   --->   Core 14 'AddSub' <Latency = 0> <II = 1> <Delay = 0.62> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+
+State 3 <SV = 2> <Delay = 7.56>
+ST_3 : Operation 37 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecLoopName([8 x i8]* @Row_Col_str)"   --->   Operation 37 'specloopname' <Predicate = (!icmp_ln54)> <Delay = 0.00>
+ST_3 : Operation 38 [1/1] (0.00ns)   --->   "%empty = call i32 (...)* @_ssdm_op_SpecLoopTripCount(i64 9, i64 9, i64 9)"   --->   Operation 38 'speclooptripcount' 'empty' <Predicate = (!icmp_ln54)> <Delay = 0.00>
+ST_3 : Operation 39 [1/1] (0.00ns)   --->   "%zext_ln60_1 = zext i2 %select_ln57_1 to i5" [matrixmul.cpp:60]   --->   Operation 39 'zext' 'zext_ln60_1' <Predicate = (!icmp_ln54)> <Delay = 0.00>
+ST_3 : Operation 40 [1/1] (0.00ns)   --->   "%tmp_9 = call i4 @_ssdm_op_BitConcatenate.i4.i2.i2(i2 %select_ln57_1, i2 0)" [matrixmul.cpp:57]   --->   Operation 40 'bitconcatenate' 'tmp_9' <Predicate = (!icmp_ln54)> <Delay = 0.00>
+ST_3 : Operation 41 [1/1] (0.00ns)   --->   "%zext_ln57 = zext i4 %tmp_9 to i5" [matrixmul.cpp:57]   --->   Operation 41 'zext' 'zext_ln57' <Predicate = (!icmp_ln54)> <Delay = 0.00>
+ST_3 : Operation 42 [1/1] (0.00ns) (grouped into TernaryAdder)   --->   "%sub_ln57 = sub i5 %zext_ln57, %zext_ln60_1" [matrixmul.cpp:57]   --->   Operation 42 'sub' 'sub_ln57' <Predicate = (!icmp_ln54)> <Delay = 0.00> <Core = "TAddSub">   --->   Core 83 'TAddSub' <Latency = 0> <II = 1> <Delay = 0.30> <IPBlock> <Opcode : 'add' 'sub'> <InPorts = 3> <OutPorts = 1> <Sync> <CReg>
+ST_3 : Operation 43 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecLoopName([4 x i8]* @p_str3) nounwind" [matrixmul.cpp:56]   --->   Operation 43 'specloopname' <Predicate = (!icmp_ln54)> <Delay = 0.00>
+ST_3 : Operation 44 [1/1] (0.00ns)   --->   "%tmp_1 = call i32 (...)* @_ssdm_op_SpecRegionBegin([4 x i8]* @p_str3) nounwind" [matrixmul.cpp:56]   --->   Operation 44 'specregionbegin' 'tmp_1' <Predicate = (!icmp_ln54)> <Delay = 0.00>
+ST_3 : Operation 45 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecPipeline(i32 -1, i32 1, i32 1, i32 0, [1 x i8]* @p_str1) nounwind" [matrixmul.cpp:57]   --->   Operation 45 'specpipeline' <Predicate = (!icmp_ln54)> <Delay = 0.00>
+ST_3 : Operation 46 [1/1] (0.00ns)   --->   "%zext_ln60_2 = zext i2 %select_ln57 to i5" [matrixmul.cpp:60]   --->   Operation 46 'zext' 'zext_ln60_2' <Predicate = (!icmp_ln54)> <Delay = 0.00>
+ST_3 : Operation 47 [1/1] (0.60ns) (root node of TernaryAdder)   --->   "%add_ln57 = add i5 %sub_ln57, %zext_ln60_2" [matrixmul.cpp:57]   --->   Operation 47 'add' 'add_ln57' <Predicate = (!icmp_ln54)> <Delay = 0.60> <Core = "TAddSub">   --->   Core 83 'TAddSub' <Latency = 0> <II = 1> <Delay = 0.30> <IPBlock> <Opcode : 'add' 'sub'> <InPorts = 3> <OutPorts = 1> <Sync> <CReg>
+ST_3 : Operation 48 [1/1] (0.00ns)   --->   "%sext_ln57 = sext i5 %add_ln57 to i64" [matrixmul.cpp:57]   --->   Operation 48 'sext' 'sext_ln57' <Predicate = (!icmp_ln54)> <Delay = 0.00>
+ST_3 : Operation 49 [1/1] (0.00ns)   --->   "%res_addr = getelementptr [9 x i16]* %res, i64 0, i64 %sext_ln57" [matrixmul.cpp:57]   --->   Operation 49 'getelementptr' 'res_addr' <Predicate = (!icmp_ln54)> <Delay = 0.00>
+ST_3 : Operation 50 [1/2] (0.73ns)   --->   "%a_load = load i16* %a_addr, align 2" [matrixmul.cpp:60]   --->   Operation 50 'load' 'a_load' <Predicate = (!icmp_ln54)> <Delay = 0.73> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.73> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 16> <Depth = 9> <RAM>
+ST_3 : Operation 51 [1/1] (0.00ns)   --->   "%trunc_ln60 = trunc i16 %a_load to i8" [matrixmul.cpp:60]   --->   Operation 51 'trunc' 'trunc_ln60' <Predicate = (!icmp_ln54)> <Delay = 0.00>
+ST_3 : Operation 52 [1/1] (0.00ns)   --->   "%sext_ln60 = sext i8 %trunc_ln60 to i16" [matrixmul.cpp:60]   --->   Operation 52 'sext' 'sext_ln60' <Predicate = (!icmp_ln54)> <Delay = 0.00>
+ST_3 : Operation 53 [1/2] (0.73ns)   --->   "%b_load = load i16* %b_addr, align 2" [matrixmul.cpp:60]   --->   Operation 53 'load' 'b_load' <Predicate = (!icmp_ln54)> <Delay = 0.73> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.73> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 16> <Depth = 9> <RAM>
+ST_3 : Operation 54 [1/1] (0.00ns)   --->   "%trunc_ln60_1 = trunc i16 %b_load to i8" [matrixmul.cpp:60]   --->   Operation 54 'trunc' 'trunc_ln60_1' <Predicate = (!icmp_ln54)> <Delay = 0.00>
+ST_3 : Operation 55 [1/1] (0.00ns)   --->   "%sext_ln60_1 = sext i8 %trunc_ln60_1 to i16" [matrixmul.cpp:60]   --->   Operation 55 'sext' 'sext_ln60_1' <Predicate = (!icmp_ln54)> <Delay = 0.00>
+ST_3 : Operation 56 [1/1] (0.63ns) (grouped into DSP with root node add_ln60)   --->   "%mul_ln60 = mul i16 %sext_ln60_1, %sext_ln60" [matrixmul.cpp:60]   --->   Operation 56 'mul' 'mul_ln60' <Predicate = (!icmp_ln54)> <Delay = 0.63> <Core = "DSP48">   --->   Core 88 'DSP48' <Latency = 0> <II = 1> <Delay = 2.84> <IPBlock> <Opcode : 'mul' 'add' 'sub' 'select'> <InPorts = 2> <OutPorts = 1> <Sync> <CReg>
+ST_3 : Operation 57 [1/1] (0.00ns)   --->   "%tmp_4 = call i8 @_ssdm_op_PartSelect.i8.i16.i32.i32(i16 %a_load, i32 8, i32 15)" [matrixmul.cpp:60]   --->   Operation 57 'partselect' 'tmp_4' <Predicate = (!icmp_ln54)> <Delay = 0.00>
+ST_3 : Operation 58 [1/1] (0.00ns)   --->   "%sext_ln60_2 = sext i8 %tmp_4 to i16" [matrixmul.cpp:60]   --->   Operation 58 'sext' 'sext_ln60_2' <Predicate = (!icmp_ln54)> <Delay = 0.00>
+ST_3 : Operation 59 [1/1] (0.00ns)   --->   "%tmp_5 = call i8 @_ssdm_op_PartSelect.i8.i16.i32.i32(i16 %b_load, i32 8, i32 15)" [matrixmul.cpp:60]   --->   Operation 59 'partselect' 'tmp_5' <Predicate = (!icmp_ln54)> <Delay = 0.00>
+ST_3 : Operation 60 [1/1] (0.00ns)   --->   "%sext_ln60_3 = sext i8 %tmp_5 to i16" [matrixmul.cpp:60]   --->   Operation 60 'sext' 'sext_ln60_3' <Predicate = (!icmp_ln54)> <Delay = 0.00>
+ST_3 : Operation 61 [1/1] (0.63ns) (grouped into DSP with root node add_ln60_1)   --->   "%mul_ln60_1 = mul i16 %sext_ln60_3, %sext_ln60_2" [matrixmul.cpp:60]   --->   Operation 61 'mul' 'mul_ln60_1' <Predicate = (!icmp_ln54)> <Delay = 0.63> <Core = "DSP48">   --->   Core 88 'DSP48' <Latency = 0> <II = 1> <Delay = 2.84> <IPBlock> <Opcode : 'mul' 'add' 'sub' 'select'> <InPorts = 2> <OutPorts = 1> <Sync> <CReg>
+ST_3 : Operation 62 [1/2] (0.73ns)   --->   "%a_load_1 = load i16* %a_addr_1, align 2" [matrixmul.cpp:60]   --->   Operation 62 'load' 'a_load_1' <Predicate = (!icmp_ln54)> <Delay = 0.73> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.73> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 16> <Depth = 9> <RAM>
+ST_3 : Operation 63 [1/1] (0.00ns)   --->   "%trunc_ln60_2 = trunc i16 %a_load_1 to i8" [matrixmul.cpp:60]   --->   Operation 63 'trunc' 'trunc_ln60_2' <Predicate = (!icmp_ln54)> <Delay = 0.00>
+ST_3 : Operation 64 [1/1] (0.00ns)   --->   "%sext_ln60_4 = sext i8 %trunc_ln60_2 to i16" [matrixmul.cpp:60]   --->   Operation 64 'sext' 'sext_ln60_4' <Predicate = (!icmp_ln54)> <Delay = 0.00>
+ST_3 : Operation 65 [1/2] (0.73ns)   --->   "%b_load_1 = load i16* %b_addr_1, align 2" [matrixmul.cpp:60]   --->   Operation 65 'load' 'b_load_1' <Predicate = (!icmp_ln54)> <Delay = 0.73> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.73> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 16> <Depth = 9> <RAM>
+ST_3 : Operation 66 [1/1] (0.00ns)   --->   "%trunc_ln60_3 = trunc i16 %b_load_1 to i8" [matrixmul.cpp:60]   --->   Operation 66 'trunc' 'trunc_ln60_3' <Predicate = (!icmp_ln54)> <Delay = 0.00>
+ST_3 : Operation 67 [1/1] (0.00ns)   --->   "%sext_ln60_5 = sext i8 %trunc_ln60_3 to i16" [matrixmul.cpp:60]   --->   Operation 67 'sext' 'sext_ln60_5' <Predicate = (!icmp_ln54)> <Delay = 0.00>
+ST_3 : Operation 68 [1/1] (1.69ns)   --->   "%mul_ln60_2 = mul i16 %sext_ln60_5, %sext_ln60_4" [matrixmul.cpp:60]   --->   Operation 68 'mul' 'mul_ln60_2' <Predicate = (!icmp_ln54)> <Delay = 1.69> <Core = "Mul">   --->   Core 16 'Mul' <Latency = 0> <II = 1> <Delay = 1.69> <FuncUnit> <Opcode : 'mul'> <InPorts = 2> <OutPorts = 1>
+ST_3 : Operation 69 [1/1] (2.20ns) (root node of the DSP)   --->   "%add_ln60 = add i16 %mul_ln60_2, %mul_ln60" [matrixmul.cpp:60]   --->   Operation 69 'add' 'add_ln60' <Predicate = (!icmp_ln54)> <Delay = 2.20> <Core = "DSP48">   --->   Core 88 'DSP48' <Latency = 0> <II = 1> <Delay = 2.84> <IPBlock> <Opcode : 'mul' 'add' 'sub' 'select'> <InPorts = 2> <OutPorts = 1> <Sync> <CReg>
+ST_3 : Operation 70 [1/1] (2.20ns) (root node of the DSP)   --->   "%add_ln60_1 = add i16 %mul_ln60_1, %add_ln60" [matrixmul.cpp:60]   --->   Operation 70 'add' 'add_ln60_1' <Predicate = (!icmp_ln54)> <Delay = 2.20> <Core = "DSP48">   --->   Core 88 'DSP48' <Latency = 0> <II = 1> <Delay = 2.84> <IPBlock> <Opcode : 'mul' 'add' 'sub' 'select'> <InPorts = 2> <OutPorts = 1> <Sync> <CReg>
+ST_3 : Operation 71 [1/1] (0.73ns)   --->   "store i16 %add_ln60_1, i16* %res_addr, align 2" [matrixmul.cpp:60]   --->   Operation 71 'store' <Predicate = (!icmp_ln54)> <Delay = 0.73> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 0.73> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 16> <Depth = 9> <RAM>
+ST_3 : Operation 72 [1/1] (0.00ns)   --->   "%empty_4 = call i32 (...)* @_ssdm_op_SpecRegionEnd([4 x i8]* @p_str3, i32 %tmp_1) nounwind" [matrixmul.cpp:62]   --->   Operation 72 'specregionend' 'empty_4' <Predicate = (!icmp_ln54)> <Delay = 0.00>
+ST_3 : Operation 73 [1/1] (0.00ns)   --->   "br label %1"   --->   Operation 73 'br' <Predicate = (!icmp_ln54)> <Delay = 0.00>
+
+State 4 <SV = 2> <Delay = 0.00>
+ST_4 : Operation 74 [1/1] (0.00ns)   --->   "ret void" [matrixmul.cpp:65]   --->   Operation 74 'ret' <Predicate = true> <Delay = 0.00>
+
+
+============================================================
++ Verbose Summary: Timing violations
+============================================================
+Target clock period: 13.3ns, clock uncertainty: 1.67ns.
+
+ <State 1>: 0.736ns
+The critical path consists of the following:
+	multiplexor before 'phi' operation ('indvar_flatten', matrixmul.cpp:54) with incoming values : ('add_ln54', matrixmul.cpp:54) [10]  (0.736 ns)
+
+ <State 2>: 2.19ns
+The critical path consists of the following:
+	'phi' operation ('j') with incoming values : ('j', matrixmul.cpp:56) [12]  (0 ns)
+	'icmp' operation ('icmp_ln56', matrixmul.cpp:56) [20]  (0.399 ns)
+	'select' operation ('select_ln57', matrixmul.cpp:57) [21]  (0.345 ns)
+	'add' operation ('add_ln60_2', matrixmul.cpp:60) [40]  (0.715 ns)
+	'getelementptr' operation ('b_addr_1', matrixmul.cpp:60) [42]  (0 ns)
+	'load' operation ('b_load_1', matrixmul.cpp:60) on array 'b' [61]  (0.73 ns)
+
+ <State 3>: 7.57ns
+The critical path consists of the following:
+	'load' operation ('a_load_1', matrixmul.cpp:60) on array 'a' [58]  (0.73 ns)
+	'mul' operation ('mul_ln60_2', matrixmul.cpp:60) [64]  (1.69 ns)
+	'add' operation of DSP[65] ('add_ln60', matrixmul.cpp:60) [65]  (2.21 ns)
+	'add' operation of DSP[66] ('add_ln60_1', matrixmul.cpp:60) [66]  (2.21 ns)
+	'store' operation ('store_ln60', matrixmul.cpp:60) of variable 'add_ln60_1', matrixmul.cpp:60 on array 'res' [67]  (0.73 ns)
+
+ <State 4>: 0ns
+The critical path consists of the following:
+
+
+============================================================
++ Verbose Summary: Binding
+============================================================
+N/A
+* FSMD analyzer results:
+  - Output states:
+ - Input state : 
+  - Chain level:
+	State 1
+	State 2
+	State 3
+	State 4
+
+
+============================================================
++ Verbose Summary: Datapath Resource usage 
+============================================================
+N/A

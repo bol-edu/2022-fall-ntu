@@ -1,0 +1,179 @@
+
+
+================================================================
+== Vivado HLS Report for 'Block_blockmatmul_me'
+================================================================
+* Date:           Wed Oct 19 18:16:23 2022
+
+* Version:        2020.1 (Build 2897737 on Wed May 27 20:21:37 MDT 2020)
+* Project:        BlockMatrix_multiplication
+* Solution:       solution4
+* Product family: zynq
+* Target device:  xc7z020-clg400-1
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing: 
+    * Summary: 
+    +--------+----------+----------+------------+
+    |  Clock |  Target  | Estimated| Uncertainty|
+    +--------+----------+----------+------------+
+    |ap_clk  | 10.00 ns | 7.268 ns |   1.25 ns  |
+    +--------+----------+----------+------------+
+
++ Latency: 
+    * Summary: 
+    +---------+---------+-----------+----------+-----+-----+---------+
+    |  Latency (cycles) |  Latency (absolute)  |  Interval | Pipeline|
+    |   min   |   max   |    min    |    max   | min | max |   Type  |
+    +---------+---------+-----------+----------+-----+-----+---------+
+    |        1|       10| 10.000 ns | 0.100 us |    1|   10|   none  |
+    +---------+---------+-----------+----------+-----+-----+---------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        +----------+---------+---------+----------+-----------+-----------+------+----------+
+        |          |  Latency (cycles) | Iteration|  Initiation Interval  | Trip |          |
+        | Loop Name|   min   |   max   |  Latency |  achieved |   target  | Count| Pipelined|
+        +----------+---------+---------+----------+-----------+-----------+------+----------+
+        |- loadA   |        8|        8|         2|          1|          1|     8|    yes   |
+        +----------+---------+---------+----------+-----------+-----------+------+----------+
+
+
+
+================================================================
+== Utilization Estimates
+================================================================
+* Summary: 
++-----------------+---------+-------+--------+-------+-----+
+|       Name      | BRAM_18K| DSP48E|   FF   |  LUT  | URAM|
++-----------------+---------+-------+--------+-------+-----+
+|DSP              |        -|      -|       -|      -|    -|
+|Expression       |        -|      -|       0|     36|    -|
+|FIFO             |        -|      -|       -|      -|    -|
+|Instance         |        -|      -|       -|      -|    -|
+|Memory           |        -|      -|       -|      -|    -|
+|Multiplexer      |        -|      -|       -|    135|    -|
+|Register         |        -|      -|      11|      -|    -|
++-----------------+---------+-------+--------+-------+-----+
+|Total            |        0|      0|      11|    171|    0|
++-----------------+---------+-------+--------+-------+-----+
+|Available        |      280|    220|  106400|  53200|    0|
++-----------------+---------+-------+--------+-------+-----+
+|Utilization (%)  |        0|      0|   ~0   |   ~0  |    0|
++-----------------+---------+-------+--------+-------+-----+
+
++ Detail: 
+    * Instance: 
+    N/A
+
+    * DSP48E: 
+    N/A
+
+    * Memory: 
+    N/A
+
+    * FIFO: 
+    N/A
+
+    * Expression: 
+    +----------------------------------+----------+-------+---+----+------------+------------+
+    |           Variable Name          | Operation| DSP48E| FF| LUT| Bitwidth P0| Bitwidth P1|
+    +----------------------------------+----------+-------+---+----+------------+------------+
+    |i_fu_131_p2                       |     +    |      0|  0|  13|           4|           1|
+    |ap_block_pp0_stage0_01001         |    and   |      0|  0|   2|           1|           1|
+    |io_acc_block_signal_op26          |    and   |      0|  0|   2|           1|           1|
+    |icmp_ln13_fu_125_p2               |   icmp   |      0|  0|  11|           4|           5|
+    |ap_block_state1                   |    or    |      0|  0|   2|           1|           1|
+    |ap_block_state3_pp0_stage0_iter1  |    or    |      0|  0|   2|           1|           1|
+    |ap_enable_pp0                     |    xor   |      0|  0|   2|           1|           2|
+    |ap_enable_reg_pp0_iter1           |    xor   |      0|  0|   2|           2|           1|
+    +----------------------------------+----------+-------+---+----+------------+------------+
+    |Total                             |          |      0|  0|  36|          15|          13|
+    +----------------------------------+----------+-------+---+----+------------+------------+
+
+    * Multiplexer: 
+    +-------------------------+----+-----------+-----+-----------+
+    |           Name          | LUT| Input Size| Bits| Total Bits|
+    +-------------------------+----+-----------+-----+-----------+
+    |A_0_blk_n                |   9|          2|    1|          2|
+    |A_1_blk_n                |   9|          2|    1|          2|
+    |A_2_blk_n                |   9|          2|    1|          2|
+    |A_3_blk_n                |   9|          2|    1|          2|
+    |Arows_V_a_0_blk_n        |   9|          2|    1|          2|
+    |Arows_V_a_1_blk_n        |   9|          2|    1|          2|
+    |Arows_V_a_2_blk_n        |   9|          2|    1|          2|
+    |Arows_V_a_3_blk_n        |   9|          2|    1|          2|
+    |ap_NS_fsm                |  21|          4|    1|          4|
+    |ap_done                  |   9|          2|    1|          2|
+    |ap_enable_reg_pp0_iter1  |  15|          3|    1|          3|
+    |i_0_i_i_reg_110          |   9|          2|    4|          8|
+    |it_blk_n                 |   9|          2|    1|          2|
+    +-------------------------+----+-----------+-----+-----------+
+    |Total                    | 135|         29|   16|         35|
+    +-------------------------+----+-----------+-----+-----------+
+
+    * Register: 
+    +-------------------------+---+----+-----+-----------+
+    |           Name          | FF| LUT| Bits| Const Bits|
+    +-------------------------+---+----+-----+-----------+
+    |ap_CS_fsm                |  3|   0|    3|          0|
+    |ap_done_reg              |  1|   0|    1|          0|
+    |ap_enable_reg_pp0_iter0  |  1|   0|    1|          0|
+    |ap_enable_reg_pp0_iter1  |  1|   0|    1|          0|
+    |i_0_i_i_reg_110          |  4|   0|    4|          0|
+    |icmp_ln13_reg_161        |  1|   0|    1|          0|
+    +-------------------------+---+----+-----+-----------+
+    |Total                    | 11|   0|   11|          0|
+    +-------------------------+---+----+-----+-----------+
+
+
+
+================================================================
+== Interface
+================================================================
+* Summary: 
++---------------------+-----+-----+------------+----------------------+--------------+
+|      RTL Ports      | Dir | Bits|  Protocol  |     Source Object    |    C Type    |
++---------------------+-----+-----+------------+----------------------+--------------+
+|ap_clk               |  in |    1| ap_ctrl_hs | Block_blockmatmul_me | return value |
+|ap_rst               |  in |    1| ap_ctrl_hs | Block_blockmatmul_me | return value |
+|ap_start             |  in |    1| ap_ctrl_hs | Block_blockmatmul_me | return value |
+|ap_done              | out |    1| ap_ctrl_hs | Block_blockmatmul_me | return value |
+|ap_continue          |  in |    1| ap_ctrl_hs | Block_blockmatmul_me | return value |
+|ap_idle              | out |    1| ap_ctrl_hs | Block_blockmatmul_me | return value |
+|ap_ready             | out |    1| ap_ctrl_hs | Block_blockmatmul_me | return value |
+|it_dout              |  in |   32|   ap_fifo  |          it          |    pointer   |
+|it_empty_n           |  in |    1|   ap_fifo  |          it          |    pointer   |
+|it_read              | out |    1|   ap_fifo  |          it          |    pointer   |
+|Arows_V_a_0_dout     |  in |   32|   ap_fifo  |      Arows_V_a_0     |    pointer   |
+|Arows_V_a_0_empty_n  |  in |    1|   ap_fifo  |      Arows_V_a_0     |    pointer   |
+|Arows_V_a_0_read     | out |    1|   ap_fifo  |      Arows_V_a_0     |    pointer   |
+|Arows_V_a_1_dout     |  in |   32|   ap_fifo  |      Arows_V_a_1     |    pointer   |
+|Arows_V_a_1_empty_n  |  in |    1|   ap_fifo  |      Arows_V_a_1     |    pointer   |
+|Arows_V_a_1_read     | out |    1|   ap_fifo  |      Arows_V_a_1     |    pointer   |
+|Arows_V_a_2_dout     |  in |   32|   ap_fifo  |      Arows_V_a_2     |    pointer   |
+|Arows_V_a_2_empty_n  |  in |    1|   ap_fifo  |      Arows_V_a_2     |    pointer   |
+|Arows_V_a_2_read     | out |    1|   ap_fifo  |      Arows_V_a_2     |    pointer   |
+|Arows_V_a_3_dout     |  in |   32|   ap_fifo  |      Arows_V_a_3     |    pointer   |
+|Arows_V_a_3_empty_n  |  in |    1|   ap_fifo  |      Arows_V_a_3     |    pointer   |
+|Arows_V_a_3_read     | out |    1|   ap_fifo  |      Arows_V_a_3     |    pointer   |
+|A_0_din              | out |   32|   ap_fifo  |          A_0         |    pointer   |
+|A_0_full_n           |  in |    1|   ap_fifo  |          A_0         |    pointer   |
+|A_0_write            | out |    1|   ap_fifo  |          A_0         |    pointer   |
+|A_1_din              | out |   32|   ap_fifo  |          A_1         |    pointer   |
+|A_1_full_n           |  in |    1|   ap_fifo  |          A_1         |    pointer   |
+|A_1_write            | out |    1|   ap_fifo  |          A_1         |    pointer   |
+|A_2_din              | out |   32|   ap_fifo  |          A_2         |    pointer   |
+|A_2_full_n           |  in |    1|   ap_fifo  |          A_2         |    pointer   |
+|A_2_write            | out |    1|   ap_fifo  |          A_2         |    pointer   |
+|A_3_din              | out |   32|   ap_fifo  |          A_3         |    pointer   |
+|A_3_full_n           |  in |    1|   ap_fifo  |          A_3         |    pointer   |
+|A_3_write            | out |    1|   ap_fifo  |          A_3         |    pointer   |
++---------------------+-----+-----+------------+----------------------+--------------+
+

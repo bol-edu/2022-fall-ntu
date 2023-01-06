@@ -1,0 +1,125 @@
+
+
+================================================================
+== Synthesis Summary Report of 'matrixmul'
+================================================================
++ General Information: 
+    * Date:           Sat Mar 26 22:03:22 2022
+    * Version:        2021.2 (Build 3367213 on Tue Oct 19 02:48:09 MDT 2021)
+    * Project:        LABA2
+    * Solution:       solution1 (Vivado IP Flow Target)
+    * Product family: virtexuplus
+    * Target device:  xcvu11p-flga2577-1-e
+    
+
++ Performance & Resource Estimates: 
+    
+    PS: '+' for module; 'o' for loop; '*' for dataflow
+    +-------------+------+------+---------+---------+----------+---------+------+----------+------+---------+-----------+-----------+-----+
+    |   Modules   | Issue|      | Latency | Latency | Iteration|         | Trip |          |      |         |           |           |     |
+    |   & Loops   | Type | Slack| (cycles)|   (ns)  |  Latency | Interval| Count| Pipelined| BRAM |   DSP   |     FF    |    LUT    | URAM|
+    +-------------+------+------+---------+---------+----------+---------+------+----------+------+---------+-----------+-----------+-----+
+    |+ matrixmul  |     -|  4.74|       14|  140.000|         -|       15|     -|        no|     -|  2 (~0%)|  243 (~0%)|  539 (~0%)|    -|
+    | o Row_Col   |     -|  7.30|       13|  130.000|         6|        1|     9|       yes|     -|        -|          -|          -|    -|
+    +-------------+------+------+---------+---------+----------+---------+------+----------+------+---------+-----------+-----------+-----+
+
+
+================================================================
+== HW Interfaces
+================================================================
+* AP_FIFO
++-----------+------------+
+| Interface | Data Width |
++-----------+------------+
+| b         | 24         |
+| res       | 16         |
++-----------+------------+
+
+* AP_MEMORY
++------------+----------+
+| Interface  | Bitwidth |
++------------+----------+
+| a_address0 | 2        |
+| a_q0       | 24       |
++------------+----------+
+
+* TOP LEVEL CONTROL
++-----------+------------+-----------------------------------+
+| Interface | Type       | Ports                             |
++-----------+------------+-----------------------------------+
+| ap_clk    | clock      | ap_clk                            |
+| ap_rst    | reset      | ap_rst                            |
+| ap_ctrl   | ap_ctrl_hs | ap_done ap_idle ap_ready ap_start |
++-----------+------------+-----------------------------------+
+
+
+================================================================
+== SW I/O Information
+================================================================
+* Top Function Arguments
++----------+-----------+----------+
+| Argument | Direction | Datatype |
++----------+-----------+----------+
+| a        | in        | char*    |
+| b        | in        | char*    |
+| res      | out       | short*   |
++----------+-----------+----------+
+
+* SW-to-HW Mapping
++----------+--------------+-----------+----------+
+| Argument | HW Interface | HW Type   | HW Usage |
++----------+--------------+-----------+----------+
+| a        | a_address0   | port      | offset   |
+| a        | a_ce0        | port      |          |
+| a        | a_q0         | port      |          |
+| b        | b            | interface |          |
+| res      | res          | interface |          |
++----------+--------------+-----------+----------+
+
+
+================================================================
+== M_AXI Burst Information
+================================================================
+ Note: All burst requests might be further partitioned into multiple requests during RTL generation based on max_read_burst_length or max_write_burst_length settings.
+
+  No burst in design
+
+================================================================
+== Bind Op Report
+================================================================
++-----------------------------------+-----+--------+------------+-----+--------+---------+
+| Name                              | DSP | Pragma | Variable   | Op  | Impl   | Latency |
++-----------------------------------+-----+--------+------------+-----+--------+---------+
+| + matrixmul                       | 2   |        |            |     |        |         |
+|   add_ln63_1_fu_286_p2            | -   |        | add_ln63_1 | add | fabric | 0       |
+|   mul_8s_8s_16_1_1_U4             | -   |        | mul_ln82   | mul | auto   | 0       |
+|   mac_muladd_8s_8s_16ns_16_4_1_U6 | 1   |        | mul_ln82_1 | mul | dsp    | 3       |
+|   mac_muladd_8s_8s_16s_16_4_1_U5  | 1   |        | mul_ln82_2 | mul | dsp    | 3       |
+|   mac_muladd_8s_8s_16s_16_4_1_U5  | 1   |        | add_ln82   | add | dsp    | 3       |
+|   mac_muladd_8s_8s_16ns_16_4_1_U6 | 1   |        | add_ln82_1 | add | dsp    | 3       |
+|   j_fu_514_p2                     | -   |        | j          | add | fabric | 0       |
+|   add_ln63_fu_532_p2              | -   |        | add_ln63   | add | fabric | 0       |
++-----------------------------------+-----+--------+------------+-----+--------+---------+
+
+
+================================================================
+== Bind Storage Report
+================================================================
+  No bind storage info in design
+
+================================================================
+== User Pragma Report
+================================================================
+* Valid Pragma Syntax
++---------------+---------------------------+------------------------------------+
+| Type          | Options                   | Location                           |
++---------------+---------------------------+------------------------------------+
+| array_reshape | variable=b complete dim=1 | matrixmul.cpp:53 in matrixmul, b   |
+| array_reshape | variable=a complete dim=2 | matrixmul.cpp:54 in matrixmul, a   |
+| interface     | ap_fifo port=a            | matrixmul.cpp:55 in matrixmul, a   |
+| interface     | ap_fifo port=b            | matrixmul.cpp:56 in matrixmul, b   |
+| interface     | ap_fifo port=res          | matrixmul.cpp:57 in matrixmul, res |
+| pipeline      | rewind                    | matrixmul.cpp:66 in matrixmul      |
++---------------+---------------------------+------------------------------------+
+
+

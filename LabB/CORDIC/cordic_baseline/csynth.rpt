@@ -1,0 +1,130 @@
+
+
+================================================================
+== Synthesis Summary Report of 'cordiccart2pol'
+================================================================
++ General Information: 
+    * Date:           Fri Oct 21 21:16:18 2022
+    * Version:        2021.2 (Build 3367213 on Tue Oct 19 02:48:09 MDT 2021)
+    * Project:        cordic_baseline
+    * Solution:       solution1 (Vivado IP Flow Target)
+    * Product family: zynq
+    * Target device:  xc7z020-clg400-1
+    
+
++ Performance & Resource Estimates: 
+    
+    PS: '+' for module; 'o' for loop; '*' for dataflow
+    +--------------------------------------------+------+------+---------+-----------+----------+---------+------+----------+---------+---------+-----------+-----------+-----+
+    |                   Modules                  | Issue|      | Latency |  Latency  | Iteration|         | Trip |          |         |         |           |           |     |
+    |                   & Loops                  | Type | Slack| (cycles)|    (ns)   |  Latency | Interval| Count| Pipelined|  BRAM   |   DSP   |     FF    |    LUT    | URAM|
+    +--------------------------------------------+------+------+---------+-----------+----------+---------+------+----------+---------+---------+-----------+-----------+-----+
+    |+ cordiccart2pol                            |     -|  0.04|      491|  4.910e+03|         -|      492|     -|        no|  2 (~0%)|  10 (4%)|  1471 (1%)|  2428 (4%)|    -|
+    | + cordiccart2pol_Pipeline_VITIS_LOOP_53_1  |     -|  0.04|      482|  4.820e+03|         -|      482|     -|        no|  2 (~0%)|   5 (2%)|  760 (~0%)|  1029 (1%)|    -|
+    |  o VITIS_LOOP_53_1                         |    II|  7.30|      480|  4.800e+03|        16|       15|    32|       yes|        -|        -|          -|          -|    -|
+    +--------------------------------------------+------+------+---------+-----------+----------+---------+------+----------+---------+---------+-----------+-----------+-----+
+
+
+================================================================
+== HW Interfaces
+================================================================
+* S_AXILITE Interfaces
++---------------+------------+---------------+--------+----------+
+| Interface     | Data Width | Address Width | Offset | Register |
++---------------+------------+---------------+--------+----------+
+| s_axi_control | 32         | 6             | 16     | 0        |
++---------------+------------+---------------+--------+----------+
+
+* S_AXILITE Registers
++---------------+------------+--------+-------+--------+-------------------------+----------------+
+| Interface     | Register   | Offset | Width | Access | Description             | Bit Fields     |
++---------------+------------+--------+-------+--------+-------------------------+----------------+
+| s_axi_control | x          | 0x10   | 32    | W      | Data signal of x        |                |
+| s_axi_control | y          | 0x18   | 32    | W      | Data signal of y        |                |
+| s_axi_control | r          | 0x20   | 32    | R      | Data signal of r        |                |
+| s_axi_control | r_ctrl     | 0x24   | 32    | R      | Control signal of r     | 0=r_ap_vld     |
+| s_axi_control | theta      | 0x30   | 32    | R      | Data signal of theta    |                |
+| s_axi_control | theta_ctrl | 0x34   | 32    | R      | Control signal of theta | 0=theta_ap_vld |
++---------------+------------+--------+-------+--------+-------------------------+----------------+
+
+* TOP LEVEL CONTROL
++-----------+--------------+----------+
+| Interface | Type         | Ports    |
++-----------+--------------+----------+
+| ap_clk    | clock        | ap_clk   |
+| ap_rst_n  | reset        | ap_rst_n |
+| ap_ctrl   | ap_ctrl_none |          |
++-----------+--------------+----------+
+
+
+================================================================
+== SW I/O Information
+================================================================
+* Top Function Arguments
++----------+-----------+----------+
+| Argument | Direction | Datatype |
++----------+-----------+----------+
+| x        | in        | float    |
+| y        | in        | float    |
+| r        | out       | float&   |
+| theta    | out       | float&   |
++----------+-----------+----------+
+
+* SW-to-HW Mapping
++----------+---------------+----------+--------------------------------------+
+| Argument | HW Interface  | HW Type  | HW Info                              |
++----------+---------------+----------+--------------------------------------+
+| x        | s_axi_control | register | name=x offset=0x10 range=32          |
+| y        | s_axi_control | register | name=y offset=0x18 range=32          |
+| r        | s_axi_control | register | name=r offset=0x20 range=32          |
+| r        | s_axi_control | register | name=r_ctrl offset=0x24 range=32     |
+| theta    | s_axi_control | register | name=theta offset=0x30 range=32      |
+| theta    | s_axi_control | register | name=theta_ctrl offset=0x34 range=32 |
++----------+---------------+----------+--------------------------------------+
+
+
+================================================================
+== Bind Op Report
+================================================================
++--------------------------------------------+-----+--------+------------+------+---------+---------+
+| Name                                       | DSP | Pragma | Variable   | Op   | Impl    | Latency |
++--------------------------------------------+-----+--------+------------+------+---------+---------+
+| + cordiccart2pol                           | 10  |        |            |      |         |         |
+|   faddfsub_32ns_32ns_32_5_full_dsp_1_U14   | 2   |        | add1       | fadd | fulldsp | 4       |
+|   fmul_32ns_32ns_32_4_max_dsp_1_U15        | 3   |        | mul1       | fmul | maxdsp  | 3       |
+|  + cordiccart2pol_Pipeline_VITIS_LOOP_53_1 | 5   |        |            |      |         |         |
+|    add_ln53_fu_187_p2                      | -   |        | add_ln53   | add  | fabric  | 0       |
+|    fmul_32ns_32ns_32_4_max_dsp_1_U4        | 3   |        | mul2       | fmul | maxdsp  | 3       |
+|    fadd_32ns_32ns_32_5_full_dsp_1_U2       | 2   |        | y_assign_3 | fadd | fulldsp | 4       |
+|    fmul_32ns_32ns_32_4_max_dsp_1_U4        | 3   |        | mul3       | fmul | maxdsp  | 3       |
++--------------------------------------------+-----+--------+------------+------+---------+---------+
+
+
+================================================================
+== Bind Storage Report
+================================================================
++--------------------------------------------+------+------+--------+----------+---------+------+---------+
+| Name                                       | BRAM | URAM | Pragma | Variable | Storage | Impl | Latency |
++--------------------------------------------+------+------+--------+----------+---------+------+---------+
+| + cordiccart2pol                           | 2    | 0    |        |          |         |      |         |
+|  + cordiccart2pol_Pipeline_VITIS_LOOP_53_1 | 2    | 0    |        |          |         |      |         |
+|    Kvalues_U                               | 1    | -    |        | Kvalues  | rom_1p  | auto | 1       |
+|    angles_U                                | 1    | -    |        | angles   | rom_1p  | auto | 1       |
++--------------------------------------------+------+------+--------+----------+---------+------+---------+
+
+
+================================================================
+== User Pragma Report
+================================================================
+* Valid Pragma Syntax
++-----------+--------------------------+---------------------------------------------------------------------------+
+| Type      | Options                  | Location                                                                  |
++-----------+--------------------------+---------------------------------------------------------------------------+
+| interface | s_axilite port=x         | cordic_baseline/solution1/cordiccart2pol.cpp:26 in cordiccart2pol, x      |
+| interface | s_axilite port=y         | cordic_baseline/solution1/cordiccart2pol.cpp:27 in cordiccart2pol, y      |
+| interface | s_axilite port=r         | cordic_baseline/solution1/cordiccart2pol.cpp:28 in cordiccart2pol, r      |
+| interface | s_axilite port=theta     | cordic_baseline/solution1/cordiccart2pol.cpp:29 in cordiccart2pol, theta  |
+| interface | ap_ctrl_none port=return | cordic_baseline/solution1/cordiccart2pol.cpp:30 in cordiccart2pol, return |
++-----------+--------------------------+---------------------------------------------------------------------------+
+
+

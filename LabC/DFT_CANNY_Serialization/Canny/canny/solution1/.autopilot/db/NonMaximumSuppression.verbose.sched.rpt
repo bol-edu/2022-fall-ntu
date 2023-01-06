@@ -1,0 +1,180 @@
+
+
+================================================================
+== Vitis HLS Report for 'NonMaximumSuppression'
+================================================================
+* Date:           Sun Nov 13 19:24:42 2022
+
+* Version:        2022.2 (Build 3670227 on Oct 13 2022)
+* Project:        canny
+* Solution:       solution1 (Vivado IP Flow Target)
+* Product family: zynq
+* Target device:  xc7z020-clg400-1
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing: 
+    * Summary: 
+    +--------+----------+----------+------------+
+    |  Clock |  Target  | Estimated| Uncertainty|
+    +--------+----------+----------+------------+
+    |ap_clk  |  10.00 ns|  3.871 ns|     6.13 ns|
+    +--------+----------+----------+------------+
+
++ Latency: 
+    * Summary: 
+    +---------+---------+----------+----------+-------+-------+---------+
+    |  Latency (cycles) |  Latency (absolute) |    Interval   | Pipeline|
+    |   min   |   max   |    min   |    max   |  min  |  max  |   Type  |
+    +---------+---------+----------+----------+-------+-------+---------+
+    |    16397|    16397|  0.164 ms|  0.164 ms|  16397|  16397|       no|
+    +---------+---------+----------+----------+-------+-------+---------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        N/A
+
+============================================================
++ Verbose Summary: Synthesis Manager
+============================================================
+InlineROM: 1
+ExposeGlobal: 0
+============================================================
++ Verbose Summary: CDFG Model
+============================================================
+IsTopModel: 0
+ResetActiveHigh: 1
+IsCombinational: 2
+IsDatapathOnly: 0
+HasWiredReturn: 1
+HasMFsm: 0
+HasVarLatency: 1
+IsPipeline: 0
+IsRtlPipelined: 0
+IsInstanceOverlapped: 0
+IsDontTouch: 0
+HasImplIP: 0
+IsGatedGlobalClock: 0
+
+
+============================================================
++ Verbose Summary: Schedule
+============================================================
+* Number of FSM states : 7
+* Pipeline : 0
+* Dataflow Pipeline: 0
+
+* FSM state transitions: 
+1 --> 2 
+2 --> 3 
+3 --> 4 
+4 --> 5 
+5 --> 6 
+6 --> 7 
+7 --> 
+
+* FSM state operations: 
+
+State 1 <SV = 0> <Delay = 1.93>
+ST_1 : Operation 8 [1/1] (1.93ns)   --->   "%lowerThresh_read = read i32 @_ssdm_op_Read.ap_fifo.i32P0A, i32 %lowerThresh"   --->   Operation 8 'read' 'lowerThresh_read' <Predicate = true> <Delay = 1.93> <CoreInst = "FIFO_SRL">   --->   Core 81 'FIFO_SRL' <Latency = 0> <II = 1> <Delay = 3.63> <Storage> <Opcode : 'read' 'write' 'nbread' 'nbwrite'> <Ports = 0> <Width = 32> <Depth = 4> <FIFO>
+ST_1 : Operation 9 [1/1] (1.93ns)   --->   "%upperThresh_read = read i32 @_ssdm_op_Read.ap_fifo.i32P0A, i32 %upperThresh"   --->   Operation 9 'read' 'upperThresh_read' <Predicate = true> <Delay = 1.93> <CoreInst = "FIFO_SRL">   --->   Core 81 'FIFO_SRL' <Latency = 0> <II = 1> <Delay = 3.63> <Storage> <Opcode : 'read' 'write' 'nbread' 'nbwrite'> <Ports = 0> <Width = 32> <Depth = 4> <FIFO>
+ST_1 : Operation 10 [1/1] (0.00ns)   --->   "%LineBuff_mag = alloca i64 1" [canny/canny.cpp:161]   --->   Operation 10 'alloca' 'LineBuff_mag' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 11 [1/1] (0.00ns)   --->   "%LineBuff_tan_y = alloca i64 1" [canny/canny.cpp:163]   --->   Operation 11 'alloca' 'LineBuff_tan_y' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 12 [1/1] (0.00ns)   --->   "%LineBuff_tan_x_225 = alloca i64 1" [canny/canny.cpp:165]   --->   Operation 12 'alloca' 'LineBuff_tan_x_225' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 13 [1/1] (0.00ns)   --->   "%LineBuff_tan_x_675 = alloca i64 1" [canny/canny.cpp:167]   --->   Operation 13 'alloca' 'LineBuff_tan_x_675' <Predicate = true> <Delay = 0.00>
+
+State 2 <SV = 1> <Delay = 3.87>
+ST_2 : Operation 14 [5/5] (3.87ns)   --->   "%mul_ln170 = mul i32 %upperThresh_read, i32 %upperThresh_read" [canny/canny.cpp:170]   --->   Operation 14 'mul' 'mul_ln170' <Predicate = true> <Delay = 3.87> <CoreInst = "Mul_DSP">   --->   Core 5 'Mul_DSP' <Latency = 4> <II = 1> <Delay = 3.87> <FuncUnit> <Opcode : 'mul'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 15 [5/5] (3.87ns)   --->   "%mul_ln171 = mul i32 %lowerThresh_read, i32 %lowerThresh_read" [canny/canny.cpp:171]   --->   Operation 15 'mul' 'mul_ln171' <Predicate = true> <Delay = 3.87> <CoreInst = "Mul_DSP">   --->   Core 5 'Mul_DSP' <Latency = 4> <II = 1> <Delay = 3.87> <FuncUnit> <Opcode : 'mul'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 16 [1/1] (0.00ns)   --->   "%empty = wait i32 @_ssdm_op_Wait"   --->   Operation 16 'wait' 'empty' <Predicate = true> <Delay = 0.00>
+
+State 3 <SV = 2> <Delay = 3.87>
+ST_3 : Operation 17 [4/5] (3.87ns)   --->   "%mul_ln170 = mul i32 %upperThresh_read, i32 %upperThresh_read" [canny/canny.cpp:170]   --->   Operation 17 'mul' 'mul_ln170' <Predicate = true> <Delay = 3.87> <CoreInst = "Mul_DSP">   --->   Core 5 'Mul_DSP' <Latency = 4> <II = 1> <Delay = 3.87> <FuncUnit> <Opcode : 'mul'> <InPorts = 2> <OutPorts = 1>
+ST_3 : Operation 18 [4/5] (3.87ns)   --->   "%mul_ln171 = mul i32 %lowerThresh_read, i32 %lowerThresh_read" [canny/canny.cpp:171]   --->   Operation 18 'mul' 'mul_ln171' <Predicate = true> <Delay = 3.87> <CoreInst = "Mul_DSP">   --->   Core 5 'Mul_DSP' <Latency = 4> <II = 1> <Delay = 3.87> <FuncUnit> <Opcode : 'mul'> <InPorts = 2> <OutPorts = 1>
+
+State 4 <SV = 3> <Delay = 3.87>
+ST_4 : Operation 19 [3/5] (3.87ns)   --->   "%mul_ln170 = mul i32 %upperThresh_read, i32 %upperThresh_read" [canny/canny.cpp:170]   --->   Operation 19 'mul' 'mul_ln170' <Predicate = true> <Delay = 3.87> <CoreInst = "Mul_DSP">   --->   Core 5 'Mul_DSP' <Latency = 4> <II = 1> <Delay = 3.87> <FuncUnit> <Opcode : 'mul'> <InPorts = 2> <OutPorts = 1>
+ST_4 : Operation 20 [3/5] (3.87ns)   --->   "%mul_ln171 = mul i32 %lowerThresh_read, i32 %lowerThresh_read" [canny/canny.cpp:171]   --->   Operation 20 'mul' 'mul_ln171' <Predicate = true> <Delay = 3.87> <CoreInst = "Mul_DSP">   --->   Core 5 'Mul_DSP' <Latency = 4> <II = 1> <Delay = 3.87> <FuncUnit> <Opcode : 'mul'> <InPorts = 2> <OutPorts = 1>
+
+State 5 <SV = 4> <Delay = 3.87>
+ST_5 : Operation 21 [2/5] (3.87ns)   --->   "%mul_ln170 = mul i32 %upperThresh_read, i32 %upperThresh_read" [canny/canny.cpp:170]   --->   Operation 21 'mul' 'mul_ln170' <Predicate = true> <Delay = 3.87> <CoreInst = "Mul_DSP">   --->   Core 5 'Mul_DSP' <Latency = 4> <II = 1> <Delay = 3.87> <FuncUnit> <Opcode : 'mul'> <InPorts = 2> <OutPorts = 1>
+ST_5 : Operation 22 [2/5] (3.87ns)   --->   "%mul_ln171 = mul i32 %lowerThresh_read, i32 %lowerThresh_read" [canny/canny.cpp:171]   --->   Operation 22 'mul' 'mul_ln171' <Predicate = true> <Delay = 3.87> <CoreInst = "Mul_DSP">   --->   Core 5 'Mul_DSP' <Latency = 4> <II = 1> <Delay = 3.87> <FuncUnit> <Opcode : 'mul'> <InPorts = 2> <OutPorts = 1>
+
+State 6 <SV = 5> <Delay = 3.87>
+ST_6 : Operation 23 [1/5] (3.87ns)   --->   "%mul_ln170 = mul i32 %upperThresh_read, i32 %upperThresh_read" [canny/canny.cpp:170]   --->   Operation 23 'mul' 'mul_ln170' <Predicate = true> <Delay = 3.87> <CoreInst = "Mul_DSP">   --->   Core 5 'Mul_DSP' <Latency = 4> <II = 1> <Delay = 3.87> <FuncUnit> <Opcode : 'mul'> <InPorts = 2> <OutPorts = 1>
+ST_6 : Operation 24 [1/1] (0.00ns)   --->   "%upperThresh_scale = shl i32 %mul_ln170, i32 4" [canny/canny.cpp:170]   --->   Operation 24 'shl' 'upperThresh_scale' <Predicate = true> <Delay = 0.00>
+ST_6 : Operation 25 [1/5] (3.87ns)   --->   "%mul_ln171 = mul i32 %lowerThresh_read, i32 %lowerThresh_read" [canny/canny.cpp:171]   --->   Operation 25 'mul' 'mul_ln171' <Predicate = true> <Delay = 3.87> <CoreInst = "Mul_DSP">   --->   Core 5 'Mul_DSP' <Latency = 4> <II = 1> <Delay = 3.87> <FuncUnit> <Opcode : 'mul'> <InPorts = 2> <OutPorts = 1>
+ST_6 : Operation 26 [1/1] (0.00ns)   --->   "%lowerThresh_scale = shl i32 %mul_ln171, i32 4" [canny/canny.cpp:171]   --->   Operation 26 'shl' 'lowerThresh_scale' <Predicate = true> <Delay = 0.00>
+ST_6 : Operation 27 [2/2] (0.00ns)   --->   "%call_ln170 = call void @NonMaximumSuppression_Pipeline_VITIS_LOOP_193_1, i90 %LineBuff_mag, i96 %LineBuff_tan_y, i96 %LineBuff_tan_x_225, i96 %LineBuff_tan_x_675, i26 %magnitude, i32 %tangent_y, i32 %tangent_x_225, i32 %tangent_x_675, i32 %upperThresh_scale, i32 %lowerThresh_scale, i32 %dst" [canny/canny.cpp:170]   --->   Operation 27 'call' 'call_ln170' <Predicate = true> <Delay = 0.00> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+
+State 7 <SV = 6> <Delay = 0.00>
+ST_7 : Operation 28 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i32 %lowerThresh, void @ap_fifo_str, i32 0, i32 0, void @p_str, i32 0, i32 0, void @p_str, void @p_str, void @p_str, i32 2, i32 2, i32 16, i32 16, void @p_str, void @ScalarProp_str, i32 4294967295, i32 0"   --->   Operation 28 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_7 : Operation 29 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i32 %upperThresh, void @ap_fifo_str, i32 0, i32 0, void @p_str, i32 0, i32 0, void @p_str, void @p_str, void @p_str, i32 2, i32 2, i32 16, i32 16, void @p_str, void @ScalarProp_str, i32 4294967295, i32 0"   --->   Operation 29 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_7 : Operation 30 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i32 %tangent_x_675, void @empty_2, i32 0, i32 0, void @empty_0, i32 0, i32 0, void @empty_0, void @empty_0, void @empty_0, i32 0, i32 0, i32 0, i32 0, void @empty_0, void @empty_0, i32 4294967295, i32 0"   --->   Operation 30 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_7 : Operation 31 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i32 %tangent_x_225, void @empty_2, i32 0, i32 0, void @empty_0, i32 0, i32 0, void @empty_0, void @empty_0, void @empty_0, i32 0, i32 0, i32 0, i32 0, void @empty_0, void @empty_0, i32 4294967295, i32 0"   --->   Operation 31 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_7 : Operation 32 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i32 %tangent_y, void @empty_2, i32 0, i32 0, void @empty_0, i32 0, i32 0, void @empty_0, void @empty_0, void @empty_0, i32 0, i32 0, i32 0, i32 0, void @empty_0, void @empty_0, i32 4294967295, i32 0"   --->   Operation 32 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_7 : Operation 33 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i26 %magnitude, void @empty_2, i32 0, i32 0, void @empty_0, i32 0, i32 0, void @empty_0, void @empty_0, void @empty_0, i32 0, i32 0, i32 0, i32 0, void @empty_0, void @empty_0, i32 4294967295, i32 0"   --->   Operation 33 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_7 : Operation 34 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i32 %dst, void @empty, i32 0, i32 0, void @empty_0, i32 4294967295, i32 0, void @empty_0, void @empty_0, void @empty_0, i32 0, i32 0, i32 0, i32 0, void @empty_0, void @empty_0, i32 4294967295, i32 0"   --->   Operation 34 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_7 : Operation 35 [1/2] (0.00ns)   --->   "%call_ln170 = call void @NonMaximumSuppression_Pipeline_VITIS_LOOP_193_1, i90 %LineBuff_mag, i96 %LineBuff_tan_y, i96 %LineBuff_tan_x_225, i96 %LineBuff_tan_x_675, i26 %magnitude, i32 %tangent_y, i32 %tangent_x_225, i32 %tangent_x_675, i32 %upperThresh_scale, i32 %lowerThresh_scale, i32 %dst" [canny/canny.cpp:170]   --->   Operation 35 'call' 'call_ln170' <Predicate = true> <Delay = 0.00> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+ST_7 : Operation 36 [1/1] (0.00ns)   --->   "%ret_ln273 = ret" [canny/canny.cpp:273]   --->   Operation 36 'ret' 'ret_ln273' <Predicate = true> <Delay = 0.00>
+
+
+============================================================
++ Verbose Summary: Timing violations
+============================================================
+Target clock period: 10ns, clock uncertainty: 6.13ns.
+
+ <State 1>: 1.94ns
+The critical path consists of the following:
+	fifo read operation ('lowerThresh_read') on port 'lowerThresh' [9]  (1.94 ns)
+
+ <State 2>: 3.87ns
+The critical path consists of the following:
+	'mul' operation ('mul_ln170', canny/canny.cpp:170) [21]  (3.87 ns)
+
+ <State 3>: 3.87ns
+The critical path consists of the following:
+	'mul' operation ('mul_ln170', canny/canny.cpp:170) [21]  (3.87 ns)
+
+ <State 4>: 3.87ns
+The critical path consists of the following:
+	'mul' operation ('mul_ln170', canny/canny.cpp:170) [21]  (3.87 ns)
+
+ <State 5>: 3.87ns
+The critical path consists of the following:
+	'mul' operation ('mul_ln170', canny/canny.cpp:170) [21]  (3.87 ns)
+
+ <State 6>: 3.87ns
+The critical path consists of the following:
+	'mul' operation ('mul_ln170', canny/canny.cpp:170) [21]  (3.87 ns)
+
+ <State 7>: 0ns
+The critical path consists of the following:
+
+
+============================================================
++ Verbose Summary: Binding
+============================================================
+N/A
+* FSMD analyzer results:
+  - Output states:
+ - Input state : 
+  - Chain level:
+	State 1
+	State 2
+	State 3
+	State 4
+	State 5
+	State 6
+	State 7
+
+
+============================================================
++ Verbose Summary: Datapath Resource usage 
+============================================================
+N/A

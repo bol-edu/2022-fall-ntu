@@ -1,0 +1,261 @@
+
+
+================================================================
+== Synthesis Summary Report of 'model'
+================================================================
++ General Information: 
+    * Date:           Fri Dec 23 16:52:16 2022
+    * Version:        2022.1 (Build 3526262 on Mon Apr 18 15:48:16 MDT 2022)
+    * Project:        AAHLS_MNIST_GAN
+    * Solution:       solution1 (Vivado IP Flow Target)
+    * Product family: zynq
+    * Target device:  xc7z020-clg400-1
+    
+
++ Performance & Resource Estimates: 
+    
+    PS: '+' for module; 'o' for loop; '*' for dataflow
+    +-------------------------------------+------+------+---------+-----------+----------+---------+--------+----------+-----------+---------+-------------+-------------+-----+
+    |               Modules               | Issue|      | Latency |  Latency  | Iteration|         |  Trip  |          |           |         |             |             |     |
+    |               & Loops               | Type | Slack| (cycles)|    (ns)   |  Latency | Interval|  Count | Pipelined|   BRAM    |   DSP   |      FF     |     LUT     | URAM|
+    +-------------------------------------+------+------+---------+-----------+----------+---------+--------+----------+-----------+---------+-------------+-------------+-----+
+    |+ model*                             |     -|  0.00|   402001|  4.020e+06|         -|   401944|       -|  dataflow|  265 (94%)|  13 (5%)|  12084 (11%)|  32759 (61%)|    -|
+    | + entry_proc                        |     -|  3.71|        0|      0.000|         -|        0|       -|        no|          -|        -|      3 (~0%)|     29 (~0%)|    -|
+    | + ReadFromMem                       |     -|  0.00|      111|  1.110e+03|         -|      111|       -|        no|          -|        -|     32 (~0%)|    305 (~0%)|    -|
+    |  + ReadFromMem_Pipeline_read_noise  |     -|  0.00|      103|  1.030e+03|         -|      103|       -|        no|          -|        -|     20 (~0%)|     82 (~0%)|    -|
+    |   o read_noise                      |     -|  7.30|      101|  1.010e+03|         3|        1|     100|       yes|          -|        -|            -|            -|    -|
+    | + FC1                               |     -|  0.35|    25730|  2.573e+05|         -|    25730|       -|        no|    2 (~0%)|   5 (2%)|    1768 (1%)|   5430 (10%)|    -|
+    |  + FC1_Pipeline_load_data           |     -|  3.65|      102|  1.020e+03|         -|      102|       -|        no|          -|        -|    817 (~0%)|     73 (~0%)|    -|
+    |   o load_data                       |     -|  7.30|      100|  1.000e+03|         2|        1|     100|       yes|          -|        -|            -|            -|    -|
+    |  + FC1_Pipeline_calculate_sum       |     -|  0.35|    25624|  2.562e+05|         -|    25624|       -|        no|    2 (~0%)|   5 (2%)|    942 (~0%)|    5288 (9%)|    -|
+    |   o calculate_sum                   |     -|  7.30|    25622|  2.562e+05|        24|        1|   25600|       yes|          -|        -|            -|            -|    -|
+    | + FC2                               |     -|  0.24|   131355|  1.314e+06|         -|   131355|       -|        no|    1 (~0%)|   4 (1%)|    2884 (2%)|  19403 (36%)|    -|
+    |  + FC2_Pipeline_load_data           |     -|  3.76|      258|  2.580e+03|         -|      258|       -|        no|          -|        -|    2068 (1%)|     74 (~0%)|    -|
+    |   o load_data                       |     -|  7.30|      256|  2.560e+03|         2|        1|     256|       yes|          -|        -|            -|            -|    -|
+    |  + FC2_Pipeline_calculate_sum       |     -|  0.24|   131093|  1.311e+06|         -|   131093|       -|        no|    1 (~0%)|   4 (1%)|    807 (~0%)|  19260 (36%)|    -|
+    |   o calculate_sum                   |     -|  7.30|   131091|  1.311e+06|        21|        1|  131072|       yes|          -|        -|            -|            -|    -|
+    | + FC3                               |     -|  0.89|   401943|  4.019e+06|         -|   401943|       -|        no|  258 (92%)|   4 (1%)|    4710 (4%)|    3488 (6%)|    -|
+    |  + FC3_Pipeline_load_data           |     -|  3.68|      514|  5.140e+03|         -|      514|       -|        no|          -|        -|    4118 (3%)|     73 (~0%)|    -|
+    |   o load_data                       |     -|  7.30|      512|  5.120e+03|         2|        1|     512|       yes|          -|        -|            -|            -|    -|
+    |  + FC3_Pipeline_calculate_sum       |     -|  0.89|   401425|  4.014e+06|         -|   401425|       -|        no|  258 (92%)|   4 (1%)|    584 (~0%)|    3355 (6%)|    -|
+    |   o calculate_sum                   |     -|  7.30|   401423|  4.014e+06|        17|        1|  401408|       yes|          -|        -|            -|            -|    -|
+    | + WriteToMem                        |     -|  0.00|      798|  7.980e+03|         -|      798|       -|        no|          -|        -|    354 (~0%)|    526 (~0%)|    -|
+    |  + WriteToMem_Pipeline_write_data   |     -|  0.00|      790|  7.900e+03|         -|      790|       -|        no|          -|        -|    281 (~0%)|    280 (~0%)|    -|
+    |   o write_data                      |     -|  7.30|      788|  7.880e+03|         6|        1|     784|       yes|          -|        -|            -|            -|    -|
+    +-------------------------------------+------+------+---------+-----------+----------+---------+--------+----------+-----------+---------+-------------+-------------+-----+
+
+
+================================================================
+== HW Interfaces
+================================================================
+* M_AXI
++-------------+------------+---------------+---------+--------+----------+-----------+--------------+--------------+-------------+-------------+
+| Interface   | Data Width | Address Width | Latency | Offset | Register | Max Widen | Max Read     | Max Write    | Num Read    | Num Write   |
+|             | (SW->HW)   |               |         |        |          | Bitwidth  | Burst Length | Burst Length | Outstanding | Outstanding |
++-------------+------------+---------------+---------+--------+----------+-----------+--------------+--------------+-------------+-------------+
+| m_axi_in_r  | 8 -> 8     | 64            | 0       | slave  | 0        | 0         | 16           | 16           | 16          | 16          |
+| m_axi_out_r | 32 -> 32   | 64            | 0       | slave  | 0        | 0         | 16           | 16           | 16          | 16          |
++-------------+------------+---------------+---------+--------+----------+-----------+--------------+--------------+-------------+-------------+
+
+* S_AXILITE Interfaces
++---------------+------------+---------------+--------+----------+
+| Interface     | Data Width | Address Width | Offset | Register |
++---------------+------------+---------------+--------+----------+
+| s_axi_control | 32         | 6             | 16     | 0        |
++---------------+------------+---------------+--------+----------+
+
+* S_AXILITE Registers
++---------------+-----------------+--------+-------+--------+----------------------------------+----------------------------------------------------------------------+
+| Interface     | Register        | Offset | Width | Access | Description                      | Bit Fields                                                           |
++---------------+-----------------+--------+-------+--------+----------------------------------+----------------------------------------------------------------------+
+| s_axi_control | CTRL            | 0x00   | 32    | RW     | Control signals                  | 0=AP_START 1=AP_DONE 2=AP_IDLE 3=AP_READY 7=AUTO_RESTART 9=INTERRUPT |
+| s_axi_control | GIER            | 0x04   | 32    | RW     | Global Interrupt Enable Register | 0=Enable                                                             |
+| s_axi_control | IP_IER          | 0x08   | 32    | RW     | IP Interrupt Enable Register     | 0=CHAN0_INT_EN 1=CHAN1_INT_EN                                        |
+| s_axi_control | IP_ISR          | 0x0c   | 32    | RW     | IP Interrupt Status Register     | 0=CHAN0_INT_ST 1=CHAN1_INT_ST                                        |
+| s_axi_control | data_in_noise_1 | 0x10   | 32    | W      | Data signal of data_in_noise     |                                                                      |
+| s_axi_control | data_in_noise_2 | 0x14   | 32    | W      | Data signal of data_in_noise     |                                                                      |
+| s_axi_control | data_out_1      | 0x1c   | 32    | W      | Data signal of data_out          |                                                                      |
+| s_axi_control | data_out_2      | 0x20   | 32    | W      | Data signal of data_out          |                                                                      |
++---------------+-----------------+--------+-------+--------+----------------------------------+----------------------------------------------------------------------+
+
+* TOP LEVEL CONTROL
++-----------+------------+-----------+
+| Interface | Type       | Ports     |
++-----------+------------+-----------+
+| ap_clk    | clock      | ap_clk    |
+| ap_rst_n  | reset      | ap_rst_n  |
+| interrupt | interrupt  | interrupt |
+| ap_ctrl   | ap_ctrl_hs |           |
++-----------+------------+-----------+
+
+
+================================================================
+== SW I/O Information
+================================================================
+* Top Function Arguments
++---------------+-----------+--------------+
+| Argument      | Direction | Datatype     |
++---------------+-----------+--------------+
+| data_in_noise | in        | signed char* |
+| data_out      | out       | float*       |
++---------------+-----------+--------------+
+
+* SW-to-HW Mapping
++---------------+---------------+-----------+----------+-------------------------------------------+
+| Argument      | HW Interface  | HW Type   | HW Usage | HW Info                                   |
++---------------+---------------+-----------+----------+-------------------------------------------+
+| data_in_noise | m_axi_in_r    | interface |          |                                           |
+| data_in_noise | s_axi_control | register  | offset   | name=data_in_noise_1 offset=0x10 range=32 |
+| data_in_noise | s_axi_control | register  | offset   | name=data_in_noise_2 offset=0x14 range=32 |
+| data_out      | m_axi_out_r   | interface |          |                                           |
+| data_out      | s_axi_control | register  | offset   | name=data_out_1 offset=0x1c range=32      |
+| data_out      | s_axi_control | register  | offset   | name=data_out_2 offset=0x20 range=32      |
++---------------+---------------+-----------+----------+-------------------------------------------+
+
+
+================================================================
+== M_AXI Burst Information
+================================================================
+ Note: All burst requests might be further partitioned into multiple requests during RTL generation based on max_read_burst_length or max_write_burst_length settings.
+
+* Inferred Burst Summary
++--------------+------------+-----------+--------+-------+-------------------------------------+
+| HW Interface | Loop       | Direction | Length | Width | Location                            |
++--------------+------------+-----------+--------+-------+-------------------------------------+
+| m_axi_in_r   | read_noise | read      | 100    | 8     | AAHLS_MNIST_GAN/src/model.cpp:8:14  |
+| m_axi_out_r  | write_data | write     | 784    | 32    | AAHLS_MNIST_GAN/src/model.cpp:92:14 |
++--------------+------------+-----------+--------+-------+-------------------------------------+
+
+* Inferred Bursts and Widening Missed
++--------------+------------+------------+---------------------------------------------------------------------------------------------------------+------------+-------------------------------------+
+| HW Interface | Variable   | Loop       | Problem                                                                                                 | Resolution | Location                            |
++--------------+------------+------------+---------------------------------------------------------------------------------------------------------+------------+-------------------------------------+
+| m_axi_in     | data_noise | read_noise | Could not widen since type i8 size is greater than or equal to the max_widen_bitwidth threshold of 0    | 214-353    | AAHLS_MNIST_GAN/src/model.cpp:8:14  |
+| m_axi_out    | data_out   | write_data | Could not widen since type float size is greater than or equal to the max_widen_bitwidth threshold of 0 | 214-353    | AAHLS_MNIST_GAN/src/model.cpp:92:14 |
++--------------+------------+------------+---------------------------------------------------------------------------------------------------------+------------+-------------------------------------+
+
+    * Resolution URL: www.xilinx.com/cgi-bin/docs/rdoc?v=2022.1;t=hls+guidance;d=XXX-YYY.html (replace XXX-YYY with column value)
+
+================================================================
+== Bind Op Report
+================================================================
++-----------------------------------------+-----+--------+------------+------+--------+---------+
+| Name                                    | DSP | Pragma | Variable   | Op   | Impl   | Latency |
++-----------------------------------------+-----+--------+------------+------+--------+---------+
+| + model                                 | 13  |        |            |      |        |         |
+|  + ReadFromMem                          | 0   |        |            |      |        |         |
+|   + ReadFromMem_Pipeline_read_noise     | 0   |        |            |      |        |         |
+|     add_ln8_fu_94_p2                    | -   |        | add_ln8    | add  | fabric | 0       |
+|  + FC1                                  | 5   |        |            |      |        |         |
+|   + FC1_Pipeline_load_data              | 0   |        |            |      |        |         |
+|     add_ln22_fu_1552_p2                 | -   |        | add_ln22   | add  | fabric | 0       |
+|   + FC1_Pipeline_calculate_sum          | 5   |        |            |      |        |         |
+|     add_ln27_1_fu_1054_p2               | -   |        | add_ln27_1 | add  | fabric | 0       |
+|     add_ln27_fu_1066_p2                 | -   |        | add_ln27   | add  | fabric | 0       |
+|     mac_muladd_9ns_7ns_7ns_15_4_1_U113  | 1   |        | mul_ln29   | mul  | dsp48  | 3       |
+|     mac_muladd_9ns_7ns_7ns_15_4_1_U113  | 1   |        | add_ln31   | add  | dsp48  | 3       |
+|     mac_muladd_8s_8s_22s_22_4_1_U114    | 1   |        | mul_ln31   | mul  | dsp48  | 3       |
+|     mac_muladd_8s_8s_22s_22_4_1_U114    | 1   |        | sum_3      | add  | dsp48  | 3       |
+|     add_ln29_fu_1304_p2                 | -   |        | add_ln29   | add  | fabric | 0       |
+|     sub_ln33_fu_1364_p2                 | -   |        | sub_ln33   | sub  | fabric | 0       |
+|     fmul_32ns_32ns_32_4_max_dsp_1_U110  | 3   |        | dc         | fmul | maxdsp | 3       |
+|     data_V_3_fu_1437_p2                 | -   |        | data_V_3   | add  | fabric | 0       |
+|     add_ln346_fu_1533_p2                | -   |        | add_ln346  | add  | fabric | 0       |
+|     sub_ln1512_fu_1547_p2               | -   |        | sub_ln1512 | sub  | fabric | 0       |
+|     result_V_4_fu_1626_p2               | -   |        | result_V_4 | sub  | fabric | 0       |
+|  + FC2                                  | 4   |        |            |      |        |         |
+|   + FC2_Pipeline_load_data              | 0   |        |            |      |        |         |
+|     add_ln48_fu_3896_p2                 | -   |        | add_ln48   | add  | fabric | 0       |
+|   + FC2_Pipeline_calculate_sum          | 4   |        |            |      |        |         |
+|     add_ln53_1_fu_2287_p2               | -   |        | add_ln53_1 | add  | fabric | 0       |
+|     add_ln53_fu_2299_p2                 | -   |        | add_ln53   | add  | fabric | 0       |
+|     add_ln57_fu_2343_p2                 | -   |        | add_ln57   | add  | fabric | 0       |
+|     mac_muladd_8s_8s_24s_24_4_1_U488    | 1   |        | mul_ln57   | mul  | dsp48  | 3       |
+|     mac_muladd_8s_8s_24s_24_4_1_U488    | 1   |        | sum_2      | add  | dsp48  | 3       |
+|     add_ln55_fu_2354_p2                 | -   |        | add_ln55   | add  | fabric | 0       |
+|     fmul_32ns_32ns_32_4_max_dsp_1_U485  | 3   |        | dc         | fmul | maxdsp | 3       |
+|     data_V_1_fu_2732_p2                 | -   |        | data_V_1   | add  | fabric | 0       |
+|     add_ln346_fu_2828_p2                | -   |        | add_ln346  | add  | fabric | 0       |
+|     sub_ln1512_fu_2842_p2               | -   |        | sub_ln1512 | sub  | fabric | 0       |
+|     result_V_2_fu_2921_p2               | -   |        | result_V_2 | sub  | fabric | 0       |
+|  + FC3                                  | 4   |        |            |      |        |         |
+|   + FC3_Pipeline_load_data              | 0   |        |            |      |        |         |
+|     add_ln74_fu_7736_p2                 | -   |        | add_ln74   | add  | fabric | 0       |
+|   + FC3_Pipeline_calculate_sum          | 4   |        |            |      |        |         |
+|     add_ln79_1_fu_4245_p2               | -   |        | add_ln79_1 | add  | fabric | 0       |
+|     add_ln79_fu_4257_p2                 | -   |        | add_ln79   | add  | fabric | 0       |
+|     add_ln83_fu_4322_p2                 | -   |        | add_ln83   | add  | fabric | 0       |
+|     mac_muladd_8s_8s_25s_25_4_1_U1268   | 1   |        | mul_ln83   | mul  | dsp48  | 3       |
+|     mac_muladd_8s_8s_25s_25_4_1_U1268   | 1   |        | sum_1      | add  | dsp48  | 3       |
+|     add_ln81_fu_4285_p2                 | -   |        | add_ln81   | add  | fabric | 0       |
+|     fmul_32ns_32ns_32_4_max_dsp_1_U1265 | 3   |        | out        | fmul | maxdsp | 3       |
+|  + WriteToMem                           | 0   |        |            |      |        |         |
+|   + WriteToMem_Pipeline_write_data      | 0   |        |            |      |        |         |
+|     add_ln92_fu_124_p2                  | -   |        | add_ln92   | add  | fabric | 0       |
++-----------------------------------------+-----+--------+------------+------+--------+---------+
+
+
+================================================================
+== Bind Storage Report
+================================================================
++--------------------------------+------+------+--------+--------------------+---------+--------+---------+
+| Name                           | BRAM | URAM | Pragma | Variable           | Storage | Impl   | Latency |
++--------------------------------+------+------+--------+--------------------+---------+--------+---------+
+| + model                        | 265  | 0    |        |                    |         |        |         |
+|   data_out_c_U                 | -    | -    |        | data_out_c         | fifo    | srl    | 0       |
+|   input_noise_stream_U         | -    | -    |        | input_noise_stream | fifo    | srl    | 0       |
+|   fc1_output_stream_U          | 1    | -    |        | fc1_output_stream  | fifo    | memory | 0       |
+|   fc2_output_stream_U          | 1    | -    |        | fc2_output_stream  | fifo    | memory | 0       |
+|   output_stream_U              | 2    | -    |        | output_stream      | fifo    | memory | 0       |
+|  + FC1                         | 2    | 0    |        |                    |         |        |         |
+|   + FC1_Pipeline_calculate_sum | 2    | 0    |        |                    |         |        |         |
+|     fc1_weight_U               | -    | -    | pragma | fc1_weight         | rom_1p  | lutram | 1       |
+|     fc1_sum_merge_U            | 1    | -    |        | fc1_sum_merge      | rom_1p  | auto   | 1       |
+|     fc1_scale_merge_U          | 1    | -    |        | fc1_scale_merge    | rom_1p  | auto   | 1       |
+|     mask_table_U               | -    | -    |        | mask_table         | rom_1p  | auto   | 1       |
+|     one_half_table_U           | -    | -    |        | one_half_table     | rom_1p  | auto   | 1       |
+|  + FC2                         | 1    | 0    |        |                    |         |        |         |
+|   + FC2_Pipeline_calculate_sum | 1    | 0    |        |                    |         |        |         |
+|     fc2_weight_U               | -    | -    | pragma | fc2_weight         | rom_1p  | lutram | 1       |
+|     fc2_scale_merge_U          | 1    | -    |        | fc2_scale_merge    | rom_1p  | auto   | 1       |
+|     mask_table1_U              | -    | -    |        | mask_table1        | rom_1p  | auto   | 1       |
+|     one_half_table2_U          | -    | -    |        | one_half_table2    | rom_1p  | auto   | 1       |
+|  + FC3                         | 258  | 0    |        |                    |         |        |         |
+|   + FC3_Pipeline_calculate_sum | 258  | 0    |        |                    |         |        |         |
+|     fc3_weight_U               | 256  | -    | pragma | fc3_weight         | rom_1p  | bram   | 1       |
+|     fc3_scale_merge_U          | 2    | -    |        | fc3_scale_merge    | rom_1p  | auto   | 1       |
++--------------------------------+------+------+--------+--------------------+---------+--------+---------+
+
+
+================================================================
+== Pragma Report
+================================================================
+* Valid Pragma Syntax
++-----------------+-----------------------------------------------------------+----------------------------------------------------------------+
+| Type            | Options                                                   | Location                                                       |
++-----------------+-----------------------------------------------------------+----------------------------------------------------------------+
+| array_partition | variable=data dim=1 complete                              | AAHLS_MNIST_GAN/src/model.cpp:18 in fc1, data                  |
+| bind_storage    | variable=const_weight type=ROM_1P impl=LUTRAM             | AAHLS_MNIST_GAN/src/model.cpp:19 in fc1, const_weight          |
+| pipeline        | II=1                                                      | AAHLS_MNIST_GAN/src/model.cpp:23 in fc1                        |
+| pipeline        | II=1                                                      | AAHLS_MNIST_GAN/src/model.cpp:30 in fc1                        |
+| array_partition | variable=data dim=1 complete                              | AAHLS_MNIST_GAN/src/model.cpp:44 in fc2, data                  |
+| bind_storage    | variable=const_weight type=ROM_1P impl=LUTRAM             | AAHLS_MNIST_GAN/src/model.cpp:45 in fc2, const_weight          |
+| pipeline        | II=1                                                      | AAHLS_MNIST_GAN/src/model.cpp:49 in fc2                        |
+| pipeline        | II=1                                                      | AAHLS_MNIST_GAN/src/model.cpp:56 in fc2                        |
+| array_partition | variable=data dim=1 complete                              | AAHLS_MNIST_GAN/src/model.cpp:70 in fc3, data                  |
+| bind_storage    | variable=const_weight type=ROM_1P impl=BRAM               | AAHLS_MNIST_GAN/src/model.cpp:71 in fc3, const_weight          |
+| pipeline        | II=1                                                      | AAHLS_MNIST_GAN/src/model.cpp:75 in fc3                        |
+| pipeline        | II=1                                                      | AAHLS_MNIST_GAN/src/model.cpp:82 in fc3                        |
+| interface       | m_axi port=data_in_noise bundle=in offset=slave depth=100 | AAHLS_MNIST_GAN/src/model.cpp:101 in model, data_in_noise      |
+| interface       | m_axi port=data_out bundle=out offset=slave depth=784     | AAHLS_MNIST_GAN/src/model.cpp:102 in model, data_out           |
+| interface       | s_axilite port=data_in_noise bundle=control               | AAHLS_MNIST_GAN/src/model.cpp:103 in model, data_in_noise      |
+| interface       | s_axilite port=data_out bundle=control                    | AAHLS_MNIST_GAN/src/model.cpp:104 in model, data_out           |
+| interface       | s_axilite port=return bundle=control                      | AAHLS_MNIST_GAN/src/model.cpp:105 in model, return             |
+| dataflow        |                                                           | AAHLS_MNIST_GAN/src/model.cpp:108 in model                     |
+| stream          | variable=input_noise_stream depth=100                     | AAHLS_MNIST_GAN/src/model.cpp:115 in model, input_noise_stream |
+| stream          | variable=fc1_output_stream depth=256                      | AAHLS_MNIST_GAN/src/model.cpp:116 in model, fc1_output_stream  |
+| stream          | variable=fc2_output_stream depth=512                      | AAHLS_MNIST_GAN/src/model.cpp:117 in model, fc2_output_stream  |
+| stream          | variable=output_stream depth=784                          | AAHLS_MNIST_GAN/src/model.cpp:118 in model, output_stream      |
++-----------------+-----------------------------------------------------------+----------------------------------------------------------------+
+
+

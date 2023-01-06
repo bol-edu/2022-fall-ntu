@@ -1,0 +1,219 @@
+
+
+================================================================
+== Vitis HLS Report for 'ConvertXY'
+================================================================
+* Date:           Sun Nov 13 19:24:44 2022
+
+* Version:        2022.2 (Build 3670227 on Oct 13 2022)
+* Project:        canny
+* Solution:       solution1 (Vivado IP Flow Target)
+* Product family: zynq
+* Target device:  xc7z020-clg400-1
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing: 
+    * Summary: 
+    +--------+----------+----------+------------+
+    |  Clock |  Target  | Estimated| Uncertainty|
+    +--------+----------+----------+------------+
+    |ap_clk  |  10.00 ns|  2.319 ns|     6.13 ns|
+    +--------+----------+----------+------------+
+
++ Latency: 
+    * Summary: 
+    +---------+---------+----------+----------+-------+-------+---------+
+    |  Latency (cycles) |  Latency (absolute) |    Interval   | Pipeline|
+    |   min   |   max   |    min   |    max   |  min  |  max  |   Type  |
+    +---------+---------+----------+----------+-------+-------+---------+
+    |    16395|    16395|  0.164 ms|  0.164 ms|  16395|  16395|       no|
+    +---------+---------+----------+----------+-------+-------+---------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        +--------------------+---------+---------+----------+-----------+-----------+-------+----------+
+        |                    |  Latency (cycles) | Iteration|  Initiation Interval  |  Trip |          |
+        |      Loop Name     |   min   |   max   |  Latency |  achieved |   target  | Count | Pipelined|
+        +--------------------+---------+---------+----------+-----------+-----------+-------+----------+
+        |- VITIS_LOOP_141_1  |    16393|    16393|        11|          1|          1|  16384|       yes|
+        +--------------------+---------+---------+----------+-----------+-----------+-------+----------+
+
+
+
+================================================================
+== Utilization Estimates
+================================================================
+* Summary: 
++-----------------+---------+-----+--------+-------+-----+
+|       Name      | BRAM_18K| DSP |   FF   |  LUT  | URAM|
++-----------------+---------+-----+--------+-------+-----+
+|DSP              |        -|    5|       -|      -|    -|
+|Expression       |        -|    -|       0|     41|    -|
+|FIFO             |        -|    -|       -|      -|    -|
+|Instance         |        -|    -|       -|      -|    -|
+|Memory           |        -|    -|       -|      -|    -|
+|Multiplexer      |        -|    -|       -|    104|    -|
+|Register         |        -|    -|     437|     96|    -|
++-----------------+---------+-----+--------+-------+-----+
+|Total            |        0|    5|     437|    241|    0|
++-----------------+---------+-----+--------+-------+-----+
+|Available        |      280|  220|  106400|  53200|    0|
++-----------------+---------+-----+--------+-------+-----+
+|Utilization (%)  |        0|    2|      ~0|     ~0|    0|
++-----------------+---------+-----+--------+-------+-----+
+
++ Detail: 
+    * Instance: 
+    N/A
+
+    * DSP: 
+    +-----------------------------------+-------------------------------+--------------+
+    |              Instance             |             Module            |  Expression  |
+    +-----------------------------------+-------------------------------+--------------+
+    |mac_muladd_13s_13s_26s_26_4_1_U70  |mac_muladd_13s_13s_26s_26_4_1  |  i0 * i0 + i1|
+    |mul_mul_13s_13s_26_4_1_U68         |mul_mul_13s_13s_26_4_1         |       i0 * i0|
+    |mul_mul_20s_13s_32_4_1_U69         |mul_mul_20s_13s_32_4_1         |       i0 * i1|
+    |mul_mul_26s_6ns_32_4_1_U71         |mul_mul_26s_6ns_32_4_1         |       i0 * i1|
+    |mul_mul_26s_9ns_32_4_1_U72         |mul_mul_26s_9ns_32_4_1         |       i0 * i1|
+    +-----------------------------------+-------------------------------+--------------+
+
+    * Memory: 
+    N/A
+
+    * FIFO: 
+    N/A
+
+    * Expression: 
+    +------------------------------------+----------+----+---+----+------------+------------+
+    |            Variable Name           | Operation| DSP| FF| LUT| Bitwidth P0| Bitwidth P1|
+    +------------------------------------+----------+----+---+----+------------+------------+
+    |add_ln141_fu_118_p2                 |         +|   0|  0|  20|          15|           1|
+    |icmp_ln141_fu_112_p2                |      icmp|   0|  0|  13|          15|          16|
+    |ap_block_pp0_stage0_01001           |        or|   0|  0|   2|           1|           1|
+    |ap_block_state11_pp0_stage0_iter10  |        or|   0|  0|   2|           1|           1|
+    |ap_block_state2_pp0_stage0_iter1    |        or|   0|  0|   2|           1|           1|
+    |ap_enable_pp0                       |       xor|   0|  0|   2|           1|           2|
+    +------------------------------------+----------+----+---+----+------------+------------+
+    |Total                               |          |   0|  0|  41|          34|          22|
+    +------------------------------------+----------+----+---+----+------------+------------+
+
+    * Multiplexer: 
+    +-------------------------+----+-----------+-----+-----------+
+    |           Name          | LUT| Input Size| Bits| Total Bits|
+    +-------------------------+----+-----------+-----+-----------+
+    |ap_done_int              |   9|          2|    1|          2|
+    |ap_enable_reg_pp0_iter1  |   9|          2|    1|          2|
+    |ap_sig_allocacmp_xy_3    |  14|          3|   15|         45|
+    |magnitude_blk_n          |   9|          2|    1|          2|
+    |tangent_x_225_blk_n      |   9|          2|    1|          2|
+    |tangent_x_675_blk_n      |   9|          2|    1|          2|
+    |tangent_y_blk_n          |   9|          2|    1|          2|
+    |x_sobel_blk_n            |   9|          2|    1|          2|
+    |xy_fu_54                 |   9|          2|   15|         30|
+    |y_sobel_7_blk_n          |   9|          2|    1|          2|
+    |y_sobel_blk_n            |   9|          2|    1|          2|
+    +-------------------------+----+-----------+-----+-----------+
+    |Total                    | 104|         23|   39|         93|
+    +-------------------------+----+-----------+-----+-----------+
+
+    * Register: 
+    +----------------------------------+----+----+-----+-----------+
+    |               Name               | FF | LUT| Bits| Const Bits|
+    +----------------------------------+----+----+-----+-----------+
+    |add_ln141_reg_185                 |  15|   0|   15|          0|
+    |add_ln146_reg_245                 |  26|   0|   26|          0|
+    |ap_CS_fsm                         |   1|   0|    1|          0|
+    |ap_done_reg                       |   1|   0|    1|          0|
+    |ap_enable_reg_pp0_iter1           |   1|   0|    1|          0|
+    |ap_enable_reg_pp0_iter10          |   1|   0|    1|          0|
+    |ap_enable_reg_pp0_iter2           |   1|   0|    1|          0|
+    |ap_enable_reg_pp0_iter3           |   1|   0|    1|          0|
+    |ap_enable_reg_pp0_iter4           |   1|   0|    1|          0|
+    |ap_enable_reg_pp0_iter5           |   1|   0|    1|          0|
+    |ap_enable_reg_pp0_iter6           |   1|   0|    1|          0|
+    |ap_enable_reg_pp0_iter7           |   1|   0|    1|          0|
+    |ap_enable_reg_pp0_iter8           |   1|   0|    1|          0|
+    |ap_enable_reg_pp0_iter9           |   1|   0|    1|          0|
+    |ap_loop_exit_ready_pp0_iter1_reg  |   1|   0|    1|          0|
+    |ap_loop_exit_ready_pp0_iter2_reg  |   1|   0|    1|          0|
+    |ap_loop_exit_ready_pp0_iter3_reg  |   1|   0|    1|          0|
+    |ap_loop_exit_ready_pp0_iter4_reg  |   1|   0|    1|          0|
+    |ap_loop_exit_ready_pp0_iter5_reg  |   1|   0|    1|          0|
+    |ap_loop_exit_ready_pp0_iter6_reg  |   1|   0|    1|          0|
+    |ap_loop_exit_ready_pp0_iter7_reg  |   1|   0|    1|          0|
+    |ap_loop_exit_ready_pp0_iter8_reg  |   1|   0|    1|          0|
+    |ap_loop_exit_ready_pp0_iter9_reg  |   1|   0|    1|          0|
+    |mul_ln147_reg_234                 |  32|   0|   32|          0|
+    |mul_ln148_reg_250                 |  32|   0|   32|          0|
+    |mul_ln149_reg_255                 |  32|   0|   32|          0|
+    |pixel_tmp_1_V_reg_190             |  13|   0|   13|          0|
+    |pixel_tmp_3_V_reg_201             |  20|   0|   20|          0|
+    |ret_V_reg_228                     |  26|   0|   26|          0|
+    |xy_fu_54                          |  15|   0|   15|          0|
+    |y_sobel_read_reg_196              |  13|   0|   13|          0|
+    |add_ln146_reg_245                 |  64|  32|   26|          0|
+    |mul_ln147_reg_234                 |  64|  32|   32|          0|
+    |y_sobel_read_reg_196              |  64|  32|   13|          0|
+    +----------------------------------+----+----+-----+-----------+
+    |Total                             | 437|  96|  316|          0|
+    +----------------------------------+----+----+-----+-----------+
+
+
+
+================================================================
+== Interface
+================================================================
+* Summary: 
++------------------------------+-----+-----+------------+---------------+--------------+
+|           RTL Ports          | Dir | Bits|  Protocol  | Source Object |    C Type    |
++------------------------------+-----+-----+------------+---------------+--------------+
+|ap_clk                        |   in|    1|  ap_ctrl_hs|      ConvertXY|  return value|
+|ap_rst                        |   in|    1|  ap_ctrl_hs|      ConvertXY|  return value|
+|ap_start                      |   in|    1|  ap_ctrl_hs|      ConvertXY|  return value|
+|ap_done                       |  out|    1|  ap_ctrl_hs|      ConvertXY|  return value|
+|ap_continue                   |   in|    1|  ap_ctrl_hs|      ConvertXY|  return value|
+|ap_idle                       |  out|    1|  ap_ctrl_hs|      ConvertXY|  return value|
+|ap_ready                      |  out|    1|  ap_ctrl_hs|      ConvertXY|  return value|
+|x_sobel_dout                  |   in|   13|     ap_fifo|        x_sobel|       pointer|
+|x_sobel_num_data_valid        |   in|   15|     ap_fifo|        x_sobel|       pointer|
+|x_sobel_fifo_cap              |   in|   15|     ap_fifo|        x_sobel|       pointer|
+|x_sobel_empty_n               |   in|    1|     ap_fifo|        x_sobel|       pointer|
+|x_sobel_read                  |  out|    1|     ap_fifo|        x_sobel|       pointer|
+|y_sobel_dout                  |   in|   13|     ap_fifo|        y_sobel|       pointer|
+|y_sobel_num_data_valid        |   in|   15|     ap_fifo|        y_sobel|       pointer|
+|y_sobel_fifo_cap              |   in|   15|     ap_fifo|        y_sobel|       pointer|
+|y_sobel_empty_n               |   in|    1|     ap_fifo|        y_sobel|       pointer|
+|y_sobel_read                  |  out|    1|     ap_fifo|        y_sobel|       pointer|
+|y_sobel_7_dout                |   in|   20|     ap_fifo|      y_sobel_7|       pointer|
+|y_sobel_7_num_data_valid      |   in|   16|     ap_fifo|      y_sobel_7|       pointer|
+|y_sobel_7_fifo_cap            |   in|   16|     ap_fifo|      y_sobel_7|       pointer|
+|y_sobel_7_empty_n             |   in|    1|     ap_fifo|      y_sobel_7|       pointer|
+|y_sobel_7_read                |  out|    1|     ap_fifo|      y_sobel_7|       pointer|
+|magnitude_din                 |  out|   26|     ap_fifo|      magnitude|       pointer|
+|magnitude_num_data_valid      |   in|   15|     ap_fifo|      magnitude|       pointer|
+|magnitude_fifo_cap            |   in|   15|     ap_fifo|      magnitude|       pointer|
+|magnitude_full_n              |   in|    1|     ap_fifo|      magnitude|       pointer|
+|magnitude_write               |  out|    1|     ap_fifo|      magnitude|       pointer|
+|tangent_y_din                 |  out|   32|     ap_fifo|      tangent_y|       pointer|
+|tangent_y_num_data_valid      |   in|   15|     ap_fifo|      tangent_y|       pointer|
+|tangent_y_fifo_cap            |   in|   15|     ap_fifo|      tangent_y|       pointer|
+|tangent_y_full_n              |   in|    1|     ap_fifo|      tangent_y|       pointer|
+|tangent_y_write               |  out|    1|     ap_fifo|      tangent_y|       pointer|
+|tangent_x_225_din             |  out|   32|     ap_fifo|  tangent_x_225|       pointer|
+|tangent_x_225_num_data_valid  |   in|   15|     ap_fifo|  tangent_x_225|       pointer|
+|tangent_x_225_fifo_cap        |   in|   15|     ap_fifo|  tangent_x_225|       pointer|
+|tangent_x_225_full_n          |   in|    1|     ap_fifo|  tangent_x_225|       pointer|
+|tangent_x_225_write           |  out|    1|     ap_fifo|  tangent_x_225|       pointer|
+|tangent_x_675_din             |  out|   32|     ap_fifo|  tangent_x_675|       pointer|
+|tangent_x_675_num_data_valid  |   in|   15|     ap_fifo|  tangent_x_675|       pointer|
+|tangent_x_675_fifo_cap        |   in|   15|     ap_fifo|  tangent_x_675|       pointer|
+|tangent_x_675_full_n          |   in|    1|     ap_fifo|  tangent_x_675|       pointer|
+|tangent_x_675_write           |  out|    1|     ap_fifo|  tangent_x_675|       pointer|
++------------------------------+-----+-----+------------+---------------+--------------+
+

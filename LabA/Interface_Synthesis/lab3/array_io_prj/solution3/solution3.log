@@ -1,0 +1,783 @@
+==============================================================
+Vitis HLS - High-Level Synthesis from C, C++ and OpenCL v2022.1 (64-bit)
+Tool Version Limit: 2022.04
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+==============================================================
+INFO: [SYN 201-201] Setting up clock 'default' with a period of 10ns.
+INFO: [HLS 200-1611] Setting target device to 'xc7z020-clg400-1'
+INFO: [HLS 200-1505] Using flow_target 'vivado'
+INFO: [HLS 200-1464] Running solution command: config_interface -m_axi_latency=0
+INFO: [HLS 200-1510] Running: set_part xc7z020clg400-1 
+INFO: [HLS 200-1510] Running: create_clock -period 10 -name default 
+INFO: [HLS 200-1510] Running: config_interface -m_axi_latency 0 
+INFO: [HLS 200-1510] Running: source ./array_io_prj/solution3/directives.tcl
+INFO: [HLS 200-1510] Running: set_directive_top -name array_io array_io 
+INFO: [HLS 200-1510] Running: set_directive_unroll array_io/For_Loop 
+INFO: [HLS 200-1510] Running: set_directive_interface -mode ap_fifo array_io d_o 
+INFO: [HLS 200-1510] Running: set_directive_interface -mode ap_memory -storage_type ram_2p -storage_impl bram array_io d_i 
+INFO: [HLS 200-1510] Running: set_directive_array_partition -dim 1 -factor 4 -type block array_io d_o 
+INFO: [HLS 200-1510] Running: set_directive_array_partition -dim 1 -factor 2 -type block array_io d_i 
+INFO: [HLS 200-1510] Running: csynth_design 
+INFO: [HLS 200-111] Finished File checks and directory preparation: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.024 seconds; current allocated memory: 1.391 GB.
+INFO: [HLS 200-10] Analyzing design file 'array_io.c' ... 
+WARNING: [HLS 207-5552] unexpected pragma parameter 'storage_impl' (C:/Users/User/Documents/HLS/LabA/lab3/array_io_prj/solution3/directives.tcl:9:75)
+INFO: [HLS 200-111] Finished Source Code Analysis and Preprocessing: CPU user time: 1 seconds. CPU system time: 0 seconds. Elapsed time: 0.576 seconds; current allocated memory: 1.391 GB.
+INFO: [HLS 200-777] Using interface defaults for 'Vivado' flow target.
+INFO: [HLS 214-186] Unrolling loop 'For_Loop' (array_io.c:65:12) in function 'array_io' completely with a factor of 32 (array_io.c:57:0)
+INFO: [HLS 214-248] Applying array_partition to 'd_o': Block partitioning with factor 4 on dimension 1. (array_io.c:57:0)
+INFO: [HLS 214-248] Applying array_partition to 'd_i': Block partitioning with factor 2 on dimension 1. (array_io.c:57:0)
+WARNING: [HLS 214-142] Implementing stream: may cause mismatch if read and write accesses are not in sequential order on port 'd_o_0' (array_io.c:57:0)
+WARNING: [HLS 214-142] Implementing stream: may cause mismatch if read and write accesses are not in sequential order on port 'd_o_1' (array_io.c:57:0)
+WARNING: [HLS 214-142] Implementing stream: may cause mismatch if read and write accesses are not in sequential order on port 'd_o_2' (array_io.c:57:0)
+WARNING: [HLS 214-142] Implementing stream: may cause mismatch if read and write accesses are not in sequential order on port 'd_o_3' (array_io.c:57:0)
+INFO: [HLS 200-111] Finished Compiling Optimization and Transform: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 3.485 seconds; current allocated memory: 1.391 GB.
+INFO: [HLS 200-111] Finished Checking Pragmas: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.003 seconds; current allocated memory: 1.391 GB.
+INFO: [HLS 200-10] Starting code transformations ...
+INFO: [HLS 200-111] Finished Standard Transforms: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.031 seconds; current allocated memory: 1.391 GB.
+INFO: [HLS 200-10] Checking synthesizability ...
+INFO: [HLS 200-111] Finished Checking Synthesizability: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.019 seconds; current allocated memory: 1.391 GB.
+INFO: [XFORM 203-11] Balancing expressions in function 'array_io' (array_io.c:57:1)...32 expression(s) balanced.
+INFO: [HLS 200-111] Finished Loop, function and other optimizations: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.122 seconds; current allocated memory: 1.391 GB.
+INFO: [HLS 200-111] Finished Architecture Synthesis: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.04 seconds; current allocated memory: 1.391 GB.
+INFO: [HLS 200-10] Starting hardware synthesis ...
+INFO: [HLS 200-10] Synthesizing 'array_io' ...
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'array_io' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.19 seconds; current allocated memory: 1.391 GB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.15 seconds; current allocated memory: 1.391 GB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'array_io' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-500] Setting interface mode on port 'array_io/d_o_0' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'array_io/d_o_1' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'array_io/d_o_2' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'array_io/d_o_3' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'array_io/d_i_0' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'array_io/d_i_1' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on function 'array_io' to 'ap_ctrl_hs'.
+WARNING: [RTGEN 206-101] Register 'acc_0' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'acc_1' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'acc_2' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'acc_3' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'acc_4' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'acc_5' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'acc_6' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'acc_7' is power-on initialization.
+INFO: [RTGEN 206-100] Finished creating RTL model for 'array_io'.
+INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.29 seconds; current allocated memory: 1.391 GB.
+INFO: [HLS 200-111] Finished Generating all RTL models: CPU user time: 1 seconds. CPU system time: 0 seconds. Elapsed time: 0.993 seconds; current allocated memory: 1.391 GB.
+INFO: [HLS 200-111] Finished Updating report files: CPU user time: 0 seconds. CPU system time: 1 seconds. Elapsed time: 0.379 seconds; current allocated memory: 1.391 GB.
+INFO: [VHDL 208-304] Generating VHDL RTL for array_io.
+INFO: [VLOG 209-307] Generating Verilog RTL for array_io.
+INFO: [HLS 200-789] **** Estimated Fmax: 154.38 MHz
+INFO: [HLS 200-111] Finished Command csynth_design CPU user time: 2 seconds. CPU system time: 1 seconds. Elapsed time: 6.335 seconds; current allocated memory: 0.000 MB.
+INFO: [HLS 200-112] Total CPU user time: 5 seconds. Total CPU system time: 2 seconds. Total elapsed time: 9.023 seconds; peak allocated memory: 1.391 GB.
+==============================================================
+Vitis HLS - High-Level Synthesis from C, C++ and OpenCL v2022.1 (64-bit)
+Tool Version Limit: 2022.04
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+==============================================================
+INFO: [SYN 201-201] Setting up clock 'default' with a period of 10ns.
+INFO: [HLS 200-1611] Setting target device to 'xc7z020-clg400-1'
+INFO: [HLS 200-1505] Using flow_target 'vivado'
+INFO: [HLS 200-1464] Running solution command: config_interface -m_axi_latency=0
+INFO: [HLS 200-1510] Running: set_part xc7z020clg400-1 
+INFO: [HLS 200-1510] Running: create_clock -period 10 -name default 
+INFO: [HLS 200-1510] Running: config_interface -m_axi_latency 0 
+INFO: [HLS 200-1510] Running: source ./array_io_prj/solution3/directives.tcl
+INFO: [HLS 200-1510] Running: set_directive_top -name array_io array_io 
+INFO: [HLS 200-1510] Running: set_directive_unroll array_io/For_Loop 
+INFO: [HLS 200-1510] Running: set_directive_interface -mode ap_fifo array_io d_o 
+INFO: [HLS 200-1510] Running: set_directive_interface -mode ap_memory -storage_type ram_2p -storage_impl bram array_io d_i 
+INFO: [HLS 200-1510] Running: set_directive_array_partition -dim 1 -factor 2 -type block array_io d_o 
+INFO: [HLS 200-1510] Running: set_directive_array_partition -type block -factor 2 -dim 1 array_io d_i 
+INFO: [HLS 200-1510] Running: csynth_design 
+INFO: [HLS 200-111] Finished File checks and directory preparation: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.025 seconds; current allocated memory: 1.391 GB.
+INFO: [HLS 200-10] Analyzing design file 'array_io.c' ... 
+WARNING: [HLS 207-5552] unexpected pragma parameter 'storage_impl' (C:/Users/User/Documents/HLS/LabA/lab3/array_io_prj/solution3/directives.tcl:9:75)
+INFO: [HLS 200-111] Finished Source Code Analysis and Preprocessing: CPU user time: 1 seconds. CPU system time: 0 seconds. Elapsed time: 0.566 seconds; current allocated memory: 1.391 GB.
+INFO: [HLS 200-777] Using interface defaults for 'Vivado' flow target.
+INFO: [HLS 214-186] Unrolling loop 'For_Loop' (array_io.c:65:12) in function 'array_io' completely with a factor of 32 (array_io.c:57:0)
+INFO: [HLS 214-248] Applying array_partition to 'd_o': Block partitioning with factor 2 on dimension 1. (array_io.c:57:0)
+INFO: [HLS 214-248] Applying array_partition to 'd_i': Block partitioning with factor 2 on dimension 1. (array_io.c:57:0)
+WARNING: [HLS 214-142] Implementing stream: may cause mismatch if read and write accesses are not in sequential order on port 'd_o_0' (array_io.c:57:0)
+WARNING: [HLS 214-142] Implementing stream: may cause mismatch if read and write accesses are not in sequential order on port 'd_o_1' (array_io.c:57:0)
+INFO: [HLS 200-111] Finished Compiling Optimization and Transform: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 3.401 seconds; current allocated memory: 1.391 GB.
+INFO: [HLS 200-111] Finished Checking Pragmas: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.004 seconds; current allocated memory: 1.391 GB.
+INFO: [HLS 200-10] Starting code transformations ...
+INFO: [HLS 200-111] Finished Standard Transforms: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.028 seconds; current allocated memory: 1.391 GB.
+INFO: [HLS 200-10] Checking synthesizability ...
+INFO: [HLS 200-111] Finished Checking Synthesizability: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.019 seconds; current allocated memory: 1.391 GB.
+INFO: [XFORM 203-11] Balancing expressions in function 'array_io' (array_io.c:57:1)...32 expression(s) balanced.
+INFO: [HLS 200-111] Finished Loop, function and other optimizations: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.108 seconds; current allocated memory: 1.391 GB.
+INFO: [HLS 200-111] Finished Architecture Synthesis: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.039 seconds; current allocated memory: 1.391 GB.
+INFO: [HLS 200-10] Starting hardware synthesis ...
+INFO: [HLS 200-10] Synthesizing 'array_io' ...
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'array_io' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.189 seconds; current allocated memory: 1.391 GB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.17 seconds; current allocated memory: 1.391 GB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'array_io' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-500] Setting interface mode on port 'array_io/d_o_0' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'array_io/d_o_1' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'array_io/d_i_0' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'array_io/d_i_1' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on function 'array_io' to 'ap_ctrl_hs'.
+WARNING: [RTGEN 206-101] Register 'acc_0' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'acc_1' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'acc_2' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'acc_3' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'acc_4' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'acc_5' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'acc_6' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'acc_7' is power-on initialization.
+INFO: [RTGEN 206-100] Finished creating RTL model for 'array_io'.
+INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.3 seconds; current allocated memory: 1.391 GB.
+INFO: [HLS 200-111] Finished Generating all RTL models: CPU user time: 1 seconds. CPU system time: 1 seconds. Elapsed time: 0.987 seconds; current allocated memory: 1.391 GB.
+INFO: [HLS 200-111] Finished Updating report files: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.354 seconds; current allocated memory: 1.391 GB.
+INFO: [VHDL 208-304] Generating VHDL RTL for array_io.
+INFO: [VLOG 209-307] Generating Verilog RTL for array_io.
+INFO: [HLS 200-789] **** Estimated Fmax: 153.71 MHz
+INFO: [HLS 200-111] Finished Command csynth_design CPU user time: 2 seconds. CPU system time: 1 seconds. Elapsed time: 6.222 seconds; current allocated memory: 0.000 MB.
+INFO: [HLS 200-112] Total CPU user time: 5 seconds. Total CPU system time: 2 seconds. Total elapsed time: 8.9 seconds; peak allocated memory: 1.391 GB.
+==============================================================
+Vitis HLS - High-Level Synthesis from C, C++ and OpenCL v2022.1 (64-bit)
+Tool Version Limit: 2022.04
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+==============================================================
+INFO: [SYN 201-201] Setting up clock 'default' with a period of 10ns.
+INFO: [HLS 200-1611] Setting target device to 'xc7z020-clg400-1'
+INFO: [HLS 200-1505] Using flow_target 'vivado'
+INFO: [HLS 200-1464] Running solution command: config_interface -m_axi_latency=0
+INFO: [HLS 200-1510] Running: set_part xc7z020clg400-1 
+INFO: [HLS 200-1510] Running: create_clock -period 10 -name default 
+INFO: [HLS 200-1510] Running: config_interface -m_axi_latency 0 
+INFO: [HLS 200-1510] Running: source ./array_io_prj/solution3/directives.tcl
+INFO: [HLS 200-1510] Running: set_directive_top -name array_io array_io 
+INFO: [HLS 200-1510] Running: set_directive_unroll array_io/For_Loop 
+INFO: [HLS 200-1510] Running: set_directive_interface -mode ap_fifo array_io d_o 
+INFO: [HLS 200-1510] Running: set_directive_interface -mode ap_memory -storage_type ram_2p -storage_impl bram array_io d_i 
+INFO: [HLS 200-1510] Running: set_directive_array_partition -dim 1 -factor 4 -type block array_io d_o 
+INFO: [HLS 200-1510] Running: set_directive_array_partition -dim 1 -factor 4 -type block array_io d_i 
+INFO: [HLS 200-1510] Running: csynth_design 
+INFO: [HLS 200-111] Finished File checks and directory preparation: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.025 seconds; current allocated memory: 1.391 GB.
+INFO: [HLS 200-10] Analyzing design file 'array_io.c' ... 
+WARNING: [HLS 207-5552] unexpected pragma parameter 'storage_impl' (C:/Users/User/Documents/HLS/LabA/lab3/array_io_prj/solution3/directives.tcl:9:75)
+INFO: [HLS 200-111] Finished Source Code Analysis and Preprocessing: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.569 seconds; current allocated memory: 1.391 GB.
+INFO: [HLS 200-777] Using interface defaults for 'Vivado' flow target.
+INFO: [HLS 214-186] Unrolling loop 'For_Loop' (array_io.c:65:12) in function 'array_io' completely with a factor of 32 (array_io.c:57:0)
+INFO: [HLS 214-248] Applying array_partition to 'd_o': Block partitioning with factor 4 on dimension 1. (array_io.c:57:0)
+INFO: [HLS 214-248] Applying array_partition to 'd_i': Block partitioning with factor 4 on dimension 1. (array_io.c:57:0)
+WARNING: [HLS 214-142] Implementing stream: may cause mismatch if read and write accesses are not in sequential order on port 'd_o_0' (array_io.c:57:0)
+WARNING: [HLS 214-142] Implementing stream: may cause mismatch if read and write accesses are not in sequential order on port 'd_o_1' (array_io.c:57:0)
+WARNING: [HLS 214-142] Implementing stream: may cause mismatch if read and write accesses are not in sequential order on port 'd_o_2' (array_io.c:57:0)
+WARNING: [HLS 214-142] Implementing stream: may cause mismatch if read and write accesses are not in sequential order on port 'd_o_3' (array_io.c:57:0)
+INFO: [HLS 200-111] Finished Compiling Optimization and Transform: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 3.406 seconds; current allocated memory: 1.391 GB.
+INFO: [HLS 200-111] Finished Checking Pragmas: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.003 seconds; current allocated memory: 1.391 GB.
+INFO: [HLS 200-10] Starting code transformations ...
+INFO: [HLS 200-111] Finished Standard Transforms: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.03 seconds; current allocated memory: 1.391 GB.
+INFO: [HLS 200-10] Checking synthesizability ...
+INFO: [HLS 200-111] Finished Checking Synthesizability: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.019 seconds; current allocated memory: 1.391 GB.
+INFO: [XFORM 203-11] Balancing expressions in function 'array_io' (array_io.c:57:1)...32 expression(s) balanced.
+INFO: [HLS 200-111] Finished Loop, function and other optimizations: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.112 seconds; current allocated memory: 1.391 GB.
+INFO: [HLS 200-111] Finished Architecture Synthesis: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.038 seconds; current allocated memory: 1.391 GB.
+INFO: [HLS 200-10] Starting hardware synthesis ...
+INFO: [HLS 200-10] Synthesizing 'array_io' ...
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'array_io' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.186 seconds; current allocated memory: 1.391 GB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.149 seconds; current allocated memory: 1.391 GB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'array_io' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-500] Setting interface mode on port 'array_io/d_o_0' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'array_io/d_o_1' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'array_io/d_o_2' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'array_io/d_o_3' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'array_io/d_i_0' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'array_io/d_i_1' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'array_io/d_i_2' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'array_io/d_i_3' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on function 'array_io' to 'ap_ctrl_hs'.
+WARNING: [RTGEN 206-101] Register 'acc_0' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'acc_1' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'acc_2' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'acc_3' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'acc_4' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'acc_5' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'acc_6' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'acc_7' is power-on initialization.
+INFO: [RTGEN 206-100] Finished creating RTL model for 'array_io'.
+INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.305 seconds; current allocated memory: 1.391 GB.
+INFO: [HLS 200-111] Finished Generating all RTL models: CPU user time: 1 seconds. CPU system time: 0 seconds. Elapsed time: 0.964 seconds; current allocated memory: 1.391 GB.
+INFO: [HLS 200-111] Finished Updating report files: CPU user time: 0 seconds. CPU system time: 1 seconds. Elapsed time: 0.365 seconds; current allocated memory: 1.391 GB.
+INFO: [VHDL 208-304] Generating VHDL RTL for array_io.
+INFO: [VLOG 209-307] Generating Verilog RTL for array_io.
+INFO: [HLS 200-789] **** Estimated Fmax: 154.38 MHz
+INFO: [HLS 200-111] Finished Command csynth_design CPU user time: 1 seconds. CPU system time: 1 seconds. Elapsed time: 6.206 seconds; current allocated memory: 0.000 MB.
+INFO: [HLS 200-112] Total CPU user time: 5 seconds. Total CPU system time: 2 seconds. Total elapsed time: 8.862 seconds; peak allocated memory: 1.391 GB.
+==============================================================
+Vitis HLS - High-Level Synthesis from C, C++ and OpenCL v2022.1 (64-bit)
+Tool Version Limit: 2022.04
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+==============================================================
+INFO: [SYN 201-201] Setting up clock 'default' with a period of 10ns.
+INFO: [HLS 200-1611] Setting target device to 'xc7z020-clg400-1'
+INFO: [HLS 200-1505] Using flow_target 'vivado'
+INFO: [HLS 200-1464] Running solution command: config_interface -m_axi_latency=0
+INFO: [HLS 200-1510] Running: set_part xc7z020clg400-1 
+INFO: [HLS 200-1510] Running: create_clock -period 10 -name default 
+INFO: [HLS 200-1510] Running: config_interface -m_axi_latency 0 
+INFO: [HLS 200-1510] Running: source ./array_io_prj/solution3/directives.tcl
+INFO: [HLS 200-1510] Running: set_directive_top -name array_io array_io 
+INFO: [HLS 200-1510] Running: set_directive_unroll array_io/For_Loop 
+INFO: [HLS 200-1510] Running: set_directive_interface -mode ap_fifo array_io d_o 
+INFO: [HLS 200-1510] Running: set_directive_interface -mode ap_memory -storage_type ram_2p -storage_impl bram array_io d_i 
+INFO: [HLS 200-1510] Running: set_directive_array_partition -dim 1 -type complete array_io d_o 
+INFO: [HLS 200-1510] Running: set_directive_array_partition -dim 1 -type complete array_io d_i 
+INFO: [HLS 200-1510] Running: csynth_design 
+INFO: [HLS 200-111] Finished File checks and directory preparation: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.025 seconds; current allocated memory: 1.391 GB.
+INFO: [HLS 200-10] Analyzing design file 'array_io.c' ... 
+WARNING: [HLS 207-5552] unexpected pragma parameter 'storage_impl' (C:/Users/User/Documents/HLS/LabA/lab3/array_io_prj/solution3/directives.tcl:9:75)
+INFO: [HLS 200-111] Finished Source Code Analysis and Preprocessing: CPU user time: 1 seconds. CPU system time: 0 seconds. Elapsed time: 0.565 seconds; current allocated memory: 1.391 GB.
+INFO: [HLS 200-777] Using interface defaults for 'Vivado' flow target.
+INFO: [HLS 214-186] Unrolling loop 'For_Loop' (array_io.c:65:12) in function 'array_io' completely with a factor of 32 (array_io.c:57:0)
+INFO: [HLS 214-248] Applying array_partition to 'd_o': Complete partitioning on dimension 1. (array_io.c:57:0)
+INFO: [HLS 214-248] Applying array_partition to 'd_i': Complete partitioning on dimension 1. (array_io.c:57:0)
+WARNING: [HLS 214-322] Unsuported scalar variable on pragma 'ap_fifo Interface', ignore it. (C:/Users/User/Documents/HLS/LabA/lab3/array_io_prj/solution3/directives.tcl:8:9)
+INFO: [HLS 200-111] Finished Compiling Optimization and Transform: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 3.554 seconds; current allocated memory: 1.391 GB.
+INFO: [HLS 200-111] Finished Checking Pragmas: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.004 seconds; current allocated memory: 1.391 GB.
+INFO: [HLS 200-10] Starting code transformations ...
+INFO: [HLS 200-111] Finished Standard Transforms: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.036 seconds; current allocated memory: 1.391 GB.
+INFO: [HLS 200-10] Checking synthesizability ...
+INFO: [HLS 200-111] Finished Checking Synthesizability: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.027 seconds; current allocated memory: 1.391 GB.
+INFO: [XFORM 203-11] Balancing expressions in function 'array_io' (array_io.c:57:1)...32 expression(s) balanced.
+INFO: [HLS 200-111] Finished Loop, function and other optimizations: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.14 seconds; current allocated memory: 1.391 GB.
+INFO: [HLS 200-111] Finished Architecture Synthesis: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.065 seconds; current allocated memory: 1.391 GB.
+INFO: [HLS 200-10] Starting hardware synthesis ...
+INFO: [HLS 200-10] Synthesizing 'array_io' ...
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'array_io' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.186 seconds; current allocated memory: 1.391 GB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.121 seconds; current allocated memory: 1.391 GB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'array_io' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-500] Setting interface mode on port 'array_io/d_o_0' to 'ap_vld'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'array_io/d_o_1' to 'ap_vld'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'array_io/d_o_2' to 'ap_vld'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'array_io/d_o_3' to 'ap_vld'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'array_io/d_o_4' to 'ap_vld'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'array_io/d_o_5' to 'ap_vld'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'array_io/d_o_6' to 'ap_vld'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'array_io/d_o_7' to 'ap_vld'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'array_io/d_o_8' to 'ap_vld'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'array_io/d_o_9' to 'ap_vld'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'array_io/d_o_10' to 'ap_vld'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'array_io/d_o_11' to 'ap_vld'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'array_io/d_o_12' to 'ap_vld'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'array_io/d_o_13' to 'ap_vld'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'array_io/d_o_14' to 'ap_vld'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'array_io/d_o_15' to 'ap_vld'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'array_io/d_o_16' to 'ap_vld'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'array_io/d_o_17' to 'ap_vld'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'array_io/d_o_18' to 'ap_vld'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'array_io/d_o_19' to 'ap_vld'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'array_io/d_o_20' to 'ap_vld'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'array_io/d_o_21' to 'ap_vld'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'array_io/d_o_22' to 'ap_vld'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'array_io/d_o_23' to 'ap_vld'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'array_io/d_o_24' to 'ap_vld'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'array_io/d_o_25' to 'ap_vld'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'array_io/d_o_26' to 'ap_vld'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'array_io/d_o_27' to 'ap_vld'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'array_io/d_o_28' to 'ap_vld'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'array_io/d_o_29' to 'ap_vld'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'array_io/d_o_30' to 'ap_vld'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'array_io/d_o_31' to 'ap_vld'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'array_io/d_i_0' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'array_io/d_i_1' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'array_io/d_i_2' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'array_io/d_i_3' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'array_io/d_i_4' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'array_io/d_i_5' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'array_io/d_i_6' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'array_io/d_i_7' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'array_io/d_i_8' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'array_io/d_i_9' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'array_io/d_i_10' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'array_io/d_i_11' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'array_io/d_i_12' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'array_io/d_i_13' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'array_io/d_i_14' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'array_io/d_i_15' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'array_io/d_i_16' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'array_io/d_i_17' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'array_io/d_i_18' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'array_io/d_i_19' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'array_io/d_i_20' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'array_io/d_i_21' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'array_io/d_i_22' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'array_io/d_i_23' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'array_io/d_i_24' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'array_io/d_i_25' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'array_io/d_i_26' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'array_io/d_i_27' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'array_io/d_i_28' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'array_io/d_i_29' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'array_io/d_i_30' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'array_io/d_i_31' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on function 'array_io' to 'ap_ctrl_hs'.
+WARNING: [RTGEN 206-101] Register 'acc_0' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'acc_1' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'acc_2' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'acc_3' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'acc_4' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'acc_5' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'acc_6' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'acc_7' is power-on initialization.
+INFO: [RTGEN 206-100] Finished creating RTL model for 'array_io'.
+INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.569 seconds; current allocated memory: 1.391 GB.
+INFO: [HLS 200-111] Finished Generating all RTL models: CPU user time: 1 seconds. CPU system time: 0 seconds. Elapsed time: 0.936 seconds; current allocated memory: 1.391 GB.
+INFO: [HLS 200-111] Finished Updating report files: CPU user time: 1 seconds. CPU system time: 0 seconds. Elapsed time: 0.895 seconds; current allocated memory: 1.391 GB.
+INFO: [VHDL 208-304] Generating VHDL RTL for array_io.
+INFO: [VLOG 209-307] Generating Verilog RTL for array_io.
+INFO: [HLS 200-789] **** Estimated Fmax: 160.49 MHz
+INFO: [HLS 200-111] Finished Command csynth_design CPU user time: 3 seconds. CPU system time: 0 seconds. Elapsed time: 7.157 seconds; current allocated memory: 0.000 MB.
+INFO: [HLS 200-112] Total CPU user time: 6 seconds. Total CPU system time: 1 seconds. Total elapsed time: 9.805 seconds; peak allocated memory: 1.391 GB.
+==============================================================
+Vitis HLS - High-Level Synthesis from C, C++ and OpenCL v2022.1 (64-bit)
+Tool Version Limit: 2022.04
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+==============================================================
+INFO: [SYN 201-201] Setting up clock 'default' with a period of 10ns.
+INFO: [HLS 200-1611] Setting target device to 'xc7z020-clg400-1'
+INFO: [HLS 200-1505] Using flow_target 'vivado'
+INFO: [HLS 200-1464] Running solution command: config_interface -m_axi_latency=0
+INFO: [HLS 200-1510] Running: set_part xc7z020clg400-1 
+INFO: [HLS 200-1510] Running: create_clock -period 10 -name default 
+INFO: [HLS 200-1510] Running: config_interface -m_axi_latency 0 
+INFO: [HLS 200-1510] Running: source ./array_io_prj/solution3/directives.tcl
+INFO: [HLS 200-1510] Running: set_directive_top -name array_io array_io 
+INFO: [HLS 200-1510] Running: set_directive_unroll array_io/For_Loop 
+INFO: [HLS 200-1510] Running: set_directive_interface -mode ap_fifo array_io d_o 
+INFO: [HLS 200-1510] Running: set_directive_interface -mode ap_memory -storage_type ram_2p -storage_impl bram array_io d_i 
+INFO: [HLS 200-1510] Running: set_directive_array_partition -dim 1 -factor 2 -type cyclic array_io d_o 
+INFO: [HLS 200-1510] Running: set_directive_array_partition -dim 1 -factor 2 -type cyclic array_io d_i 
+INFO: [HLS 200-1510] Running: csynth_design 
+INFO: [HLS 200-111] Finished File checks and directory preparation: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.025 seconds; current allocated memory: 1.414 GB.
+INFO: [HLS 200-10] Analyzing design file 'array_io.c' ... 
+WARNING: [HLS 207-5552] unexpected pragma parameter 'storage_impl' (C:/Users/User/Documents/HLS/LabA/lab3/array_io_prj/solution3/directives.tcl:9:75)
+INFO: [HLS 200-111] Finished Source Code Analysis and Preprocessing: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.569 seconds; current allocated memory: 1.414 GB.
+INFO: [HLS 200-777] Using interface defaults for 'Vivado' flow target.
+INFO: [HLS 214-186] Unrolling loop 'For_Loop' (array_io.c:65:12) in function 'array_io' completely with a factor of 32 (array_io.c:57:0)
+INFO: [HLS 214-248] Applying array_partition to 'd_o': Cyclic partitioning with factor 2 on dimension 1. (array_io.c:57:0)
+INFO: [HLS 214-248] Applying array_partition to 'd_i': Cyclic partitioning with factor 2 on dimension 1. (array_io.c:57:0)
+WARNING: [HLS 214-142] Implementing stream: may cause mismatch if read and write accesses are not in sequential order on port 'd_o_0' (array_io.c:57:0)
+WARNING: [HLS 214-142] Implementing stream: may cause mismatch if read and write accesses are not in sequential order on port 'd_o_1' (array_io.c:57:0)
+INFO: [HLS 200-111] Finished Compiling Optimization and Transform: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 3.386 seconds; current allocated memory: 1.414 GB.
+INFO: [HLS 200-111] Finished Checking Pragmas: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.003 seconds; current allocated memory: 1.414 GB.
+INFO: [HLS 200-10] Starting code transformations ...
+INFO: [HLS 200-111] Finished Standard Transforms: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.028 seconds; current allocated memory: 1.414 GB.
+INFO: [HLS 200-10] Checking synthesizability ...
+INFO: [HLS 200-111] Finished Checking Synthesizability: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.019 seconds; current allocated memory: 1.414 GB.
+INFO: [XFORM 203-11] Balancing expressions in function 'array_io' (array_io.c:57:1)...32 expression(s) balanced.
+INFO: [HLS 200-111] Finished Loop, function and other optimizations: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.111 seconds; current allocated memory: 1.414 GB.
+INFO: [HLS 200-111] Finished Architecture Synthesis: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.039 seconds; current allocated memory: 1.414 GB.
+INFO: [HLS 200-10] Starting hardware synthesis ...
+INFO: [HLS 200-10] Synthesizing 'array_io' ...
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'array_io' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.187 seconds; current allocated memory: 1.414 GB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.169 seconds; current allocated memory: 1.414 GB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'array_io' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-500] Setting interface mode on port 'array_io/d_o_0' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'array_io/d_o_1' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'array_io/d_i_0' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'array_io/d_i_1' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on function 'array_io' to 'ap_ctrl_hs'.
+WARNING: [RTGEN 206-101] Register 'acc_0' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'acc_1' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'acc_2' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'acc_3' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'acc_4' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'acc_5' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'acc_6' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'acc_7' is power-on initialization.
+INFO: [RTGEN 206-100] Finished creating RTL model for 'array_io'.
+INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 1 seconds. CPU system time: 0 seconds. Elapsed time: 0.29 seconds; current allocated memory: 1.414 GB.
+INFO: [HLS 200-111] Finished Generating all RTL models: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.989 seconds; current allocated memory: 1.414 GB.
+INFO: [HLS 200-111] Finished Updating report files: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.354 seconds; current allocated memory: 1.414 GB.
+INFO: [VHDL 208-304] Generating VHDL RTL for array_io.
+INFO: [VLOG 209-307] Generating Verilog RTL for array_io.
+INFO: [HLS 200-789] **** Estimated Fmax: 153.71 MHz
+INFO: [HLS 200-111] Finished Command csynth_design CPU user time: 1 seconds. CPU system time: 0 seconds. Elapsed time: 6.201 seconds; current allocated memory: 0.000 MB.
+INFO: [HLS 200-112] Total CPU user time: 5 seconds. Total CPU system time: 1 seconds. Total elapsed time: 8.801 seconds; peak allocated memory: 1.414 GB.
+==============================================================
+Vitis HLS - High-Level Synthesis from C, C++ and OpenCL v2022.1 (64-bit)
+Tool Version Limit: 2022.04
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+==============================================================
+INFO: [SYN 201-201] Setting up clock 'default' with a period of 10ns.
+INFO: [HLS 200-1611] Setting target device to 'xc7z020-clg400-1'
+INFO: [HLS 200-1505] Using flow_target 'vivado'
+INFO: [HLS 200-1464] Running solution command: config_interface -m_axi_latency=0
+INFO: [HLS 200-1510] Running: set_part xc7z020clg400-1 
+INFO: [HLS 200-1510] Running: create_clock -period 10 -name default 
+INFO: [HLS 200-1510] Running: config_interface -m_axi_latency 0 
+INFO: [HLS 200-1510] Running: source ./array_io_prj/solution3/directives.tcl
+INFO: [HLS 200-1510] Running: set_directive_top -name array_io array_io 
+INFO: [HLS 200-1510] Running: set_directive_unroll array_io/For_Loop 
+INFO: [HLS 200-1510] Running: set_directive_interface -mode ap_fifo array_io d_o 
+INFO: [HLS 200-1510] Running: set_directive_interface -mode ap_memory -storage_type ram_2p -storage_impl bram array_io d_i 
+INFO: [HLS 200-1510] Running: set_directive_array_partition -dim 1 -factor 4 -type cyclic array_io d_o 
+INFO: [HLS 200-1510] Running: set_directive_array_partition -dim 1 -factor 4 -type cyclic array_io d_i 
+INFO: [HLS 200-1510] Running: csynth_design 
+INFO: [HLS 200-111] Finished File checks and directory preparation: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.024 seconds; current allocated memory: 1.391 GB.
+INFO: [HLS 200-10] Analyzing design file 'array_io.c' ... 
+WARNING: [HLS 207-5552] unexpected pragma parameter 'storage_impl' (C:/Users/User/Documents/HLS/LabA/lab3/array_io_prj/solution3/directives.tcl:9:75)
+INFO: [HLS 200-111] Finished Source Code Analysis and Preprocessing: CPU user time: 1 seconds. CPU system time: 0 seconds. Elapsed time: 0.555 seconds; current allocated memory: 1.391 GB.
+INFO: [HLS 200-777] Using interface defaults for 'Vivado' flow target.
+INFO: [HLS 214-186] Unrolling loop 'For_Loop' (array_io.c:65:12) in function 'array_io' completely with a factor of 32 (array_io.c:57:0)
+INFO: [HLS 214-248] Applying array_partition to 'd_o': Cyclic partitioning with factor 4 on dimension 1. (array_io.c:57:0)
+INFO: [HLS 214-248] Applying array_partition to 'd_i': Cyclic partitioning with factor 4 on dimension 1. (array_io.c:57:0)
+WARNING: [HLS 214-142] Implementing stream: may cause mismatch if read and write accesses are not in sequential order on port 'd_o_0' (array_io.c:57:0)
+WARNING: [HLS 214-142] Implementing stream: may cause mismatch if read and write accesses are not in sequential order on port 'd_o_1' (array_io.c:57:0)
+WARNING: [HLS 214-142] Implementing stream: may cause mismatch if read and write accesses are not in sequential order on port 'd_o_2' (array_io.c:57:0)
+WARNING: [HLS 214-142] Implementing stream: may cause mismatch if read and write accesses are not in sequential order on port 'd_o_3' (array_io.c:57:0)
+INFO: [HLS 200-111] Finished Compiling Optimization and Transform: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 3.409 seconds; current allocated memory: 1.391 GB.
+INFO: [HLS 200-111] Finished Checking Pragmas: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.003 seconds; current allocated memory: 1.391 GB.
+INFO: [HLS 200-10] Starting code transformations ...
+INFO: [HLS 200-111] Finished Standard Transforms: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.033 seconds; current allocated memory: 1.391 GB.
+INFO: [HLS 200-10] Checking synthesizability ...
+INFO: [HLS 200-111] Finished Checking Synthesizability: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.019 seconds; current allocated memory: 1.391 GB.
+INFO: [XFORM 203-11] Balancing expressions in function 'array_io' (array_io.c:57:1)...32 expression(s) balanced.
+INFO: [HLS 200-111] Finished Loop, function and other optimizations: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.111 seconds; current allocated memory: 1.391 GB.
+INFO: [HLS 200-111] Finished Architecture Synthesis: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.039 seconds; current allocated memory: 1.391 GB.
+INFO: [HLS 200-10] Starting hardware synthesis ...
+INFO: [HLS 200-10] Synthesizing 'array_io' ...
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'array_io' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.181 seconds; current allocated memory: 1.391 GB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.149 seconds; current allocated memory: 1.391 GB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'array_io' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-500] Setting interface mode on port 'array_io/d_o_0' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'array_io/d_o_1' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'array_io/d_o_2' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'array_io/d_o_3' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'array_io/d_i_0' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'array_io/d_i_1' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'array_io/d_i_2' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'array_io/d_i_3' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on function 'array_io' to 'ap_ctrl_hs'.
+WARNING: [RTGEN 206-101] Register 'acc_0' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'acc_1' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'acc_2' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'acc_3' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'acc_4' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'acc_5' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'acc_6' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'acc_7' is power-on initialization.
+INFO: [RTGEN 206-100] Finished creating RTL model for 'array_io'.
+INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.309 seconds; current allocated memory: 1.391 GB.
+INFO: [HLS 200-111] Finished Generating all RTL models: CPU user time: 1 seconds. CPU system time: 1 seconds. Elapsed time: 0.984 seconds; current allocated memory: 1.391 GB.
+INFO: [HLS 200-111] Finished Updating report files: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.447 seconds; current allocated memory: 1.391 GB.
+INFO: [VHDL 208-304] Generating VHDL RTL for array_io.
+INFO: [VLOG 209-307] Generating Verilog RTL for array_io.
+INFO: [HLS 200-789] **** Estimated Fmax: 153.71 MHz
+INFO: [HLS 200-111] Finished Command csynth_design CPU user time: 2 seconds. CPU system time: 1 seconds. Elapsed time: 6.3 seconds; current allocated memory: 0.000 MB.
+INFO: [HLS 200-112] Total CPU user time: 5 seconds. Total CPU system time: 2 seconds. Total elapsed time: 8.978 seconds; peak allocated memory: 1.391 GB.
+==============================================================
+Vitis HLS - High-Level Synthesis from C, C++ and OpenCL v2022.1 (64-bit)
+Tool Version Limit: 2022.04
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+==============================================================
+INFO: [SYN 201-201] Setting up clock 'default' with a period of 10ns.
+INFO: [HLS 200-1611] Setting target device to 'xc7z020-clg400-1'
+INFO: [HLS 200-1505] Using flow_target 'vivado'
+INFO: [HLS 200-1464] Running solution command: config_interface -m_axi_latency=0
+INFO: [HLS 200-1510] Running: set_part xc7z020clg400-1 
+INFO: [HLS 200-1510] Running: create_clock -period 10 -name default 
+INFO: [HLS 200-1510] Running: config_interface -m_axi_latency 0 
+INFO: [HLS 200-1510] Running: source ./array_io_prj/solution3/directives.tcl
+INFO: [HLS 200-1510] Running: set_directive_top -name array_io array_io 
+INFO: [HLS 200-1510] Running: set_directive_unroll array_io/For_Loop 
+INFO: [HLS 200-1510] Running: set_directive_interface -mode ap_fifo array_io d_o 
+INFO: [HLS 200-1510] Running: set_directive_interface -mode ap_memory -storage_type ram_2p -storage_impl bram array_io d_i 
+INFO: [HLS 200-1510] Running: set_directive_array_partition -dim 1 -factor 2 -type block array_io d_o 
+INFO: [HLS 200-1510] Running: set_directive_array_partition -dim 1 -factor 2 -type block array_io d_i 
+INFO: [HLS 200-1510] Running: csynth_design 
+INFO: [HLS 200-111] Finished File checks and directory preparation: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.025 seconds; current allocated memory: 1.403 GB.
+INFO: [HLS 200-10] Analyzing design file 'array_io.c' ... 
+WARNING: [HLS 207-5552] unexpected pragma parameter 'storage_impl' (C:/Users/User/Documents/HLS/LabA/lab3/array_io_prj/solution3/directives.tcl:9:75)
+INFO: [HLS 200-111] Finished Source Code Analysis and Preprocessing: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.574 seconds; current allocated memory: 1.403 GB.
+INFO: [HLS 200-777] Using interface defaults for 'Vivado' flow target.
+INFO: [HLS 214-186] Unrolling loop 'For_Loop' (array_io.c:65:12) in function 'array_io' completely with a factor of 32 (array_io.c:57:0)
+INFO: [HLS 214-248] Applying array_partition to 'd_o': Block partitioning with factor 2 on dimension 1. (array_io.c:57:0)
+INFO: [HLS 214-248] Applying array_partition to 'd_i': Block partitioning with factor 2 on dimension 1. (array_io.c:57:0)
+WARNING: [HLS 214-142] Implementing stream: may cause mismatch if read and write accesses are not in sequential order on port 'd_o_0' (array_io.c:57:0)
+WARNING: [HLS 214-142] Implementing stream: may cause mismatch if read and write accesses are not in sequential order on port 'd_o_1' (array_io.c:57:0)
+INFO: [HLS 200-111] Finished Compiling Optimization and Transform: CPU user time: 1 seconds. CPU system time: 0 seconds. Elapsed time: 3.376 seconds; current allocated memory: 1.403 GB.
+INFO: [HLS 200-111] Finished Checking Pragmas: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.003 seconds; current allocated memory: 1.403 GB.
+INFO: [HLS 200-10] Starting code transformations ...
+INFO: [HLS 200-111] Finished Standard Transforms: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.03 seconds; current allocated memory: 1.403 GB.
+INFO: [HLS 200-10] Checking synthesizability ...
+INFO: [HLS 200-111] Finished Checking Synthesizability: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.02 seconds; current allocated memory: 1.403 GB.
+INFO: [XFORM 203-11] Balancing expressions in function 'array_io' (array_io.c:57:1)...32 expression(s) balanced.
+INFO: [HLS 200-111] Finished Loop, function and other optimizations: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.109 seconds; current allocated memory: 1.403 GB.
+INFO: [HLS 200-111] Finished Architecture Synthesis: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.039 seconds; current allocated memory: 1.403 GB.
+INFO: [HLS 200-10] Starting hardware synthesis ...
+INFO: [HLS 200-10] Synthesizing 'array_io' ...
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'array_io' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.182 seconds; current allocated memory: 1.403 GB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.17 seconds; current allocated memory: 1.403 GB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'array_io' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-500] Setting interface mode on port 'array_io/d_o_0' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'array_io/d_o_1' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'array_io/d_i_0' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'array_io/d_i_1' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on function 'array_io' to 'ap_ctrl_hs'.
+WARNING: [RTGEN 206-101] Register 'acc_0' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'acc_1' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'acc_2' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'acc_3' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'acc_4' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'acc_5' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'acc_6' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'acc_7' is power-on initialization.
+INFO: [RTGEN 206-100] Finished creating RTL model for 'array_io'.
+INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.289 seconds; current allocated memory: 1.403 GB.
+INFO: [HLS 200-111] Finished Generating all RTL models: CPU user time: 1 seconds. CPU system time: 0 seconds. Elapsed time: 0.979 seconds; current allocated memory: 1.403 GB.
+INFO: [HLS 200-111] Finished Updating report files: CPU user time: 0 seconds. CPU system time: 1 seconds. Elapsed time: 0.343 seconds; current allocated memory: 1.403 GB.
+INFO: [VHDL 208-304] Generating VHDL RTL for array_io.
+INFO: [VLOG 209-307] Generating Verilog RTL for array_io.
+INFO: [HLS 200-789] **** Estimated Fmax: 153.71 MHz
+INFO: [HLS 200-111] Finished Command csynth_design CPU user time: 2 seconds. CPU system time: 1 seconds. Elapsed time: 6.173 seconds; current allocated memory: 0.000 MB.
+INFO: [HLS 200-112] Total CPU user time: 5 seconds. Total CPU system time: 2 seconds. Total elapsed time: 8.795 seconds; peak allocated memory: 1.403 GB.
+==============================================================
+Vitis HLS - High-Level Synthesis from C, C++ and OpenCL v2022.1 (64-bit)
+Tool Version Limit: 2022.04
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+==============================================================
+INFO: [SYN 201-201] Setting up clock 'default' with a period of 10ns.
+INFO: [HLS 200-1611] Setting target device to 'xc7z020-clg400-1'
+INFO: [HLS 200-1505] Using flow_target 'vivado'
+INFO: [HLS 200-1464] Running solution command: config_interface -m_axi_latency=0
+INFO: [HLS 200-1510] Running: set_part xc7z020clg400-1 
+INFO: [HLS 200-1510] Running: create_clock -period 10 -name default 
+INFO: [HLS 200-1510] Running: config_interface -m_axi_latency 0 
+INFO: [HLS 200-1510] Running: source ./array_io_prj/solution3/directives.tcl
+INFO: [HLS 200-1510] Running: set_directive_top -name array_io array_io 
+INFO: [HLS 200-1510] Running: set_directive_unroll array_io/For_Loop 
+INFO: [HLS 200-1510] Running: set_directive_interface -mode ap_fifo array_io d_o 
+INFO: [HLS 200-1510] Running: set_directive_interface -mode ap_memory -storage_type ram_2p -storage_impl bram array_io d_i 
+INFO: [HLS 200-1510] Running: set_directive_array_partition -dim 1 -factor 4 -type block array_io d_o 
+INFO: [HLS 200-1510] Running: set_directive_array_partition -dim 1 -factor 4 -type block array_io d_i 
+INFO: [HLS 200-1510] Running: csynth_design 
+INFO: [HLS 200-111] Finished File checks and directory preparation: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.025 seconds; current allocated memory: 1.391 GB.
+INFO: [HLS 200-10] Analyzing design file 'array_io.c' ... 
+WARNING: [HLS 207-5552] unexpected pragma parameter 'storage_impl' (C:/Users/User/Documents/HLS/LabA/lab3/array_io_prj/solution3/directives.tcl:9:75)
+INFO: [HLS 200-111] Finished Source Code Analysis and Preprocessing: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.578 seconds; current allocated memory: 1.391 GB.
+INFO: [HLS 200-777] Using interface defaults for 'Vivado' flow target.
+INFO: [HLS 214-186] Unrolling loop 'For_Loop' (array_io.c:65:12) in function 'array_io' completely with a factor of 32 (array_io.c:57:0)
+INFO: [HLS 214-248] Applying array_partition to 'd_o': Block partitioning with factor 4 on dimension 1. (array_io.c:57:0)
+INFO: [HLS 214-248] Applying array_partition to 'd_i': Block partitioning with factor 4 on dimension 1. (array_io.c:57:0)
+WARNING: [HLS 214-142] Implementing stream: may cause mismatch if read and write accesses are not in sequential order on port 'd_o_0' (array_io.c:57:0)
+WARNING: [HLS 214-142] Implementing stream: may cause mismatch if read and write accesses are not in sequential order on port 'd_o_1' (array_io.c:57:0)
+WARNING: [HLS 214-142] Implementing stream: may cause mismatch if read and write accesses are not in sequential order on port 'd_o_2' (array_io.c:57:0)
+WARNING: [HLS 214-142] Implementing stream: may cause mismatch if read and write accesses are not in sequential order on port 'd_o_3' (array_io.c:57:0)
+INFO: [HLS 200-111] Finished Compiling Optimization and Transform: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 3.403 seconds; current allocated memory: 1.391 GB.
+INFO: [HLS 200-111] Finished Checking Pragmas: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.002 seconds; current allocated memory: 1.391 GB.
+INFO: [HLS 200-10] Starting code transformations ...
+INFO: [HLS 200-111] Finished Standard Transforms: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.031 seconds; current allocated memory: 1.391 GB.
+INFO: [HLS 200-10] Checking synthesizability ...
+INFO: [HLS 200-111] Finished Checking Synthesizability: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.02 seconds; current allocated memory: 1.391 GB.
+INFO: [XFORM 203-11] Balancing expressions in function 'array_io' (array_io.c:57:1)...32 expression(s) balanced.
+INFO: [HLS 200-111] Finished Loop, function and other optimizations: CPU user time: 1 seconds. CPU system time: 0 seconds. Elapsed time: 0.113 seconds; current allocated memory: 1.391 GB.
+INFO: [HLS 200-111] Finished Architecture Synthesis: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.039 seconds; current allocated memory: 1.391 GB.
+INFO: [HLS 200-10] Starting hardware synthesis ...
+INFO: [HLS 200-10] Synthesizing 'array_io' ...
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'array_io' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.186 seconds; current allocated memory: 1.391 GB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.158 seconds; current allocated memory: 1.391 GB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'array_io' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-500] Setting interface mode on port 'array_io/d_o_0' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'array_io/d_o_1' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'array_io/d_o_2' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'array_io/d_o_3' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'array_io/d_i_0' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'array_io/d_i_1' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'array_io/d_i_2' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'array_io/d_i_3' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on function 'array_io' to 'ap_ctrl_hs'.
+WARNING: [RTGEN 206-101] Register 'acc_0' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'acc_1' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'acc_2' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'acc_3' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'acc_4' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'acc_5' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'acc_6' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'acc_7' is power-on initialization.
+INFO: [RTGEN 206-100] Finished creating RTL model for 'array_io'.
+INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.306 seconds; current allocated memory: 1.391 GB.
+INFO: [HLS 200-111] Finished Generating all RTL models: CPU user time: 1 seconds. CPU system time: 1 seconds. Elapsed time: 0.986 seconds; current allocated memory: 1.391 GB.
+INFO: [HLS 200-111] Finished Updating report files: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.388 seconds; current allocated memory: 1.391 GB.
+INFO: [VHDL 208-304] Generating VHDL RTL for array_io.
+INFO: [VLOG 209-307] Generating Verilog RTL for array_io.
+INFO: [HLS 200-789] **** Estimated Fmax: 154.38 MHz
+INFO: [HLS 200-111] Finished Command csynth_design CPU user time: 2 seconds. CPU system time: 1 seconds. Elapsed time: 6.27 seconds; current allocated memory: 0.000 MB.
+INFO: [HLS 200-112] Total CPU user time: 5 seconds. Total CPU system time: 2 seconds. Total elapsed time: 8.932 seconds; peak allocated memory: 1.391 GB.
+==============================================================
+Vitis HLS - High-Level Synthesis from C, C++ and OpenCL v2022.1 (64-bit)
+Tool Version Limit: 2022.04
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+==============================================================
+INFO: [SYN 201-201] Setting up clock 'default' with a period of 10ns.
+INFO: [HLS 200-1611] Setting target device to 'xc7z020-clg400-1'
+INFO: [HLS 200-1505] Using flow_target 'vivado'
+INFO: [HLS 200-1464] Running solution command: config_interface -m_axi_latency=0
+INFO: [HLS 200-1510] Running: set_part xc7z020clg400-1 
+INFO: [HLS 200-1510] Running: create_clock -period 10 -name default 
+INFO: [HLS 200-1510] Running: config_interface -m_axi_latency 0 
+INFO: [HLS 200-1510] Running: source ./array_io_prj/solution3/directives.tcl
+INFO: [HLS 200-1510] Running: set_directive_top -name array_io array_io 
+INFO: [HLS 200-1510] Running: set_directive_unroll array_io/For_Loop 
+INFO: [HLS 200-1510] Running: set_directive_interface -mode ap_fifo array_io d_o 
+INFO: [HLS 200-1510] Running: set_directive_interface -mode ap_memory -storage_type ram_2p -storage_impl bram array_io d_i 
+INFO: [HLS 200-1510] Running: set_directive_array_partition -dim 1 -factor 2 -type cyclic array_io d_o 
+INFO: [HLS 200-1510] Running: set_directive_array_partition -dim 1 -factor 2 -type cyclic array_io d_i 
+INFO: [HLS 200-1510] Running: csynth_design 
+INFO: [HLS 200-111] Finished File checks and directory preparation: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.025 seconds; current allocated memory: 1.396 GB.
+INFO: [HLS 200-10] Analyzing design file 'array_io.c' ... 
+WARNING: [HLS 207-5552] unexpected pragma parameter 'storage_impl' (C:/Users/User/Documents/HLS/LabA/lab3/array_io_prj/solution3/directives.tcl:9:75)
+INFO: [HLS 200-111] Finished Source Code Analysis and Preprocessing: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.567 seconds; current allocated memory: 1.396 GB.
+INFO: [HLS 200-777] Using interface defaults for 'Vivado' flow target.
+INFO: [HLS 214-186] Unrolling loop 'For_Loop' (array_io.c:65:12) in function 'array_io' completely with a factor of 32 (array_io.c:57:0)
+INFO: [HLS 214-248] Applying array_partition to 'd_o': Cyclic partitioning with factor 2 on dimension 1. (array_io.c:57:0)
+INFO: [HLS 214-248] Applying array_partition to 'd_i': Cyclic partitioning with factor 2 on dimension 1. (array_io.c:57:0)
+WARNING: [HLS 214-142] Implementing stream: may cause mismatch if read and write accesses are not in sequential order on port 'd_o_0' (array_io.c:57:0)
+WARNING: [HLS 214-142] Implementing stream: may cause mismatch if read and write accesses are not in sequential order on port 'd_o_1' (array_io.c:57:0)
+INFO: [HLS 200-111] Finished Compiling Optimization and Transform: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 3.379 seconds; current allocated memory: 1.396 GB.
+INFO: [HLS 200-111] Finished Checking Pragmas: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.002 seconds; current allocated memory: 1.396 GB.
+INFO: [HLS 200-10] Starting code transformations ...
+INFO: [HLS 200-111] Finished Standard Transforms: CPU user time: 1 seconds. CPU system time: 0 seconds. Elapsed time: 0.03 seconds; current allocated memory: 1.396 GB.
+INFO: [HLS 200-10] Checking synthesizability ...
+INFO: [HLS 200-111] Finished Checking Synthesizability: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.019 seconds; current allocated memory: 1.396 GB.
+INFO: [XFORM 203-11] Balancing expressions in function 'array_io' (array_io.c:57:1)...32 expression(s) balanced.
+INFO: [HLS 200-111] Finished Loop, function and other optimizations: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.112 seconds; current allocated memory: 1.396 GB.
+INFO: [HLS 200-111] Finished Architecture Synthesis: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.039 seconds; current allocated memory: 1.396 GB.
+INFO: [HLS 200-10] Starting hardware synthesis ...
+INFO: [HLS 200-10] Synthesizing 'array_io' ...
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'array_io' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.183 seconds; current allocated memory: 1.396 GB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.171 seconds; current allocated memory: 1.396 GB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'array_io' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-500] Setting interface mode on port 'array_io/d_o_0' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'array_io/d_o_1' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'array_io/d_i_0' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'array_io/d_i_1' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on function 'array_io' to 'ap_ctrl_hs'.
+WARNING: [RTGEN 206-101] Register 'acc_0' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'acc_1' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'acc_2' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'acc_3' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'acc_4' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'acc_5' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'acc_6' is power-on initialization.
+WARNING: [RTGEN 206-101] Register 'acc_7' is power-on initialization.
+INFO: [RTGEN 206-100] Finished creating RTL model for 'array_io'.
+INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.286 seconds; current allocated memory: 1.396 GB.
+INFO: [HLS 200-111] Finished Generating all RTL models: CPU user time: 1 seconds. CPU system time: 0 seconds. Elapsed time: 0.99 seconds; current allocated memory: 1.396 GB.
+INFO: [HLS 200-111] Finished Updating report files: CPU user time: 0 seconds. CPU system time: 1 seconds. Elapsed time: 0.353 seconds; current allocated memory: 1.396 GB.
+INFO: [VHDL 208-304] Generating VHDL RTL for array_io.
+INFO: [VLOG 209-307] Generating Verilog RTL for array_io.
+INFO: [HLS 200-789] **** Estimated Fmax: 153.71 MHz
+INFO: [HLS 200-111] Finished Command csynth_design CPU user time: 2 seconds. CPU system time: 1 seconds. Elapsed time: 6.192 seconds; current allocated memory: 0.000 MB.
+INFO: [HLS 200-112] Total CPU user time: 5 seconds. Total CPU system time: 2 seconds. Total elapsed time: 8.795 seconds; peak allocated memory: 1.396 GB.

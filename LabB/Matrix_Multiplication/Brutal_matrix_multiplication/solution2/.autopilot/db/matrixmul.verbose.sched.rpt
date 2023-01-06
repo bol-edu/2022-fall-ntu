@@ -1,0 +1,235 @@
+
+
+================================================================
+== Vivado HLS Report for 'matrixmul'
+================================================================
+* Date:           Tue Oct 18 17:11:42 2022
+
+* Version:        2020.1 (Build 2897737 on Wed May 27 20:21:37 MDT 2020)
+* Project:        Brutal_matrix_multiplication
+* Solution:       solution2
+* Product family: zynq
+* Target device:  xc7z020-clg400-1
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing: 
+    * Summary: 
+    +--------+----------+----------+------------+
+    |  Clock |  Target  | Estimated| Uncertainty|
+    +--------+----------+----------+------------+
+    |ap_clk  | 10.00 ns | 8.510 ns |   1.25 ns  |
+    +--------+----------+----------+------------+
+
++ Latency: 
+    * Summary: 
+    +---------+---------+----------+----------+-------+-------+---------+
+    |  Latency (cycles) |  Latency (absolute) |    Interval   | Pipeline|
+    |   min   |   max   |    min   |    max   |  min  |  max  |   Type  |
+    +---------+---------+----------+----------+-------+-------+---------+
+    |    32773|    32773| 0.328 ms | 0.328 ms |  32773|  32773|   none  |
+    +---------+---------+----------+----------+-------+-------+---------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        +-------------------+---------+---------+----------+-----------+-----------+-------+----------+
+        |                   |  Latency (cycles) | Iteration|  Initiation Interval  |  Trip |          |
+        |     Loop Name     |   min   |   max   |  Latency |  achieved |   target  | Count | Pipelined|
+        +-------------------+---------+---------+----------+-----------+-----------+-------+----------+
+        |- row_col_product  |    32771|    32771|         5|          1|          1|  32768|    yes   |
+        +-------------------+---------+---------+----------+-----------+-----------+-------+----------+
+
+============================================================
++ Verbose Summary: Synthesis Manager
+============================================================
+InlineROM: 1
+ExposeGlobal: 0
+============================================================
++ Verbose Summary: CDFG Model
+============================================================
+IsTopModel: 1
+ResetActiveHigh: 1
+IsCombinational: 0
+IsDatapathOnly: 0
+HasWiredReturn: 1
+HasMFsm: 0
+HasVarLatency: 1
+IsPipeline: 0
+IsRtlPipelined: 0
+IsInstanceOverlapped: 0
+IsDontTouch: 0
+HasImplIP: 0
+IsGatedGlobalClock: 0
+
++ Individual pipeline summary: 
+  * Pipeline-0: initiation interval (II) = 1, depth = 5
+
+
+============================================================
++ Verbose Summary: Schedule
+============================================================
+* Number of FSM states : 7
+* Pipeline : 1
+  Pipeline-0 : II = 1, D = 5, States = { 2 3 4 5 6 }
+* Dataflow Pipeline: 0
+
+* FSM state transitions: 
+1 --> 2 
+2 --> 7 3 
+3 --> 4 
+4 --> 5 
+5 --> 6 
+6 --> 2 
+7 --> 
+
+* FSM state operations: 
+
+State 1 <SV = 0> <Delay = 1.76>
+ST_1 : Operation 8 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecBitsMap([1024 x i32]* %A) nounwind, !map !14"   --->   Operation 8 'specbitsmap' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 9 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecBitsMap([1024 x i32]* %B) nounwind, !map !20"   --->   Operation 9 'specbitsmap' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 10 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecBitsMap([1024 x i32]* %AB) nounwind, !map !24"   --->   Operation 10 'specbitsmap' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 11 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecTopModule([10 x i8]* @matrixmul_str) nounwind"   --->   Operation 11 'spectopmodule' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 12 [1/1] (1.76ns)   --->   "br label %1" [Brutal_design.cpp:11]   --->   Operation 12 'br' <Predicate = true> <Delay = 1.76>
+
+State 2 <SV = 1> <Delay = 6.95>
+ST_2 : Operation 13 [1/1] (0.00ns)   --->   "%indvar_flatten14 = phi i16 [ 0, %0 ], [ %add_ln11, %ifFalse ]" [Brutal_design.cpp:11]   --->   Operation 13 'phi' 'indvar_flatten14' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 14 [1/1] (0.00ns)   --->   "%i_0 = phi i6 [ 0, %0 ], [ %select_ln17_1, %ifFalse ]" [Brutal_design.cpp:17]   --->   Operation 14 'phi' 'i_0' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 15 [1/1] (0.00ns)   --->   "%indvar_flatten = phi i12 [ 0, %0 ], [ %select_ln12, %ifFalse ]" [Brutal_design.cpp:12]   --->   Operation 15 'phi' 'indvar_flatten' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 16 [1/1] (0.00ns)   --->   "%j_0 = phi i6 [ 0, %0 ], [ %select_ln17_4, %ifFalse ]" [Brutal_design.cpp:17]   --->   Operation 16 'phi' 'j_0' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 17 [1/1] (0.00ns)   --->   "%ABij_0 = phi i32 [ 0, %0 ], [ %ABij, %ifFalse ]"   --->   Operation 17 'phi' 'ABij_0' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 18 [1/1] (0.00ns)   --->   "%k_0 = phi i6 [ 0, %0 ], [ %k, %ifFalse ]"   --->   Operation 18 'phi' 'k_0' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 19 [1/1] (2.42ns)   --->   "%icmp_ln11 = icmp eq i16 %indvar_flatten14, -32768" [Brutal_design.cpp:11]   --->   Operation 19 'icmp' 'icmp_ln11' <Predicate = true> <Delay = 2.42> <Core = "Cmp">   --->   Core 25 'Cmp' <Latency = 0> <II = 1> <Delay = 1.42> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 20 [1/1] (2.07ns)   --->   "%add_ln11 = add i16 %indvar_flatten14, 1" [Brutal_design.cpp:11]   --->   Operation 20 'add' 'add_ln11' <Predicate = true> <Delay = 2.07> <Core = "AddSub">   --->   Core 14 'AddSub' <Latency = 0> <II = 1> <Delay = 1.54> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 21 [1/1] (0.00ns)   --->   "br i1 %icmp_ln11, label %2, label %product" [Brutal_design.cpp:11]   --->   Operation 21 'br' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 22 [1/1] (1.99ns)   --->   "%icmp_ln12 = icmp eq i12 %indvar_flatten, 1024" [Brutal_design.cpp:12]   --->   Operation 22 'icmp' 'icmp_ln12' <Predicate = (!icmp_ln11)> <Delay = 1.99> <Core = "Cmp">   --->   Core 25 'Cmp' <Latency = 0> <II = 1> <Delay = 1.42> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 23 [1/1] (1.18ns)   --->   "%select_ln17 = select i1 %icmp_ln12, i6 0, i6 %j_0" [Brutal_design.cpp:17]   --->   Operation 23 'select' 'select_ln17' <Predicate = (!icmp_ln11)> <Delay = 1.18> <Core = "Sel">   --->   Core 26 'Sel' <Latency = 0> <II = 1> <Delay = 0.69> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+ST_2 : Operation 24 [1/1] (0.00ns) (grouped into LUT with out node and_ln17)   --->   "%xor_ln17 = xor i1 %icmp_ln12, true" [Brutal_design.cpp:17]   --->   Operation 24 'xor' 'xor_ln17' <Predicate = (!icmp_ln11)> <Delay = 0.00> <Core = "LogicGate">   --->   Core 27 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.97> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 25 [1/1] (1.42ns)   --->   "%icmp_ln15 = icmp eq i6 %k_0, -32" [Brutal_design.cpp:15]   --->   Operation 25 'icmp' 'icmp_ln15' <Predicate = (!icmp_ln11)> <Delay = 1.42> <Core = "Cmp">   --->   Core 25 'Cmp' <Latency = 0> <II = 1> <Delay = 1.42> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 26 [1/1] (0.97ns) (out node of the LUT)   --->   "%and_ln17 = and i1 %icmp_ln15, %xor_ln17" [Brutal_design.cpp:17]   --->   Operation 26 'and' 'and_ln17' <Predicate = (!icmp_ln11)> <Delay = 0.97> <Core = "LogicGate">   --->   Core 27 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.97> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 27 [1/1] (1.82ns)   --->   "%j = add i6 %select_ln17, 1" [Brutal_design.cpp:12]   --->   Operation 27 'add' 'j' <Predicate = (!icmp_ln11)> <Delay = 1.82> <Core = "AddSub">   --->   Core 14 'AddSub' <Latency = 0> <II = 1> <Delay = 1.54> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 28 [1/1] (0.97ns)   --->   "%or_ln17 = or i1 %and_ln17, %icmp_ln12" [Brutal_design.cpp:17]   --->   Operation 28 'or' 'or_ln17' <Predicate = (!icmp_ln11)> <Delay = 0.97> <Core = "LogicGate">   --->   Core 27 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.97> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 29 [1/1] (1.18ns)   --->   "%select_ln17_3 = select i1 %or_ln17, i6 0, i6 %k_0" [Brutal_design.cpp:17]   --->   Operation 29 'select' 'select_ln17_3' <Predicate = (!icmp_ln11)> <Delay = 1.18> <Core = "Sel">   --->   Core 26 'Sel' <Latency = 0> <II = 1> <Delay = 0.69> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+ST_2 : Operation 30 [1/1] (1.18ns)   --->   "%select_ln17_4 = select i1 %and_ln17, i6 %j, i6 %select_ln17" [Brutal_design.cpp:17]   --->   Operation 30 'select' 'select_ln17_4' <Predicate = (!icmp_ln11)> <Delay = 1.18> <Core = "Sel">   --->   Core 26 'Sel' <Latency = 0> <II = 1> <Delay = 0.69> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+ST_2 : Operation 31 [1/1] (1.82ns)   --->   "%k = add i6 %select_ln17_3, 1" [Brutal_design.cpp:15]   --->   Operation 31 'add' 'k' <Predicate = (!icmp_ln11)> <Delay = 1.82> <Core = "AddSub">   --->   Core 14 'AddSub' <Latency = 0> <II = 1> <Delay = 1.54> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 32 [1/1] (1.54ns)   --->   "%add_ln12 = add i12 %indvar_flatten, 1" [Brutal_design.cpp:12]   --->   Operation 32 'add' 'add_ln12' <Predicate = (!icmp_ln11)> <Delay = 1.54> <Core = "AddSub">   --->   Core 14 'AddSub' <Latency = 0> <II = 1> <Delay = 1.54> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 33 [1/1] (0.69ns)   --->   "%select_ln12 = select i1 %icmp_ln12, i12 1, i12 %add_ln12" [Brutal_design.cpp:12]   --->   Operation 33 'select' 'select_ln12' <Predicate = (!icmp_ln11)> <Delay = 0.69> <Core = "Sel">   --->   Core 26 'Sel' <Latency = 0> <II = 1> <Delay = 0.69> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+
+State 3 <SV = 2> <Delay = 7.90>
+ST_3 : Operation 34 [1/1] (1.82ns)   --->   "%i = add i6 %i_0, 1" [Brutal_design.cpp:11]   --->   Operation 34 'add' 'i' <Predicate = (!icmp_ln11 & icmp_ln12)> <Delay = 1.82> <Core = "AddSub">   --->   Core 14 'AddSub' <Latency = 0> <II = 1> <Delay = 1.54> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_3 : Operation 35 [1/1] (1.18ns)   --->   "%select_ln17_1 = select i1 %icmp_ln12, i6 %i, i6 %i_0" [Brutal_design.cpp:17]   --->   Operation 35 'select' 'select_ln17_1' <Predicate = (!icmp_ln11)> <Delay = 1.18> <Core = "Sel">   --->   Core 26 'Sel' <Latency = 0> <II = 1> <Delay = 0.69> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+ST_3 : Operation 36 [1/1] (0.00ns)   --->   "%tmp = call i11 @_ssdm_op_BitConcatenate.i11.i6.i5(i6 %select_ln17_1, i5 0)" [Brutal_design.cpp:17]   --->   Operation 36 'bitconcatenate' 'tmp' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_3 : Operation 37 [1/1] (0.00ns)   --->   "%zext_ln17 = zext i11 %tmp to i12" [Brutal_design.cpp:17]   --->   Operation 37 'zext' 'zext_ln17' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_3 : Operation 38 [1/1] (0.00ns)   --->   "%zext_ln17_1 = zext i6 %select_ln17_4 to i12" [Brutal_design.cpp:17]   --->   Operation 38 'zext' 'zext_ln17_1' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_3 : Operation 39 [1/1] (1.63ns)   --->   "%add_ln19 = add i12 %zext_ln17_1, %zext_ln17" [Brutal_design.cpp:19]   --->   Operation 39 'add' 'add_ln19' <Predicate = (!icmp_ln11)> <Delay = 1.63> <Core = "AddSub">   --->   Core 14 'AddSub' <Latency = 0> <II = 1> <Delay = 1.54> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_3 : Operation 40 [1/1] (0.00ns)   --->   "%zext_ln19 = zext i12 %add_ln19 to i64" [Brutal_design.cpp:19]   --->   Operation 40 'zext' 'zext_ln19' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_3 : Operation 41 [1/1] (0.00ns)   --->   "%AB_addr = getelementptr [1024 x i32]* %AB, i64 0, i64 %zext_ln19" [Brutal_design.cpp:19]   --->   Operation 41 'getelementptr' 'AB_addr' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_3 : Operation 42 [1/1] (0.00ns)   --->   "%zext_ln17_2 = zext i6 %select_ln17_3 to i12" [Brutal_design.cpp:17]   --->   Operation 42 'zext' 'zext_ln17_2' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_3 : Operation 43 [1/1] (1.63ns)   --->   "%add_ln17 = add i12 %zext_ln17_2, %zext_ln17" [Brutal_design.cpp:17]   --->   Operation 43 'add' 'add_ln17' <Predicate = (!icmp_ln11)> <Delay = 1.63> <Core = "AddSub">   --->   Core 14 'AddSub' <Latency = 0> <II = 1> <Delay = 1.54> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_3 : Operation 44 [1/1] (0.00ns)   --->   "%zext_ln17_3 = zext i12 %add_ln17 to i64" [Brutal_design.cpp:17]   --->   Operation 44 'zext' 'zext_ln17_3' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_3 : Operation 45 [1/1] (0.00ns)   --->   "%A_addr = getelementptr [1024 x i32]* %A, i64 0, i64 %zext_ln17_3" [Brutal_design.cpp:17]   --->   Operation 45 'getelementptr' 'A_addr' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_3 : Operation 46 [1/1] (0.00ns)   --->   "%tmp_1 = call i11 @_ssdm_op_BitConcatenate.i11.i6.i5(i6 %select_ln17_3, i5 0)" [Brutal_design.cpp:17]   --->   Operation 46 'bitconcatenate' 'tmp_1' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_3 : Operation 47 [1/1] (0.00ns)   --->   "%zext_ln17_4 = zext i11 %tmp_1 to i12" [Brutal_design.cpp:17]   --->   Operation 47 'zext' 'zext_ln17_4' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_3 : Operation 48 [1/1] (1.63ns)   --->   "%add_ln17_1 = add i12 %zext_ln17_1, %zext_ln17_4" [Brutal_design.cpp:17]   --->   Operation 48 'add' 'add_ln17_1' <Predicate = (!icmp_ln11)> <Delay = 1.63> <Core = "AddSub">   --->   Core 14 'AddSub' <Latency = 0> <II = 1> <Delay = 1.54> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_3 : Operation 49 [1/1] (0.00ns)   --->   "%zext_ln17_5 = zext i12 %add_ln17_1 to i64" [Brutal_design.cpp:17]   --->   Operation 49 'zext' 'zext_ln17_5' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_3 : Operation 50 [1/1] (0.00ns)   --->   "%B_addr = getelementptr [1024 x i32]* %B, i64 0, i64 %zext_ln17_5" [Brutal_design.cpp:17]   --->   Operation 50 'getelementptr' 'B_addr' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_3 : Operation 51 [2/2] (3.25ns)   --->   "%A_load = load i32* %A_addr, align 4" [Brutal_design.cpp:17]   --->   Operation 51 'load' 'A_load' <Predicate = (!icmp_ln11)> <Delay = 3.25> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 1024> <RAM>
+ST_3 : Operation 52 [2/2] (3.25ns)   --->   "%B_load = load i32* %B_addr, align 4" [Brutal_design.cpp:17]   --->   Operation 52 'load' 'B_load' <Predicate = (!icmp_ln11)> <Delay = 3.25> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 1024> <RAM>
+
+State 4 <SV = 3> <Delay = 3.25>
+ST_4 : Operation 53 [1/2] (3.25ns)   --->   "%A_load = load i32* %A_addr, align 4" [Brutal_design.cpp:17]   --->   Operation 53 'load' 'A_load' <Predicate = (!icmp_ln11)> <Delay = 3.25> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 1024> <RAM>
+ST_4 : Operation 54 [1/2] (3.25ns)   --->   "%B_load = load i32* %B_addr, align 4" [Brutal_design.cpp:17]   --->   Operation 54 'load' 'B_load' <Predicate = (!icmp_ln11)> <Delay = 3.25> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 1024> <RAM>
+
+State 5 <SV = 4> <Delay = 8.51>
+ST_5 : Operation 55 [1/1] (8.51ns)   --->   "%mul_ln17 = mul nsw i32 %A_load, %B_load" [Brutal_design.cpp:17]   --->   Operation 55 'mul' 'mul_ln17' <Predicate = (!icmp_ln11)> <Delay = 8.51> <Core = "Mul">   --->   Core 16 'Mul' <Latency = 0> <II = 1> <Delay = 8.51> <FuncUnit> <Opcode : 'mul'> <InPorts = 2> <OutPorts = 1>
+
+State 6 <SV = 5> <Delay = 5.80>
+ST_6 : Operation 56 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecLoopName([16 x i8]* @row_col_product_str)"   --->   Operation 56 'specloopname' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_6 : Operation 57 [1/1] (0.00ns)   --->   "%empty = call i32 (...)* @_ssdm_op_SpecLoopTripCount(i64 32768, i64 32768, i64 32768) nounwind"   --->   Operation 57 'speclooptripcount' 'empty' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_6 : Operation 58 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecLoopName([12 x i8]* @col_product_str)"   --->   Operation 58 'specloopname' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_6 : Operation 59 [1/1] (0.00ns) (grouped into LUT with out node ABij)   --->   "%select_ln17_2 = select i1 %or_ln17, i32 0, i32 %ABij_0" [Brutal_design.cpp:17]   --->   Operation 59 'select' 'select_ln17_2' <Predicate = (!icmp_ln11)> <Delay = 0.00> <Core = "Sel">   --->   Core 26 'Sel' <Latency = 0> <II = 1> <Delay = 0.69> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+ST_6 : Operation 60 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecLoopName([8 x i8]* @p_str2) nounwind" [Brutal_design.cpp:15]   --->   Operation 60 'specloopname' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_6 : Operation 61 [1/1] (0.00ns)   --->   "%tmp_2 = call i32 (...)* @_ssdm_op_SpecRegionBegin([8 x i8]* @p_str2) nounwind" [Brutal_design.cpp:15]   --->   Operation 61 'specregionbegin' 'tmp_2' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_6 : Operation 62 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecPipeline(i32 -1, i32 1, i32 1, i32 0, [1 x i8]* @p_str3) nounwind" [Brutal_design.cpp:16]   --->   Operation 62 'specpipeline' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_6 : Operation 63 [1/1] (2.55ns) (out node of the LUT)   --->   "%ABij = add nsw i32 %mul_ln17, %select_ln17_2" [Brutal_design.cpp:17]   --->   Operation 63 'add' 'ABij' <Predicate = (!icmp_ln11)> <Delay = 2.55> <Core = "AddSub">   --->   Core 14 'AddSub' <Latency = 0> <II = 1> <Delay = 1.54> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_6 : Operation 64 [1/1] (0.00ns)   --->   "%empty_2 = call i32 (...)* @_ssdm_op_SpecRegionEnd([8 x i8]* @p_str2, i32 %tmp_2) nounwind" [Brutal_design.cpp:18]   --->   Operation 64 'specregionend' 'empty_2' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_6 : Operation 65 [1/1] (1.42ns)   --->   "%icmp_ln15_1 = icmp eq i6 %k, -32" [Brutal_design.cpp:15]   --->   Operation 65 'icmp' 'icmp_ln15_1' <Predicate = (!icmp_ln11)> <Delay = 1.42> <Core = "Cmp">   --->   Core 25 'Cmp' <Latency = 0> <II = 1> <Delay = 1.42> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_6 : Operation 66 [1/1] (0.00ns)   --->   "br i1 %icmp_ln15_1, label %ifTrue, label %ifFalse" [Brutal_design.cpp:15]   --->   Operation 66 'br' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_6 : Operation 67 [1/1] (3.25ns)   --->   "store i32 %ABij, i32* %AB_addr, align 4" [Brutal_design.cpp:19]   --->   Operation 67 'store' <Predicate = (icmp_ln15_1)> <Delay = 3.25> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 1024> <RAM>
+ST_6 : Operation 68 [1/1] (0.00ns)   --->   "br label %ifFalse"   --->   Operation 68 'br' <Predicate = (icmp_ln15_1)> <Delay = 0.00>
+ST_6 : Operation 69 [1/1] (0.00ns)   --->   "br label %1"   --->   Operation 69 'br' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+
+State 7 <SV = 2> <Delay = 0.00>
+ST_7 : Operation 70 [1/1] (0.00ns)   --->   "ret void" [Brutal_design.cpp:22]   --->   Operation 70 'ret' <Predicate = true> <Delay = 0.00>
+
+
+============================================================
++ Verbose Summary: Timing violations
+============================================================
+Target clock period: 10ns, clock uncertainty: 1.25ns.
+
+ <State 1>: 1.77ns
+The critical path consists of the following:
+	multiplexor before 'phi' operation ('indvar_flatten14', Brutal_design.cpp:11) with incoming values : ('add_ln11', Brutal_design.cpp:11) [10]  (1.77 ns)
+
+ <State 2>: 6.96ns
+The critical path consists of the following:
+	'phi' operation ('indvar_flatten', Brutal_design.cpp:12) with incoming values : ('select_ln12', Brutal_design.cpp:12) [12]  (0 ns)
+	'icmp' operation ('icmp_ln12', Brutal_design.cpp:12) [23]  (1.99 ns)
+	'xor' operation ('xor_ln17', Brutal_design.cpp:17) [28]  (0 ns)
+	'and' operation ('and_ln17', Brutal_design.cpp:17) [30]  (0.978 ns)
+	'or' operation ('or_ln17', Brutal_design.cpp:17) [33]  (0.978 ns)
+	'select' operation ('select_ln17_3', Brutal_design.cpp:17) [35]  (1.19 ns)
+	'add' operation ('k', Brutal_design.cpp:15) [58]  (1.83 ns)
+
+ <State 3>: 7.91ns
+The critical path consists of the following:
+	'add' operation ('i', Brutal_design.cpp:11) [20]  (1.83 ns)
+	'select' operation ('select_ln17_1', Brutal_design.cpp:17) [25]  (1.19 ns)
+	'add' operation ('add_ln17', Brutal_design.cpp:17) [45]  (1.64 ns)
+	'getelementptr' operation ('A_addr', Brutal_design.cpp:17) [47]  (0 ns)
+	'load' operation ('A_load', Brutal_design.cpp:17) on array 'A' [53]  (3.25 ns)
+
+ <State 4>: 3.25ns
+The critical path consists of the following:
+	'load' operation ('A_load', Brutal_design.cpp:17) on array 'A' [53]  (3.25 ns)
+
+ <State 5>: 8.51ns
+The critical path consists of the following:
+	'mul' operation ('mul_ln17', Brutal_design.cpp:17) [55]  (8.51 ns)
+
+ <State 6>: 5.81ns
+The critical path consists of the following:
+	'select' operation ('select_ln17_2', Brutal_design.cpp:17) [34]  (0 ns)
+	'add' operation ('ABij', Brutal_design.cpp:17) [56]  (2.55 ns)
+	'store' operation ('store_ln19', Brutal_design.cpp:19) of variable 'ABij', Brutal_design.cpp:17 on array 'AB' [62]  (3.25 ns)
+
+ <State 7>: 0ns
+The critical path consists of the following:
+
+
+============================================================
++ Verbose Summary: Binding
+============================================================
+N/A
+* FSMD analyzer results:
+  - Output states:
+ - Input state : 
+  - Chain level:
+	State 1
+	State 2
+	State 3
+	State 4
+	State 5
+	State 6
+	State 7
+
+
+============================================================
++ Verbose Summary: Datapath Resource usage 
+============================================================
+N/A

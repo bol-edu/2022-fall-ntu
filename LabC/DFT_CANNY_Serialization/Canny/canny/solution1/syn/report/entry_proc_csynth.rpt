@@ -1,0 +1,143 @@
+
+
+================================================================
+== Vitis HLS Report for 'entry_proc'
+================================================================
+* Date:           Sun Nov 13 19:24:42 2022
+
+* Version:        2022.2 (Build 3670227 on Oct 13 2022)
+* Project:        canny
+* Solution:       solution1 (Vivado IP Flow Target)
+* Product family: zynq
+* Target device:  xc7z020-clg400-1
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing: 
+    * Summary: 
+    +--------+----------+----------+------------+
+    |  Clock |  Target  | Estimated| Uncertainty|
+    +--------+----------+----------+------------+
+    |ap_clk  |  10.00 ns|  1.935 ns|     6.13 ns|
+    +--------+----------+----------+------------+
+
++ Latency: 
+    * Summary: 
+    +---------+---------+----------+----------+-----+-----+---------+
+    |  Latency (cycles) |  Latency (absolute) |  Interval | Pipeline|
+    |   min   |   max   |    min   |    max   | min | max |   Type  |
+    +---------+---------+----------+----------+-----+-----+---------+
+    |        0|        0|      0 ns|      0 ns|    0|    0|       no|
+    +---------+---------+----------+----------+-----+-----+---------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        N/A
+
+
+
+================================================================
+== Utilization Estimates
+================================================================
+* Summary: 
++-----------------+---------+-----+--------+-------+-----+
+|       Name      | BRAM_18K| DSP |   FF   |  LUT  | URAM|
++-----------------+---------+-----+--------+-------+-----+
+|DSP              |        -|    -|       -|      -|    -|
+|Expression       |        -|    -|       0|      2|    -|
+|FIFO             |        -|    -|       -|      -|    -|
+|Instance         |        -|    -|       -|      -|    -|
+|Memory           |        -|    -|       -|      -|    -|
+|Multiplexer      |        -|    -|       -|     36|    -|
+|Register         |        -|    -|       3|      -|    -|
++-----------------+---------+-----+--------+-------+-----+
+|Total            |        0|    0|       3|     38|    0|
++-----------------+---------+-----+--------+-------+-----+
+|Available        |      280|  220|  106400|  53200|    0|
++-----------------+---------+-----+--------+-------+-----+
+|Utilization (%)  |        0|    0|      ~0|     ~0|    0|
++-----------------+---------+-----+--------+-------+-----+
+
++ Detail: 
+    * Instance: 
+    N/A
+
+    * DSP: 
+    N/A
+
+    * Memory: 
+    N/A
+
+    * FIFO: 
+    N/A
+
+    * Expression: 
+    +-----------------+----------+----+---+----+------------+------------+
+    |  Variable Name  | Operation| DSP| FF| LUT| Bitwidth P0| Bitwidth P1|
+    +-----------------+----------+----+---+----+------------+------------+
+    |ap_block_state1  |        or|   0|  0|   2|           1|           1|
+    +-----------------+----------+----+---+----+------------+------------+
+    |Total            |          |   0|  0|   2|           1|           1|
+    +-----------------+----------+----+---+----+------------+------------+
+
+    * Multiplexer: 
+    +---------------------+----+-----------+-----+-----------+
+    |         Name        | LUT| Input Size| Bits| Total Bits|
+    +---------------------+----+-----------+-----+-----------+
+    |ap_done              |   9|          2|    1|          2|
+    |lowerThresh_c_blk_n  |   9|          2|    1|          2|
+    |real_start           |   9|          2|    1|          2|
+    |upperThresh_c_blk_n  |   9|          2|    1|          2|
+    +---------------------+----+-----------+-----+-----------+
+    |Total                |  36|          8|    4|          8|
+    +---------------------+----+-----------+-----+-----------+
+
+    * Register: 
+    +----------------+---+----+-----+-----------+
+    |      Name      | FF| LUT| Bits| Const Bits|
+    +----------------+---+----+-----+-----------+
+    |ap_CS_fsm       |  1|   0|    1|          0|
+    |ap_done_reg     |  1|   0|    1|          0|
+    |start_once_reg  |  1|   0|    1|          0|
+    +----------------+---+----+-----+-----------+
+    |Total           |  3|   0|    3|          0|
+    +----------------+---+----+-----+-----------+
+
+
+
+================================================================
+== Interface
+================================================================
+* Summary: 
++------------------------------+-----+-----+------------+---------------+--------------+
+|           RTL Ports          | Dir | Bits|  Protocol  | Source Object |    C Type    |
++------------------------------+-----+-----+------------+---------------+--------------+
+|ap_clk                        |   in|    1|  ap_ctrl_hs|     entry_proc|  return value|
+|ap_rst                        |   in|    1|  ap_ctrl_hs|     entry_proc|  return value|
+|ap_start                      |   in|    1|  ap_ctrl_hs|     entry_proc|  return value|
+|start_full_n                  |   in|    1|  ap_ctrl_hs|     entry_proc|  return value|
+|ap_done                       |  out|    1|  ap_ctrl_hs|     entry_proc|  return value|
+|ap_continue                   |   in|    1|  ap_ctrl_hs|     entry_proc|  return value|
+|ap_idle                       |  out|    1|  ap_ctrl_hs|     entry_proc|  return value|
+|ap_ready                      |  out|    1|  ap_ctrl_hs|     entry_proc|  return value|
+|start_out                     |  out|    1|  ap_ctrl_hs|     entry_proc|  return value|
+|start_write                   |  out|    1|  ap_ctrl_hs|     entry_proc|  return value|
+|upperThresh                   |   in|   32|     ap_none|    upperThresh|        scalar|
+|upperThresh_c_din             |  out|   32|     ap_fifo|  upperThresh_c|       pointer|
+|upperThresh_c_num_data_valid  |   in|    3|     ap_fifo|  upperThresh_c|       pointer|
+|upperThresh_c_fifo_cap        |   in|    3|     ap_fifo|  upperThresh_c|       pointer|
+|upperThresh_c_full_n          |   in|    1|     ap_fifo|  upperThresh_c|       pointer|
+|upperThresh_c_write           |  out|    1|     ap_fifo|  upperThresh_c|       pointer|
+|lowerThresh                   |   in|   32|     ap_none|    lowerThresh|        scalar|
+|lowerThresh_c_din             |  out|   32|     ap_fifo|  lowerThresh_c|       pointer|
+|lowerThresh_c_num_data_valid  |   in|    3|     ap_fifo|  lowerThresh_c|       pointer|
+|lowerThresh_c_fifo_cap        |   in|    3|     ap_fifo|  lowerThresh_c|       pointer|
+|lowerThresh_c_full_n          |   in|    1|     ap_fifo|  lowerThresh_c|       pointer|
+|lowerThresh_c_write           |  out|    1|     ap_fifo|  lowerThresh_c|       pointer|
++------------------------------+-----+-----+------------+---------------+--------------+
+

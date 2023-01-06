@@ -1,0 +1,141 @@
+
+
+================================================================
+== Vitis HLS Report for 'fast_accel'
+================================================================
+* Date:           Sat Nov 12 18:10:04 2022
+
+* Version:        2022.1 (Build 3526262 on Mon Apr 18 15:48:16 MDT 2022)
+* Project:        fast
+* Solution:       solution1 (Vivado IP Flow Target)
+* Product family: zynq
+* Target device:  xc7z020-clg400-1
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing: 
+    * Summary: 
+    +--------+----------+----------+------------+
+    |  Clock |  Target  | Estimated| Uncertainty|
+    +--------+----------+----------+------------+
+    |ap_clk  |  10.00 ns|  3.254 ns|     6.70 ns|
+    +--------+----------+----------+------------+
+
++ Latency: 
+    * Summary: 
+    +---------+---------+----------+----------+-------+-------+---------+
+    |  Latency (cycles) |  Latency (absolute) |    Interval   | Pipeline|
+    |   min   |   max   |    min   |    max   |  min  |  max  |   Type  |
+    +---------+---------+----------+----------+-------+-------+---------+
+    |    16400|    16400|  0.164 ms|  0.164 ms|  16401|  16401|       no|
+    +---------+---------+----------+----------+-------+-------+---------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        N/A
+
+============================================================
++ Verbose Summary: Synthesis Manager
+============================================================
+InlineROM: 1
+ExposeGlobal: 0
+============================================================
++ Verbose Summary: CDFG Model
+============================================================
+IsTopModel: 1
+ResetActiveHigh: 1
+IsCombinational: 0
+IsDatapathOnly: 0
+HasWiredReturn: 1
+HasMFsm: 0
+HasVarLatency: 1
+IsPipeline: 0
+IsRtlPipelined: 0
+IsInstanceOverlapped: 0
+IsDontTouch: 0
+HasImplIP: 0
+IsGatedGlobalClock: 0
+
+
+============================================================
++ Verbose Summary: Schedule
+============================================================
+* Number of FSM states : 3
+* Pipeline : 0
+* Dataflow Pipeline: 0
+
+* FSM state transitions: 
+1 --> 2 
+2 --> 3 
+3 --> 
+
+* FSM state operations: 
+
+State 1 <SV = 0> <Delay = 2.55>
+ST_1 : Operation 4 [1/1] (0.00ns)   --->   "%cols_read = read i32 @_ssdm_op_Read.ap_auto.i32, i32 %cols" [fast/code_src/fast.cpp:126]   --->   Operation 4 'read' 'cols_read' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 5 [1/1] (0.00ns)   --->   "%rows_read = read i32 @_ssdm_op_Read.ap_auto.i32, i32 %rows" [fast/code_src/fast.cpp:126]   --->   Operation 5 'read' 'rows_read' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 6 [1/1] (0.00ns)   --->   "%trunc_ln126 = trunc i32 %rows_read" [fast/code_src/fast.cpp:126]   --->   Operation 6 'trunc' 'trunc_ln126' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 7 [1/1] (2.55ns)   --->   "%op2_assign = add i32 %rows_read, i32 4294967293" [fast/code_src/fast.cpp:126]   --->   Operation 7 'add' 'op2_assign' <Predicate = true> <Delay = 2.55> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 2.55> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 8 [1/1] (2.55ns)   --->   "%op2_assign_1 = add i32 %cols_read, i32 4294967293" [fast/code_src/fast.cpp:126]   --->   Operation 8 'add' 'op2_assign_1' <Predicate = true> <Delay = 2.55> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 2.55> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+
+State 2 <SV = 1> <Delay = 2.47>
+ST_2 : Operation 9 [1/1] (0.00ns)   --->   "%threshold_read = read i32 @_ssdm_op_Read.ap_auto.i32, i32 %threshold" [fast/code_src/fast.cpp:126]   --->   Operation 9 'read' 'threshold_read' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 10 [2/2] (2.47ns)   --->   "%call_ln126 = call void @fast_accel_Pipeline_Compute_Loop, i32 %rows_read, i32 %cols_read, i15 %trunc_ln126, i9 %img_in, i32 %threshold_read, i32 %op2_assign, i32 %op2_assign_1, i9 %img_out" [fast/code_src/fast.cpp:126]   --->   Operation 10 'call' 'call_ln126' <Predicate = true> <Delay = 2.47> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+
+State 3 <SV = 2> <Delay = 0.00>
+ST_3 : Operation 11 [1/1] (0.00ns)   --->   "%spectopmodule_ln126 = spectopmodule void @_ssdm_op_SpecTopModule, void @empty_2" [fast/code_src/fast.cpp:126]   --->   Operation 11 'spectopmodule' 'spectopmodule_ln126' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 12 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i9 %img_in, void @empty, i32 0, i32 0, void @empty_0, i32 4294967295, i32 0, void @empty_0, void @empty_0, void @empty_0, i32 0, i32 0, i32 0, i32 0, void @empty_0, void @empty_0, i32 4294967295, i32 0"   --->   Operation 12 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 13 [1/1] (0.00ns)   --->   "%specbitsmap_ln0 = specbitsmap void @_ssdm_op_SpecBitsMap, i9 %img_in"   --->   Operation 13 'specbitsmap' 'specbitsmap_ln0' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 14 [1/1] (0.00ns)   --->   "%specbitsmap_ln0 = specbitsmap void @_ssdm_op_SpecBitsMap, i32 %threshold"   --->   Operation 14 'specbitsmap' 'specbitsmap_ln0' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 15 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i32 %threshold, void @empty_1, i32 0, i32 0, void @empty_0, i32 0, i32 0, void @empty_0, void @empty_0, void @empty_0, i32 0, i32 0, i32 0, i32 0, void @empty_0, void @empty_0, i32 4294967295, i32 0"   --->   Operation 15 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 16 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i9 %img_out, void @empty, i32 0, i32 0, void @empty_0, i32 20, i32 0, void @empty_0, void @empty_0, void @empty_0, i32 0, i32 0, i32 0, i32 0, void @empty_0, void @empty_0, i32 4294967295, i32 0"   --->   Operation 16 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 17 [1/1] (0.00ns)   --->   "%specbitsmap_ln0 = specbitsmap void @_ssdm_op_SpecBitsMap, i9 %img_out"   --->   Operation 17 'specbitsmap' 'specbitsmap_ln0' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 18 [1/1] (0.00ns)   --->   "%specbitsmap_ln0 = specbitsmap void @_ssdm_op_SpecBitsMap, i32 %rows"   --->   Operation 18 'specbitsmap' 'specbitsmap_ln0' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 19 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i32 %rows, void @empty_1, i32 0, i32 0, void @empty_0, i32 0, i32 0, void @empty_0, void @empty_0, void @empty_0, i32 0, i32 0, i32 0, i32 0, void @empty_0, void @empty_0, i32 4294967295, i32 0"   --->   Operation 19 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 20 [1/1] (0.00ns)   --->   "%specbitsmap_ln0 = specbitsmap void @_ssdm_op_SpecBitsMap, i32 %cols"   --->   Operation 20 'specbitsmap' 'specbitsmap_ln0' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 21 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i32 %cols, void @empty_1, i32 0, i32 0, void @empty_0, i32 0, i32 0, void @empty_0, void @empty_0, void @empty_0, i32 0, i32 0, i32 0, i32 0, void @empty_0, void @empty_0, i32 4294967295, i32 0"   --->   Operation 21 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 22 [1/2] (0.00ns)   --->   "%call_ln126 = call void @fast_accel_Pipeline_Compute_Loop, i32 %rows_read, i32 %cols_read, i15 %trunc_ln126, i9 %img_in, i32 %threshold_read, i32 %op2_assign, i32 %op2_assign_1, i9 %img_out" [fast/code_src/fast.cpp:126]   --->   Operation 22 'call' 'call_ln126' <Predicate = true> <Delay = 0.00> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+ST_3 : Operation 23 [1/1] (0.00ns)   --->   "%ret_ln163 = ret" [fast/code_src/fast.cpp:163]   --->   Operation 23 'ret' 'ret_ln163' <Predicate = true> <Delay = 0.00>
+
+
+============================================================
++ Verbose Summary: Timing violations
+============================================================
+Target clock period: 10ns, clock uncertainty: 6.7ns.
+
+ <State 1>: 2.55ns
+The critical path consists of the following:
+	wire read operation ('rows_read', fast/code_src/fast.cpp:126) on port 'rows' (fast/code_src/fast.cpp:126) [7]  (0 ns)
+	'add' operation ('op2_assign', fast/code_src/fast.cpp:126) [21]  (2.55 ns)
+
+ <State 2>: 2.47ns
+The critical path consists of the following:
+	wire read operation ('threshold_read', fast/code_src/fast.cpp:126) on port 'threshold' (fast/code_src/fast.cpp:126) [8]  (0 ns)
+	'call' operation ('call_ln126', fast/code_src/fast.cpp:126) to 'fast_accel_Pipeline_Compute_Loop' [23]  (2.47 ns)
+
+ <State 3>: 0ns
+The critical path consists of the following:
+
+
+============================================================
++ Verbose Summary: Binding
+============================================================
+N/A
+* FSMD analyzer results:
+  - Output states:
+ - Input state : 
+  - Chain level:
+	State 1
+	State 2
+	State 3
+
+
+============================================================
++ Verbose Summary: Datapath Resource usage 
+============================================================
+N/A

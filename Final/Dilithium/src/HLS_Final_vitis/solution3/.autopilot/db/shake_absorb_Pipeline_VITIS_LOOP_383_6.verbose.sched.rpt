@@ -1,0 +1,133 @@
+
+
+================================================================
+== Vitis HLS Report for 'shake_absorb_Pipeline_VITIS_LOOP_383_6'
+================================================================
+* Date:           Thu Dec 29 13:16:31 2022
+
+* Version:        2022.1 (Build 3526262 on Mon Apr 18 15:48:16 MDT 2022)
+* Project:        HLS_final_vitis
+* Solution:       solution3 (Vivado IP Flow Target)
+* Product family: virtexuplus
+* Target device:  xcvu11p-flga2577-1-e
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing: 
+    * Summary: 
+    +--------+----------+----------+------------+
+    |  Clock |  Target  | Estimated| Uncertainty|
+    +--------+----------+----------+------------+
+    |ap_clk  |  10.00 ns|  1.454 ns|     2.70 ns|
+    +--------+----------+----------+------------+
+
++ Latency: 
+    * Summary: 
+    +---------+---------+----------+----------+-----+-----+---------+
+    |  Latency (cycles) |  Latency (absolute) |  Interval | Pipeline|
+    |   min   |   max   |    min   |    max   | min | max |   Type  |
+    +---------+---------+----------+----------+-----+-----+---------+
+    |       10|       10|  0.100 us|  0.100 us|   10|   10|       no|
+    +---------+---------+----------+----------+-----+-----+---------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        +--------------------+---------+---------+----------+-----------+-----------+------+----------+
+        |                    |  Latency (cycles) | Iteration|  Initiation Interval  | Trip |          |
+        |      Loop Name     |   min   |   max   |  Latency |  achieved |   target  | Count| Pipelined|
+        +--------------------+---------+---------+----------+-----------+-----------+------+----------+
+        |- VITIS_LOOP_383_6  |        8|        8|         1|          1|          1|     8|       yes|
+        +--------------------+---------+---------+----------+-----------+-----------+------+----------+
+
+============================================================
++ Verbose Summary: Synthesis Manager
+============================================================
+InlineROM: 1
+ExposeGlobal: 0
+============================================================
++ Verbose Summary: CDFG Model
+============================================================
+IsTopModel: 0
+ResetActiveHigh: 1
+IsCombinational: 0
+IsDatapathOnly: 0
+HasWiredReturn: 1
+HasMFsm: 2
+HasVarLatency: 1
+IsPipeline: 0
+IsRtlPipelined: 0
+IsInstanceOverlapped: 0
+IsDontTouch: 0
+HasImplIP: 0
+IsGatedGlobalClock: 0
+
++ Individual pipeline summary: 
+  * Pipeline-0: initiation interval (II) = 1, depth = 1
+
+
+============================================================
++ Verbose Summary: Schedule
+============================================================
+* Number of FSM states : 1
+* Pipeline : 1
+  Pipeline-0 : II = 1, D = 1, States = { 1 }
+* Dataflow Pipeline: 0
+
+* FSM state transitions: 
+1 --> 
+
+* FSM state operations: 
+
+State 1 <SV = 0> <Delay = 1.45>
+ST_1 : Operation 4 [1/1] (0.00ns)   --->   "%i = alloca i32 1"   --->   Operation 4 'alloca' 'i' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 5 [1/1] (0.46ns)   --->   "%store_ln0 = store i4 0, i4 %i"   --->   Operation 5 'store' 'store_ln0' <Predicate = true> <Delay = 0.46>
+ST_1 : Operation 6 [1/1] (0.00ns)   --->   "%br_ln0 = br void %for.inc100"   --->   Operation 6 'br' 'br_ln0' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 7 [1/1] (0.00ns)   --->   "%i_7 = load i4 %i" [HLS_Final_vitis_src/spu.cpp:383]   --->   Operation 7 'load' 'i_7' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 8 [1/1] (0.00ns)   --->   "%specpipeline_ln0 = specpipeline void @_ssdm_op_SpecPipeline, i32 4294967295, i32 0, i32 1, i32 0, void @p_str"   --->   Operation 8 'specpipeline' 'specpipeline_ln0' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 9 [1/1] (0.72ns)   --->   "%icmp_ln383 = icmp_eq  i4 %i_7, i4 8" [HLS_Final_vitis_src/spu.cpp:383]   --->   Operation 9 'icmp' 'icmp_ln383' <Predicate = true> <Delay = 0.72> <CoreInst = "Cmp">   --->   Core 9 'Cmp' <Latency = 0> <II = 1> <Delay = 0.72> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 10 [1/1] (0.00ns)   --->   "%speclooptripcount_ln0 = speclooptripcount void @_ssdm_op_SpecLoopTripCount, i64 8, i64 8, i64 8"   --->   Operation 10 'speclooptripcount' 'speclooptripcount_ln0' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 11 [1/1] (0.80ns)   --->   "%add_ln383 = add i4 %i_7, i4 1" [HLS_Final_vitis_src/spu.cpp:383]   --->   Operation 11 'add' 'add_ln383' <Predicate = true> <Delay = 0.80> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 0.80> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 12 [1/1] (0.00ns)   --->   "%br_ln383 = br i1 %icmp_ln383, void %for.inc100.split, void %for.inc111.preheader.exitStub" [HLS_Final_vitis_src/spu.cpp:383]   --->   Operation 12 'br' 'br_ln383' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 13 [1/1] (0.00ns)   --->   "%i_36_cast = zext i4 %i_7" [HLS_Final_vitis_src/spu.cpp:383]   --->   Operation 13 'zext' 'i_36_cast' <Predicate = (!icmp_ln383)> <Delay = 0.00>
+ST_1 : Operation 14 [1/1] (0.00ns)   --->   "%specloopname_ln342 = specloopname void @_ssdm_op_SpecLoopName, void @empty_18" [HLS_Final_vitis_src/spu.cpp:342]   --->   Operation 14 'specloopname' 'specloopname_ln342' <Predicate = (!icmp_ln383)> <Delay = 0.00>
+ST_1 : Operation 15 [1/1] (0.00ns)   --->   "%t_addr = getelementptr i4 %t, i64 0, i64 %i_36_cast" [HLS_Final_vitis_src/spu.cpp:384]   --->   Operation 15 'getelementptr' 't_addr' <Predicate = (!icmp_ln383)> <Delay = 0.00>
+ST_1 : Operation 16 [1/1] (0.73ns)   --->   "%store_ln384 = store i4 0, i3 %t_addr" [HLS_Final_vitis_src/spu.cpp:384]   --->   Operation 16 'store' 'store_ln384' <Predicate = (!icmp_ln383)> <Delay = 0.73> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 0.73> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 4> <Depth = 8> <RAM>
+ST_1 : Operation 17 [1/1] (0.46ns)   --->   "%store_ln383 = store i4 %add_ln383, i4 %i" [HLS_Final_vitis_src/spu.cpp:383]   --->   Operation 17 'store' 'store_ln383' <Predicate = (!icmp_ln383)> <Delay = 0.46>
+ST_1 : Operation 18 [1/1] (0.00ns)   --->   "%br_ln383 = br void %for.inc100" [HLS_Final_vitis_src/spu.cpp:383]   --->   Operation 18 'br' 'br_ln383' <Predicate = (!icmp_ln383)> <Delay = 0.00>
+ST_1 : Operation 19 [1/1] (0.00ns)   --->   "%ret_ln0 = ret"   --->   Operation 19 'ret' 'ret_ln0' <Predicate = (icmp_ln383)> <Delay = 0.00>
+
+
+============================================================
++ Verbose Summary: Timing violations
+============================================================
+Target clock period: 10ns, clock uncertainty: 2.7ns.
+
+ <State 1>: 1.45ns
+The critical path consists of the following:
+	'alloca' operation ('i') [2]  (0 ns)
+	'load' operation ('i', HLS_Final_vitis_src/spu.cpp:383) on local variable 'i' [6]  (0 ns)
+	'add' operation ('add_ln383', HLS_Final_vitis_src/spu.cpp:383) [10]  (0.809 ns)
+	'store' operation ('store_ln383', HLS_Final_vitis_src/spu.cpp:383) of variable 'add_ln383', HLS_Final_vitis_src/spu.cpp:383 on local variable 'i' [17]  (0.46 ns)
+	blocking operation 0.185 ns on control path)
+
+
+============================================================
++ Verbose Summary: Binding
+============================================================
+N/A
+* FSMD analyzer results:
+  - Output states:
+ - Input state : 
+  - Chain level:
+	State 1
+
+
+============================================================
++ Verbose Summary: Datapath Resource usage 
+============================================================
+N/A

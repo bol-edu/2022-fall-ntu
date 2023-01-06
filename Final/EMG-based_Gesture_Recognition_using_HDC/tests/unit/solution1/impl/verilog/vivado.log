@@ -1,0 +1,515 @@
+#-----------------------------------------------------------
+# Vivado v2022.1 (64-bit)
+# SW Build 3526262 on Mon Apr 18 15:48:16 MDT 2022
+# IP Build 3524634 on Mon Apr 18 20:55:01 MDT 2022
+# Start of session at: Thu Jan  5 05:23:29 2023
+# Process ID: 34180
+# Current directory: C:/Users/kevin/Desktop/AAHLS_Final_Project_deploy/solution1/impl/verilog
+# Command line: vivado.exe -mode batch -source run_vivadosyn.tcl
+# Log file: C:/Users/kevin/Desktop/AAHLS_Final_Project_deploy/solution1/impl/verilog/vivado.log
+# Journal file: C:/Users/kevin/Desktop/AAHLS_Final_Project_deploy/solution1/impl/verilog\vivado.jou
+# Running On: DESKTOP-B6S694L, OS: Windows, CPU Frequency: 3408 MHz, CPU Physical cores: 4, Host memory: 34224 MB
+#-----------------------------------------------------------
+source run_vivadosyn.tcl
+# source ./settings.tcl
+## set top_module hdc_maxi
+## set language verilog
+## set family zynq
+## set device xc7z020
+## set package -clg400
+## set speed -1
+## set clock ap_clk
+## set fsm_ext "off"
+## set add_io_buffers false ;
+# source -notrace ./extraction.tcl
+# set vivado_proj_name project
+# set vivado_proj_dir .
+# set target_device "${device}${package}${speed}"
+# set target_clk_period_ns "10"
+# set target_clk_freq_hz [expr {floor(1000 / $target_clk_period_ns) * 1000000}]
+# set ip_vlnv xilinx.com:hls:hdc_maxi:1.0
+# set ip_repo_path ../ip
+# set bd_design_name bd_0
+# set bd_inst_name hls_inst
+# set bd_props {}
+# set has_synth true
+# set synth_design_args {-directive sdx_optimization_effort_high}
+# set synth_dcp ""
+# set synth_props {}
+# set has_impl false
+# set impl_props {}
+# set report_options [dict create]
+# dict set report_options report_level 2
+# dict set report_options report_max_paths 10
+# dict set report_options stdout_hls_reports 1
+# dict set report_options stdout_vivado_reports 0
+# dict set report_options hls_project AAHLS_Final_Project_deploy
+# dict set report_options hls_solution solution1
+# dict set report_options has_synth $has_synth
+# dict set report_options has_impl $has_impl
+# dict set report_options vivado_reportbasename $top_module
+# dict set report_options vivado_reportdir ./report
+# dict set report_options hls_impl_dir ..
+# dict set report_options hls_reportdir ../report/$language
+# dict set report_options target_clk_period $target_clk_period_ns
+# dict set report_options target_device $target_device
+# dict set report_options language $language
+# dict set report_options clock_name $clock
+# dict set report_options error_if_impl_timing_fails false
+# dict set report_options bindmodules {hdc_maxi_mux_42_8192_1_1 hdc_maxi_flow_control_loop_pipe_sequential_init hdc_maxi_mac_muladd_3ns_8ns_8ns_11_4_1 hdc_maxi_mac_muladd_3ns_8ns_7ns_11_4_1 hdc_maxi_AM_RAM_AUTO_1R1W hdc_maxi_ngram_RAM_AUTO_1R1W hdc_maxi_test_data_d_RAM_AUTO_1R1W hdc_maxi_control_s_axi hdc_maxi_regslice_both}
+# dict set report_options max_module_depth 6
+# create_project $vivado_proj_name $vivado_proj_dir -part $target_device -force
+create_project: Time (s): cpu = 00:00:05 ; elapsed = 00:00:07 . Memory (MB): peak = 1622.863 ; gain = 0.000
+# set_property target_language $language [current_project]
+# if { ![file exists $ip_repo_path] } {
+#   error "Cannot find packaged HLS IP"
+# }
+# set_property ip_repo_paths [file normalize $ip_repo_path] [current_project]
+# update_ip_catalog
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1700] Loaded user IP repository 'c:/Users/kevin/Desktop/AAHLS_Final_Project_deploy/solution1/impl/ip'.
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository 'C:/Xilinx/Vivado/2022.1/data/ip'.
+# create_bd_design $bd_design_name
+Wrote  : <C:\Users\kevin\Desktop\AAHLS_Final_Project_deploy\solution1\impl\verilog\project.srcs\sources_1\bd\bd_0\bd_0.bd> 
+# set cell_inst [create_bd_cell -type ip -vlnv $ip_vlnv $bd_inst_name]
+# if { [llength $bd_props] } { 
+#   set_property -dict $bd_props $cell_inst 
+# }
+# make_bd_pins_external $cell_inst
+# make_bd_intf_pins_external $cell_inst
+# set bd_clk_ports [get_bd_ports -filter {TYPE==clk}]
+# if { [llength $bd_clk_ports] && $target_clk_freq_hz ne "" } { 
+#   set_property CONFIG.FREQ_HZ $target_clk_freq_hz $bd_clk_ports 
+# }
+# foreach bd_port [get_bd_intf_ports] {
+#   set_property name [regsub {_0$} [get_property name $bd_port] {}] $bd_port
+# }
+# foreach bd_port [get_bd_ports -filter {INTF!=TRUE}] {
+#   set_property name [regsub {_0$} [get_property name $bd_port] {}] $bd_port
+# }
+# set s_axi_addr_width_min 32
+# foreach bd_port [get_bd_intf_ports -filter {MODE == "Slave" && VLNV =~ "xilinx.com:interface:aximm_rtl:*"}] {
+#   set bd_port_addr_width [get_property CONFIG.ADDR_WIDTH $bd_port]
+#   if { $bd_port_addr_width < $s_axi_addr_width_min } {
+#     puts "INFO: Updating $bd_port CONFIG.ADDR_WIDTH to $s_axi_addr_width_min"
+#     set_property CONFIG.ADDR_WIDTH $s_axi_addr_width_min $bd_port
+#   }
+# }
+INFO: Updating /s_axi_control CONFIG.ADDR_WIDTH to 32
+# set_msg_config -id {[BD 41-1265]} -severity {CRITICAL WARNING} -new_severity {INFO}
+# assign_bd_address
+Slave segment '/hls_inst/s_axi_control/Reg' is being assigned into address space '/s_axi_control' at <0x0000_0000 [ 64K ]>.
+Wrote  : <C:\Users\kevin\Desktop\AAHLS_Final_Project_deploy\solution1\impl\verilog\project.srcs\sources_1\bd\bd_0\bd_0.bd> 
+Verilog Output written to : C:/Users/kevin/Desktop/AAHLS_Final_Project_deploy/solution1/impl/verilog/project.gen/sources_1/bd/bd_0/synth/bd_0.v
+Verilog Output written to : C:/Users/kevin/Desktop/AAHLS_Final_Project_deploy/solution1/impl/verilog/project.gen/sources_1/bd/bd_0/sim/bd_0.v
+Verilog Output written to : C:/Users/kevin/Desktop/AAHLS_Final_Project_deploy/solution1/impl/verilog/project.gen/sources_1/bd/bd_0/hdl/bd_0_wrapper.v
+# set toprtl [make_wrapper -files [get_files ${bd_design_name}.bd] -top]
+# add_files -norecurse $toprtl
+# set top_inst_name [file root [file tail $toprtl]]
+# puts "Using BD top: $top_inst_name"
+Using BD top: bd_0_wrapper
+# set xdc_files [glob -nocomplain ./*.xdc]
+# if { [llength $xdc_files] } {
+#     add_files -fileset constrs_1 -norecurse $xdc_files
+# }
+# launch_runs synth_1 -scripts_only
+INFO: [BD 41-1662] The design 'bd_0.bd' is already validated. Therefore parameter propagation will not be re-run.
+Verilog Output written to : C:/Users/kevin/Desktop/AAHLS_Final_Project_deploy/solution1/impl/verilog/project.gen/sources_1/bd/bd_0/synth/bd_0.v
+Verilog Output written to : C:/Users/kevin/Desktop/AAHLS_Final_Project_deploy/solution1/impl/verilog/project.gen/sources_1/bd/bd_0/sim/bd_0.v
+Verilog Output written to : C:/Users/kevin/Desktop/AAHLS_Final_Project_deploy/solution1/impl/verilog/project.gen/sources_1/bd/bd_0/hdl/bd_0_wrapper.v
+INFO: [BD 41-1029] Generation completed for the IP Integrator block hls_inst .
+Exporting to file C:/Users/kevin/Desktop/AAHLS_Final_Project_deploy/solution1/impl/verilog/project.gen/sources_1/bd/bd_0/hw_handoff/bd_0.hwh
+Generated Hardware Definition File C:/Users/kevin/Desktop/AAHLS_Final_Project_deploy/solution1/impl/verilog/project.gen/sources_1/bd/bd_0/synth/bd_0.hwdef
+WARNING: [Vivado 12-7122] Auto Incremental Compile:: No reference checkpoint was found in run synth_1. Auto-incremental flow will not be run, the standard flow will be run instead.
+launch_runs: Time (s): cpu = 00:00:00 ; elapsed = 00:00:05 . Memory (MB): peak = 1622.863 ; gain = 0.000
+# foreach run [get_runs -filter {IS_SYNTHESIS == 1}] {
+#   reset_run [get_runs $run]
+# }
+# set_property XPM_LIBRARIES {XPM_MEMORY XPM_FIFO} [current_project]
+# hls_vivado_reports_setup $report_options
+TIMESTAMP: HLS-REPORT: initialize report directories: 2023-01-05 05:23:55 +0800
+# if { $has_synth || $has_impl } {
+#   # synth properties setting
+#   set_property -name {STEPS.SYNTH_DESIGN.ARGS.MORE OPTIONS} -value {-mode out_of_context} -objects [get_runs synth_1]
+#   set ip_inst [get_ips -quiet ${bd_design_name}*${bd_inst_name}*]
+#   if { ![llength $ip_inst] } {
+#       error "Cannot find HLS IP instance: ${bd_design_name}*${bd_inst_name}*"
+#   }
+#   set synth_run [get_runs -filter {IS_SYNTHESIS == 1} ${ip_inst}*]
+#   if { ![llength $synth_run] } {
+#       error "Cannot find synth run for HLS IP: ${ip_inst}*"
+#   }
+# 
+#   if { [llength $synth_design_args] } {
+#       set_property -name {STEPS.SYNTH_DESIGN.ARGS.MORE OPTIONS} -value $synth_design_args -objects $synth_run
+#   }
+# 
+#   if { [llength $synth_props] } {
+#     set_property -dict $synth_props $synth_run
+#   }
+# 
+#   # launch run synth
+#   launch_runs synth_1
+#   wait_on_run synth_1
+#   # synth reports
+#   hls_vivado_reports_synth synth_1 $report_options
+#   if { $synth_dcp ne "" } {
+#     file mkdir [file dirname $synth_dcp]
+#     set run_dcp [glob -nocomplain [get_property DIRECTORY $synth_run]/*.dcp]
+#     if { [llength $run_dcp] != 1 } { error "Cannot find single dcp file for run $synth_run" }
+#     file copy -force $run_dcp $synth_dcp
+#   }
+# }
+WARNING: [Vivado 12-7122] Auto Incremental Compile:: No reference checkpoint was found in run synth_1. Auto-incremental flow will not be run, the standard flow will be run instead.
+[Thu Jan  5 05:23:56 2023] Launched bd_0_hls_inst_0_synth_1...
+Run output will be captured here: C:/Users/kevin/Desktop/AAHLS_Final_Project_deploy/solution1/impl/verilog/project.runs/bd_0_hls_inst_0_synth_1/runme.log
+[Thu Jan  5 05:23:56 2023] Launched synth_1...
+Run output will be captured here: C:/Users/kevin/Desktop/AAHLS_Final_Project_deploy/solution1/impl/verilog/project.runs/synth_1/runme.log
+[Thu Jan  5 05:23:56 2023] Waiting for synth_1 to finish...
+
+*** Running vivado
+    with args -log bd_0_wrapper.vds -m64 -product Vivado -mode batch -messageDb vivado.pb -notrace -source bd_0_wrapper.tcl
+
+
+
+****** Vivado v2022.1 (64-bit)
+  **** SW Build 3526262 on Mon Apr 18 15:48:16 MDT 2022
+  **** IP Build 3524634 on Mon Apr 18 20:55:01 MDT 2022
+    ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+
+source bd_0_wrapper.tcl -notrace
+create_project: Time (s): cpu = 00:00:05 ; elapsed = 00:00:05 . Memory (MB): peak = 1621.371 ; gain = 0.000
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1700] Loaded user IP repository 'c:/Users/kevin/Desktop/AAHLS_Final_Project_deploy/solution1/impl/ip'.
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository 'C:/Xilinx/Vivado/2022.1/data/ip'.
+WARNING: [IP_Flow 19-4995] The host OS only allows 260 characters in a normal path. The IP cache path is more than 80 characters. If you experience issues with IP caching, please consider changing the IP cache to a location with a shorter path. Alternately consider using the OS subst command to map part of the path to a drive letter. 
+Current IP cache path is c:/Users/kevin/Desktop/AAHLS_Final_Project_deploy/solution1/impl/verilog/project.cache/ip 
+Command: synth_design -top bd_0_wrapper -part xc7z020clg400-1 -mode out_of_context
+Starting synth_design
+Attempting to get a license for feature 'Synthesis' and/or device 'xc7z020'
+INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7z020'
+INFO: [Device 21-403] Loading part xc7z020clg400-1
+INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 2 processes.
+INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
+INFO: [Synth 8-7075] Helper process launched with PID 40472
+WARNING: [Synth 8-9501] generate block is allowed only inside loop and conditional generate in SystemVerilog mode [C:/Xilinx/Vivado/2022.1/data/ip/xpm/xpm_fifo/hdl/xpm_fifo.sv:4023]
+---------------------------------------------------------------------------------
+Starting RTL Elaboration : Time (s): cpu = 00:00:08 ; elapsed = 00:00:09 . Memory (MB): peak = 1621.371 ; gain = 0.000
+---------------------------------------------------------------------------------
+INFO: [Synth 8-6157] synthesizing module 'bd_0_wrapper' [c:/Users/kevin/Desktop/AAHLS_Final_Project_deploy/solution1/impl/verilog/project.gen/sources_1/bd/bd_0/hdl/bd_0_wrapper.v:12]
+INFO: [Synth 8-6157] synthesizing module 'bd_0' [c:/Users/kevin/Desktop/AAHLS_Final_Project_deploy/solution1/impl/verilog/project.gen/sources_1/bd/bd_0/synth/bd_0.v:12]
+INFO: [Synth 8-6157] synthesizing module 'bd_0_hls_inst_0' [C:/Users/kevin/Desktop/AAHLS_Final_Project_deploy/solution1/impl/verilog/project.runs/synth_1/.Xil/Vivado-28212-DESKTOP-B6S694L/realtime/bd_0_hls_inst_0_stub.v:5]
+INFO: [Synth 8-6155] done synthesizing module 'bd_0_hls_inst_0' (0#1) [C:/Users/kevin/Desktop/AAHLS_Final_Project_deploy/solution1/impl/verilog/project.runs/synth_1/.Xil/Vivado-28212-DESKTOP-B6S694L/realtime/bd_0_hls_inst_0_stub.v:5]
+INFO: [Synth 8-6155] done synthesizing module 'bd_0' (0#1) [c:/Users/kevin/Desktop/AAHLS_Final_Project_deploy/solution1/impl/verilog/project.gen/sources_1/bd/bd_0/synth/bd_0.v:12]
+INFO: [Synth 8-6155] done synthesizing module 'bd_0_wrapper' (0#1) [c:/Users/kevin/Desktop/AAHLS_Final_Project_deploy/solution1/impl/verilog/project.gen/sources_1/bd/bd_0/hdl/bd_0_wrapper.v:12]
+---------------------------------------------------------------------------------
+Finished RTL Elaboration : Time (s): cpu = 00:00:10 ; elapsed = 00:00:11 . Memory (MB): peak = 1645.859 ; gain = 24.488
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:10 ; elapsed = 00:00:11 . Memory (MB): peak = 1645.859 ; gain = 24.488
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:10 ; elapsed = 00:00:11 . Memory (MB): peak = 1645.859 ; gain = 24.488
+---------------------------------------------------------------------------------
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.023 . Memory (MB): peak = 1645.859 ; gain = 0.000
+INFO: [Project 1-570] Preparing netlist for logic optimization
+
+Processing XDC Constraints
+Initializing timing engine
+Parsing XDC File [c:/Users/kevin/Desktop/AAHLS_Final_Project_deploy/solution1/impl/verilog/project.gen/sources_1/bd/bd_0/ip/bd_0_hls_inst_0/bd_0_hls_inst_0/bd_0_hls_inst_0_in_context.xdc] for cell 'bd_0_i/hls_inst'
+Finished Parsing XDC File [c:/Users/kevin/Desktop/AAHLS_Final_Project_deploy/solution1/impl/verilog/project.gen/sources_1/bd/bd_0/ip/bd_0_hls_inst_0/bd_0_hls_inst_0/bd_0_hls_inst_0_in_context.xdc] for cell 'bd_0_i/hls_inst'
+Parsing XDC File [C:/Users/kevin/Desktop/AAHLS_Final_Project_deploy/solution1/impl/verilog/hdc_maxi.xdc]
+Finished Parsing XDC File [C:/Users/kevin/Desktop/AAHLS_Final_Project_deploy/solution1/impl/verilog/hdc_maxi.xdc]
+Parsing XDC File [C:/Users/kevin/Desktop/AAHLS_Final_Project_deploy/solution1/impl/verilog/project.runs/synth_1/dont_touch.xdc]
+Finished Parsing XDC File [C:/Users/kevin/Desktop/AAHLS_Final_Project_deploy/solution1/impl/verilog/project.runs/synth_1/dont_touch.xdc]
+Completed Processing XDC Constraints
+
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1645.859 ; gain = 0.000
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.028 . Memory (MB): peak = 1645.859 ; gain = 0.000
+---------------------------------------------------------------------------------
+Finished Constraint Validation : Time (s): cpu = 00:00:21 ; elapsed = 00:00:24 . Memory (MB): peak = 1645.859 ; gain = 24.488
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Loading Part and Timing Information
+---------------------------------------------------------------------------------
+Loading part: xc7z020clg400-1
+---------------------------------------------------------------------------------
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:21 ; elapsed = 00:00:24 . Memory (MB): peak = 1645.859 ; gain = 24.488
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying 'set_property' XDC Constraints
+---------------------------------------------------------------------------------
+Applied set_property KEEP_HIERARCHY = SOFT for bd_0_i. (constraint file  auto generated constraint).
+Applied set_property KEEP_HIERARCHY = SOFT for bd_0_i/hls_inst. (constraint file  auto generated constraint).
+---------------------------------------------------------------------------------
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:21 ; elapsed = 00:00:24 . Memory (MB): peak = 1645.859 ; gain = 24.488
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:21 ; elapsed = 00:00:24 . Memory (MB): peak = 1645.859 ; gain = 24.488
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start RTL Component Statistics 
+---------------------------------------------------------------------------------
+Detailed RTL Component Info : 
+---------------------------------------------------------------------------------
+Finished RTL Component Statistics 
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Part Resource Summary
+---------------------------------------------------------------------------------
+Part Resources:
+DSPs: 220 (col length:60)
+BRAMs: 280 (col length: RAMB18 60 RAMB36 30)
+---------------------------------------------------------------------------------
+Finished Part Resource Summary
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Cross Boundary and Area Optimization
+---------------------------------------------------------------------------------
+WARNING: [Synth 8-7080] Parallel synthesis criteria is not met
+---------------------------------------------------------------------------------
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:24 ; elapsed = 00:00:28 . Memory (MB): peak = 1645.859 ; gain = 24.488
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying XDC Timing Constraints
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:32 ; elapsed = 00:00:36 . Memory (MB): peak = 1649.016 ; gain = 27.645
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Timing Optimization
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Timing Optimization : Time (s): cpu = 00:00:32 ; elapsed = 00:00:36 . Memory (MB): peak = 1649.266 ; gain = 27.895
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Technology Mapping
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Technology Mapping : Time (s): cpu = 00:00:32 ; elapsed = 00:00:36 . Memory (MB): peak = 1668.363 ; gain = 46.992
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished IO Insertion : Time (s): cpu = 00:00:39 ; elapsed = 00:00:44 . Memory (MB): peak = 1674.051 ; gain = 52.680
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Instances
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:39 ; elapsed = 00:00:44 . Memory (MB): peak = 1674.051 ; gain = 52.680
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Rebuilding User Hierarchy
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:39 ; elapsed = 00:00:44 . Memory (MB): peak = 1674.051 ; gain = 52.680
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Ports
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:39 ; elapsed = 00:00:44 . Memory (MB): peak = 1674.051 ; gain = 52.680
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:39 ; elapsed = 00:00:44 . Memory (MB): peak = 1674.051 ; gain = 52.680
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Nets
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:39 ; elapsed = 00:00:44 . Memory (MB): peak = 1674.051 ; gain = 52.680
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Writing Synthesis Report
+---------------------------------------------------------------------------------
+
+Report BlackBoxes: 
++------+----------------+----------+
+|      |BlackBox name   |Instances |
++------+----------------+----------+
+|1     |bd_0_hls_inst_0 |         1|
++------+----------------+----------+
+
+Report Cell Usage: 
++------+--------------+------+
+|      |Cell          |Count |
++------+--------------+------+
+|1     |bd_0_hls_inst |     1|
++------+--------------+------+
+---------------------------------------------------------------------------------
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:39 ; elapsed = 00:00:44 . Memory (MB): peak = 1674.051 ; gain = 52.680
+---------------------------------------------------------------------------------
+Synthesis finished with 0 errors, 0 critical warnings and 1 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:26 ; elapsed = 00:00:40 . Memory (MB): peak = 1674.051 ; gain = 52.680
+Synthesis Optimization Complete : Time (s): cpu = 00:00:39 ; elapsed = 00:00:44 . Memory (MB): peak = 1674.051 ; gain = 52.680
+INFO: [Project 1-571] Translating synthesized netlist
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.010 . Memory (MB): peak = 1674.051 ; gain = 0.000
+INFO: [Project 1-570] Preparing netlist for logic optimization
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1697.184 ; gain = 0.000
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+Synth Design complete, checksum: 35744d7
+INFO: [Common 17-83] Releasing license: Synthesis
+21 Infos, 3 Warnings, 0 Critical Warnings and 0 Errors encountered.
+synth_design completed successfully
+synth_design: Time (s): cpu = 00:00:45 ; elapsed = 00:00:51 . Memory (MB): peak = 1697.184 ; gain = 75.812
+INFO: [Common 17-1381] The checkpoint 'C:/Users/kevin/Desktop/AAHLS_Final_Project_deploy/solution1/impl/verilog/project.runs/synth_1/bd_0_wrapper.dcp' has been generated.
+INFO: [runtcl-4] Executing : report_utilization -file bd_0_wrapper_utilization_synth.rpt -pb bd_0_wrapper_utilization_synth.pb
+INFO: [Common 17-206] Exiting Vivado at Thu Jan  5 05:35:31 2023...
+[Thu Jan  5 05:35:37 2023] synth_1 finished
+wait_on_runs: Time (s): cpu = 00:00:00 ; elapsed = 00:11:41 . Memory (MB): peak = 1622.863 ; gain = 0.000
+TIMESTAMP: HLS-REPORT: synthesis open_run: 2023-01-05 05:35:37 +0800
+INFO: HLS-REPORT: Opening synthesis design database: open_run synth_1
+Design is defaulting to impl run constrset: constrs_1
+Design is defaulting to synth run part: xc7z020clg400-1
+INFO: [Device 21-403] Loading part xc7z020clg400-1
+INFO: [Project 1-454] Reading design checkpoint 'c:/Users/kevin/Desktop/AAHLS_Final_Project_deploy/solution1/impl/verilog/project.gen/sources_1/bd/bd_0/ip/bd_0_hls_inst_0/bd_0_hls_inst_0.dcp' for cell 'bd_0_i/hls_inst'
+Netlist sorting complete. Time (s): cpu = 00:00:02 ; elapsed = 00:00:02 . Memory (MB): peak = 1622.863 ; gain = 0.000
+INFO: [Netlist 29-17] Analyzing 6540 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+INFO: [Project 1-479] Netlist was created with Vivado 2022.1
+INFO: [Project 1-570] Preparing netlist for logic optimization
+Parsing XDC File [C:/Users/kevin/Desktop/AAHLS_Final_Project_deploy/solution1/impl/verilog/hdc_maxi.xdc]
+Finished Parsing XDC File [C:/Users/kevin/Desktop/AAHLS_Final_Project_deploy/solution1/impl/verilog/hdc_maxi.xdc]
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.022 . Memory (MB): peak = 1622.863 ; gain = 0.000
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+open_run: Time (s): cpu = 00:00:22 ; elapsed = 00:00:24 . Memory (MB): peak = 1622.863 ; gain = 0.000
+TIMESTAMP: HLS-REPORT: synthesis generate_reports_vivado: 2023-01-05 05:36:01 +0800
+INFO: HLS-REPORT: Running report: report_utilization -file ./report/hdc_maxi_utilization_synth.rpt
+INFO: HLS-REPORT: Running report: report_utilization -hierarchical -hierarchical_depth 6 -file ./report/hdc_maxi_utilization_hierarchical_synth.rpt
+INFO: HLS-REPORT: Running report: report_timing_summary -file ./report/hdc_maxi_timing_synth.rpt
+INFO: [Timing 38-35] Done setting XDC timing constraints.
+INFO: [Timing 38-91] UpdateTimingParams: Speed grade: -1, Delay Type: min_max.
+INFO: [Timing 38-191] Multithreading enabled for timing update using a maximum of 2 CPUs
+WARNING: [Timing 38-242] The property HD.CLK_SRC of clock port "ap_clk" is not set. In out-of-context mode, this prevents timing estimation for clock delay/skew
+Resolution: Set the HD.CLK_SRC property of the out-of-context port to the location of the clock buffer instance in the top-level design
+report_timing_summary: Time (s): cpu = 00:00:29 ; elapsed = 00:00:24 . Memory (MB): peak = 2200.875 ; gain = 578.012
+INFO: HLS-REPORT: Running report: report_timing -max_paths 10 -file ./report/hdc_maxi_timing_paths_synth.rpt
+INFO: [Timing 38-91] UpdateTimingParams: Speed grade: -1, Delay Type: max.
+INFO: [Timing 38-191] Multithreading enabled for timing update using a maximum of 2 CPUs
+INFO: [Timing 38-78] ReportTimingParams: -max_paths 10 -nworst 1 -delay_type max -sort_by slack.
+INFO: HLS-REPORT: Running report: report_design_analysis -file ./report/hdc_maxi_design_analysis_synth.rpt
+INFO: [Implflow 30-839]  
+INFO: HLS-REPORT: Running report: ::tclapp::xilinx::designutils::report_failfast -detailed_report synth -file ./report/hdc_maxi_failfast_synth.rpt
+ -I- design metrics completed in 3 seconds
+ -I- DONT_TOUCH metric completed in 0 seconds
+ -I- MARK_DEBUG metric completed in 1 seconds
+ -I- utilization metrics completed in 2 seconds
+ -I- control set metrics completed in 0 seconds
+ -I- methodology check metrics completed in 6 seconds
+ -I- average fanout metrics completed in 4 seconds (0 modules)
+ -I- non-FD high fanout nets completed in 6 seconds
+ -I- path budgeting metrics completed in 3 seconds
+#  +-----------------------------------------------------------------------------------------+
+#  | Design Summary                                                                          |
+#  | design_1                                                                                |
+#  | xc7z020clg400-1                                                                         |
+#  +-----------------------------------------------------------+-----------+--------+--------+
+#  | Criteria                                                  | Guideline | Actual | Status |
+#  +-----------------------------------------------------------+-----------+--------+--------+
+#  | LUT                                                       | 70%       | 53.34% | OK     |
+#  | FD                                                        | 50%       | 32.97% | OK     |
+#  | LUTRAM+SRL                                                | 25%       | 0.05%  | OK     |
+#  | MUXF7                                                     | 15%       | 16.60% | REVIEW |
+#  | LUT Combining                                             | 20%       | 1.86%  | OK     |
+#  | DSP                                                       | 80%       | 0.91%  | OK     |
+#  | RAMB/FIFO                                                 | 80%       | 14.29% | OK     |
+#  | DSP+RAMB+URAM (Avg)                                       | 70%       | 7.60%  | OK     |
+#  | BUFGCE* + BUFGCTRL                                        | 24        | 0      | OK     |
+#  | DONT_TOUCH (cells/nets)                                   | 0         | 0      | OK     |
+#  | MARK_DEBUG (nets)                                         | 0         | 0      | OK     |
+#  | Control Sets                                              | 998       | 72     | OK     |
+#  | Average Fanout for modules > 100k cells                   | 4         | 0      | OK     |
+#  | Non-FD high fanout nets > 10k loads                       | 0         | 0      | OK     |
+#  +-----------------------------------------------------------+-----------+--------+--------+
+#  | TIMING-6 (No common primary clock between related clocks) | 0         | 0      | OK     |
+#  | TIMING-7 (No common node between related clocks)          | 0         | 0      | OK     |
+#  | TIMING-8 (No common period between related clocks)        | 0         | 0      | OK     |
+#  | TIMING-14 (LUT on the clock tree)                         | 0         | 0      | OK     |
+#  | TIMING-35 (No common node in paths with the same clock)   | 0         | 0      | OK     |
+#  +-----------------------------------------------------------+-----------+--------+--------+
+#  | Number of paths above max LUT budgeting (0.575ns)         | 0         | 0      | OK     |
+#  | Number of paths above max Net budgeting (0.403ns)         | 0         | 0      | OK     |
+#  +-----------------------------------------------------------+-----------+--------+--------+
+ -I- Generated file C:/Users/kevin/Desktop/AAHLS_Final_Project_deploy/solution1/impl/verilog/report/hdc_maxi_failfast_synth.rpt
+ -I- Number of criteria to review: 1
+ -I- This report should be run before placing the design and uses conservative guidelines beyond which runtime and timing closure will likely be more challenging
+ -I- report_failfast completed in 25 seconds
+TIMESTAMP: HLS-REPORT: synthesis gen_data_dict_vivado: 2023-01-05 05:36:54 +0800
+TIMESTAMP: HLS-REPORT: synth extract_util_hier: 2023-01-05 05:36:55 +0800
+TIMESTAMP: HLS-REPORT: synth get_cell_hier_data: 2023-01-05 05:36:55 +0800
+TIMESTAMP: HLS-REPORT: synth get_timing_paths: 2023-01-05 05:36:55 +0800
+TIMESTAMP: HLS-REPORT: synth process timing paths: 2023-01-05 05:36:55 +0800
+TIMESTAMP: HLS-REPORT: synth get_all_vv_rpt_files: 2023-01-05 05:36:55 +0800
+TIMESTAMP: HLS-REPORT: synthesis write_reports_vivado: 2023-01-05 05:36:55 +0800
+HLS EXTRACTION: synth area_totals:  0 53200 106400 220 280 0 0
+HLS EXTRACTION: synth area_current: 0 28376 35085 2 40 0 9 0 0 0
+HLS EXTRACTION: synth resources_dict: AVAIL_LUT 53200 LUT 28376 AVAIL_FF 106400 FF 35085 AVAIL_DSP 220 DSP 2 AVAIL_BRAM 280 BRAM 40 AVAIL_URAM 0 URAM 0 LATCH 0 SRL 9 AVAIL_CLB 0 CLB 0
+INFO: HLS-REPORT: generated C:/Users/kevin/Desktop/AAHLS_Final_Project_deploy/solution1/impl/verilog/report/vivado_syn.xml
+INFO: HLS-REPORT: generated C:/Users/kevin/Desktop/AAHLS_Final_Project_deploy/solution1/impl/report/verilog/hdc_maxi_export.rpt
+
+
+Implementation tool: Xilinx Vivado v.2022.1
+Project:             AAHLS_Final_Project_deploy
+Solution:            solution1
+Device target:       xc7z020-clg400-1
+Report date:         Thu Jan 05 05:36:56 +0800 2023
+
+#=== Post-Synthesis Resource usage ===
+SLICE:            0
+LUT:          28376
+FF:           35085
+DSP:              2
+BRAM:            40
+URAM:             0
+LATCH:            0
+SRL:              9
+CLB:              0
+
+#=== Final timing ===
+CP required:                     10.000
+CP achieved post-synthesis:      7.104
+Timing met
+
+TIMESTAMP: HLS-REPORT: synthesis end: 2023-01-05 05:36:56 +0800
+# if { $has_impl } {
+#   # launch run impl
+#   if { [llength $impl_props] } {
+#     set_property -dict $impl_props [get_runs impl_1]
+#   }
+#   launch_runs impl_1
+#   wait_on_run impl_1
+#   # impl reports
+#   hls_vivado_reports_impl impl_1 $report_options
+# }
+# hls_vivado_reports_finalize $report_options
+TIMESTAMP: HLS-REPORT: all reports complete: 2023-01-05 05:36:56 +0800
+INFO: [Common 17-206] Exiting Vivado at Thu Jan  5 05:36:56 2023...

@@ -1,0 +1,152 @@
+
+
+================================================================
+== Vitis HLS Report for 'dut_Pipeline_8'
+================================================================
+* Date:           Sat Nov 12 19:46:18 2022
+
+* Version:        2022.1 (Build 3526262 on Mon Apr 18 15:48:16 MDT 2022)
+* Project:        serialization.prj
+* Solution:       solution2 (Vitis Kernel Flow Target)
+* Product family: zynq
+* Target device:  xc7z020-clg400-1
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing: 
+    * Summary: 
+    +--------+---------+----------+------------+
+    |  Clock |  Target | Estimated| Uncertainty|
+    +--------+---------+----------+------------+
+    |ap_clk  |  3.30 ns|  3.254 ns|        0 ns|
+    +--------+---------+----------+------------+
+
++ Latency: 
+    * Summary: 
+    +---------+---------+-----------+-----------+-------+-------+---------+
+    |  Latency (cycles) |   Latency (absolute)  |    Interval   | Pipeline|
+    |   min   |   max   |    min    |    max    |  min  |  max  |   Type  |
+    +---------+---------+-----------+-----------+-------+-------+---------+
+    |    24530|    24530|  80.949 us|  80.949 us|  24530|  24530|       no|
+    +---------+---------+-----------+-----------+-------+-------+---------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        +----------+---------+---------+----------+-----------+-----------+-------+----------+
+        |          |  Latency (cycles) | Iteration|  Initiation Interval  |  Trip |          |
+        | Loop Name|   min   |   max   |  Latency |  achieved |   target  | Count | Pipelined|
+        +----------+---------+---------+----------+-----------+-----------+-------+----------+
+        |- Loop 1  |    24528|    24528|         2|          1|          1|  24528|       yes|
+        +----------+---------+---------+----------+-----------+-----------+-------+----------+
+
+============================================================
++ Verbose Summary: Synthesis Manager
+============================================================
+InlineROM: 1
+ExposeGlobal: 0
+============================================================
++ Verbose Summary: CDFG Model
+============================================================
+IsTopModel: 0
+ResetActiveHigh: 1
+IsCombinational: 0
+IsDatapathOnly: 0
+HasWiredReturn: 1
+HasMFsm: 2
+HasVarLatency: 1
+IsPipeline: 0
+IsRtlPipelined: 0
+IsInstanceOverlapped: 0
+IsDontTouch: 0
+HasImplIP: 0
+IsGatedGlobalClock: 0
+
++ Individual pipeline summary: 
+  * Pipeline-0: initiation interval (II) = 1, depth = 2
+
+
+============================================================
++ Verbose Summary: Schedule
+============================================================
+* Number of FSM states : 2
+* Pipeline : 1
+  Pipeline-0 : II = 1, D = 2, States = { 1 2 }
+* Dataflow Pipeline: 0
+
+* FSM state transitions: 
+1 --> 2 
+2 --> 
+
+* FSM state operations: 
+
+State 1 <SV = 0> <Delay = 2.31>
+ST_1 : Operation 5 [1/1] (0.00ns)   --->   "%empty = alloca i32 1"   --->   Operation 5 'alloca' 'empty' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 6 [1/1] (1.58ns)   --->   "%store_ln0 = store i15 0, i15 %empty"   --->   Operation 6 'store' 'store_ln0' <Predicate = true> <Delay = 1.58>
+ST_1 : Operation 7 [1/1] (0.00ns)   --->   "%br_ln0 = br void %memset.loop"   --->   Operation 7 'br' 'br_ln0' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 8 [1/1] (0.00ns)   --->   "%p_load = load i15 %empty"   --->   Operation 8 'load' 'p_load' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 9 [1/1] (0.00ns)   --->   "%specpipeline_ln0 = specpipeline void @_ssdm_op_SpecPipeline, i32 4294967295, i32 0, i32 1, i32 0, void @p_str"   --->   Operation 9 'specpipeline' 'specpipeline_ln0' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 10 [1/1] (2.31ns)   --->   "%exitcond3 = icmp_eq  i15 %p_load, i15 24528"   --->   Operation 10 'icmp' 'exitcond3' <Predicate = true> <Delay = 2.31> <CoreInst = "Cmp">   --->   Core 9 'Cmp' <Latency = 0> <II = 1> <Delay = 2.31> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 11 [1/1] (0.00ns)   --->   "%empty_26 = speclooptripcount i32 @_ssdm_op_SpecLoopTripCount, i64 24528, i64 24528, i64 24528"   --->   Operation 11 'speclooptripcount' 'empty_26' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 12 [1/1] (1.94ns)   --->   "%empty_27 = add i15 %p_load, i15 1"   --->   Operation 12 'add' 'empty_27' <Predicate = true> <Delay = 1.94> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 1.94> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 13 [1/1] (0.00ns)   --->   "%br_ln0 = br i1 %exitcond3, void %memset.loop.split, void %split_ifconv.exitStub"   --->   Operation 13 'br' 'br_ln0' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 14 [1/1] (0.00ns)   --->   "%tmp_s = partselect i13 @_ssdm_op_PartSelect.i13.i15.i32.i32, i15 %p_load, i32 2, i32 14"   --->   Operation 14 'partselect' 'tmp_s' <Predicate = (!exitcond3)> <Delay = 0.00>
+ST_1 : Operation 15 [1/1] (0.00ns)   --->   "%empty_28 = trunc i15 %p_load"   --->   Operation 15 'trunc' 'empty_28' <Predicate = (!exitcond3)> <Delay = 0.00>
+ST_1 : Operation 16 [1/1] (0.95ns)   --->   "%switch_ln0 = switch i2 %empty_28, void %.case.3, i2 0, void %.case.0, i2 1, void %.case.1, i2 2, void %.case.2"   --->   Operation 16 'switch' 'switch_ln0' <Predicate = (!exitcond3)> <Delay = 0.95>
+ST_1 : Operation 32 [1/1] (0.00ns)   --->   "%ret_ln0 = ret"   --->   Operation 32 'ret' 'ret_ln0' <Predicate = (exitcond3)> <Delay = 0.00>
+
+State 2 <SV = 1> <Delay = 3.25>
+ST_2 : Operation 17 [1/1] (0.00ns)   --->   "%p_cast83 = zext i13 %tmp_s"   --->   Operation 17 'zext' 'p_cast83' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 18 [1/1] (0.00ns)   --->   "%string_2_addr = getelementptr i8 %string_2, i64 0, i64 %p_cast83"   --->   Operation 18 'getelementptr' 'string_2_addr' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 19 [1/1] (0.00ns)   --->   "%string_2_1_addr = getelementptr i8 %string_2_1, i64 0, i64 %p_cast83"   --->   Operation 19 'getelementptr' 'string_2_1_addr' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 20 [1/1] (0.00ns)   --->   "%string_2_2_addr = getelementptr i8 %string_2_2, i64 0, i64 %p_cast83"   --->   Operation 20 'getelementptr' 'string_2_2_addr' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 21 [1/1] (0.00ns)   --->   "%string_2_3_addr = getelementptr i8 %string_2_3, i64 0, i64 %p_cast83"   --->   Operation 21 'getelementptr' 'string_2_3_addr' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 22 [1/1] (3.25ns)   --->   "%store_ln0 = store i8 0, i13 %string_2_2_addr"   --->   Operation 22 'store' 'store_ln0' <Predicate = (empty_28 == 2)> <Delay = 3.25> <CoreInst = "RAM">   --->   Core 82 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 6132> <RAM>
+ST_2 : Operation 23 [1/1] (0.00ns)   --->   "%br_ln0 = br void %.exit"   --->   Operation 23 'br' 'br_ln0' <Predicate = (empty_28 == 2)> <Delay = 0.00>
+ST_2 : Operation 24 [1/1] (3.25ns)   --->   "%store_ln0 = store i8 0, i13 %string_2_1_addr"   --->   Operation 24 'store' 'store_ln0' <Predicate = (empty_28 == 1)> <Delay = 3.25> <CoreInst = "RAM">   --->   Core 82 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 6132> <RAM>
+ST_2 : Operation 25 [1/1] (0.00ns)   --->   "%br_ln0 = br void %.exit"   --->   Operation 25 'br' 'br_ln0' <Predicate = (empty_28 == 1)> <Delay = 0.00>
+ST_2 : Operation 26 [1/1] (3.25ns)   --->   "%store_ln0 = store i8 0, i13 %string_2_addr"   --->   Operation 26 'store' 'store_ln0' <Predicate = (empty_28 == 0)> <Delay = 3.25> <CoreInst = "RAM">   --->   Core 82 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 6132> <RAM>
+ST_2 : Operation 27 [1/1] (0.00ns)   --->   "%br_ln0 = br void %.exit"   --->   Operation 27 'br' 'br_ln0' <Predicate = (empty_28 == 0)> <Delay = 0.00>
+ST_2 : Operation 28 [1/1] (3.25ns)   --->   "%store_ln0 = store i8 0, i13 %string_2_3_addr"   --->   Operation 28 'store' 'store_ln0' <Predicate = (empty_28 == 3)> <Delay = 3.25> <CoreInst = "RAM">   --->   Core 82 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 6132> <RAM>
+ST_2 : Operation 29 [1/1] (0.00ns)   --->   "%br_ln0 = br void %.exit"   --->   Operation 29 'br' 'br_ln0' <Predicate = (empty_28 == 3)> <Delay = 0.00>
+ST_2 : Operation 30 [1/1] (1.58ns)   --->   "%store_ln0 = store i15 %empty_27, i15 %empty"   --->   Operation 30 'store' 'store_ln0' <Predicate = true> <Delay = 1.58>
+ST_2 : Operation 31 [1/1] (0.00ns)   --->   "%br_ln0 = br void %memset.loop"   --->   Operation 31 'br' 'br_ln0' <Predicate = true> <Delay = 0.00>
+
+
+============================================================
++ Verbose Summary: Timing violations
+============================================================
+Target clock period: 3.3ns, clock uncertainty: 0ns.
+
+ <State 1>: 2.32ns
+The critical path consists of the following:
+	'alloca' operation ('empty') [5]  (0 ns)
+	'load' operation ('p_load') on local variable 'empty' [9]  (0 ns)
+	'icmp' operation ('exitcond3') [11]  (2.32 ns)
+
+ <State 2>: 3.25ns
+The critical path consists of the following:
+	'getelementptr' operation ('string_2_2_addr') [20]  (0 ns)
+	'store' operation ('store_ln0') of constant 0 on array 'string_2_2' [25]  (3.25 ns)
+
+
+============================================================
++ Verbose Summary: Binding
+============================================================
+N/A
+* FSMD analyzer results:
+  - Output states:
+ - Input state : 
+  - Chain level:
+	State 1
+	State 2
+
+
+============================================================
++ Verbose Summary: Datapath Resource usage 
+============================================================
+N/A

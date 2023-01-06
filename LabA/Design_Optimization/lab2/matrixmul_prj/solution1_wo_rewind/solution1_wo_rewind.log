@@ -1,0 +1,88 @@
+==============================================================
+Vivado(TM) HLS - High-Level Synthesis from C, C++ and SystemC v2020.1 (64-bit)
+Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
+==============================================================
+INFO: [SYN 201-201] Setting up clock 'default' with a period of 13.333ns.
+INFO: [HLS 200-10] Setting target device to 'xcvu9p-flgb2104-1-e'
+INFO: [SCHED 204-61] Option 'relax_ii_for_timing' is enabled, will increase II to preserve clock frequency constraints.
+INFO: [HLS 200-10] Analyzing design file 'matrixmul.cpp' ... 
+INFO: [HLS 200-111] Finished Linking Time (s): cpu = 00:00:03 ; elapsed = 00:00:09 . Memory (MB): peak = 956.094 ; gain = 864.953
+INFO: [HLS 200-111] Finished Checking Pragmas Time (s): cpu = 00:00:03 ; elapsed = 00:00:09 . Memory (MB): peak = 956.094 ; gain = 864.953
+INFO: [HLS 200-10] Starting code transformations ...
+INFO: [HLS 200-111] Finished Standard Transforms Time (s): cpu = 00:00:03 ; elapsed = 00:00:10 . Memory (MB): peak = 956.094 ; gain = 864.953
+INFO: [HLS 200-10] Checking synthesizability ...
+INFO: [HLS 200-111] Finished Checking Synthesizability Time (s): cpu = 00:00:03 ; elapsed = 00:00:10 . Memory (MB): peak = 956.094 ; gain = 864.953
+INFO: [XFORM 203-502] Unrolling all sub-loops inside loop 'Col' (matrixmul.cpp:65) in function 'matrixmul' for pipelining.
+INFO: [HLS 200-489] Unrolling loop 'Cache_Row' (matrixmul.cpp:72) in function 'matrixmul' completely with a factor of 3.
+INFO: [HLS 200-489] Unrolling loop 'Cache_Col' (matrixmul.cpp:77) in function 'matrixmul' completely with a factor of 3.
+INFO: [HLS 200-489] Unrolling loop 'Product' (matrixmul.cpp:79) in function 'matrixmul' completely with a factor of 3.
+INFO: [XFORM 203-102] Partitioning array 'a_row' (matrixmul.cpp:58) automatically.
+INFO: [XFORM 203-102] Partitioning array 'b_copy' (matrixmul.cpp:59) in dimension 1 automatically.
+INFO: [XFORM 203-131] Reshaping array 'b' (matrixmul.cpp:50) in dimension 1 completely.
+INFO: [XFORM 203-131] Reshaping array 'a' (matrixmul.cpp:49) in dimension 2 completely.
+INFO: [XFORM 203-102] Automatically partitioning small array 'b_copy.0' (matrixmul.cpp:59) completely based on array size.
+INFO: [XFORM 203-102] Automatically partitioning small array 'b_copy.1' (matrixmul.cpp:59) completely based on array size.
+INFO: [XFORM 203-102] Automatically partitioning small array 'b_copy.2' (matrixmul.cpp:59) completely based on array size.
+INFO: [XFORM 203-101] Partitioning array 'b_copy.0' (matrixmul.cpp:59) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'b_copy.1' (matrixmul.cpp:59) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'b_copy.2' (matrixmul.cpp:59) in dimension 1 completely.
+WARNING: [XFORM 203-124] Array  'a': may have improper streaming access(es), possible reasons: (1) some entries are accessed more than once; (2) some entries are not used; (3) the entries are not accessed in sequential order.
+WARNING: [XFORM 203-124] Array  'b': may have improper streaming access(es), possible reasons: (1) some entries are accessed more than once; (2) some entries are not used; (3) the entries are not accessed in sequential order.
+INFO: [XFORM 203-401] Performing if-conversion on hyperblock from (matrixmul.cpp:77:16) in function 'matrixmul'... converting 5 basic blocks.
+INFO: [HLS 200-111] Finished Pre-synthesis Time (s): cpu = 00:00:04 ; elapsed = 00:00:10 . Memory (MB): peak = 956.094 ; gain = 864.953
+INFO: [XFORM 203-541] Flattening a loop nest 'Row' (matrixmul.cpp:63:36) in function 'matrixmul'.
+INFO: [HLS 200-111] Finished Architecture Synthesis Time (s): cpu = 00:00:04 ; elapsed = 00:00:10 . Memory (MB): peak = 956.094 ; gain = 864.953
+INFO: [HLS 200-10] Starting hardware synthesis ...
+INFO: [HLS 200-10] Synthesizing 'matrixmul' ...
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'matrixmul' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-61] Pipelining loop 'Row_Col'.
+INFO: [SCHED 204-61] Pipelining result : Target II = 1, Final II = 1, Depth = 3.
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111]  Elapsed time: 10.707 seconds; current allocated memory: 104.423 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111]  Elapsed time: 0.087 seconds; current allocated memory: 104.847 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'matrixmul' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-500] Setting interface mode on port 'matrixmul/a' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'matrixmul/b' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'matrixmul/res' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on function 'matrixmul' to 'ap_ctrl_hs'.
+INFO: [SYN 201-210] Renamed object name 'matrixmul_mux_32_8_1_1' to 'matrixmul_mux_32_bkb' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'matrixmul_mac_muladd_8s_8s_16s_16_1_1' to 'matrixmul_mac_mulcud' due to the length limit 20
+INFO: [SYN 201-210] Renamed object name 'matrixmul_mac_muladd_8s_8s_16ns_16_1_1' to 'matrixmul_mac_muldEe' due to the length limit 20
+INFO: [RTGEN 206-100] Generating core module 'matrixmul_mac_mulcud': 1 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'matrixmul_mac_muldEe': 1 instance(s).
+INFO: [RTGEN 206-100] Generating core module 'matrixmul_mux_32_bkb': 3 instance(s).
+INFO: [RTGEN 206-100] Finished creating RTL model for 'matrixmul'.
+INFO: [HLS 200-111]  Elapsed time: 0.186 seconds; current allocated memory: 105.629 MB.
+INFO: [HLS 200-790] **** Loop Constraint Status: All loop constraints were satisfied.
+INFO: [HLS 200-789] **** Estimated Fmax: 114.39 MHz
+INFO: [HLS 200-111] Finished generating all RTL models Time (s): cpu = 00:00:06 ; elapsed = 00:00:13 . Memory (MB): peak = 956.094 ; gain = 864.953
+INFO: [VHDL 208-304] Generating VHDL RTL for matrixmul.
+INFO: [VLOG 209-307] Generating Verilog RTL for matrixmul.
+INFO: [HLS 200-112] Total elapsed time: 13.18 seconds; peak allocated memory: 105.629 MB.
+==============================================================
+Vivado(TM) HLS - High-Level Synthesis from C, C++ and SystemC v2020.1 (64-bit)
+Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
+==============================================================
+INFO: [SYN 201-201] Setting up clock 'default' with a period of 13.333ns.
+INFO: [HLS 200-10] Setting target device to 'xcvu9p-flgb2104-1-e'
+INFO: [COSIM 212-47] Using XSIM for RTL simulation.
+INFO: [COSIM 212-14] Instrumenting C test bench ...
+INFO: [COSIM 212-302] Starting C TB testing ... 
+INFO: [COSIM 212-333] Generating C post check test bench ...
+INFO: [COSIM 212-12] Generating RTL test bench ...
+INFO: [COSIM 212-1] *** C/RTL co-simulation file generation completed. ***
+INFO: [COSIM 212-323] Starting verilog simulation. 
+INFO: [COSIM 212-15] Starting XSIM ...
+INFO: [COSIM 212-316] Starting C post checking ...
+INFO: [COSIM 212-1000] *** C/RTL co-simulation finished: PASS ***
+INFO: [COSIM 212-211] II is measurable only when transaction number is greater than 1 in RTL simulation. Otherwise, they will be marked as all NA. If user wants to calculate them, please make sure there are at least 2 transactions in RTL simulation.

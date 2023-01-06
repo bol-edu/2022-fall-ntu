@@ -1,0 +1,180 @@
+
+
+================================================================
+== Vitis HLS Report for 'diamond'
+================================================================
+* Date:           Thu Oct 13 09:29:17 2022
+
+* Version:        2022.1 (Build 3526262 on Mon Apr 18 15:47:01 MDT 2022)
+* Project:        proj
+* Solution:       solution1 (Vivado IP Flow Target)
+* Product family: virtexuplus
+* Target device:  xcvu9p-flga2104-2-i
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing: 
+    * Summary: 
+    +--------+---------+----------+------------+
+    |  Clock |  Target | Estimated| Uncertainty|
+    +--------+---------+----------+------------+
+    |ap_clk  |  5.00 ns|  1.843 ns|     1.35 ns|
+    +--------+---------+----------+------------+
+
++ Latency: 
+    * Summary: 
+    +---------+---------+----------+----------+-----+-----+----------+
+    |  Latency (cycles) |  Latency (absolute) |  Interval | Pipeline |
+    |   min   |   max   |    min   |    max   | min | max |   Type   |
+    +---------+---------+----------+----------+-----+-----+----------+
+    |      152|      155|  0.760 us|  0.775 us|   50|   50|  dataflow|
+    +---------+---------+----------+----------+-----+-----+----------+
+
+    + Detail: 
+        * Instance: 
+        +----------+-------+---------+---------+----------+----------+-----+-----+------------------------------------------+
+        |          |       |  Latency (cycles) |  Latency (absolute) |  Interval |                 Pipeline                 |
+        | Instance | Module|   min   |   max   |    min   |    max   | min | max |                   Type                   |
+        +----------+-------+---------+---------+----------+----------+-----+-----+------------------------------------------+
+        |funcA_U0  |funcA  |       50|       51|  0.250 us|  0.255 us|   50|   50|  loop rewind stp(delay=0 clock cycles(s))|
+        |funcB_U0  |funcB  |       50|       51|  0.250 us|  0.255 us|   50|   50|  loop rewind stp(delay=0 clock cycles(s))|
+        |funcC_U0  |funcC  |       50|       51|  0.250 us|  0.255 us|   50|   50|  loop rewind stp(delay=0 clock cycles(s))|
+        |funcD_U0  |funcD  |       50|       51|  0.250 us|  0.255 us|   50|   50|  loop rewind stp(delay=0 clock cycles(s))|
+        +----------+-------+---------+---------+----------+----------+-----+-----+------------------------------------------+
+
+        * Loop: 
+        N/A
+
+
+
+================================================================
+== Utilization Estimates
+================================================================
+* Summary: 
++---------------------+---------+------+---------+---------+-----+
+|         Name        | BRAM_18K|  DSP |    FF   |   LUT   | URAM|
++---------------------+---------+------+---------+---------+-----+
+|DSP                  |        -|     -|        -|        -|    -|
+|Expression           |        -|     -|        0|       14|    -|
+|FIFO                 |        -|     -|        -|        -|    -|
+|Instance             |        -|     -|      128|      458|    -|
+|Memory               |        0|     -|       64|      136|    0|
+|Multiplexer          |        -|     -|        -|       18|    -|
+|Register             |        -|     -|        2|        -|    -|
++---------------------+---------+------+---------+---------+-----+
+|Total                |        0|     0|      194|      626|    0|
++---------------------+---------+------+---------+---------+-----+
+|Available SLR        |     1440|  2280|   788160|   394080|  320|
++---------------------+---------+------+---------+---------+-----+
+|Utilization SLR (%)  |        0|     0|       ~0|       ~0|    0|
++---------------------+---------+------+---------+---------+-----+
+|Available            |     4320|  6840|  2364480|  1182240|  960|
++---------------------+---------+------+---------+---------+-----+
+|Utilization (%)      |        0|     0|       ~0|       ~0|    0|
++---------------------+---------+------+---------+---------+-----+
+
++ Detail: 
+    * Instance: 
+    +----------+-------+---------+----+----+-----+-----+
+    | Instance | Module| BRAM_18K| DSP| FF | LUT | URAM|
+    +----------+-------+---------+----+----+-----+-----+
+    |funcA_U0  |funcA  |        0|   0|  32|  122|    0|
+    |funcB_U0  |funcB  |        0|   0|  32|  122|    0|
+    |funcC_U0  |funcC  |        0|   0|  32|   92|    0|
+    |funcD_U0  |funcD  |        0|   0|  32|  122|    0|
+    +----------+-------+---------+----+----+-----+-----+
+    |Total     |       |        0|   0| 128|  458|    0|
+    +----------+-------+---------+----+----+-----+-----+
+
+    * DSP: 
+    N/A
+
+    * Memory: 
+    +-------+------------------+---------+----+----+-----+------+-----+------+-------------+
+    | Memory|      Module      | BRAM_18K| FF | LUT| URAM| Words| Bits| Banks| W*Bits*Banks|
+    +-------+------------------+---------+----+----+-----+------+-----+------+-------------+
+    |c1_U   |c1_RAM_AUTO_1R1W  |        0|  16|  34|    0|   100|    8|     1|          800|
+    |c3_U   |c1_RAM_AUTO_1R1W  |        0|  16|  34|    0|   100|    8|     1|          800|
+    |c2_U   |c2_RAM_AUTO_1R1W  |        0|  16|  34|    0|   100|    6|     1|          600|
+    |c4_U   |c4_RAM_AUTO_1R1W  |        0|  16|  34|    0|   100|    7|     1|          700|
+    +-------+------------------+---------+----+----+-----+------+-----+------+-------------+
+    |Total  |                  |        0|  64| 136|    0|   400|   29|     4|         2900|
+    +-------+------------------+---------+----+----+-----+------+-----+------+-------------+
+
+    * FIFO: 
+    N/A
+
+    * Expression: 
+    +--------------------------+----------+----+---+----+------------+------------+
+    |       Variable Name      | Operation| DSP| FF| LUT| Bitwidth P0| Bitwidth P1|
+    +--------------------------+----------+----+---+----+------------+------------+
+    |ap_channel_done_c1        |       and|   0|  0|   2|           1|           1|
+    |ap_channel_done_c2        |       and|   0|  0|   2|           1|           1|
+    |ap_idle                   |       and|   0|  0|   2|           1|           1|
+    |funcA_U0_ap_continue      |       and|   0|  0|   2|           1|           1|
+    |funcD_U0_ap_start         |       and|   0|  0|   2|           1|           1|
+    |ap_sync_channel_write_c1  |        or|   0|  0|   2|           1|           1|
+    |ap_sync_channel_write_c2  |        or|   0|  0|   2|           1|           1|
+    +--------------------------+----------+----+---+----+------------+------------+
+    |Total                     |          |   0|  0|  14|           7|           7|
+    +--------------------------+----------+----+---+----+------------+------------+
+
+    * Multiplexer: 
+    +------------------------------+----+-----------+-----+-----------+
+    |             Name             | LUT| Input Size| Bits| Total Bits|
+    +------------------------------+----+-----------+-----+-----------+
+    |ap_sync_reg_channel_write_c1  |   9|          2|    1|          2|
+    |ap_sync_reg_channel_write_c2  |   9|          2|    1|          2|
+    +------------------------------+----+-----------+-----+-----------+
+    |Total                         |  18|          4|    2|          4|
+    +------------------------------+----+-----------+-----+-----------+
+
+    * Register: 
+    +------------------------------+---+----+-----+-----------+
+    |             Name             | FF| LUT| Bits| Const Bits|
+    +------------------------------+---+----+-----+-----------+
+    |ap_sync_reg_channel_write_c1  |  1|   0|    1|          0|
+    |ap_sync_reg_channel_write_c2  |  1|   0|    1|          0|
+    +------------------------------+---+----+-----+-----------+
+    |Total                         |  2|   0|    2|          0|
+    +------------------------------+---+----+-----+-----------+
+
+
+
+================================================================
+== Interface
+================================================================
+* Summary: 
++-----------------+-----+-----+------------+--------------+--------------+
+|    RTL Ports    | Dir | Bits|  Protocol  | Source Object|    C Type    |
++-----------------+-----+-----+------------+--------------+--------------+
+|ap_clk           |   in|    1|  ap_ctrl_hs|       diamond|  return value|
+|ap_rst           |   in|    1|  ap_ctrl_hs|       diamond|  return value|
+|ap_start         |   in|    1|  ap_ctrl_hs|       diamond|  return value|
+|ap_done          |  out|    1|  ap_ctrl_hs|       diamond|  return value|
+|ap_ready         |  out|    1|  ap_ctrl_hs|       diamond|  return value|
+|ap_idle          |  out|    1|  ap_ctrl_hs|       diamond|  return value|
+|vecIn_address0   |  out|    7|   ap_memory|         vecIn|         array|
+|vecIn_ce0        |  out|    1|   ap_memory|         vecIn|         array|
+|vecIn_d0         |  out|    8|   ap_memory|         vecIn|         array|
+|vecIn_q0         |   in|    8|   ap_memory|         vecIn|         array|
+|vecIn_we0        |  out|    1|   ap_memory|         vecIn|         array|
+|vecIn_address1   |  out|    7|   ap_memory|         vecIn|         array|
+|vecIn_ce1        |  out|    1|   ap_memory|         vecIn|         array|
+|vecIn_d1         |  out|    8|   ap_memory|         vecIn|         array|
+|vecIn_q1         |   in|    8|   ap_memory|         vecIn|         array|
+|vecIn_we1        |  out|    1|   ap_memory|         vecIn|         array|
+|vecOut_address0  |  out|    7|   ap_memory|        vecOut|         array|
+|vecOut_ce0       |  out|    1|   ap_memory|        vecOut|         array|
+|vecOut_d0        |  out|    8|   ap_memory|        vecOut|         array|
+|vecOut_q0        |   in|    8|   ap_memory|        vecOut|         array|
+|vecOut_we0       |  out|    1|   ap_memory|        vecOut|         array|
+|vecOut_address1  |  out|    7|   ap_memory|        vecOut|         array|
+|vecOut_ce1       |  out|    1|   ap_memory|        vecOut|         array|
+|vecOut_d1        |  out|    8|   ap_memory|        vecOut|         array|
+|vecOut_q1        |   in|    8|   ap_memory|        vecOut|         array|
+|vecOut_we1       |  out|    1|   ap_memory|        vecOut|         array|
++-----------------+-----+-----+------------+--------------+--------------+
+

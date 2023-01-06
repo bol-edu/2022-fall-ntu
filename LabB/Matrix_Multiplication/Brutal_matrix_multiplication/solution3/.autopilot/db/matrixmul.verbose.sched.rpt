@@ -1,0 +1,696 @@
+
+
+================================================================
+== Vivado HLS Report for 'matrixmul'
+================================================================
+* Date:           Tue Oct 18 19:36:37 2022
+
+* Version:        2020.1 (Build 2897737 on Wed May 27 20:21:37 MDT 2020)
+* Project:        Brutal_matrix_multiplication
+* Solution:       solution3
+* Product family: zynq
+* Target device:  xc7z020-clg400-1
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing: 
+    * Summary: 
+    +--------+----------+----------+------------+
+    |  Clock |  Target  | Estimated| Uncertainty|
+    +--------+----------+----------+------------+
+    |ap_clk  | 10.00 ns | 8.742 ns |   1.25 ns  |
+    +--------+----------+----------+------------+
+
++ Latency: 
+    * Summary: 
+    +---------+---------+----------+----------+-------+-------+---------+
+    |  Latency (cycles) |  Latency (absolute) |    Interval   | Pipeline|
+    |   min   |   max   |    min   |    max   |  min  |  max  |   Type  |
+    +---------+---------+----------+----------+-------+-------+---------+
+    |    16389|    16389| 0.164 ms | 0.164 ms |  16389|  16389|   none  |
+    +---------+---------+----------+----------+-------+-------+---------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        +-----------+---------+---------+----------+-----------+-----------+------+----------+
+        |           |  Latency (cycles) | Iteration|  Initiation Interval  | Trip |          |
+        | Loop Name |   min   |   max   |  Latency |  achieved |   target  | Count| Pipelined|
+        +-----------+---------+---------+----------+-----------+-----------+------+----------+
+        |- row_col  |    16387|    16387|        20|         16|          1|  1024|    yes   |
+        +-----------+---------+---------+----------+-----------+-----------+------+----------+
+
+============================================================
++ Verbose Summary: Synthesis Manager
+============================================================
+InlineROM: 1
+ExposeGlobal: 0
+============================================================
++ Verbose Summary: CDFG Model
+============================================================
+IsTopModel: 1
+ResetActiveHigh: 1
+IsCombinational: 0
+IsDatapathOnly: 0
+HasWiredReturn: 1
+HasMFsm: 0
+HasVarLatency: 1
+IsPipeline: 0
+IsRtlPipelined: 0
+IsInstanceOverlapped: 0
+IsDontTouch: 0
+HasImplIP: 0
+IsGatedGlobalClock: 0
+
++ Individual pipeline summary: 
+  * Pipeline-0: initiation interval (II) = 16, depth = 20
+
+
+============================================================
++ Verbose Summary: Schedule
+============================================================
+* Number of FSM states : 22
+* Pipeline : 1
+  Pipeline-0 : II = 16, D = 20, States = { 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 }
+* Dataflow Pipeline: 0
+
+* FSM state transitions: 
+1 --> 2 
+2 --> 22 3 
+3 --> 4 
+4 --> 5 
+5 --> 6 
+6 --> 7 
+7 --> 8 
+8 --> 9 
+9 --> 10 
+10 --> 11 
+11 --> 12 
+12 --> 13 
+13 --> 14 
+14 --> 15 
+15 --> 16 
+16 --> 17 
+17 --> 18 
+18 --> 19 
+19 --> 20 
+20 --> 21 
+21 --> 2 
+22 --> 
+
+* FSM state operations: 
+
+State 1 <SV = 0> <Delay = 1.76>
+ST_1 : Operation 23 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecBitsMap([1024 x i32]* %A) nounwind, !map !14"   --->   Operation 23 'specbitsmap' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 24 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecBitsMap([1024 x i32]* %B) nounwind, !map !20"   --->   Operation 24 'specbitsmap' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 25 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecBitsMap([1024 x i32]* %AB) nounwind, !map !24"   --->   Operation 25 'specbitsmap' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 26 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecTopModule([10 x i8]* @matrixmul_str) nounwind"   --->   Operation 26 'spectopmodule' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 27 [1/1] (1.76ns)   --->   "br label %1" [Brutal_design.cpp:11]   --->   Operation 27 'br' <Predicate = true> <Delay = 1.76>
+
+State 2 <SV = 1> <Delay = 7.73>
+ST_2 : Operation 28 [1/1] (0.00ns)   --->   "%indvar_flatten = phi i11 [ 0, %0 ], [ %add_ln11, %col ]" [Brutal_design.cpp:11]   --->   Operation 28 'phi' 'indvar_flatten' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 29 [1/1] (0.00ns)   --->   "%i_0 = phi i6 [ 0, %0 ], [ %select_ln17_1, %col ]" [Brutal_design.cpp:17]   --->   Operation 29 'phi' 'i_0' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 30 [1/1] (0.00ns)   --->   "%j_0 = phi i6 [ 0, %0 ], [ %j, %col ]"   --->   Operation 30 'phi' 'j_0' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 31 [1/1] (1.88ns)   --->   "%icmp_ln11 = icmp eq i11 %indvar_flatten, -1024" [Brutal_design.cpp:11]   --->   Operation 31 'icmp' 'icmp_ln11' <Predicate = true> <Delay = 1.88> <Core = "Cmp">   --->   Core 25 'Cmp' <Latency = 0> <II = 1> <Delay = 1.42> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 32 [1/1] (1.63ns)   --->   "%add_ln11 = add i11 %indvar_flatten, 1" [Brutal_design.cpp:11]   --->   Operation 32 'add' 'add_ln11' <Predicate = true> <Delay = 1.63> <Core = "AddSub">   --->   Core 14 'AddSub' <Latency = 0> <II = 1> <Delay = 1.82> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 33 [1/1] (0.00ns)   --->   "br i1 %icmp_ln11, label %2, label %col" [Brutal_design.cpp:11]   --->   Operation 33 'br' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 34 [1/1] (1.82ns)   --->   "%i = add i6 %i_0, 1" [Brutal_design.cpp:11]   --->   Operation 34 'add' 'i' <Predicate = (!icmp_ln11)> <Delay = 1.82> <Core = "AddSub">   --->   Core 14 'AddSub' <Latency = 0> <II = 1> <Delay = 1.82> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 35 [1/1] (1.42ns)   --->   "%icmp_ln12 = icmp eq i6 %j_0, -32" [Brutal_design.cpp:12]   --->   Operation 35 'icmp' 'icmp_ln12' <Predicate = (!icmp_ln11)> <Delay = 1.42> <Core = "Cmp">   --->   Core 25 'Cmp' <Latency = 0> <II = 1> <Delay = 1.42> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 36 [1/1] (1.18ns)   --->   "%select_ln17 = select i1 %icmp_ln12, i6 0, i6 %j_0" [Brutal_design.cpp:17]   --->   Operation 36 'select' 'select_ln17' <Predicate = (!icmp_ln11)> <Delay = 1.18> <Core = "Sel">   --->   Core 26 'Sel' <Latency = 0> <II = 1> <Delay = 1.18> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+ST_2 : Operation 37 [1/1] (1.18ns)   --->   "%select_ln17_1 = select i1 %icmp_ln12, i6 %i, i6 %i_0" [Brutal_design.cpp:17]   --->   Operation 37 'select' 'select_ln17_1' <Predicate = (!icmp_ln11)> <Delay = 1.18> <Core = "Sel">   --->   Core 26 'Sel' <Latency = 0> <II = 1> <Delay = 1.18> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+ST_2 : Operation 38 [1/1] (0.00ns)   --->   "%tmp = call i11 @_ssdm_op_BitConcatenate.i11.i6.i5(i6 %select_ln17_1, i5 0)" [Brutal_design.cpp:17]   --->   Operation 38 'bitconcatenate' 'tmp' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_2 : Operation 39 [1/1] (0.00ns)   --->   "%zext_ln17 = zext i11 %tmp to i64" [Brutal_design.cpp:17]   --->   Operation 39 'zext' 'zext_ln17' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_2 : Operation 40 [1/1] (0.00ns)   --->   "%A_addr = getelementptr [1024 x i32]* %A, i64 0, i64 %zext_ln17" [Brutal_design.cpp:17]   --->   Operation 40 'getelementptr' 'A_addr' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_2 : Operation 41 [1/1] (0.00ns)   --->   "%or_ln17 = or i11 %tmp, 1" [Brutal_design.cpp:17]   --->   Operation 41 'or' 'or_ln17' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_2 : Operation 42 [1/1] (0.00ns)   --->   "%tmp_2 = call i64 @_ssdm_op_BitConcatenate.i64.i53.i11(i53 0, i11 %or_ln17)" [Brutal_design.cpp:17]   --->   Operation 42 'bitconcatenate' 'tmp_2' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_2 : Operation 43 [1/1] (0.00ns)   --->   "%A_addr_1 = getelementptr [1024 x i32]* %A, i64 0, i64 %tmp_2" [Brutal_design.cpp:17]   --->   Operation 43 'getelementptr' 'A_addr_1' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_2 : Operation 44 [1/1] (0.00ns)   --->   "%zext_ln17_1 = zext i6 %select_ln17 to i64" [Brutal_design.cpp:17]   --->   Operation 44 'zext' 'zext_ln17_1' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_2 : Operation 45 [1/1] (0.00ns)   --->   "%zext_ln17_8 = zext i6 %select_ln17 to i7" [Brutal_design.cpp:17]   --->   Operation 45 'zext' 'zext_ln17_8' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_2 : Operation 46 [1/1] (0.00ns)   --->   "%B_addr = getelementptr [1024 x i32]* %B, i64 0, i64 %zext_ln17_1" [Brutal_design.cpp:17]   --->   Operation 46 'getelementptr' 'B_addr' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_2 : Operation 47 [1/1] (1.87ns)   --->   "%add_ln17_31 = add i7 %zext_ln17_8, 32" [Brutal_design.cpp:17]   --->   Operation 47 'add' 'add_ln17_31' <Predicate = (!icmp_ln11)> <Delay = 1.87> <Core = "AddSub">   --->   Core 14 'AddSub' <Latency = 0> <II = 1> <Delay = 1.82> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 48 [1/1] (0.00ns)   --->   "%zext_ln17_9 = zext i7 %add_ln17_31 to i64" [Brutal_design.cpp:17]   --->   Operation 48 'zext' 'zext_ln17_9' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_2 : Operation 49 [1/1] (0.00ns)   --->   "%B_addr_1 = getelementptr [1024 x i32]* %B, i64 0, i64 %zext_ln17_9" [Brutal_design.cpp:17]   --->   Operation 49 'getelementptr' 'B_addr_1' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_2 : Operation 50 [2/2] (3.25ns)   --->   "%A_load = load i32* %A_addr, align 4" [Brutal_design.cpp:17]   --->   Operation 50 'load' 'A_load' <Predicate = (!icmp_ln11)> <Delay = 3.25> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 1024> <RAM>
+ST_2 : Operation 51 [2/2] (3.25ns)   --->   "%B_load = load i32* %B_addr, align 4" [Brutal_design.cpp:17]   --->   Operation 51 'load' 'B_load' <Predicate = (!icmp_ln11)> <Delay = 3.25> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 1024> <RAM>
+ST_2 : Operation 52 [2/2] (3.25ns)   --->   "%A_load_1 = load i32* %A_addr_1, align 4" [Brutal_design.cpp:17]   --->   Operation 52 'load' 'A_load_1' <Predicate = (!icmp_ln11)> <Delay = 3.25> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 1024> <RAM>
+ST_2 : Operation 53 [2/2] (3.25ns)   --->   "%B_load_1 = load i32* %B_addr_1, align 4" [Brutal_design.cpp:17]   --->   Operation 53 'load' 'B_load_1' <Predicate = (!icmp_ln11)> <Delay = 3.25> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 1024> <RAM>
+
+State 3 <SV = 2> <Delay = 5.16>
+ST_3 : Operation 54 [1/1] (0.00ns)   --->   "%or_ln17_1 = or i11 %tmp, 2" [Brutal_design.cpp:17]   --->   Operation 54 'or' 'or_ln17_1' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_3 : Operation 55 [1/1] (0.00ns)   --->   "%tmp_3 = call i64 @_ssdm_op_BitConcatenate.i64.i53.i11(i53 0, i11 %or_ln17_1)" [Brutal_design.cpp:17]   --->   Operation 55 'bitconcatenate' 'tmp_3' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_3 : Operation 56 [1/1] (0.00ns)   --->   "%A_addr_2 = getelementptr [1024 x i32]* %A, i64 0, i64 %tmp_3" [Brutal_design.cpp:17]   --->   Operation 56 'getelementptr' 'A_addr_2' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_3 : Operation 57 [1/1] (0.00ns)   --->   "%or_ln17_2 = or i11 %tmp, 3" [Brutal_design.cpp:17]   --->   Operation 57 'or' 'or_ln17_2' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_3 : Operation 58 [1/1] (0.00ns)   --->   "%tmp_4 = call i64 @_ssdm_op_BitConcatenate.i64.i53.i11(i53 0, i11 %or_ln17_2)" [Brutal_design.cpp:17]   --->   Operation 58 'bitconcatenate' 'tmp_4' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_3 : Operation 59 [1/1] (0.00ns)   --->   "%A_addr_3 = getelementptr [1024 x i32]* %A, i64 0, i64 %tmp_4" [Brutal_design.cpp:17]   --->   Operation 59 'getelementptr' 'A_addr_3' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_3 : Operation 60 [1/1] (0.00ns)   --->   "%zext_ln17_6 = zext i6 %select_ln17 to i8" [Brutal_design.cpp:17]   --->   Operation 60 'zext' 'zext_ln17_6' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_3 : Operation 61 [1/1] (0.00ns)   --->   "%tmp_32 = call i64 @_ssdm_op_BitConcatenate.i64.i58.i6(i58 1, i6 %select_ln17)" [Brutal_design.cpp:17]   --->   Operation 61 'bitconcatenate' 'tmp_32' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_3 : Operation 62 [1/1] (0.00ns)   --->   "%B_addr_2 = getelementptr [1024 x i32]* %B, i64 0, i64 %tmp_32" [Brutal_design.cpp:17]   --->   Operation 62 'getelementptr' 'B_addr_2' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_3 : Operation 63 [1/1] (1.91ns)   --->   "%add_ln17_32 = add i8 %zext_ln17_6, 96" [Brutal_design.cpp:17]   --->   Operation 63 'add' 'add_ln17_32' <Predicate = (!icmp_ln11)> <Delay = 1.91> <Core = "AddSub">   --->   Core 14 'AddSub' <Latency = 0> <II = 1> <Delay = 1.82> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_3 : Operation 64 [1/1] (0.00ns)   --->   "%zext_ln17_10 = zext i8 %add_ln17_32 to i64" [Brutal_design.cpp:17]   --->   Operation 64 'zext' 'zext_ln17_10' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_3 : Operation 65 [1/1] (0.00ns)   --->   "%B_addr_3 = getelementptr [1024 x i32]* %B, i64 0, i64 %zext_ln17_10" [Brutal_design.cpp:17]   --->   Operation 65 'getelementptr' 'B_addr_3' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_3 : Operation 66 [1/2] (3.25ns)   --->   "%A_load = load i32* %A_addr, align 4" [Brutal_design.cpp:17]   --->   Operation 66 'load' 'A_load' <Predicate = (!icmp_ln11)> <Delay = 3.25> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 1024> <RAM>
+ST_3 : Operation 67 [1/2] (3.25ns)   --->   "%B_load = load i32* %B_addr, align 4" [Brutal_design.cpp:17]   --->   Operation 67 'load' 'B_load' <Predicate = (!icmp_ln11)> <Delay = 3.25> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 1024> <RAM>
+ST_3 : Operation 68 [1/2] (3.25ns)   --->   "%A_load_1 = load i32* %A_addr_1, align 4" [Brutal_design.cpp:17]   --->   Operation 68 'load' 'A_load_1' <Predicate = (!icmp_ln11)> <Delay = 3.25> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 1024> <RAM>
+ST_3 : Operation 69 [1/2] (3.25ns)   --->   "%B_load_1 = load i32* %B_addr_1, align 4" [Brutal_design.cpp:17]   --->   Operation 69 'load' 'B_load_1' <Predicate = (!icmp_ln11)> <Delay = 3.25> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 1024> <RAM>
+ST_3 : Operation 70 [2/2] (3.25ns)   --->   "%A_load_2 = load i32* %A_addr_2, align 4" [Brutal_design.cpp:17]   --->   Operation 70 'load' 'A_load_2' <Predicate = (!icmp_ln11)> <Delay = 3.25> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 1024> <RAM>
+ST_3 : Operation 71 [2/2] (3.25ns)   --->   "%B_load_2 = load i32* %B_addr_2, align 4" [Brutal_design.cpp:17]   --->   Operation 71 'load' 'B_load_2' <Predicate = (!icmp_ln11)> <Delay = 3.25> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 1024> <RAM>
+ST_3 : Operation 72 [2/2] (3.25ns)   --->   "%A_load_3 = load i32* %A_addr_3, align 4" [Brutal_design.cpp:17]   --->   Operation 72 'load' 'A_load_3' <Predicate = (!icmp_ln11)> <Delay = 3.25> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 1024> <RAM>
+ST_3 : Operation 73 [2/2] (3.25ns)   --->   "%B_load_3 = load i32* %B_addr_3, align 4" [Brutal_design.cpp:17]   --->   Operation 73 'load' 'B_load_3' <Predicate = (!icmp_ln11)> <Delay = 3.25> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 1024> <RAM>
+
+State 4 <SV = 3> <Delay = 8.51>
+ST_4 : Operation 74 [1/1] (0.00ns)   --->   "%or_ln17_3 = or i11 %tmp, 4" [Brutal_design.cpp:17]   --->   Operation 74 'or' 'or_ln17_3' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_4 : Operation 75 [1/1] (0.00ns)   --->   "%tmp_5 = call i64 @_ssdm_op_BitConcatenate.i64.i53.i11(i53 0, i11 %or_ln17_3)" [Brutal_design.cpp:17]   --->   Operation 75 'bitconcatenate' 'tmp_5' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_4 : Operation 76 [1/1] (0.00ns)   --->   "%A_addr_4 = getelementptr [1024 x i32]* %A, i64 0, i64 %tmp_5" [Brutal_design.cpp:17]   --->   Operation 76 'getelementptr' 'A_addr_4' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_4 : Operation 77 [1/1] (0.00ns)   --->   "%or_ln17_4 = or i11 %tmp, 5" [Brutal_design.cpp:17]   --->   Operation 77 'or' 'or_ln17_4' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_4 : Operation 78 [1/1] (0.00ns)   --->   "%tmp_6 = call i64 @_ssdm_op_BitConcatenate.i64.i53.i11(i53 0, i11 %or_ln17_4)" [Brutal_design.cpp:17]   --->   Operation 78 'bitconcatenate' 'tmp_6' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_4 : Operation 79 [1/1] (0.00ns)   --->   "%A_addr_5 = getelementptr [1024 x i32]* %A, i64 0, i64 %tmp_6" [Brutal_design.cpp:17]   --->   Operation 79 'getelementptr' 'A_addr_5' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_4 : Operation 80 [1/1] (0.00ns)   --->   "%tmp_33 = call i64 @_ssdm_op_BitConcatenate.i64.i58.i6(i58 2, i6 %select_ln17)" [Brutal_design.cpp:17]   --->   Operation 80 'bitconcatenate' 'tmp_33' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_4 : Operation 81 [1/1] (0.00ns)   --->   "%B_addr_4 = getelementptr [1024 x i32]* %B, i64 0, i64 %tmp_33" [Brutal_design.cpp:17]   --->   Operation 81 'getelementptr' 'B_addr_4' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_4 : Operation 82 [1/1] (1.91ns)   --->   "%add_ln17_33 = add i8 %zext_ln17_6, -96" [Brutal_design.cpp:17]   --->   Operation 82 'add' 'add_ln17_33' <Predicate = (!icmp_ln11)> <Delay = 1.91> <Core = "AddSub">   --->   Core 14 'AddSub' <Latency = 0> <II = 1> <Delay = 1.82> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_4 : Operation 83 [1/1] (0.00ns)   --->   "%zext_ln17_11 = zext i8 %add_ln17_33 to i64" [Brutal_design.cpp:17]   --->   Operation 83 'zext' 'zext_ln17_11' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_4 : Operation 84 [1/1] (0.00ns)   --->   "%B_addr_5 = getelementptr [1024 x i32]* %B, i64 0, i64 %zext_ln17_11" [Brutal_design.cpp:17]   --->   Operation 84 'getelementptr' 'B_addr_5' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_4 : Operation 85 [1/1] (8.51ns)   --->   "%mul_ln17 = mul nsw i32 %B_load, %A_load" [Brutal_design.cpp:17]   --->   Operation 85 'mul' 'mul_ln17' <Predicate = (!icmp_ln11)> <Delay = 8.51> <Core = "Mul">   --->   Core 16 'Mul' <Latency = 0> <II = 1> <Delay = 8.51> <FuncUnit> <Opcode : 'mul'> <InPorts = 2> <OutPorts = 1>
+ST_4 : Operation 86 [1/1] (8.51ns)   --->   "%mul_ln17_1 = mul nsw i32 %B_load_1, %A_load_1" [Brutal_design.cpp:17]   --->   Operation 86 'mul' 'mul_ln17_1' <Predicate = (!icmp_ln11)> <Delay = 8.51> <Core = "Mul">   --->   Core 16 'Mul' <Latency = 0> <II = 1> <Delay = 8.51> <FuncUnit> <Opcode : 'mul'> <InPorts = 2> <OutPorts = 1>
+ST_4 : Operation 87 [1/2] (3.25ns)   --->   "%A_load_2 = load i32* %A_addr_2, align 4" [Brutal_design.cpp:17]   --->   Operation 87 'load' 'A_load_2' <Predicate = (!icmp_ln11)> <Delay = 3.25> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 1024> <RAM>
+ST_4 : Operation 88 [1/2] (3.25ns)   --->   "%B_load_2 = load i32* %B_addr_2, align 4" [Brutal_design.cpp:17]   --->   Operation 88 'load' 'B_load_2' <Predicate = (!icmp_ln11)> <Delay = 3.25> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 1024> <RAM>
+ST_4 : Operation 89 [1/2] (3.25ns)   --->   "%A_load_3 = load i32* %A_addr_3, align 4" [Brutal_design.cpp:17]   --->   Operation 89 'load' 'A_load_3' <Predicate = (!icmp_ln11)> <Delay = 3.25> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 1024> <RAM>
+ST_4 : Operation 90 [1/2] (3.25ns)   --->   "%B_load_3 = load i32* %B_addr_3, align 4" [Brutal_design.cpp:17]   --->   Operation 90 'load' 'B_load_3' <Predicate = (!icmp_ln11)> <Delay = 3.25> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 1024> <RAM>
+ST_4 : Operation 91 [2/2] (3.25ns)   --->   "%A_load_4 = load i32* %A_addr_4, align 4" [Brutal_design.cpp:17]   --->   Operation 91 'load' 'A_load_4' <Predicate = (!icmp_ln11)> <Delay = 3.25> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 1024> <RAM>
+ST_4 : Operation 92 [2/2] (3.25ns)   --->   "%B_load_4 = load i32* %B_addr_4, align 4" [Brutal_design.cpp:17]   --->   Operation 92 'load' 'B_load_4' <Predicate = (!icmp_ln11)> <Delay = 3.25> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 1024> <RAM>
+ST_4 : Operation 93 [2/2] (3.25ns)   --->   "%A_load_5 = load i32* %A_addr_5, align 4" [Brutal_design.cpp:17]   --->   Operation 93 'load' 'A_load_5' <Predicate = (!icmp_ln11)> <Delay = 3.25> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 1024> <RAM>
+ST_4 : Operation 94 [2/2] (3.25ns)   --->   "%B_load_5 = load i32* %B_addr_5, align 4" [Brutal_design.cpp:17]   --->   Operation 94 'load' 'B_load_5' <Predicate = (!icmp_ln11)> <Delay = 3.25> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 1024> <RAM>
+
+State 5 <SV = 4> <Delay = 8.51>
+ST_5 : Operation 95 [1/1] (0.00ns)   --->   "%or_ln17_5 = or i11 %tmp, 6" [Brutal_design.cpp:17]   --->   Operation 95 'or' 'or_ln17_5' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_5 : Operation 96 [1/1] (0.00ns)   --->   "%tmp_7 = call i64 @_ssdm_op_BitConcatenate.i64.i53.i11(i53 0, i11 %or_ln17_5)" [Brutal_design.cpp:17]   --->   Operation 96 'bitconcatenate' 'tmp_7' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_5 : Operation 97 [1/1] (0.00ns)   --->   "%A_addr_6 = getelementptr [1024 x i32]* %A, i64 0, i64 %tmp_7" [Brutal_design.cpp:17]   --->   Operation 97 'getelementptr' 'A_addr_6' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_5 : Operation 98 [1/1] (0.00ns)   --->   "%or_ln17_6 = or i11 %tmp, 7" [Brutal_design.cpp:17]   --->   Operation 98 'or' 'or_ln17_6' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_5 : Operation 99 [1/1] (0.00ns)   --->   "%tmp_8 = call i64 @_ssdm_op_BitConcatenate.i64.i53.i11(i53 0, i11 %or_ln17_6)" [Brutal_design.cpp:17]   --->   Operation 99 'bitconcatenate' 'tmp_8' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_5 : Operation 100 [1/1] (0.00ns)   --->   "%A_addr_7 = getelementptr [1024 x i32]* %A, i64 0, i64 %tmp_8" [Brutal_design.cpp:17]   --->   Operation 100 'getelementptr' 'A_addr_7' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_5 : Operation 101 [1/1] (0.00ns)   --->   "%zext_ln17_7 = zext i6 %select_ln17 to i9" [Brutal_design.cpp:17]   --->   Operation 101 'zext' 'zext_ln17_7' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_5 : Operation 102 [1/1] (0.00ns)   --->   "%tmp_34 = call i64 @_ssdm_op_BitConcatenate.i64.i58.i6(i58 3, i6 %select_ln17)" [Brutal_design.cpp:17]   --->   Operation 102 'bitconcatenate' 'tmp_34' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_5 : Operation 103 [1/1] (0.00ns)   --->   "%B_addr_6 = getelementptr [1024 x i32]* %B, i64 0, i64 %tmp_34" [Brutal_design.cpp:17]   --->   Operation 103 'getelementptr' 'B_addr_6' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_5 : Operation 104 [1/1] (1.82ns)   --->   "%add_ln17_34 = add i9 %zext_ln17_7, 224" [Brutal_design.cpp:17]   --->   Operation 104 'add' 'add_ln17_34' <Predicate = (!icmp_ln11)> <Delay = 1.82> <Core = "AddSub">   --->   Core 14 'AddSub' <Latency = 0> <II = 1> <Delay = 1.82> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_5 : Operation 105 [1/1] (0.00ns)   --->   "%zext_ln17_12 = zext i9 %add_ln17_34 to i64" [Brutal_design.cpp:17]   --->   Operation 105 'zext' 'zext_ln17_12' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_5 : Operation 106 [1/1] (0.00ns)   --->   "%B_addr_7 = getelementptr [1024 x i32]* %B, i64 0, i64 %zext_ln17_12" [Brutal_design.cpp:17]   --->   Operation 106 'getelementptr' 'B_addr_7' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_5 : Operation 107 [1/1] (8.51ns)   --->   "%mul_ln17_2 = mul nsw i32 %B_load_2, %A_load_2" [Brutal_design.cpp:17]   --->   Operation 107 'mul' 'mul_ln17_2' <Predicate = (!icmp_ln11)> <Delay = 8.51> <Core = "Mul">   --->   Core 16 'Mul' <Latency = 0> <II = 1> <Delay = 8.51> <FuncUnit> <Opcode : 'mul'> <InPorts = 2> <OutPorts = 1>
+ST_5 : Operation 108 [1/1] (8.51ns)   --->   "%mul_ln17_3 = mul nsw i32 %B_load_3, %A_load_3" [Brutal_design.cpp:17]   --->   Operation 108 'mul' 'mul_ln17_3' <Predicate = (!icmp_ln11)> <Delay = 8.51> <Core = "Mul">   --->   Core 16 'Mul' <Latency = 0> <II = 1> <Delay = 8.51> <FuncUnit> <Opcode : 'mul'> <InPorts = 2> <OutPorts = 1>
+ST_5 : Operation 109 [1/2] (3.25ns)   --->   "%A_load_4 = load i32* %A_addr_4, align 4" [Brutal_design.cpp:17]   --->   Operation 109 'load' 'A_load_4' <Predicate = (!icmp_ln11)> <Delay = 3.25> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 1024> <RAM>
+ST_5 : Operation 110 [1/2] (3.25ns)   --->   "%B_load_4 = load i32* %B_addr_4, align 4" [Brutal_design.cpp:17]   --->   Operation 110 'load' 'B_load_4' <Predicate = (!icmp_ln11)> <Delay = 3.25> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 1024> <RAM>
+ST_5 : Operation 111 [1/2] (3.25ns)   --->   "%A_load_5 = load i32* %A_addr_5, align 4" [Brutal_design.cpp:17]   --->   Operation 111 'load' 'A_load_5' <Predicate = (!icmp_ln11)> <Delay = 3.25> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 1024> <RAM>
+ST_5 : Operation 112 [1/2] (3.25ns)   --->   "%B_load_5 = load i32* %B_addr_5, align 4" [Brutal_design.cpp:17]   --->   Operation 112 'load' 'B_load_5' <Predicate = (!icmp_ln11)> <Delay = 3.25> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 1024> <RAM>
+ST_5 : Operation 113 [2/2] (3.25ns)   --->   "%A_load_6 = load i32* %A_addr_6, align 4" [Brutal_design.cpp:17]   --->   Operation 113 'load' 'A_load_6' <Predicate = (!icmp_ln11)> <Delay = 3.25> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 1024> <RAM>
+ST_5 : Operation 114 [2/2] (3.25ns)   --->   "%B_load_6 = load i32* %B_addr_6, align 4" [Brutal_design.cpp:17]   --->   Operation 114 'load' 'B_load_6' <Predicate = (!icmp_ln11)> <Delay = 3.25> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 1024> <RAM>
+ST_5 : Operation 115 [2/2] (3.25ns)   --->   "%A_load_7 = load i32* %A_addr_7, align 4" [Brutal_design.cpp:17]   --->   Operation 115 'load' 'A_load_7' <Predicate = (!icmp_ln11)> <Delay = 3.25> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 1024> <RAM>
+ST_5 : Operation 116 [2/2] (3.25ns)   --->   "%B_load_7 = load i32* %B_addr_7, align 4" [Brutal_design.cpp:17]   --->   Operation 116 'load' 'B_load_7' <Predicate = (!icmp_ln11)> <Delay = 3.25> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 1024> <RAM>
+ST_5 : Operation 117 [1/1] (2.55ns)   --->   "%add_ln17 = add i32 %mul_ln17_1, %mul_ln17" [Brutal_design.cpp:17]   --->   Operation 117 'add' 'add_ln17' <Predicate = (!icmp_ln11)> <Delay = 2.55> <Core = "AddSub">   --->   Core 14 'AddSub' <Latency = 0> <II = 1> <Delay = 1.82> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+
+State 6 <SV = 5> <Delay = 8.51>
+ST_6 : Operation 118 [1/1] (0.00ns)   --->   "%or_ln17_7 = or i11 %tmp, 8" [Brutal_design.cpp:17]   --->   Operation 118 'or' 'or_ln17_7' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_6 : Operation 119 [1/1] (0.00ns)   --->   "%tmp_9 = call i64 @_ssdm_op_BitConcatenate.i64.i53.i11(i53 0, i11 %or_ln17_7)" [Brutal_design.cpp:17]   --->   Operation 119 'bitconcatenate' 'tmp_9' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_6 : Operation 120 [1/1] (0.00ns)   --->   "%A_addr_8 = getelementptr [1024 x i32]* %A, i64 0, i64 %tmp_9" [Brutal_design.cpp:17]   --->   Operation 120 'getelementptr' 'A_addr_8' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_6 : Operation 121 [1/1] (0.00ns)   --->   "%or_ln17_8 = or i11 %tmp, 9" [Brutal_design.cpp:17]   --->   Operation 121 'or' 'or_ln17_8' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_6 : Operation 122 [1/1] (0.00ns)   --->   "%tmp_s = call i64 @_ssdm_op_BitConcatenate.i64.i53.i11(i53 0, i11 %or_ln17_8)" [Brutal_design.cpp:17]   --->   Operation 122 'bitconcatenate' 'tmp_s' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_6 : Operation 123 [1/1] (0.00ns)   --->   "%A_addr_9 = getelementptr [1024 x i32]* %A, i64 0, i64 %tmp_s" [Brutal_design.cpp:17]   --->   Operation 123 'getelementptr' 'A_addr_9' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_6 : Operation 124 [1/1] (0.00ns)   --->   "%tmp_35 = call i64 @_ssdm_op_BitConcatenate.i64.i58.i6(i58 4, i6 %select_ln17)" [Brutal_design.cpp:17]   --->   Operation 124 'bitconcatenate' 'tmp_35' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_6 : Operation 125 [1/1] (0.00ns)   --->   "%B_addr_8 = getelementptr [1024 x i32]* %B, i64 0, i64 %tmp_35" [Brutal_design.cpp:17]   --->   Operation 125 'getelementptr' 'B_addr_8' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_6 : Operation 126 [1/1] (1.82ns)   --->   "%add_ln17_35 = add i9 %zext_ln17_7, -224" [Brutal_design.cpp:17]   --->   Operation 126 'add' 'add_ln17_35' <Predicate = (!icmp_ln11)> <Delay = 1.82> <Core = "AddSub">   --->   Core 14 'AddSub' <Latency = 0> <II = 1> <Delay = 1.82> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_6 : Operation 127 [1/1] (0.00ns)   --->   "%zext_ln17_13 = zext i9 %add_ln17_35 to i64" [Brutal_design.cpp:17]   --->   Operation 127 'zext' 'zext_ln17_13' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_6 : Operation 128 [1/1] (0.00ns)   --->   "%B_addr_9 = getelementptr [1024 x i32]* %B, i64 0, i64 %zext_ln17_13" [Brutal_design.cpp:17]   --->   Operation 128 'getelementptr' 'B_addr_9' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_6 : Operation 129 [1/1] (8.51ns)   --->   "%mul_ln17_4 = mul nsw i32 %B_load_4, %A_load_4" [Brutal_design.cpp:17]   --->   Operation 129 'mul' 'mul_ln17_4' <Predicate = (!icmp_ln11)> <Delay = 8.51> <Core = "Mul">   --->   Core 16 'Mul' <Latency = 0> <II = 1> <Delay = 8.51> <FuncUnit> <Opcode : 'mul'> <InPorts = 2> <OutPorts = 1>
+ST_6 : Operation 130 [1/1] (8.51ns)   --->   "%mul_ln17_5 = mul nsw i32 %B_load_5, %A_load_5" [Brutal_design.cpp:17]   --->   Operation 130 'mul' 'mul_ln17_5' <Predicate = (!icmp_ln11)> <Delay = 8.51> <Core = "Mul">   --->   Core 16 'Mul' <Latency = 0> <II = 1> <Delay = 8.51> <FuncUnit> <Opcode : 'mul'> <InPorts = 2> <OutPorts = 1>
+ST_6 : Operation 131 [1/2] (3.25ns)   --->   "%A_load_6 = load i32* %A_addr_6, align 4" [Brutal_design.cpp:17]   --->   Operation 131 'load' 'A_load_6' <Predicate = (!icmp_ln11)> <Delay = 3.25> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 1024> <RAM>
+ST_6 : Operation 132 [1/2] (3.25ns)   --->   "%B_load_6 = load i32* %B_addr_6, align 4" [Brutal_design.cpp:17]   --->   Operation 132 'load' 'B_load_6' <Predicate = (!icmp_ln11)> <Delay = 3.25> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 1024> <RAM>
+ST_6 : Operation 133 [1/2] (3.25ns)   --->   "%A_load_7 = load i32* %A_addr_7, align 4" [Brutal_design.cpp:17]   --->   Operation 133 'load' 'A_load_7' <Predicate = (!icmp_ln11)> <Delay = 3.25> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 1024> <RAM>
+ST_6 : Operation 134 [1/2] (3.25ns)   --->   "%B_load_7 = load i32* %B_addr_7, align 4" [Brutal_design.cpp:17]   --->   Operation 134 'load' 'B_load_7' <Predicate = (!icmp_ln11)> <Delay = 3.25> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 1024> <RAM>
+ST_6 : Operation 135 [2/2] (3.25ns)   --->   "%A_load_8 = load i32* %A_addr_8, align 4" [Brutal_design.cpp:17]   --->   Operation 135 'load' 'A_load_8' <Predicate = (!icmp_ln11)> <Delay = 3.25> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 1024> <RAM>
+ST_6 : Operation 136 [2/2] (3.25ns)   --->   "%B_load_8 = load i32* %B_addr_8, align 4" [Brutal_design.cpp:17]   --->   Operation 136 'load' 'B_load_8' <Predicate = (!icmp_ln11)> <Delay = 3.25> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 1024> <RAM>
+ST_6 : Operation 137 [2/2] (3.25ns)   --->   "%A_load_9 = load i32* %A_addr_9, align 4" [Brutal_design.cpp:17]   --->   Operation 137 'load' 'A_load_9' <Predicate = (!icmp_ln11)> <Delay = 3.25> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 1024> <RAM>
+ST_6 : Operation 138 [2/2] (3.25ns)   --->   "%B_load_9 = load i32* %B_addr_9, align 4" [Brutal_design.cpp:17]   --->   Operation 138 'load' 'B_load_9' <Predicate = (!icmp_ln11)> <Delay = 3.25> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 1024> <RAM>
+ST_6 : Operation 139 [1/1] (0.00ns) (grouped into TernaryAdder)   --->   "%add_ln17_1 = add i32 %mul_ln17_3, %mul_ln17_2" [Brutal_design.cpp:17]   --->   Operation 139 'add' 'add_ln17_1' <Predicate = (!icmp_ln11)> <Delay = 0.00> <Core = "TAddSub">   --->   Core 83 'TAddSub' <Latency = 0> <II = 1> <Delay = 2.18> <IPBlock> <Opcode : 'add' 'sub'> <InPorts = 3> <OutPorts = 1> <Sync> <CReg>
+ST_6 : Operation 140 [1/1] (4.37ns) (root node of TernaryAdder)   --->   "%add_ln17_2 = add i32 %add_ln17, %add_ln17_1" [Brutal_design.cpp:17]   --->   Operation 140 'add' 'add_ln17_2' <Predicate = (!icmp_ln11)> <Delay = 4.37> <Core = "TAddSub">   --->   Core 83 'TAddSub' <Latency = 0> <II = 1> <Delay = 2.18> <IPBlock> <Opcode : 'add' 'sub'> <InPorts = 3> <OutPorts = 1> <Sync> <CReg>
+
+State 7 <SV = 6> <Delay = 8.51>
+ST_7 : Operation 141 [1/1] (0.00ns)   --->   "%or_ln17_11 = or i11 %tmp, 12" [Brutal_design.cpp:17]   --->   Operation 141 'or' 'or_ln17_11' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_7 : Operation 142 [1/1] (0.00ns)   --->   "%tmp_12 = call i64 @_ssdm_op_BitConcatenate.i64.i53.i11(i53 0, i11 %or_ln17_11)" [Brutal_design.cpp:17]   --->   Operation 142 'bitconcatenate' 'tmp_12' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_7 : Operation 143 [1/1] (0.00ns)   --->   "%A_addr_12 = getelementptr [1024 x i32]* %A, i64 0, i64 %tmp_12" [Brutal_design.cpp:17]   --->   Operation 143 'getelementptr' 'A_addr_12' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_7 : Operation 144 [1/1] (0.00ns)   --->   "%or_ln17_12 = or i11 %tmp, 13" [Brutal_design.cpp:17]   --->   Operation 144 'or' 'or_ln17_12' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_7 : Operation 145 [1/1] (0.00ns)   --->   "%tmp_13 = call i64 @_ssdm_op_BitConcatenate.i64.i53.i11(i53 0, i11 %or_ln17_12)" [Brutal_design.cpp:17]   --->   Operation 145 'bitconcatenate' 'tmp_13' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_7 : Operation 146 [1/1] (0.00ns)   --->   "%A_addr_13 = getelementptr [1024 x i32]* %A, i64 0, i64 %tmp_13" [Brutal_design.cpp:17]   --->   Operation 146 'getelementptr' 'A_addr_13' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_7 : Operation 147 [1/1] (0.00ns)   --->   "%tmp_37 = call i64 @_ssdm_op_BitConcatenate.i64.i58.i6(i58 6, i6 %select_ln17)" [Brutal_design.cpp:17]   --->   Operation 147 'bitconcatenate' 'tmp_37' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_7 : Operation 148 [1/1] (0.00ns)   --->   "%B_addr_12 = getelementptr [1024 x i32]* %B, i64 0, i64 %tmp_37" [Brutal_design.cpp:17]   --->   Operation 148 'getelementptr' 'B_addr_12' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_7 : Operation 149 [1/1] (0.00ns)   --->   "%sext_ln17 = sext i8 %add_ln17_33 to i9" [Brutal_design.cpp:17]   --->   Operation 149 'sext' 'sext_ln17' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_7 : Operation 150 [1/1] (0.00ns)   --->   "%zext_ln17_15 = zext i9 %sext_ln17 to i64" [Brutal_design.cpp:17]   --->   Operation 150 'zext' 'zext_ln17_15' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_7 : Operation 151 [1/1] (0.00ns)   --->   "%B_addr_13 = getelementptr [1024 x i32]* %B, i64 0, i64 %zext_ln17_15" [Brutal_design.cpp:17]   --->   Operation 151 'getelementptr' 'B_addr_13' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_7 : Operation 152 [1/1] (8.51ns)   --->   "%mul_ln17_6 = mul nsw i32 %B_load_6, %A_load_6" [Brutal_design.cpp:17]   --->   Operation 152 'mul' 'mul_ln17_6' <Predicate = (!icmp_ln11)> <Delay = 8.51> <Core = "Mul">   --->   Core 16 'Mul' <Latency = 0> <II = 1> <Delay = 8.51> <FuncUnit> <Opcode : 'mul'> <InPorts = 2> <OutPorts = 1>
+ST_7 : Operation 153 [1/1] (8.51ns)   --->   "%mul_ln17_7 = mul nsw i32 %B_load_7, %A_load_7" [Brutal_design.cpp:17]   --->   Operation 153 'mul' 'mul_ln17_7' <Predicate = (!icmp_ln11)> <Delay = 8.51> <Core = "Mul">   --->   Core 16 'Mul' <Latency = 0> <II = 1> <Delay = 8.51> <FuncUnit> <Opcode : 'mul'> <InPorts = 2> <OutPorts = 1>
+ST_7 : Operation 154 [1/2] (3.25ns)   --->   "%A_load_8 = load i32* %A_addr_8, align 4" [Brutal_design.cpp:17]   --->   Operation 154 'load' 'A_load_8' <Predicate = (!icmp_ln11)> <Delay = 3.25> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 1024> <RAM>
+ST_7 : Operation 155 [1/2] (3.25ns)   --->   "%B_load_8 = load i32* %B_addr_8, align 4" [Brutal_design.cpp:17]   --->   Operation 155 'load' 'B_load_8' <Predicate = (!icmp_ln11)> <Delay = 3.25> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 1024> <RAM>
+ST_7 : Operation 156 [1/2] (3.25ns)   --->   "%A_load_9 = load i32* %A_addr_9, align 4" [Brutal_design.cpp:17]   --->   Operation 156 'load' 'A_load_9' <Predicate = (!icmp_ln11)> <Delay = 3.25> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 1024> <RAM>
+ST_7 : Operation 157 [1/2] (3.25ns)   --->   "%B_load_9 = load i32* %B_addr_9, align 4" [Brutal_design.cpp:17]   --->   Operation 157 'load' 'B_load_9' <Predicate = (!icmp_ln11)> <Delay = 3.25> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 1024> <RAM>
+ST_7 : Operation 158 [2/2] (3.25ns)   --->   "%A_load_12 = load i32* %A_addr_12, align 4" [Brutal_design.cpp:17]   --->   Operation 158 'load' 'A_load_12' <Predicate = (!icmp_ln11)> <Delay = 3.25> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 1024> <RAM>
+ST_7 : Operation 159 [2/2] (3.25ns)   --->   "%B_load_12 = load i32* %B_addr_12, align 4" [Brutal_design.cpp:17]   --->   Operation 159 'load' 'B_load_12' <Predicate = (!icmp_ln11)> <Delay = 3.25> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 1024> <RAM>
+ST_7 : Operation 160 [2/2] (3.25ns)   --->   "%A_load_13 = load i32* %A_addr_13, align 4" [Brutal_design.cpp:17]   --->   Operation 160 'load' 'A_load_13' <Predicate = (!icmp_ln11)> <Delay = 3.25> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 1024> <RAM>
+ST_7 : Operation 161 [2/2] (3.25ns)   --->   "%B_load_13 = load i32* %B_addr_13, align 4" [Brutal_design.cpp:17]   --->   Operation 161 'load' 'B_load_13' <Predicate = (!icmp_ln11)> <Delay = 3.25> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 1024> <RAM>
+ST_7 : Operation 162 [1/1] (2.55ns)   --->   "%add_ln17_3 = add i32 %mul_ln17_5, %mul_ln17_4" [Brutal_design.cpp:17]   --->   Operation 162 'add' 'add_ln17_3' <Predicate = (!icmp_ln11)> <Delay = 2.55> <Core = "AddSub">   --->   Core 14 'AddSub' <Latency = 0> <II = 1> <Delay = 1.82> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+
+State 8 <SV = 7> <Delay = 8.51>
+ST_8 : Operation 163 [1/1] (0.00ns)   --->   "%or_ln17_15 = or i11 %tmp, 16" [Brutal_design.cpp:17]   --->   Operation 163 'or' 'or_ln17_15' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_8 : Operation 164 [1/1] (0.00ns)   --->   "%tmp_16 = call i64 @_ssdm_op_BitConcatenate.i64.i53.i11(i53 0, i11 %or_ln17_15)" [Brutal_design.cpp:17]   --->   Operation 164 'bitconcatenate' 'tmp_16' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_8 : Operation 165 [1/1] (0.00ns)   --->   "%A_addr_16 = getelementptr [1024 x i32]* %A, i64 0, i64 %tmp_16" [Brutal_design.cpp:17]   --->   Operation 165 'getelementptr' 'A_addr_16' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_8 : Operation 166 [1/1] (0.00ns)   --->   "%or_ln17_16 = or i11 %tmp, 17" [Brutal_design.cpp:17]   --->   Operation 166 'or' 'or_ln17_16' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_8 : Operation 167 [1/1] (0.00ns)   --->   "%tmp_17 = call i64 @_ssdm_op_BitConcatenate.i64.i53.i11(i53 0, i11 %or_ln17_16)" [Brutal_design.cpp:17]   --->   Operation 167 'bitconcatenate' 'tmp_17' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_8 : Operation 168 [1/1] (0.00ns)   --->   "%A_addr_17 = getelementptr [1024 x i32]* %A, i64 0, i64 %tmp_17" [Brutal_design.cpp:17]   --->   Operation 168 'getelementptr' 'A_addr_17' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_8 : Operation 169 [1/1] (0.00ns)   --->   "%zext_ln17_5 = zext i6 %select_ln17 to i10" [Brutal_design.cpp:17]   --->   Operation 169 'zext' 'zext_ln17_5' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_8 : Operation 170 [1/1] (0.00ns)   --->   "%tmp_39 = call i64 @_ssdm_op_BitConcatenate.i64.i58.i6(i58 8, i6 %select_ln17)" [Brutal_design.cpp:17]   --->   Operation 170 'bitconcatenate' 'tmp_39' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_8 : Operation 171 [1/1] (0.00ns)   --->   "%B_addr_16 = getelementptr [1024 x i32]* %B, i64 0, i64 %tmp_39" [Brutal_design.cpp:17]   --->   Operation 171 'getelementptr' 'B_addr_16' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_8 : Operation 172 [1/1] (1.73ns)   --->   "%add_ln17_38 = add i10 %zext_ln17_5, -480" [Brutal_design.cpp:17]   --->   Operation 172 'add' 'add_ln17_38' <Predicate = (!icmp_ln11)> <Delay = 1.73> <Core = "AddSub">   --->   Core 14 'AddSub' <Latency = 0> <II = 1> <Delay = 1.82> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_8 : Operation 173 [1/1] (0.00ns)   --->   "%zext_ln17_17 = zext i10 %add_ln17_38 to i64" [Brutal_design.cpp:17]   --->   Operation 173 'zext' 'zext_ln17_17' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_8 : Operation 174 [1/1] (0.00ns)   --->   "%B_addr_17 = getelementptr [1024 x i32]* %B, i64 0, i64 %zext_ln17_17" [Brutal_design.cpp:17]   --->   Operation 174 'getelementptr' 'B_addr_17' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_8 : Operation 175 [1/1] (8.51ns)   --->   "%mul_ln17_8 = mul nsw i32 %B_load_8, %A_load_8" [Brutal_design.cpp:17]   --->   Operation 175 'mul' 'mul_ln17_8' <Predicate = (!icmp_ln11)> <Delay = 8.51> <Core = "Mul">   --->   Core 16 'Mul' <Latency = 0> <II = 1> <Delay = 8.51> <FuncUnit> <Opcode : 'mul'> <InPorts = 2> <OutPorts = 1>
+ST_8 : Operation 176 [1/1] (8.51ns)   --->   "%mul_ln17_9 = mul nsw i32 %B_load_9, %A_load_9" [Brutal_design.cpp:17]   --->   Operation 176 'mul' 'mul_ln17_9' <Predicate = (!icmp_ln11)> <Delay = 8.51> <Core = "Mul">   --->   Core 16 'Mul' <Latency = 0> <II = 1> <Delay = 8.51> <FuncUnit> <Opcode : 'mul'> <InPorts = 2> <OutPorts = 1>
+ST_8 : Operation 177 [1/2] (3.25ns)   --->   "%A_load_12 = load i32* %A_addr_12, align 4" [Brutal_design.cpp:17]   --->   Operation 177 'load' 'A_load_12' <Predicate = (!icmp_ln11)> <Delay = 3.25> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 1024> <RAM>
+ST_8 : Operation 178 [1/2] (3.25ns)   --->   "%B_load_12 = load i32* %B_addr_12, align 4" [Brutal_design.cpp:17]   --->   Operation 178 'load' 'B_load_12' <Predicate = (!icmp_ln11)> <Delay = 3.25> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 1024> <RAM>
+ST_8 : Operation 179 [1/2] (3.25ns)   --->   "%A_load_13 = load i32* %A_addr_13, align 4" [Brutal_design.cpp:17]   --->   Operation 179 'load' 'A_load_13' <Predicate = (!icmp_ln11)> <Delay = 3.25> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 1024> <RAM>
+ST_8 : Operation 180 [1/2] (3.25ns)   --->   "%B_load_13 = load i32* %B_addr_13, align 4" [Brutal_design.cpp:17]   --->   Operation 180 'load' 'B_load_13' <Predicate = (!icmp_ln11)> <Delay = 3.25> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 1024> <RAM>
+ST_8 : Operation 181 [2/2] (3.25ns)   --->   "%A_load_16 = load i32* %A_addr_16, align 4" [Brutal_design.cpp:17]   --->   Operation 181 'load' 'A_load_16' <Predicate = (!icmp_ln11)> <Delay = 3.25> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 1024> <RAM>
+ST_8 : Operation 182 [2/2] (3.25ns)   --->   "%B_load_16 = load i32* %B_addr_16, align 4" [Brutal_design.cpp:17]   --->   Operation 182 'load' 'B_load_16' <Predicate = (!icmp_ln11)> <Delay = 3.25> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 1024> <RAM>
+ST_8 : Operation 183 [2/2] (3.25ns)   --->   "%A_load_17 = load i32* %A_addr_17, align 4" [Brutal_design.cpp:17]   --->   Operation 183 'load' 'A_load_17' <Predicate = (!icmp_ln11)> <Delay = 3.25> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 1024> <RAM>
+ST_8 : Operation 184 [2/2] (3.25ns)   --->   "%B_load_17 = load i32* %B_addr_17, align 4" [Brutal_design.cpp:17]   --->   Operation 184 'load' 'B_load_17' <Predicate = (!icmp_ln11)> <Delay = 3.25> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 1024> <RAM>
+ST_8 : Operation 185 [1/1] (2.55ns)   --->   "%add_ln17_4 = add i32 %mul_ln17_7, %mul_ln17_6" [Brutal_design.cpp:17]   --->   Operation 185 'add' 'add_ln17_4' <Predicate = (!icmp_ln11)> <Delay = 2.55> <Core = "AddSub">   --->   Core 14 'AddSub' <Latency = 0> <II = 1> <Delay = 1.82> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_8 : Operation 186 [1/1] (0.00ns) (grouped into TernaryAdder)   --->   "%add_ln17_5 = add i32 %add_ln17_3, %add_ln17_4" [Brutal_design.cpp:17]   --->   Operation 186 'add' 'add_ln17_5' <Predicate = (!icmp_ln11)> <Delay = 0.00> <Core = "TAddSub">   --->   Core 83 'TAddSub' <Latency = 0> <II = 1> <Delay = 2.18> <IPBlock> <Opcode : 'add' 'sub'> <InPorts = 3> <OutPorts = 1> <Sync> <CReg>
+ST_8 : Operation 187 [1/1] (4.37ns) (root node of TernaryAdder)   --->   "%add_ln17_6 = add i32 %add_ln17_2, %add_ln17_5" [Brutal_design.cpp:17]   --->   Operation 187 'add' 'add_ln17_6' <Predicate = (!icmp_ln11)> <Delay = 4.37> <Core = "TAddSub">   --->   Core 83 'TAddSub' <Latency = 0> <II = 1> <Delay = 2.18> <IPBlock> <Opcode : 'add' 'sub'> <InPorts = 3> <OutPorts = 1> <Sync> <CReg>
+
+State 9 <SV = 8> <Delay = 8.51>
+ST_9 : Operation 188 [1/1] (0.00ns)   --->   "%or_ln17_23 = or i11 %tmp, 24" [Brutal_design.cpp:17]   --->   Operation 188 'or' 'or_ln17_23' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_9 : Operation 189 [1/1] (0.00ns)   --->   "%tmp_24 = call i64 @_ssdm_op_BitConcatenate.i64.i53.i11(i53 0, i11 %or_ln17_23)" [Brutal_design.cpp:17]   --->   Operation 189 'bitconcatenate' 'tmp_24' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_9 : Operation 190 [1/1] (0.00ns)   --->   "%A_addr_24 = getelementptr [1024 x i32]* %A, i64 0, i64 %tmp_24" [Brutal_design.cpp:17]   --->   Operation 190 'getelementptr' 'A_addr_24' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_9 : Operation 191 [1/1] (0.00ns)   --->   "%or_ln17_24 = or i11 %tmp, 25" [Brutal_design.cpp:17]   --->   Operation 191 'or' 'or_ln17_24' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_9 : Operation 192 [1/1] (0.00ns)   --->   "%tmp_25 = call i64 @_ssdm_op_BitConcatenate.i64.i53.i11(i53 0, i11 %or_ln17_24)" [Brutal_design.cpp:17]   --->   Operation 192 'bitconcatenate' 'tmp_25' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_9 : Operation 193 [1/1] (0.00ns)   --->   "%A_addr_25 = getelementptr [1024 x i32]* %A, i64 0, i64 %tmp_25" [Brutal_design.cpp:17]   --->   Operation 193 'getelementptr' 'A_addr_25' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_9 : Operation 194 [1/1] (0.00ns)   --->   "%tmp_43 = call i64 @_ssdm_op_BitConcatenate.i64.i58.i6(i58 12, i6 %select_ln17)" [Brutal_design.cpp:17]   --->   Operation 194 'bitconcatenate' 'tmp_43' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_9 : Operation 195 [1/1] (0.00ns)   --->   "%B_addr_24 = getelementptr [1024 x i32]* %B, i64 0, i64 %tmp_43" [Brutal_design.cpp:17]   --->   Operation 195 'getelementptr' 'B_addr_24' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_9 : Operation 196 [1/1] (0.00ns)   --->   "%sext_ln17_1 = sext i9 %add_ln17_35 to i10" [Brutal_design.cpp:17]   --->   Operation 196 'sext' 'sext_ln17_1' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_9 : Operation 197 [1/1] (0.00ns)   --->   "%zext_ln17_21 = zext i10 %sext_ln17_1 to i64" [Brutal_design.cpp:17]   --->   Operation 197 'zext' 'zext_ln17_21' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_9 : Operation 198 [1/1] (0.00ns)   --->   "%B_addr_25 = getelementptr [1024 x i32]* %B, i64 0, i64 %zext_ln17_21" [Brutal_design.cpp:17]   --->   Operation 198 'getelementptr' 'B_addr_25' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_9 : Operation 199 [1/1] (8.51ns)   --->   "%mul_ln17_12 = mul nsw i32 %B_load_12, %A_load_12" [Brutal_design.cpp:17]   --->   Operation 199 'mul' 'mul_ln17_12' <Predicate = (!icmp_ln11)> <Delay = 8.51> <Core = "Mul">   --->   Core 16 'Mul' <Latency = 0> <II = 1> <Delay = 8.51> <FuncUnit> <Opcode : 'mul'> <InPorts = 2> <OutPorts = 1>
+ST_9 : Operation 200 [1/1] (8.51ns)   --->   "%mul_ln17_13 = mul nsw i32 %B_load_13, %A_load_13" [Brutal_design.cpp:17]   --->   Operation 200 'mul' 'mul_ln17_13' <Predicate = (!icmp_ln11)> <Delay = 8.51> <Core = "Mul">   --->   Core 16 'Mul' <Latency = 0> <II = 1> <Delay = 8.51> <FuncUnit> <Opcode : 'mul'> <InPorts = 2> <OutPorts = 1>
+ST_9 : Operation 201 [1/2] (3.25ns)   --->   "%A_load_16 = load i32* %A_addr_16, align 4" [Brutal_design.cpp:17]   --->   Operation 201 'load' 'A_load_16' <Predicate = (!icmp_ln11)> <Delay = 3.25> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 1024> <RAM>
+ST_9 : Operation 202 [1/2] (3.25ns)   --->   "%B_load_16 = load i32* %B_addr_16, align 4" [Brutal_design.cpp:17]   --->   Operation 202 'load' 'B_load_16' <Predicate = (!icmp_ln11)> <Delay = 3.25> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 1024> <RAM>
+ST_9 : Operation 203 [1/2] (3.25ns)   --->   "%A_load_17 = load i32* %A_addr_17, align 4" [Brutal_design.cpp:17]   --->   Operation 203 'load' 'A_load_17' <Predicate = (!icmp_ln11)> <Delay = 3.25> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 1024> <RAM>
+ST_9 : Operation 204 [1/2] (3.25ns)   --->   "%B_load_17 = load i32* %B_addr_17, align 4" [Brutal_design.cpp:17]   --->   Operation 204 'load' 'B_load_17' <Predicate = (!icmp_ln11)> <Delay = 3.25> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 1024> <RAM>
+ST_9 : Operation 205 [2/2] (3.25ns)   --->   "%A_load_24 = load i32* %A_addr_24, align 4" [Brutal_design.cpp:17]   --->   Operation 205 'load' 'A_load_24' <Predicate = (!icmp_ln11)> <Delay = 3.25> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 1024> <RAM>
+ST_9 : Operation 206 [2/2] (3.25ns)   --->   "%B_load_24 = load i32* %B_addr_24, align 4" [Brutal_design.cpp:17]   --->   Operation 206 'load' 'B_load_24' <Predicate = (!icmp_ln11)> <Delay = 3.25> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 1024> <RAM>
+ST_9 : Operation 207 [2/2] (3.25ns)   --->   "%A_load_25 = load i32* %A_addr_25, align 4" [Brutal_design.cpp:17]   --->   Operation 207 'load' 'A_load_25' <Predicate = (!icmp_ln11)> <Delay = 3.25> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 1024> <RAM>
+ST_9 : Operation 208 [2/2] (3.25ns)   --->   "%B_load_25 = load i32* %B_addr_25, align 4" [Brutal_design.cpp:17]   --->   Operation 208 'load' 'B_load_25' <Predicate = (!icmp_ln11)> <Delay = 3.25> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 1024> <RAM>
+ST_9 : Operation 209 [1/1] (2.55ns)   --->   "%add_ln17_7 = add i32 %mul_ln17_9, %mul_ln17_8" [Brutal_design.cpp:17]   --->   Operation 209 'add' 'add_ln17_7' <Predicate = (!icmp_ln11)> <Delay = 2.55> <Core = "AddSub">   --->   Core 14 'AddSub' <Latency = 0> <II = 1> <Delay = 1.82> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+
+State 10 <SV = 9> <Delay = 8.51>
+ST_10 : Operation 210 [1/1] (0.00ns)   --->   "%or_ln17_9 = or i11 %tmp, 10" [Brutal_design.cpp:17]   --->   Operation 210 'or' 'or_ln17_9' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_10 : Operation 211 [1/1] (0.00ns)   --->   "%tmp_10 = call i64 @_ssdm_op_BitConcatenate.i64.i53.i11(i53 0, i11 %or_ln17_9)" [Brutal_design.cpp:17]   --->   Operation 211 'bitconcatenate' 'tmp_10' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_10 : Operation 212 [1/1] (0.00ns)   --->   "%A_addr_10 = getelementptr [1024 x i32]* %A, i64 0, i64 %tmp_10" [Brutal_design.cpp:17]   --->   Operation 212 'getelementptr' 'A_addr_10' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_10 : Operation 213 [1/1] (0.00ns)   --->   "%or_ln17_10 = or i11 %tmp, 11" [Brutal_design.cpp:17]   --->   Operation 213 'or' 'or_ln17_10' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_10 : Operation 214 [1/1] (0.00ns)   --->   "%tmp_11 = call i64 @_ssdm_op_BitConcatenate.i64.i53.i11(i53 0, i11 %or_ln17_10)" [Brutal_design.cpp:17]   --->   Operation 214 'bitconcatenate' 'tmp_11' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_10 : Operation 215 [1/1] (0.00ns)   --->   "%A_addr_11 = getelementptr [1024 x i32]* %A, i64 0, i64 %tmp_11" [Brutal_design.cpp:17]   --->   Operation 215 'getelementptr' 'A_addr_11' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_10 : Operation 216 [1/1] (0.00ns)   --->   "%tmp_36 = call i64 @_ssdm_op_BitConcatenate.i64.i58.i6(i58 5, i6 %select_ln17)" [Brutal_design.cpp:17]   --->   Operation 216 'bitconcatenate' 'tmp_36' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_10 : Operation 217 [1/1] (0.00ns)   --->   "%B_addr_10 = getelementptr [1024 x i32]* %B, i64 0, i64 %tmp_36" [Brutal_design.cpp:17]   --->   Operation 217 'getelementptr' 'B_addr_10' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_10 : Operation 218 [1/1] (1.82ns)   --->   "%add_ln17_36 = add i9 %zext_ln17_7, -160" [Brutal_design.cpp:17]   --->   Operation 218 'add' 'add_ln17_36' <Predicate = (!icmp_ln11)> <Delay = 1.82> <Core = "AddSub">   --->   Core 14 'AddSub' <Latency = 0> <II = 1> <Delay = 1.82> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_10 : Operation 219 [1/1] (0.00ns)   --->   "%zext_ln17_14 = zext i9 %add_ln17_36 to i64" [Brutal_design.cpp:17]   --->   Operation 219 'zext' 'zext_ln17_14' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_10 : Operation 220 [1/1] (0.00ns)   --->   "%B_addr_11 = getelementptr [1024 x i32]* %B, i64 0, i64 %zext_ln17_14" [Brutal_design.cpp:17]   --->   Operation 220 'getelementptr' 'B_addr_11' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_10 : Operation 221 [2/2] (3.25ns)   --->   "%A_load_10 = load i32* %A_addr_10, align 4" [Brutal_design.cpp:17]   --->   Operation 221 'load' 'A_load_10' <Predicate = (!icmp_ln11)> <Delay = 3.25> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 1024> <RAM>
+ST_10 : Operation 222 [2/2] (3.25ns)   --->   "%B_load_10 = load i32* %B_addr_10, align 4" [Brutal_design.cpp:17]   --->   Operation 222 'load' 'B_load_10' <Predicate = (!icmp_ln11)> <Delay = 3.25> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 1024> <RAM>
+ST_10 : Operation 223 [2/2] (3.25ns)   --->   "%A_load_11 = load i32* %A_addr_11, align 4" [Brutal_design.cpp:17]   --->   Operation 223 'load' 'A_load_11' <Predicate = (!icmp_ln11)> <Delay = 3.25> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 1024> <RAM>
+ST_10 : Operation 224 [2/2] (3.25ns)   --->   "%B_load_11 = load i32* %B_addr_11, align 4" [Brutal_design.cpp:17]   --->   Operation 224 'load' 'B_load_11' <Predicate = (!icmp_ln11)> <Delay = 3.25> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 1024> <RAM>
+ST_10 : Operation 225 [1/1] (8.51ns)   --->   "%mul_ln17_16 = mul nsw i32 %B_load_16, %A_load_16" [Brutal_design.cpp:17]   --->   Operation 225 'mul' 'mul_ln17_16' <Predicate = (!icmp_ln11)> <Delay = 8.51> <Core = "Mul">   --->   Core 16 'Mul' <Latency = 0> <II = 1> <Delay = 8.51> <FuncUnit> <Opcode : 'mul'> <InPorts = 2> <OutPorts = 1>
+ST_10 : Operation 226 [1/1] (8.51ns)   --->   "%mul_ln17_17 = mul nsw i32 %B_load_17, %A_load_17" [Brutal_design.cpp:17]   --->   Operation 226 'mul' 'mul_ln17_17' <Predicate = (!icmp_ln11)> <Delay = 8.51> <Core = "Mul">   --->   Core 16 'Mul' <Latency = 0> <II = 1> <Delay = 8.51> <FuncUnit> <Opcode : 'mul'> <InPorts = 2> <OutPorts = 1>
+ST_10 : Operation 227 [1/2] (3.25ns)   --->   "%A_load_24 = load i32* %A_addr_24, align 4" [Brutal_design.cpp:17]   --->   Operation 227 'load' 'A_load_24' <Predicate = (!icmp_ln11)> <Delay = 3.25> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 1024> <RAM>
+ST_10 : Operation 228 [1/2] (3.25ns)   --->   "%B_load_24 = load i32* %B_addr_24, align 4" [Brutal_design.cpp:17]   --->   Operation 228 'load' 'B_load_24' <Predicate = (!icmp_ln11)> <Delay = 3.25> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 1024> <RAM>
+ST_10 : Operation 229 [1/2] (3.25ns)   --->   "%A_load_25 = load i32* %A_addr_25, align 4" [Brutal_design.cpp:17]   --->   Operation 229 'load' 'A_load_25' <Predicate = (!icmp_ln11)> <Delay = 3.25> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 1024> <RAM>
+ST_10 : Operation 230 [1/2] (3.25ns)   --->   "%B_load_25 = load i32* %B_addr_25, align 4" [Brutal_design.cpp:17]   --->   Operation 230 'load' 'B_load_25' <Predicate = (!icmp_ln11)> <Delay = 3.25> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 1024> <RAM>
+ST_10 : Operation 231 [1/1] (2.55ns)   --->   "%add_ln17_10 = add i32 %mul_ln17_13, %mul_ln17_12" [Brutal_design.cpp:17]   --->   Operation 231 'add' 'add_ln17_10' <Predicate = (!icmp_ln11)> <Delay = 2.55> <Core = "AddSub">   --->   Core 14 'AddSub' <Latency = 0> <II = 1> <Delay = 1.82> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+
+State 11 <SV = 10> <Delay = 8.51>
+ST_11 : Operation 232 [1/1] (0.00ns)   --->   "%or_ln17_13 = or i11 %tmp, 14" [Brutal_design.cpp:17]   --->   Operation 232 'or' 'or_ln17_13' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_11 : Operation 233 [1/1] (0.00ns)   --->   "%tmp_14 = call i64 @_ssdm_op_BitConcatenate.i64.i53.i11(i53 0, i11 %or_ln17_13)" [Brutal_design.cpp:17]   --->   Operation 233 'bitconcatenate' 'tmp_14' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_11 : Operation 234 [1/1] (0.00ns)   --->   "%A_addr_14 = getelementptr [1024 x i32]* %A, i64 0, i64 %tmp_14" [Brutal_design.cpp:17]   --->   Operation 234 'getelementptr' 'A_addr_14' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_11 : Operation 235 [1/1] (0.00ns)   --->   "%or_ln17_14 = or i11 %tmp, 15" [Brutal_design.cpp:17]   --->   Operation 235 'or' 'or_ln17_14' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_11 : Operation 236 [1/1] (0.00ns)   --->   "%tmp_15 = call i64 @_ssdm_op_BitConcatenate.i64.i53.i11(i53 0, i11 %or_ln17_14)" [Brutal_design.cpp:17]   --->   Operation 236 'bitconcatenate' 'tmp_15' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_11 : Operation 237 [1/1] (0.00ns)   --->   "%A_addr_15 = getelementptr [1024 x i32]* %A, i64 0, i64 %tmp_15" [Brutal_design.cpp:17]   --->   Operation 237 'getelementptr' 'A_addr_15' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_11 : Operation 238 [1/1] (0.00ns)   --->   "%tmp_38 = call i64 @_ssdm_op_BitConcatenate.i64.i58.i6(i58 7, i6 %select_ln17)" [Brutal_design.cpp:17]   --->   Operation 238 'bitconcatenate' 'tmp_38' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_11 : Operation 239 [1/1] (0.00ns)   --->   "%B_addr_14 = getelementptr [1024 x i32]* %B, i64 0, i64 %tmp_38" [Brutal_design.cpp:17]   --->   Operation 239 'getelementptr' 'B_addr_14' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_11 : Operation 240 [1/1] (1.73ns)   --->   "%add_ln17_37 = add i10 %zext_ln17_5, 480" [Brutal_design.cpp:17]   --->   Operation 240 'add' 'add_ln17_37' <Predicate = (!icmp_ln11)> <Delay = 1.73> <Core = "AddSub">   --->   Core 14 'AddSub' <Latency = 0> <II = 1> <Delay = 1.82> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_11 : Operation 241 [1/1] (0.00ns)   --->   "%zext_ln17_16 = zext i10 %add_ln17_37 to i64" [Brutal_design.cpp:17]   --->   Operation 241 'zext' 'zext_ln17_16' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_11 : Operation 242 [1/1] (0.00ns)   --->   "%B_addr_15 = getelementptr [1024 x i32]* %B, i64 0, i64 %zext_ln17_16" [Brutal_design.cpp:17]   --->   Operation 242 'getelementptr' 'B_addr_15' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_11 : Operation 243 [1/2] (3.25ns)   --->   "%A_load_10 = load i32* %A_addr_10, align 4" [Brutal_design.cpp:17]   --->   Operation 243 'load' 'A_load_10' <Predicate = (!icmp_ln11)> <Delay = 3.25> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 1024> <RAM>
+ST_11 : Operation 244 [1/2] (3.25ns)   --->   "%B_load_10 = load i32* %B_addr_10, align 4" [Brutal_design.cpp:17]   --->   Operation 244 'load' 'B_load_10' <Predicate = (!icmp_ln11)> <Delay = 3.25> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 1024> <RAM>
+ST_11 : Operation 245 [1/2] (3.25ns)   --->   "%A_load_11 = load i32* %A_addr_11, align 4" [Brutal_design.cpp:17]   --->   Operation 245 'load' 'A_load_11' <Predicate = (!icmp_ln11)> <Delay = 3.25> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 1024> <RAM>
+ST_11 : Operation 246 [1/2] (3.25ns)   --->   "%B_load_11 = load i32* %B_addr_11, align 4" [Brutal_design.cpp:17]   --->   Operation 246 'load' 'B_load_11' <Predicate = (!icmp_ln11)> <Delay = 3.25> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 1024> <RAM>
+ST_11 : Operation 247 [2/2] (3.25ns)   --->   "%A_load_14 = load i32* %A_addr_14, align 4" [Brutal_design.cpp:17]   --->   Operation 247 'load' 'A_load_14' <Predicate = (!icmp_ln11)> <Delay = 3.25> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 1024> <RAM>
+ST_11 : Operation 248 [2/2] (3.25ns)   --->   "%B_load_14 = load i32* %B_addr_14, align 4" [Brutal_design.cpp:17]   --->   Operation 248 'load' 'B_load_14' <Predicate = (!icmp_ln11)> <Delay = 3.25> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 1024> <RAM>
+ST_11 : Operation 249 [2/2] (3.25ns)   --->   "%A_load_15 = load i32* %A_addr_15, align 4" [Brutal_design.cpp:17]   --->   Operation 249 'load' 'A_load_15' <Predicate = (!icmp_ln11)> <Delay = 3.25> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 1024> <RAM>
+ST_11 : Operation 250 [2/2] (3.25ns)   --->   "%B_load_15 = load i32* %B_addr_15, align 4" [Brutal_design.cpp:17]   --->   Operation 250 'load' 'B_load_15' <Predicate = (!icmp_ln11)> <Delay = 3.25> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 1024> <RAM>
+ST_11 : Operation 251 [1/1] (8.51ns)   --->   "%mul_ln17_24 = mul nsw i32 %B_load_24, %A_load_24" [Brutal_design.cpp:17]   --->   Operation 251 'mul' 'mul_ln17_24' <Predicate = (!icmp_ln11)> <Delay = 8.51> <Core = "Mul">   --->   Core 16 'Mul' <Latency = 0> <II = 1> <Delay = 8.51> <FuncUnit> <Opcode : 'mul'> <InPorts = 2> <OutPorts = 1>
+ST_11 : Operation 252 [1/1] (8.51ns)   --->   "%mul_ln17_25 = mul nsw i32 %B_load_25, %A_load_25" [Brutal_design.cpp:17]   --->   Operation 252 'mul' 'mul_ln17_25' <Predicate = (!icmp_ln11)> <Delay = 8.51> <Core = "Mul">   --->   Core 16 'Mul' <Latency = 0> <II = 1> <Delay = 8.51> <FuncUnit> <Opcode : 'mul'> <InPorts = 2> <OutPorts = 1>
+ST_11 : Operation 253 [1/1] (2.55ns)   --->   "%add_ln17_15 = add i32 %mul_ln17_17, %mul_ln17_16" [Brutal_design.cpp:17]   --->   Operation 253 'add' 'add_ln17_15' <Predicate = (!icmp_ln11)> <Delay = 2.55> <Core = "AddSub">   --->   Core 14 'AddSub' <Latency = 0> <II = 1> <Delay = 1.82> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+
+State 12 <SV = 11> <Delay = 8.51>
+ST_12 : Operation 254 [1/1] (0.00ns)   --->   "%or_ln17_17 = or i11 %tmp, 18" [Brutal_design.cpp:17]   --->   Operation 254 'or' 'or_ln17_17' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_12 : Operation 255 [1/1] (0.00ns)   --->   "%tmp_18 = call i64 @_ssdm_op_BitConcatenate.i64.i53.i11(i53 0, i11 %or_ln17_17)" [Brutal_design.cpp:17]   --->   Operation 255 'bitconcatenate' 'tmp_18' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_12 : Operation 256 [1/1] (0.00ns)   --->   "%A_addr_18 = getelementptr [1024 x i32]* %A, i64 0, i64 %tmp_18" [Brutal_design.cpp:17]   --->   Operation 256 'getelementptr' 'A_addr_18' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_12 : Operation 257 [1/1] (0.00ns)   --->   "%or_ln17_18 = or i11 %tmp, 19" [Brutal_design.cpp:17]   --->   Operation 257 'or' 'or_ln17_18' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_12 : Operation 258 [1/1] (0.00ns)   --->   "%tmp_19 = call i64 @_ssdm_op_BitConcatenate.i64.i53.i11(i53 0, i11 %or_ln17_18)" [Brutal_design.cpp:17]   --->   Operation 258 'bitconcatenate' 'tmp_19' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_12 : Operation 259 [1/1] (0.00ns)   --->   "%A_addr_19 = getelementptr [1024 x i32]* %A, i64 0, i64 %tmp_19" [Brutal_design.cpp:17]   --->   Operation 259 'getelementptr' 'A_addr_19' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_12 : Operation 260 [1/1] (0.00ns)   --->   "%tmp_40 = call i64 @_ssdm_op_BitConcatenate.i64.i58.i6(i58 9, i6 %select_ln17)" [Brutal_design.cpp:17]   --->   Operation 260 'bitconcatenate' 'tmp_40' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_12 : Operation 261 [1/1] (0.00ns)   --->   "%B_addr_18 = getelementptr [1024 x i32]* %B, i64 0, i64 %tmp_40" [Brutal_design.cpp:17]   --->   Operation 261 'getelementptr' 'B_addr_18' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_12 : Operation 262 [1/1] (1.73ns)   --->   "%add_ln17_39 = add i10 %zext_ln17_5, -416" [Brutal_design.cpp:17]   --->   Operation 262 'add' 'add_ln17_39' <Predicate = (!icmp_ln11)> <Delay = 1.73> <Core = "AddSub">   --->   Core 14 'AddSub' <Latency = 0> <II = 1> <Delay = 1.82> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_12 : Operation 263 [1/1] (0.00ns)   --->   "%zext_ln17_18 = zext i10 %add_ln17_39 to i64" [Brutal_design.cpp:17]   --->   Operation 263 'zext' 'zext_ln17_18' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_12 : Operation 264 [1/1] (0.00ns)   --->   "%B_addr_19 = getelementptr [1024 x i32]* %B, i64 0, i64 %zext_ln17_18" [Brutal_design.cpp:17]   --->   Operation 264 'getelementptr' 'B_addr_19' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_12 : Operation 265 [1/1] (8.51ns)   --->   "%mul_ln17_10 = mul nsw i32 %B_load_10, %A_load_10" [Brutal_design.cpp:17]   --->   Operation 265 'mul' 'mul_ln17_10' <Predicate = (!icmp_ln11)> <Delay = 8.51> <Core = "Mul">   --->   Core 16 'Mul' <Latency = 0> <II = 1> <Delay = 8.51> <FuncUnit> <Opcode : 'mul'> <InPorts = 2> <OutPorts = 1>
+ST_12 : Operation 266 [1/1] (8.51ns)   --->   "%mul_ln17_11 = mul nsw i32 %B_load_11, %A_load_11" [Brutal_design.cpp:17]   --->   Operation 266 'mul' 'mul_ln17_11' <Predicate = (!icmp_ln11)> <Delay = 8.51> <Core = "Mul">   --->   Core 16 'Mul' <Latency = 0> <II = 1> <Delay = 8.51> <FuncUnit> <Opcode : 'mul'> <InPorts = 2> <OutPorts = 1>
+ST_12 : Operation 267 [1/2] (3.25ns)   --->   "%A_load_14 = load i32* %A_addr_14, align 4" [Brutal_design.cpp:17]   --->   Operation 267 'load' 'A_load_14' <Predicate = (!icmp_ln11)> <Delay = 3.25> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 1024> <RAM>
+ST_12 : Operation 268 [1/2] (3.25ns)   --->   "%B_load_14 = load i32* %B_addr_14, align 4" [Brutal_design.cpp:17]   --->   Operation 268 'load' 'B_load_14' <Predicate = (!icmp_ln11)> <Delay = 3.25> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 1024> <RAM>
+ST_12 : Operation 269 [1/2] (3.25ns)   --->   "%A_load_15 = load i32* %A_addr_15, align 4" [Brutal_design.cpp:17]   --->   Operation 269 'load' 'A_load_15' <Predicate = (!icmp_ln11)> <Delay = 3.25> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 1024> <RAM>
+ST_12 : Operation 270 [1/2] (3.25ns)   --->   "%B_load_15 = load i32* %B_addr_15, align 4" [Brutal_design.cpp:17]   --->   Operation 270 'load' 'B_load_15' <Predicate = (!icmp_ln11)> <Delay = 3.25> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 1024> <RAM>
+ST_12 : Operation 271 [2/2] (3.25ns)   --->   "%A_load_18 = load i32* %A_addr_18, align 4" [Brutal_design.cpp:17]   --->   Operation 271 'load' 'A_load_18' <Predicate = (!icmp_ln11)> <Delay = 3.25> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 1024> <RAM>
+ST_12 : Operation 272 [2/2] (3.25ns)   --->   "%B_load_18 = load i32* %B_addr_18, align 4" [Brutal_design.cpp:17]   --->   Operation 272 'load' 'B_load_18' <Predicate = (!icmp_ln11)> <Delay = 3.25> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 1024> <RAM>
+ST_12 : Operation 273 [2/2] (3.25ns)   --->   "%A_load_19 = load i32* %A_addr_19, align 4" [Brutal_design.cpp:17]   --->   Operation 273 'load' 'A_load_19' <Predicate = (!icmp_ln11)> <Delay = 3.25> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 1024> <RAM>
+ST_12 : Operation 274 [2/2] (3.25ns)   --->   "%B_load_19 = load i32* %B_addr_19, align 4" [Brutal_design.cpp:17]   --->   Operation 274 'load' 'B_load_19' <Predicate = (!icmp_ln11)> <Delay = 3.25> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 1024> <RAM>
+ST_12 : Operation 275 [1/1] (2.55ns)   --->   "%add_ln17_22 = add i32 %mul_ln17_25, %mul_ln17_24" [Brutal_design.cpp:17]   --->   Operation 275 'add' 'add_ln17_22' <Predicate = (!icmp_ln11)> <Delay = 2.55> <Core = "AddSub">   --->   Core 14 'AddSub' <Latency = 0> <II = 1> <Delay = 1.82> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+
+State 13 <SV = 12> <Delay = 8.51>
+ST_13 : Operation 276 [1/1] (0.00ns)   --->   "%or_ln17_19 = or i11 %tmp, 20" [Brutal_design.cpp:17]   --->   Operation 276 'or' 'or_ln17_19' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_13 : Operation 277 [1/1] (0.00ns)   --->   "%tmp_20 = call i64 @_ssdm_op_BitConcatenate.i64.i53.i11(i53 0, i11 %or_ln17_19)" [Brutal_design.cpp:17]   --->   Operation 277 'bitconcatenate' 'tmp_20' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_13 : Operation 278 [1/1] (0.00ns)   --->   "%A_addr_20 = getelementptr [1024 x i32]* %A, i64 0, i64 %tmp_20" [Brutal_design.cpp:17]   --->   Operation 278 'getelementptr' 'A_addr_20' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_13 : Operation 279 [1/1] (0.00ns)   --->   "%or_ln17_20 = or i11 %tmp, 21" [Brutal_design.cpp:17]   --->   Operation 279 'or' 'or_ln17_20' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_13 : Operation 280 [1/1] (0.00ns)   --->   "%tmp_21 = call i64 @_ssdm_op_BitConcatenate.i64.i53.i11(i53 0, i11 %or_ln17_20)" [Brutal_design.cpp:17]   --->   Operation 280 'bitconcatenate' 'tmp_21' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_13 : Operation 281 [1/1] (0.00ns)   --->   "%A_addr_21 = getelementptr [1024 x i32]* %A, i64 0, i64 %tmp_21" [Brutal_design.cpp:17]   --->   Operation 281 'getelementptr' 'A_addr_21' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_13 : Operation 282 [1/1] (0.00ns)   --->   "%tmp_41 = call i64 @_ssdm_op_BitConcatenate.i64.i58.i6(i58 10, i6 %select_ln17)" [Brutal_design.cpp:17]   --->   Operation 282 'bitconcatenate' 'tmp_41' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_13 : Operation 283 [1/1] (0.00ns)   --->   "%B_addr_20 = getelementptr [1024 x i32]* %B, i64 0, i64 %tmp_41" [Brutal_design.cpp:17]   --->   Operation 283 'getelementptr' 'B_addr_20' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_13 : Operation 284 [1/1] (1.73ns)   --->   "%add_ln17_40 = add i10 %zext_ln17_5, -352" [Brutal_design.cpp:17]   --->   Operation 284 'add' 'add_ln17_40' <Predicate = (!icmp_ln11)> <Delay = 1.73> <Core = "AddSub">   --->   Core 14 'AddSub' <Latency = 0> <II = 1> <Delay = 1.82> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_13 : Operation 285 [1/1] (0.00ns)   --->   "%zext_ln17_19 = zext i10 %add_ln17_40 to i64" [Brutal_design.cpp:17]   --->   Operation 285 'zext' 'zext_ln17_19' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_13 : Operation 286 [1/1] (0.00ns)   --->   "%B_addr_21 = getelementptr [1024 x i32]* %B, i64 0, i64 %zext_ln17_19" [Brutal_design.cpp:17]   --->   Operation 286 'getelementptr' 'B_addr_21' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_13 : Operation 287 [1/1] (8.51ns)   --->   "%mul_ln17_14 = mul nsw i32 %B_load_14, %A_load_14" [Brutal_design.cpp:17]   --->   Operation 287 'mul' 'mul_ln17_14' <Predicate = (!icmp_ln11)> <Delay = 8.51> <Core = "Mul">   --->   Core 16 'Mul' <Latency = 0> <II = 1> <Delay = 8.51> <FuncUnit> <Opcode : 'mul'> <InPorts = 2> <OutPorts = 1>
+ST_13 : Operation 288 [1/1] (8.51ns)   --->   "%mul_ln17_15 = mul nsw i32 %B_load_15, %A_load_15" [Brutal_design.cpp:17]   --->   Operation 288 'mul' 'mul_ln17_15' <Predicate = (!icmp_ln11)> <Delay = 8.51> <Core = "Mul">   --->   Core 16 'Mul' <Latency = 0> <II = 1> <Delay = 8.51> <FuncUnit> <Opcode : 'mul'> <InPorts = 2> <OutPorts = 1>
+ST_13 : Operation 289 [1/2] (3.25ns)   --->   "%A_load_18 = load i32* %A_addr_18, align 4" [Brutal_design.cpp:17]   --->   Operation 289 'load' 'A_load_18' <Predicate = (!icmp_ln11)> <Delay = 3.25> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 1024> <RAM>
+ST_13 : Operation 290 [1/2] (3.25ns)   --->   "%B_load_18 = load i32* %B_addr_18, align 4" [Brutal_design.cpp:17]   --->   Operation 290 'load' 'B_load_18' <Predicate = (!icmp_ln11)> <Delay = 3.25> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 1024> <RAM>
+ST_13 : Operation 291 [1/2] (3.25ns)   --->   "%A_load_19 = load i32* %A_addr_19, align 4" [Brutal_design.cpp:17]   --->   Operation 291 'load' 'A_load_19' <Predicate = (!icmp_ln11)> <Delay = 3.25> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 1024> <RAM>
+ST_13 : Operation 292 [1/2] (3.25ns)   --->   "%B_load_19 = load i32* %B_addr_19, align 4" [Brutal_design.cpp:17]   --->   Operation 292 'load' 'B_load_19' <Predicate = (!icmp_ln11)> <Delay = 3.25> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 1024> <RAM>
+ST_13 : Operation 293 [2/2] (3.25ns)   --->   "%A_load_20 = load i32* %A_addr_20, align 4" [Brutal_design.cpp:17]   --->   Operation 293 'load' 'A_load_20' <Predicate = (!icmp_ln11)> <Delay = 3.25> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 1024> <RAM>
+ST_13 : Operation 294 [2/2] (3.25ns)   --->   "%B_load_20 = load i32* %B_addr_20, align 4" [Brutal_design.cpp:17]   --->   Operation 294 'load' 'B_load_20' <Predicate = (!icmp_ln11)> <Delay = 3.25> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 1024> <RAM>
+ST_13 : Operation 295 [2/2] (3.25ns)   --->   "%A_load_21 = load i32* %A_addr_21, align 4" [Brutal_design.cpp:17]   --->   Operation 295 'load' 'A_load_21' <Predicate = (!icmp_ln11)> <Delay = 3.25> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 1024> <RAM>
+ST_13 : Operation 296 [2/2] (3.25ns)   --->   "%B_load_21 = load i32* %B_addr_21, align 4" [Brutal_design.cpp:17]   --->   Operation 296 'load' 'B_load_21' <Predicate = (!icmp_ln11)> <Delay = 3.25> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 1024> <RAM>
+ST_13 : Operation 297 [1/1] (0.00ns) (grouped into TernaryAdder)   --->   "%add_ln17_8 = add i32 %mul_ln17_11, %mul_ln17_10" [Brutal_design.cpp:17]   --->   Operation 297 'add' 'add_ln17_8' <Predicate = (!icmp_ln11)> <Delay = 0.00> <Core = "TAddSub">   --->   Core 83 'TAddSub' <Latency = 0> <II = 1> <Delay = 2.18> <IPBlock> <Opcode : 'add' 'sub'> <InPorts = 3> <OutPorts = 1> <Sync> <CReg>
+ST_13 : Operation 298 [1/1] (4.37ns) (root node of TernaryAdder)   --->   "%add_ln17_9 = add i32 %add_ln17_7, %add_ln17_8" [Brutal_design.cpp:17]   --->   Operation 298 'add' 'add_ln17_9' <Predicate = (!icmp_ln11)> <Delay = 4.37> <Core = "TAddSub">   --->   Core 83 'TAddSub' <Latency = 0> <II = 1> <Delay = 2.18> <IPBlock> <Opcode : 'add' 'sub'> <InPorts = 3> <OutPorts = 1> <Sync> <CReg>
+
+State 14 <SV = 13> <Delay = 8.74>
+ST_14 : Operation 299 [1/1] (0.00ns)   --->   "%or_ln17_21 = or i11 %tmp, 22" [Brutal_design.cpp:17]   --->   Operation 299 'or' 'or_ln17_21' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_14 : Operation 300 [1/1] (0.00ns)   --->   "%tmp_22 = call i64 @_ssdm_op_BitConcatenate.i64.i53.i11(i53 0, i11 %or_ln17_21)" [Brutal_design.cpp:17]   --->   Operation 300 'bitconcatenate' 'tmp_22' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_14 : Operation 301 [1/1] (0.00ns)   --->   "%A_addr_22 = getelementptr [1024 x i32]* %A, i64 0, i64 %tmp_22" [Brutal_design.cpp:17]   --->   Operation 301 'getelementptr' 'A_addr_22' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_14 : Operation 302 [1/1] (0.00ns)   --->   "%or_ln17_22 = or i11 %tmp, 23" [Brutal_design.cpp:17]   --->   Operation 302 'or' 'or_ln17_22' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_14 : Operation 303 [1/1] (0.00ns)   --->   "%tmp_23 = call i64 @_ssdm_op_BitConcatenate.i64.i53.i11(i53 0, i11 %or_ln17_22)" [Brutal_design.cpp:17]   --->   Operation 303 'bitconcatenate' 'tmp_23' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_14 : Operation 304 [1/1] (0.00ns)   --->   "%A_addr_23 = getelementptr [1024 x i32]* %A, i64 0, i64 %tmp_23" [Brutal_design.cpp:17]   --->   Operation 304 'getelementptr' 'A_addr_23' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_14 : Operation 305 [1/1] (0.00ns)   --->   "%tmp_42 = call i64 @_ssdm_op_BitConcatenate.i64.i58.i6(i58 11, i6 %select_ln17)" [Brutal_design.cpp:17]   --->   Operation 305 'bitconcatenate' 'tmp_42' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_14 : Operation 306 [1/1] (0.00ns)   --->   "%B_addr_22 = getelementptr [1024 x i32]* %B, i64 0, i64 %tmp_42" [Brutal_design.cpp:17]   --->   Operation 306 'getelementptr' 'B_addr_22' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_14 : Operation 307 [1/1] (1.73ns)   --->   "%add_ln17_41 = add i10 %zext_ln17_5, -288" [Brutal_design.cpp:17]   --->   Operation 307 'add' 'add_ln17_41' <Predicate = (!icmp_ln11)> <Delay = 1.73> <Core = "AddSub">   --->   Core 14 'AddSub' <Latency = 0> <II = 1> <Delay = 1.82> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_14 : Operation 308 [1/1] (0.00ns)   --->   "%zext_ln17_20 = zext i10 %add_ln17_41 to i64" [Brutal_design.cpp:17]   --->   Operation 308 'zext' 'zext_ln17_20' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_14 : Operation 309 [1/1] (0.00ns)   --->   "%B_addr_23 = getelementptr [1024 x i32]* %B, i64 0, i64 %zext_ln17_20" [Brutal_design.cpp:17]   --->   Operation 309 'getelementptr' 'B_addr_23' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_14 : Operation 310 [1/1] (8.51ns)   --->   "%mul_ln17_18 = mul nsw i32 %B_load_18, %A_load_18" [Brutal_design.cpp:17]   --->   Operation 310 'mul' 'mul_ln17_18' <Predicate = (!icmp_ln11)> <Delay = 8.51> <Core = "Mul">   --->   Core 16 'Mul' <Latency = 0> <II = 1> <Delay = 8.51> <FuncUnit> <Opcode : 'mul'> <InPorts = 2> <OutPorts = 1>
+ST_14 : Operation 311 [1/1] (8.51ns)   --->   "%mul_ln17_19 = mul nsw i32 %B_load_19, %A_load_19" [Brutal_design.cpp:17]   --->   Operation 311 'mul' 'mul_ln17_19' <Predicate = (!icmp_ln11)> <Delay = 8.51> <Core = "Mul">   --->   Core 16 'Mul' <Latency = 0> <II = 1> <Delay = 8.51> <FuncUnit> <Opcode : 'mul'> <InPorts = 2> <OutPorts = 1>
+ST_14 : Operation 312 [1/2] (3.25ns)   --->   "%A_load_20 = load i32* %A_addr_20, align 4" [Brutal_design.cpp:17]   --->   Operation 312 'load' 'A_load_20' <Predicate = (!icmp_ln11)> <Delay = 3.25> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 1024> <RAM>
+ST_14 : Operation 313 [1/2] (3.25ns)   --->   "%B_load_20 = load i32* %B_addr_20, align 4" [Brutal_design.cpp:17]   --->   Operation 313 'load' 'B_load_20' <Predicate = (!icmp_ln11)> <Delay = 3.25> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 1024> <RAM>
+ST_14 : Operation 314 [1/2] (3.25ns)   --->   "%A_load_21 = load i32* %A_addr_21, align 4" [Brutal_design.cpp:17]   --->   Operation 314 'load' 'A_load_21' <Predicate = (!icmp_ln11)> <Delay = 3.25> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 1024> <RAM>
+ST_14 : Operation 315 [1/2] (3.25ns)   --->   "%B_load_21 = load i32* %B_addr_21, align 4" [Brutal_design.cpp:17]   --->   Operation 315 'load' 'B_load_21' <Predicate = (!icmp_ln11)> <Delay = 3.25> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 1024> <RAM>
+ST_14 : Operation 316 [2/2] (3.25ns)   --->   "%A_load_22 = load i32* %A_addr_22, align 4" [Brutal_design.cpp:17]   --->   Operation 316 'load' 'A_load_22' <Predicate = (!icmp_ln11)> <Delay = 3.25> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 1024> <RAM>
+ST_14 : Operation 317 [2/2] (3.25ns)   --->   "%B_load_22 = load i32* %B_addr_22, align 4" [Brutal_design.cpp:17]   --->   Operation 317 'load' 'B_load_22' <Predicate = (!icmp_ln11)> <Delay = 3.25> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 1024> <RAM>
+ST_14 : Operation 318 [2/2] (3.25ns)   --->   "%A_load_23 = load i32* %A_addr_23, align 4" [Brutal_design.cpp:17]   --->   Operation 318 'load' 'A_load_23' <Predicate = (!icmp_ln11)> <Delay = 3.25> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 1024> <RAM>
+ST_14 : Operation 319 [2/2] (3.25ns)   --->   "%B_load_23 = load i32* %B_addr_23, align 4" [Brutal_design.cpp:17]   --->   Operation 319 'load' 'B_load_23' <Predicate = (!icmp_ln11)> <Delay = 3.25> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 1024> <RAM>
+ST_14 : Operation 320 [1/1] (0.00ns) (grouped into TernaryAdder)   --->   "%add_ln17_11 = add i32 %mul_ln17_15, %mul_ln17_14" [Brutal_design.cpp:17]   --->   Operation 320 'add' 'add_ln17_11' <Predicate = (!icmp_ln11)> <Delay = 0.00> <Core = "TAddSub">   --->   Core 83 'TAddSub' <Latency = 0> <II = 1> <Delay = 2.18> <IPBlock> <Opcode : 'add' 'sub'> <InPorts = 3> <OutPorts = 1> <Sync> <CReg>
+ST_14 : Operation 321 [1/1] (4.37ns) (root node of TernaryAdder)   --->   "%add_ln17_12 = add i32 %add_ln17_10, %add_ln17_11" [Brutal_design.cpp:17]   --->   Operation 321 'add' 'add_ln17_12' <Predicate = (!icmp_ln11)> <Delay = 4.37> <Core = "TAddSub">   --->   Core 83 'TAddSub' <Latency = 0> <II = 1> <Delay = 2.18> <IPBlock> <Opcode : 'add' 'sub'> <InPorts = 3> <OutPorts = 1> <Sync> <CReg>
+ST_14 : Operation 322 [1/1] (0.00ns) (grouped into TernaryAdder)   --->   "%add_ln17_13 = add i32 %add_ln17_9, %add_ln17_12" [Brutal_design.cpp:17]   --->   Operation 322 'add' 'add_ln17_13' <Predicate = (!icmp_ln11)> <Delay = 0.00> <Core = "TAddSub">   --->   Core 83 'TAddSub' <Latency = 0> <II = 1> <Delay = 2.18> <IPBlock> <Opcode : 'add' 'sub'> <InPorts = 3> <OutPorts = 1> <Sync> <CReg>
+ST_14 : Operation 323 [1/1] (4.37ns) (root node of TernaryAdder)   --->   "%add_ln17_14 = add i32 %add_ln17_6, %add_ln17_13" [Brutal_design.cpp:17]   --->   Operation 323 'add' 'add_ln17_14' <Predicate = (!icmp_ln11)> <Delay = 4.37> <Core = "TAddSub">   --->   Core 83 'TAddSub' <Latency = 0> <II = 1> <Delay = 2.18> <IPBlock> <Opcode : 'add' 'sub'> <InPorts = 3> <OutPorts = 1> <Sync> <CReg>
+
+State 15 <SV = 14> <Delay = 8.51>
+ST_15 : Operation 324 [1/1] (0.00ns)   --->   "%or_ln17_25 = or i11 %tmp, 26" [Brutal_design.cpp:17]   --->   Operation 324 'or' 'or_ln17_25' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_15 : Operation 325 [1/1] (0.00ns)   --->   "%tmp_26 = call i64 @_ssdm_op_BitConcatenate.i64.i53.i11(i53 0, i11 %or_ln17_25)" [Brutal_design.cpp:17]   --->   Operation 325 'bitconcatenate' 'tmp_26' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_15 : Operation 326 [1/1] (0.00ns)   --->   "%A_addr_26 = getelementptr [1024 x i32]* %A, i64 0, i64 %tmp_26" [Brutal_design.cpp:17]   --->   Operation 326 'getelementptr' 'A_addr_26' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_15 : Operation 327 [1/1] (0.00ns)   --->   "%or_ln17_26 = or i11 %tmp, 27" [Brutal_design.cpp:17]   --->   Operation 327 'or' 'or_ln17_26' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_15 : Operation 328 [1/1] (0.00ns)   --->   "%tmp_27 = call i64 @_ssdm_op_BitConcatenate.i64.i53.i11(i53 0, i11 %or_ln17_26)" [Brutal_design.cpp:17]   --->   Operation 328 'bitconcatenate' 'tmp_27' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_15 : Operation 329 [1/1] (0.00ns)   --->   "%A_addr_27 = getelementptr [1024 x i32]* %A, i64 0, i64 %tmp_27" [Brutal_design.cpp:17]   --->   Operation 329 'getelementptr' 'A_addr_27' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_15 : Operation 330 [1/1] (0.00ns)   --->   "%tmp_44 = call i64 @_ssdm_op_BitConcatenate.i64.i58.i6(i58 13, i6 %select_ln17)" [Brutal_design.cpp:17]   --->   Operation 330 'bitconcatenate' 'tmp_44' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_15 : Operation 331 [1/1] (0.00ns)   --->   "%B_addr_26 = getelementptr [1024 x i32]* %B, i64 0, i64 %tmp_44" [Brutal_design.cpp:17]   --->   Operation 331 'getelementptr' 'B_addr_26' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_15 : Operation 332 [1/1] (0.00ns)   --->   "%sext_ln17_2 = sext i9 %add_ln17_36 to i10" [Brutal_design.cpp:17]   --->   Operation 332 'sext' 'sext_ln17_2' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_15 : Operation 333 [1/1] (0.00ns)   --->   "%zext_ln17_22 = zext i10 %sext_ln17_2 to i64" [Brutal_design.cpp:17]   --->   Operation 333 'zext' 'zext_ln17_22' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_15 : Operation 334 [1/1] (0.00ns)   --->   "%B_addr_27 = getelementptr [1024 x i32]* %B, i64 0, i64 %zext_ln17_22" [Brutal_design.cpp:17]   --->   Operation 334 'getelementptr' 'B_addr_27' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_15 : Operation 335 [1/1] (8.51ns)   --->   "%mul_ln17_20 = mul nsw i32 %B_load_20, %A_load_20" [Brutal_design.cpp:17]   --->   Operation 335 'mul' 'mul_ln17_20' <Predicate = (!icmp_ln11)> <Delay = 8.51> <Core = "Mul">   --->   Core 16 'Mul' <Latency = 0> <II = 1> <Delay = 8.51> <FuncUnit> <Opcode : 'mul'> <InPorts = 2> <OutPorts = 1>
+ST_15 : Operation 336 [1/1] (8.51ns)   --->   "%mul_ln17_21 = mul nsw i32 %B_load_21, %A_load_21" [Brutal_design.cpp:17]   --->   Operation 336 'mul' 'mul_ln17_21' <Predicate = (!icmp_ln11)> <Delay = 8.51> <Core = "Mul">   --->   Core 16 'Mul' <Latency = 0> <II = 1> <Delay = 8.51> <FuncUnit> <Opcode : 'mul'> <InPorts = 2> <OutPorts = 1>
+ST_15 : Operation 337 [1/2] (3.25ns)   --->   "%A_load_22 = load i32* %A_addr_22, align 4" [Brutal_design.cpp:17]   --->   Operation 337 'load' 'A_load_22' <Predicate = (!icmp_ln11)> <Delay = 3.25> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 1024> <RAM>
+ST_15 : Operation 338 [1/2] (3.25ns)   --->   "%B_load_22 = load i32* %B_addr_22, align 4" [Brutal_design.cpp:17]   --->   Operation 338 'load' 'B_load_22' <Predicate = (!icmp_ln11)> <Delay = 3.25> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 1024> <RAM>
+ST_15 : Operation 339 [1/2] (3.25ns)   --->   "%A_load_23 = load i32* %A_addr_23, align 4" [Brutal_design.cpp:17]   --->   Operation 339 'load' 'A_load_23' <Predicate = (!icmp_ln11)> <Delay = 3.25> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 1024> <RAM>
+ST_15 : Operation 340 [1/2] (3.25ns)   --->   "%B_load_23 = load i32* %B_addr_23, align 4" [Brutal_design.cpp:17]   --->   Operation 340 'load' 'B_load_23' <Predicate = (!icmp_ln11)> <Delay = 3.25> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 1024> <RAM>
+ST_15 : Operation 341 [2/2] (3.25ns)   --->   "%A_load_26 = load i32* %A_addr_26, align 4" [Brutal_design.cpp:17]   --->   Operation 341 'load' 'A_load_26' <Predicate = (!icmp_ln11)> <Delay = 3.25> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 1024> <RAM>
+ST_15 : Operation 342 [2/2] (3.25ns)   --->   "%B_load_26 = load i32* %B_addr_26, align 4" [Brutal_design.cpp:17]   --->   Operation 342 'load' 'B_load_26' <Predicate = (!icmp_ln11)> <Delay = 3.25> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 1024> <RAM>
+ST_15 : Operation 343 [2/2] (3.25ns)   --->   "%A_load_27 = load i32* %A_addr_27, align 4" [Brutal_design.cpp:17]   --->   Operation 343 'load' 'A_load_27' <Predicate = (!icmp_ln11)> <Delay = 3.25> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 1024> <RAM>
+ST_15 : Operation 344 [2/2] (3.25ns)   --->   "%B_load_27 = load i32* %B_addr_27, align 4" [Brutal_design.cpp:17]   --->   Operation 344 'load' 'B_load_27' <Predicate = (!icmp_ln11)> <Delay = 3.25> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 1024> <RAM>
+ST_15 : Operation 345 [1/1] (0.00ns) (grouped into TernaryAdder)   --->   "%add_ln17_16 = add i32 %mul_ln17_19, %mul_ln17_18" [Brutal_design.cpp:17]   --->   Operation 345 'add' 'add_ln17_16' <Predicate = (!icmp_ln11)> <Delay = 0.00> <Core = "TAddSub">   --->   Core 83 'TAddSub' <Latency = 0> <II = 1> <Delay = 2.18> <IPBlock> <Opcode : 'add' 'sub'> <InPorts = 3> <OutPorts = 1> <Sync> <CReg>
+ST_15 : Operation 346 [1/1] (4.37ns) (root node of TernaryAdder)   --->   "%add_ln17_17 = add i32 %add_ln17_15, %add_ln17_16" [Brutal_design.cpp:17]   --->   Operation 346 'add' 'add_ln17_17' <Predicate = (!icmp_ln11)> <Delay = 4.37> <Core = "TAddSub">   --->   Core 83 'TAddSub' <Latency = 0> <II = 1> <Delay = 2.18> <IPBlock> <Opcode : 'add' 'sub'> <InPorts = 3> <OutPorts = 1> <Sync> <CReg>
+
+State 16 <SV = 15> <Delay = 8.51>
+ST_16 : Operation 347 [1/1] (0.00ns)   --->   "%or_ln17_27 = or i11 %tmp, 28" [Brutal_design.cpp:17]   --->   Operation 347 'or' 'or_ln17_27' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_16 : Operation 348 [1/1] (0.00ns)   --->   "%tmp_28 = call i64 @_ssdm_op_BitConcatenate.i64.i53.i11(i53 0, i11 %or_ln17_27)" [Brutal_design.cpp:17]   --->   Operation 348 'bitconcatenate' 'tmp_28' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_16 : Operation 349 [1/1] (0.00ns)   --->   "%A_addr_28 = getelementptr [1024 x i32]* %A, i64 0, i64 %tmp_28" [Brutal_design.cpp:17]   --->   Operation 349 'getelementptr' 'A_addr_28' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_16 : Operation 350 [1/1] (0.00ns)   --->   "%or_ln17_28 = or i11 %tmp, 29" [Brutal_design.cpp:17]   --->   Operation 350 'or' 'or_ln17_28' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_16 : Operation 351 [1/1] (0.00ns)   --->   "%tmp_29 = call i64 @_ssdm_op_BitConcatenate.i64.i53.i11(i53 0, i11 %or_ln17_28)" [Brutal_design.cpp:17]   --->   Operation 351 'bitconcatenate' 'tmp_29' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_16 : Operation 352 [1/1] (0.00ns)   --->   "%A_addr_29 = getelementptr [1024 x i32]* %A, i64 0, i64 %tmp_29" [Brutal_design.cpp:17]   --->   Operation 352 'getelementptr' 'A_addr_29' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_16 : Operation 353 [1/1] (0.00ns)   --->   "%tmp_45 = call i64 @_ssdm_op_BitConcatenate.i64.i58.i6(i58 14, i6 %select_ln17)" [Brutal_design.cpp:17]   --->   Operation 353 'bitconcatenate' 'tmp_45' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_16 : Operation 354 [1/1] (0.00ns)   --->   "%B_addr_28 = getelementptr [1024 x i32]* %B, i64 0, i64 %tmp_45" [Brutal_design.cpp:17]   --->   Operation 354 'getelementptr' 'B_addr_28' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_16 : Operation 355 [1/1] (0.00ns)   --->   "%sext_ln17_3 = sext i8 %add_ln17_33 to i10" [Brutal_design.cpp:17]   --->   Operation 355 'sext' 'sext_ln17_3' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_16 : Operation 356 [1/1] (0.00ns)   --->   "%zext_ln17_23 = zext i10 %sext_ln17_3 to i64" [Brutal_design.cpp:17]   --->   Operation 356 'zext' 'zext_ln17_23' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_16 : Operation 357 [1/1] (0.00ns)   --->   "%B_addr_29 = getelementptr [1024 x i32]* %B, i64 0, i64 %zext_ln17_23" [Brutal_design.cpp:17]   --->   Operation 357 'getelementptr' 'B_addr_29' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_16 : Operation 358 [1/1] (8.51ns)   --->   "%mul_ln17_22 = mul nsw i32 %B_load_22, %A_load_22" [Brutal_design.cpp:17]   --->   Operation 358 'mul' 'mul_ln17_22' <Predicate = (!icmp_ln11)> <Delay = 8.51> <Core = "Mul">   --->   Core 16 'Mul' <Latency = 0> <II = 1> <Delay = 8.51> <FuncUnit> <Opcode : 'mul'> <InPorts = 2> <OutPorts = 1>
+ST_16 : Operation 359 [1/1] (8.51ns)   --->   "%mul_ln17_23 = mul nsw i32 %B_load_23, %A_load_23" [Brutal_design.cpp:17]   --->   Operation 359 'mul' 'mul_ln17_23' <Predicate = (!icmp_ln11)> <Delay = 8.51> <Core = "Mul">   --->   Core 16 'Mul' <Latency = 0> <II = 1> <Delay = 8.51> <FuncUnit> <Opcode : 'mul'> <InPorts = 2> <OutPorts = 1>
+ST_16 : Operation 360 [1/2] (3.25ns)   --->   "%A_load_26 = load i32* %A_addr_26, align 4" [Brutal_design.cpp:17]   --->   Operation 360 'load' 'A_load_26' <Predicate = (!icmp_ln11)> <Delay = 3.25> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 1024> <RAM>
+ST_16 : Operation 361 [1/2] (3.25ns)   --->   "%B_load_26 = load i32* %B_addr_26, align 4" [Brutal_design.cpp:17]   --->   Operation 361 'load' 'B_load_26' <Predicate = (!icmp_ln11)> <Delay = 3.25> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 1024> <RAM>
+ST_16 : Operation 362 [1/2] (3.25ns)   --->   "%A_load_27 = load i32* %A_addr_27, align 4" [Brutal_design.cpp:17]   --->   Operation 362 'load' 'A_load_27' <Predicate = (!icmp_ln11)> <Delay = 3.25> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 1024> <RAM>
+ST_16 : Operation 363 [1/2] (3.25ns)   --->   "%B_load_27 = load i32* %B_addr_27, align 4" [Brutal_design.cpp:17]   --->   Operation 363 'load' 'B_load_27' <Predicate = (!icmp_ln11)> <Delay = 3.25> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 1024> <RAM>
+ST_16 : Operation 364 [2/2] (3.25ns)   --->   "%A_load_28 = load i32* %A_addr_28, align 4" [Brutal_design.cpp:17]   --->   Operation 364 'load' 'A_load_28' <Predicate = (!icmp_ln11)> <Delay = 3.25> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 1024> <RAM>
+ST_16 : Operation 365 [2/2] (3.25ns)   --->   "%B_load_28 = load i32* %B_addr_28, align 4" [Brutal_design.cpp:17]   --->   Operation 365 'load' 'B_load_28' <Predicate = (!icmp_ln11)> <Delay = 3.25> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 1024> <RAM>
+ST_16 : Operation 366 [2/2] (3.25ns)   --->   "%A_load_29 = load i32* %A_addr_29, align 4" [Brutal_design.cpp:17]   --->   Operation 366 'load' 'A_load_29' <Predicate = (!icmp_ln11)> <Delay = 3.25> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 1024> <RAM>
+ST_16 : Operation 367 [2/2] (3.25ns)   --->   "%B_load_29 = load i32* %B_addr_29, align 4" [Brutal_design.cpp:17]   --->   Operation 367 'load' 'B_load_29' <Predicate = (!icmp_ln11)> <Delay = 3.25> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 1024> <RAM>
+ST_16 : Operation 368 [1/1] (2.55ns)   --->   "%add_ln17_18 = add i32 %mul_ln17_21, %mul_ln17_20" [Brutal_design.cpp:17]   --->   Operation 368 'add' 'add_ln17_18' <Predicate = (!icmp_ln11)> <Delay = 2.55> <Core = "AddSub">   --->   Core 14 'AddSub' <Latency = 0> <II = 1> <Delay = 1.82> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+
+State 17 <SV = 16> <Delay = 8.51>
+ST_17 : Operation 369 [1/1] (0.00ns)   --->   "%or_ln17_29 = or i11 %tmp, 30" [Brutal_design.cpp:17]   --->   Operation 369 'or' 'or_ln17_29' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_17 : Operation 370 [1/1] (0.00ns)   --->   "%tmp_30 = call i64 @_ssdm_op_BitConcatenate.i64.i53.i11(i53 0, i11 %or_ln17_29)" [Brutal_design.cpp:17]   --->   Operation 370 'bitconcatenate' 'tmp_30' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_17 : Operation 371 [1/1] (0.00ns)   --->   "%A_addr_30 = getelementptr [1024 x i32]* %A, i64 0, i64 %tmp_30" [Brutal_design.cpp:17]   --->   Operation 371 'getelementptr' 'A_addr_30' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_17 : Operation 372 [1/1] (0.00ns)   --->   "%or_ln17_30 = or i11 %tmp, 31" [Brutal_design.cpp:17]   --->   Operation 372 'or' 'or_ln17_30' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_17 : Operation 373 [1/1] (0.00ns)   --->   "%tmp_31 = call i64 @_ssdm_op_BitConcatenate.i64.i53.i11(i53 0, i11 %or_ln17_30)" [Brutal_design.cpp:17]   --->   Operation 373 'bitconcatenate' 'tmp_31' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_17 : Operation 374 [1/1] (0.00ns)   --->   "%A_addr_31 = getelementptr [1024 x i32]* %A, i64 0, i64 %tmp_31" [Brutal_design.cpp:17]   --->   Operation 374 'getelementptr' 'A_addr_31' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_17 : Operation 375 [1/1] (0.00ns)   --->   "%zext_ln17_4 = zext i6 %select_ln17 to i11" [Brutal_design.cpp:17]   --->   Operation 375 'zext' 'zext_ln17_4' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_17 : Operation 376 [1/1] (0.00ns)   --->   "%tmp_46 = call i64 @_ssdm_op_BitConcatenate.i64.i58.i6(i58 15, i6 %select_ln17)" [Brutal_design.cpp:17]   --->   Operation 376 'bitconcatenate' 'tmp_46' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_17 : Operation 377 [1/1] (0.00ns)   --->   "%B_addr_30 = getelementptr [1024 x i32]* %B, i64 0, i64 %tmp_46" [Brutal_design.cpp:17]   --->   Operation 377 'getelementptr' 'B_addr_30' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_17 : Operation 378 [1/1] (1.63ns)   --->   "%add_ln17_42 = add i11 %zext_ln17_4, 992" [Brutal_design.cpp:17]   --->   Operation 378 'add' 'add_ln17_42' <Predicate = (!icmp_ln11)> <Delay = 1.63> <Core = "AddSub">   --->   Core 14 'AddSub' <Latency = 0> <II = 1> <Delay = 1.82> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_17 : Operation 379 [1/1] (0.00ns)   --->   "%zext_ln17_24 = zext i11 %add_ln17_42 to i64" [Brutal_design.cpp:17]   --->   Operation 379 'zext' 'zext_ln17_24' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_17 : Operation 380 [1/1] (0.00ns)   --->   "%B_addr_31 = getelementptr [1024 x i32]* %B, i64 0, i64 %zext_ln17_24" [Brutal_design.cpp:17]   --->   Operation 380 'getelementptr' 'B_addr_31' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_17 : Operation 381 [1/1] (8.51ns)   --->   "%mul_ln17_26 = mul nsw i32 %B_load_26, %A_load_26" [Brutal_design.cpp:17]   --->   Operation 381 'mul' 'mul_ln17_26' <Predicate = (!icmp_ln11)> <Delay = 8.51> <Core = "Mul">   --->   Core 16 'Mul' <Latency = 0> <II = 1> <Delay = 8.51> <FuncUnit> <Opcode : 'mul'> <InPorts = 2> <OutPorts = 1>
+ST_17 : Operation 382 [1/1] (8.51ns)   --->   "%mul_ln17_27 = mul nsw i32 %B_load_27, %A_load_27" [Brutal_design.cpp:17]   --->   Operation 382 'mul' 'mul_ln17_27' <Predicate = (!icmp_ln11)> <Delay = 8.51> <Core = "Mul">   --->   Core 16 'Mul' <Latency = 0> <II = 1> <Delay = 8.51> <FuncUnit> <Opcode : 'mul'> <InPorts = 2> <OutPorts = 1>
+ST_17 : Operation 383 [1/2] (3.25ns)   --->   "%A_load_28 = load i32* %A_addr_28, align 4" [Brutal_design.cpp:17]   --->   Operation 383 'load' 'A_load_28' <Predicate = (!icmp_ln11)> <Delay = 3.25> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 1024> <RAM>
+ST_17 : Operation 384 [1/2] (3.25ns)   --->   "%B_load_28 = load i32* %B_addr_28, align 4" [Brutal_design.cpp:17]   --->   Operation 384 'load' 'B_load_28' <Predicate = (!icmp_ln11)> <Delay = 3.25> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 1024> <RAM>
+ST_17 : Operation 385 [1/2] (3.25ns)   --->   "%A_load_29 = load i32* %A_addr_29, align 4" [Brutal_design.cpp:17]   --->   Operation 385 'load' 'A_load_29' <Predicate = (!icmp_ln11)> <Delay = 3.25> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 1024> <RAM>
+ST_17 : Operation 386 [1/2] (3.25ns)   --->   "%B_load_29 = load i32* %B_addr_29, align 4" [Brutal_design.cpp:17]   --->   Operation 386 'load' 'B_load_29' <Predicate = (!icmp_ln11)> <Delay = 3.25> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 1024> <RAM>
+ST_17 : Operation 387 [2/2] (3.25ns)   --->   "%A_load_30 = load i32* %A_addr_30, align 4" [Brutal_design.cpp:17]   --->   Operation 387 'load' 'A_load_30' <Predicate = (!icmp_ln11)> <Delay = 3.25> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 1024> <RAM>
+ST_17 : Operation 388 [2/2] (3.25ns)   --->   "%B_load_30 = load i32* %B_addr_30, align 4" [Brutal_design.cpp:17]   --->   Operation 388 'load' 'B_load_30' <Predicate = (!icmp_ln11)> <Delay = 3.25> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 1024> <RAM>
+ST_17 : Operation 389 [2/2] (3.25ns)   --->   "%A_load_31 = load i32* %A_addr_31, align 4" [Brutal_design.cpp:17]   --->   Operation 389 'load' 'A_load_31' <Predicate = (!icmp_ln11)> <Delay = 3.25> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 1024> <RAM>
+ST_17 : Operation 390 [2/2] (3.25ns)   --->   "%B_load_31 = load i32* %B_addr_31, align 4" [Brutal_design.cpp:17]   --->   Operation 390 'load' 'B_load_31' <Predicate = (!icmp_ln11)> <Delay = 3.25> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 1024> <RAM>
+ST_17 : Operation 391 [1/1] (2.55ns)   --->   "%add_ln17_19 = add i32 %mul_ln17_23, %mul_ln17_22" [Brutal_design.cpp:17]   --->   Operation 391 'add' 'add_ln17_19' <Predicate = (!icmp_ln11)> <Delay = 2.55> <Core = "AddSub">   --->   Core 14 'AddSub' <Latency = 0> <II = 1> <Delay = 1.82> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_17 : Operation 392 [1/1] (0.00ns) (grouped into TernaryAdder)   --->   "%add_ln17_20 = add i32 %add_ln17_18, %add_ln17_19" [Brutal_design.cpp:17]   --->   Operation 392 'add' 'add_ln17_20' <Predicate = (!icmp_ln11)> <Delay = 0.00> <Core = "TAddSub">   --->   Core 83 'TAddSub' <Latency = 0> <II = 1> <Delay = 2.18> <IPBlock> <Opcode : 'add' 'sub'> <InPorts = 3> <OutPorts = 1> <Sync> <CReg>
+ST_17 : Operation 393 [1/1] (4.37ns) (root node of TernaryAdder)   --->   "%add_ln17_21 = add i32 %add_ln17_17, %add_ln17_20" [Brutal_design.cpp:17]   --->   Operation 393 'add' 'add_ln17_21' <Predicate = (!icmp_ln11)> <Delay = 4.37> <Core = "TAddSub">   --->   Core 83 'TAddSub' <Latency = 0> <II = 1> <Delay = 2.18> <IPBlock> <Opcode : 'add' 'sub'> <InPorts = 3> <OutPorts = 1> <Sync> <CReg>
+ST_17 : Operation 394 [1/1] (1.82ns)   --->   "%j = add i6 %select_ln17, 1" [Brutal_design.cpp:12]   --->   Operation 394 'add' 'j' <Predicate = (!icmp_ln11)> <Delay = 1.82> <Core = "AddSub">   --->   Core 14 'AddSub' <Latency = 0> <II = 1> <Delay = 1.82> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+
+State 18 <SV = 17> <Delay = 8.51>
+ST_18 : Operation 395 [1/1] (8.51ns)   --->   "%mul_ln17_28 = mul nsw i32 %B_load_28, %A_load_28" [Brutal_design.cpp:17]   --->   Operation 395 'mul' 'mul_ln17_28' <Predicate = (!icmp_ln11)> <Delay = 8.51> <Core = "Mul">   --->   Core 16 'Mul' <Latency = 0> <II = 1> <Delay = 8.51> <FuncUnit> <Opcode : 'mul'> <InPorts = 2> <OutPorts = 1>
+ST_18 : Operation 396 [1/1] (8.51ns)   --->   "%mul_ln17_29 = mul nsw i32 %B_load_29, %A_load_29" [Brutal_design.cpp:17]   --->   Operation 396 'mul' 'mul_ln17_29' <Predicate = (!icmp_ln11)> <Delay = 8.51> <Core = "Mul">   --->   Core 16 'Mul' <Latency = 0> <II = 1> <Delay = 8.51> <FuncUnit> <Opcode : 'mul'> <InPorts = 2> <OutPorts = 1>
+ST_18 : Operation 397 [1/2] (3.25ns)   --->   "%A_load_30 = load i32* %A_addr_30, align 4" [Brutal_design.cpp:17]   --->   Operation 397 'load' 'A_load_30' <Predicate = (!icmp_ln11)> <Delay = 3.25> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 1024> <RAM>
+ST_18 : Operation 398 [1/2] (3.25ns)   --->   "%B_load_30 = load i32* %B_addr_30, align 4" [Brutal_design.cpp:17]   --->   Operation 398 'load' 'B_load_30' <Predicate = (!icmp_ln11)> <Delay = 3.25> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 1024> <RAM>
+ST_18 : Operation 399 [1/2] (3.25ns)   --->   "%A_load_31 = load i32* %A_addr_31, align 4" [Brutal_design.cpp:17]   --->   Operation 399 'load' 'A_load_31' <Predicate = (!icmp_ln11)> <Delay = 3.25> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 1024> <RAM>
+ST_18 : Operation 400 [1/2] (3.25ns)   --->   "%B_load_31 = load i32* %B_addr_31, align 4" [Brutal_design.cpp:17]   --->   Operation 400 'load' 'B_load_31' <Predicate = (!icmp_ln11)> <Delay = 3.25> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 1024> <RAM>
+ST_18 : Operation 401 [1/1] (0.00ns) (grouped into TernaryAdder)   --->   "%add_ln17_23 = add i32 %mul_ln17_27, %mul_ln17_26" [Brutal_design.cpp:17]   --->   Operation 401 'add' 'add_ln17_23' <Predicate = (!icmp_ln11)> <Delay = 0.00> <Core = "TAddSub">   --->   Core 83 'TAddSub' <Latency = 0> <II = 1> <Delay = 2.18> <IPBlock> <Opcode : 'add' 'sub'> <InPorts = 3> <OutPorts = 1> <Sync> <CReg>
+ST_18 : Operation 402 [1/1] (4.37ns) (root node of TernaryAdder)   --->   "%add_ln17_24 = add i32 %add_ln17_22, %add_ln17_23" [Brutal_design.cpp:17]   --->   Operation 402 'add' 'add_ln17_24' <Predicate = (!icmp_ln11)> <Delay = 4.37> <Core = "TAddSub">   --->   Core 83 'TAddSub' <Latency = 0> <II = 1> <Delay = 2.18> <IPBlock> <Opcode : 'add' 'sub'> <InPorts = 3> <OutPorts = 1> <Sync> <CReg>
+
+State 19 <SV = 18> <Delay = 8.51>
+ST_19 : Operation 403 [1/1] (8.51ns)   --->   "%mul_ln17_30 = mul nsw i32 %B_load_30, %A_load_30" [Brutal_design.cpp:17]   --->   Operation 403 'mul' 'mul_ln17_30' <Predicate = (!icmp_ln11)> <Delay = 8.51> <Core = "Mul">   --->   Core 16 'Mul' <Latency = 0> <II = 1> <Delay = 8.51> <FuncUnit> <Opcode : 'mul'> <InPorts = 2> <OutPorts = 1>
+ST_19 : Operation 404 [1/1] (8.51ns)   --->   "%mul_ln17_31 = mul nsw i32 %B_load_31, %A_load_31" [Brutal_design.cpp:17]   --->   Operation 404 'mul' 'mul_ln17_31' <Predicate = (!icmp_ln11)> <Delay = 8.51> <Core = "Mul">   --->   Core 16 'Mul' <Latency = 0> <II = 1> <Delay = 8.51> <FuncUnit> <Opcode : 'mul'> <InPorts = 2> <OutPorts = 1>
+ST_19 : Operation 405 [1/1] (2.55ns)   --->   "%add_ln17_25 = add i32 %mul_ln17_29, %mul_ln17_28" [Brutal_design.cpp:17]   --->   Operation 405 'add' 'add_ln17_25' <Predicate = (!icmp_ln11)> <Delay = 2.55> <Core = "AddSub">   --->   Core 14 'AddSub' <Latency = 0> <II = 1> <Delay = 1.82> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+
+State 20 <SV = 19> <Delay = 6.92>
+ST_20 : Operation 406 [1/1] (2.55ns)   --->   "%add_ln17_26 = add i32 %mul_ln17_31, %mul_ln17_30" [Brutal_design.cpp:17]   --->   Operation 406 'add' 'add_ln17_26' <Predicate = (!icmp_ln11)> <Delay = 2.55> <Core = "AddSub">   --->   Core 14 'AddSub' <Latency = 0> <II = 1> <Delay = 1.82> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_20 : Operation 407 [1/1] (0.00ns) (grouped into TernaryAdder)   --->   "%add_ln17_27 = add i32 %add_ln17_25, %add_ln17_26" [Brutal_design.cpp:17]   --->   Operation 407 'add' 'add_ln17_27' <Predicate = (!icmp_ln11)> <Delay = 0.00> <Core = "TAddSub">   --->   Core 83 'TAddSub' <Latency = 0> <II = 1> <Delay = 2.18> <IPBlock> <Opcode : 'add' 'sub'> <InPorts = 3> <OutPorts = 1> <Sync> <CReg>
+ST_20 : Operation 408 [1/1] (4.37ns) (root node of TernaryAdder)   --->   "%add_ln17_28 = add i32 %add_ln17_24, %add_ln17_27" [Brutal_design.cpp:17]   --->   Operation 408 'add' 'add_ln17_28' <Predicate = (!icmp_ln11)> <Delay = 4.37> <Core = "TAddSub">   --->   Core 83 'TAddSub' <Latency = 0> <II = 1> <Delay = 2.18> <IPBlock> <Opcode : 'add' 'sub'> <InPorts = 3> <OutPorts = 1> <Sync> <CReg>
+
+State 21 <SV = 20> <Delay = 7.62>
+ST_21 : Operation 409 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecLoopName([8 x i8]* @row_col_str)"   --->   Operation 409 'specloopname' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_21 : Operation 410 [1/1] (0.00ns)   --->   "%empty = call i32 (...)* @_ssdm_op_SpecLoopTripCount(i64 1024, i64 1024, i64 1024) nounwind"   --->   Operation 410 'speclooptripcount' 'empty' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_21 : Operation 411 [1/1] (0.00ns)   --->   "%zext_ln17_2 = zext i11 %tmp to i12" [Brutal_design.cpp:17]   --->   Operation 411 'zext' 'zext_ln17_2' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_21 : Operation 412 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecLoopName([4 x i8]* @p_str1) nounwind" [Brutal_design.cpp:12]   --->   Operation 412 'specloopname' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_21 : Operation 413 [1/1] (0.00ns)   --->   "%tmp_1 = call i32 (...)* @_ssdm_op_SpecRegionBegin([4 x i8]* @p_str1) nounwind" [Brutal_design.cpp:12]   --->   Operation 413 'specregionbegin' 'tmp_1' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_21 : Operation 414 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecPipeline(i32 -1, i32 1, i32 1, i32 0, [1 x i8]* @p_str2) nounwind" [Brutal_design.cpp:13]   --->   Operation 414 'specpipeline' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_21 : Operation 415 [1/1] (0.00ns)   --->   "%zext_ln17_3 = zext i6 %select_ln17 to i12" [Brutal_design.cpp:17]   --->   Operation 415 'zext' 'zext_ln17_3' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_21 : Operation 416 [1/1] (1.63ns)   --->   "%add_ln19 = add i12 %zext_ln17_2, %zext_ln17_3" [Brutal_design.cpp:19]   --->   Operation 416 'add' 'add_ln19' <Predicate = (!icmp_ln11)> <Delay = 1.63> <Core = "AddSub">   --->   Core 14 'AddSub' <Latency = 0> <II = 1> <Delay = 1.82> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_21 : Operation 417 [1/1] (0.00ns)   --->   "%zext_ln19 = zext i12 %add_ln19 to i64" [Brutal_design.cpp:19]   --->   Operation 417 'zext' 'zext_ln19' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_21 : Operation 418 [1/1] (0.00ns)   --->   "%AB_addr = getelementptr [1024 x i32]* %AB, i64 0, i64 %zext_ln19" [Brutal_design.cpp:19]   --->   Operation 418 'getelementptr' 'AB_addr' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_21 : Operation 419 [1/1] (0.00ns) (grouped into TernaryAdder)   --->   "%add_ln17_29 = add i32 %add_ln17_21, %add_ln17_28" [Brutal_design.cpp:17]   --->   Operation 419 'add' 'add_ln17_29' <Predicate = (!icmp_ln11)> <Delay = 0.00> <Core = "TAddSub">   --->   Core 83 'TAddSub' <Latency = 0> <II = 1> <Delay = 2.18> <IPBlock> <Opcode : 'add' 'sub'> <InPorts = 3> <OutPorts = 1> <Sync> <CReg>
+ST_21 : Operation 420 [1/1] (4.37ns) (root node of TernaryAdder)   --->   "%add_ln17_30 = add nsw i32 %add_ln17_14, %add_ln17_29" [Brutal_design.cpp:17]   --->   Operation 420 'add' 'add_ln17_30' <Predicate = (!icmp_ln11)> <Delay = 4.37> <Core = "TAddSub">   --->   Core 83 'TAddSub' <Latency = 0> <II = 1> <Delay = 2.18> <IPBlock> <Opcode : 'add' 'sub'> <InPorts = 3> <OutPorts = 1> <Sync> <CReg>
+ST_21 : Operation 421 [1/1] (3.25ns)   --->   "store i32 %add_ln17_30, i32* %AB_addr, align 4" [Brutal_design.cpp:19]   --->   Operation 421 'store' <Predicate = (!icmp_ln11)> <Delay = 3.25> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 1024> <RAM>
+ST_21 : Operation 422 [1/1] (0.00ns)   --->   "%empty_2 = call i32 (...)* @_ssdm_op_SpecRegionEnd([4 x i8]* @p_str1, i32 %tmp_1) nounwind" [Brutal_design.cpp:20]   --->   Operation 422 'specregionend' 'empty_2' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_21 : Operation 423 [1/1] (0.00ns)   --->   "br label %1"   --->   Operation 423 'br' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+
+State 22 <SV = 2> <Delay = 0.00>
+ST_22 : Operation 424 [1/1] (0.00ns)   --->   "ret void" [Brutal_design.cpp:22]   --->   Operation 424 'ret' <Predicate = true> <Delay = 0.00>
+
+
+============================================================
++ Verbose Summary: Timing violations
+============================================================
+Target clock period: 10ns, clock uncertainty: 1.25ns.
+
+ <State 1>: 1.77ns
+The critical path consists of the following:
+	multiplexor before 'phi' operation ('indvar_flatten', Brutal_design.cpp:11) with incoming values : ('add_ln11', Brutal_design.cpp:11) [10]  (1.77 ns)
+
+ <State 2>: 7.74ns
+The critical path consists of the following:
+	'phi' operation ('j') with incoming values : ('j', Brutal_design.cpp:12) [12]  (0 ns)
+	'icmp' operation ('icmp_ln12', Brutal_design.cpp:12) [20]  (1.43 ns)
+	'select' operation ('select_ln17', Brutal_design.cpp:17) [21]  (1.19 ns)
+	'add' operation ('add_ln17_31', Brutal_design.cpp:17) [131]  (1.87 ns)
+	'getelementptr' operation ('B_addr_1', Brutal_design.cpp:17) [133]  (0 ns)
+	'load' operation ('B_load_1', Brutal_design.cpp:17) on array 'B' [216]  (3.25 ns)
+
+ <State 3>: 5.17ns
+The critical path consists of the following:
+	'add' operation ('add_ln17_32', Brutal_design.cpp:17) [136]  (1.92 ns)
+	'getelementptr' operation ('B_addr_3', Brutal_design.cpp:17) [138]  (0 ns)
+	'load' operation ('B_load_3', Brutal_design.cpp:17) on array 'B' [222]  (3.25 ns)
+
+ <State 4>: 8.51ns
+The critical path consists of the following:
+	'mul' operation ('mul_ln17', Brutal_design.cpp:17) [214]  (8.51 ns)
+
+ <State 5>: 8.51ns
+The critical path consists of the following:
+	'mul' operation ('mul_ln17_2', Brutal_design.cpp:17) [220]  (8.51 ns)
+
+ <State 6>: 8.51ns
+The critical path consists of the following:
+	'mul' operation ('mul_ln17_4', Brutal_design.cpp:17) [226]  (8.51 ns)
+
+ <State 7>: 8.51ns
+The critical path consists of the following:
+	'mul' operation ('mul_ln17_6', Brutal_design.cpp:17) [232]  (8.51 ns)
+
+ <State 8>: 8.51ns
+The critical path consists of the following:
+	'mul' operation ('mul_ln17_8', Brutal_design.cpp:17) [238]  (8.51 ns)
+
+ <State 9>: 8.51ns
+The critical path consists of the following:
+	'mul' operation ('mul_ln17_12', Brutal_design.cpp:17) [250]  (8.51 ns)
+
+ <State 10>: 8.51ns
+The critical path consists of the following:
+	'mul' operation ('mul_ln17_16', Brutal_design.cpp:17) [262]  (8.51 ns)
+
+ <State 11>: 8.51ns
+The critical path consists of the following:
+	'mul' operation ('mul_ln17_24', Brutal_design.cpp:17) [286]  (8.51 ns)
+
+ <State 12>: 8.51ns
+The critical path consists of the following:
+	'mul' operation ('mul_ln17_10', Brutal_design.cpp:17) [244]  (8.51 ns)
+
+ <State 13>: 8.51ns
+The critical path consists of the following:
+	'mul' operation ('mul_ln17_14', Brutal_design.cpp:17) [256]  (8.51 ns)
+
+ <State 14>: 8.74ns
+The critical path consists of the following:
+	'add' operation ('add_ln17_11', Brutal_design.cpp:17) [319]  (0 ns)
+	'add' operation ('add_ln17_12', Brutal_design.cpp:17) [320]  (4.37 ns)
+	'add' operation ('add_ln17_13', Brutal_design.cpp:17) [321]  (0 ns)
+	'add' operation ('add_ln17_14', Brutal_design.cpp:17) [322]  (4.37 ns)
+
+ <State 15>: 8.51ns
+The critical path consists of the following:
+	'mul' operation ('mul_ln17_20', Brutal_design.cpp:17) [274]  (8.51 ns)
+
+ <State 16>: 8.51ns
+The critical path consists of the following:
+	'mul' operation ('mul_ln17_22', Brutal_design.cpp:17) [280]  (8.51 ns)
+
+ <State 17>: 8.51ns
+The critical path consists of the following:
+	'mul' operation ('mul_ln17_26', Brutal_design.cpp:17) [292]  (8.51 ns)
+
+ <State 18>: 8.51ns
+The critical path consists of the following:
+	'mul' operation ('mul_ln17_28', Brutal_design.cpp:17) [298]  (8.51 ns)
+
+ <State 19>: 8.51ns
+The critical path consists of the following:
+	'mul' operation ('mul_ln17_30', Brutal_design.cpp:17) [304]  (8.51 ns)
+
+ <State 20>: 6.92ns
+The critical path consists of the following:
+	'add' operation ('add_ln17_26', Brutal_design.cpp:17) [334]  (2.55 ns)
+	'add' operation ('add_ln17_27', Brutal_design.cpp:17) [335]  (0 ns)
+	'add' operation ('add_ln17_28', Brutal_design.cpp:17) [336]  (4.37 ns)
+
+ <State 21>: 7.62ns
+The critical path consists of the following:
+	'add' operation ('add_ln17_29', Brutal_design.cpp:17) [337]  (0 ns)
+	'add' operation ('add_ln17_30', Brutal_design.cpp:17) [338]  (4.37 ns)
+	'store' operation ('store_ln19', Brutal_design.cpp:19) of variable 'add_ln17_30', Brutal_design.cpp:17 on array 'AB' [339]  (3.25 ns)
+
+ <State 22>: 0ns
+The critical path consists of the following:
+
+
+============================================================
++ Verbose Summary: Binding
+============================================================
+N/A
+* FSMD analyzer results:
+  - Output states:
+ - Input state : 
+  - Chain level:
+	State 1
+	State 2
+	State 3
+	State 4
+	State 5
+	State 6
+	State 7
+	State 8
+	State 9
+	State 10
+	State 11
+	State 12
+	State 13
+	State 14
+	State 15
+	State 16
+	State 17
+	State 18
+	State 19
+	State 20
+	State 21
+	State 22
+
+
+============================================================
++ Verbose Summary: Datapath Resource usage 
+============================================================
+N/A

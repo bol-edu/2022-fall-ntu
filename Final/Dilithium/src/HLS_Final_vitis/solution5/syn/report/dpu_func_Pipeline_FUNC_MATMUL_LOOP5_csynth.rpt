@@ -1,0 +1,193 @@
+
+
+================================================================
+== Vitis HLS Report for 'dpu_func_Pipeline_FUNC_MATMUL_LOOP5'
+================================================================
+* Date:           Thu Dec 29 16:03:44 2022
+
+* Version:        2022.1 (Build 3526262 on Mon Apr 18 15:48:16 MDT 2022)
+* Project:        HLS_final_vitis
+* Solution:       solution5 (Vivado IP Flow Target)
+* Product family: virtexuplus
+* Target device:  xcvu11p-flga2577-1-e
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing: 
+    * Summary: 
+    +--------+----------+----------+------------+
+    |  Clock |  Target  | Estimated| Uncertainty|
+    +--------+----------+----------+------------+
+    |ap_clk  |  10.00 ns|  7.121 ns|     2.70 ns|
+    +--------+----------+----------+------------+
+
++ Latency: 
+    * Summary: 
+    +---------+---------+----------+----------+-----+-----+---------+
+    |  Latency (cycles) |  Latency (absolute) |  Interval | Pipeline|
+    |   min   |   max   |    min   |    max   | min | max |   Type  |
+    +---------+---------+----------+----------+-----+-----+---------+
+    |       22|       26|  0.220 us|  0.260 us|   22|   26|       no|
+    +---------+---------+----------+----------+-----+-----+---------+
+
+    + Detail: 
+        * Instance: 
+        +---------------------+----------+---------+---------+-----------+-----------+-----+-----+---------+
+        |                     |          |  Latency (cycles) |   Latency (absolute)  |  Interval | Pipeline|
+        |       Instance      |  Module  |   min   |   max   |    min    |    max    | min | max |   Type  |
+        +---------------------+----------+---------+---------+-----------+-----------+-----+-----+---------+
+        |grp_dpu_unit_fu_141  |dpu_unit  |        1|        1|  10.000 ns|  10.000 ns|    1|    1|      yes|
+        +---------------------+----------+---------+---------+-----------+-----------+-----+-----+---------+
+
+        * Loop: 
+        +---------------------+---------+---------+----------+-----------+-----------+-------+----------+
+        |                     |  Latency (cycles) | Iteration|  Initiation Interval  |  Trip |          |
+        |      Loop Name      |   min   |   max   |  Latency |  achieved |   target  | Count | Pipelined|
+        +---------------------+---------+---------+----------+-----------+-----------+-------+----------+
+        |- FUNC_MATMUL_LOOP5  |       20|       24|         4|          4|          1|  5 ~ 6|       yes|
+        +---------------------+---------+---------+----------+-----------+-----------+-------+----------+
+
+
+
+================================================================
+== Utilization Estimates
+================================================================
+* Summary: 
++---------------------+---------+------+---------+---------+-----+
+|         Name        | BRAM_18K|  DSP |    FF   |   LUT   | URAM|
++---------------------+---------+------+---------+---------+-----+
+|DSP                  |        -|     -|        -|        -|    -|
+|Expression           |        -|     -|        0|       40|    -|
+|FIFO                 |        -|     -|        -|        -|    -|
+|Instance             |        -|     -|        -|        -|    -|
+|Memory               |        -|     -|        -|        -|    -|
+|Multiplexer          |        -|     -|        -|      169|    -|
+|Register             |        -|     -|    32788|        -|    -|
++---------------------+---------+------+---------+---------+-----+
+|Total                |        0|     0|    32788|      209|    0|
++---------------------+---------+------+---------+---------+-----+
+|Available SLR        |     1344|  3072|   864000|   432000|  320|
++---------------------+---------+------+---------+---------+-----+
+|Utilization SLR (%)  |        0|     0|        3|       ~0|    0|
++---------------------+---------+------+---------+---------+-----+
+|Available            |     4032|  9216|  2592000|  1296000|  960|
++---------------------+---------+------+---------+---------+-----+
+|Utilization (%)      |        0|     0|        1|       ~0|    0|
++---------------------+---------+------+---------+---------+-----+
+
++ Detail: 
+    * Instance: 
+    N/A
+
+    * DSP: 
+    N/A
+
+    * Memory: 
+    N/A
+
+    * FIFO: 
+    N/A
+
+    * Expression: 
+    +----------------------+----------+----+---+----+------------+------------+
+    |     Variable Name    | Operation| DSP| FF| LUT| Bitwidth P0| Bitwidth P1|
+    +----------------------+----------+----+---+----+------------+------------+
+    |add_ln259_fu_229_p2   |         +|   0|  0|  14|           7|           7|
+    |i_57_fu_219_p2        |         +|   0|  0|  10|           3|           1|
+    |icmp_ln258_fu_213_p2  |      icmp|   0|  0|   8|           3|           3|
+    |icmp_ln261_fu_240_p2  |      icmp|   0|  0|   8|           3|           1|
+    +----------------------+----------+----+---+----+------------+------------+
+    |Total                 |          |   0|  0|  40|          16|          12|
+    +----------------------+----------+----+---+----+------------+------------+
+
+    * Multiplexer: 
+    +----------------------------------------+----+-----------+------+-----------+
+    |                  Name                  | LUT| Input Size| Bits | Total Bits|
+    +----------------------------------------+----+-----------+------+-----------+
+    |ap_NS_fsm                               |  26|          5|     1|          5|
+    |ap_done_int                             |   9|          2|     1|          2|
+    |ap_sig_allocacmp_i_56                   |   9|          2|     3|          6|
+    |ap_sig_allocacmp_this_p3_15_out_load_1  |   9|          2|  8192|      16384|
+    |grp_dpu_unit_fu_141_type_r              |  14|          3|     8|         24|
+    |grp_load_fu_154_p1                      |  14|          3|  8192|      24576|
+    |i_fu_76                                 |   9|          2|     3|          6|
+    |this_p1_15_out                          |  14|          3|  8192|      24576|
+    |this_p2_9_out                           |  14|          3|  8192|      24576|
+    |this_p3_15_out_o                        |  14|          3|  8192|      24576|
+    |this_p4_15_out_o                        |  14|          3|  8192|      24576|
+    |this_pMem_address0                      |  14|          3|     8|         24|
+    |this_pMem_we0                           |   9|          2|  1024|       2048|
+    +----------------------------------------+----+-----------+------+-----------+
+    |Total                                   | 169|         36| 50200|     141379|
+    +----------------------------------------+----+-----------+------+-----------+
+
+    * Register: 
+    +--------------------------+------+----+------+-----------+
+    |           Name           |  FF  | LUT| Bits | Const Bits|
+    +--------------------------+------+----+------+-----------+
+    |ap_CS_fsm                 |     4|   0|     4|          0|
+    |ap_done_reg               |     1|   0|     1|          0|
+    |i_57_reg_305              |     3|   0|     3|          0|
+    |i_fu_76                   |     3|   0|     3|          0|
+    |icmp_ln258_reg_301        |     1|   0|     1|          0|
+    |icmp_ln261_reg_315        |     1|   0|     1|          0|
+    |reg_168                   |  8192|   0|  8192|          0|
+    |reg_172                   |  8192|   0|  8192|          0|
+    |this_pMem_addr_reg_296    |     7|   0|     8|          1|
+    |this_pMem_load_5_reg_325  |  8192|   0|  8192|          0|
+    |this_pMem_load_reg_319    |  8192|   0|  8192|          0|
+    +--------------------------+------+----+------+-----------+
+    |Total                     | 32788|   0| 32789|          1|
+    +--------------------------+------+----+------+-----------+
+
+
+
+================================================================
+== Interface
+================================================================
+* Summary: 
++--------------------------------+-----+------+------------+-------------------------------------+--------------+
+|            RTL Ports           | Dir | Bits |  Protocol  |            Source Object            |    C Type    |
++--------------------------------+-----+------+------------+-------------------------------------+--------------+
+|ap_clk                          |   in|     1|  ap_ctrl_hs|  dpu_func_Pipeline_FUNC_MATMUL_LOOP5|  return value|
+|ap_rst                          |   in|     1|  ap_ctrl_hs|  dpu_func_Pipeline_FUNC_MATMUL_LOOP5|  return value|
+|ap_start                        |   in|     1|  ap_ctrl_hs|  dpu_func_Pipeline_FUNC_MATMUL_LOOP5|  return value|
+|ap_done                         |  out|     1|  ap_ctrl_hs|  dpu_func_Pipeline_FUNC_MATMUL_LOOP5|  return value|
+|ap_idle                         |  out|     1|  ap_ctrl_hs|  dpu_func_Pipeline_FUNC_MATMUL_LOOP5|  return value|
+|ap_ready                        |  out|     1|  ap_ctrl_hs|  dpu_func_Pipeline_FUNC_MATMUL_LOOP5|  return value|
+|grp_dpu_unit_fu_2995_p_din1     |  out|  8192|  ap_ctrl_hs|  dpu_func_Pipeline_FUNC_MATMUL_LOOP5|  return value|
+|grp_dpu_unit_fu_2995_p_din2     |  out|  8192|  ap_ctrl_hs|  dpu_func_Pipeline_FUNC_MATMUL_LOOP5|  return value|
+|grp_dpu_unit_fu_2995_p_din3     |  out|  8192|  ap_ctrl_hs|  dpu_func_Pipeline_FUNC_MATMUL_LOOP5|  return value|
+|grp_dpu_unit_fu_2995_p_din4     |  out|  8192|  ap_ctrl_hs|  dpu_func_Pipeline_FUNC_MATMUL_LOOP5|  return value|
+|grp_dpu_unit_fu_2995_p_din5     |  out|     8|  ap_ctrl_hs|  dpu_func_Pipeline_FUNC_MATMUL_LOOP5|  return value|
+|grp_dpu_unit_fu_2995_p_dout0_0  |   in|  8192|  ap_ctrl_hs|  dpu_func_Pipeline_FUNC_MATMUL_LOOP5|  return value|
+|grp_dpu_unit_fu_2995_p_dout0_1  |   in|  8192|  ap_ctrl_hs|  dpu_func_Pipeline_FUNC_MATMUL_LOOP5|  return value|
+|grp_dpu_unit_fu_2995_p_ce       |  out|     1|  ap_ctrl_hs|  dpu_func_Pipeline_FUNC_MATMUL_LOOP5|  return value|
+|this_p1_14                      |   in|  8192|     ap_none|                           this_p1_14|        scalar|
+|this_p2_8                       |   in|  8192|     ap_none|                            this_p2_8|        scalar|
+|this_p3_14                      |   in|  8192|     ap_none|                           this_p3_14|        scalar|
+|this_p4_14                      |   in|  8192|     ap_none|                           this_p4_14|        scalar|
+|this_pMem_address0              |  out|     8|   ap_memory|                            this_pMem|         array|
+|this_pMem_ce0                   |  out|     1|   ap_memory|                            this_pMem|         array|
+|this_pMem_we0                   |  out|  1024|   ap_memory|                            this_pMem|         array|
+|this_pMem_d0                    |  out|  8192|   ap_memory|                            this_pMem|         array|
+|this_pMem_q0                    |   in|  8192|   ap_memory|                            this_pMem|         array|
+|this_pMem_address1              |  out|     8|   ap_memory|                            this_pMem|         array|
+|this_pMem_ce1                   |  out|     1|   ap_memory|                            this_pMem|         array|
+|this_pMem_q1                    |   in|  8192|   ap_memory|                            this_pMem|         array|
+|idxprom_i550                    |   in|     7|     ap_none|                         idxprom_i550|        scalar|
+|itr_cast                        |   in|     3|     ap_none|                             itr_cast|        scalar|
+|this_p1_15_out                  |  out|  8192|      ap_vld|                       this_p1_15_out|       pointer|
+|this_p1_15_out_ap_vld           |  out|     1|      ap_vld|                       this_p1_15_out|       pointer|
+|this_p2_9_out                   |  out|  8192|      ap_vld|                        this_p2_9_out|       pointer|
+|this_p2_9_out_ap_vld            |  out|     1|      ap_vld|                        this_p2_9_out|       pointer|
+|this_p3_15_out_i                |   in|  8192|     ap_ovld|                       this_p3_15_out|       pointer|
+|this_p3_15_out_o                |  out|  8192|     ap_ovld|                       this_p3_15_out|       pointer|
+|this_p3_15_out_o_ap_vld         |  out|     1|     ap_ovld|                       this_p3_15_out|       pointer|
+|this_p4_15_out_i                |   in|  8192|     ap_ovld|                       this_p4_15_out|       pointer|
+|this_p4_15_out_o                |  out|  8192|     ap_ovld|                       this_p4_15_out|       pointer|
+|this_p4_15_out_o_ap_vld         |  out|     1|     ap_ovld|                       this_p4_15_out|       pointer|
++--------------------------------+-----+------+------------+-------------------------------------+--------------+
+

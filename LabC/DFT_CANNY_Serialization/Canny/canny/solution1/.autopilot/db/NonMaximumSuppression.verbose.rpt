@@ -1,0 +1,873 @@
+
+
+================================================================
+== Vitis HLS Report for 'NonMaximumSuppression'
+================================================================
+* Date:           Sun Nov 13 19:24:44 2022
+
+* Version:        2022.2 (Build 3670227 on Oct 13 2022)
+* Project:        canny
+* Solution:       solution1 (Vivado IP Flow Target)
+* Product family: zynq
+* Target device:  xc7z020-clg400-1
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing: 
+    * Summary: 
+    +--------+----------+----------+------------+
+    |  Clock |  Target  | Estimated| Uncertainty|
+    +--------+----------+----------+------------+
+    |ap_clk  |  10.00 ns|  3.871 ns|     6.13 ns|
+    +--------+----------+----------+------------+
+
++ Latency: 
+    * Summary: 
+    +---------+---------+----------+----------+-------+-------+---------+
+    |  Latency (cycles) |  Latency (absolute) |    Interval   | Pipeline|
+    |   min   |   max   |    min   |    max   |  min  |  max  |   Type  |
+    +---------+---------+----------+----------+-------+-------+---------+
+    |    16397|    16397|  0.164 ms|  0.164 ms|  16397|  16397|       no|
+    +---------+---------+----------+----------+-------+-------+---------+
+
+    + Detail: 
+        * Instance: 
+        +-----------------------------------------------------------+-------------------------------------------------+---------+---------+----------+----------+-------+-------+---------+
+        |                                                           |                                                 |  Latency (cycles) |  Latency (absolute) |    Interval   | Pipeline|
+        |                          Instance                         |                      Module                     |   min   |   max   |    min   |    max   |  min  |  max  |   Type  |
+        +-----------------------------------------------------------+-------------------------------------------------+---------+---------+----------+----------+-------+-------+---------+
+        |grp_NonMaximumSuppression_Pipeline_VITIS_LOOP_193_1_fu_74  |NonMaximumSuppression_Pipeline_VITIS_LOOP_193_1  |    16391|    16391|  0.164 ms|  0.164 ms|  16391|  16391|       no|
+        +-----------------------------------------------------------+-------------------------------------------------+---------+---------+----------+----------+-------+-------+---------+
+
+        * Loop: 
+        N/A
+
+
+
+================================================================
+== Utilization Estimates
+================================================================
+* Summary: 
++-----------------+---------+-----+--------+-------+-----+
+|       Name      | BRAM_18K| DSP |   FF   |  LUT  | URAM|
++-----------------+---------+-----+--------+-------+-----+
+|DSP              |        -|    -|       -|      -|    -|
+|Expression       |        -|    -|       0|      2|    -|
+|FIFO             |        -|    -|       -|      -|    -|
+|Instance         |        -|    6|    1459|   1088|    -|
+|Memory           |       12|    -|       0|      0|    0|
+|Multiplexer      |        -|    -|       -|    105|    -|
+|Register         |        -|    -|     129|      -|    -|
++-----------------+---------+-----+--------+-------+-----+
+|Total            |       12|    6|    1588|   1195|    0|
++-----------------+---------+-----+--------+-------+-----+
+|Available        |      280|  220|  106400|  53200|    0|
++-----------------+---------+-----+--------+-------+-----+
+|Utilization (%)  |        4|    2|       1|      2|    0|
++-----------------+---------+-----+--------+-------+-----+
+
++ Detail: 
+    * Instance: 
+    +-----------------------------------------------------------+-------------------------------------------------+---------+----+------+------+-----+
+    |                          Instance                         |                      Module                     | BRAM_18K| DSP|  FF  |  LUT | URAM|
+    +-----------------------------------------------------------+-------------------------------------------------+---------+----+------+------+-----+
+    |grp_NonMaximumSuppression_Pipeline_VITIS_LOOP_193_1_fu_74  |NonMaximumSuppression_Pipeline_VITIS_LOOP_193_1  |        0|   0|  1357|  1088|    0|
+    |mul_32s_32s_32_5_1_U96                                     |mul_32s_32s_32_5_1                               |        0|   3|    51|     0|    0|
+    |mul_32s_32s_32_5_1_U97                                     |mul_32s_32s_32_5_1                               |        0|   3|    51|     0|    0|
+    +-----------------------------------------------------------+-------------------------------------------------+---------+----+------+------+-----+
+    |Total                                                      |                                                 |        0|   6|  1459|  1088|    0|
+    +-----------------------------------------------------------+-------------------------------------------------+---------+----+------+------+-----+
+
+    * DSP: 
+    N/A
+
+    * Memory: 
+    +----------------------+----------------------------------------------------+---------+---+----+-----+------+-----+------+-------------+
+    |        Memory        |                       Module                       | BRAM_18K| FF| LUT| URAM| Words| Bits| Banks| W*Bits*Banks|
+    +----------------------+----------------------------------------------------+---------+---+----+-----+------+-----+------+-------------+
+    |LineBuff_mag_U        |NonMaximumSuppression_LineBuff_mag_RAM_AUTO_1R1W    |        3|  0|   0|    0|   128|   90|     1|        11520|
+    |LineBuff_tan_y_U      |NonMaximumSuppression_LineBuff_tan_y_RAM_AUTO_1R1W  |        3|  0|   0|    0|   128|   96|     1|        12288|
+    |LineBuff_tan_x_225_U  |NonMaximumSuppression_LineBuff_tan_y_RAM_AUTO_1R1W  |        3|  0|   0|    0|   128|   96|     1|        12288|
+    |LineBuff_tan_x_675_U  |NonMaximumSuppression_LineBuff_tan_y_RAM_AUTO_1R1W  |        3|  0|   0|    0|   128|   96|     1|        12288|
+    +----------------------+----------------------------------------------------+---------+---+----+-----+------+-----+------+-------------+
+    |Total                 |                                                    |       12|  0|   0|    0|   512|  378|     4|        48384|
+    +----------------------+----------------------------------------------------+---------+---+----+-----+------+-----+------+-------------+
+
+    * FIFO: 
+    N/A
+
+    * Expression: 
+    +-----------------+----------+----+---+----+------------+------------+
+    |  Variable Name  | Operation| DSP| FF| LUT| Bitwidth P0| Bitwidth P1|
+    +-----------------+----------+----+---+----+------------+------------+
+    |ap_block_state1  |        or|   0|  0|   2|           1|           1|
+    +-----------------+----------+----+---+----+------------+------------+
+    |Total            |          |   0|  0|   2|           1|           1|
+    +-----------------+----------+----+---+----+------------+------------+
+
+    * Multiplexer: 
+    +--------------------+----+-----------+-----+-----------+
+    |        Name        | LUT| Input Size| Bits| Total Bits|
+    +--------------------+----+-----------+-----+-----------+
+    |ap_NS_fsm           |  42|          8|    1|          8|
+    |ap_done             |   9|          2|    1|          2|
+    |lowerThresh_blk_n   |   9|          2|    1|          2|
+    |magnitude_read      |   9|          2|    1|          2|
+    |tangent_x_225_read  |   9|          2|    1|          2|
+    |tangent_x_675_read  |   9|          2|    1|          2|
+    |tangent_y_read      |   9|          2|    1|          2|
+    |upperThresh_blk_n   |   9|          2|    1|          2|
+    +--------------------+----+-----------+-----+-----------+
+    |Total               | 105|         22|    8|         22|
+    +--------------------+----+-----------+-----+-----------+
+
+    * Register: 
+    +------------------------------------------------------------------------+----+----+-----+-----------+
+    |                                  Name                                  | FF | LUT| Bits| Const Bits|
+    +------------------------------------------------------------------------+----+----+-----+-----------+
+    |ap_CS_fsm                                                               |   7|   0|    7|          0|
+    |ap_done_reg                                                             |   1|   0|    1|          0|
+    |grp_NonMaximumSuppression_Pipeline_VITIS_LOOP_193_1_fu_74_ap_start_reg  |   1|   0|    1|          0|
+    |lowerThresh_read_reg_116                                                |  32|   0|   32|          0|
+    |lowerThresh_scale_reg_133                                               |  28|   0|   32|          4|
+    |upperThresh_read_reg_122                                                |  32|   0|   32|          0|
+    |upperThresh_scale_reg_128                                               |  28|   0|   32|          4|
+    +------------------------------------------------------------------------+----+----+-----+-----------+
+    |Total                                                                   | 129|   0|  137|          8|
+    +------------------------------------------------------------------------+----+----+-----+-----------+
+
+
+
+================================================================
+== Interface
+================================================================
+* Summary: 
++------------------------------+-----+-----+------------+-----------------------+--------------+
+|           RTL Ports          | Dir | Bits|  Protocol  |     Source Object     |    C Type    |
++------------------------------+-----+-----+------------+-----------------------+--------------+
+|ap_clk                        |   in|    1|  ap_ctrl_hs|  NonMaximumSuppression|  return value|
+|ap_rst                        |   in|    1|  ap_ctrl_hs|  NonMaximumSuppression|  return value|
+|ap_start                      |   in|    1|  ap_ctrl_hs|  NonMaximumSuppression|  return value|
+|ap_done                       |  out|    1|  ap_ctrl_hs|  NonMaximumSuppression|  return value|
+|ap_continue                   |   in|    1|  ap_ctrl_hs|  NonMaximumSuppression|  return value|
+|ap_idle                       |  out|    1|  ap_ctrl_hs|  NonMaximumSuppression|  return value|
+|ap_ready                      |  out|    1|  ap_ctrl_hs|  NonMaximumSuppression|  return value|
+|magnitude_dout                |   in|   26|     ap_fifo|              magnitude|       pointer|
+|magnitude_num_data_valid      |   in|   15|     ap_fifo|              magnitude|       pointer|
+|magnitude_fifo_cap            |   in|   15|     ap_fifo|              magnitude|       pointer|
+|magnitude_empty_n             |   in|    1|     ap_fifo|              magnitude|       pointer|
+|magnitude_read                |  out|    1|     ap_fifo|              magnitude|       pointer|
+|tangent_y_dout                |   in|   32|     ap_fifo|              tangent_y|       pointer|
+|tangent_y_num_data_valid      |   in|   15|     ap_fifo|              tangent_y|       pointer|
+|tangent_y_fifo_cap            |   in|   15|     ap_fifo|              tangent_y|       pointer|
+|tangent_y_empty_n             |   in|    1|     ap_fifo|              tangent_y|       pointer|
+|tangent_y_read                |  out|    1|     ap_fifo|              tangent_y|       pointer|
+|tangent_x_225_dout            |   in|   32|     ap_fifo|          tangent_x_225|       pointer|
+|tangent_x_225_num_data_valid  |   in|   15|     ap_fifo|          tangent_x_225|       pointer|
+|tangent_x_225_fifo_cap        |   in|   15|     ap_fifo|          tangent_x_225|       pointer|
+|tangent_x_225_empty_n         |   in|    1|     ap_fifo|          tangent_x_225|       pointer|
+|tangent_x_225_read            |  out|    1|     ap_fifo|          tangent_x_225|       pointer|
+|tangent_x_675_dout            |   in|   32|     ap_fifo|          tangent_x_675|       pointer|
+|tangent_x_675_num_data_valid  |   in|   15|     ap_fifo|          tangent_x_675|       pointer|
+|tangent_x_675_fifo_cap        |   in|   15|     ap_fifo|          tangent_x_675|       pointer|
+|tangent_x_675_empty_n         |   in|    1|     ap_fifo|          tangent_x_675|       pointer|
+|tangent_x_675_read            |  out|    1|     ap_fifo|          tangent_x_675|       pointer|
+|upperThresh_dout              |   in|   32|     ap_fifo|            upperThresh|       pointer|
+|upperThresh_num_data_valid    |   in|    3|     ap_fifo|            upperThresh|       pointer|
+|upperThresh_fifo_cap          |   in|    3|     ap_fifo|            upperThresh|       pointer|
+|upperThresh_empty_n           |   in|    1|     ap_fifo|            upperThresh|       pointer|
+|upperThresh_read              |  out|    1|     ap_fifo|            upperThresh|       pointer|
+|lowerThresh_dout              |   in|   32|     ap_fifo|            lowerThresh|       pointer|
+|lowerThresh_num_data_valid    |   in|    3|     ap_fifo|            lowerThresh|       pointer|
+|lowerThresh_fifo_cap          |   in|    3|     ap_fifo|            lowerThresh|       pointer|
+|lowerThresh_empty_n           |   in|    1|     ap_fifo|            lowerThresh|       pointer|
+|lowerThresh_read              |  out|    1|     ap_fifo|            lowerThresh|       pointer|
+|dst_address0                  |  out|   14|   ap_memory|                    dst|         array|
+|dst_ce0                       |  out|    1|   ap_memory|                    dst|         array|
+|dst_we0                       |  out|    1|   ap_memory|                    dst|         array|
+|dst_d0                        |  out|   32|   ap_memory|                    dst|         array|
++------------------------------+-----+-----+------------+-----------------------+--------------+
+
+============================================================
++ Verbose Summary: Synthesis Manager
+============================================================
+InlineROM: 1
+ExposeGlobal: 0
+============================================================
++ Verbose Summary: CDFG Model
+============================================================
+IsTopModel: 0
+ResetActiveHigh: 1
+IsCombinational: 2
+IsDatapathOnly: 0
+HasWiredReturn: 1
+HasMFsm: 0
+HasVarLatency: 1
+IsPipeline: 0
+IsRtlPipelined: 0
+IsInstanceOverlapped: 0
+IsDontTouch: 0
+HasImplIP: 0
+IsGatedGlobalClock: 0
+
+
+============================================================
++ Verbose Summary: Schedule
+============================================================
+* Number of FSM states : 7
+* Pipeline : 0
+* Dataflow Pipeline: 0
+
+* FSM state transitions: 
+1 --> 2 
+2 --> 3 
+3 --> 4 
+4 --> 5 
+5 --> 6 
+6 --> 7 
+7 --> 
+
+* FSM state operations: 
+
+State 1 <SV = 0> <Delay = 3.25>
+ST_1 : Operation 8 [1/1] (1.93ns)   --->   "%lowerThresh_read = read i32 @_ssdm_op_Read.ap_fifo.i32P0A, i32 %lowerThresh"   --->   Operation 8 'read' 'lowerThresh_read' <Predicate = true> <Delay = 1.93> <CoreInst = "FIFO_SRL">   --->   Core 81 'FIFO_SRL' <Latency = 0> <II = 1> <Delay = 3.63> <Storage> <Opcode : 'read' 'write' 'nbread' 'nbwrite'> <Ports = 0> <Width = 32> <Depth = 4> <FIFO>
+ST_1 : Operation 9 [1/1] (1.93ns)   --->   "%upperThresh_read = read i32 @_ssdm_op_Read.ap_fifo.i32P0A, i32 %upperThresh"   --->   Operation 9 'read' 'upperThresh_read' <Predicate = true> <Delay = 1.93> <CoreInst = "FIFO_SRL">   --->   Core 81 'FIFO_SRL' <Latency = 0> <II = 1> <Delay = 3.63> <Storage> <Opcode : 'read' 'write' 'nbread' 'nbwrite'> <Ports = 0> <Width = 32> <Depth = 4> <FIFO>
+ST_1 : Operation 10 [1/1] (3.25ns)   --->   "%LineBuff_mag = alloca i64 1" [canny/canny.cpp:161]   --->   Operation 10 'alloca' 'LineBuff_mag' <Predicate = true> <Delay = 3.25>
+ST_1 : Operation 11 [1/1] (3.25ns)   --->   "%LineBuff_tan_y = alloca i64 1" [canny/canny.cpp:163]   --->   Operation 11 'alloca' 'LineBuff_tan_y' <Predicate = true> <Delay = 3.25>
+ST_1 : Operation 12 [1/1] (3.25ns)   --->   "%LineBuff_tan_x_225 = alloca i64 1" [canny/canny.cpp:165]   --->   Operation 12 'alloca' 'LineBuff_tan_x_225' <Predicate = true> <Delay = 3.25>
+ST_1 : Operation 13 [1/1] (3.25ns)   --->   "%LineBuff_tan_x_675 = alloca i64 1" [canny/canny.cpp:167]   --->   Operation 13 'alloca' 'LineBuff_tan_x_675' <Predicate = true> <Delay = 3.25>
+
+State 2 <SV = 1> <Delay = 3.87>
+ST_2 : Operation 14 [5/5] (3.87ns)   --->   "%mul_ln170 = mul i32 %upperThresh_read, i32 %upperThresh_read" [canny/canny.cpp:170]   --->   Operation 14 'mul' 'mul_ln170' <Predicate = true> <Delay = 3.87> <CoreInst = "Mul_DSP">   --->   Core 5 'Mul_DSP' <Latency = 4> <II = 1> <Delay = 3.87> <FuncUnit> <Opcode : 'mul'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 15 [5/5] (3.87ns)   --->   "%mul_ln171 = mul i32 %lowerThresh_read, i32 %lowerThresh_read" [canny/canny.cpp:171]   --->   Operation 15 'mul' 'mul_ln171' <Predicate = true> <Delay = 3.87> <CoreInst = "Mul_DSP">   --->   Core 5 'Mul_DSP' <Latency = 4> <II = 1> <Delay = 3.87> <FuncUnit> <Opcode : 'mul'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 16 [1/1] (0.00ns)   --->   "%empty = wait i32 @_ssdm_op_Wait"   --->   Operation 16 'wait' 'empty' <Predicate = true> <Delay = 0.00>
+
+State 3 <SV = 2> <Delay = 3.87>
+ST_3 : Operation 17 [4/5] (3.87ns)   --->   "%mul_ln170 = mul i32 %upperThresh_read, i32 %upperThresh_read" [canny/canny.cpp:170]   --->   Operation 17 'mul' 'mul_ln170' <Predicate = true> <Delay = 3.87> <CoreInst = "Mul_DSP">   --->   Core 5 'Mul_DSP' <Latency = 4> <II = 1> <Delay = 3.87> <FuncUnit> <Opcode : 'mul'> <InPorts = 2> <OutPorts = 1>
+ST_3 : Operation 18 [4/5] (3.87ns)   --->   "%mul_ln171 = mul i32 %lowerThresh_read, i32 %lowerThresh_read" [canny/canny.cpp:171]   --->   Operation 18 'mul' 'mul_ln171' <Predicate = true> <Delay = 3.87> <CoreInst = "Mul_DSP">   --->   Core 5 'Mul_DSP' <Latency = 4> <II = 1> <Delay = 3.87> <FuncUnit> <Opcode : 'mul'> <InPorts = 2> <OutPorts = 1>
+
+State 4 <SV = 3> <Delay = 3.87>
+ST_4 : Operation 19 [3/5] (3.87ns)   --->   "%mul_ln170 = mul i32 %upperThresh_read, i32 %upperThresh_read" [canny/canny.cpp:170]   --->   Operation 19 'mul' 'mul_ln170' <Predicate = true> <Delay = 3.87> <CoreInst = "Mul_DSP">   --->   Core 5 'Mul_DSP' <Latency = 4> <II = 1> <Delay = 3.87> <FuncUnit> <Opcode : 'mul'> <InPorts = 2> <OutPorts = 1>
+ST_4 : Operation 20 [3/5] (3.87ns)   --->   "%mul_ln171 = mul i32 %lowerThresh_read, i32 %lowerThresh_read" [canny/canny.cpp:171]   --->   Operation 20 'mul' 'mul_ln171' <Predicate = true> <Delay = 3.87> <CoreInst = "Mul_DSP">   --->   Core 5 'Mul_DSP' <Latency = 4> <II = 1> <Delay = 3.87> <FuncUnit> <Opcode : 'mul'> <InPorts = 2> <OutPorts = 1>
+
+State 5 <SV = 4> <Delay = 3.87>
+ST_5 : Operation 21 [2/5] (3.87ns)   --->   "%mul_ln170 = mul i32 %upperThresh_read, i32 %upperThresh_read" [canny/canny.cpp:170]   --->   Operation 21 'mul' 'mul_ln170' <Predicate = true> <Delay = 3.87> <CoreInst = "Mul_DSP">   --->   Core 5 'Mul_DSP' <Latency = 4> <II = 1> <Delay = 3.87> <FuncUnit> <Opcode : 'mul'> <InPorts = 2> <OutPorts = 1>
+ST_5 : Operation 22 [2/5] (3.87ns)   --->   "%mul_ln171 = mul i32 %lowerThresh_read, i32 %lowerThresh_read" [canny/canny.cpp:171]   --->   Operation 22 'mul' 'mul_ln171' <Predicate = true> <Delay = 3.87> <CoreInst = "Mul_DSP">   --->   Core 5 'Mul_DSP' <Latency = 4> <II = 1> <Delay = 3.87> <FuncUnit> <Opcode : 'mul'> <InPorts = 2> <OutPorts = 1>
+
+State 6 <SV = 5> <Delay = 3.87>
+ST_6 : Operation 23 [1/5] (3.87ns)   --->   "%mul_ln170 = mul i32 %upperThresh_read, i32 %upperThresh_read" [canny/canny.cpp:170]   --->   Operation 23 'mul' 'mul_ln170' <Predicate = true> <Delay = 3.87> <CoreInst = "Mul_DSP">   --->   Core 5 'Mul_DSP' <Latency = 4> <II = 1> <Delay = 3.87> <FuncUnit> <Opcode : 'mul'> <InPorts = 2> <OutPorts = 1>
+ST_6 : Operation 24 [1/1] (0.00ns)   --->   "%upperThresh_scale = shl i32 %mul_ln170, i32 4" [canny/canny.cpp:170]   --->   Operation 24 'shl' 'upperThresh_scale' <Predicate = true> <Delay = 0.00>
+ST_6 : Operation 25 [1/5] (3.87ns)   --->   "%mul_ln171 = mul i32 %lowerThresh_read, i32 %lowerThresh_read" [canny/canny.cpp:171]   --->   Operation 25 'mul' 'mul_ln171' <Predicate = true> <Delay = 3.87> <CoreInst = "Mul_DSP">   --->   Core 5 'Mul_DSP' <Latency = 4> <II = 1> <Delay = 3.87> <FuncUnit> <Opcode : 'mul'> <InPorts = 2> <OutPorts = 1>
+ST_6 : Operation 26 [1/1] (0.00ns)   --->   "%lowerThresh_scale = shl i32 %mul_ln171, i32 4" [canny/canny.cpp:171]   --->   Operation 26 'shl' 'lowerThresh_scale' <Predicate = true> <Delay = 0.00>
+ST_6 : Operation 27 [2/2] (0.00ns)   --->   "%call_ln170 = call void @NonMaximumSuppression_Pipeline_VITIS_LOOP_193_1, i90 %LineBuff_mag, i96 %LineBuff_tan_y, i96 %LineBuff_tan_x_225, i96 %LineBuff_tan_x_675, i26 %magnitude, i32 %tangent_y, i32 %tangent_x_225, i32 %tangent_x_675, i32 %upperThresh_scale, i32 %lowerThresh_scale, i32 %dst" [canny/canny.cpp:170]   --->   Operation 27 'call' 'call_ln170' <Predicate = true> <Delay = 0.00> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+
+State 7 <SV = 6> <Delay = 0.00>
+ST_7 : Operation 28 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i32 %lowerThresh, void @ap_fifo_str, i32 0, i32 0, void @p_str, i32 0, i32 0, void @p_str, void @p_str, void @p_str, i32 2, i32 2, i32 16, i32 16, void @p_str, void @ScalarProp_str, i32 4294967295, i32 0"   --->   Operation 28 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_7 : Operation 29 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i32 %upperThresh, void @ap_fifo_str, i32 0, i32 0, void @p_str, i32 0, i32 0, void @p_str, void @p_str, void @p_str, i32 2, i32 2, i32 16, i32 16, void @p_str, void @ScalarProp_str, i32 4294967295, i32 0"   --->   Operation 29 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_7 : Operation 30 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i32 %tangent_x_675, void @empty_2, i32 0, i32 0, void @empty_0, i32 0, i32 0, void @empty_0, void @empty_0, void @empty_0, i32 0, i32 0, i32 0, i32 0, void @empty_0, void @empty_0, i32 4294967295, i32 0"   --->   Operation 30 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_7 : Operation 31 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i32 %tangent_x_225, void @empty_2, i32 0, i32 0, void @empty_0, i32 0, i32 0, void @empty_0, void @empty_0, void @empty_0, i32 0, i32 0, i32 0, i32 0, void @empty_0, void @empty_0, i32 4294967295, i32 0"   --->   Operation 31 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_7 : Operation 32 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i32 %tangent_y, void @empty_2, i32 0, i32 0, void @empty_0, i32 0, i32 0, void @empty_0, void @empty_0, void @empty_0, i32 0, i32 0, i32 0, i32 0, void @empty_0, void @empty_0, i32 4294967295, i32 0"   --->   Operation 32 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_7 : Operation 33 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i26 %magnitude, void @empty_2, i32 0, i32 0, void @empty_0, i32 0, i32 0, void @empty_0, void @empty_0, void @empty_0, i32 0, i32 0, i32 0, i32 0, void @empty_0, void @empty_0, i32 4294967295, i32 0"   --->   Operation 33 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_7 : Operation 34 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i32 %dst, void @empty, i32 0, i32 0, void @empty_0, i32 4294967295, i32 0, void @empty_0, void @empty_0, void @empty_0, i32 0, i32 0, i32 0, i32 0, void @empty_0, void @empty_0, i32 4294967295, i32 0"   --->   Operation 34 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_7 : Operation 35 [1/2] (0.00ns)   --->   "%call_ln170 = call void @NonMaximumSuppression_Pipeline_VITIS_LOOP_193_1, i90 %LineBuff_mag, i96 %LineBuff_tan_y, i96 %LineBuff_tan_x_225, i96 %LineBuff_tan_x_675, i26 %magnitude, i32 %tangent_y, i32 %tangent_x_225, i32 %tangent_x_675, i32 %upperThresh_scale, i32 %lowerThresh_scale, i32 %dst" [canny/canny.cpp:170]   --->   Operation 35 'call' 'call_ln170' <Predicate = true> <Delay = 0.00> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+ST_7 : Operation 36 [1/1] (0.00ns)   --->   "%ret_ln273 = ret" [canny/canny.cpp:273]   --->   Operation 36 'ret' 'ret_ln273' <Predicate = true> <Delay = 0.00>
+
+
+============================================================
++ Verbose Summary: Binding
+============================================================
+STG Binding: 
+---------------- STG Properties BEGIN ----------------
+- Is combinational: 0
+- Is one-state seq: 0
+- Is datapath-only: 0
+- Is pipelined: 0
+- Is top level: 0
+Port [ Return ] is wired: 1; IO mode=ap_ctrl_hs:ce=0
+Port [ magnitude]:  wired=1; compound=1; hidden=0; nouse=0; global=0; static=0; extern=0; dir=0; type=3; pingpong=0; private_global=0; IO mode=ap_fifo:ce=0
+Port [ tangent_y]:  wired=1; compound=1; hidden=0; nouse=0; global=0; static=0; extern=0; dir=0; type=3; pingpong=0; private_global=0; IO mode=ap_fifo:ce=0
+Port [ tangent_x_225]:  wired=1; compound=1; hidden=0; nouse=0; global=0; static=0; extern=0; dir=0; type=3; pingpong=0; private_global=0; IO mode=ap_fifo:ce=0
+Port [ tangent_x_675]:  wired=1; compound=1; hidden=0; nouse=0; global=0; static=0; extern=0; dir=0; type=3; pingpong=0; private_global=0; IO mode=ap_fifo:ce=0
+Port [ upperThresh]:  wired=1; compound=1; hidden=0; nouse=0; global=0; static=0; extern=0; dir=0; type=3; pingpong=0; private_global=0; IO mode=ap_fifo:ce=0
+Port [ lowerThresh]:  wired=1; compound=1; hidden=0; nouse=0; global=0; static=0; extern=0; dir=0; type=3; pingpong=0; private_global=0; IO mode=ap_fifo:ce=0
+Port [ dst]:  wired=1; compound=1; hidden=0; nouse=0; global=0; static=0; extern=0; dir=1; type=1; pingpong=0; private_global=0; MemPort=[03]; IO mode=ap_memory:ce=0
+---------------- STG Properties END ------------------
+
+---------------- Datapath Model BEGIN ----------------
+
+<LifeTime>
+<method=bitvector/>
+lowerThresh_read   (read         ) [ 00111110]
+upperThresh_read   (read         ) [ 00111110]
+LineBuff_mag       (alloca       ) [ 00111111]
+LineBuff_tan_y     (alloca       ) [ 00111111]
+LineBuff_tan_x_225 (alloca       ) [ 00111111]
+LineBuff_tan_x_675 (alloca       ) [ 00111111]
+empty              (wait         ) [ 00000000]
+mul_ln170          (mul          ) [ 00000000]
+upperThresh_scale  (shl          ) [ 00000001]
+mul_ln171          (mul          ) [ 00000000]
+lowerThresh_scale  (shl          ) [ 00000001]
+specinterface_ln0  (specinterface) [ 00000000]
+specinterface_ln0  (specinterface) [ 00000000]
+specinterface_ln0  (specinterface) [ 00000000]
+specinterface_ln0  (specinterface) [ 00000000]
+specinterface_ln0  (specinterface) [ 00000000]
+specinterface_ln0  (specinterface) [ 00000000]
+specinterface_ln0  (specinterface) [ 00000000]
+call_ln170         (call         ) [ 00000000]
+ret_ln273          (ret          ) [ 00000000]
+</LifeTime>
+
+<model>
+
+<comp_list>
+<comp id="0" class="1000" name="magnitude">
+<pin_list>
+<pin id="1" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="magnitude"/></StgValue>
+</bind>
+</comp>
+
+<comp id="2" class="1000" name="tangent_y">
+<pin_list>
+<pin id="3" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="tangent_y"/></StgValue>
+</bind>
+</comp>
+
+<comp id="4" class="1000" name="tangent_x_225">
+<pin_list>
+<pin id="5" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="tangent_x_225"/></StgValue>
+</bind>
+</comp>
+
+<comp id="6" class="1000" name="tangent_x_675">
+<pin_list>
+<pin id="7" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="tangent_x_675"/></StgValue>
+</bind>
+</comp>
+
+<comp id="8" class="1000" name="upperThresh">
+<pin_list>
+<pin id="9" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="upperThresh"/></StgValue>
+</bind>
+</comp>
+
+<comp id="10" class="1000" name="lowerThresh">
+<pin_list>
+<pin id="11" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="lowerThresh"/></StgValue>
+</bind>
+</comp>
+
+<comp id="12" class="1000" name="dst">
+<pin_list>
+<pin id="13" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="dst"/><MemPortTyVec>0 3 </MemPortTyVec>
+</StgValue>
+</bind>
+</comp>
+
+<comp id="14" class="1001" name="const_14">
+<pin_list>
+<pin id="15" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="_ssdm_op_Read.ap_fifo.i32P0A"/></StgValue>
+</bind>
+</comp>
+
+<comp id="16" class="1001" name="const_16">
+<pin_list>
+<pin id="17" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name=""/></StgValue>
+</bind>
+</comp>
+
+<comp id="18" class="1001" name="const_18">
+<pin_list>
+<pin id="19" dir="1" index="0" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="_ssdm_op_Wait"/></StgValue>
+</bind>
+</comp>
+
+<comp id="20" class="1001" name="const_20">
+<pin_list>
+<pin id="21" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name=""/></StgValue>
+</bind>
+</comp>
+
+<comp id="22" class="1001" name="const_22">
+<pin_list>
+<pin id="23" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="NonMaximumSuppression_Pipeline_VITIS_LOOP_193_1"/></StgValue>
+</bind>
+</comp>
+
+<comp id="24" class="1001" name="const_24">
+<pin_list>
+<pin id="25" dir="1" index="0" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="_ssdm_op_SpecInterface"/></StgValue>
+</bind>
+</comp>
+
+<comp id="26" class="1001" name="const_26">
+<pin_list>
+<pin id="27" dir="1" index="0" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="ap_fifo_str"/></StgValue>
+</bind>
+</comp>
+
+<comp id="28" class="1001" name="const_28">
+<pin_list>
+<pin id="29" dir="1" index="0" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name=""/></StgValue>
+</bind>
+</comp>
+
+<comp id="30" class="1001" name="const_30">
+<pin_list>
+<pin id="31" dir="1" index="0" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="p_str"/></StgValue>
+</bind>
+</comp>
+
+<comp id="32" class="1001" name="const_32">
+<pin_list>
+<pin id="33" dir="1" index="0" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name=""/></StgValue>
+</bind>
+</comp>
+
+<comp id="34" class="1001" name="const_34">
+<pin_list>
+<pin id="35" dir="1" index="0" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name=""/></StgValue>
+</bind>
+</comp>
+
+<comp id="36" class="1001" name="const_36">
+<pin_list>
+<pin id="37" dir="1" index="0" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="ScalarProp_str"/></StgValue>
+</bind>
+</comp>
+
+<comp id="38" class="1001" name="const_38">
+<pin_list>
+<pin id="39" dir="1" index="0" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name=""/></StgValue>
+</bind>
+</comp>
+
+<comp id="40" class="1001" name="const_40">
+<pin_list>
+<pin id="41" dir="1" index="0" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="empty_2"/></StgValue>
+</bind>
+</comp>
+
+<comp id="42" class="1001" name="const_42">
+<pin_list>
+<pin id="43" dir="1" index="0" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="empty_0"/></StgValue>
+</bind>
+</comp>
+
+<comp id="44" class="1001" name="const_44">
+<pin_list>
+<pin id="45" dir="1" index="0" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="empty"/></StgValue>
+</bind>
+</comp>
+
+<comp id="46" class="1004" name="LineBuff_mag_alloca_fu_46">
+<pin_list>
+<pin id="47" dir="0" index="0" bw="1" slack="0"/>
+<pin id="48" dir="1" index="1" bw="90" slack="2147483647"/>
+</pin_list>
+<bind>
+<opcode="alloca(26) " fcode="alloca"/>
+<opset="LineBuff_mag/1 "/>
+</bind>
+</comp>
+
+<comp id="50" class="1004" name="LineBuff_tan_y_alloca_fu_50">
+<pin_list>
+<pin id="51" dir="0" index="0" bw="1" slack="0"/>
+<pin id="52" dir="1" index="1" bw="96" slack="2147483647"/>
+</pin_list>
+<bind>
+<opcode="alloca(26) " fcode="alloca"/>
+<opset="LineBuff_tan_y/1 "/>
+</bind>
+</comp>
+
+<comp id="54" class="1004" name="LineBuff_tan_x_225_alloca_fu_54">
+<pin_list>
+<pin id="55" dir="0" index="0" bw="1" slack="0"/>
+<pin id="56" dir="1" index="1" bw="96" slack="2147483647"/>
+</pin_list>
+<bind>
+<opcode="alloca(26) " fcode="alloca"/>
+<opset="LineBuff_tan_x_225/1 "/>
+</bind>
+</comp>
+
+<comp id="58" class="1004" name="LineBuff_tan_x_675_alloca_fu_58">
+<pin_list>
+<pin id="59" dir="0" index="0" bw="1" slack="0"/>
+<pin id="60" dir="1" index="1" bw="96" slack="2147483647"/>
+</pin_list>
+<bind>
+<opcode="alloca(26) " fcode="alloca"/>
+<opset="LineBuff_tan_x_675/1 "/>
+</bind>
+</comp>
+
+<comp id="62" class="1004" name="lowerThresh_read_read_fu_62">
+<pin_list>
+<pin id="63" dir="0" index="0" bw="32" slack="0"/>
+<pin id="64" dir="0" index="1" bw="32" slack="0"/>
+<pin id="65" dir="1" index="2" bw="32" slack="1"/>
+</pin_list>
+<bind>
+<opcode="read(1150) " fcode="read"/>
+<opset="lowerThresh_read/1 "/>
+</bind>
+</comp>
+
+<comp id="68" class="1004" name="upperThresh_read_read_fu_68">
+<pin_list>
+<pin id="69" dir="0" index="0" bw="32" slack="0"/>
+<pin id="70" dir="0" index="1" bw="32" slack="0"/>
+<pin id="71" dir="1" index="2" bw="32" slack="1"/>
+</pin_list>
+<bind>
+<opcode="read(1150) " fcode="read"/>
+<opset="upperThresh_read/1 "/>
+</bind>
+</comp>
+
+<comp id="74" class="1004" name="grp_NonMaximumSuppression_Pipeline_VITIS_LOOP_193_1_fu_74">
+<pin_list>
+<pin id="75" dir="0" index="0" bw="0" slack="0"/>
+<pin id="76" dir="0" index="1" bw="90" slack="2147483647"/>
+<pin id="77" dir="0" index="2" bw="96" slack="2147483647"/>
+<pin id="78" dir="0" index="3" bw="96" slack="2147483647"/>
+<pin id="79" dir="0" index="4" bw="96" slack="2147483647"/>
+<pin id="80" dir="0" index="5" bw="26" slack="0"/>
+<pin id="81" dir="0" index="6" bw="32" slack="0"/>
+<pin id="82" dir="0" index="7" bw="32" slack="0"/>
+<pin id="83" dir="0" index="8" bw="32" slack="0"/>
+<pin id="84" dir="0" index="9" bw="32" slack="0"/>
+<pin id="85" dir="0" index="10" bw="32" slack="0"/>
+<pin id="86" dir="0" index="11" bw="32" slack="0"/>
+<pin id="87" dir="1" index="12" bw="0" slack="2147483647"/>
+</pin_list>
+<bind>
+<opcode="call(48) " fcode="call"/>
+<opset="call_ln170/6 "/>
+</bind>
+</comp>
+
+<comp id="94" class="1004" name="grp_fu_94">
+<pin_list>
+<pin id="95" dir="0" index="0" bw="32" slack="1"/>
+<pin id="96" dir="0" index="1" bw="32" slack="1"/>
+<pin id="97" dir="1" index="2" bw="32" slack="0"/>
+</pin_list>
+<bind>
+<opcode="mul(12) " fcode="mul"/>
+<opset="mul_ln170/2 "/>
+</bind>
+</comp>
+
+<comp id="98" class="1004" name="grp_fu_98">
+<pin_list>
+<pin id="99" dir="0" index="0" bw="32" slack="1"/>
+<pin id="100" dir="0" index="1" bw="32" slack="1"/>
+<pin id="101" dir="1" index="2" bw="32" slack="0"/>
+</pin_list>
+<bind>
+<opcode="mul(12) " fcode="mul"/>
+<opset="mul_ln171/2 "/>
+</bind>
+</comp>
+
+<comp id="102" class="1004" name="upperThresh_scale_fu_102">
+<pin_list>
+<pin id="103" dir="0" index="0" bw="32" slack="0"/>
+<pin id="104" dir="0" index="1" bw="4" slack="0"/>
+<pin id="105" dir="1" index="2" bw="32" slack="0"/>
+</pin_list>
+<bind>
+<opcode="shl(20) " fcode="shl"/>
+<opset="upperThresh_scale/6 "/>
+</bind>
+</comp>
+
+<comp id="109" class="1004" name="lowerThresh_scale_fu_109">
+<pin_list>
+<pin id="110" dir="0" index="0" bw="32" slack="0"/>
+<pin id="111" dir="0" index="1" bw="4" slack="0"/>
+<pin id="112" dir="1" index="2" bw="32" slack="0"/>
+</pin_list>
+<bind>
+<opcode="shl(20) " fcode="shl"/>
+<opset="lowerThresh_scale/6 "/>
+</bind>
+</comp>
+
+<comp id="116" class="1005" name="lowerThresh_read_reg_116">
+<pin_list>
+<pin id="117" dir="0" index="0" bw="32" slack="1"/>
+<pin id="118" dir="1" index="1" bw="32" slack="1"/>
+</pin_list>
+<bind>
+<opset="lowerThresh_read "/>
+</bind>
+</comp>
+
+<comp id="122" class="1005" name="upperThresh_read_reg_122">
+<pin_list>
+<pin id="123" dir="0" index="0" bw="32" slack="1"/>
+<pin id="124" dir="1" index="1" bw="32" slack="1"/>
+</pin_list>
+<bind>
+<opset="upperThresh_read "/>
+</bind>
+</comp>
+
+<comp id="128" class="1005" name="upperThresh_scale_reg_128">
+<pin_list>
+<pin id="129" dir="0" index="0" bw="32" slack="1"/>
+<pin id="130" dir="1" index="1" bw="32" slack="1"/>
+</pin_list>
+<bind>
+<opset="upperThresh_scale "/>
+</bind>
+</comp>
+
+<comp id="133" class="1005" name="lowerThresh_scale_reg_133">
+<pin_list>
+<pin id="134" dir="0" index="0" bw="32" slack="1"/>
+<pin id="135" dir="1" index="1" bw="32" slack="1"/>
+</pin_list>
+<bind>
+<opset="lowerThresh_scale "/>
+</bind>
+</comp>
+
+</comp_list>
+
+<net_list>
+<net id="49"><net_src comp="16" pin="0"/><net_sink comp="46" pin=0"/></net>
+
+<net id="53"><net_src comp="16" pin="0"/><net_sink comp="50" pin=0"/></net>
+
+<net id="57"><net_src comp="16" pin="0"/><net_sink comp="54" pin=0"/></net>
+
+<net id="61"><net_src comp="16" pin="0"/><net_sink comp="58" pin=0"/></net>
+
+<net id="66"><net_src comp="14" pin="0"/><net_sink comp="62" pin=0"/></net>
+
+<net id="67"><net_src comp="10" pin="0"/><net_sink comp="62" pin=1"/></net>
+
+<net id="72"><net_src comp="14" pin="0"/><net_sink comp="68" pin=0"/></net>
+
+<net id="73"><net_src comp="8" pin="0"/><net_sink comp="68" pin=1"/></net>
+
+<net id="88"><net_src comp="22" pin="0"/><net_sink comp="74" pin=0"/></net>
+
+<net id="89"><net_src comp="0" pin="0"/><net_sink comp="74" pin=5"/></net>
+
+<net id="90"><net_src comp="2" pin="0"/><net_sink comp="74" pin=6"/></net>
+
+<net id="91"><net_src comp="4" pin="0"/><net_sink comp="74" pin=7"/></net>
+
+<net id="92"><net_src comp="6" pin="0"/><net_sink comp="74" pin=8"/></net>
+
+<net id="93"><net_src comp="12" pin="0"/><net_sink comp="74" pin=11"/></net>
+
+<net id="106"><net_src comp="94" pin="2"/><net_sink comp="102" pin=0"/></net>
+
+<net id="107"><net_src comp="20" pin="0"/><net_sink comp="102" pin=1"/></net>
+
+<net id="108"><net_src comp="102" pin="2"/><net_sink comp="74" pin=9"/></net>
+
+<net id="113"><net_src comp="98" pin="2"/><net_sink comp="109" pin=0"/></net>
+
+<net id="114"><net_src comp="20" pin="0"/><net_sink comp="109" pin=1"/></net>
+
+<net id="115"><net_src comp="109" pin="2"/><net_sink comp="74" pin=10"/></net>
+
+<net id="119"><net_src comp="62" pin="2"/><net_sink comp="116" pin=0"/></net>
+
+<net id="120"><net_src comp="116" pin="1"/><net_sink comp="98" pin=0"/></net>
+
+<net id="121"><net_src comp="116" pin="1"/><net_sink comp="98" pin=1"/></net>
+
+<net id="125"><net_src comp="68" pin="2"/><net_sink comp="122" pin=0"/></net>
+
+<net id="126"><net_src comp="122" pin="1"/><net_sink comp="94" pin=0"/></net>
+
+<net id="127"><net_src comp="122" pin="1"/><net_sink comp="94" pin=1"/></net>
+
+<net id="131"><net_src comp="102" pin="2"/><net_sink comp="128" pin=0"/></net>
+
+<net id="132"><net_src comp="128" pin="1"/><net_sink comp="74" pin=9"/></net>
+
+<net id="136"><net_src comp="109" pin="2"/><net_sink comp="133" pin=0"/></net>
+
+<net id="137"><net_src comp="133" pin="1"/><net_sink comp="74" pin=10"/></net>
+
+</net_list>
+
+</model> 
+---------------- Datapath Model END ------------------
+
+* FSMD analyzer results:
+  - Output states:
+	Port: dst | {6 7 }
+ - Input state : 
+	Port: NonMaximumSuppression : magnitude | {6 7 }
+	Port: NonMaximumSuppression : tangent_y | {6 7 }
+	Port: NonMaximumSuppression : tangent_x_225 | {6 7 }
+	Port: NonMaximumSuppression : tangent_x_675 | {6 7 }
+	Port: NonMaximumSuppression : upperThresh | {1 }
+	Port: NonMaximumSuppression : lowerThresh | {1 }
+	Port: NonMaximumSuppression : dst | {}
+  - Chain level:
+	State 1
+	State 2
+	State 3
+	State 4
+	State 5
+	State 6
+		upperThresh_scale : 1
+		lowerThresh_scale : 1
+		call_ln170 : 1
+	State 7
+
+
+============================================================
++ Verbose Summary: Datapath Resource usage 
+============================================================
+
+* Functional unit list:
+|----------|-----------------------------------------------------------|---------|---------|---------|---------|
+| Operation|                      Functional Unit                      |   DSP   |  Delay  |    FF   |   LUT   |
+|----------|-----------------------------------------------------------|---------|---------|---------|---------|
+|   call   | grp_NonMaximumSuppression_Pipeline_VITIS_LOOP_193_1_fu_74 |    0    |  6.352  |   1158  |   898   |
+|----------|-----------------------------------------------------------|---------|---------|---------|---------|
+|    mul   |                         grp_fu_94                         |    3    |    0    |    51   |    0    |
+|          |                         grp_fu_98                         |    3    |    0    |    51   |    0    |
+|----------|-----------------------------------------------------------|---------|---------|---------|---------|
+|   read   |                lowerThresh_read_read_fu_62                |    0    |    0    |    0    |    0    |
+|          |                upperThresh_read_read_fu_68                |    0    |    0    |    0    |    0    |
+|----------|-----------------------------------------------------------|---------|---------|---------|---------|
+|    shl   |                  upperThresh_scale_fu_102                 |    0    |    0    |    0    |    0    |
+|          |                  lowerThresh_scale_fu_109                 |    0    |    0    |    0    |    0    |
+|----------|-----------------------------------------------------------|---------|---------|---------|---------|
+|   Total  |                                                           |    6    |  6.352  |   1260  |   898   |
+|----------|-----------------------------------------------------------|---------|---------|---------|---------|
+
+Memories:
++------------------+--------+--------+--------+--------+
+|                  |  BRAM  |   FF   |   LUT  |  URAM  |
++------------------+--------+--------+--------+--------+
+|   LineBuff_mag   |    3   |    0   |    0   |    0   |
+|LineBuff_tan_x_225|    3   |    0   |    0   |    0   |
+|LineBuff_tan_x_675|    3   |    0   |    0   |    0   |
+|  LineBuff_tan_y  |    3   |    0   |    0   |    0   |
++------------------+--------+--------+--------+--------+
+|       Total      |   12   |    0   |    0   |    0   |
++------------------+--------+--------+--------+--------+
+
+* Register list:
++-------------------------+--------+
+|                         |   FF   |
++-------------------------+--------+
+| lowerThresh_read_reg_116|   32   |
+|lowerThresh_scale_reg_133|   32   |
+| upperThresh_read_reg_122|   32   |
+|upperThresh_scale_reg_128|   32   |
++-------------------------+--------+
+|          Total          |   128  |
++-------------------------+--------+
+
+* Multiplexer (MUX) list: 
+|-----------------------------------------------------------|------|------|------|--------||---------||---------|
+|                            Comp                           |  Pin | Size |  BW  | S x BW ||  Delay  ||   LUT   |
+|-----------------------------------------------------------|------|------|------|--------||---------||---------|
+| grp_NonMaximumSuppression_Pipeline_VITIS_LOOP_193_1_fu_74 |  p9  |   2  |  32  |   64   ||    9    |
+| grp_NonMaximumSuppression_Pipeline_VITIS_LOOP_193_1_fu_74 |  p10 |   2  |  32  |   64   ||    9    |
+|-----------------------------------------------------------|------|------|------|--------||---------||---------|
+|                           Total                           |      |      |      |   128  ||  3.176  ||    18   |
+|-----------------------------------------------------------|------|------|------|--------||---------||---------|
+
+
+
+* Summary:
++-----------+--------+--------+--------+--------+--------+--------+
+|           |  BRAM  |   DSP  |  Delay |   FF   |   LUT  |  URAM  |
++-----------+--------+--------+--------+--------+--------+--------+
+|  Function |    -   |    6   |    6   |  1260  |   898  |    -   |
+|   Memory  |   12   |    -   |    -   |    0   |    0   |    0   |
+|Multiplexer|    -   |    -   |    3   |    -   |   18   |    -   |
+|  Register |    -   |    -   |    -   |   128  |    -   |    -   |
++-----------+--------+--------+--------+--------+--------+--------+
+|   Total   |   12   |    6   |    9   |  1388  |   916  |    0   |
++-----------+--------+--------+--------+--------+--------+--------+

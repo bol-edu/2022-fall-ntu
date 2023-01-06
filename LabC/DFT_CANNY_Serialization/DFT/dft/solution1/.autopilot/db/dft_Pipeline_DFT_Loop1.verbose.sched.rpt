@@ -1,0 +1,926 @@
+
+
+================================================================
+== Vitis HLS Report for 'dft_Pipeline_DFT_Loop1'
+================================================================
+* Date:           Sun Nov 13 21:43:28 2022
+
+* Version:        2022.1 (Build 3526262 on Mon Apr 18 15:48:16 MDT 2022)
+* Project:        dft
+* Solution:       solution1 (Vitis Kernel Flow Target)
+* Product family: zynq
+* Target device:  xc7z020-clg400-1
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing: 
+    * Summary: 
+    +--------+---------+----------+------------+
+    |  Clock |  Target | Estimated| Uncertainty|
+    +--------+---------+----------+------------+
+    |ap_clk  |  3.34 ns|  3.254 ns|        0 ns|
+    +--------+---------+----------+------------+
+
++ Latency: 
+    * Summary: 
+    +---------+---------+----------+----------+-----+-----+---------+
+    |  Latency (cycles) |  Latency (absolute) |  Interval | Pipeline|
+    |   min   |   max   |    min   |    max   | min | max |   Type  |
+    +---------+---------+----------+----------+-----+-----+---------+
+    |      167|      167|  0.558 us|  0.558 us|  167|  167|       no|
+    +---------+---------+----------+----------+-----+-----+---------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        +------------+---------+---------+----------+-----------+-----------+------+----------+
+        |            |  Latency (cycles) | Iteration|  Initiation Interval  | Trip |          |
+        |  Loop Name |   min   |   max   |  Latency |  achieved |   target  | Count| Pipelined|
+        +------------+---------+---------+----------+-----------+-----------+------+----------+
+        |- DFT_Loop  |      165|      165|        39|          1|          1|   128|       yes|
+        +------------+---------+---------+----------+-----------+-----------+------+----------+
+
+============================================================
++ Verbose Summary: Synthesis Manager
+============================================================
+InlineROM: 1
+ExposeGlobal: 0
+============================================================
++ Verbose Summary: CDFG Model
+============================================================
+IsTopModel: 0
+ResetActiveHigh: 1
+IsCombinational: 0
+IsDatapathOnly: 0
+HasWiredReturn: 1
+HasMFsm: 2
+HasVarLatency: 1
+IsPipeline: 0
+IsRtlPipelined: 0
+IsInstanceOverlapped: 0
+IsDontTouch: 0
+HasImplIP: 0
+IsGatedGlobalClock: 0
+
++ Individual pipeline summary: 
+  * Pipeline-0: initiation interval (II) = 1, depth = 39
+
+
+============================================================
++ Verbose Summary: Schedule
+============================================================
+* Number of FSM states : 39
+* Pipeline : 1
+  Pipeline-0 : II = 1, D = 39, States = { 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 }
+* Dataflow Pipeline: 0
+
+* FSM state transitions: 
+1 --> 2 
+2 --> 3 
+3 --> 4 
+4 --> 5 
+5 --> 6 
+6 --> 7 
+7 --> 8 
+8 --> 9 
+9 --> 10 
+10 --> 11 
+11 --> 12 
+12 --> 13 
+13 --> 14 
+14 --> 15 
+15 --> 16 
+16 --> 17 
+17 --> 18 
+18 --> 19 
+19 --> 20 
+20 --> 21 
+21 --> 22 
+22 --> 23 
+23 --> 24 
+24 --> 25 
+25 --> 26 
+26 --> 27 
+27 --> 28 
+28 --> 29 
+29 --> 30 
+30 --> 31 
+31 --> 32 
+32 --> 33 
+33 --> 34 
+34 --> 35 
+35 --> 36 
+36 --> 37 
+37 --> 38 
+38 --> 39 
+39 --> 
+
+* FSM state operations: 
+
+State 1 <SV = 0> <Delay = 3.25>
+ST_1 : Operation 42 [1/1] (0.00ns)   --->   "%i_2_0 = alloca i32 1"   --->   Operation 42 'alloca' 'i_2_0' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 43 [1/1] (1.58ns)   --->   "%store_ln0 = store i10 0, i10 %i_2_0"   --->   Operation 43 'store' 'store_ln0' <Predicate = true> <Delay = 1.58>
+ST_1 : Operation 44 [1/1] (0.00ns)   --->   "%br_ln0 = br void %for.inc.i38.0"   --->   Operation 44 'br' 'br_ln0' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 45 [1/1] (0.00ns)   --->   "%i_2_0_load = load i10 %i_2_0"   --->   Operation 45 'load' 'i_2_0_load' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 46 [1/1] (0.00ns)   --->   "%empty = speclooptripcount i32 @_ssdm_op_SpecLoopTripCount, i64 128, i64 128, i64 128"   --->   Operation 46 'speclooptripcount' 'empty' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 47 [1/1] (1.77ns)   --->   "%icmp_ln68 = icmp_eq  i10 %i_2_0_load, i10 512" [fft.cpp:68]   --->   Operation 47 'icmp' 'icmp_ln68' <Predicate = true> <Delay = 1.77> <CoreInst = "Cmp">   --->   Core 9 'Cmp' <Latency = 0> <II = 1> <Delay = 1.77> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 48 [1/1] (0.00ns)   --->   "%br_ln68 = br i1 %icmp_ln68, void %for.inc.i38.split.0, void %_Z9fft_stageILi2EEvPfS0_S0_S0_.exit.exitStub" [fft.cpp:68]   --->   Operation 48 'br' 'br_ln68' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 49 [1/1] (0.00ns)   --->   "%empty_34 = trunc i10 %i_2_0_load"   --->   Operation 49 'trunc' 'empty_34' <Predicate = (!icmp_ln68)> <Delay = 0.00>
+ST_1 : Operation 50 [1/1] (0.00ns)   --->   "%trunc_ln77_1 = partselect i8 @_ssdm_op_PartSelect.i8.i10.i32.i32, i10 %i_2_0_load, i32 1, i32 8" [fft.cpp:77]   --->   Operation 50 'partselect' 'trunc_ln77_1' <Predicate = (!icmp_ln68)> <Delay = 0.00>
+ST_1 : Operation 51 [1/1] (0.00ns)   --->   "%zext_ln77_2 = zext i8 %trunc_ln77_1" [fft.cpp:77]   --->   Operation 51 'zext' 'zext_ln77_2' <Predicate = (!icmp_ln68)> <Delay = 0.00>
+ST_1 : Operation 52 [1/1] (0.00ns)   --->   "%buf1_R_2_addr_2 = getelementptr i32 %buf1_R_2, i64 0, i64 %zext_ln77_2" [fft.cpp:77]   --->   Operation 52 'getelementptr' 'buf1_R_2_addr_2' <Predicate = (!icmp_ln68)> <Delay = 0.00>
+ST_1 : Operation 53 [2/2] (3.25ns)   --->   "%buf1_R_2_load = load i8 %buf1_R_2_addr_2" [fft.cpp:77]   --->   Operation 53 'load' 'buf1_R_2_load' <Predicate = (!icmp_ln68)> <Delay = 3.25> <CoreInst = "RAM">   --->   Core 82 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 256> <RAM>
+ST_1 : Operation 54 [1/1] (0.00ns)   --->   "%buf1_I_2_addr_2 = getelementptr i32 %buf1_I_2, i64 0, i64 %zext_ln77_2" [fft.cpp:78]   --->   Operation 54 'getelementptr' 'buf1_I_2_addr_2' <Predicate = (!icmp_ln68)> <Delay = 0.00>
+ST_1 : Operation 55 [2/2] (3.25ns)   --->   "%buf1_I_2_load = load i8 %buf1_I_2_addr_2" [fft.cpp:78]   --->   Operation 55 'load' 'buf1_I_2_load' <Predicate = (!icmp_ln68)> <Delay = 3.25> <CoreInst = "RAM">   --->   Core 82 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 256> <RAM>
+ST_1 : Operation 56 [1/1] (0.00ns) (grouped into LUT with out node add_ln74)   --->   "%or_ln68 = or i9 %empty_34, i9 1" [fft.cpp:68]   --->   Operation 56 'or' 'or_ln68' <Predicate = (!icmp_ln68)> <Delay = 0.00>
+ST_1 : Operation 57 [1/1] (0.00ns) (grouped into LUT with out node add_ln74)   --->   "%zext_ln68 = zext i9 %or_ln68" [fft.cpp:68]   --->   Operation 57 'zext' 'zext_ln68' <Predicate = (!icmp_ln68)> <Delay = 0.00>
+ST_1 : Operation 58 [1/1] (1.73ns) (out node of the LUT)   --->   "%add_ln74 = add i10 %i_2_0_load, i10 %zext_ln68" [fft.cpp:74]   --->   Operation 58 'add' 'add_ln74' <Predicate = (!icmp_ln68)> <Delay = 1.73> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 1.73> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 59 [1/1] (0.00ns)   --->   "%lshr_ln77_2 = partselect i8 @_ssdm_op_PartSelect.i8.i10.i32.i32, i10 %add_ln74, i32 2, i32 9" [fft.cpp:77]   --->   Operation 59 'partselect' 'lshr_ln77_2' <Predicate = (!icmp_ln68)> <Delay = 0.00>
+ST_1 : Operation 60 [1/1] (0.00ns)   --->   "%or_ln77 = or i8 %trunc_ln77_1, i8 1" [fft.cpp:77]   --->   Operation 60 'or' 'or_ln77' <Predicate = (!icmp_ln68)> <Delay = 0.00>
+ST_1 : Operation 61 [1/1] (0.00ns)   --->   "%zext_ln77_4 = zext i8 %or_ln77" [fft.cpp:77]   --->   Operation 61 'zext' 'zext_ln77_4' <Predicate = (!icmp_ln68)> <Delay = 0.00>
+ST_1 : Operation 62 [1/1] (0.00ns)   --->   "%buf1_R_2_addr_3 = getelementptr i32 %buf1_R_2, i64 0, i64 %zext_ln77_4" [fft.cpp:77]   --->   Operation 62 'getelementptr' 'buf1_R_2_addr_3' <Predicate = (!icmp_ln68)> <Delay = 0.00>
+ST_1 : Operation 63 [2/2] (3.25ns)   --->   "%buf1_R_2_load_1 = load i8 %buf1_R_2_addr_3" [fft.cpp:77]   --->   Operation 63 'load' 'buf1_R_2_load_1' <Predicate = (!icmp_ln68)> <Delay = 3.25> <CoreInst = "RAM">   --->   Core 82 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 256> <RAM>
+ST_1 : Operation 64 [1/1] (0.00ns)   --->   "%buf1_I_2_addr_3 = getelementptr i32 %buf1_I_2, i64 0, i64 %zext_ln77_4" [fft.cpp:78]   --->   Operation 64 'getelementptr' 'buf1_I_2_addr_3' <Predicate = (!icmp_ln68)> <Delay = 0.00>
+ST_1 : Operation 65 [2/2] (3.25ns)   --->   "%buf1_I_2_load_1 = load i8 %buf1_I_2_addr_3" [fft.cpp:78]   --->   Operation 65 'load' 'buf1_I_2_load_1' <Predicate = (!icmp_ln68)> <Delay = 3.25> <CoreInst = "RAM">   --->   Core 82 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 256> <RAM>
+ST_1 : Operation 66 [1/1] (0.00ns)   --->   "%or_ln68_1 = or i9 %empty_34, i9 3" [fft.cpp:68]   --->   Operation 66 'or' 'or_ln68_1' <Predicate = (!icmp_ln68)> <Delay = 0.00>
+ST_1 : Operation 67 [1/1] (0.00ns)   --->   "%zext_ln68_1 = zext i9 %or_ln68_1" [fft.cpp:68]   --->   Operation 67 'zext' 'zext_ln68_1' <Predicate = (!icmp_ln68)> <Delay = 0.00>
+ST_1 : Operation 68 [1/1] (0.00ns)   --->   "%tmp = partselect i8 @_ssdm_op_PartSelect.i8.i9.i32.i32, i9 %or_ln68_1, i32 1, i32 8" [fft.cpp:74]   --->   Operation 68 'partselect' 'tmp' <Predicate = (!icmp_ln68)> <Delay = 0.00>
+ST_1 : Operation 69 [1/1] (0.00ns)   --->   "%and_ln = bitconcatenate i9 @_ssdm_op_BitConcatenate.i9.i8.i1, i8 %tmp, i1 0" [fft.cpp:74]   --->   Operation 69 'bitconcatenate' 'and_ln' <Predicate = (!icmp_ln68)> <Delay = 0.00>
+ST_1 : Operation 70 [1/1] (0.00ns)   --->   "%zext_ln74 = zext i9 %and_ln" [fft.cpp:74]   --->   Operation 70 'zext' 'zext_ln74' <Predicate = (!icmp_ln68)> <Delay = 0.00>
+ST_1 : Operation 71 [1/1] (1.82ns)   --->   "%add_ln74_1 = add i10 %zext_ln74, i10 %zext_ln68_1" [fft.cpp:74]   --->   Operation 71 'add' 'add_ln74_1' <Predicate = (!icmp_ln68)> <Delay = 1.82> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 1.82> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 72 [1/1] (0.00ns)   --->   "%lshr_ln77_3 = partselect i8 @_ssdm_op_PartSelect.i8.i10.i32.i32, i10 %add_ln74_1, i32 2, i32 9" [fft.cpp:77]   --->   Operation 72 'partselect' 'lshr_ln77_3' <Predicate = (!icmp_ln68)> <Delay = 0.00>
+ST_1 : Operation 73 [1/1] (1.73ns)   --->   "%add_ln68 = add i10 %i_2_0_load, i10 4" [fft.cpp:68]   --->   Operation 73 'add' 'add_ln68' <Predicate = (!icmp_ln68)> <Delay = 1.73> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 1.73> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+
+State 2 <SV = 1> <Delay = 3.25>
+ST_2 : Operation 74 [1/2] (3.25ns)   --->   "%buf1_R_2_load = load i8 %buf1_R_2_addr_2" [fft.cpp:77]   --->   Operation 74 'load' 'buf1_R_2_load' <Predicate = true> <Delay = 3.25> <CoreInst = "RAM">   --->   Core 82 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 256> <RAM>
+ST_2 : Operation 75 [1/2] (3.25ns)   --->   "%buf1_I_2_load = load i8 %buf1_I_2_addr_2" [fft.cpp:78]   --->   Operation 75 'load' 'buf1_I_2_load' <Predicate = true> <Delay = 3.25> <CoreInst = "RAM">   --->   Core 82 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 256> <RAM>
+ST_2 : Operation 76 [1/1] (0.00ns)   --->   "%zext_ln77_3 = zext i8 %lshr_ln77_2" [fft.cpp:77]   --->   Operation 76 'zext' 'zext_ln77_3' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 77 [1/1] (0.00ns)   --->   "%buf1_R_3_addr_2 = getelementptr i32 %buf1_R_3, i64 0, i64 %zext_ln77_3" [fft.cpp:77]   --->   Operation 77 'getelementptr' 'buf1_R_3_addr_2' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 78 [2/2] (3.25ns)   --->   "%buf1_R_3_load = load i8 %buf1_R_3_addr_2" [fft.cpp:77]   --->   Operation 78 'load' 'buf1_R_3_load' <Predicate = true> <Delay = 3.25> <CoreInst = "RAM">   --->   Core 82 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 256> <RAM>
+ST_2 : Operation 79 [1/1] (0.00ns)   --->   "%buf1_I_3_addr_2 = getelementptr i32 %buf1_I_3, i64 0, i64 %zext_ln77_3" [fft.cpp:78]   --->   Operation 79 'getelementptr' 'buf1_I_3_addr_2' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 80 [2/2] (3.25ns)   --->   "%buf1_I_3_load = load i8 %buf1_I_3_addr_2" [fft.cpp:78]   --->   Operation 80 'load' 'buf1_I_3_load' <Predicate = true> <Delay = 3.25> <CoreInst = "RAM">   --->   Core 82 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 256> <RAM>
+ST_2 : Operation 81 [1/2] (3.25ns)   --->   "%buf1_R_2_load_1 = load i8 %buf1_R_2_addr_3" [fft.cpp:77]   --->   Operation 81 'load' 'buf1_R_2_load_1' <Predicate = true> <Delay = 3.25> <CoreInst = "RAM">   --->   Core 82 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 256> <RAM>
+ST_2 : Operation 82 [1/2] (3.25ns)   --->   "%buf1_I_2_load_1 = load i8 %buf1_I_2_addr_3" [fft.cpp:78]   --->   Operation 82 'load' 'buf1_I_2_load_1' <Predicate = true> <Delay = 3.25> <CoreInst = "RAM">   --->   Core 82 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 256> <RAM>
+ST_2 : Operation 83 [1/1] (1.73ns)   --->   "%add_ln75 = add i10 %add_ln74_1, i10 2" [fft.cpp:75]   --->   Operation 83 'add' 'add_ln75' <Predicate = true> <Delay = 1.73> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 1.73> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 84 [1/1] (0.00ns)   --->   "%lshr_ln = partselect i8 @_ssdm_op_PartSelect.i8.i10.i32.i32, i10 %add_ln75, i32 2, i32 9" [fft.cpp:79]   --->   Operation 84 'partselect' 'lshr_ln' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 85 [1/1] (1.58ns)   --->   "%store_ln68 = store i10 %add_ln68, i10 %i_2_0" [fft.cpp:68]   --->   Operation 85 'store' 'store_ln68' <Predicate = true> <Delay = 1.58>
+
+State 3 <SV = 2> <Delay = 3.25>
+ST_3 : Operation 86 [8/8] (2.56ns)   --->   "%mul23_i1 = fmul i32 %buf1_I_2_load, i32 -0" [fft.cpp:82]   --->   Operation 86 'fmul' 'mul23_i1' <Predicate = true> <Delay = 2.56> <CoreInst = "FMul_maxdsp">   --->   Core 30 'FMul_maxdsp' <Latency = 7> <II = 1> <Delay = 2.56> <FuncUnit> <Opcode : 'fmul'> <InPorts = 2> <OutPorts = 1>
+ST_3 : Operation 87 [8/8] (2.56ns)   --->   "%mul25_i1 = fmul i32 %buf1_R_2_load, i32 -0" [fft.cpp:83]   --->   Operation 87 'fmul' 'mul25_i1' <Predicate = true> <Delay = 2.56> <CoreInst = "FMul_maxdsp">   --->   Core 30 'FMul_maxdsp' <Latency = 7> <II = 1> <Delay = 2.56> <FuncUnit> <Opcode : 'fmul'> <InPorts = 2> <OutPorts = 1>
+ST_3 : Operation 88 [1/2] (3.25ns)   --->   "%buf1_R_3_load = load i8 %buf1_R_3_addr_2" [fft.cpp:77]   --->   Operation 88 'load' 'buf1_R_3_load' <Predicate = true> <Delay = 3.25> <CoreInst = "RAM">   --->   Core 82 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 256> <RAM>
+ST_3 : Operation 89 [1/2] (3.25ns)   --->   "%buf1_I_3_load = load i8 %buf1_I_3_addr_2" [fft.cpp:78]   --->   Operation 89 'load' 'buf1_I_3_load' <Predicate = true> <Delay = 3.25> <CoreInst = "RAM">   --->   Core 82 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 256> <RAM>
+ST_3 : Operation 90 [8/8] (2.56ns)   --->   "%mul23_i1_2 = fmul i32 %buf1_I_2_load_1, i32 -0" [fft.cpp:82]   --->   Operation 90 'fmul' 'mul23_i1_2' <Predicate = true> <Delay = 2.56> <CoreInst = "FMul_maxdsp">   --->   Core 30 'FMul_maxdsp' <Latency = 7> <II = 1> <Delay = 2.56> <FuncUnit> <Opcode : 'fmul'> <InPorts = 2> <OutPorts = 1>
+ST_3 : Operation 91 [8/8] (2.56ns)   --->   "%mul25_i1_2 = fmul i32 %buf1_R_2_load_1, i32 -0" [fft.cpp:83]   --->   Operation 91 'fmul' 'mul25_i1_2' <Predicate = true> <Delay = 2.56> <CoreInst = "FMul_maxdsp">   --->   Core 30 'FMul_maxdsp' <Latency = 7> <II = 1> <Delay = 2.56> <FuncUnit> <Opcode : 'fmul'> <InPorts = 2> <OutPorts = 1>
+ST_3 : Operation 92 [1/1] (0.00ns)   --->   "%zext_ln79 = zext i8 %lshr_ln" [fft.cpp:79]   --->   Operation 92 'zext' 'zext_ln79' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 93 [1/1] (0.00ns)   --->   "%buf1_R_3_addr_3 = getelementptr i32 %buf1_R_3, i64 0, i64 %zext_ln79" [fft.cpp:79]   --->   Operation 93 'getelementptr' 'buf1_R_3_addr_3' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 94 [2/2] (3.25ns)   --->   "%buf1_R_3_load_1 = load i8 %buf1_R_3_addr_3" [fft.cpp:79]   --->   Operation 94 'load' 'buf1_R_3_load_1' <Predicate = true> <Delay = 3.25> <CoreInst = "RAM">   --->   Core 82 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 256> <RAM>
+ST_3 : Operation 95 [1/1] (0.00ns)   --->   "%buf1_I_3_addr_3 = getelementptr i32 %buf1_I_3, i64 0, i64 %zext_ln79" [fft.cpp:80]   --->   Operation 95 'getelementptr' 'buf1_I_3_addr_3' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 96 [2/2] (3.25ns)   --->   "%buf1_I_3_load_1 = load i8 %buf1_I_3_addr_3" [fft.cpp:80]   --->   Operation 96 'load' 'buf1_I_3_load_1' <Predicate = true> <Delay = 3.25> <CoreInst = "RAM">   --->   Core 82 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 256> <RAM>
+
+State 4 <SV = 3> <Delay = 3.25>
+ST_4 : Operation 97 [7/8] (2.56ns)   --->   "%mul23_i1 = fmul i32 %buf1_I_2_load, i32 -0" [fft.cpp:82]   --->   Operation 97 'fmul' 'mul23_i1' <Predicate = true> <Delay = 2.56> <CoreInst = "FMul_maxdsp">   --->   Core 30 'FMul_maxdsp' <Latency = 7> <II = 1> <Delay = 2.56> <FuncUnit> <Opcode : 'fmul'> <InPorts = 2> <OutPorts = 1>
+ST_4 : Operation 98 [7/8] (2.56ns)   --->   "%mul25_i1 = fmul i32 %buf1_R_2_load, i32 -0" [fft.cpp:83]   --->   Operation 98 'fmul' 'mul25_i1' <Predicate = true> <Delay = 2.56> <CoreInst = "FMul_maxdsp">   --->   Core 30 'FMul_maxdsp' <Latency = 7> <II = 1> <Delay = 2.56> <FuncUnit> <Opcode : 'fmul'> <InPorts = 2> <OutPorts = 1>
+ST_4 : Operation 99 [8/8] (2.56ns)   --->   "%mul22_i_1 = fmul i32 %buf1_R_3_load, i32 -0" [fft.cpp:82]   --->   Operation 99 'fmul' 'mul22_i_1' <Predicate = true> <Delay = 2.56> <CoreInst = "FMul_maxdsp">   --->   Core 30 'FMul_maxdsp' <Latency = 7> <II = 1> <Delay = 2.56> <FuncUnit> <Opcode : 'fmul'> <InPorts = 2> <OutPorts = 1>
+ST_4 : Operation 100 [1/1] (0.00ns)   --->   "%bitcast_ln82 = bitcast i32 %buf1_I_3_load" [fft.cpp:82]   --->   Operation 100 'bitcast' 'bitcast_ln82' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 101 [1/1] (0.99ns)   --->   "%xor_ln82 = xor i32 %bitcast_ln82, i32 2147483648" [fft.cpp:82]   --->   Operation 101 'xor' 'xor_ln82' <Predicate = true> <Delay = 0.99> <CoreInst = "LogicGate">   --->   Core 74 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.99> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_4 : Operation 102 [8/8] (2.56ns)   --->   "%mul24_i_1 = fmul i32 %buf1_I_3_load, i32 -0" [fft.cpp:83]   --->   Operation 102 'fmul' 'mul24_i_1' <Predicate = true> <Delay = 2.56> <CoreInst = "FMul_maxdsp">   --->   Core 30 'FMul_maxdsp' <Latency = 7> <II = 1> <Delay = 2.56> <FuncUnit> <Opcode : 'fmul'> <InPorts = 2> <OutPorts = 1>
+ST_4 : Operation 103 [1/1] (0.00ns)   --->   "%bitcast_ln83 = bitcast i32 %buf1_R_3_load" [fft.cpp:83]   --->   Operation 103 'bitcast' 'bitcast_ln83' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 104 [1/1] (0.99ns)   --->   "%xor_ln83 = xor i32 %bitcast_ln83, i32 2147483648" [fft.cpp:83]   --->   Operation 104 'xor' 'xor_ln83' <Predicate = true> <Delay = 0.99> <CoreInst = "LogicGate">   --->   Core 74 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.99> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_4 : Operation 105 [7/8] (2.56ns)   --->   "%mul23_i1_2 = fmul i32 %buf1_I_2_load_1, i32 -0" [fft.cpp:82]   --->   Operation 105 'fmul' 'mul23_i1_2' <Predicate = true> <Delay = 2.56> <CoreInst = "FMul_maxdsp">   --->   Core 30 'FMul_maxdsp' <Latency = 7> <II = 1> <Delay = 2.56> <FuncUnit> <Opcode : 'fmul'> <InPorts = 2> <OutPorts = 1>
+ST_4 : Operation 106 [7/8] (2.56ns)   --->   "%mul25_i1_2 = fmul i32 %buf1_R_2_load_1, i32 -0" [fft.cpp:83]   --->   Operation 106 'fmul' 'mul25_i1_2' <Predicate = true> <Delay = 2.56> <CoreInst = "FMul_maxdsp">   --->   Core 30 'FMul_maxdsp' <Latency = 7> <II = 1> <Delay = 2.56> <FuncUnit> <Opcode : 'fmul'> <InPorts = 2> <OutPorts = 1>
+ST_4 : Operation 107 [1/2] (3.25ns)   --->   "%buf1_R_3_load_1 = load i8 %buf1_R_3_addr_3" [fft.cpp:79]   --->   Operation 107 'load' 'buf1_R_3_load_1' <Predicate = true> <Delay = 3.25> <CoreInst = "RAM">   --->   Core 82 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 256> <RAM>
+ST_4 : Operation 108 [1/2] (3.25ns)   --->   "%buf1_I_3_load_1 = load i8 %buf1_I_3_addr_3" [fft.cpp:80]   --->   Operation 108 'load' 'buf1_I_3_load_1' <Predicate = true> <Delay = 3.25> <CoreInst = "RAM">   --->   Core 82 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 256> <RAM>
+
+State 5 <SV = 4> <Delay = 2.56>
+ST_5 : Operation 109 [6/8] (2.56ns)   --->   "%mul23_i1 = fmul i32 %buf1_I_2_load, i32 -0" [fft.cpp:82]   --->   Operation 109 'fmul' 'mul23_i1' <Predicate = true> <Delay = 2.56> <CoreInst = "FMul_maxdsp">   --->   Core 30 'FMul_maxdsp' <Latency = 7> <II = 1> <Delay = 2.56> <FuncUnit> <Opcode : 'fmul'> <InPorts = 2> <OutPorts = 1>
+ST_5 : Operation 110 [6/8] (2.56ns)   --->   "%mul25_i1 = fmul i32 %buf1_R_2_load, i32 -0" [fft.cpp:83]   --->   Operation 110 'fmul' 'mul25_i1' <Predicate = true> <Delay = 2.56> <CoreInst = "FMul_maxdsp">   --->   Core 30 'FMul_maxdsp' <Latency = 7> <II = 1> <Delay = 2.56> <FuncUnit> <Opcode : 'fmul'> <InPorts = 2> <OutPorts = 1>
+ST_5 : Operation 111 [7/8] (2.56ns)   --->   "%mul22_i_1 = fmul i32 %buf1_R_3_load, i32 -0" [fft.cpp:82]   --->   Operation 111 'fmul' 'mul22_i_1' <Predicate = true> <Delay = 2.56> <CoreInst = "FMul_maxdsp">   --->   Core 30 'FMul_maxdsp' <Latency = 7> <II = 1> <Delay = 2.56> <FuncUnit> <Opcode : 'fmul'> <InPorts = 2> <OutPorts = 1>
+ST_5 : Operation 112 [7/8] (2.56ns)   --->   "%mul24_i_1 = fmul i32 %buf1_I_3_load, i32 -0" [fft.cpp:83]   --->   Operation 112 'fmul' 'mul24_i_1' <Predicate = true> <Delay = 2.56> <CoreInst = "FMul_maxdsp">   --->   Core 30 'FMul_maxdsp' <Latency = 7> <II = 1> <Delay = 2.56> <FuncUnit> <Opcode : 'fmul'> <InPorts = 2> <OutPorts = 1>
+ST_5 : Operation 113 [6/8] (2.56ns)   --->   "%mul23_i1_2 = fmul i32 %buf1_I_2_load_1, i32 -0" [fft.cpp:82]   --->   Operation 113 'fmul' 'mul23_i1_2' <Predicate = true> <Delay = 2.56> <CoreInst = "FMul_maxdsp">   --->   Core 30 'FMul_maxdsp' <Latency = 7> <II = 1> <Delay = 2.56> <FuncUnit> <Opcode : 'fmul'> <InPorts = 2> <OutPorts = 1>
+ST_5 : Operation 114 [6/8] (2.56ns)   --->   "%mul25_i1_2 = fmul i32 %buf1_R_2_load_1, i32 -0" [fft.cpp:83]   --->   Operation 114 'fmul' 'mul25_i1_2' <Predicate = true> <Delay = 2.56> <CoreInst = "FMul_maxdsp">   --->   Core 30 'FMul_maxdsp' <Latency = 7> <II = 1> <Delay = 2.56> <FuncUnit> <Opcode : 'fmul'> <InPorts = 2> <OutPorts = 1>
+ST_5 : Operation 115 [8/8] (2.56ns)   --->   "%mul22_i_3 = fmul i32 %buf1_R_3_load_1, i32 -0" [fft.cpp:82]   --->   Operation 115 'fmul' 'mul22_i_3' <Predicate = true> <Delay = 2.56> <CoreInst = "FMul_maxdsp">   --->   Core 30 'FMul_maxdsp' <Latency = 7> <II = 1> <Delay = 2.56> <FuncUnit> <Opcode : 'fmul'> <InPorts = 2> <OutPorts = 1>
+ST_5 : Operation 116 [1/1] (0.00ns)   --->   "%bitcast_ln82_2 = bitcast i32 %buf1_I_3_load_1" [fft.cpp:82]   --->   Operation 116 'bitcast' 'bitcast_ln82_2' <Predicate = true> <Delay = 0.00>
+ST_5 : Operation 117 [1/1] (0.99ns)   --->   "%xor_ln82_1 = xor i32 %bitcast_ln82_2, i32 2147483648" [fft.cpp:82]   --->   Operation 117 'xor' 'xor_ln82_1' <Predicate = true> <Delay = 0.99> <CoreInst = "LogicGate">   --->   Core 74 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.99> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_5 : Operation 118 [8/8] (2.56ns)   --->   "%mul24_i_3 = fmul i32 %buf1_I_3_load_1, i32 -0" [fft.cpp:83]   --->   Operation 118 'fmul' 'mul24_i_3' <Predicate = true> <Delay = 2.56> <CoreInst = "FMul_maxdsp">   --->   Core 30 'FMul_maxdsp' <Latency = 7> <II = 1> <Delay = 2.56> <FuncUnit> <Opcode : 'fmul'> <InPorts = 2> <OutPorts = 1>
+ST_5 : Operation 119 [1/1] (0.00ns)   --->   "%bitcast_ln83_2 = bitcast i32 %buf1_R_3_load_1" [fft.cpp:83]   --->   Operation 119 'bitcast' 'bitcast_ln83_2' <Predicate = true> <Delay = 0.00>
+ST_5 : Operation 120 [1/1] (0.99ns)   --->   "%xor_ln83_1 = xor i32 %bitcast_ln83_2, i32 2147483648" [fft.cpp:83]   --->   Operation 120 'xor' 'xor_ln83_1' <Predicate = true> <Delay = 0.99> <CoreInst = "LogicGate">   --->   Core 74 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.99> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+
+State 6 <SV = 5> <Delay = 2.56>
+ST_6 : Operation 121 [5/8] (2.56ns)   --->   "%mul23_i1 = fmul i32 %buf1_I_2_load, i32 -0" [fft.cpp:82]   --->   Operation 121 'fmul' 'mul23_i1' <Predicate = true> <Delay = 2.56> <CoreInst = "FMul_maxdsp">   --->   Core 30 'FMul_maxdsp' <Latency = 7> <II = 1> <Delay = 2.56> <FuncUnit> <Opcode : 'fmul'> <InPorts = 2> <OutPorts = 1>
+ST_6 : Operation 122 [5/8] (2.56ns)   --->   "%mul25_i1 = fmul i32 %buf1_R_2_load, i32 -0" [fft.cpp:83]   --->   Operation 122 'fmul' 'mul25_i1' <Predicate = true> <Delay = 2.56> <CoreInst = "FMul_maxdsp">   --->   Core 30 'FMul_maxdsp' <Latency = 7> <II = 1> <Delay = 2.56> <FuncUnit> <Opcode : 'fmul'> <InPorts = 2> <OutPorts = 1>
+ST_6 : Operation 123 [6/8] (2.56ns)   --->   "%mul22_i_1 = fmul i32 %buf1_R_3_load, i32 -0" [fft.cpp:82]   --->   Operation 123 'fmul' 'mul22_i_1' <Predicate = true> <Delay = 2.56> <CoreInst = "FMul_maxdsp">   --->   Core 30 'FMul_maxdsp' <Latency = 7> <II = 1> <Delay = 2.56> <FuncUnit> <Opcode : 'fmul'> <InPorts = 2> <OutPorts = 1>
+ST_6 : Operation 124 [6/8] (2.56ns)   --->   "%mul24_i_1 = fmul i32 %buf1_I_3_load, i32 -0" [fft.cpp:83]   --->   Operation 124 'fmul' 'mul24_i_1' <Predicate = true> <Delay = 2.56> <CoreInst = "FMul_maxdsp">   --->   Core 30 'FMul_maxdsp' <Latency = 7> <II = 1> <Delay = 2.56> <FuncUnit> <Opcode : 'fmul'> <InPorts = 2> <OutPorts = 1>
+ST_6 : Operation 125 [5/8] (2.56ns)   --->   "%mul23_i1_2 = fmul i32 %buf1_I_2_load_1, i32 -0" [fft.cpp:82]   --->   Operation 125 'fmul' 'mul23_i1_2' <Predicate = true> <Delay = 2.56> <CoreInst = "FMul_maxdsp">   --->   Core 30 'FMul_maxdsp' <Latency = 7> <II = 1> <Delay = 2.56> <FuncUnit> <Opcode : 'fmul'> <InPorts = 2> <OutPorts = 1>
+ST_6 : Operation 126 [5/8] (2.56ns)   --->   "%mul25_i1_2 = fmul i32 %buf1_R_2_load_1, i32 -0" [fft.cpp:83]   --->   Operation 126 'fmul' 'mul25_i1_2' <Predicate = true> <Delay = 2.56> <CoreInst = "FMul_maxdsp">   --->   Core 30 'FMul_maxdsp' <Latency = 7> <II = 1> <Delay = 2.56> <FuncUnit> <Opcode : 'fmul'> <InPorts = 2> <OutPorts = 1>
+ST_6 : Operation 127 [7/8] (2.56ns)   --->   "%mul22_i_3 = fmul i32 %buf1_R_3_load_1, i32 -0" [fft.cpp:82]   --->   Operation 127 'fmul' 'mul22_i_3' <Predicate = true> <Delay = 2.56> <CoreInst = "FMul_maxdsp">   --->   Core 30 'FMul_maxdsp' <Latency = 7> <II = 1> <Delay = 2.56> <FuncUnit> <Opcode : 'fmul'> <InPorts = 2> <OutPorts = 1>
+ST_6 : Operation 128 [7/8] (2.56ns)   --->   "%mul24_i_3 = fmul i32 %buf1_I_3_load_1, i32 -0" [fft.cpp:83]   --->   Operation 128 'fmul' 'mul24_i_3' <Predicate = true> <Delay = 2.56> <CoreInst = "FMul_maxdsp">   --->   Core 30 'FMul_maxdsp' <Latency = 7> <II = 1> <Delay = 2.56> <FuncUnit> <Opcode : 'fmul'> <InPorts = 2> <OutPorts = 1>
+
+State 7 <SV = 6> <Delay = 2.56>
+ST_7 : Operation 129 [4/8] (2.56ns)   --->   "%mul23_i1 = fmul i32 %buf1_I_2_load, i32 -0" [fft.cpp:82]   --->   Operation 129 'fmul' 'mul23_i1' <Predicate = true> <Delay = 2.56> <CoreInst = "FMul_maxdsp">   --->   Core 30 'FMul_maxdsp' <Latency = 7> <II = 1> <Delay = 2.56> <FuncUnit> <Opcode : 'fmul'> <InPorts = 2> <OutPorts = 1>
+ST_7 : Operation 130 [4/8] (2.56ns)   --->   "%mul25_i1 = fmul i32 %buf1_R_2_load, i32 -0" [fft.cpp:83]   --->   Operation 130 'fmul' 'mul25_i1' <Predicate = true> <Delay = 2.56> <CoreInst = "FMul_maxdsp">   --->   Core 30 'FMul_maxdsp' <Latency = 7> <II = 1> <Delay = 2.56> <FuncUnit> <Opcode : 'fmul'> <InPorts = 2> <OutPorts = 1>
+ST_7 : Operation 131 [5/8] (2.56ns)   --->   "%mul22_i_1 = fmul i32 %buf1_R_3_load, i32 -0" [fft.cpp:82]   --->   Operation 131 'fmul' 'mul22_i_1' <Predicate = true> <Delay = 2.56> <CoreInst = "FMul_maxdsp">   --->   Core 30 'FMul_maxdsp' <Latency = 7> <II = 1> <Delay = 2.56> <FuncUnit> <Opcode : 'fmul'> <InPorts = 2> <OutPorts = 1>
+ST_7 : Operation 132 [5/8] (2.56ns)   --->   "%mul24_i_1 = fmul i32 %buf1_I_3_load, i32 -0" [fft.cpp:83]   --->   Operation 132 'fmul' 'mul24_i_1' <Predicate = true> <Delay = 2.56> <CoreInst = "FMul_maxdsp">   --->   Core 30 'FMul_maxdsp' <Latency = 7> <II = 1> <Delay = 2.56> <FuncUnit> <Opcode : 'fmul'> <InPorts = 2> <OutPorts = 1>
+ST_7 : Operation 133 [4/8] (2.56ns)   --->   "%mul23_i1_2 = fmul i32 %buf1_I_2_load_1, i32 -0" [fft.cpp:82]   --->   Operation 133 'fmul' 'mul23_i1_2' <Predicate = true> <Delay = 2.56> <CoreInst = "FMul_maxdsp">   --->   Core 30 'FMul_maxdsp' <Latency = 7> <II = 1> <Delay = 2.56> <FuncUnit> <Opcode : 'fmul'> <InPorts = 2> <OutPorts = 1>
+ST_7 : Operation 134 [4/8] (2.56ns)   --->   "%mul25_i1_2 = fmul i32 %buf1_R_2_load_1, i32 -0" [fft.cpp:83]   --->   Operation 134 'fmul' 'mul25_i1_2' <Predicate = true> <Delay = 2.56> <CoreInst = "FMul_maxdsp">   --->   Core 30 'FMul_maxdsp' <Latency = 7> <II = 1> <Delay = 2.56> <FuncUnit> <Opcode : 'fmul'> <InPorts = 2> <OutPorts = 1>
+ST_7 : Operation 135 [6/8] (2.56ns)   --->   "%mul22_i_3 = fmul i32 %buf1_R_3_load_1, i32 -0" [fft.cpp:82]   --->   Operation 135 'fmul' 'mul22_i_3' <Predicate = true> <Delay = 2.56> <CoreInst = "FMul_maxdsp">   --->   Core 30 'FMul_maxdsp' <Latency = 7> <II = 1> <Delay = 2.56> <FuncUnit> <Opcode : 'fmul'> <InPorts = 2> <OutPorts = 1>
+ST_7 : Operation 136 [6/8] (2.56ns)   --->   "%mul24_i_3 = fmul i32 %buf1_I_3_load_1, i32 -0" [fft.cpp:83]   --->   Operation 136 'fmul' 'mul24_i_3' <Predicate = true> <Delay = 2.56> <CoreInst = "FMul_maxdsp">   --->   Core 30 'FMul_maxdsp' <Latency = 7> <II = 1> <Delay = 2.56> <FuncUnit> <Opcode : 'fmul'> <InPorts = 2> <OutPorts = 1>
+
+State 8 <SV = 7> <Delay = 2.56>
+ST_8 : Operation 137 [3/8] (2.56ns)   --->   "%mul23_i1 = fmul i32 %buf1_I_2_load, i32 -0" [fft.cpp:82]   --->   Operation 137 'fmul' 'mul23_i1' <Predicate = true> <Delay = 2.56> <CoreInst = "FMul_maxdsp">   --->   Core 30 'FMul_maxdsp' <Latency = 7> <II = 1> <Delay = 2.56> <FuncUnit> <Opcode : 'fmul'> <InPorts = 2> <OutPorts = 1>
+ST_8 : Operation 138 [3/8] (2.56ns)   --->   "%mul25_i1 = fmul i32 %buf1_R_2_load, i32 -0" [fft.cpp:83]   --->   Operation 138 'fmul' 'mul25_i1' <Predicate = true> <Delay = 2.56> <CoreInst = "FMul_maxdsp">   --->   Core 30 'FMul_maxdsp' <Latency = 7> <II = 1> <Delay = 2.56> <FuncUnit> <Opcode : 'fmul'> <InPorts = 2> <OutPorts = 1>
+ST_8 : Operation 139 [4/8] (2.56ns)   --->   "%mul22_i_1 = fmul i32 %buf1_R_3_load, i32 -0" [fft.cpp:82]   --->   Operation 139 'fmul' 'mul22_i_1' <Predicate = true> <Delay = 2.56> <CoreInst = "FMul_maxdsp">   --->   Core 30 'FMul_maxdsp' <Latency = 7> <II = 1> <Delay = 2.56> <FuncUnit> <Opcode : 'fmul'> <InPorts = 2> <OutPorts = 1>
+ST_8 : Operation 140 [4/8] (2.56ns)   --->   "%mul24_i_1 = fmul i32 %buf1_I_3_load, i32 -0" [fft.cpp:83]   --->   Operation 140 'fmul' 'mul24_i_1' <Predicate = true> <Delay = 2.56> <CoreInst = "FMul_maxdsp">   --->   Core 30 'FMul_maxdsp' <Latency = 7> <II = 1> <Delay = 2.56> <FuncUnit> <Opcode : 'fmul'> <InPorts = 2> <OutPorts = 1>
+ST_8 : Operation 141 [3/8] (2.56ns)   --->   "%mul23_i1_2 = fmul i32 %buf1_I_2_load_1, i32 -0" [fft.cpp:82]   --->   Operation 141 'fmul' 'mul23_i1_2' <Predicate = true> <Delay = 2.56> <CoreInst = "FMul_maxdsp">   --->   Core 30 'FMul_maxdsp' <Latency = 7> <II = 1> <Delay = 2.56> <FuncUnit> <Opcode : 'fmul'> <InPorts = 2> <OutPorts = 1>
+ST_8 : Operation 142 [3/8] (2.56ns)   --->   "%mul25_i1_2 = fmul i32 %buf1_R_2_load_1, i32 -0" [fft.cpp:83]   --->   Operation 142 'fmul' 'mul25_i1_2' <Predicate = true> <Delay = 2.56> <CoreInst = "FMul_maxdsp">   --->   Core 30 'FMul_maxdsp' <Latency = 7> <II = 1> <Delay = 2.56> <FuncUnit> <Opcode : 'fmul'> <InPorts = 2> <OutPorts = 1>
+ST_8 : Operation 143 [5/8] (2.56ns)   --->   "%mul22_i_3 = fmul i32 %buf1_R_3_load_1, i32 -0" [fft.cpp:82]   --->   Operation 143 'fmul' 'mul22_i_3' <Predicate = true> <Delay = 2.56> <CoreInst = "FMul_maxdsp">   --->   Core 30 'FMul_maxdsp' <Latency = 7> <II = 1> <Delay = 2.56> <FuncUnit> <Opcode : 'fmul'> <InPorts = 2> <OutPorts = 1>
+ST_8 : Operation 144 [5/8] (2.56ns)   --->   "%mul24_i_3 = fmul i32 %buf1_I_3_load_1, i32 -0" [fft.cpp:83]   --->   Operation 144 'fmul' 'mul24_i_3' <Predicate = true> <Delay = 2.56> <CoreInst = "FMul_maxdsp">   --->   Core 30 'FMul_maxdsp' <Latency = 7> <II = 1> <Delay = 2.56> <FuncUnit> <Opcode : 'fmul'> <InPorts = 2> <OutPorts = 1>
+
+State 9 <SV = 8> <Delay = 2.56>
+ST_9 : Operation 145 [2/8] (2.56ns)   --->   "%mul23_i1 = fmul i32 %buf1_I_2_load, i32 -0" [fft.cpp:82]   --->   Operation 145 'fmul' 'mul23_i1' <Predicate = true> <Delay = 2.56> <CoreInst = "FMul_maxdsp">   --->   Core 30 'FMul_maxdsp' <Latency = 7> <II = 1> <Delay = 2.56> <FuncUnit> <Opcode : 'fmul'> <InPorts = 2> <OutPorts = 1>
+ST_9 : Operation 146 [2/8] (2.56ns)   --->   "%mul25_i1 = fmul i32 %buf1_R_2_load, i32 -0" [fft.cpp:83]   --->   Operation 146 'fmul' 'mul25_i1' <Predicate = true> <Delay = 2.56> <CoreInst = "FMul_maxdsp">   --->   Core 30 'FMul_maxdsp' <Latency = 7> <II = 1> <Delay = 2.56> <FuncUnit> <Opcode : 'fmul'> <InPorts = 2> <OutPorts = 1>
+ST_9 : Operation 147 [3/8] (2.56ns)   --->   "%mul22_i_1 = fmul i32 %buf1_R_3_load, i32 -0" [fft.cpp:82]   --->   Operation 147 'fmul' 'mul22_i_1' <Predicate = true> <Delay = 2.56> <CoreInst = "FMul_maxdsp">   --->   Core 30 'FMul_maxdsp' <Latency = 7> <II = 1> <Delay = 2.56> <FuncUnit> <Opcode : 'fmul'> <InPorts = 2> <OutPorts = 1>
+ST_9 : Operation 148 [3/8] (2.56ns)   --->   "%mul24_i_1 = fmul i32 %buf1_I_3_load, i32 -0" [fft.cpp:83]   --->   Operation 148 'fmul' 'mul24_i_1' <Predicate = true> <Delay = 2.56> <CoreInst = "FMul_maxdsp">   --->   Core 30 'FMul_maxdsp' <Latency = 7> <II = 1> <Delay = 2.56> <FuncUnit> <Opcode : 'fmul'> <InPorts = 2> <OutPorts = 1>
+ST_9 : Operation 149 [2/8] (2.56ns)   --->   "%mul23_i1_2 = fmul i32 %buf1_I_2_load_1, i32 -0" [fft.cpp:82]   --->   Operation 149 'fmul' 'mul23_i1_2' <Predicate = true> <Delay = 2.56> <CoreInst = "FMul_maxdsp">   --->   Core 30 'FMul_maxdsp' <Latency = 7> <II = 1> <Delay = 2.56> <FuncUnit> <Opcode : 'fmul'> <InPorts = 2> <OutPorts = 1>
+ST_9 : Operation 150 [2/8] (2.56ns)   --->   "%mul25_i1_2 = fmul i32 %buf1_R_2_load_1, i32 -0" [fft.cpp:83]   --->   Operation 150 'fmul' 'mul25_i1_2' <Predicate = true> <Delay = 2.56> <CoreInst = "FMul_maxdsp">   --->   Core 30 'FMul_maxdsp' <Latency = 7> <II = 1> <Delay = 2.56> <FuncUnit> <Opcode : 'fmul'> <InPorts = 2> <OutPorts = 1>
+ST_9 : Operation 151 [4/8] (2.56ns)   --->   "%mul22_i_3 = fmul i32 %buf1_R_3_load_1, i32 -0" [fft.cpp:82]   --->   Operation 151 'fmul' 'mul22_i_3' <Predicate = true> <Delay = 2.56> <CoreInst = "FMul_maxdsp">   --->   Core 30 'FMul_maxdsp' <Latency = 7> <II = 1> <Delay = 2.56> <FuncUnit> <Opcode : 'fmul'> <InPorts = 2> <OutPorts = 1>
+ST_9 : Operation 152 [4/8] (2.56ns)   --->   "%mul24_i_3 = fmul i32 %buf1_I_3_load_1, i32 -0" [fft.cpp:83]   --->   Operation 152 'fmul' 'mul24_i_3' <Predicate = true> <Delay = 2.56> <CoreInst = "FMul_maxdsp">   --->   Core 30 'FMul_maxdsp' <Latency = 7> <II = 1> <Delay = 2.56> <FuncUnit> <Opcode : 'fmul'> <InPorts = 2> <OutPorts = 1>
+
+State 10 <SV = 9> <Delay = 2.56>
+ST_10 : Operation 153 [1/8] (2.56ns)   --->   "%mul23_i1 = fmul i32 %buf1_I_2_load, i32 -0" [fft.cpp:82]   --->   Operation 153 'fmul' 'mul23_i1' <Predicate = true> <Delay = 2.56> <CoreInst = "FMul_maxdsp">   --->   Core 30 'FMul_maxdsp' <Latency = 7> <II = 1> <Delay = 2.56> <FuncUnit> <Opcode : 'fmul'> <InPorts = 2> <OutPorts = 1>
+ST_10 : Operation 154 [1/8] (2.56ns)   --->   "%mul25_i1 = fmul i32 %buf1_R_2_load, i32 -0" [fft.cpp:83]   --->   Operation 154 'fmul' 'mul25_i1' <Predicate = true> <Delay = 2.56> <CoreInst = "FMul_maxdsp">   --->   Core 30 'FMul_maxdsp' <Latency = 7> <II = 1> <Delay = 2.56> <FuncUnit> <Opcode : 'fmul'> <InPorts = 2> <OutPorts = 1>
+ST_10 : Operation 155 [2/8] (2.56ns)   --->   "%mul22_i_1 = fmul i32 %buf1_R_3_load, i32 -0" [fft.cpp:82]   --->   Operation 155 'fmul' 'mul22_i_1' <Predicate = true> <Delay = 2.56> <CoreInst = "FMul_maxdsp">   --->   Core 30 'FMul_maxdsp' <Latency = 7> <II = 1> <Delay = 2.56> <FuncUnit> <Opcode : 'fmul'> <InPorts = 2> <OutPorts = 1>
+ST_10 : Operation 156 [2/8] (2.56ns)   --->   "%mul24_i_1 = fmul i32 %buf1_I_3_load, i32 -0" [fft.cpp:83]   --->   Operation 156 'fmul' 'mul24_i_1' <Predicate = true> <Delay = 2.56> <CoreInst = "FMul_maxdsp">   --->   Core 30 'FMul_maxdsp' <Latency = 7> <II = 1> <Delay = 2.56> <FuncUnit> <Opcode : 'fmul'> <InPorts = 2> <OutPorts = 1>
+ST_10 : Operation 157 [1/8] (2.56ns)   --->   "%mul23_i1_2 = fmul i32 %buf1_I_2_load_1, i32 -0" [fft.cpp:82]   --->   Operation 157 'fmul' 'mul23_i1_2' <Predicate = true> <Delay = 2.56> <CoreInst = "FMul_maxdsp">   --->   Core 30 'FMul_maxdsp' <Latency = 7> <II = 1> <Delay = 2.56> <FuncUnit> <Opcode : 'fmul'> <InPorts = 2> <OutPorts = 1>
+ST_10 : Operation 158 [1/8] (2.56ns)   --->   "%mul25_i1_2 = fmul i32 %buf1_R_2_load_1, i32 -0" [fft.cpp:83]   --->   Operation 158 'fmul' 'mul25_i1_2' <Predicate = true> <Delay = 2.56> <CoreInst = "FMul_maxdsp">   --->   Core 30 'FMul_maxdsp' <Latency = 7> <II = 1> <Delay = 2.56> <FuncUnit> <Opcode : 'fmul'> <InPorts = 2> <OutPorts = 1>
+ST_10 : Operation 159 [3/8] (2.56ns)   --->   "%mul22_i_3 = fmul i32 %buf1_R_3_load_1, i32 -0" [fft.cpp:82]   --->   Operation 159 'fmul' 'mul22_i_3' <Predicate = true> <Delay = 2.56> <CoreInst = "FMul_maxdsp">   --->   Core 30 'FMul_maxdsp' <Latency = 7> <II = 1> <Delay = 2.56> <FuncUnit> <Opcode : 'fmul'> <InPorts = 2> <OutPorts = 1>
+ST_10 : Operation 160 [3/8] (2.56ns)   --->   "%mul24_i_3 = fmul i32 %buf1_I_3_load_1, i32 -0" [fft.cpp:83]   --->   Operation 160 'fmul' 'mul24_i_3' <Predicate = true> <Delay = 2.56> <CoreInst = "FMul_maxdsp">   --->   Core 30 'FMul_maxdsp' <Latency = 7> <II = 1> <Delay = 2.56> <FuncUnit> <Opcode : 'fmul'> <InPorts = 2> <OutPorts = 1>
+
+State 11 <SV = 10> <Delay = 3.12>
+ST_11 : Operation 161 [13/13] (3.12ns)   --->   "%t_R_s = fsub i32 %buf1_R_2_load, i32 %mul23_i1" [fft.cpp:82]   --->   Operation 161 'fsub' 't_R_s' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_11 : Operation 162 [13/13] (3.12ns)   --->   "%t_I_s = fadd i32 %buf1_I_2_load, i32 %mul25_i1" [fft.cpp:83]   --->   Operation 162 'fadd' 't_I_s' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_11 : Operation 163 [1/8] (2.56ns)   --->   "%mul22_i_1 = fmul i32 %buf1_R_3_load, i32 -0" [fft.cpp:82]   --->   Operation 163 'fmul' 'mul22_i_1' <Predicate = true> <Delay = 2.56> <CoreInst = "FMul_maxdsp">   --->   Core 30 'FMul_maxdsp' <Latency = 7> <II = 1> <Delay = 2.56> <FuncUnit> <Opcode : 'fmul'> <InPorts = 2> <OutPorts = 1>
+ST_11 : Operation 164 [1/8] (2.56ns)   --->   "%mul24_i_1 = fmul i32 %buf1_I_3_load, i32 -0" [fft.cpp:83]   --->   Operation 164 'fmul' 'mul24_i_1' <Predicate = true> <Delay = 2.56> <CoreInst = "FMul_maxdsp">   --->   Core 30 'FMul_maxdsp' <Latency = 7> <II = 1> <Delay = 2.56> <FuncUnit> <Opcode : 'fmul'> <InPorts = 2> <OutPorts = 1>
+ST_11 : Operation 165 [13/13] (3.12ns)   --->   "%t_R_1_2 = fsub i32 %buf1_R_2_load_1, i32 %mul23_i1_2" [fft.cpp:82]   --->   Operation 165 'fsub' 't_R_1_2' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_11 : Operation 166 [13/13] (3.12ns)   --->   "%t_I_1_2 = fadd i32 %buf1_I_2_load_1, i32 %mul25_i1_2" [fft.cpp:83]   --->   Operation 166 'fadd' 't_I_1_2' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_11 : Operation 167 [2/8] (2.56ns)   --->   "%mul22_i_3 = fmul i32 %buf1_R_3_load_1, i32 -0" [fft.cpp:82]   --->   Operation 167 'fmul' 'mul22_i_3' <Predicate = true> <Delay = 2.56> <CoreInst = "FMul_maxdsp">   --->   Core 30 'FMul_maxdsp' <Latency = 7> <II = 1> <Delay = 2.56> <FuncUnit> <Opcode : 'fmul'> <InPorts = 2> <OutPorts = 1>
+ST_11 : Operation 168 [2/8] (2.56ns)   --->   "%mul24_i_3 = fmul i32 %buf1_I_3_load_1, i32 -0" [fft.cpp:83]   --->   Operation 168 'fmul' 'mul24_i_3' <Predicate = true> <Delay = 2.56> <CoreInst = "FMul_maxdsp">   --->   Core 30 'FMul_maxdsp' <Latency = 7> <II = 1> <Delay = 2.56> <FuncUnit> <Opcode : 'fmul'> <InPorts = 2> <OutPorts = 1>
+
+State 12 <SV = 11> <Delay = 3.12>
+ST_12 : Operation 169 [12/13] (3.12ns)   --->   "%t_R_s = fsub i32 %buf1_R_2_load, i32 %mul23_i1" [fft.cpp:82]   --->   Operation 169 'fsub' 't_R_s' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_12 : Operation 170 [12/13] (3.12ns)   --->   "%t_I_s = fadd i32 %buf1_I_2_load, i32 %mul25_i1" [fft.cpp:83]   --->   Operation 170 'fadd' 't_I_s' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_12 : Operation 171 [1/1] (0.00ns)   --->   "%bitcast_ln82_1 = bitcast i32 %xor_ln82" [fft.cpp:82]   --->   Operation 171 'bitcast' 'bitcast_ln82_1' <Predicate = true> <Delay = 0.00>
+ST_12 : Operation 172 [13/13] (3.12ns)   --->   "%t_R_1_1 = fsub i32 %mul22_i_1, i32 %bitcast_ln82_1" [fft.cpp:82]   --->   Operation 172 'fsub' 't_R_1_1' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_12 : Operation 173 [1/1] (0.00ns)   --->   "%bitcast_ln83_1 = bitcast i32 %xor_ln83" [fft.cpp:83]   --->   Operation 173 'bitcast' 'bitcast_ln83_1' <Predicate = true> <Delay = 0.00>
+ST_12 : Operation 174 [13/13] (3.12ns)   --->   "%t_I_1_1 = fadd i32 %mul24_i_1, i32 %bitcast_ln83_1" [fft.cpp:83]   --->   Operation 174 'fadd' 't_I_1_1' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_12 : Operation 175 [12/13] (3.12ns)   --->   "%t_R_1_2 = fsub i32 %buf1_R_2_load_1, i32 %mul23_i1_2" [fft.cpp:82]   --->   Operation 175 'fsub' 't_R_1_2' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_12 : Operation 176 [12/13] (3.12ns)   --->   "%t_I_1_2 = fadd i32 %buf1_I_2_load_1, i32 %mul25_i1_2" [fft.cpp:83]   --->   Operation 176 'fadd' 't_I_1_2' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_12 : Operation 177 [1/8] (2.56ns)   --->   "%mul22_i_3 = fmul i32 %buf1_R_3_load_1, i32 -0" [fft.cpp:82]   --->   Operation 177 'fmul' 'mul22_i_3' <Predicate = true> <Delay = 2.56> <CoreInst = "FMul_maxdsp">   --->   Core 30 'FMul_maxdsp' <Latency = 7> <II = 1> <Delay = 2.56> <FuncUnit> <Opcode : 'fmul'> <InPorts = 2> <OutPorts = 1>
+ST_12 : Operation 178 [1/8] (2.56ns)   --->   "%mul24_i_3 = fmul i32 %buf1_I_3_load_1, i32 -0" [fft.cpp:83]   --->   Operation 178 'fmul' 'mul24_i_3' <Predicate = true> <Delay = 2.56> <CoreInst = "FMul_maxdsp">   --->   Core 30 'FMul_maxdsp' <Latency = 7> <II = 1> <Delay = 2.56> <FuncUnit> <Opcode : 'fmul'> <InPorts = 2> <OutPorts = 1>
+
+State 13 <SV = 12> <Delay = 3.12>
+ST_13 : Operation 179 [11/13] (3.12ns)   --->   "%t_R_s = fsub i32 %buf1_R_2_load, i32 %mul23_i1" [fft.cpp:82]   --->   Operation 179 'fsub' 't_R_s' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_13 : Operation 180 [11/13] (3.12ns)   --->   "%t_I_s = fadd i32 %buf1_I_2_load, i32 %mul25_i1" [fft.cpp:83]   --->   Operation 180 'fadd' 't_I_s' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_13 : Operation 181 [12/13] (3.12ns)   --->   "%t_R_1_1 = fsub i32 %mul22_i_1, i32 %bitcast_ln82_1" [fft.cpp:82]   --->   Operation 181 'fsub' 't_R_1_1' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_13 : Operation 182 [12/13] (3.12ns)   --->   "%t_I_1_1 = fadd i32 %mul24_i_1, i32 %bitcast_ln83_1" [fft.cpp:83]   --->   Operation 182 'fadd' 't_I_1_1' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_13 : Operation 183 [11/13] (3.12ns)   --->   "%t_R_1_2 = fsub i32 %buf1_R_2_load_1, i32 %mul23_i1_2" [fft.cpp:82]   --->   Operation 183 'fsub' 't_R_1_2' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_13 : Operation 184 [11/13] (3.12ns)   --->   "%t_I_1_2 = fadd i32 %buf1_I_2_load_1, i32 %mul25_i1_2" [fft.cpp:83]   --->   Operation 184 'fadd' 't_I_1_2' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_13 : Operation 185 [1/1] (0.00ns)   --->   "%bitcast_ln82_3 = bitcast i32 %xor_ln82_1" [fft.cpp:82]   --->   Operation 185 'bitcast' 'bitcast_ln82_3' <Predicate = true> <Delay = 0.00>
+ST_13 : Operation 186 [13/13] (3.12ns)   --->   "%t_R_1_3 = fsub i32 %mul22_i_3, i32 %bitcast_ln82_3" [fft.cpp:82]   --->   Operation 186 'fsub' 't_R_1_3' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_13 : Operation 187 [1/1] (0.00ns)   --->   "%bitcast_ln83_3 = bitcast i32 %xor_ln83_1" [fft.cpp:83]   --->   Operation 187 'bitcast' 'bitcast_ln83_3' <Predicate = true> <Delay = 0.00>
+ST_13 : Operation 188 [13/13] (3.12ns)   --->   "%t_I_1_3 = fadd i32 %mul24_i_3, i32 %bitcast_ln83_3" [fft.cpp:83]   --->   Operation 188 'fadd' 't_I_1_3' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+
+State 14 <SV = 13> <Delay = 3.12>
+ST_14 : Operation 189 [10/13] (3.12ns)   --->   "%t_R_s = fsub i32 %buf1_R_2_load, i32 %mul23_i1" [fft.cpp:82]   --->   Operation 189 'fsub' 't_R_s' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_14 : Operation 190 [10/13] (3.12ns)   --->   "%t_I_s = fadd i32 %buf1_I_2_load, i32 %mul25_i1" [fft.cpp:83]   --->   Operation 190 'fadd' 't_I_s' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_14 : Operation 191 [11/13] (3.12ns)   --->   "%t_R_1_1 = fsub i32 %mul22_i_1, i32 %bitcast_ln82_1" [fft.cpp:82]   --->   Operation 191 'fsub' 't_R_1_1' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_14 : Operation 192 [11/13] (3.12ns)   --->   "%t_I_1_1 = fadd i32 %mul24_i_1, i32 %bitcast_ln83_1" [fft.cpp:83]   --->   Operation 192 'fadd' 't_I_1_1' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_14 : Operation 193 [10/13] (3.12ns)   --->   "%t_R_1_2 = fsub i32 %buf1_R_2_load_1, i32 %mul23_i1_2" [fft.cpp:82]   --->   Operation 193 'fsub' 't_R_1_2' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_14 : Operation 194 [10/13] (3.12ns)   --->   "%t_I_1_2 = fadd i32 %buf1_I_2_load_1, i32 %mul25_i1_2" [fft.cpp:83]   --->   Operation 194 'fadd' 't_I_1_2' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_14 : Operation 195 [12/13] (3.12ns)   --->   "%t_R_1_3 = fsub i32 %mul22_i_3, i32 %bitcast_ln82_3" [fft.cpp:82]   --->   Operation 195 'fsub' 't_R_1_3' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_14 : Operation 196 [12/13] (3.12ns)   --->   "%t_I_1_3 = fadd i32 %mul24_i_3, i32 %bitcast_ln83_3" [fft.cpp:83]   --->   Operation 196 'fadd' 't_I_1_3' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+
+State 15 <SV = 14> <Delay = 3.12>
+ST_15 : Operation 197 [9/13] (3.12ns)   --->   "%t_R_s = fsub i32 %buf1_R_2_load, i32 %mul23_i1" [fft.cpp:82]   --->   Operation 197 'fsub' 't_R_s' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_15 : Operation 198 [9/13] (3.12ns)   --->   "%t_I_s = fadd i32 %buf1_I_2_load, i32 %mul25_i1" [fft.cpp:83]   --->   Operation 198 'fadd' 't_I_s' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_15 : Operation 199 [10/13] (3.12ns)   --->   "%t_R_1_1 = fsub i32 %mul22_i_1, i32 %bitcast_ln82_1" [fft.cpp:82]   --->   Operation 199 'fsub' 't_R_1_1' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_15 : Operation 200 [10/13] (3.12ns)   --->   "%t_I_1_1 = fadd i32 %mul24_i_1, i32 %bitcast_ln83_1" [fft.cpp:83]   --->   Operation 200 'fadd' 't_I_1_1' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_15 : Operation 201 [9/13] (3.12ns)   --->   "%t_R_1_2 = fsub i32 %buf1_R_2_load_1, i32 %mul23_i1_2" [fft.cpp:82]   --->   Operation 201 'fsub' 't_R_1_2' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_15 : Operation 202 [9/13] (3.12ns)   --->   "%t_I_1_2 = fadd i32 %buf1_I_2_load_1, i32 %mul25_i1_2" [fft.cpp:83]   --->   Operation 202 'fadd' 't_I_1_2' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_15 : Operation 203 [11/13] (3.12ns)   --->   "%t_R_1_3 = fsub i32 %mul22_i_3, i32 %bitcast_ln82_3" [fft.cpp:82]   --->   Operation 203 'fsub' 't_R_1_3' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_15 : Operation 204 [11/13] (3.12ns)   --->   "%t_I_1_3 = fadd i32 %mul24_i_3, i32 %bitcast_ln83_3" [fft.cpp:83]   --->   Operation 204 'fadd' 't_I_1_3' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+
+State 16 <SV = 15> <Delay = 3.12>
+ST_16 : Operation 205 [8/13] (3.12ns)   --->   "%t_R_s = fsub i32 %buf1_R_2_load, i32 %mul23_i1" [fft.cpp:82]   --->   Operation 205 'fsub' 't_R_s' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_16 : Operation 206 [8/13] (3.12ns)   --->   "%t_I_s = fadd i32 %buf1_I_2_load, i32 %mul25_i1" [fft.cpp:83]   --->   Operation 206 'fadd' 't_I_s' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_16 : Operation 207 [9/13] (3.12ns)   --->   "%t_R_1_1 = fsub i32 %mul22_i_1, i32 %bitcast_ln82_1" [fft.cpp:82]   --->   Operation 207 'fsub' 't_R_1_1' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_16 : Operation 208 [9/13] (3.12ns)   --->   "%t_I_1_1 = fadd i32 %mul24_i_1, i32 %bitcast_ln83_1" [fft.cpp:83]   --->   Operation 208 'fadd' 't_I_1_1' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_16 : Operation 209 [8/13] (3.12ns)   --->   "%t_R_1_2 = fsub i32 %buf1_R_2_load_1, i32 %mul23_i1_2" [fft.cpp:82]   --->   Operation 209 'fsub' 't_R_1_2' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_16 : Operation 210 [8/13] (3.12ns)   --->   "%t_I_1_2 = fadd i32 %buf1_I_2_load_1, i32 %mul25_i1_2" [fft.cpp:83]   --->   Operation 210 'fadd' 't_I_1_2' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_16 : Operation 211 [10/13] (3.12ns)   --->   "%t_R_1_3 = fsub i32 %mul22_i_3, i32 %bitcast_ln82_3" [fft.cpp:82]   --->   Operation 211 'fsub' 't_R_1_3' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_16 : Operation 212 [10/13] (3.12ns)   --->   "%t_I_1_3 = fadd i32 %mul24_i_3, i32 %bitcast_ln83_3" [fft.cpp:83]   --->   Operation 212 'fadd' 't_I_1_3' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+
+State 17 <SV = 16> <Delay = 3.12>
+ST_17 : Operation 213 [7/13] (3.12ns)   --->   "%t_R_s = fsub i32 %buf1_R_2_load, i32 %mul23_i1" [fft.cpp:82]   --->   Operation 213 'fsub' 't_R_s' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_17 : Operation 214 [7/13] (3.12ns)   --->   "%t_I_s = fadd i32 %buf1_I_2_load, i32 %mul25_i1" [fft.cpp:83]   --->   Operation 214 'fadd' 't_I_s' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_17 : Operation 215 [8/13] (3.12ns)   --->   "%t_R_1_1 = fsub i32 %mul22_i_1, i32 %bitcast_ln82_1" [fft.cpp:82]   --->   Operation 215 'fsub' 't_R_1_1' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_17 : Operation 216 [8/13] (3.12ns)   --->   "%t_I_1_1 = fadd i32 %mul24_i_1, i32 %bitcast_ln83_1" [fft.cpp:83]   --->   Operation 216 'fadd' 't_I_1_1' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_17 : Operation 217 [7/13] (3.12ns)   --->   "%t_R_1_2 = fsub i32 %buf1_R_2_load_1, i32 %mul23_i1_2" [fft.cpp:82]   --->   Operation 217 'fsub' 't_R_1_2' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_17 : Operation 218 [7/13] (3.12ns)   --->   "%t_I_1_2 = fadd i32 %buf1_I_2_load_1, i32 %mul25_i1_2" [fft.cpp:83]   --->   Operation 218 'fadd' 't_I_1_2' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_17 : Operation 219 [9/13] (3.12ns)   --->   "%t_R_1_3 = fsub i32 %mul22_i_3, i32 %bitcast_ln82_3" [fft.cpp:82]   --->   Operation 219 'fsub' 't_R_1_3' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_17 : Operation 220 [9/13] (3.12ns)   --->   "%t_I_1_3 = fadd i32 %mul24_i_3, i32 %bitcast_ln83_3" [fft.cpp:83]   --->   Operation 220 'fadd' 't_I_1_3' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+
+State 18 <SV = 17> <Delay = 3.12>
+ST_18 : Operation 221 [6/13] (3.12ns)   --->   "%t_R_s = fsub i32 %buf1_R_2_load, i32 %mul23_i1" [fft.cpp:82]   --->   Operation 221 'fsub' 't_R_s' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_18 : Operation 222 [6/13] (3.12ns)   --->   "%t_I_s = fadd i32 %buf1_I_2_load, i32 %mul25_i1" [fft.cpp:83]   --->   Operation 222 'fadd' 't_I_s' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_18 : Operation 223 [7/13] (3.12ns)   --->   "%t_R_1_1 = fsub i32 %mul22_i_1, i32 %bitcast_ln82_1" [fft.cpp:82]   --->   Operation 223 'fsub' 't_R_1_1' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_18 : Operation 224 [7/13] (3.12ns)   --->   "%t_I_1_1 = fadd i32 %mul24_i_1, i32 %bitcast_ln83_1" [fft.cpp:83]   --->   Operation 224 'fadd' 't_I_1_1' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_18 : Operation 225 [6/13] (3.12ns)   --->   "%t_R_1_2 = fsub i32 %buf1_R_2_load_1, i32 %mul23_i1_2" [fft.cpp:82]   --->   Operation 225 'fsub' 't_R_1_2' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_18 : Operation 226 [6/13] (3.12ns)   --->   "%t_I_1_2 = fadd i32 %buf1_I_2_load_1, i32 %mul25_i1_2" [fft.cpp:83]   --->   Operation 226 'fadd' 't_I_1_2' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_18 : Operation 227 [8/13] (3.12ns)   --->   "%t_R_1_3 = fsub i32 %mul22_i_3, i32 %bitcast_ln82_3" [fft.cpp:82]   --->   Operation 227 'fsub' 't_R_1_3' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_18 : Operation 228 [8/13] (3.12ns)   --->   "%t_I_1_3 = fadd i32 %mul24_i_3, i32 %bitcast_ln83_3" [fft.cpp:83]   --->   Operation 228 'fadd' 't_I_1_3' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+
+State 19 <SV = 18> <Delay = 3.12>
+ST_19 : Operation 229 [5/13] (3.12ns)   --->   "%t_R_s = fsub i32 %buf1_R_2_load, i32 %mul23_i1" [fft.cpp:82]   --->   Operation 229 'fsub' 't_R_s' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_19 : Operation 230 [5/13] (3.12ns)   --->   "%t_I_s = fadd i32 %buf1_I_2_load, i32 %mul25_i1" [fft.cpp:83]   --->   Operation 230 'fadd' 't_I_s' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_19 : Operation 231 [6/13] (3.12ns)   --->   "%t_R_1_1 = fsub i32 %mul22_i_1, i32 %bitcast_ln82_1" [fft.cpp:82]   --->   Operation 231 'fsub' 't_R_1_1' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_19 : Operation 232 [6/13] (3.12ns)   --->   "%t_I_1_1 = fadd i32 %mul24_i_1, i32 %bitcast_ln83_1" [fft.cpp:83]   --->   Operation 232 'fadd' 't_I_1_1' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_19 : Operation 233 [5/13] (3.12ns)   --->   "%t_R_1_2 = fsub i32 %buf1_R_2_load_1, i32 %mul23_i1_2" [fft.cpp:82]   --->   Operation 233 'fsub' 't_R_1_2' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_19 : Operation 234 [5/13] (3.12ns)   --->   "%t_I_1_2 = fadd i32 %buf1_I_2_load_1, i32 %mul25_i1_2" [fft.cpp:83]   --->   Operation 234 'fadd' 't_I_1_2' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_19 : Operation 235 [7/13] (3.12ns)   --->   "%t_R_1_3 = fsub i32 %mul22_i_3, i32 %bitcast_ln82_3" [fft.cpp:82]   --->   Operation 235 'fsub' 't_R_1_3' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_19 : Operation 236 [7/13] (3.12ns)   --->   "%t_I_1_3 = fadd i32 %mul24_i_3, i32 %bitcast_ln83_3" [fft.cpp:83]   --->   Operation 236 'fadd' 't_I_1_3' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+
+State 20 <SV = 19> <Delay = 3.12>
+ST_20 : Operation 237 [4/13] (3.12ns)   --->   "%t_R_s = fsub i32 %buf1_R_2_load, i32 %mul23_i1" [fft.cpp:82]   --->   Operation 237 'fsub' 't_R_s' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_20 : Operation 238 [4/13] (3.12ns)   --->   "%t_I_s = fadd i32 %buf1_I_2_load, i32 %mul25_i1" [fft.cpp:83]   --->   Operation 238 'fadd' 't_I_s' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_20 : Operation 239 [5/13] (3.12ns)   --->   "%t_R_1_1 = fsub i32 %mul22_i_1, i32 %bitcast_ln82_1" [fft.cpp:82]   --->   Operation 239 'fsub' 't_R_1_1' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_20 : Operation 240 [5/13] (3.12ns)   --->   "%t_I_1_1 = fadd i32 %mul24_i_1, i32 %bitcast_ln83_1" [fft.cpp:83]   --->   Operation 240 'fadd' 't_I_1_1' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_20 : Operation 241 [4/13] (3.12ns)   --->   "%t_R_1_2 = fsub i32 %buf1_R_2_load_1, i32 %mul23_i1_2" [fft.cpp:82]   --->   Operation 241 'fsub' 't_R_1_2' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_20 : Operation 242 [4/13] (3.12ns)   --->   "%t_I_1_2 = fadd i32 %buf1_I_2_load_1, i32 %mul25_i1_2" [fft.cpp:83]   --->   Operation 242 'fadd' 't_I_1_2' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_20 : Operation 243 [6/13] (3.12ns)   --->   "%t_R_1_3 = fsub i32 %mul22_i_3, i32 %bitcast_ln82_3" [fft.cpp:82]   --->   Operation 243 'fsub' 't_R_1_3' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_20 : Operation 244 [6/13] (3.12ns)   --->   "%t_I_1_3 = fadd i32 %mul24_i_3, i32 %bitcast_ln83_3" [fft.cpp:83]   --->   Operation 244 'fadd' 't_I_1_3' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+
+State 21 <SV = 20> <Delay = 3.12>
+ST_21 : Operation 245 [3/13] (3.12ns)   --->   "%t_R_s = fsub i32 %buf1_R_2_load, i32 %mul23_i1" [fft.cpp:82]   --->   Operation 245 'fsub' 't_R_s' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_21 : Operation 246 [3/13] (3.12ns)   --->   "%t_I_s = fadd i32 %buf1_I_2_load, i32 %mul25_i1" [fft.cpp:83]   --->   Operation 246 'fadd' 't_I_s' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_21 : Operation 247 [4/13] (3.12ns)   --->   "%t_R_1_1 = fsub i32 %mul22_i_1, i32 %bitcast_ln82_1" [fft.cpp:82]   --->   Operation 247 'fsub' 't_R_1_1' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_21 : Operation 248 [4/13] (3.12ns)   --->   "%t_I_1_1 = fadd i32 %mul24_i_1, i32 %bitcast_ln83_1" [fft.cpp:83]   --->   Operation 248 'fadd' 't_I_1_1' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_21 : Operation 249 [3/13] (3.12ns)   --->   "%t_R_1_2 = fsub i32 %buf1_R_2_load_1, i32 %mul23_i1_2" [fft.cpp:82]   --->   Operation 249 'fsub' 't_R_1_2' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_21 : Operation 250 [3/13] (3.12ns)   --->   "%t_I_1_2 = fadd i32 %buf1_I_2_load_1, i32 %mul25_i1_2" [fft.cpp:83]   --->   Operation 250 'fadd' 't_I_1_2' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_21 : Operation 251 [5/13] (3.12ns)   --->   "%t_R_1_3 = fsub i32 %mul22_i_3, i32 %bitcast_ln82_3" [fft.cpp:82]   --->   Operation 251 'fsub' 't_R_1_3' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_21 : Operation 252 [5/13] (3.12ns)   --->   "%t_I_1_3 = fadd i32 %mul24_i_3, i32 %bitcast_ln83_3" [fft.cpp:83]   --->   Operation 252 'fadd' 't_I_1_3' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+
+State 22 <SV = 21> <Delay = 3.25>
+ST_22 : Operation 253 [1/1] (0.00ns)   --->   "%buf1_R_addr_2 = getelementptr i32 %buf1_R, i64 0, i64 %zext_ln77_2" [fft.cpp:77]   --->   Operation 253 'getelementptr' 'buf1_R_addr_2' <Predicate = true> <Delay = 0.00>
+ST_22 : Operation 254 [2/2] (3.25ns)   --->   "%buf1_R_load = load i8 %buf1_R_addr_2" [fft.cpp:77]   --->   Operation 254 'load' 'buf1_R_load' <Predicate = true> <Delay = 3.25> <CoreInst = "RAM">   --->   Core 82 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 256> <RAM>
+ST_22 : Operation 255 [1/1] (0.00ns)   --->   "%buf1_I_addr_2 = getelementptr i32 %buf1_I, i64 0, i64 %zext_ln77_2" [fft.cpp:78]   --->   Operation 255 'getelementptr' 'buf1_I_addr_2' <Predicate = true> <Delay = 0.00>
+ST_22 : Operation 256 [2/2] (3.25ns)   --->   "%buf1_I_load = load i8 %buf1_I_addr_2" [fft.cpp:78]   --->   Operation 256 'load' 'buf1_I_load' <Predicate = true> <Delay = 3.25> <CoreInst = "RAM">   --->   Core 82 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 256> <RAM>
+ST_22 : Operation 257 [2/13] (3.12ns)   --->   "%t_R_s = fsub i32 %buf1_R_2_load, i32 %mul23_i1" [fft.cpp:82]   --->   Operation 257 'fsub' 't_R_s' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_22 : Operation 258 [2/13] (3.12ns)   --->   "%t_I_s = fadd i32 %buf1_I_2_load, i32 %mul25_i1" [fft.cpp:83]   --->   Operation 258 'fadd' 't_I_s' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_22 : Operation 259 [3/13] (3.12ns)   --->   "%t_R_1_1 = fsub i32 %mul22_i_1, i32 %bitcast_ln82_1" [fft.cpp:82]   --->   Operation 259 'fsub' 't_R_1_1' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_22 : Operation 260 [3/13] (3.12ns)   --->   "%t_I_1_1 = fadd i32 %mul24_i_1, i32 %bitcast_ln83_1" [fft.cpp:83]   --->   Operation 260 'fadd' 't_I_1_1' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_22 : Operation 261 [1/1] (0.00ns)   --->   "%buf1_R_addr_3 = getelementptr i32 %buf1_R, i64 0, i64 %zext_ln77_4" [fft.cpp:77]   --->   Operation 261 'getelementptr' 'buf1_R_addr_3' <Predicate = true> <Delay = 0.00>
+ST_22 : Operation 262 [2/2] (3.25ns)   --->   "%buf1_R_load_1 = load i8 %buf1_R_addr_3" [fft.cpp:77]   --->   Operation 262 'load' 'buf1_R_load_1' <Predicate = true> <Delay = 3.25> <CoreInst = "RAM">   --->   Core 82 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 256> <RAM>
+ST_22 : Operation 263 [1/1] (0.00ns)   --->   "%buf1_I_addr_3 = getelementptr i32 %buf1_I, i64 0, i64 %zext_ln77_4" [fft.cpp:78]   --->   Operation 263 'getelementptr' 'buf1_I_addr_3' <Predicate = true> <Delay = 0.00>
+ST_22 : Operation 264 [2/2] (3.25ns)   --->   "%buf1_I_load_1 = load i8 %buf1_I_addr_3" [fft.cpp:78]   --->   Operation 264 'load' 'buf1_I_load_1' <Predicate = true> <Delay = 3.25> <CoreInst = "RAM">   --->   Core 82 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 256> <RAM>
+ST_22 : Operation 265 [2/13] (3.12ns)   --->   "%t_R_1_2 = fsub i32 %buf1_R_2_load_1, i32 %mul23_i1_2" [fft.cpp:82]   --->   Operation 265 'fsub' 't_R_1_2' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_22 : Operation 266 [2/13] (3.12ns)   --->   "%t_I_1_2 = fadd i32 %buf1_I_2_load_1, i32 %mul25_i1_2" [fft.cpp:83]   --->   Operation 266 'fadd' 't_I_1_2' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_22 : Operation 267 [4/13] (3.12ns)   --->   "%t_R_1_3 = fsub i32 %mul22_i_3, i32 %bitcast_ln82_3" [fft.cpp:82]   --->   Operation 267 'fsub' 't_R_1_3' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_22 : Operation 268 [4/13] (3.12ns)   --->   "%t_I_1_3 = fadd i32 %mul24_i_3, i32 %bitcast_ln83_3" [fft.cpp:83]   --->   Operation 268 'fadd' 't_I_1_3' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+
+State 23 <SV = 22> <Delay = 3.25>
+ST_23 : Operation 269 [1/2] (3.25ns)   --->   "%buf1_R_load = load i8 %buf1_R_addr_2" [fft.cpp:77]   --->   Operation 269 'load' 'buf1_R_load' <Predicate = true> <Delay = 3.25> <CoreInst = "RAM">   --->   Core 82 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 256> <RAM>
+ST_23 : Operation 270 [1/2] (3.25ns)   --->   "%buf1_I_load = load i8 %buf1_I_addr_2" [fft.cpp:78]   --->   Operation 270 'load' 'buf1_I_load' <Predicate = true> <Delay = 3.25> <CoreInst = "RAM">   --->   Core 82 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 256> <RAM>
+ST_23 : Operation 271 [1/13] (3.12ns)   --->   "%t_R_s = fsub i32 %buf1_R_2_load, i32 %mul23_i1" [fft.cpp:82]   --->   Operation 271 'fsub' 't_R_s' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_23 : Operation 272 [1/13] (3.12ns)   --->   "%t_I_s = fadd i32 %buf1_I_2_load, i32 %mul25_i1" [fft.cpp:83]   --->   Operation 272 'fadd' 't_I_s' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_23 : Operation 273 [1/1] (0.00ns)   --->   "%buf1_R_1_addr_2 = getelementptr i32 %buf1_R_1, i64 0, i64 %zext_ln77_3" [fft.cpp:77]   --->   Operation 273 'getelementptr' 'buf1_R_1_addr_2' <Predicate = true> <Delay = 0.00>
+ST_23 : Operation 274 [2/2] (3.25ns)   --->   "%buf1_R_1_load = load i8 %buf1_R_1_addr_2" [fft.cpp:77]   --->   Operation 274 'load' 'buf1_R_1_load' <Predicate = true> <Delay = 3.25> <CoreInst = "RAM">   --->   Core 82 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 256> <RAM>
+ST_23 : Operation 275 [1/1] (0.00ns)   --->   "%buf1_I_1_addr_2 = getelementptr i32 %buf1_I_1, i64 0, i64 %zext_ln77_3" [fft.cpp:78]   --->   Operation 275 'getelementptr' 'buf1_I_1_addr_2' <Predicate = true> <Delay = 0.00>
+ST_23 : Operation 276 [2/2] (3.25ns)   --->   "%buf1_I_1_load = load i8 %buf1_I_1_addr_2" [fft.cpp:78]   --->   Operation 276 'load' 'buf1_I_1_load' <Predicate = true> <Delay = 3.25> <CoreInst = "RAM">   --->   Core 82 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 256> <RAM>
+ST_23 : Operation 277 [2/13] (3.12ns)   --->   "%t_R_1_1 = fsub i32 %mul22_i_1, i32 %bitcast_ln82_1" [fft.cpp:82]   --->   Operation 277 'fsub' 't_R_1_1' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_23 : Operation 278 [2/13] (3.12ns)   --->   "%t_I_1_1 = fadd i32 %mul24_i_1, i32 %bitcast_ln83_1" [fft.cpp:83]   --->   Operation 278 'fadd' 't_I_1_1' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_23 : Operation 279 [1/2] (3.25ns)   --->   "%buf1_R_load_1 = load i8 %buf1_R_addr_3" [fft.cpp:77]   --->   Operation 279 'load' 'buf1_R_load_1' <Predicate = true> <Delay = 3.25> <CoreInst = "RAM">   --->   Core 82 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 256> <RAM>
+ST_23 : Operation 280 [1/2] (3.25ns)   --->   "%buf1_I_load_1 = load i8 %buf1_I_addr_3" [fft.cpp:78]   --->   Operation 280 'load' 'buf1_I_load_1' <Predicate = true> <Delay = 3.25> <CoreInst = "RAM">   --->   Core 82 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 256> <RAM>
+ST_23 : Operation 281 [1/13] (3.12ns)   --->   "%t_R_1_2 = fsub i32 %buf1_R_2_load_1, i32 %mul23_i1_2" [fft.cpp:82]   --->   Operation 281 'fsub' 't_R_1_2' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_23 : Operation 282 [1/13] (3.12ns)   --->   "%t_I_1_2 = fadd i32 %buf1_I_2_load_1, i32 %mul25_i1_2" [fft.cpp:83]   --->   Operation 282 'fadd' 't_I_1_2' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_23 : Operation 283 [3/13] (3.12ns)   --->   "%t_R_1_3 = fsub i32 %mul22_i_3, i32 %bitcast_ln82_3" [fft.cpp:82]   --->   Operation 283 'fsub' 't_R_1_3' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_23 : Operation 284 [3/13] (3.12ns)   --->   "%t_I_1_3 = fadd i32 %mul24_i_3, i32 %bitcast_ln83_3" [fft.cpp:83]   --->   Operation 284 'fadd' 't_I_1_3' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+
+State 24 <SV = 23> <Delay = 3.25>
+ST_24 : Operation 285 [13/13] (3.12ns)   --->   "%sub27_i1 = fsub i32 %buf1_R_load, i32 %t_R_s" [fft.cpp:85]   --->   Operation 285 'fsub' 'sub27_i1' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_24 : Operation 286 [13/13] (3.12ns)   --->   "%sub30_i1 = fsub i32 %buf1_I_load, i32 %t_I_s" [fft.cpp:86]   --->   Operation 286 'fsub' 'sub30_i1' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_24 : Operation 287 [13/13] (3.12ns)   --->   "%add33_i1 = fadd i32 %buf1_R_load, i32 %t_R_s" [fft.cpp:87]   --->   Operation 287 'fadd' 'add33_i1' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_24 : Operation 288 [13/13] (3.12ns)   --->   "%add36_i1 = fadd i32 %buf1_I_load, i32 %t_I_s" [fft.cpp:88]   --->   Operation 288 'fadd' 'add36_i1' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_24 : Operation 289 [1/2] (3.25ns)   --->   "%buf1_R_1_load = load i8 %buf1_R_1_addr_2" [fft.cpp:77]   --->   Operation 289 'load' 'buf1_R_1_load' <Predicate = true> <Delay = 3.25> <CoreInst = "RAM">   --->   Core 82 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 256> <RAM>
+ST_24 : Operation 290 [1/2] (3.25ns)   --->   "%buf1_I_1_load = load i8 %buf1_I_1_addr_2" [fft.cpp:78]   --->   Operation 290 'load' 'buf1_I_1_load' <Predicate = true> <Delay = 3.25> <CoreInst = "RAM">   --->   Core 82 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 256> <RAM>
+ST_24 : Operation 291 [1/13] (3.12ns)   --->   "%t_R_1_1 = fsub i32 %mul22_i_1, i32 %bitcast_ln82_1" [fft.cpp:82]   --->   Operation 291 'fsub' 't_R_1_1' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_24 : Operation 292 [1/13] (3.12ns)   --->   "%t_I_1_1 = fadd i32 %mul24_i_1, i32 %bitcast_ln83_1" [fft.cpp:83]   --->   Operation 292 'fadd' 't_I_1_1' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_24 : Operation 293 [13/13] (3.12ns)   --->   "%sub27_i1_2 = fsub i32 %buf1_R_load_1, i32 %t_R_1_2" [fft.cpp:85]   --->   Operation 293 'fsub' 'sub27_i1_2' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_24 : Operation 294 [13/13] (3.12ns)   --->   "%sub30_i1_2 = fsub i32 %buf1_I_load_1, i32 %t_I_1_2" [fft.cpp:86]   --->   Operation 294 'fsub' 'sub30_i1_2' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_24 : Operation 295 [13/13] (3.12ns)   --->   "%add33_i1_2 = fadd i32 %buf1_R_load_1, i32 %t_R_1_2" [fft.cpp:87]   --->   Operation 295 'fadd' 'add33_i1_2' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_24 : Operation 296 [13/13] (3.12ns)   --->   "%add36_i1_2 = fadd i32 %buf1_I_load_1, i32 %t_I_1_2" [fft.cpp:88]   --->   Operation 296 'fadd' 'add36_i1_2' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_24 : Operation 297 [1/1] (0.00ns)   --->   "%zext_ln77_5 = zext i8 %lshr_ln77_3" [fft.cpp:77]   --->   Operation 297 'zext' 'zext_ln77_5' <Predicate = true> <Delay = 0.00>
+ST_24 : Operation 298 [1/1] (0.00ns)   --->   "%buf1_R_1_addr_3 = getelementptr i32 %buf1_R_1, i64 0, i64 %zext_ln77_5" [fft.cpp:77]   --->   Operation 298 'getelementptr' 'buf1_R_1_addr_3' <Predicate = true> <Delay = 0.00>
+ST_24 : Operation 299 [2/2] (3.25ns)   --->   "%buf1_R_1_load_1 = load i8 %buf1_R_1_addr_3" [fft.cpp:77]   --->   Operation 299 'load' 'buf1_R_1_load_1' <Predicate = true> <Delay = 3.25> <CoreInst = "RAM">   --->   Core 82 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 256> <RAM>
+ST_24 : Operation 300 [1/1] (0.00ns)   --->   "%buf1_I_1_addr_3 = getelementptr i32 %buf1_I_1, i64 0, i64 %zext_ln77_5" [fft.cpp:78]   --->   Operation 300 'getelementptr' 'buf1_I_1_addr_3' <Predicate = true> <Delay = 0.00>
+ST_24 : Operation 301 [2/2] (3.25ns)   --->   "%buf1_I_1_load_1 = load i8 %buf1_I_1_addr_3" [fft.cpp:78]   --->   Operation 301 'load' 'buf1_I_1_load_1' <Predicate = true> <Delay = 3.25> <CoreInst = "RAM">   --->   Core 82 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 256> <RAM>
+ST_24 : Operation 302 [2/13] (3.12ns)   --->   "%t_R_1_3 = fsub i32 %mul22_i_3, i32 %bitcast_ln82_3" [fft.cpp:82]   --->   Operation 302 'fsub' 't_R_1_3' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_24 : Operation 303 [2/13] (3.12ns)   --->   "%t_I_1_3 = fadd i32 %mul24_i_3, i32 %bitcast_ln83_3" [fft.cpp:83]   --->   Operation 303 'fadd' 't_I_1_3' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+
+State 25 <SV = 24> <Delay = 3.25>
+ST_25 : Operation 304 [12/13] (3.12ns)   --->   "%sub27_i1 = fsub i32 %buf1_R_load, i32 %t_R_s" [fft.cpp:85]   --->   Operation 304 'fsub' 'sub27_i1' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_25 : Operation 305 [12/13] (3.12ns)   --->   "%sub30_i1 = fsub i32 %buf1_I_load, i32 %t_I_s" [fft.cpp:86]   --->   Operation 305 'fsub' 'sub30_i1' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_25 : Operation 306 [12/13] (3.12ns)   --->   "%add33_i1 = fadd i32 %buf1_R_load, i32 %t_R_s" [fft.cpp:87]   --->   Operation 306 'fadd' 'add33_i1' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_25 : Operation 307 [12/13] (3.12ns)   --->   "%add36_i1 = fadd i32 %buf1_I_load, i32 %t_I_s" [fft.cpp:88]   --->   Operation 307 'fadd' 'add36_i1' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_25 : Operation 308 [13/13] (3.12ns)   --->   "%sub27_i1_1 = fsub i32 %buf1_R_1_load, i32 %t_R_1_1" [fft.cpp:85]   --->   Operation 308 'fsub' 'sub27_i1_1' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_25 : Operation 309 [13/13] (3.12ns)   --->   "%sub30_i1_1 = fsub i32 %buf1_I_1_load, i32 %t_I_1_1" [fft.cpp:86]   --->   Operation 309 'fsub' 'sub30_i1_1' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_25 : Operation 310 [13/13] (3.12ns)   --->   "%add33_i1_1 = fadd i32 %buf1_R_1_load, i32 %t_R_1_1" [fft.cpp:87]   --->   Operation 310 'fadd' 'add33_i1_1' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_25 : Operation 311 [13/13] (3.12ns)   --->   "%add36_i1_1 = fadd i32 %buf1_I_1_load, i32 %t_I_1_1" [fft.cpp:88]   --->   Operation 311 'fadd' 'add36_i1_1' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_25 : Operation 312 [12/13] (3.12ns)   --->   "%sub27_i1_2 = fsub i32 %buf1_R_load_1, i32 %t_R_1_2" [fft.cpp:85]   --->   Operation 312 'fsub' 'sub27_i1_2' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_25 : Operation 313 [12/13] (3.12ns)   --->   "%sub30_i1_2 = fsub i32 %buf1_I_load_1, i32 %t_I_1_2" [fft.cpp:86]   --->   Operation 313 'fsub' 'sub30_i1_2' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_25 : Operation 314 [12/13] (3.12ns)   --->   "%add33_i1_2 = fadd i32 %buf1_R_load_1, i32 %t_R_1_2" [fft.cpp:87]   --->   Operation 314 'fadd' 'add33_i1_2' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_25 : Operation 315 [12/13] (3.12ns)   --->   "%add36_i1_2 = fadd i32 %buf1_I_load_1, i32 %t_I_1_2" [fft.cpp:88]   --->   Operation 315 'fadd' 'add36_i1_2' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_25 : Operation 316 [1/2] (3.25ns)   --->   "%buf1_R_1_load_1 = load i8 %buf1_R_1_addr_3" [fft.cpp:77]   --->   Operation 316 'load' 'buf1_R_1_load_1' <Predicate = true> <Delay = 3.25> <CoreInst = "RAM">   --->   Core 82 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 256> <RAM>
+ST_25 : Operation 317 [1/2] (3.25ns)   --->   "%buf1_I_1_load_1 = load i8 %buf1_I_1_addr_3" [fft.cpp:78]   --->   Operation 317 'load' 'buf1_I_1_load_1' <Predicate = true> <Delay = 3.25> <CoreInst = "RAM">   --->   Core 82 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 256> <RAM>
+ST_25 : Operation 318 [1/13] (3.12ns)   --->   "%t_R_1_3 = fsub i32 %mul22_i_3, i32 %bitcast_ln82_3" [fft.cpp:82]   --->   Operation 318 'fsub' 't_R_1_3' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_25 : Operation 319 [1/13] (3.12ns)   --->   "%t_I_1_3 = fadd i32 %mul24_i_3, i32 %bitcast_ln83_3" [fft.cpp:83]   --->   Operation 319 'fadd' 't_I_1_3' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+
+State 26 <SV = 25> <Delay = 3.12>
+ST_26 : Operation 320 [11/13] (3.12ns)   --->   "%sub27_i1 = fsub i32 %buf1_R_load, i32 %t_R_s" [fft.cpp:85]   --->   Operation 320 'fsub' 'sub27_i1' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_26 : Operation 321 [11/13] (3.12ns)   --->   "%sub30_i1 = fsub i32 %buf1_I_load, i32 %t_I_s" [fft.cpp:86]   --->   Operation 321 'fsub' 'sub30_i1' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_26 : Operation 322 [11/13] (3.12ns)   --->   "%add33_i1 = fadd i32 %buf1_R_load, i32 %t_R_s" [fft.cpp:87]   --->   Operation 322 'fadd' 'add33_i1' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_26 : Operation 323 [11/13] (3.12ns)   --->   "%add36_i1 = fadd i32 %buf1_I_load, i32 %t_I_s" [fft.cpp:88]   --->   Operation 323 'fadd' 'add36_i1' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_26 : Operation 324 [12/13] (3.12ns)   --->   "%sub27_i1_1 = fsub i32 %buf1_R_1_load, i32 %t_R_1_1" [fft.cpp:85]   --->   Operation 324 'fsub' 'sub27_i1_1' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_26 : Operation 325 [12/13] (3.12ns)   --->   "%sub30_i1_1 = fsub i32 %buf1_I_1_load, i32 %t_I_1_1" [fft.cpp:86]   --->   Operation 325 'fsub' 'sub30_i1_1' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_26 : Operation 326 [12/13] (3.12ns)   --->   "%add33_i1_1 = fadd i32 %buf1_R_1_load, i32 %t_R_1_1" [fft.cpp:87]   --->   Operation 326 'fadd' 'add33_i1_1' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_26 : Operation 327 [12/13] (3.12ns)   --->   "%add36_i1_1 = fadd i32 %buf1_I_1_load, i32 %t_I_1_1" [fft.cpp:88]   --->   Operation 327 'fadd' 'add36_i1_1' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_26 : Operation 328 [11/13] (3.12ns)   --->   "%sub27_i1_2 = fsub i32 %buf1_R_load_1, i32 %t_R_1_2" [fft.cpp:85]   --->   Operation 328 'fsub' 'sub27_i1_2' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_26 : Operation 329 [11/13] (3.12ns)   --->   "%sub30_i1_2 = fsub i32 %buf1_I_load_1, i32 %t_I_1_2" [fft.cpp:86]   --->   Operation 329 'fsub' 'sub30_i1_2' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_26 : Operation 330 [11/13] (3.12ns)   --->   "%add33_i1_2 = fadd i32 %buf1_R_load_1, i32 %t_R_1_2" [fft.cpp:87]   --->   Operation 330 'fadd' 'add33_i1_2' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_26 : Operation 331 [11/13] (3.12ns)   --->   "%add36_i1_2 = fadd i32 %buf1_I_load_1, i32 %t_I_1_2" [fft.cpp:88]   --->   Operation 331 'fadd' 'add36_i1_2' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_26 : Operation 332 [13/13] (3.12ns)   --->   "%sub27_i1_3 = fsub i32 %buf1_R_1_load_1, i32 %t_R_1_3" [fft.cpp:85]   --->   Operation 332 'fsub' 'sub27_i1_3' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_26 : Operation 333 [13/13] (3.12ns)   --->   "%sub30_i1_3 = fsub i32 %buf1_I_1_load_1, i32 %t_I_1_3" [fft.cpp:86]   --->   Operation 333 'fsub' 'sub30_i1_3' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_26 : Operation 334 [13/13] (3.12ns)   --->   "%add33_i1_3 = fadd i32 %buf1_R_1_load_1, i32 %t_R_1_3" [fft.cpp:87]   --->   Operation 334 'fadd' 'add33_i1_3' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_26 : Operation 335 [13/13] (3.12ns)   --->   "%add36_i1_3 = fadd i32 %buf1_I_1_load_1, i32 %t_I_1_3" [fft.cpp:88]   --->   Operation 335 'fadd' 'add36_i1_3' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+
+State 27 <SV = 26> <Delay = 3.12>
+ST_27 : Operation 336 [10/13] (3.12ns)   --->   "%sub27_i1 = fsub i32 %buf1_R_load, i32 %t_R_s" [fft.cpp:85]   --->   Operation 336 'fsub' 'sub27_i1' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_27 : Operation 337 [10/13] (3.12ns)   --->   "%sub30_i1 = fsub i32 %buf1_I_load, i32 %t_I_s" [fft.cpp:86]   --->   Operation 337 'fsub' 'sub30_i1' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_27 : Operation 338 [10/13] (3.12ns)   --->   "%add33_i1 = fadd i32 %buf1_R_load, i32 %t_R_s" [fft.cpp:87]   --->   Operation 338 'fadd' 'add33_i1' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_27 : Operation 339 [10/13] (3.12ns)   --->   "%add36_i1 = fadd i32 %buf1_I_load, i32 %t_I_s" [fft.cpp:88]   --->   Operation 339 'fadd' 'add36_i1' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_27 : Operation 340 [11/13] (3.12ns)   --->   "%sub27_i1_1 = fsub i32 %buf1_R_1_load, i32 %t_R_1_1" [fft.cpp:85]   --->   Operation 340 'fsub' 'sub27_i1_1' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_27 : Operation 341 [11/13] (3.12ns)   --->   "%sub30_i1_1 = fsub i32 %buf1_I_1_load, i32 %t_I_1_1" [fft.cpp:86]   --->   Operation 341 'fsub' 'sub30_i1_1' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_27 : Operation 342 [11/13] (3.12ns)   --->   "%add33_i1_1 = fadd i32 %buf1_R_1_load, i32 %t_R_1_1" [fft.cpp:87]   --->   Operation 342 'fadd' 'add33_i1_1' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_27 : Operation 343 [11/13] (3.12ns)   --->   "%add36_i1_1 = fadd i32 %buf1_I_1_load, i32 %t_I_1_1" [fft.cpp:88]   --->   Operation 343 'fadd' 'add36_i1_1' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_27 : Operation 344 [10/13] (3.12ns)   --->   "%sub27_i1_2 = fsub i32 %buf1_R_load_1, i32 %t_R_1_2" [fft.cpp:85]   --->   Operation 344 'fsub' 'sub27_i1_2' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_27 : Operation 345 [10/13] (3.12ns)   --->   "%sub30_i1_2 = fsub i32 %buf1_I_load_1, i32 %t_I_1_2" [fft.cpp:86]   --->   Operation 345 'fsub' 'sub30_i1_2' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_27 : Operation 346 [10/13] (3.12ns)   --->   "%add33_i1_2 = fadd i32 %buf1_R_load_1, i32 %t_R_1_2" [fft.cpp:87]   --->   Operation 346 'fadd' 'add33_i1_2' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_27 : Operation 347 [10/13] (3.12ns)   --->   "%add36_i1_2 = fadd i32 %buf1_I_load_1, i32 %t_I_1_2" [fft.cpp:88]   --->   Operation 347 'fadd' 'add36_i1_2' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_27 : Operation 348 [12/13] (3.12ns)   --->   "%sub27_i1_3 = fsub i32 %buf1_R_1_load_1, i32 %t_R_1_3" [fft.cpp:85]   --->   Operation 348 'fsub' 'sub27_i1_3' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_27 : Operation 349 [12/13] (3.12ns)   --->   "%sub30_i1_3 = fsub i32 %buf1_I_1_load_1, i32 %t_I_1_3" [fft.cpp:86]   --->   Operation 349 'fsub' 'sub30_i1_3' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_27 : Operation 350 [12/13] (3.12ns)   --->   "%add33_i1_3 = fadd i32 %buf1_R_1_load_1, i32 %t_R_1_3" [fft.cpp:87]   --->   Operation 350 'fadd' 'add33_i1_3' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_27 : Operation 351 [12/13] (3.12ns)   --->   "%add36_i1_3 = fadd i32 %buf1_I_1_load_1, i32 %t_I_1_3" [fft.cpp:88]   --->   Operation 351 'fadd' 'add36_i1_3' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+
+State 28 <SV = 27> <Delay = 3.12>
+ST_28 : Operation 352 [9/13] (3.12ns)   --->   "%sub27_i1 = fsub i32 %buf1_R_load, i32 %t_R_s" [fft.cpp:85]   --->   Operation 352 'fsub' 'sub27_i1' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_28 : Operation 353 [9/13] (3.12ns)   --->   "%sub30_i1 = fsub i32 %buf1_I_load, i32 %t_I_s" [fft.cpp:86]   --->   Operation 353 'fsub' 'sub30_i1' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_28 : Operation 354 [9/13] (3.12ns)   --->   "%add33_i1 = fadd i32 %buf1_R_load, i32 %t_R_s" [fft.cpp:87]   --->   Operation 354 'fadd' 'add33_i1' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_28 : Operation 355 [9/13] (3.12ns)   --->   "%add36_i1 = fadd i32 %buf1_I_load, i32 %t_I_s" [fft.cpp:88]   --->   Operation 355 'fadd' 'add36_i1' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_28 : Operation 356 [10/13] (3.12ns)   --->   "%sub27_i1_1 = fsub i32 %buf1_R_1_load, i32 %t_R_1_1" [fft.cpp:85]   --->   Operation 356 'fsub' 'sub27_i1_1' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_28 : Operation 357 [10/13] (3.12ns)   --->   "%sub30_i1_1 = fsub i32 %buf1_I_1_load, i32 %t_I_1_1" [fft.cpp:86]   --->   Operation 357 'fsub' 'sub30_i1_1' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_28 : Operation 358 [10/13] (3.12ns)   --->   "%add33_i1_1 = fadd i32 %buf1_R_1_load, i32 %t_R_1_1" [fft.cpp:87]   --->   Operation 358 'fadd' 'add33_i1_1' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_28 : Operation 359 [10/13] (3.12ns)   --->   "%add36_i1_1 = fadd i32 %buf1_I_1_load, i32 %t_I_1_1" [fft.cpp:88]   --->   Operation 359 'fadd' 'add36_i1_1' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_28 : Operation 360 [9/13] (3.12ns)   --->   "%sub27_i1_2 = fsub i32 %buf1_R_load_1, i32 %t_R_1_2" [fft.cpp:85]   --->   Operation 360 'fsub' 'sub27_i1_2' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_28 : Operation 361 [9/13] (3.12ns)   --->   "%sub30_i1_2 = fsub i32 %buf1_I_load_1, i32 %t_I_1_2" [fft.cpp:86]   --->   Operation 361 'fsub' 'sub30_i1_2' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_28 : Operation 362 [9/13] (3.12ns)   --->   "%add33_i1_2 = fadd i32 %buf1_R_load_1, i32 %t_R_1_2" [fft.cpp:87]   --->   Operation 362 'fadd' 'add33_i1_2' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_28 : Operation 363 [9/13] (3.12ns)   --->   "%add36_i1_2 = fadd i32 %buf1_I_load_1, i32 %t_I_1_2" [fft.cpp:88]   --->   Operation 363 'fadd' 'add36_i1_2' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_28 : Operation 364 [11/13] (3.12ns)   --->   "%sub27_i1_3 = fsub i32 %buf1_R_1_load_1, i32 %t_R_1_3" [fft.cpp:85]   --->   Operation 364 'fsub' 'sub27_i1_3' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_28 : Operation 365 [11/13] (3.12ns)   --->   "%sub30_i1_3 = fsub i32 %buf1_I_1_load_1, i32 %t_I_1_3" [fft.cpp:86]   --->   Operation 365 'fsub' 'sub30_i1_3' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_28 : Operation 366 [11/13] (3.12ns)   --->   "%add33_i1_3 = fadd i32 %buf1_R_1_load_1, i32 %t_R_1_3" [fft.cpp:87]   --->   Operation 366 'fadd' 'add33_i1_3' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_28 : Operation 367 [11/13] (3.12ns)   --->   "%add36_i1_3 = fadd i32 %buf1_I_1_load_1, i32 %t_I_1_3" [fft.cpp:88]   --->   Operation 367 'fadd' 'add36_i1_3' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+
+State 29 <SV = 28> <Delay = 3.12>
+ST_29 : Operation 368 [8/13] (3.12ns)   --->   "%sub27_i1 = fsub i32 %buf1_R_load, i32 %t_R_s" [fft.cpp:85]   --->   Operation 368 'fsub' 'sub27_i1' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_29 : Operation 369 [8/13] (3.12ns)   --->   "%sub30_i1 = fsub i32 %buf1_I_load, i32 %t_I_s" [fft.cpp:86]   --->   Operation 369 'fsub' 'sub30_i1' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_29 : Operation 370 [8/13] (3.12ns)   --->   "%add33_i1 = fadd i32 %buf1_R_load, i32 %t_R_s" [fft.cpp:87]   --->   Operation 370 'fadd' 'add33_i1' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_29 : Operation 371 [8/13] (3.12ns)   --->   "%add36_i1 = fadd i32 %buf1_I_load, i32 %t_I_s" [fft.cpp:88]   --->   Operation 371 'fadd' 'add36_i1' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_29 : Operation 372 [9/13] (3.12ns)   --->   "%sub27_i1_1 = fsub i32 %buf1_R_1_load, i32 %t_R_1_1" [fft.cpp:85]   --->   Operation 372 'fsub' 'sub27_i1_1' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_29 : Operation 373 [9/13] (3.12ns)   --->   "%sub30_i1_1 = fsub i32 %buf1_I_1_load, i32 %t_I_1_1" [fft.cpp:86]   --->   Operation 373 'fsub' 'sub30_i1_1' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_29 : Operation 374 [9/13] (3.12ns)   --->   "%add33_i1_1 = fadd i32 %buf1_R_1_load, i32 %t_R_1_1" [fft.cpp:87]   --->   Operation 374 'fadd' 'add33_i1_1' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_29 : Operation 375 [9/13] (3.12ns)   --->   "%add36_i1_1 = fadd i32 %buf1_I_1_load, i32 %t_I_1_1" [fft.cpp:88]   --->   Operation 375 'fadd' 'add36_i1_1' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_29 : Operation 376 [8/13] (3.12ns)   --->   "%sub27_i1_2 = fsub i32 %buf1_R_load_1, i32 %t_R_1_2" [fft.cpp:85]   --->   Operation 376 'fsub' 'sub27_i1_2' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_29 : Operation 377 [8/13] (3.12ns)   --->   "%sub30_i1_2 = fsub i32 %buf1_I_load_1, i32 %t_I_1_2" [fft.cpp:86]   --->   Operation 377 'fsub' 'sub30_i1_2' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_29 : Operation 378 [8/13] (3.12ns)   --->   "%add33_i1_2 = fadd i32 %buf1_R_load_1, i32 %t_R_1_2" [fft.cpp:87]   --->   Operation 378 'fadd' 'add33_i1_2' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_29 : Operation 379 [8/13] (3.12ns)   --->   "%add36_i1_2 = fadd i32 %buf1_I_load_1, i32 %t_I_1_2" [fft.cpp:88]   --->   Operation 379 'fadd' 'add36_i1_2' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_29 : Operation 380 [10/13] (3.12ns)   --->   "%sub27_i1_3 = fsub i32 %buf1_R_1_load_1, i32 %t_R_1_3" [fft.cpp:85]   --->   Operation 380 'fsub' 'sub27_i1_3' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_29 : Operation 381 [10/13] (3.12ns)   --->   "%sub30_i1_3 = fsub i32 %buf1_I_1_load_1, i32 %t_I_1_3" [fft.cpp:86]   --->   Operation 381 'fsub' 'sub30_i1_3' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_29 : Operation 382 [10/13] (3.12ns)   --->   "%add33_i1_3 = fadd i32 %buf1_R_1_load_1, i32 %t_R_1_3" [fft.cpp:87]   --->   Operation 382 'fadd' 'add33_i1_3' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_29 : Operation 383 [10/13] (3.12ns)   --->   "%add36_i1_3 = fadd i32 %buf1_I_1_load_1, i32 %t_I_1_3" [fft.cpp:88]   --->   Operation 383 'fadd' 'add36_i1_3' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+
+State 30 <SV = 29> <Delay = 3.12>
+ST_30 : Operation 384 [7/13] (3.12ns)   --->   "%sub27_i1 = fsub i32 %buf1_R_load, i32 %t_R_s" [fft.cpp:85]   --->   Operation 384 'fsub' 'sub27_i1' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_30 : Operation 385 [7/13] (3.12ns)   --->   "%sub30_i1 = fsub i32 %buf1_I_load, i32 %t_I_s" [fft.cpp:86]   --->   Operation 385 'fsub' 'sub30_i1' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_30 : Operation 386 [7/13] (3.12ns)   --->   "%add33_i1 = fadd i32 %buf1_R_load, i32 %t_R_s" [fft.cpp:87]   --->   Operation 386 'fadd' 'add33_i1' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_30 : Operation 387 [7/13] (3.12ns)   --->   "%add36_i1 = fadd i32 %buf1_I_load, i32 %t_I_s" [fft.cpp:88]   --->   Operation 387 'fadd' 'add36_i1' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_30 : Operation 388 [8/13] (3.12ns)   --->   "%sub27_i1_1 = fsub i32 %buf1_R_1_load, i32 %t_R_1_1" [fft.cpp:85]   --->   Operation 388 'fsub' 'sub27_i1_1' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_30 : Operation 389 [8/13] (3.12ns)   --->   "%sub30_i1_1 = fsub i32 %buf1_I_1_load, i32 %t_I_1_1" [fft.cpp:86]   --->   Operation 389 'fsub' 'sub30_i1_1' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_30 : Operation 390 [8/13] (3.12ns)   --->   "%add33_i1_1 = fadd i32 %buf1_R_1_load, i32 %t_R_1_1" [fft.cpp:87]   --->   Operation 390 'fadd' 'add33_i1_1' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_30 : Operation 391 [8/13] (3.12ns)   --->   "%add36_i1_1 = fadd i32 %buf1_I_1_load, i32 %t_I_1_1" [fft.cpp:88]   --->   Operation 391 'fadd' 'add36_i1_1' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_30 : Operation 392 [7/13] (3.12ns)   --->   "%sub27_i1_2 = fsub i32 %buf1_R_load_1, i32 %t_R_1_2" [fft.cpp:85]   --->   Operation 392 'fsub' 'sub27_i1_2' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_30 : Operation 393 [7/13] (3.12ns)   --->   "%sub30_i1_2 = fsub i32 %buf1_I_load_1, i32 %t_I_1_2" [fft.cpp:86]   --->   Operation 393 'fsub' 'sub30_i1_2' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_30 : Operation 394 [7/13] (3.12ns)   --->   "%add33_i1_2 = fadd i32 %buf1_R_load_1, i32 %t_R_1_2" [fft.cpp:87]   --->   Operation 394 'fadd' 'add33_i1_2' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_30 : Operation 395 [7/13] (3.12ns)   --->   "%add36_i1_2 = fadd i32 %buf1_I_load_1, i32 %t_I_1_2" [fft.cpp:88]   --->   Operation 395 'fadd' 'add36_i1_2' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_30 : Operation 396 [9/13] (3.12ns)   --->   "%sub27_i1_3 = fsub i32 %buf1_R_1_load_1, i32 %t_R_1_3" [fft.cpp:85]   --->   Operation 396 'fsub' 'sub27_i1_3' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_30 : Operation 397 [9/13] (3.12ns)   --->   "%sub30_i1_3 = fsub i32 %buf1_I_1_load_1, i32 %t_I_1_3" [fft.cpp:86]   --->   Operation 397 'fsub' 'sub30_i1_3' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_30 : Operation 398 [9/13] (3.12ns)   --->   "%add33_i1_3 = fadd i32 %buf1_R_1_load_1, i32 %t_R_1_3" [fft.cpp:87]   --->   Operation 398 'fadd' 'add33_i1_3' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_30 : Operation 399 [9/13] (3.12ns)   --->   "%add36_i1_3 = fadd i32 %buf1_I_1_load_1, i32 %t_I_1_3" [fft.cpp:88]   --->   Operation 399 'fadd' 'add36_i1_3' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+
+State 31 <SV = 30> <Delay = 3.12>
+ST_31 : Operation 400 [6/13] (3.12ns)   --->   "%sub27_i1 = fsub i32 %buf1_R_load, i32 %t_R_s" [fft.cpp:85]   --->   Operation 400 'fsub' 'sub27_i1' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_31 : Operation 401 [6/13] (3.12ns)   --->   "%sub30_i1 = fsub i32 %buf1_I_load, i32 %t_I_s" [fft.cpp:86]   --->   Operation 401 'fsub' 'sub30_i1' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_31 : Operation 402 [6/13] (3.12ns)   --->   "%add33_i1 = fadd i32 %buf1_R_load, i32 %t_R_s" [fft.cpp:87]   --->   Operation 402 'fadd' 'add33_i1' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_31 : Operation 403 [6/13] (3.12ns)   --->   "%add36_i1 = fadd i32 %buf1_I_load, i32 %t_I_s" [fft.cpp:88]   --->   Operation 403 'fadd' 'add36_i1' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_31 : Operation 404 [7/13] (3.12ns)   --->   "%sub27_i1_1 = fsub i32 %buf1_R_1_load, i32 %t_R_1_1" [fft.cpp:85]   --->   Operation 404 'fsub' 'sub27_i1_1' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_31 : Operation 405 [7/13] (3.12ns)   --->   "%sub30_i1_1 = fsub i32 %buf1_I_1_load, i32 %t_I_1_1" [fft.cpp:86]   --->   Operation 405 'fsub' 'sub30_i1_1' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_31 : Operation 406 [7/13] (3.12ns)   --->   "%add33_i1_1 = fadd i32 %buf1_R_1_load, i32 %t_R_1_1" [fft.cpp:87]   --->   Operation 406 'fadd' 'add33_i1_1' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_31 : Operation 407 [7/13] (3.12ns)   --->   "%add36_i1_1 = fadd i32 %buf1_I_1_load, i32 %t_I_1_1" [fft.cpp:88]   --->   Operation 407 'fadd' 'add36_i1_1' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_31 : Operation 408 [6/13] (3.12ns)   --->   "%sub27_i1_2 = fsub i32 %buf1_R_load_1, i32 %t_R_1_2" [fft.cpp:85]   --->   Operation 408 'fsub' 'sub27_i1_2' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_31 : Operation 409 [6/13] (3.12ns)   --->   "%sub30_i1_2 = fsub i32 %buf1_I_load_1, i32 %t_I_1_2" [fft.cpp:86]   --->   Operation 409 'fsub' 'sub30_i1_2' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_31 : Operation 410 [6/13] (3.12ns)   --->   "%add33_i1_2 = fadd i32 %buf1_R_load_1, i32 %t_R_1_2" [fft.cpp:87]   --->   Operation 410 'fadd' 'add33_i1_2' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_31 : Operation 411 [6/13] (3.12ns)   --->   "%add36_i1_2 = fadd i32 %buf1_I_load_1, i32 %t_I_1_2" [fft.cpp:88]   --->   Operation 411 'fadd' 'add36_i1_2' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_31 : Operation 412 [8/13] (3.12ns)   --->   "%sub27_i1_3 = fsub i32 %buf1_R_1_load_1, i32 %t_R_1_3" [fft.cpp:85]   --->   Operation 412 'fsub' 'sub27_i1_3' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_31 : Operation 413 [8/13] (3.12ns)   --->   "%sub30_i1_3 = fsub i32 %buf1_I_1_load_1, i32 %t_I_1_3" [fft.cpp:86]   --->   Operation 413 'fsub' 'sub30_i1_3' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_31 : Operation 414 [8/13] (3.12ns)   --->   "%add33_i1_3 = fadd i32 %buf1_R_1_load_1, i32 %t_R_1_3" [fft.cpp:87]   --->   Operation 414 'fadd' 'add33_i1_3' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_31 : Operation 415 [8/13] (3.12ns)   --->   "%add36_i1_3 = fadd i32 %buf1_I_1_load_1, i32 %t_I_1_3" [fft.cpp:88]   --->   Operation 415 'fadd' 'add36_i1_3' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+
+State 32 <SV = 31> <Delay = 3.12>
+ST_32 : Operation 416 [5/13] (3.12ns)   --->   "%sub27_i1 = fsub i32 %buf1_R_load, i32 %t_R_s" [fft.cpp:85]   --->   Operation 416 'fsub' 'sub27_i1' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_32 : Operation 417 [5/13] (3.12ns)   --->   "%sub30_i1 = fsub i32 %buf1_I_load, i32 %t_I_s" [fft.cpp:86]   --->   Operation 417 'fsub' 'sub30_i1' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_32 : Operation 418 [5/13] (3.12ns)   --->   "%add33_i1 = fadd i32 %buf1_R_load, i32 %t_R_s" [fft.cpp:87]   --->   Operation 418 'fadd' 'add33_i1' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_32 : Operation 419 [5/13] (3.12ns)   --->   "%add36_i1 = fadd i32 %buf1_I_load, i32 %t_I_s" [fft.cpp:88]   --->   Operation 419 'fadd' 'add36_i1' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_32 : Operation 420 [6/13] (3.12ns)   --->   "%sub27_i1_1 = fsub i32 %buf1_R_1_load, i32 %t_R_1_1" [fft.cpp:85]   --->   Operation 420 'fsub' 'sub27_i1_1' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_32 : Operation 421 [6/13] (3.12ns)   --->   "%sub30_i1_1 = fsub i32 %buf1_I_1_load, i32 %t_I_1_1" [fft.cpp:86]   --->   Operation 421 'fsub' 'sub30_i1_1' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_32 : Operation 422 [6/13] (3.12ns)   --->   "%add33_i1_1 = fadd i32 %buf1_R_1_load, i32 %t_R_1_1" [fft.cpp:87]   --->   Operation 422 'fadd' 'add33_i1_1' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_32 : Operation 423 [6/13] (3.12ns)   --->   "%add36_i1_1 = fadd i32 %buf1_I_1_load, i32 %t_I_1_1" [fft.cpp:88]   --->   Operation 423 'fadd' 'add36_i1_1' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_32 : Operation 424 [5/13] (3.12ns)   --->   "%sub27_i1_2 = fsub i32 %buf1_R_load_1, i32 %t_R_1_2" [fft.cpp:85]   --->   Operation 424 'fsub' 'sub27_i1_2' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_32 : Operation 425 [5/13] (3.12ns)   --->   "%sub30_i1_2 = fsub i32 %buf1_I_load_1, i32 %t_I_1_2" [fft.cpp:86]   --->   Operation 425 'fsub' 'sub30_i1_2' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_32 : Operation 426 [5/13] (3.12ns)   --->   "%add33_i1_2 = fadd i32 %buf1_R_load_1, i32 %t_R_1_2" [fft.cpp:87]   --->   Operation 426 'fadd' 'add33_i1_2' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_32 : Operation 427 [5/13] (3.12ns)   --->   "%add36_i1_2 = fadd i32 %buf1_I_load_1, i32 %t_I_1_2" [fft.cpp:88]   --->   Operation 427 'fadd' 'add36_i1_2' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_32 : Operation 428 [7/13] (3.12ns)   --->   "%sub27_i1_3 = fsub i32 %buf1_R_1_load_1, i32 %t_R_1_3" [fft.cpp:85]   --->   Operation 428 'fsub' 'sub27_i1_3' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_32 : Operation 429 [7/13] (3.12ns)   --->   "%sub30_i1_3 = fsub i32 %buf1_I_1_load_1, i32 %t_I_1_3" [fft.cpp:86]   --->   Operation 429 'fsub' 'sub30_i1_3' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_32 : Operation 430 [7/13] (3.12ns)   --->   "%add33_i1_3 = fadd i32 %buf1_R_1_load_1, i32 %t_R_1_3" [fft.cpp:87]   --->   Operation 430 'fadd' 'add33_i1_3' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_32 : Operation 431 [7/13] (3.12ns)   --->   "%add36_i1_3 = fadd i32 %buf1_I_1_load_1, i32 %t_I_1_3" [fft.cpp:88]   --->   Operation 431 'fadd' 'add36_i1_3' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+
+State 33 <SV = 32> <Delay = 3.12>
+ST_33 : Operation 432 [4/13] (3.12ns)   --->   "%sub27_i1 = fsub i32 %buf1_R_load, i32 %t_R_s" [fft.cpp:85]   --->   Operation 432 'fsub' 'sub27_i1' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_33 : Operation 433 [4/13] (3.12ns)   --->   "%sub30_i1 = fsub i32 %buf1_I_load, i32 %t_I_s" [fft.cpp:86]   --->   Operation 433 'fsub' 'sub30_i1' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_33 : Operation 434 [4/13] (3.12ns)   --->   "%add33_i1 = fadd i32 %buf1_R_load, i32 %t_R_s" [fft.cpp:87]   --->   Operation 434 'fadd' 'add33_i1' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_33 : Operation 435 [4/13] (3.12ns)   --->   "%add36_i1 = fadd i32 %buf1_I_load, i32 %t_I_s" [fft.cpp:88]   --->   Operation 435 'fadd' 'add36_i1' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_33 : Operation 436 [5/13] (3.12ns)   --->   "%sub27_i1_1 = fsub i32 %buf1_R_1_load, i32 %t_R_1_1" [fft.cpp:85]   --->   Operation 436 'fsub' 'sub27_i1_1' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_33 : Operation 437 [5/13] (3.12ns)   --->   "%sub30_i1_1 = fsub i32 %buf1_I_1_load, i32 %t_I_1_1" [fft.cpp:86]   --->   Operation 437 'fsub' 'sub30_i1_1' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_33 : Operation 438 [5/13] (3.12ns)   --->   "%add33_i1_1 = fadd i32 %buf1_R_1_load, i32 %t_R_1_1" [fft.cpp:87]   --->   Operation 438 'fadd' 'add33_i1_1' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_33 : Operation 439 [5/13] (3.12ns)   --->   "%add36_i1_1 = fadd i32 %buf1_I_1_load, i32 %t_I_1_1" [fft.cpp:88]   --->   Operation 439 'fadd' 'add36_i1_1' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_33 : Operation 440 [4/13] (3.12ns)   --->   "%sub27_i1_2 = fsub i32 %buf1_R_load_1, i32 %t_R_1_2" [fft.cpp:85]   --->   Operation 440 'fsub' 'sub27_i1_2' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_33 : Operation 441 [4/13] (3.12ns)   --->   "%sub30_i1_2 = fsub i32 %buf1_I_load_1, i32 %t_I_1_2" [fft.cpp:86]   --->   Operation 441 'fsub' 'sub30_i1_2' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_33 : Operation 442 [4/13] (3.12ns)   --->   "%add33_i1_2 = fadd i32 %buf1_R_load_1, i32 %t_R_1_2" [fft.cpp:87]   --->   Operation 442 'fadd' 'add33_i1_2' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_33 : Operation 443 [4/13] (3.12ns)   --->   "%add36_i1_2 = fadd i32 %buf1_I_load_1, i32 %t_I_1_2" [fft.cpp:88]   --->   Operation 443 'fadd' 'add36_i1_2' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_33 : Operation 444 [6/13] (3.12ns)   --->   "%sub27_i1_3 = fsub i32 %buf1_R_1_load_1, i32 %t_R_1_3" [fft.cpp:85]   --->   Operation 444 'fsub' 'sub27_i1_3' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_33 : Operation 445 [6/13] (3.12ns)   --->   "%sub30_i1_3 = fsub i32 %buf1_I_1_load_1, i32 %t_I_1_3" [fft.cpp:86]   --->   Operation 445 'fsub' 'sub30_i1_3' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_33 : Operation 446 [6/13] (3.12ns)   --->   "%add33_i1_3 = fadd i32 %buf1_R_1_load_1, i32 %t_R_1_3" [fft.cpp:87]   --->   Operation 446 'fadd' 'add33_i1_3' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_33 : Operation 447 [6/13] (3.12ns)   --->   "%add36_i1_3 = fadd i32 %buf1_I_1_load_1, i32 %t_I_1_3" [fft.cpp:88]   --->   Operation 447 'fadd' 'add36_i1_3' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+
+State 34 <SV = 33> <Delay = 3.12>
+ST_34 : Operation 448 [3/13] (3.12ns)   --->   "%sub27_i1 = fsub i32 %buf1_R_load, i32 %t_R_s" [fft.cpp:85]   --->   Operation 448 'fsub' 'sub27_i1' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_34 : Operation 449 [3/13] (3.12ns)   --->   "%sub30_i1 = fsub i32 %buf1_I_load, i32 %t_I_s" [fft.cpp:86]   --->   Operation 449 'fsub' 'sub30_i1' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_34 : Operation 450 [3/13] (3.12ns)   --->   "%add33_i1 = fadd i32 %buf1_R_load, i32 %t_R_s" [fft.cpp:87]   --->   Operation 450 'fadd' 'add33_i1' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_34 : Operation 451 [3/13] (3.12ns)   --->   "%add36_i1 = fadd i32 %buf1_I_load, i32 %t_I_s" [fft.cpp:88]   --->   Operation 451 'fadd' 'add36_i1' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_34 : Operation 452 [4/13] (3.12ns)   --->   "%sub27_i1_1 = fsub i32 %buf1_R_1_load, i32 %t_R_1_1" [fft.cpp:85]   --->   Operation 452 'fsub' 'sub27_i1_1' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_34 : Operation 453 [4/13] (3.12ns)   --->   "%sub30_i1_1 = fsub i32 %buf1_I_1_load, i32 %t_I_1_1" [fft.cpp:86]   --->   Operation 453 'fsub' 'sub30_i1_1' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_34 : Operation 454 [4/13] (3.12ns)   --->   "%add33_i1_1 = fadd i32 %buf1_R_1_load, i32 %t_R_1_1" [fft.cpp:87]   --->   Operation 454 'fadd' 'add33_i1_1' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_34 : Operation 455 [4/13] (3.12ns)   --->   "%add36_i1_1 = fadd i32 %buf1_I_1_load, i32 %t_I_1_1" [fft.cpp:88]   --->   Operation 455 'fadd' 'add36_i1_1' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_34 : Operation 456 [3/13] (3.12ns)   --->   "%sub27_i1_2 = fsub i32 %buf1_R_load_1, i32 %t_R_1_2" [fft.cpp:85]   --->   Operation 456 'fsub' 'sub27_i1_2' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_34 : Operation 457 [3/13] (3.12ns)   --->   "%sub30_i1_2 = fsub i32 %buf1_I_load_1, i32 %t_I_1_2" [fft.cpp:86]   --->   Operation 457 'fsub' 'sub30_i1_2' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_34 : Operation 458 [3/13] (3.12ns)   --->   "%add33_i1_2 = fadd i32 %buf1_R_load_1, i32 %t_R_1_2" [fft.cpp:87]   --->   Operation 458 'fadd' 'add33_i1_2' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_34 : Operation 459 [3/13] (3.12ns)   --->   "%add36_i1_2 = fadd i32 %buf1_I_load_1, i32 %t_I_1_2" [fft.cpp:88]   --->   Operation 459 'fadd' 'add36_i1_2' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_34 : Operation 460 [5/13] (3.12ns)   --->   "%sub27_i1_3 = fsub i32 %buf1_R_1_load_1, i32 %t_R_1_3" [fft.cpp:85]   --->   Operation 460 'fsub' 'sub27_i1_3' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_34 : Operation 461 [5/13] (3.12ns)   --->   "%sub30_i1_3 = fsub i32 %buf1_I_1_load_1, i32 %t_I_1_3" [fft.cpp:86]   --->   Operation 461 'fsub' 'sub30_i1_3' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_34 : Operation 462 [5/13] (3.12ns)   --->   "%add33_i1_3 = fadd i32 %buf1_R_1_load_1, i32 %t_R_1_3" [fft.cpp:87]   --->   Operation 462 'fadd' 'add33_i1_3' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_34 : Operation 463 [5/13] (3.12ns)   --->   "%add36_i1_3 = fadd i32 %buf1_I_1_load_1, i32 %t_I_1_3" [fft.cpp:88]   --->   Operation 463 'fadd' 'add36_i1_3' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+
+State 35 <SV = 34> <Delay = 3.12>
+ST_35 : Operation 464 [2/13] (3.12ns)   --->   "%sub27_i1 = fsub i32 %buf1_R_load, i32 %t_R_s" [fft.cpp:85]   --->   Operation 464 'fsub' 'sub27_i1' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_35 : Operation 465 [2/13] (3.12ns)   --->   "%sub30_i1 = fsub i32 %buf1_I_load, i32 %t_I_s" [fft.cpp:86]   --->   Operation 465 'fsub' 'sub30_i1' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_35 : Operation 466 [2/13] (3.12ns)   --->   "%add33_i1 = fadd i32 %buf1_R_load, i32 %t_R_s" [fft.cpp:87]   --->   Operation 466 'fadd' 'add33_i1' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_35 : Operation 467 [2/13] (3.12ns)   --->   "%add36_i1 = fadd i32 %buf1_I_load, i32 %t_I_s" [fft.cpp:88]   --->   Operation 467 'fadd' 'add36_i1' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_35 : Operation 468 [3/13] (3.12ns)   --->   "%sub27_i1_1 = fsub i32 %buf1_R_1_load, i32 %t_R_1_1" [fft.cpp:85]   --->   Operation 468 'fsub' 'sub27_i1_1' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_35 : Operation 469 [3/13] (3.12ns)   --->   "%sub30_i1_1 = fsub i32 %buf1_I_1_load, i32 %t_I_1_1" [fft.cpp:86]   --->   Operation 469 'fsub' 'sub30_i1_1' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_35 : Operation 470 [3/13] (3.12ns)   --->   "%add33_i1_1 = fadd i32 %buf1_R_1_load, i32 %t_R_1_1" [fft.cpp:87]   --->   Operation 470 'fadd' 'add33_i1_1' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_35 : Operation 471 [3/13] (3.12ns)   --->   "%add36_i1_1 = fadd i32 %buf1_I_1_load, i32 %t_I_1_1" [fft.cpp:88]   --->   Operation 471 'fadd' 'add36_i1_1' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_35 : Operation 472 [2/13] (3.12ns)   --->   "%sub27_i1_2 = fsub i32 %buf1_R_load_1, i32 %t_R_1_2" [fft.cpp:85]   --->   Operation 472 'fsub' 'sub27_i1_2' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_35 : Operation 473 [2/13] (3.12ns)   --->   "%sub30_i1_2 = fsub i32 %buf1_I_load_1, i32 %t_I_1_2" [fft.cpp:86]   --->   Operation 473 'fsub' 'sub30_i1_2' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_35 : Operation 474 [2/13] (3.12ns)   --->   "%add33_i1_2 = fadd i32 %buf1_R_load_1, i32 %t_R_1_2" [fft.cpp:87]   --->   Operation 474 'fadd' 'add33_i1_2' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_35 : Operation 475 [2/13] (3.12ns)   --->   "%add36_i1_2 = fadd i32 %buf1_I_load_1, i32 %t_I_1_2" [fft.cpp:88]   --->   Operation 475 'fadd' 'add36_i1_2' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_35 : Operation 476 [4/13] (3.12ns)   --->   "%sub27_i1_3 = fsub i32 %buf1_R_1_load_1, i32 %t_R_1_3" [fft.cpp:85]   --->   Operation 476 'fsub' 'sub27_i1_3' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_35 : Operation 477 [4/13] (3.12ns)   --->   "%sub30_i1_3 = fsub i32 %buf1_I_1_load_1, i32 %t_I_1_3" [fft.cpp:86]   --->   Operation 477 'fsub' 'sub30_i1_3' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_35 : Operation 478 [4/13] (3.12ns)   --->   "%add33_i1_3 = fadd i32 %buf1_R_1_load_1, i32 %t_R_1_3" [fft.cpp:87]   --->   Operation 478 'fadd' 'add33_i1_3' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_35 : Operation 479 [4/13] (3.12ns)   --->   "%add36_i1_3 = fadd i32 %buf1_I_1_load_1, i32 %t_I_1_3" [fft.cpp:88]   --->   Operation 479 'fadd' 'add36_i1_3' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+
+State 36 <SV = 35> <Delay = 3.12>
+ST_36 : Operation 480 [1/13] (3.12ns)   --->   "%sub27_i1 = fsub i32 %buf1_R_load, i32 %t_R_s" [fft.cpp:85]   --->   Operation 480 'fsub' 'sub27_i1' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_36 : Operation 481 [1/13] (3.12ns)   --->   "%sub30_i1 = fsub i32 %buf1_I_load, i32 %t_I_s" [fft.cpp:86]   --->   Operation 481 'fsub' 'sub30_i1' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_36 : Operation 482 [1/13] (3.12ns)   --->   "%add33_i1 = fadd i32 %buf1_R_load, i32 %t_R_s" [fft.cpp:87]   --->   Operation 482 'fadd' 'add33_i1' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_36 : Operation 483 [1/13] (3.12ns)   --->   "%add36_i1 = fadd i32 %buf1_I_load, i32 %t_I_s" [fft.cpp:88]   --->   Operation 483 'fadd' 'add36_i1' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_36 : Operation 484 [2/13] (3.12ns)   --->   "%sub27_i1_1 = fsub i32 %buf1_R_1_load, i32 %t_R_1_1" [fft.cpp:85]   --->   Operation 484 'fsub' 'sub27_i1_1' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_36 : Operation 485 [2/13] (3.12ns)   --->   "%sub30_i1_1 = fsub i32 %buf1_I_1_load, i32 %t_I_1_1" [fft.cpp:86]   --->   Operation 485 'fsub' 'sub30_i1_1' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_36 : Operation 486 [2/13] (3.12ns)   --->   "%add33_i1_1 = fadd i32 %buf1_R_1_load, i32 %t_R_1_1" [fft.cpp:87]   --->   Operation 486 'fadd' 'add33_i1_1' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_36 : Operation 487 [2/13] (3.12ns)   --->   "%add36_i1_1 = fadd i32 %buf1_I_1_load, i32 %t_I_1_1" [fft.cpp:88]   --->   Operation 487 'fadd' 'add36_i1_1' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_36 : Operation 488 [1/13] (3.12ns)   --->   "%sub27_i1_2 = fsub i32 %buf1_R_load_1, i32 %t_R_1_2" [fft.cpp:85]   --->   Operation 488 'fsub' 'sub27_i1_2' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_36 : Operation 489 [1/13] (3.12ns)   --->   "%sub30_i1_2 = fsub i32 %buf1_I_load_1, i32 %t_I_1_2" [fft.cpp:86]   --->   Operation 489 'fsub' 'sub30_i1_2' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_36 : Operation 490 [1/13] (3.12ns)   --->   "%add33_i1_2 = fadd i32 %buf1_R_load_1, i32 %t_R_1_2" [fft.cpp:87]   --->   Operation 490 'fadd' 'add33_i1_2' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_36 : Operation 491 [1/13] (3.12ns)   --->   "%add36_i1_2 = fadd i32 %buf1_I_load_1, i32 %t_I_1_2" [fft.cpp:88]   --->   Operation 491 'fadd' 'add36_i1_2' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_36 : Operation 492 [3/13] (3.12ns)   --->   "%sub27_i1_3 = fsub i32 %buf1_R_1_load_1, i32 %t_R_1_3" [fft.cpp:85]   --->   Operation 492 'fsub' 'sub27_i1_3' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_36 : Operation 493 [3/13] (3.12ns)   --->   "%sub30_i1_3 = fsub i32 %buf1_I_1_load_1, i32 %t_I_1_3" [fft.cpp:86]   --->   Operation 493 'fsub' 'sub30_i1_3' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_36 : Operation 494 [3/13] (3.12ns)   --->   "%add33_i1_3 = fadd i32 %buf1_R_1_load_1, i32 %t_R_1_3" [fft.cpp:87]   --->   Operation 494 'fadd' 'add33_i1_3' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_36 : Operation 495 [3/13] (3.12ns)   --->   "%add36_i1_3 = fadd i32 %buf1_I_1_load_1, i32 %t_I_1_3" [fft.cpp:88]   --->   Operation 495 'fadd' 'add36_i1_3' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+
+State 37 <SV = 36> <Delay = 3.25>
+ST_37 : Operation 496 [1/1] (0.00ns)   --->   "%buf0_R_2_addr_3 = getelementptr i32 %buf0_R_2, i64 0, i64 %zext_ln77_2" [fft.cpp:85]   --->   Operation 496 'getelementptr' 'buf0_R_2_addr_3' <Predicate = true> <Delay = 0.00>
+ST_37 : Operation 497 [1/1] (3.25ns)   --->   "%store_ln85 = store i32 %sub27_i1, i8 %buf0_R_2_addr_3" [fft.cpp:85]   --->   Operation 497 'store' 'store_ln85' <Predicate = true> <Delay = 3.25> <CoreInst = "RAM">   --->   Core 82 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 256> <RAM>
+ST_37 : Operation 498 [1/1] (0.00ns)   --->   "%buf0_I_2_addr_3 = getelementptr i32 %buf0_I_2, i64 0, i64 %zext_ln77_2" [fft.cpp:86]   --->   Operation 498 'getelementptr' 'buf0_I_2_addr_3' <Predicate = true> <Delay = 0.00>
+ST_37 : Operation 499 [1/1] (3.25ns)   --->   "%store_ln86 = store i32 %sub30_i1, i8 %buf0_I_2_addr_3" [fft.cpp:86]   --->   Operation 499 'store' 'store_ln86' <Predicate = true> <Delay = 3.25> <CoreInst = "RAM">   --->   Core 82 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 256> <RAM>
+ST_37 : Operation 500 [1/1] (0.00ns)   --->   "%buf0_R_addr_3 = getelementptr i32 %buf0_R, i64 0, i64 %zext_ln77_2" [fft.cpp:87]   --->   Operation 500 'getelementptr' 'buf0_R_addr_3' <Predicate = true> <Delay = 0.00>
+ST_37 : Operation 501 [1/1] (3.25ns)   --->   "%store_ln87 = store i32 %add33_i1, i8 %buf0_R_addr_3" [fft.cpp:87]   --->   Operation 501 'store' 'store_ln87' <Predicate = true> <Delay = 3.25> <CoreInst = "RAM">   --->   Core 82 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 256> <RAM>
+ST_37 : Operation 502 [1/1] (0.00ns)   --->   "%buf0_I_addr_3 = getelementptr i32 %buf0_I, i64 0, i64 %zext_ln77_2" [fft.cpp:88]   --->   Operation 502 'getelementptr' 'buf0_I_addr_3' <Predicate = true> <Delay = 0.00>
+ST_37 : Operation 503 [1/1] (3.25ns)   --->   "%store_ln88 = store i32 %add36_i1, i8 %buf0_I_addr_3" [fft.cpp:88]   --->   Operation 503 'store' 'store_ln88' <Predicate = true> <Delay = 3.25> <CoreInst = "RAM">   --->   Core 82 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 256> <RAM>
+ST_37 : Operation 504 [1/13] (3.12ns)   --->   "%sub27_i1_1 = fsub i32 %buf1_R_1_load, i32 %t_R_1_1" [fft.cpp:85]   --->   Operation 504 'fsub' 'sub27_i1_1' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_37 : Operation 505 [1/13] (3.12ns)   --->   "%sub30_i1_1 = fsub i32 %buf1_I_1_load, i32 %t_I_1_1" [fft.cpp:86]   --->   Operation 505 'fsub' 'sub30_i1_1' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_37 : Operation 506 [1/13] (3.12ns)   --->   "%add33_i1_1 = fadd i32 %buf1_R_1_load, i32 %t_R_1_1" [fft.cpp:87]   --->   Operation 506 'fadd' 'add33_i1_1' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_37 : Operation 507 [1/13] (3.12ns)   --->   "%add36_i1_1 = fadd i32 %buf1_I_1_load, i32 %t_I_1_1" [fft.cpp:88]   --->   Operation 507 'fadd' 'add36_i1_1' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_37 : Operation 508 [1/1] (0.00ns)   --->   "%buf0_R_2_addr_4 = getelementptr i32 %buf0_R_2, i64 0, i64 %zext_ln77_4" [fft.cpp:85]   --->   Operation 508 'getelementptr' 'buf0_R_2_addr_4' <Predicate = true> <Delay = 0.00>
+ST_37 : Operation 509 [1/1] (3.25ns)   --->   "%store_ln85 = store i32 %sub27_i1_2, i8 %buf0_R_2_addr_4" [fft.cpp:85]   --->   Operation 509 'store' 'store_ln85' <Predicate = true> <Delay = 3.25> <CoreInst = "RAM">   --->   Core 82 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 256> <RAM>
+ST_37 : Operation 510 [1/1] (0.00ns)   --->   "%buf0_I_2_addr_4 = getelementptr i32 %buf0_I_2, i64 0, i64 %zext_ln77_4" [fft.cpp:86]   --->   Operation 510 'getelementptr' 'buf0_I_2_addr_4' <Predicate = true> <Delay = 0.00>
+ST_37 : Operation 511 [1/1] (3.25ns)   --->   "%store_ln86 = store i32 %sub30_i1_2, i8 %buf0_I_2_addr_4" [fft.cpp:86]   --->   Operation 511 'store' 'store_ln86' <Predicate = true> <Delay = 3.25> <CoreInst = "RAM">   --->   Core 82 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 256> <RAM>
+ST_37 : Operation 512 [1/1] (0.00ns)   --->   "%buf0_R_addr_4 = getelementptr i32 %buf0_R, i64 0, i64 %zext_ln77_4" [fft.cpp:87]   --->   Operation 512 'getelementptr' 'buf0_R_addr_4' <Predicate = true> <Delay = 0.00>
+ST_37 : Operation 513 [1/1] (3.25ns)   --->   "%store_ln87 = store i32 %add33_i1_2, i8 %buf0_R_addr_4" [fft.cpp:87]   --->   Operation 513 'store' 'store_ln87' <Predicate = true> <Delay = 3.25> <CoreInst = "RAM">   --->   Core 82 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 256> <RAM>
+ST_37 : Operation 514 [1/1] (0.00ns)   --->   "%buf0_I_addr_4 = getelementptr i32 %buf0_I, i64 0, i64 %zext_ln77_4" [fft.cpp:88]   --->   Operation 514 'getelementptr' 'buf0_I_addr_4' <Predicate = true> <Delay = 0.00>
+ST_37 : Operation 515 [1/1] (3.25ns)   --->   "%store_ln88 = store i32 %add36_i1_2, i8 %buf0_I_addr_4" [fft.cpp:88]   --->   Operation 515 'store' 'store_ln88' <Predicate = true> <Delay = 3.25> <CoreInst = "RAM">   --->   Core 82 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 256> <RAM>
+ST_37 : Operation 516 [2/13] (3.12ns)   --->   "%sub27_i1_3 = fsub i32 %buf1_R_1_load_1, i32 %t_R_1_3" [fft.cpp:85]   --->   Operation 516 'fsub' 'sub27_i1_3' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_37 : Operation 517 [2/13] (3.12ns)   --->   "%sub30_i1_3 = fsub i32 %buf1_I_1_load_1, i32 %t_I_1_3" [fft.cpp:86]   --->   Operation 517 'fsub' 'sub30_i1_3' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_37 : Operation 518 [2/13] (3.12ns)   --->   "%add33_i1_3 = fadd i32 %buf1_R_1_load_1, i32 %t_R_1_3" [fft.cpp:87]   --->   Operation 518 'fadd' 'add33_i1_3' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_37 : Operation 519 [2/13] (3.12ns)   --->   "%add36_i1_3 = fadd i32 %buf1_I_1_load_1, i32 %t_I_1_3" [fft.cpp:88]   --->   Operation 519 'fadd' 'add36_i1_3' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+
+State 38 <SV = 37> <Delay = 3.25>
+ST_38 : Operation 520 [1/1] (0.00ns)   --->   "%buf0_R_3_addr_3 = getelementptr i32 %buf0_R_3, i64 0, i64 %zext_ln77_3" [fft.cpp:85]   --->   Operation 520 'getelementptr' 'buf0_R_3_addr_3' <Predicate = true> <Delay = 0.00>
+ST_38 : Operation 521 [1/1] (3.25ns)   --->   "%store_ln85 = store i32 %sub27_i1_1, i8 %buf0_R_3_addr_3" [fft.cpp:85]   --->   Operation 521 'store' 'store_ln85' <Predicate = true> <Delay = 3.25> <CoreInst = "RAM">   --->   Core 82 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 256> <RAM>
+ST_38 : Operation 522 [1/1] (0.00ns)   --->   "%buf0_I_3_addr_3 = getelementptr i32 %buf0_I_3, i64 0, i64 %zext_ln77_3" [fft.cpp:86]   --->   Operation 522 'getelementptr' 'buf0_I_3_addr_3' <Predicate = true> <Delay = 0.00>
+ST_38 : Operation 523 [1/1] (3.25ns)   --->   "%store_ln86 = store i32 %sub30_i1_1, i8 %buf0_I_3_addr_3" [fft.cpp:86]   --->   Operation 523 'store' 'store_ln86' <Predicate = true> <Delay = 3.25> <CoreInst = "RAM">   --->   Core 82 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 256> <RAM>
+ST_38 : Operation 524 [1/1] (0.00ns)   --->   "%buf0_R_1_addr_3 = getelementptr i32 %buf0_R_1, i64 0, i64 %zext_ln77_3" [fft.cpp:87]   --->   Operation 524 'getelementptr' 'buf0_R_1_addr_3' <Predicate = true> <Delay = 0.00>
+ST_38 : Operation 525 [1/1] (3.25ns)   --->   "%store_ln87 = store i32 %add33_i1_1, i8 %buf0_R_1_addr_3" [fft.cpp:87]   --->   Operation 525 'store' 'store_ln87' <Predicate = true> <Delay = 3.25> <CoreInst = "RAM">   --->   Core 82 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 256> <RAM>
+ST_38 : Operation 526 [1/1] (0.00ns)   --->   "%buf0_I_1_addr_3 = getelementptr i32 %buf0_I_1, i64 0, i64 %zext_ln77_3" [fft.cpp:88]   --->   Operation 526 'getelementptr' 'buf0_I_1_addr_3' <Predicate = true> <Delay = 0.00>
+ST_38 : Operation 527 [1/1] (3.25ns)   --->   "%store_ln88 = store i32 %add36_i1_1, i8 %buf0_I_1_addr_3" [fft.cpp:88]   --->   Operation 527 'store' 'store_ln88' <Predicate = true> <Delay = 3.25> <CoreInst = "RAM">   --->   Core 82 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 256> <RAM>
+ST_38 : Operation 528 [1/13] (3.12ns)   --->   "%sub27_i1_3 = fsub i32 %buf1_R_1_load_1, i32 %t_R_1_3" [fft.cpp:85]   --->   Operation 528 'fsub' 'sub27_i1_3' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_38 : Operation 529 [1/13] (3.12ns)   --->   "%sub30_i1_3 = fsub i32 %buf1_I_1_load_1, i32 %t_I_1_3" [fft.cpp:86]   --->   Operation 529 'fsub' 'sub30_i1_3' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_38 : Operation 530 [1/13] (3.12ns)   --->   "%add33_i1_3 = fadd i32 %buf1_R_1_load_1, i32 %t_R_1_3" [fft.cpp:87]   --->   Operation 530 'fadd' 'add33_i1_3' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_38 : Operation 531 [1/13] (3.12ns)   --->   "%add36_i1_3 = fadd i32 %buf1_I_1_load_1, i32 %t_I_1_3" [fft.cpp:88]   --->   Operation 531 'fadd' 'add36_i1_3' <Predicate = true> <Delay = 3.12> <CoreInst = "FAddSub_nodsp">   --->   Core 17 'FAddSub_nodsp' <Latency = 12> <II = 1> <Delay = 3.12> <FuncUnit> <Opcode : 'fadd' 'fsub'> <InPorts = 2> <OutPorts = 1>
+ST_38 : Operation 543 [1/1] (0.00ns)   --->   "%ret_ln0 = ret"   --->   Operation 543 'ret' 'ret_ln0' <Predicate = (icmp_ln68)> <Delay = 0.00>
+
+State 39 <SV = 38> <Delay = 3.25>
+ST_39 : Operation 532 [1/1] (0.00ns)   --->   "%specpipeline_ln70 = specpipeline void @_ssdm_op_SpecPipeline, i32 4294967295, i32 0, i32 0, i32 0, void @empty_1" [fft.cpp:70]   --->   Operation 532 'specpipeline' 'specpipeline_ln70' <Predicate = true> <Delay = 0.00>
+ST_39 : Operation 533 [1/1] (0.00ns)   --->   "%specloopname_ln68 = specloopname void @_ssdm_op_SpecLoopName, void @empty_9" [fft.cpp:68]   --->   Operation 533 'specloopname' 'specloopname_ln68' <Predicate = true> <Delay = 0.00>
+ST_39 : Operation 534 [1/1] (0.00ns)   --->   "%buf0_R_3_addr_4 = getelementptr i32 %buf0_R_3, i64 0, i64 %zext_ln79" [fft.cpp:85]   --->   Operation 534 'getelementptr' 'buf0_R_3_addr_4' <Predicate = true> <Delay = 0.00>
+ST_39 : Operation 535 [1/1] (3.25ns)   --->   "%store_ln85 = store i32 %sub27_i1_3, i8 %buf0_R_3_addr_4" [fft.cpp:85]   --->   Operation 535 'store' 'store_ln85' <Predicate = true> <Delay = 3.25> <CoreInst = "RAM">   --->   Core 82 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 256> <RAM>
+ST_39 : Operation 536 [1/1] (0.00ns)   --->   "%buf0_I_3_addr_4 = getelementptr i32 %buf0_I_3, i64 0, i64 %zext_ln79" [fft.cpp:86]   --->   Operation 536 'getelementptr' 'buf0_I_3_addr_4' <Predicate = true> <Delay = 0.00>
+ST_39 : Operation 537 [1/1] (3.25ns)   --->   "%store_ln86 = store i32 %sub30_i1_3, i8 %buf0_I_3_addr_4" [fft.cpp:86]   --->   Operation 537 'store' 'store_ln86' <Predicate = true> <Delay = 3.25> <CoreInst = "RAM">   --->   Core 82 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 256> <RAM>
+ST_39 : Operation 538 [1/1] (0.00ns)   --->   "%buf0_R_1_addr_4 = getelementptr i32 %buf0_R_1, i64 0, i64 %zext_ln77_5" [fft.cpp:87]   --->   Operation 538 'getelementptr' 'buf0_R_1_addr_4' <Predicate = true> <Delay = 0.00>
+ST_39 : Operation 539 [1/1] (3.25ns)   --->   "%store_ln87 = store i32 %add33_i1_3, i8 %buf0_R_1_addr_4" [fft.cpp:87]   --->   Operation 539 'store' 'store_ln87' <Predicate = true> <Delay = 3.25> <CoreInst = "RAM">   --->   Core 82 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 256> <RAM>
+ST_39 : Operation 540 [1/1] (0.00ns)   --->   "%buf0_I_1_addr_4 = getelementptr i32 %buf0_I_1, i64 0, i64 %zext_ln77_5" [fft.cpp:88]   --->   Operation 540 'getelementptr' 'buf0_I_1_addr_4' <Predicate = true> <Delay = 0.00>
+ST_39 : Operation 541 [1/1] (3.25ns)   --->   "%store_ln88 = store i32 %add36_i1_3, i8 %buf0_I_1_addr_4" [fft.cpp:88]   --->   Operation 541 'store' 'store_ln88' <Predicate = true> <Delay = 3.25> <CoreInst = "RAM">   --->   Core 82 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 256> <RAM>
+ST_39 : Operation 542 [1/1] (0.00ns)   --->   "%br_ln68 = br void %for.inc.i38.0" [fft.cpp:68]   --->   Operation 542 'br' 'br_ln68' <Predicate = true> <Delay = 0.00>
+
+
+============================================================
++ Verbose Summary: Timing violations
+============================================================
+Target clock period: 3.34ns, clock uncertainty: 0ns.
+
+ <State 1>: 3.25ns
+The critical path consists of the following:
+	'alloca' operation ('i_2_0') [17]  (0 ns)
+	'load' operation ('i_2_0_load') on local variable 'i_2_0' [21]  (0 ns)
+	'getelementptr' operation ('buf1_R_2_addr_2', fft.cpp:77) [32]  (0 ns)
+	'load' operation ('buf1_R_2_load', fft.cpp:77) on array 'buf1_R_2' [34]  (3.25 ns)
+
+ <State 2>: 3.25ns
+The critical path consists of the following:
+	'load' operation ('buf1_R_2_load', fft.cpp:77) on array 'buf1_R_2' [34]  (3.25 ns)
+
+ <State 3>: 3.25ns
+The critical path consists of the following:
+	'load' operation ('buf1_R_3_load', fft.cpp:77) on array 'buf1_R_3' [63]  (3.25 ns)
+
+ <State 4>: 3.25ns
+The critical path consists of the following:
+	'load' operation ('buf1_R_3_load_1', fft.cpp:79) on array 'buf1_R_3' [132]  (3.25 ns)
+
+ <State 5>: 2.57ns
+The critical path consists of the following:
+	'fmul' operation ('mul23_i1', fft.cpp:82) [39]  (2.57 ns)
+
+ <State 6>: 2.57ns
+The critical path consists of the following:
+	'fmul' operation ('mul23_i1', fft.cpp:82) [39]  (2.57 ns)
+
+ <State 7>: 2.57ns
+The critical path consists of the following:
+	'fmul' operation ('mul23_i1', fft.cpp:82) [39]  (2.57 ns)
+
+ <State 8>: 2.57ns
+The critical path consists of the following:
+	'fmul' operation ('mul23_i1', fft.cpp:82) [39]  (2.57 ns)
+
+ <State 9>: 2.57ns
+The critical path consists of the following:
+	'fmul' operation ('mul23_i1', fft.cpp:82) [39]  (2.57 ns)
+
+ <State 10>: 2.57ns
+The critical path consists of the following:
+	'fmul' operation ('mul23_i1', fft.cpp:82) [39]  (2.57 ns)
+
+ <State 11>: 3.12ns
+The critical path consists of the following:
+	'fsub' operation ('t_R_s', fft.cpp:82) [40]  (3.12 ns)
+
+ <State 12>: 3.12ns
+The critical path consists of the following:
+	'fsub' operation ('t_R_s', fft.cpp:82) [40]  (3.12 ns)
+
+ <State 13>: 3.12ns
+The critical path consists of the following:
+	'fsub' operation ('t_R_s', fft.cpp:82) [40]  (3.12 ns)
+
+ <State 14>: 3.12ns
+The critical path consists of the following:
+	'fsub' operation ('t_R_s', fft.cpp:82) [40]  (3.12 ns)
+
+ <State 15>: 3.12ns
+The critical path consists of the following:
+	'fsub' operation ('t_R_s', fft.cpp:82) [40]  (3.12 ns)
+
+ <State 16>: 3.12ns
+The critical path consists of the following:
+	'fsub' operation ('t_R_s', fft.cpp:82) [40]  (3.12 ns)
+
+ <State 17>: 3.12ns
+The critical path consists of the following:
+	'fsub' operation ('t_R_s', fft.cpp:82) [40]  (3.12 ns)
+
+ <State 18>: 3.12ns
+The critical path consists of the following:
+	'fsub' operation ('t_R_s', fft.cpp:82) [40]  (3.12 ns)
+
+ <State 19>: 3.12ns
+The critical path consists of the following:
+	'fsub' operation ('t_R_s', fft.cpp:82) [40]  (3.12 ns)
+
+ <State 20>: 3.12ns
+The critical path consists of the following:
+	'fsub' operation ('t_R_s', fft.cpp:82) [40]  (3.12 ns)
+
+ <State 21>: 3.12ns
+The critical path consists of the following:
+	'fsub' operation ('t_R_s', fft.cpp:82) [40]  (3.12 ns)
+
+ <State 22>: 3.25ns
+The critical path consists of the following:
+	'getelementptr' operation ('buf1_R_addr_2', fft.cpp:77) [31]  (0 ns)
+	'load' operation ('buf1_R_load', fft.cpp:77) on array 'buf1_R' [33]  (3.25 ns)
+
+ <State 23>: 3.25ns
+The critical path consists of the following:
+	'load' operation ('buf1_R_load', fft.cpp:77) on array 'buf1_R' [33]  (3.25 ns)
+
+ <State 24>: 3.25ns
+The critical path consists of the following:
+	'load' operation ('buf1_R_1_load', fft.cpp:77) on array 'buf1_R_1' [62]  (3.25 ns)
+
+ <State 25>: 3.25ns
+The critical path consists of the following:
+	'load' operation ('buf1_R_1_load_1', fft.cpp:77) on array 'buf1_R_1' [126]  (3.25 ns)
+
+ <State 26>: 3.12ns
+The critical path consists of the following:
+	'fsub' operation ('sub27_i1', fft.cpp:85) [43]  (3.12 ns)
+
+ <State 27>: 3.12ns
+The critical path consists of the following:
+	'fsub' operation ('sub27_i1', fft.cpp:85) [43]  (3.12 ns)
+
+ <State 28>: 3.12ns
+The critical path consists of the following:
+	'fsub' operation ('sub27_i1', fft.cpp:85) [43]  (3.12 ns)
+
+ <State 29>: 3.12ns
+The critical path consists of the following:
+	'fsub' operation ('sub27_i1', fft.cpp:85) [43]  (3.12 ns)
+
+ <State 30>: 3.12ns
+The critical path consists of the following:
+	'fsub' operation ('sub27_i1', fft.cpp:85) [43]  (3.12 ns)
+
+ <State 31>: 3.12ns
+The critical path consists of the following:
+	'fsub' operation ('sub27_i1', fft.cpp:85) [43]  (3.12 ns)
+
+ <State 32>: 3.12ns
+The critical path consists of the following:
+	'fsub' operation ('sub27_i1', fft.cpp:85) [43]  (3.12 ns)
+
+ <State 33>: 3.12ns
+The critical path consists of the following:
+	'fsub' operation ('sub27_i1', fft.cpp:85) [43]  (3.12 ns)
+
+ <State 34>: 3.12ns
+The critical path consists of the following:
+	'fsub' operation ('sub27_i1', fft.cpp:85) [43]  (3.12 ns)
+
+ <State 35>: 3.12ns
+The critical path consists of the following:
+	'fsub' operation ('sub27_i1', fft.cpp:85) [43]  (3.12 ns)
+
+ <State 36>: 3.12ns
+The critical path consists of the following:
+	'fsub' operation ('sub27_i1', fft.cpp:85) [43]  (3.12 ns)
+
+ <State 37>: 3.25ns
+The critical path consists of the following:
+	'getelementptr' operation ('buf0_R_2_addr_3', fft.cpp:85) [44]  (0 ns)
+	'store' operation ('store_ln85', fft.cpp:85) of variable 'sub27_i1', fft.cpp:85 on array 'buf0_R_2' [46]  (3.25 ns)
+
+ <State 38>: 3.25ns
+The critical path consists of the following:
+	'getelementptr' operation ('buf0_R_3_addr_3', fft.cpp:85) [79]  (0 ns)
+	'store' operation ('store_ln85', fft.cpp:85) of variable 'sub27_i1_1', fft.cpp:85 on array 'buf0_R_3' [81]  (3.25 ns)
+
+ <State 39>: 3.25ns
+The critical path consists of the following:
+	'getelementptr' operation ('buf0_R_3_addr_4', fft.cpp:85) [146]  (0 ns)
+	'store' operation ('store_ln85', fft.cpp:85) of variable 'sub27_i1_3', fft.cpp:85 on array 'buf0_R_3' [148]  (3.25 ns)
+
+
+============================================================
++ Verbose Summary: Binding
+============================================================
+N/A
+* FSMD analyzer results:
+  - Output states:
+ - Input state : 
+  - Chain level:
+	State 1
+	State 2
+	State 3
+	State 4
+	State 5
+	State 6
+	State 7
+	State 8
+	State 9
+	State 10
+	State 11
+	State 12
+	State 13
+	State 14
+	State 15
+	State 16
+	State 17
+	State 18
+	State 19
+	State 20
+	State 21
+	State 22
+	State 23
+	State 24
+	State 25
+	State 26
+	State 27
+	State 28
+	State 29
+	State 30
+	State 31
+	State 32
+	State 33
+	State 34
+	State 35
+	State 36
+	State 37
+	State 38
+	State 39
+
+
+============================================================
++ Verbose Summary: Datapath Resource usage 
+============================================================
+N/A

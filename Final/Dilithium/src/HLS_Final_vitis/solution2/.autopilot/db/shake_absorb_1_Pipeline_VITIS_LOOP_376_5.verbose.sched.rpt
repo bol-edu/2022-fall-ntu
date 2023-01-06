@@ -1,0 +1,223 @@
+
+
+================================================================
+== Vitis HLS Report for 'shake_absorb_1_Pipeline_VITIS_LOOP_376_5'
+================================================================
+* Date:           Thu Dec 29 12:27:06 2022
+
+* Version:        2022.1 (Build 3526262 on Mon Apr 18 15:48:16 MDT 2022)
+* Project:        HLS_final_vitis
+* Solution:       solution2 (Vivado IP Flow Target)
+* Product family: virtexuplus
+* Target device:  xcvu11p-flga2577-1-e
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing: 
+    * Summary: 
+    +--------+----------+----------+------------+
+    |  Clock |  Target  | Estimated| Uncertainty|
+    +--------+----------+----------+------------+
+    |ap_clk  |  10.00 ns|  2.441 ns|     2.70 ns|
+    +--------+----------+----------+------------+
+
++ Latency: 
+    * Summary: 
+    +---------+---------+-----------+----------+-----+-----+---------+
+    |  Latency (cycles) |  Latency (absolute)  |  Interval | Pipeline|
+    |   min   |   max   |    min    |    max   | min | max |   Type  |
+    +---------+---------+-----------+----------+-----+-----+---------+
+    |        2|       82|  20.000 ns|  0.820 us|    2|   82|       no|
+    +---------+---------+-----------+----------+-----+-----+---------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        +--------------------+---------+---------+----------+-----------+-----------+--------+----------+
+        |                    |  Latency (cycles) | Iteration|  Initiation Interval  |  Trip  |          |
+        |      Loop Name     |   min   |   max   |  Latency |  achieved |   target  |  Count | Pipelined|
+        +--------------------+---------+---------+----------+-----------+-----------+--------+----------+
+        |- VITIS_LOOP_376_5  |        0|       80|         5|          4|          1|  0 ~ 20|       yes|
+        +--------------------+---------+---------+----------+-----------+-----------+--------+----------+
+
+============================================================
++ Verbose Summary: Synthesis Manager
+============================================================
+InlineROM: 1
+ExposeGlobal: 0
+============================================================
++ Verbose Summary: CDFG Model
+============================================================
+IsTopModel: 0
+ResetActiveHigh: 1
+IsCombinational: 0
+IsDatapathOnly: 0
+HasWiredReturn: 1
+HasMFsm: 2
+HasVarLatency: 1
+IsPipeline: 0
+IsRtlPipelined: 0
+IsInstanceOverlapped: 0
+IsDontTouch: 0
+HasImplIP: 0
+IsGatedGlobalClock: 0
+
++ Individual pipeline summary: 
+  * Pipeline-0: initiation interval (II) = 4, depth = 5
+
+
+============================================================
++ Verbose Summary: Schedule
+============================================================
+* Number of FSM states : 5
+* Pipeline : 1
+  Pipeline-0 : II = 4, D = 5, States = { 1 2 3 4 5 }
+* Dataflow Pipeline: 0
+
+* FSM state transitions: 
+1 --> 2 
+2 --> 3 
+3 --> 4 
+4 --> 5 
+5 --> 
+
+* FSM state operations: 
+
+State 1 <SV = 0> <Delay = 2.44>
+ST_1 : Operation 8 [1/1] (0.00ns)   --->   "%i_5 = alloca i32 1"   --->   Operation 8 'alloca' 'i_5' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 9 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i8 %seedbuf, void @empty_69, i32 0, i32 0, void @empty_70, i32 4294967295, i32 0, void @empty_70, void @empty_70, void @empty_70, i32 0, i32 0, i32 0, i32 0, void @empty_70, void @empty_70, i32 4294967295, i32 0"   --->   Operation 9 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 10 [1/1] (0.00ns)   --->   "%add_ln13_2_read = read i7 @_ssdm_op_Read.ap_auto.i7, i7 %add_ln13_2"   --->   Operation 10 'read' 'add_ln13_2_read' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 11 [1/1] (0.00ns)   --->   "%div_read = read i5 @_ssdm_op_Read.ap_auto.i5, i5 %div"   --->   Operation 11 'read' 'div_read' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 12 [1/1] (0.46ns)   --->   "%store_ln0 = store i5 0, i5 %i_5"   --->   Operation 12 'store' 'store_ln0' <Predicate = true> <Delay = 0.46>
+ST_1 : Operation 13 [1/1] (0.00ns)   --->   "%br_ln0 = br void %for.inc81"   --->   Operation 13 'br' 'br_ln0' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 14 [1/1] (0.00ns)   --->   "%i = load i5 %i_5" [HLS_Final_vitis_src/spu.cpp:377]   --->   Operation 14 'load' 'i' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 15 [1/1] (0.00ns)   --->   "%specpipeline_ln0 = specpipeline void @_ssdm_op_SpecPipeline, i32 4294967295, i32 0, i32 1, i32 0, void @p_str"   --->   Operation 15 'specpipeline' 'specpipeline_ln0' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 16 [1/1] (0.00ns)   --->   "%speclooptripcount_ln0 = speclooptripcount void @_ssdm_op_SpecLoopTripCount, i64 0, i64 20, i64 0"   --->   Operation 16 'speclooptripcount' 'speclooptripcount_ln0' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 17 [1/1] (0.72ns)   --->   "%icmp_ln376 = icmp_eq  i5 %i, i5 %div_read" [HLS_Final_vitis_src/spu.cpp:376]   --->   Operation 17 'icmp' 'icmp_ln376' <Predicate = true> <Delay = 0.72> <CoreInst = "Cmp">   --->   Core 9 'Cmp' <Latency = 0> <II = 1> <Delay = 0.72> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 18 [1/1] (0.82ns)   --->   "%i_17 = add i5 %i, i5 1" [HLS_Final_vitis_src/spu.cpp:376]   --->   Operation 18 'add' 'i_17' <Predicate = true> <Delay = 0.82> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 0.82> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 19 [1/1] (0.00ns)   --->   "%br_ln376 = br i1 %icmp_ln376, void %for.inc81.split, void %for.end83.loopexit.exitStub" [HLS_Final_vitis_src/spu.cpp:376]   --->   Operation 19 'br' 'br_ln376' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 20 [1/1] (0.00ns)   --->   "%zext_ln376 = zext i5 %i" [HLS_Final_vitis_src/spu.cpp:376]   --->   Operation 20 'zext' 'zext_ln376' <Predicate = (!icmp_ln376)> <Delay = 0.00>
+ST_1 : Operation 21 [1/1] (0.00ns)   --->   "%trunc_ln377 = trunc i5 %i" [HLS_Final_vitis_src/spu.cpp:377]   --->   Operation 21 'trunc' 'trunc_ln377' <Predicate = (!icmp_ln376)> <Delay = 0.00>
+ST_1 : Operation 22 [1/1] (0.00ns)   --->   "%shl_ln = bitconcatenate i7 @_ssdm_op_BitConcatenate.i7.i4.i3, i4 %trunc_ln377, i3 0" [HLS_Final_vitis_src/spu.cpp:377]   --->   Operation 22 'bitconcatenate' 'shl_ln' <Predicate = (!icmp_ln376)> <Delay = 0.00>
+ST_1 : Operation 23 [1/1] (0.85ns)   --->   "%add_ln13 = add i7 %add_ln13_2_read, i7 %shl_ln" [HLS_Final_vitis_src/spu.cpp:13]   --->   Operation 23 'add' 'add_ln13' <Predicate = (!icmp_ln376)> <Delay = 0.85> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 0.85> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 24 [1/1] (0.00ns)   --->   "%zext_ln13 = zext i7 %add_ln13" [HLS_Final_vitis_src/spu.cpp:13]   --->   Operation 24 'zext' 'zext_ln13' <Predicate = (!icmp_ln376)> <Delay = 0.00>
+ST_1 : Operation 25 [1/1] (0.00ns)   --->   "%seedbuf_addr = getelementptr i8 %seedbuf, i64 0, i64 %zext_ln13" [HLS_Final_vitis_src/spu.cpp:13]   --->   Operation 25 'getelementptr' 'seedbuf_addr' <Predicate = (!icmp_ln376)> <Delay = 0.00>
+ST_1 : Operation 26 [2/2] (0.73ns)   --->   "%seedbuf_load = load i7 %seedbuf_addr" [HLS_Final_vitis_src/spu.cpp:13]   --->   Operation 26 'load' 'seedbuf_load' <Predicate = (!icmp_ln376)> <Delay = 0.73> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 0.73> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 96> <RAM>
+ST_1 : Operation 27 [1/1] (0.85ns)   --->   "%add_ln13_1 = add i7 %add_ln13, i7 1" [HLS_Final_vitis_src/spu.cpp:13]   --->   Operation 27 'add' 'add_ln13_1' <Predicate = (!icmp_ln376)> <Delay = 0.85> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 0.85> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 28 [1/1] (0.00ns)   --->   "%zext_ln13_11 = zext i7 %add_ln13_1" [HLS_Final_vitis_src/spu.cpp:13]   --->   Operation 28 'zext' 'zext_ln13_11' <Predicate = (!icmp_ln376)> <Delay = 0.00>
+ST_1 : Operation 29 [1/1] (0.00ns)   --->   "%seedbuf_addr_8 = getelementptr i8 %seedbuf, i64 0, i64 %zext_ln13_11" [HLS_Final_vitis_src/spu.cpp:13]   --->   Operation 29 'getelementptr' 'seedbuf_addr_8' <Predicate = (!icmp_ln376)> <Delay = 0.00>
+ST_1 : Operation 30 [2/2] (0.73ns)   --->   "%seedbuf_load_1 = load i7 %seedbuf_addr_8" [HLS_Final_vitis_src/spu.cpp:13]   --->   Operation 30 'load' 'seedbuf_load_1' <Predicate = (!icmp_ln376)> <Delay = 0.73> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 0.73> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 96> <RAM>
+ST_1 : Operation 31 [1/1] (0.00ns)   --->   "%this_s_addr = getelementptr i64 %this_s, i64 0, i64 %zext_ln376" [HLS_Final_vitis_src/spu.cpp:377]   --->   Operation 31 'getelementptr' 'this_s_addr' <Predicate = (!icmp_ln376)> <Delay = 0.00>
+ST_1 : Operation 32 [2/2] (1.29ns)   --->   "%this_s_load = load i5 %this_s_addr" [HLS_Final_vitis_src/spu.cpp:377]   --->   Operation 32 'load' 'this_s_load' <Predicate = (!icmp_ln376)> <Delay = 1.29> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 1.29> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 25> <RAM>
+ST_1 : Operation 33 [1/1] (0.46ns)   --->   "%store_ln376 = store i5 %i_17, i5 %i_5" [HLS_Final_vitis_src/spu.cpp:376]   --->   Operation 33 'store' 'store_ln376' <Predicate = (!icmp_ln376)> <Delay = 0.46>
+ST_1 : Operation 72 [1/1] (0.00ns)   --->   "%ret_ln0 = ret"   --->   Operation 72 'ret' 'ret_ln0' <Predicate = (icmp_ln376)> <Delay = 0.00>
+
+State 2 <SV = 1> <Delay = 1.58>
+ST_2 : Operation 34 [1/2] (0.73ns)   --->   "%seedbuf_load = load i7 %seedbuf_addr" [HLS_Final_vitis_src/spu.cpp:13]   --->   Operation 34 'load' 'seedbuf_load' <Predicate = (!icmp_ln376)> <Delay = 0.73> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 0.73> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 96> <RAM>
+ST_2 : Operation 35 [1/2] (0.73ns)   --->   "%seedbuf_load_1 = load i7 %seedbuf_addr_8" [HLS_Final_vitis_src/spu.cpp:13]   --->   Operation 35 'load' 'seedbuf_load_1' <Predicate = (!icmp_ln376)> <Delay = 0.73> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 0.73> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 96> <RAM>
+ST_2 : Operation 36 [1/1] (0.85ns)   --->   "%add_ln13_3 = add i7 %add_ln13, i7 2" [HLS_Final_vitis_src/spu.cpp:13]   --->   Operation 36 'add' 'add_ln13_3' <Predicate = (!icmp_ln376)> <Delay = 0.85> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 0.85> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 37 [1/1] (0.00ns)   --->   "%zext_ln13_12 = zext i7 %add_ln13_3" [HLS_Final_vitis_src/spu.cpp:13]   --->   Operation 37 'zext' 'zext_ln13_12' <Predicate = (!icmp_ln376)> <Delay = 0.00>
+ST_2 : Operation 38 [1/1] (0.00ns)   --->   "%seedbuf_addr_9 = getelementptr i8 %seedbuf, i64 0, i64 %zext_ln13_12" [HLS_Final_vitis_src/spu.cpp:13]   --->   Operation 38 'getelementptr' 'seedbuf_addr_9' <Predicate = (!icmp_ln376)> <Delay = 0.00>
+ST_2 : Operation 39 [2/2] (0.73ns)   --->   "%seedbuf_load_2 = load i7 %seedbuf_addr_9" [HLS_Final_vitis_src/spu.cpp:13]   --->   Operation 39 'load' 'seedbuf_load_2' <Predicate = (!icmp_ln376)> <Delay = 0.73> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 0.73> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 96> <RAM>
+ST_2 : Operation 40 [1/1] (0.85ns)   --->   "%add_ln13_4 = add i7 %add_ln13, i7 3" [HLS_Final_vitis_src/spu.cpp:13]   --->   Operation 40 'add' 'add_ln13_4' <Predicate = (!icmp_ln376)> <Delay = 0.85> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 0.85> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 41 [1/1] (0.00ns)   --->   "%zext_ln13_13 = zext i7 %add_ln13_4" [HLS_Final_vitis_src/spu.cpp:13]   --->   Operation 41 'zext' 'zext_ln13_13' <Predicate = (!icmp_ln376)> <Delay = 0.00>
+ST_2 : Operation 42 [1/1] (0.00ns)   --->   "%seedbuf_addr_10 = getelementptr i8 %seedbuf, i64 0, i64 %zext_ln13_13" [HLS_Final_vitis_src/spu.cpp:13]   --->   Operation 42 'getelementptr' 'seedbuf_addr_10' <Predicate = (!icmp_ln376)> <Delay = 0.00>
+ST_2 : Operation 43 [2/2] (0.73ns)   --->   "%seedbuf_load_3 = load i7 %seedbuf_addr_10" [HLS_Final_vitis_src/spu.cpp:13]   --->   Operation 43 'load' 'seedbuf_load_3' <Predicate = (!icmp_ln376)> <Delay = 0.73> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 0.73> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 96> <RAM>
+ST_2 : Operation 44 [1/2] (1.29ns)   --->   "%this_s_load = load i5 %this_s_addr" [HLS_Final_vitis_src/spu.cpp:377]   --->   Operation 44 'load' 'this_s_load' <Predicate = (!icmp_ln376)> <Delay = 1.29> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 1.29> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 25> <RAM>
+
+State 3 <SV = 2> <Delay = 1.58>
+ST_3 : Operation 45 [1/2] (0.73ns)   --->   "%seedbuf_load_2 = load i7 %seedbuf_addr_9" [HLS_Final_vitis_src/spu.cpp:13]   --->   Operation 45 'load' 'seedbuf_load_2' <Predicate = (!icmp_ln376)> <Delay = 0.73> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 0.73> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 96> <RAM>
+ST_3 : Operation 46 [1/2] (0.73ns)   --->   "%seedbuf_load_3 = load i7 %seedbuf_addr_10" [HLS_Final_vitis_src/spu.cpp:13]   --->   Operation 46 'load' 'seedbuf_load_3' <Predicate = (!icmp_ln376)> <Delay = 0.73> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 0.73> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 96> <RAM>
+ST_3 : Operation 47 [1/1] (0.85ns)   --->   "%add_ln13_5 = add i7 %add_ln13, i7 4" [HLS_Final_vitis_src/spu.cpp:13]   --->   Operation 47 'add' 'add_ln13_5' <Predicate = (!icmp_ln376)> <Delay = 0.85> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 0.85> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_3 : Operation 48 [1/1] (0.00ns)   --->   "%zext_ln13_14 = zext i7 %add_ln13_5" [HLS_Final_vitis_src/spu.cpp:13]   --->   Operation 48 'zext' 'zext_ln13_14' <Predicate = (!icmp_ln376)> <Delay = 0.00>
+ST_3 : Operation 49 [1/1] (0.00ns)   --->   "%seedbuf_addr_11 = getelementptr i8 %seedbuf, i64 0, i64 %zext_ln13_14" [HLS_Final_vitis_src/spu.cpp:13]   --->   Operation 49 'getelementptr' 'seedbuf_addr_11' <Predicate = (!icmp_ln376)> <Delay = 0.00>
+ST_3 : Operation 50 [2/2] (0.73ns)   --->   "%seedbuf_load_4 = load i7 %seedbuf_addr_11" [HLS_Final_vitis_src/spu.cpp:13]   --->   Operation 50 'load' 'seedbuf_load_4' <Predicate = (!icmp_ln376)> <Delay = 0.73> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 0.73> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 96> <RAM>
+ST_3 : Operation 51 [1/1] (0.85ns)   --->   "%add_ln13_6 = add i7 %add_ln13, i7 5" [HLS_Final_vitis_src/spu.cpp:13]   --->   Operation 51 'add' 'add_ln13_6' <Predicate = (!icmp_ln376)> <Delay = 0.85> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 0.85> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_3 : Operation 52 [1/1] (0.00ns)   --->   "%zext_ln13_15 = zext i7 %add_ln13_6" [HLS_Final_vitis_src/spu.cpp:13]   --->   Operation 52 'zext' 'zext_ln13_15' <Predicate = (!icmp_ln376)> <Delay = 0.00>
+ST_3 : Operation 53 [1/1] (0.00ns)   --->   "%seedbuf_addr_12 = getelementptr i8 %seedbuf, i64 0, i64 %zext_ln13_15" [HLS_Final_vitis_src/spu.cpp:13]   --->   Operation 53 'getelementptr' 'seedbuf_addr_12' <Predicate = (!icmp_ln376)> <Delay = 0.00>
+ST_3 : Operation 54 [2/2] (0.73ns)   --->   "%seedbuf_load_5 = load i7 %seedbuf_addr_12" [HLS_Final_vitis_src/spu.cpp:13]   --->   Operation 54 'load' 'seedbuf_load_5' <Predicate = (!icmp_ln376)> <Delay = 0.73> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 0.73> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 96> <RAM>
+
+State 4 <SV = 3> <Delay = 1.58>
+ST_4 : Operation 55 [1/2] (0.73ns)   --->   "%seedbuf_load_4 = load i7 %seedbuf_addr_11" [HLS_Final_vitis_src/spu.cpp:13]   --->   Operation 55 'load' 'seedbuf_load_4' <Predicate = (!icmp_ln376)> <Delay = 0.73> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 0.73> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 96> <RAM>
+ST_4 : Operation 56 [1/2] (0.73ns)   --->   "%seedbuf_load_5 = load i7 %seedbuf_addr_12" [HLS_Final_vitis_src/spu.cpp:13]   --->   Operation 56 'load' 'seedbuf_load_5' <Predicate = (!icmp_ln376)> <Delay = 0.73> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 0.73> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 96> <RAM>
+ST_4 : Operation 57 [1/1] (0.85ns)   --->   "%add_ln13_7 = add i7 %add_ln13, i7 6" [HLS_Final_vitis_src/spu.cpp:13]   --->   Operation 57 'add' 'add_ln13_7' <Predicate = (!icmp_ln376)> <Delay = 0.85> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 0.85> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_4 : Operation 58 [1/1] (0.00ns)   --->   "%zext_ln13_16 = zext i7 %add_ln13_7" [HLS_Final_vitis_src/spu.cpp:13]   --->   Operation 58 'zext' 'zext_ln13_16' <Predicate = (!icmp_ln376)> <Delay = 0.00>
+ST_4 : Operation 59 [1/1] (0.00ns)   --->   "%seedbuf_addr_13 = getelementptr i8 %seedbuf, i64 0, i64 %zext_ln13_16" [HLS_Final_vitis_src/spu.cpp:13]   --->   Operation 59 'getelementptr' 'seedbuf_addr_13' <Predicate = (!icmp_ln376)> <Delay = 0.00>
+ST_4 : Operation 60 [2/2] (0.73ns)   --->   "%seedbuf_load_6 = load i7 %seedbuf_addr_13" [HLS_Final_vitis_src/spu.cpp:13]   --->   Operation 60 'load' 'seedbuf_load_6' <Predicate = (!icmp_ln376)> <Delay = 0.73> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 0.73> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 96> <RAM>
+ST_4 : Operation 61 [1/1] (0.85ns)   --->   "%add_ln13_8 = add i7 %add_ln13, i7 7" [HLS_Final_vitis_src/spu.cpp:13]   --->   Operation 61 'add' 'add_ln13_8' <Predicate = (!icmp_ln376)> <Delay = 0.85> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 0.85> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_4 : Operation 62 [1/1] (0.00ns)   --->   "%zext_ln13_17 = zext i7 %add_ln13_8" [HLS_Final_vitis_src/spu.cpp:13]   --->   Operation 62 'zext' 'zext_ln13_17' <Predicate = (!icmp_ln376)> <Delay = 0.00>
+ST_4 : Operation 63 [1/1] (0.00ns)   --->   "%seedbuf_addr_14 = getelementptr i8 %seedbuf, i64 0, i64 %zext_ln13_17" [HLS_Final_vitis_src/spu.cpp:13]   --->   Operation 63 'getelementptr' 'seedbuf_addr_14' <Predicate = (!icmp_ln376)> <Delay = 0.00>
+ST_4 : Operation 64 [2/2] (0.73ns)   --->   "%seedbuf_load_7 = load i7 %seedbuf_addr_14" [HLS_Final_vitis_src/spu.cpp:13]   --->   Operation 64 'load' 'seedbuf_load_7' <Predicate = (!icmp_ln376)> <Delay = 0.73> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 0.73> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 96> <RAM>
+
+State 5 <SV = 4> <Delay = 2.35>
+ST_5 : Operation 65 [1/1] (0.00ns)   --->   "%specloopname_ln342 = specloopname void @_ssdm_op_SpecLoopName, void @empty_19" [HLS_Final_vitis_src/spu.cpp:342]   --->   Operation 65 'specloopname' 'specloopname_ln342' <Predicate = true> <Delay = 0.00>
+ST_5 : Operation 66 [1/2] (0.73ns)   --->   "%seedbuf_load_6 = load i7 %seedbuf_addr_13" [HLS_Final_vitis_src/spu.cpp:13]   --->   Operation 66 'load' 'seedbuf_load_6' <Predicate = true> <Delay = 0.73> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 0.73> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 96> <RAM>
+ST_5 : Operation 67 [1/2] (0.73ns)   --->   "%seedbuf_load_7 = load i7 %seedbuf_addr_14" [HLS_Final_vitis_src/spu.cpp:13]   --->   Operation 67 'load' 'seedbuf_load_7' <Predicate = true> <Delay = 0.73> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 0.73> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 96> <RAM>
+ST_5 : Operation 68 [1/1] (0.00ns)   --->   "%r_15_7 = bitconcatenate i64 @_ssdm_op_BitConcatenate.i64.i8.i8.i8.i8.i8.i8.i8.i8, i8 %seedbuf_load_7, i8 %seedbuf_load_6, i8 %seedbuf_load_5, i8 %seedbuf_load_4, i8 %seedbuf_load_3, i8 %seedbuf_load_2, i8 %seedbuf_load_1, i8 %seedbuf_load" [HLS_Final_vitis_src/spu.cpp:13]   --->   Operation 68 'bitconcatenate' 'r_15_7' <Predicate = true> <Delay = 0.00>
+ST_5 : Operation 69 [1/1] (0.32ns)   --->   "%xor_ln377 = xor i64 %this_s_load, i64 %r_15_7" [HLS_Final_vitis_src/spu.cpp:377]   --->   Operation 69 'xor' 'xor_ln377' <Predicate = true> <Delay = 0.32> <CoreInst = "LogicGate">   --->   Core 74 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.32> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_5 : Operation 70 [1/1] (1.29ns)   --->   "%store_ln377 = store i64 %xor_ln377, i5 %this_s_addr" [HLS_Final_vitis_src/spu.cpp:377]   --->   Operation 70 'store' 'store_ln377' <Predicate = true> <Delay = 1.29> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 1.29> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 25> <RAM>
+ST_5 : Operation 71 [1/1] (0.00ns)   --->   "%br_ln376 = br void %for.inc81" [HLS_Final_vitis_src/spu.cpp:376]   --->   Operation 71 'br' 'br_ln376' <Predicate = true> <Delay = 0.00>
+
+
+============================================================
++ Verbose Summary: Timing violations
+============================================================
+Target clock period: 10ns, clock uncertainty: 2.7ns.
+
+ <State 1>: 2.44ns
+The critical path consists of the following:
+	'alloca' operation ('i') [5]  (0 ns)
+	'load' operation ('i', HLS_Final_vitis_src/spu.cpp:377) on local variable 'i' [12]  (0 ns)
+	'add' operation ('add_ln13', HLS_Final_vitis_src/spu.cpp:13) [23]  (0.856 ns)
+	'add' operation ('add_ln13_1', HLS_Final_vitis_src/spu.cpp:13) [27]  (0.856 ns)
+	'getelementptr' operation ('seedbuf_addr_8', HLS_Final_vitis_src/spu.cpp:13) [29]  (0 ns)
+	'load' operation ('seedbuf_load_1', HLS_Final_vitis_src/spu.cpp:13) on array 'seedbuf' [30]  (0.73 ns)
+
+ <State 2>: 1.59ns
+The critical path consists of the following:
+	'add' operation ('add_ln13_3', HLS_Final_vitis_src/spu.cpp:13) [31]  (0.856 ns)
+	'getelementptr' operation ('seedbuf_addr_9', HLS_Final_vitis_src/spu.cpp:13) [33]  (0 ns)
+	'load' operation ('seedbuf_load_2', HLS_Final_vitis_src/spu.cpp:13) on array 'seedbuf' [34]  (0.73 ns)
+
+ <State 3>: 1.59ns
+The critical path consists of the following:
+	'add' operation ('add_ln13_5', HLS_Final_vitis_src/spu.cpp:13) [39]  (0.856 ns)
+	'getelementptr' operation ('seedbuf_addr_11', HLS_Final_vitis_src/spu.cpp:13) [41]  (0 ns)
+	'load' operation ('seedbuf_load_4', HLS_Final_vitis_src/spu.cpp:13) on array 'seedbuf' [42]  (0.73 ns)
+
+ <State 4>: 1.59ns
+The critical path consists of the following:
+	'add' operation ('add_ln13_7', HLS_Final_vitis_src/spu.cpp:13) [47]  (0.856 ns)
+	'getelementptr' operation ('seedbuf_addr_13', HLS_Final_vitis_src/spu.cpp:13) [49]  (0 ns)
+	'load' operation ('seedbuf_load_6', HLS_Final_vitis_src/spu.cpp:13) on array 'seedbuf' [50]  (0.73 ns)
+
+ <State 5>: 2.35ns
+The critical path consists of the following:
+	'load' operation ('seedbuf_load_6', HLS_Final_vitis_src/spu.cpp:13) on array 'seedbuf' [50]  (0.73 ns)
+	'xor' operation ('xor_ln377', HLS_Final_vitis_src/spu.cpp:377) [58]  (0.326 ns)
+	'store' operation ('store_ln377', HLS_Final_vitis_src/spu.cpp:377) of variable 'xor_ln377', HLS_Final_vitis_src/spu.cpp:377 on array 'this_s' [59]  (1.3 ns)
+
+
+============================================================
++ Verbose Summary: Binding
+============================================================
+N/A
+* FSMD analyzer results:
+  - Output states:
+ - Input state : 
+  - Chain level:
+	State 1
+	State 2
+	State 3
+	State 4
+	State 5
+
+
+============================================================
++ Verbose Summary: Datapath Resource usage 
+============================================================
+N/A

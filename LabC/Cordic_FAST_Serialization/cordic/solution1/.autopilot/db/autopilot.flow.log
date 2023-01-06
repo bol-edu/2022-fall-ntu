@@ -1,0 +1,929 @@
+INFO-FLOW: Workspace C:/Users/Alan/Desktop/hls_workspace/lab/labC/cordic_v5/solution1 opened at Sun Nov 13 17:45:18 +0800 2022
+Execute     ap_set_clock -name default -period 1000 -default=false 
+INFO: [SYN 201-201] Setting up clock 'default' with a period of 1000ns.
+Execute     ap_set_clock -name default -uncertainty 997 
+INFO: [SYN 201-201] Setting up clock 'default' with an uncertainty of 997ns.
+Execute     set_part xc7z020clg400-1 
+Execute       create_platform xc7z020clg400-1 -board  
+DBG:HLSDevice: Trying to load device library: C:/Xilinx/Vitis_HLS/2022.1\lib\win64.o\librdi_hlsvwrap.dll
+DBG:HLSDevice: first parts/arch.xml in RDI_DATADIR: C:/Xilinx/Vivado/2022.1/data/parts/arch.xml
+DBG:HLSDevice: init success
+INFO: [HLS 200-1611] Setting target device to 'xc7z020-clg400-1'
+Command       create_platform done; 2.99 sec.
+Execute       source C:/Xilinx/Vitis_HLS/2022.1/common/technology/xilinx/common/xilinx.gen 
+Execute         source C:/Xilinx/Vitis_HLS/2022.1/common/technology/xilinx/interface/plb46.gen 
+Execute         source C:/Xilinx/Vitis_HLS/2022.1/common/technology/xilinx/interface/axi4.gen 
+Execute         source C:/Xilinx/Vitis_HLS/2022.1/common/technology/xilinx/interface/nativeAXI4.gen 
+Execute           source C:/Xilinx/Vitis_HLS/2022.1/common/technology/xilinx/interface/saxilite.gen 
+Execute         source C:/Xilinx/Vitis_HLS/2022.1/common/technology/xilinx/scripts/xilinxcoregen.gen 
+Execute         source C:/Xilinx/Vitis_HLS/2022.1/common/technology/xilinx/interface/XilEDKCoreGen.gen 
+Execute         source C:/Xilinx/Vitis_HLS/2022.1/common/technology/xilinx/ip/dds_compiler.gen 
+Execute         source C:/Xilinx/Vitis_HLS/2022.1/common/technology/xilinx/ip/util.gen 
+Execute         source C:/Xilinx/Vitis_HLS/2022.1/common/technology/xilinx/ip/xfft.gen 
+Execute         source C:/Xilinx/Vitis_HLS/2022.1/common/technology/xilinx/ip/xfir.gen 
+Execute         source C:/Xilinx/Vitis_HLS/2022.1/common/technology/xilinx/DSP48/dsp48.gen 
+Command       ap_source done; 0.115 sec.
+Execute       ap_part_info -name xc7z020-clg400-1 -data info 
+Execute       config_compile -quiet -complex-mul-dsp=0 
+Command     set_part done; 3.152 sec.
+Execute     send_msg_by_id INFO @200-1505@%s%s  vivado 
+INFO: [HLS 200-1505] Using flow_target 'vivado'
+Execute     get_config_interface -m_axi_latency 
+Execute     get_config_interface -m_axi_alignment_byte_size 
+Execute     get_config_interface -m_axi_max_widen_bitwidth 
+Execute     get_config_interface -default_interface 
+Execute     get_config_rtl -register_reset_num 
+Command   open_solution done; 3.18 sec.
+Execute   set_part xc7z020clg400-1 
+INFO: [HLS 200-1510] Running: set_part xc7z020clg400-1 
+Execute     create_platform xc7z020clg400-1 -board  
+Execute     source C:/Xilinx/Vitis_HLS/2022.1/common/technology/xilinx/common/xilinx.gen 
+Execute       source C:/Xilinx/Vitis_HLS/2022.1/common/technology/xilinx/interface/plb46.gen 
+Execute       source C:/Xilinx/Vitis_HLS/2022.1/common/technology/xilinx/interface/axi4.gen 
+Execute       source C:/Xilinx/Vitis_HLS/2022.1/common/technology/xilinx/interface/nativeAXI4.gen 
+Execute         source C:/Xilinx/Vitis_HLS/2022.1/common/technology/xilinx/interface/saxilite.gen 
+Execute       source C:/Xilinx/Vitis_HLS/2022.1/common/technology/xilinx/scripts/xilinxcoregen.gen 
+Execute       source C:/Xilinx/Vitis_HLS/2022.1/common/technology/xilinx/interface/XilEDKCoreGen.gen 
+Execute       source C:/Xilinx/Vitis_HLS/2022.1/common/technology/xilinx/ip/dds_compiler.gen 
+Execute       source C:/Xilinx/Vitis_HLS/2022.1/common/technology/xilinx/ip/util.gen 
+Execute       source C:/Xilinx/Vitis_HLS/2022.1/common/technology/xilinx/ip/xfft.gen 
+Execute       source C:/Xilinx/Vitis_HLS/2022.1/common/technology/xilinx/ip/xfir.gen 
+Execute       source C:/Xilinx/Vitis_HLS/2022.1/common/technology/xilinx/DSP48/dsp48.gen 
+Command     ap_source done; 0.121 sec.
+Execute     ap_part_info -name xc7z020-clg400-1 -data info 
+Execute     config_compile -quiet -complex-mul-dsp=0 
+Command   set_part done; 0.206 sec.
+Execute   create_clock -period 1000 -name default 
+INFO: [HLS 200-1510] Running: create_clock -period 1000 -name default 
+Execute     ap_set_clock -name default -period 1000 -default=false 
+INFO: [SYN 201-201] Setting up clock 'default' with a period of 1000ns.
+Execute   set_clock_uncertainty 997 
+INFO: [HLS 200-1510] Running: set_clock_uncertainty 997 
+Execute   source ./cordic_v5/solution1/directives.tcl 
+INFO: [HLS 200-1510] Running: source ./cordic_v5/solution1/directives.tcl
+Execute     set_directive_unroll cordiccart2pol/cordic_loop 
+INFO: [HLS 200-1510] Running: set_directive_unroll cordiccart2pol/cordic_loop 
+Execute     set_directive_stream -depth 1 -type fifo cordiccart2pol r_out1 
+INFO: [HLS 200-1510] Running: set_directive_stream -depth 1 -type fifo cordiccart2pol r_out1 
+Execute     set_directive_top -name cordiccart2pol cordiccart2pol 
+INFO: [HLS 200-1510] Running: set_directive_top -name cordiccart2pol cordiccart2pol 
+Execute     set_directive_stream -depth 1 -type fifo cordiccart2pol r_out2 
+INFO: [HLS 200-1510] Running: set_directive_stream -depth 1 -type fifo cordiccart2pol r_out2 
+Execute   csynth_design 
+INFO: [HLS 200-1510] Running: csynth_design 
+Execute     get_config_compile -effort 
+Execute     get_config_compile -enable_clang39 
+Execute     get_config_compile -g 
+Execute     get_config_compile -hw_syn 
+Execute     get_config_compile -ng 
+Execute     get_config_compile -opt_fp 
+Execute     get_config_compile -skip_cdt 
+Execute     get_config_compile -skip_syncheck 
+Execute     get_config_compile -skip_transform 
+Execute     get_config_compile -pre_tcl 
+Execute     get_config_compile -keep_printf 
+Execute     elaborate -effort=medium -skip_syncheck=0 -keep_printf=0 -skip_cdt=0 -skip_transform=0 -ng=0 -g=0 -opt_fp=0 -from_csynth_design=1 
+INFO: [HLS 200-111] Finished File checks and directory preparation: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.025 seconds; current allocated memory: 1.381 GB.
+INFO: [HLS 200-10] Analyzing design file 'cordic_v5/code_src/cordiccart2pol.cpp' ... 
+INFO-FLOW: Compiling one TU...
+Execute       get_config_compile -pragma_strict_mode 
+INFO-FLOW: Handling cordic_v5/code_src/cordiccart2pol.cpp as C++
+Execute       ap_part_info -name xc7z020-clg400-1 -data info 
+INFO-FLOW: Running: GCC PP 39
+INFO-FLOW: Source preprocessing
+Execute       ap_eval exec -ignorestderr C:/Xilinx/Vitis_HLS/2022.1/win64/tools/clang-3.9-csynth/bin/clang cordic_v5/code_src/cordiccart2pol.cpp -foptimization-record-file=C:/Users/Alan/Desktop/hls_workspace/lab/labC/cordic_v5/solution1/.autopilot/db/cordiccart2pol.cpp.clang.diag.yml -mllvm -pass-remarks-missed=reflow|pasta|unroll -mllvm -pass-remarks=reflow|pasta|unroll|inline -fno-limit-debug-info --sysroot C:/Xilinx/Vitis_HLS/2022.1/tps/mingw/8.3.0/win64.o/nt -fhls -fno-exceptions -E -fno-math-errno -c -emit-llvm -mllvm -disable-llvm-optzns -Werror=implicit-function-declaration -Werror=implicit-hls-streams -Werror=return-type -Wpragmas -Wunused-parameter -Wdump-hls-pragmas -fno-threadsafe-statics -fno-use-cxa-atexit -std=gnu++14 -target fpga64-xilinx-mingw32 -fno-threadsafe-statics -fno-use-cxa-atexit -D__VITIS_HLS__ -DAESL_SYN -D__SYNTHESIS__ -D__HLS_SYN__ -I C:/Xilinx/Vitis_HLS/2022.1/common/technology/autopilot -I C:/Xilinx/Vitis_HLS/2022.1/common/technology/autopilot/ap_sysc -include etc/autopilot_ssdm_op.h -D__DSP48E1__ -I /usr/include/x86_64-linux-gnu -o C:/Users/Alan/Desktop/hls_workspace/lab/labC/cordic_v5/solution1/.autopilot/db/cordiccart2pol.pp.0.cpp -hls-platform-db-name=C:/Xilinx/Vitis_HLS/2022.1/common/technology/xilinx/common/platform.db -hls-platform-name=zynq_slow -device-resource-info=BRAM_280.000000_DSP_220.000000_FF_106400.000000_LUT_53200.000000_SLICE_13300.000000_URAM_0.000000 > C:/Users/Alan/Desktop/hls_workspace/lab/labC/cordic_v5/solution1/.autopilot/db/cordiccart2pol.cpp.clang.out.log 2> C:/Users/Alan/Desktop/hls_workspace/lab/labC/cordic_v5/solution1/.autopilot/db/cordiccart2pol.cpp.clang.err.log 
+Command       ap_eval done; 0.21 sec.
+INFO-FLOW: Done: GCC PP 39 time: 0.2 seconds per iteration
+Execute       set_directive_top cordiccart2pol -name=cordiccart2pol 
+Execute       source C:/Xilinx/Vitis_HLS/2022.1/tps/tcl/tcllib1.11.1/yaml/huddle.tcl 
+Execute       source C:/Xilinx/Vitis_HLS/2022.1/tps/tcl/tcllib1.11.1/yaml/json2huddle.tcl 
+INFO-FLOW: Source syntax check for synthesis
+Execute       ap_eval exec -ignorestderr C:/Xilinx/Vitis_HLS/2022.1/win64/tools/clang-3.9-csynth/bin/clang -foptimization-record-file=C:/Users/Alan/Desktop/hls_workspace/lab/labC/cordic_v5/solution1/.autopilot/db/clang.diag.yml -mllvm -pass-remarks-missed=reflow|pasta|unroll -mllvm -pass-remarks=reflow|pasta|unroll|inline -fsyntax-only -fhls -target fpga64-xilinx-linux-gnu C:/Users/Alan/Desktop/hls_workspace/lab/labC/cordic_v5/solution1/.autopilot/db/cordiccart2pol.pp.0.cpp -hls-platform-db-name=C:/Xilinx/Vitis_HLS/2022.1/common/technology/xilinx/common/platform.db -hls-platform-name=zynq_slow -device-resource-info=BRAM_280.000000_DSP_220.000000_FF_106400.000000_LUT_53200.000000_SLICE_13300.000000_URAM_0.000000 > C:/Users/Alan/Desktop/hls_workspace/lab/labC/cordic_v5/solution1/.autopilot/db/clang.out.log 2> C:/Users/Alan/Desktop/hls_workspace/lab/labC/cordic_v5/solution1/.autopilot/db/clang.err.log 
+Command       ap_eval done; 0.894 sec.
+Execute       clang_tidy xilinx-systemc-detector -desc systemc-detector C:/Users/Alan/Desktop/hls_workspace/lab/labC/cordic_v5/solution1/.autopilot/db/cordiccart2pol.pp.0.cpp std=gnu++14 -target fpga  -directive=C:/Users/Alan/Desktop/hls_workspace/lab/labC/cordic_v5/solution1/.autopilot/db/.systemc_flag 
+INFO-FLOW: exec C:/Xilinx/Vitis_HLS/2022.1/win64/tools/clang-3.9-csynth/bin/clang-tidy -header-filter=.* --checks=-*,xilinx-systemc-detector -import-directive=C:/Users/Alan/Desktop/hls_workspace/lab/labC/cordic_v5/solution1/.autopilot/db/.systemc_flag -fix-errors C:/Users/Alan/Desktop/hls_workspace/lab/labC/cordic_v5/solution1/.autopilot/db/cordiccart2pol.pp.0.cpp -- -std=gnu++14 -target fpga -fhls -ferror-limit=0
+Command       clang_tidy done; 0.67 sec.
+INFO-FLOW: Running: clang-tidy CDT preprocess 39
+Execute       clang_tidy xilinx-directive2pragma -desc directive2pragma C:/Users/Alan/Desktop/hls_workspace/lab/labC/cordic_v5/solution1/.autopilot/db/cordiccart2pol.pp.0.cpp std=gnu++14 -target fpga  -directive=C:/Users/Alan/Desktop/hls_workspace/lab/labC/cordic_v5/solution1/.autopilot/db/all.directive.json 
+INFO-FLOW: exec C:/Xilinx/Vitis_HLS/2022.1/win64/tools/clang-3.9-csynth/bin/clang-tidy -header-filter=.* --checks=-*,xilinx-directive2pragma -import-directive=C:/Users/Alan/Desktop/hls_workspace/lab/labC/cordic_v5/solution1/.autopilot/db/all.directive.json -fix-errors C:/Users/Alan/Desktop/hls_workspace/lab/labC/cordic_v5/solution1/.autopilot/db/cordiccart2pol.pp.0.cpp -- -std=gnu++14 -target fpga -fhls -ferror-limit=0
+Command       clang_tidy done; 0.935 sec.
+Execute       clang_tidy xilinx-remove-assert -desc remove-assert C:/Users/Alan/Desktop/hls_workspace/lab/labC/cordic_v5/solution1/.autopilot/db/cordiccart2pol.pp.0.cpp std=gnu++14 -target fpga  
+INFO-FLOW: exec C:/Xilinx/Vitis_HLS/2022.1/win64/tools/clang-3.9-csynth/bin/clang-tidy -header-filter=.* --checks=-*,xilinx-remove-assert -fix-errors C:/Users/Alan/Desktop/hls_workspace/lab/labC/cordic_v5/solution1/.autopilot/db/cordiccart2pol.pp.0.cpp -- -std=gnu++14 -target fpga -fhls -ferror-limit=0
+Command       clang_tidy done; 0.639 sec.
+INFO-FLOW: Done: clang-tidy CDT preprocess 39 time: 1.6 seconds per iteration
+INFO-FLOW: Calling xilinx-label-all-loops ... 
+INFO-FLOW: Calling xilinx-aggregate-on-hls-vector ... 
+Execute       clang_tidy -errorcheck -desc loop-label xilinx-label-all-loops,xilinx-aggregate-on-hls-vector,,xilinx-warn-mayneed-no-ctor-attribute C:/Users/Alan/Desktop/hls_workspace/lab/labC/cordic_v5/solution1/.autopilot/db/cordiccart2pol.pp.0.cpp std=gnu++14 -target fpga  
+Execute         ap_eval exec -ignorestderr C:/Xilinx/Vitis_HLS/2022.1/win64/tools/clang-3.9-csynth/bin/clang-tidy -export-fixes=C:/Users/Alan/Desktop/hls_workspace/lab/labC/cordic_v5/solution1/.autopilot/db/cordiccart2pol.pp.0.cpp.clang-tidy.loop-label.diag.yml -header-filter=.* --checks=-*,xilinx-label-all-loops,xilinx-aggregate-on-hls-vector,,xilinx-warn-mayneed-no-ctor-attribute -fix-errors C:/Users/Alan/Desktop/hls_workspace/lab/labC/cordic_v5/solution1/.autopilot/db/cordiccart2pol.pp.0.cpp -- -std=gnu++14 -target fpga -fhls -ferror-limit=0 > C:/Users/Alan/Desktop/hls_workspace/lab/labC/cordic_v5/solution1/.autopilot/db/cordiccart2pol.pp.0.cpp.clang-tidy.loop-label.out.log 2> C:/Users/Alan/Desktop/hls_workspace/lab/labC/cordic_v5/solution1/.autopilot/db/cordiccart2pol.pp.0.cpp.clang-tidy.loop-label.err.log 
+Command         ap_eval done; 1.191 sec.
+Execute         source C:/Xilinx/Vitis_HLS/2022.1/tps/tcl/tcllib1.11.1/yaml/yaml.tcl 
+Command       clang_tidy done; 1.223 sec.
+Execute       get_config_dataflow -strict_mode 
+Execute       ap_eval exec -ignorestderr C:/Xilinx/Vitis_HLS/2022.1/win64/tools/clang-3.9-csynth/bin/xilinx-dataflow-lawyer -export-fixes=C:/Users/Alan/Desktop/hls_workspace/lab/labC/cordic_v5/solution1/.autopilot/db/cordiccart2pol.pp.0.cpp.xilinx-dataflow-lawyer.diag.yml C:/Users/Alan/Desktop/hls_workspace/lab/labC/cordic_v5/solution1/.autopilot/db/cordiccart2pol.pp.0.cpp -- -std=gnu++14 -target fpga -fhls -ferror-limit=0 -fstrict-dataflow > C:/Users/Alan/Desktop/hls_workspace/lab/labC/cordic_v5/solution1/.autopilot/db/cordiccart2pol.pp.0.cpp.xilinx-dataflow-lawyer.out.log 2> C:/Users/Alan/Desktop/hls_workspace/lab/labC/cordic_v5/solution1/.autopilot/db/cordiccart2pol.pp.0.cpp.xilinx-dataflow-lawyer.err.log 
+Command       ap_eval done; 0.606 sec.
+Execute       ap_part_info -name xc7z020-clg400-1 -data info 
+INFO-FLOW: compiling source code to llvm bc
+Execute       ap_eval exec -ignorestderr C:/Xilinx/Vitis_HLS/2022.1/win64/tools/clang-3.9-csynth/bin/clang -foptimization-record-file=C:/Users/Alan/Desktop/hls_workspace/lab/labC/cordic_v5/solution1/.autopilot/db/cordiccart2pol.pp.0.cpp.clang.diag.yml -mllvm -pass-remarks-missed=reflow|pasta|unroll -mllvm -pass-remarks=reflow|pasta|unroll|inline -fno-limit-debug-info -fhls -flto -fno-exceptions -Wno-error=c++11-narrowing C:/Users/Alan/Desktop/hls_workspace/lab/labC/cordic_v5/solution1/.autopilot/db/cordiccart2pol.pp.0.cpp -fno-math-errno -c -emit-llvm -mllvm -disable-llvm-optzns -Werror=implicit-function-declaration -Werror=implicit-hls-streams -Werror=return-type -Wpragmas -Wunused-parameter -Wdump-hls-pragmas -fno-threadsafe-statics -fno-use-cxa-atexit -std=gnu++14 -target fpga64-xilinx-linux-gnu -D__VITIS_HLS__ -DAESL_SYN -D__SYNTHESIS__ -D__HLS_SYN__ -I C:/Xilinx/Vitis_HLS/2022.1/common/technology/autopilot -I C:/Xilinx/Vitis_HLS/2022.1/common/technology/autopilot/ap_sysc -include etc/autopilot_ssdm_op.h -D__DSP48E1__ -g -o C:/Users/Alan/Desktop/hls_workspace/lab/labC/cordic_v5/solution1/.autopilot/db/cordiccart2pol.bc -hls-platform-db-name=C:/Xilinx/Vitis_HLS/2022.1/common/technology/xilinx/common/platform.db -hls-platform-name=zynq_slow -device-resource-info=BRAM_280.000000_DSP_220.000000_FF_106400.000000_LUT_53200.000000_SLICE_13300.000000_URAM_0.000000 > C:/Users/Alan/Desktop/hls_workspace/lab/labC/cordic_v5/solution1/.autopilot/db/cordiccart2pol.pp.0.cpp.clang.out.log 2> C:/Users/Alan/Desktop/hls_workspace/lab/labC/cordic_v5/solution1/.autopilot/db/cordiccart2pol.pp.0.cpp.clang.err.log 
+Command       ap_eval done; 0.804 sec.
+INFO: [HLS 200-111] Finished Source Code Analysis and Preprocessing: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 6.144 seconds; current allocated memory: 1.381 GB.
+INFO-FLOW: Linking Debug ...
+INFO-FLOW: Linking dut bc code.
+Execute       run_link_or_opt -out C:/Users/Alan/Desktop/hls_workspace/lab/labC/cordic_v5/solution1/.autopilot/db/a.g.ld.0.bc -args  "C:/Users/Alan/Desktop/hls_workspace/lab/labC/cordic_v5/solution1/.autopilot/db/cordiccart2pol.g.bc"  
+Execute         ap_eval exec -ignorestderr C:/Xilinx/Vitis_HLS/2022.1/win64/tools/clang-3.9-csynth/bin/llvm-link C:/Users/Alan/Desktop/hls_workspace/lab/labC/cordic_v5/solution1/.autopilot/db/cordiccart2pol.g.bc -o C:/Users/Alan/Desktop/hls_workspace/lab/labC/cordic_v5/solution1/.autopilot/db/a.g.ld.0.bc > C:/Users/Alan/Desktop/hls_workspace/lab/labC/cordic_v5/solution1/.autopilot/db/a.g.ld.0.bc.llvm-link.out.log 2> C:/Users/Alan/Desktop/hls_workspace/lab/labC/cordic_v5/solution1/.autopilot/db/a.g.ld.0.bc.llvm-link.err.log 
+INFO-FLOW: 
+Execute       run_link_or_opt -opt -out C:/Users/Alan/Desktop/hls_workspace/lab/labC/cordic_v5/solution1/.autopilot/db/a.g.ld.1.lower.bc -args C:/Users/Alan/Desktop/hls_workspace/lab/labC/cordic_v5/solution1/.autopilot/db/a.g.ld.0.bc -reflow-lower-math-intrinsics 
+Execute         ap_eval exec -ignorestderr C:/Xilinx/Vitis_HLS/2022.1/win64/tools/clang-3.9-csynth/bin/opt -pass-remarks-missed=reflow|pasta|unroll -pass-remarks=reflow|pasta|unroll|inline -pass-remarks-output=C:/Users/Alan/Desktop/hls_workspace/lab/labC/cordic_v5/solution1/.autopilot/db/a.g.ld.1.lower.bc.opt.diag.yml C:/Users/Alan/Desktop/hls_workspace/lab/labC/cordic_v5/solution1/.autopilot/db/a.g.ld.0.bc -reflow-lower-math-intrinsics -o C:/Users/Alan/Desktop/hls_workspace/lab/labC/cordic_v5/solution1/.autopilot/db/a.g.ld.1.lower.bc > C:/Users/Alan/Desktop/hls_workspace/lab/labC/cordic_v5/solution1/.autopilot/db/a.g.ld.1.lower.bc.opt.out.log 2> C:/Users/Alan/Desktop/hls_workspace/lab/labC/cordic_v5/solution1/.autopilot/db/a.g.ld.1.lower.bc.opt.err.log 
+INFO-FLOW: 
+INFO-FLOW: Linking math bc lib
+Execute       run_link_or_opt -out C:/Users/Alan/Desktop/hls_workspace/lab/labC/cordic_v5/solution1/.autopilot/db/a.g.ld.2.m1.bc -args C:/Users/Alan/Desktop/hls_workspace/lab/labC/cordic_v5/solution1/.autopilot/db/a.g.ld.1.lower.bc -only-needed C:/Xilinx/Vitis_HLS/2022.1/win64/lib/libhlsm_39.bc C:/Xilinx/Vitis_HLS/2022.1/win64/lib/libhlsmc++_39.bc 
+Execute         ap_eval exec -ignorestderr C:/Xilinx/Vitis_HLS/2022.1/win64/tools/clang-3.9-csynth/bin/llvm-link C:/Users/Alan/Desktop/hls_workspace/lab/labC/cordic_v5/solution1/.autopilot/db/a.g.ld.1.lower.bc -only-needed C:/Xilinx/Vitis_HLS/2022.1/win64/lib/libhlsm_39.bc C:/Xilinx/Vitis_HLS/2022.1/win64/lib/libhlsmc++_39.bc -o C:/Users/Alan/Desktop/hls_workspace/lab/labC/cordic_v5/solution1/.autopilot/db/a.g.ld.2.m1.bc > C:/Users/Alan/Desktop/hls_workspace/lab/labC/cordic_v5/solution1/.autopilot/db/a.g.ld.2.m1.bc.llvm-link.out.log 2> C:/Users/Alan/Desktop/hls_workspace/lab/labC/cordic_v5/solution1/.autopilot/db/a.g.ld.2.m1.bc.llvm-link.err.log 
+Command         ap_eval done; 3.141 sec.
+INFO-FLOW: 
+Command       run_link_or_opt done; 3.144 sec.
+Execute       run_link_or_opt -opt -out C:/Users/Alan/Desktop/hls_workspace/lab/labC/cordic_v5/solution1/.autopilot/db/a.g.ld.3.fpc.bc -args C:/Users/Alan/Desktop/hls_workspace/lab/labC/cordic_v5/solution1/.autopilot/db/a.g.ld.2.m1.bc -reflow-globaldce -hls-top-function-name=cordiccart2pol -reflow-float-conversion 
+Execute         ap_eval exec -ignorestderr C:/Xilinx/Vitis_HLS/2022.1/win64/tools/clang-3.9-csynth/bin/opt -pass-remarks-missed=reflow|pasta|unroll -pass-remarks=reflow|pasta|unroll|inline -pass-remarks-output=C:/Users/Alan/Desktop/hls_workspace/lab/labC/cordic_v5/solution1/.autopilot/db/a.g.ld.3.fpc.bc.opt.diag.yml C:/Users/Alan/Desktop/hls_workspace/lab/labC/cordic_v5/solution1/.autopilot/db/a.g.ld.2.m1.bc -reflow-globaldce -hls-top-function-name=cordiccart2pol -reflow-float-conversion -o C:/Users/Alan/Desktop/hls_workspace/lab/labC/cordic_v5/solution1/.autopilot/db/a.g.ld.3.fpc.bc > C:/Users/Alan/Desktop/hls_workspace/lab/labC/cordic_v5/solution1/.autopilot/db/a.g.ld.3.fpc.bc.opt.out.log 2> C:/Users/Alan/Desktop/hls_workspace/lab/labC/cordic_v5/solution1/.autopilot/db/a.g.ld.3.fpc.bc.opt.err.log 
+Command         ap_eval done; 1.088 sec.
+INFO-FLOW: 
+Command       run_link_or_opt done; 1.093 sec.
+Execute       run_link_or_opt -out C:/Users/Alan/Desktop/hls_workspace/lab/labC/cordic_v5/solution1/.autopilot/db/a.g.ld.4.m2.bc -args C:/Users/Alan/Desktop/hls_workspace/lab/labC/cordic_v5/solution1/.autopilot/db/a.g.ld.3.fpc.bc -only-needed C:/Xilinx/Vitis_HLS/2022.1/win64/lib/libfloatconversion_39.bc 
+Execute         ap_eval exec -ignorestderr C:/Xilinx/Vitis_HLS/2022.1/win64/tools/clang-3.9-csynth/bin/llvm-link C:/Users/Alan/Desktop/hls_workspace/lab/labC/cordic_v5/solution1/.autopilot/db/a.g.ld.3.fpc.bc -only-needed C:/Xilinx/Vitis_HLS/2022.1/win64/lib/libfloatconversion_39.bc -o C:/Users/Alan/Desktop/hls_workspace/lab/labC/cordic_v5/solution1/.autopilot/db/a.g.ld.4.m2.bc > C:/Users/Alan/Desktop/hls_workspace/lab/labC/cordic_v5/solution1/.autopilot/db/a.g.ld.4.m2.bc.llvm-link.out.log 2> C:/Users/Alan/Desktop/hls_workspace/lab/labC/cordic_v5/solution1/.autopilot/db/a.g.ld.4.m2.bc.llvm-link.err.log 
+Command         ap_eval done; 0.131 sec.
+INFO-FLOW: 
+Command       run_link_or_opt done; 0.135 sec.
+Execute       run_link_or_opt -opt -out C:/Users/Alan/Desktop/hls_workspace/lab/labC/cordic_v5/solution1/.autopilot/db/a.g.ld.5.gdce.bc -args C:/Users/Alan/Desktop/hls_workspace/lab/labC/cordic_v5/solution1/.autopilot/db/a.g.ld.4.m2.bc -reflow-globaldce -hls-top-function-name=cordiccart2pol 
+Execute         ap_eval exec -ignorestderr C:/Xilinx/Vitis_HLS/2022.1/win64/tools/clang-3.9-csynth/bin/opt -pass-remarks-missed=reflow|pasta|unroll -pass-remarks=reflow|pasta|unroll|inline -pass-remarks-output=C:/Users/Alan/Desktop/hls_workspace/lab/labC/cordic_v5/solution1/.autopilot/db/a.g.ld.5.gdce.bc.opt.diag.yml C:/Users/Alan/Desktop/hls_workspace/lab/labC/cordic_v5/solution1/.autopilot/db/a.g.ld.4.m2.bc -reflow-globaldce -hls-top-function-name=cordiccart2pol -o C:/Users/Alan/Desktop/hls_workspace/lab/labC/cordic_v5/solution1/.autopilot/db/a.g.ld.5.gdce.bc > C:/Users/Alan/Desktop/hls_workspace/lab/labC/cordic_v5/solution1/.autopilot/db/a.g.ld.5.gdce.bc.opt.out.log 2> C:/Users/Alan/Desktop/hls_workspace/lab/labC/cordic_v5/solution1/.autopilot/db/a.g.ld.5.gdce.bc.opt.err.log 
+INFO-FLOW: 
+Execute       get_solution -flow_target 
+Execute       get_config_export -xo 
+Execute       get_config_export -format 
+Execute       get_config_rtl -module_prefix 
+Execute       get_config_interface -default_slave_interface 
+Execute       get_solution -flow_target 
+Execute       get_config_export -xo 
+Execute       get_config_export -format 
+Execute       get_config_interface -m_axi_offset 
+Execute       get_config_interface -m_axi_latency 
+Execute       get_config_interface -m_axi_alignment_byte_size 
+Execute       get_config_interface -m_axi_min_bitwidth 
+Execute       get_config_interface -m_axi_max_bitwidth 
+Execute       get_config_interface -m_axi_max_widen_bitwidth 
+Execute       get_config_interface -m_axi_num_read_outstanding 
+Execute       get_config_interface -m_axi_num_write_outstanding 
+Execute       get_config_interface -m_axi_max_read_burst_length 
+Execute       get_config_interface -m_axi_max_write_burst_length 
+Execute       get_config_interface -m_axi_min_bitwidth 
+Execute       get_config_interface -m_axi_max_bitwidth 
+Execute       get_config_interface -m_axi_latency 
+Execute       get_config_interface -m_axi_min_bitwidth 
+Execute       get_config_interface -m_axi_max_bitwidth 
+Execute       get_config_interface -m_axi_max_widen_bitwidth 
+Execute       get_config_interface -m_axi_auto_max_ports 
+Execute       get_config_interface -m_axi_num_read_outstanding 
+Execute       get_config_interface -m_axi_num_write_outstanding 
+Execute       get_config_interface -m_axi_max_read_burst_length 
+Execute       get_config_interface -m_axi_max_write_burst_length 
+Execute       get_config_interface -s_axilite_data64 
+Execute       get_config_compile -instruction_warning_threshold 
+Execute       get_config_compile -pipeline_loops 
+Execute       get_config_interface -m_axi_alignment_byte_size 
+Execute       get_config_compile -pragma_strict_mode 
+Execute       get_config_compile -pipeline_style 
+Execute       get_config_dataflow -strict_mode 
+Execute       get_config_array_partition -throughput_driven 
+Execute       send_msg_by_id INFO @200-777@%s Vivado 
+INFO: [HLS 200-777] Using interface defaults for 'Vivado' flow target.
+Execute       is_m_axi_addr64 
+Execute       get_clock_period -ns -default 
+INFO-FLOW: Doing LTO.
+Execute       ap_eval exec -ignorestderr C:/Xilinx/Vitis_HLS/2022.1/win64/tools/clang-3.9-csynth/bin/clang -foptimization-record-file=C:/Users/Alan/Desktop/hls_workspace/lab/labC/cordic_v5/solution1/.autopilot/db/a.g.ld.0.bc.clang.diag.yml -mllvm -pass-remarks-missed=reflow|pasta|unroll -mllvm -pass-remarks=reflow|pasta|unroll|inline -fhls -mllvm -hls-top-function-name=cordiccart2pol -mllvm -hls-db-dir -mllvm C:/Users/Alan/Desktop/hls_workspace/lab/labC/cordic_v5/solution1/.autopilot/db -emit-llvm -c -target fpga64-xilinx-none -mllvm -xcl-xmlinfo=C:/Users/Alan/Desktop/hls_workspace/lab/labC/cordic_v5/solution1/.autopilot/db/kernel.internal.xml -mllvm -top-io-mapping-info=C:/Users/Alan/Desktop/hls_workspace/lab/labC/cordic_v5/solution1/.autopilot/db/top-io-fe.xml -mllvm -hls-bitcode-version=3.1 -mllvm -reflow-enable-slave-interface-default-setting=true -mllvm -gen-kernel-xml=false -mllvm -default-maxi-offset=slave -mllvm -maxi-latency=0 -mllvm -hls-maxi-data-size-in-bits=8 -mllvm -hls-maxi-max-data-size-in-bits=1024 -mllvm -hls-max-widen-size-in-bits=0 -mllvm -xcl-kernel-max-mem-ports=0 -mllvm -maxi-read-trans=16 -mllvm -maxi-write-trans=16 -mllvm -maxi-read-burst-len=16 -mllvm -maxi-write-burst-len=16 -mllvm -reflow-enable-saxi-64bits=0 -mllvm -reflow-basic-block-instr-threshold=200000 -mllvm -reflow-auto-pipeline-threshold=64 -mllvm -assume-maxi-align=0 -mllvm -no-unaligned-maxi-accesses -mllvm -reflow-pipeline-style-llvm-setting=2 -mllvm -reflow-enable-dataflow-strict-mode-checking=1 -mllvm -reflow-auto-array-partition-mode=default -mllvm -reflow-enable-auto-array-partition=true -mllvm -reflow-enable-auto-parallel-performance-driven=true -mllvm -reflow-enable-partition-for-automation=true -mllvm -reflow-aggregate-bitwidth-threshold=4096 -mllvm -hls -mllvm -disable-inlined-alloca-merging=true -x ir C:/Users/Alan/Desktop/hls_workspace/lab/labC/cordic_v5/solution1/.autopilot/db/a.g.ld.5.gdce.bc -o C:/Users/Alan/Desktop/hls_workspace/lab/labC/cordic_v5/solution1/.autopilot/db/a.g.lto.bc -hls-platform-db-name=C:/Xilinx/Vitis_HLS/2022.1/common/technology/xilinx/common/platform.db -hls-platform-name=zynq_slow -device-resource-info=BRAM_280.000000_DSP_220.000000_FF_106400.000000_LUT_53200.000000_SLICE_13300.000000_URAM_0.000000 > C:/Users/Alan/Desktop/hls_workspace/lab/labC/cordic_v5/solution1/.autopilot/db/a.g.ld.0.bc.clang.out.log 2> C:/Users/Alan/Desktop/hls_workspace/lab/labC/cordic_v5/solution1/.autopilot/db/a.g.ld.0.bc.clang.err.log 
+Command       ap_eval done; 0.691 sec.
+INFO: [HLS 214-131] Inlining function 'ssdm_int<64, true>::ssdm_int(long)' into 'ap_int_base<64, true>::ap_int_base(long)' (C:/Xilinx/Vitis_HLS/2022.1/common/technology/autopilot\ap_int_base.h:262:68)
+INFO: [HLS 214-131] Inlining function '_ZN8ssdm_intILi65ELb1EEC2EDq65_i' into 'ap_int_base<65, true>::ap_int_base<11, false>(ap_int_base<11, false> const&)' (C:/Xilinx/Vitis_HLS/2022.1/common/technology/autopilot\ap_int_base.h:231:106)
+INFO: [HLS 214-131] Inlining function '_ZN8ssdm_intILi65ELb1EEC2EDq65_i' into 'ap_int_base<65, true>::ap_int_base<64, true>(ap_int_base<64, true> const&)' (C:/Xilinx/Vitis_HLS/2022.1/common/technology/autopilot\ap_int_base.h:231:106)
+INFO: [HLS 214-131] Inlining function '_ZN8ssdm_intILi65ELb1EEC2EDq65_i' into 'ap_int_base<65, true>::ap_int_base(int)' (C:/Xilinx/Vitis_HLS/2022.1/common/technology/autopilot\ap_int_base.h:260:67)
+INFO: [HLS 214-131] Inlining function 'ap_int_base<65, true>::ap_int_base<11, false>(ap_int_base<11, false> const&)' into 'ap_int_base<11, false>::RType<64, true>::minus operator-<11, false, 64, true>(ap_int_base<11, false> const&, ap_int_base<64, true> const&)' (C:/Xilinx/Vitis_HLS/2022.1/common/technology/autopilot\ap_int_base.h:1542:341)
+INFO: [HLS 214-131] Inlining function 'ap_int<65>::ap_int<65, true>(ap_int_base<65, true> const&)' into 'ap_int_base<11, false>::RType<64, true>::minus operator-<11, false, 64, true>(ap_int_base<11, false> const&, ap_int_base<64, true> const&)' (C:/Xilinx/Vitis_HLS/2022.1/common/technology/autopilot\ap_int_base.h:1542:558)
+INFO: [HLS 214-131] Inlining function 'ap_int_base<65, true>::ap_int_base(int)' into 'ap_int_base<11, false>::RType<64, true>::minus operator-<11, false, 64, true>(ap_int_base<11, false> const&, ap_int_base<64, true> const&)' (C:/Xilinx/Vitis_HLS/2022.1/common/technology/autopilot\ap_int_base.h:1542:520)
+INFO: [HLS 214-131] Inlining function 'ap_int_base<65, true>::ap_int_base<64, true>(ap_int_base<64, true> const&)' into 'ap_int_base<11, false>::RType<64, true>::minus operator-<11, false, 64, true>(ap_int_base<11, false> const&, ap_int_base<64, true> const&)' (C:/Xilinx/Vitis_HLS/2022.1/common/technology/autopilot\ap_int_base.h:1542:430)
+INFO: [HLS 214-131] Inlining function 'ap_int_base<64, true>::ap_int_base(long)' into 'ap_int_base<11, false>::RType<($_0)64, true>::minus operator-<11, false>(ap_int_base<11, false> const&, long)' (C:/Xilinx/Vitis_HLS/2022.1/common/technology/autopilot\ap_int_base.h:1681:1548)
+INFO: [HLS 214-131] Inlining function 'ap_int_base<11, false>::RType<64, true>::minus operator-<11, false, 64, true>(ap_int_base<11, false> const&, ap_int_base<64, true> const&)' into 'ap_int_base<11, false>::RType<($_0)64, true>::minus operator-<11, false>(ap_int_base<11, false> const&, long)' (C:/Xilinx/Vitis_HLS/2022.1/common/technology/autopilot\ap_int_base.h:1681:1546)
+INFO: [HLS 214-131] Inlining function '_ZN8ssdm_intILi1ELb0EEC2EDq1_j' into 'ap_int_base<1, false>::ap_int_base(int)' (C:/Xilinx/Vitis_HLS/2022.1/common/technology/autopilot\ap_int_base.h:260:67)
+INFO: [HLS 214-131] Inlining function '_ZN8ssdm_intILi55ELb1EEC2EDq55_i' into 'ap_int_base<55, true>::ap_int_base<1, false>(ap_int_base<1, false> const&)' (C:/Xilinx/Vitis_HLS/2022.1/common/technology/autopilot\ap_int_base.h:231:106)
+INFO: [HLS 214-131] Inlining function '_ZN8ssdm_intILi55ELb1EEC2EDq55_i' into 'ap_int_base<55, true>::ap_int_base<54, true>(ap_int_base<54, true> const&)' (C:/Xilinx/Vitis_HLS/2022.1/common/technology/autopilot\ap_int_base.h:231:106)
+INFO: [HLS 214-131] Inlining function '_ZN8ssdm_intILi55ELb1EEC2EDq55_i' into 'ap_int_base<55, true>::ap_int_base(int)' (C:/Xilinx/Vitis_HLS/2022.1/common/technology/autopilot\ap_int_base.h:260:67)
+INFO: [HLS 214-131] Inlining function 'ap_int_base<55, true>::ap_int_base<1, false>(ap_int_base<1, false> const&)' into 'ap_int_base<1, false>::RType<54, true>::minus operator-<1, false, 54, true>(ap_int_base<1, false> const&, ap_int_base<54, true> const&)' (C:/Xilinx/Vitis_HLS/2022.1/common/technology/autopilot\ap_int_base.h:1542:341)
+INFO: [HLS 214-131] Inlining function 'ap_int<55>::ap_int<55, true>(ap_int_base<55, true> const&)' into 'ap_int_base<1, false>::RType<54, true>::minus operator-<1, false, 54, true>(ap_int_base<1, false> const&, ap_int_base<54, true> const&)' (C:/Xilinx/Vitis_HLS/2022.1/common/technology/autopilot\ap_int_base.h:1542:558)
+INFO: [HLS 214-131] Inlining function 'ap_int_base<55, true>::ap_int_base(int)' into 'ap_int_base<1, false>::RType<54, true>::minus operator-<1, false, 54, true>(ap_int_base<1, false> const&, ap_int_base<54, true> const&)' (C:/Xilinx/Vitis_HLS/2022.1/common/technology/autopilot\ap_int_base.h:1542:520)
+INFO: [HLS 214-131] Inlining function 'ap_int_base<55, true>::ap_int_base<54, true>(ap_int_base<54, true> const&)' into 'ap_int_base<1, false>::RType<54, true>::minus operator-<1, false, 54, true>(ap_int_base<1, false> const&, ap_int_base<54, true> const&)' (C:/Xilinx/Vitis_HLS/2022.1/common/technology/autopilot\ap_int_base.h:1542:430)
+INFO: [HLS 214-131] Inlining function 'ap_int_base<1, false>::ap_int_base(int)' into 'ap_int_base<54, true>::operator-() const' (C:/Xilinx/Vitis_HLS/2022.1/common/technology/autopilot\ap_int_base.h:941:12)
+INFO: [HLS 214-131] Inlining function 'ap_int_base<1, false>::RType<54, true>::minus operator-<1, false, 54, true>(ap_int_base<1, false> const&, ap_int_base<54, true> const&)' into 'ap_int_base<54, true>::operator-() const' (C:/Xilinx/Vitis_HLS/2022.1/common/technology/autopilot\ap_int_base.h:941:37)
+INFO: [HLS 214-131] Inlining function 'doubleToRawBits(double)' into 'ap_fixed_base<15, 3, true, (ap_q_mode)2, (ap_o_mode)3, 0>::ap_fixed_base(double)' (C:/Xilinx/Vitis_HLS/2022.1/common/technology/autopilot\ap_fixed_base.h:591:14)
+INFO: [HLS 214-131] Inlining function 'ap_fixed_base<15, 3, true, (ap_q_mode)2, (ap_o_mode)3, 0>::quantization_adjust(bool, bool, bool)' into 'ap_fixed_base<15, 3, true, (ap_q_mode)2, (ap_o_mode)3, 0>::ap_fixed_base(double)' (C:/Xilinx/Vitis_HLS/2022.1/common/technology/autopilot\ap_fixed_base.h:634:19)
+INFO: [HLS 214-131] Inlining function 'ap_int_base<54, true>& ap_int_base<54, true>::operator=<55, true>(ap_int_base<55, true> const&)' into 'ap_fixed_base<15, 3, true, (ap_q_mode)2, (ap_o_mode)3, 0>::ap_fixed_base(double)' (C:/Xilinx/Vitis_HLS/2022.1/common/technology/autopilot\ap_fixed_base.h:605:20)
+INFO: [HLS 214-131] Inlining function 'ap_int_base<54, true>::operator-() const' into 'ap_fixed_base<15, 3, true, (ap_q_mode)2, (ap_o_mode)3, 0>::ap_fixed_base(double)' (C:/Xilinx/Vitis_HLS/2022.1/common/technology/autopilot\ap_fixed_base.h:605:22)
+INFO: [HLS 214-131] Inlining function 'ap_int_base<12, true>& ap_int_base<12, true>::operator=<65, true>(ap_int_base<65, true> const&)' into 'ap_fixed_base<15, 3, true, (ap_q_mode)2, (ap_o_mode)3, 0>::ap_fixed_base(double)' (C:/Xilinx/Vitis_HLS/2022.1/common/technology/autopilot\ap_fixed_base.h:598:9)
+INFO: [HLS 214-131] Inlining function 'ap_int_base<11, false>::RType<($_0)64, true>::minus operator-<11, false>(ap_int_base<11, false> const&, long)' into 'ap_fixed_base<15, 3, true, (ap_q_mode)2, (ap_o_mode)3, 0>::ap_fixed_base(double)' (C:/Xilinx/Vitis_HLS/2022.1/common/technology/autopilot\ap_fixed_base.h:598:19)
+INFO: [HLS 214-131] Inlining function 'ap_fixed<15, 3, (ap_q_mode)2, (ap_o_mode)3, 0>::ap_fixed(double)' into '__cxx_global_var_init' (cordic_v5/code_src/cordiccart2pol.cpp:5:23)
+INFO: [HLS 214-131] Inlining function 'ap_fixed<15, 3, (ap_q_mode)2, (ap_o_mode)3, 0>::ap_fixed(double)' into '__cxx_global_var_init' (cordic_v5/code_src/cordiccart2pol.cpp:5:42)
+INFO: [HLS 214-131] Inlining function 'ap_fixed<15, 3, (ap_q_mode)2, (ap_o_mode)3, 0>::ap_fixed(double)' into '__cxx_global_var_init' (cordic_v5/code_src/cordiccart2pol.cpp:5:61)
+INFO: [HLS 214-131] Inlining function 'ap_fixed<15, 3, (ap_q_mode)2, (ap_o_mode)3, 0>::ap_fixed(double)' into '__cxx_global_var_init' (cordic_v5/code_src/cordiccart2pol.cpp:5:80)
+INFO: [HLS 214-131] Inlining function 'ap_fixed<15, 3, (ap_q_mode)2, (ap_o_mode)3, 0>::ap_fixed(double)' into '__cxx_global_var_init' (cordic_v5/code_src/cordiccart2pol.cpp:6:8)
+INFO: [HLS 214-131] Inlining function 'ap_fixed<15, 3, (ap_q_mode)2, (ap_o_mode)3, 0>::ap_fixed(double)' into '__cxx_global_var_init' (cordic_v5/code_src/cordiccart2pol.cpp:6:28)
+INFO: [HLS 214-131] Inlining function 'ap_fixed<15, 3, (ap_q_mode)2, (ap_o_mode)3, 0>::ap_fixed(double)' into '__cxx_global_var_init' (cordic_v5/code_src/cordiccart2pol.cpp:6:48)
+INFO: [HLS 214-131] Inlining function 'ap_fixed<15, 3, (ap_q_mode)2, (ap_o_mode)3, 0>::ap_fixed(double)' into '__cxx_global_var_init' (cordic_v5/code_src/cordiccart2pol.cpp:6:68)
+INFO: [HLS 214-131] Inlining function 'ap_fixed<15, 3, (ap_q_mode)2, (ap_o_mode)3, 0>::ap_fixed(double)' into '__cxx_global_var_init' (cordic_v5/code_src/cordiccart2pol.cpp:7:8)
+INFO: [HLS 214-131] Inlining function 'ap_fixed<15, 3, (ap_q_mode)2, (ap_o_mode)3, 0>::ap_fixed(double)' into '__cxx_global_var_init' (cordic_v5/code_src/cordiccart2pol.cpp:7:29)
+INFO: [HLS 214-131] Inlining function 'ap_fixed<15, 3, (ap_q_mode)2, (ap_o_mode)3, 0>::ap_fixed(double)' into '__cxx_global_var_init' (cordic_v5/code_src/cordiccart2pol.cpp:7:50)
+INFO: [HLS 214-131] Inlining function 'ap_fixed_base<32, 32, true, (ap_q_mode)5, (ap_o_mode)3, 0>::operator!() const' into 'ap_fixed_base<15, 3, true, (ap_q_mode)2, (ap_o_mode)3, 0>& ap_fixed_base<15, 3, true, (ap_q_mode)2, (ap_o_mode)3, 0>::operator=<32, 32, true, (ap_q_mode)5, (ap_o_mode)3, 0>(ap_fixed_base<32, 32, true, (ap_q_mode)5, (ap_o_mode)3, 0> const&)' (C:/Xilinx/Vitis_HLS/2022.1/common/technology/autopilot\ap_fixed_base.h:854:9)
+INFO: [HLS 214-131] Inlining function 'ap_fixed_base<15, 3, true, (ap_q_mode)2, (ap_o_mode)3, 0>& ap_fixed_base<15, 3, true, (ap_q_mode)2, (ap_o_mode)3, 0>::operator=<32, 32, true, (ap_q_mode)5, (ap_o_mode)3, 0>(ap_fixed_base<32, 32, true, (ap_q_mode)5, (ap_o_mode)3, 0> const&)' into 'ap_fixed_base<15, 3, true, (ap_q_mode)2, (ap_o_mode)3, 0>::ap_fixed_base(int)' (C:/Xilinx/Vitis_HLS/2022.1/common/technology/autopilot\ap_fixed_base.h:576:146)
+INFO: [HLS 214-131] Inlining function 'ap_fixed_base<15, 3, true, (ap_q_mode)2, (ap_o_mode)3, 0>::ap_fixed_base(int)' into 'ap_fixed<15, 3, (ap_q_mode)2, (ap_o_mode)3, 0>::ap_fixed(int)' (C:/Xilinx/Vitis_HLS/2022.1/common/technology/autopilot\ap_fixed.h:183:79)
+INFO: [HLS 214-131] Inlining function 'ap_fixed_base<32, 32, true, (ap_q_mode)5, (ap_o_mode)3, 0>::operator!() const' into 'ap_fixed_base<44, 32, true, (ap_q_mode)5, (ap_o_mode)3, 0>& ap_fixed_base<44, 32, true, (ap_q_mode)5, (ap_o_mode)3, 0>::operator=<32, 32, true, (ap_q_mode)5, (ap_o_mode)3, 0>(ap_fixed_base<32, 32, true, (ap_q_mode)5, (ap_o_mode)3, 0> const&)' (C:/Xilinx/Vitis_HLS/2022.1/common/technology/autopilot\ap_fixed_base.h:854:9)
+INFO: [HLS 214-131] Inlining function '_ZN8ssdm_intILi44ELb1EEC2EDq44_i' into 'ap_fixed_base<44, 32, true, (ap_q_mode)5, (ap_o_mode)3, 0>::ap_fixed_base<32, 32, true, (ap_q_mode)5, (ap_o_mode)3, 0>(ap_fixed_base<32, 32, true, (ap_q_mode)5, (ap_o_mode)3, 0> const&)' (C:/Xilinx/Vitis_HLS/2022.1/common/technology/autopilot\ap_fixed_base.h:447:80)
+INFO: [HLS 214-131] Inlining function 'ap_fixed_base<44, 32, true, (ap_q_mode)5, (ap_o_mode)3, 0>& ap_fixed_base<44, 32, true, (ap_q_mode)5, (ap_o_mode)3, 0>::operator=<32, 32, true, (ap_q_mode)5, (ap_o_mode)3, 0>(ap_fixed_base<32, 32, true, (ap_q_mode)5, (ap_o_mode)3, 0> const&)' into 'ap_fixed_base<44, 32, true, (ap_q_mode)5, (ap_o_mode)3, 0>::ap_fixed_base<32, 32, true, (ap_q_mode)5, (ap_o_mode)3, 0>(ap_fixed_base<32, 32, true, (ap_q_mode)5, (ap_o_mode)3, 0> const&)' (C:/Xilinx/Vitis_HLS/2022.1/common/technology/autopilot\ap_fixed_base.h:449:5)
+INFO: [HLS 214-131] Inlining function 'ap_fixed_base<44, 32, true, (ap_q_mode)5, (ap_o_mode)3, 0>::ap_fixed_base<32, 32, true, (ap_q_mode)5, (ap_o_mode)3, 0>(ap_fixed_base<32, 32, true, (ap_q_mode)5, (ap_o_mode)3, 0> const&)' into 'bool ap_fixed_base<15, 3, true, (ap_q_mode)2, (ap_o_mode)3, 0>::operator>=<32, 32, true, (ap_q_mode)5, (ap_o_mode)3, 0>(ap_fixed_base<32, 32, true, (ap_q_mode)5, (ap_o_mode)3, 0> const&) const' (C:/Xilinx/Vitis_HLS/2022.1/common/technology/autopilot\ap_fixed_base.h:1697:370)
+INFO: [HLS 214-131] Inlining function 'ap_fixed_base<32, 32, true, (ap_q_mode)5, (ap_o_mode)3, 0>::ap_fixed_base(int)' into 'bool operator>=<15, 3, true, (ap_q_mode)2, (ap_o_mode)3, 0>(ap_fixed_base<15, 3, true, (ap_q_mode)2, (ap_o_mode)3, 0> const&, int)' (C:/Xilinx/Vitis_HLS/2022.1/common/technology/autopilot\ap_fixed_base.h:2422:11183)
+INFO: [HLS 214-131] Inlining function 'bool ap_fixed_base<15, 3, true, (ap_q_mode)2, (ap_o_mode)3, 0>::operator>=<32, 32, true, (ap_q_mode)5, (ap_o_mode)3, 0>(ap_fixed_base<32, 32, true, (ap_q_mode)5, (ap_o_mode)3, 0> const&) const' into 'bool operator>=<15, 3, true, (ap_q_mode)2, (ap_o_mode)3, 0>(ap_fixed_base<15, 3, true, (ap_q_mode)2, (ap_o_mode)3, 0> const&, int)' (C:/Xilinx/Vitis_HLS/2022.1/common/technology/autopilot\ap_fixed_base.h:2422:11171)
+INFO: [HLS 214-131] Inlining function 'ap_fixed_base<15, 3, true, (ap_q_mode)2, (ap_o_mode)3, 0>::operator!() const' into 'ap_fixed_base<16, 4, true, (ap_q_mode)5, (ap_o_mode)3, 0>& ap_fixed_base<16, 4, true, (ap_q_mode)5, (ap_o_mode)3, 0>::operator=<15, 3, true, (ap_q_mode)2, (ap_o_mode)3, 0>(ap_fixed_base<15, 3, true, (ap_q_mode)2, (ap_o_mode)3, 0> const&)' (C:/Xilinx/Vitis_HLS/2022.1/common/technology/autopilot\ap_fixed_base.h:854:9)
+INFO: [HLS 214-131] Inlining function 'ssdm_int<16, true>::ssdm_int(short)' into 'ap_fixed_base<16, 4, true, (ap_q_mode)5, (ap_o_mode)3, 0>::ap_fixed_base<15, 3, true, (ap_q_mode)2, (ap_o_mode)3, 0>(ap_fixed_base<15, 3, true, (ap_q_mode)2, (ap_o_mode)3, 0> const&)' (C:/Xilinx/Vitis_HLS/2022.1/common/technology/autopilot\ap_fixed_base.h:447:80)
+INFO: [HLS 214-131] Inlining function 'ap_fixed_base<16, 4, true, (ap_q_mode)5, (ap_o_mode)3, 0>& ap_fixed_base<16, 4, true, (ap_q_mode)5, (ap_o_mode)3, 0>::operator=<15, 3, true, (ap_q_mode)2, (ap_o_mode)3, 0>(ap_fixed_base<15, 3, true, (ap_q_mode)2, (ap_o_mode)3, 0> const&)' into 'ap_fixed_base<16, 4, true, (ap_q_mode)5, (ap_o_mode)3, 0>::ap_fixed_base<15, 3, true, (ap_q_mode)2, (ap_o_mode)3, 0>(ap_fixed_base<15, 3, true, (ap_q_mode)2, (ap_o_mode)3, 0> const&)' (C:/Xilinx/Vitis_HLS/2022.1/common/technology/autopilot\ap_fixed_base.h:449:5)
+INFO: [HLS 214-131] Inlining function 'ap_fixed_base<16, 4, true, (ap_q_mode)5, (ap_o_mode)3, 0>::ap_fixed_base<15, 3, true, (ap_q_mode)2, (ap_o_mode)3, 0>(ap_fixed_base<15, 3, true, (ap_q_mode)2, (ap_o_mode)3, 0> const&)' into 'ap_fixed_base<15, 3, true, (ap_q_mode)2, (ap_o_mode)3, 0>::operator-() const' (C:/Xilinx/Vitis_HLS/2022.1/common/technology/autopilot\ap_fixed_base.h:1453:47)
+INFO: [HLS 214-131] Inlining function 'ap_fixed<16, 4, (ap_q_mode)5, (ap_o_mode)3, 0>::ap_fixed<16, 4, true, (ap_q_mode)5, (ap_o_mode)3, 0>(ap_fixed_base<16, 4, true, (ap_q_mode)5, (ap_o_mode)3, 0> const&)' into 'ap_fixed_base<15, 3, true, (ap_q_mode)2, (ap_o_mode)3, 0>::operator-() const' (C:/Xilinx/Vitis_HLS/2022.1/common/technology/autopilot\ap_fixed_base.h:1455:12)
+INFO: [HLS 214-131] Inlining function 'ap_fixed_base<16, 4, true, (ap_q_mode)5, (ap_o_mode)3, 0>::operator!() const' into 'ap_fixed_base<15, 3, true, (ap_q_mode)2, (ap_o_mode)3, 0>& ap_fixed_base<15, 3, true, (ap_q_mode)2, (ap_o_mode)3, 0>::operator=<16, 4, true, (ap_q_mode)5, (ap_o_mode)3, 0>(ap_fixed_base<16, 4, true, (ap_q_mode)5, (ap_o_mode)3, 0> const&)' (C:/Xilinx/Vitis_HLS/2022.1/common/technology/autopilot\ap_fixed_base.h:854:9)
+INFO: [HLS 214-131] Inlining function '_ZN8ssdm_intILi15ELb1EEC2EDq15_i' into 'ap_fixed_base<15, 3, true, (ap_q_mode)2, (ap_o_mode)3, 0>::ap_fixed_base<16, 4, true, (ap_q_mode)5, (ap_o_mode)3, 0>(ap_fixed_base<16, 4, true, (ap_q_mode)5, (ap_o_mode)3, 0> const&)' (C:/Xilinx/Vitis_HLS/2022.1/common/technology/autopilot\ap_fixed_base.h:447:80)
+INFO: [HLS 214-131] Inlining function 'ap_fixed_base<15, 3, true, (ap_q_mode)2, (ap_o_mode)3, 0>& ap_fixed_base<15, 3, true, (ap_q_mode)2, (ap_o_mode)3, 0>::operator=<16, 4, true, (ap_q_mode)5, (ap_o_mode)3, 0>(ap_fixed_base<16, 4, true, (ap_q_mode)5, (ap_o_mode)3, 0> const&)' into 'ap_fixed_base<15, 3, true, (ap_q_mode)2, (ap_o_mode)3, 0>::ap_fixed_base<16, 4, true, (ap_q_mode)5, (ap_o_mode)3, 0>(ap_fixed_base<16, 4, true, (ap_q_mode)5, (ap_o_mode)3, 0> const&)' (C:/Xilinx/Vitis_HLS/2022.1/common/technology/autopilot\ap_fixed_base.h:449:5)
+INFO: [HLS 214-131] Inlining function 'ap_fixed_base<15, 3, true, (ap_q_mode)2, (ap_o_mode)3, 0>::ap_fixed_base<16, 4, true, (ap_q_mode)5, (ap_o_mode)3, 0>(ap_fixed_base<16, 4, true, (ap_q_mode)5, (ap_o_mode)3, 0> const&)' into 'ap_fixed<15, 3, (ap_q_mode)2, (ap_o_mode)3, 0>::ap_fixed<16, 4, true, (ap_q_mode)5, (ap_o_mode)3, 0>(ap_fixed_base<16, 4, true, (ap_q_mode)5, (ap_o_mode)3, 0> const&)' (C:/Xilinx/Vitis_HLS/2022.1/common/technology/autopilot\ap_fixed.h:75:9)
+INFO: [HLS 214-131] Inlining function 'ap_fixed_base<15, 3, true, (ap_q_mode)2, (ap_o_mode)3, 0>::ap_fixed_base(int)' into 'ap_fixed_base<15, 3, true, (ap_q_mode)2, (ap_o_mode)3, 0>::operator<<(unsigned int) const' (C:/Xilinx/Vitis_HLS/2022.1/common/technology/autopilot\ap_fixed_base.h:1499:19)
+INFO: [HLS 214-131] Inlining function 'ap_fixed_base<15, 3, true, (ap_q_mode)2, (ap_o_mode)3, 0>::ap_fixed_base(int)' into 'ap_fixed_base<15, 3, true, (ap_q_mode)2, (ap_o_mode)3, 0>::operator>>(unsigned int) const' (C:/Xilinx/Vitis_HLS/2022.1/common/technology/autopilot\ap_fixed_base.h:1533:19)
+INFO: [HLS 214-131] Inlining function 'ap_fixed_base<15, 3, true, (ap_q_mode)2, (ap_o_mode)3, 0>::operator<<(unsigned int) const' into 'ap_fixed_base<15, 3, true, (ap_q_mode)2, (ap_o_mode)3, 0>::operator>>(int) const' (C:/Xilinx/Vitis_HLS/2022.1/common/technology/autopilot\ap_fixed_base.h:1570:14)
+INFO: [HLS 214-131] Inlining function 'ap_fixed_base<15, 3, true, (ap_q_mode)2, (ap_o_mode)3, 0>::operator>>(unsigned int) const' into 'ap_fixed_base<15, 3, true, (ap_q_mode)2, (ap_o_mode)3, 0>::operator>>(int) const' (C:/Xilinx/Vitis_HLS/2022.1/common/technology/autopilot\ap_fixed_base.h:1572:14)
+INFO: [HLS 214-131] Inlining function 'ap_fixed_base<32, 32, true, (ap_q_mode)5, (ap_o_mode)3, 0>::operator!() const' into 'ap_fixed_base<16, 4, true, (ap_q_mode)5, (ap_o_mode)3, 0>& ap_fixed_base<16, 4, true, (ap_q_mode)5, (ap_o_mode)3, 0>::operator=<32, 32, true, (ap_q_mode)5, (ap_o_mode)3, 0>(ap_fixed_base<32, 32, true, (ap_q_mode)5, (ap_o_mode)3, 0> const&)' (C:/Xilinx/Vitis_HLS/2022.1/common/technology/autopilot\ap_fixed_base.h:854:9)
+INFO: [HLS 214-131] Inlining function 'ap_fixed_base<16, 4, true, (ap_q_mode)5, (ap_o_mode)3, 0>& ap_fixed_base<16, 4, true, (ap_q_mode)5, (ap_o_mode)3, 0>::operator=<32, 32, true, (ap_q_mode)5, (ap_o_mode)3, 0>(ap_fixed_base<32, 32, true, (ap_q_mode)5, (ap_o_mode)3, 0> const&)' into 'ap_fixed_base<16, 4, true, (ap_q_mode)5, (ap_o_mode)3, 0>::ap_fixed_base(int)' (C:/Xilinx/Vitis_HLS/2022.1/common/technology/autopilot\ap_fixed_base.h:576:146)
+INFO: [HLS 214-131] Inlining function 'ap_fixed_base<16, 4, true, (ap_q_mode)5, (ap_o_mode)3, 0>::ap_fixed_base(int)' into 'ap_fixed_base<15, 3, true, (ap_q_mode)2, (ap_o_mode)3, 0>::RType<15, 3, true>::plus ap_fixed_base<15, 3, true, (ap_q_mode)2, (ap_o_mode)3, 0>::operator+<15, 3, true, (ap_q_mode)2, (ap_o_mode)3, 0>(ap_fixed_base<15, 3, true, (ap_q_mode)2, (ap_o_mode)3, 0> const&) const' (C:/Xilinx/Vitis_HLS/2022.1/common/technology/autopilot\ap_fixed_base.h:1393:325)
+INFO: [HLS 214-131] Inlining function 'ap_fixed<16, 4, (ap_q_mode)5, (ap_o_mode)3, 0>::ap_fixed<16, 4, true, (ap_q_mode)5, (ap_o_mode)3, 0>(ap_fixed_base<16, 4, true, (ap_q_mode)5, (ap_o_mode)3, 0> const&)' into 'ap_fixed_base<15, 3, true, (ap_q_mode)2, (ap_o_mode)3, 0>::RType<15, 3, true>::plus ap_fixed_base<15, 3, true, (ap_q_mode)2, (ap_o_mode)3, 0>::operator+<15, 3, true, (ap_q_mode)2, (ap_o_mode)3, 0>(ap_fixed_base<15, 3, true, (ap_q_mode)2, (ap_o_mode)3, 0> const&) const' (C:/Xilinx/Vitis_HLS/2022.1/common/technology/autopilot\ap_fixed_base.h:1393:385)
+INFO: [HLS 214-131] Inlining function 'ap_fixed_base<16, 4, true, (ap_q_mode)5, (ap_o_mode)3, 0>::ap_fixed_base<15, 3, true, (ap_q_mode)2, (ap_o_mode)3, 0>(ap_fixed_base<15, 3, true, (ap_q_mode)2, (ap_o_mode)3, 0> const&)' into 'ap_fixed_base<15, 3, true, (ap_q_mode)2, (ap_o_mode)3, 0>::RType<15, 3, true>::plus ap_fixed_base<15, 3, true, (ap_q_mode)2, (ap_o_mode)3, 0>::operator+<15, 3, true, (ap_q_mode)2, (ap_o_mode)3, 0>(ap_fixed_base<15, 3, true, (ap_q_mode)2, (ap_o_mode)3, 0> const&) const' (C:/Xilinx/Vitis_HLS/2022.1/common/technology/autopilot\ap_fixed_base.h:1393:345)
+INFO: [HLS 214-131] Inlining function 'ap_fixed_base<16, 4, true, (ap_q_mode)5, (ap_o_mode)3, 0>::ap_fixed_base<15, 3, true, (ap_q_mode)2, (ap_o_mode)3, 0>(ap_fixed_base<15, 3, true, (ap_q_mode)2, (ap_o_mode)3, 0> const&)' into 'ap_fixed_base<15, 3, true, (ap_q_mode)2, (ap_o_mode)3, 0>::RType<15, 3, true>::plus ap_fixed_base<15, 3, true, (ap_q_mode)2, (ap_o_mode)3, 0>::operator+<15, 3, true, (ap_q_mode)2, (ap_o_mode)3, 0>(ap_fixed_base<15, 3, true, (ap_q_mode)2, (ap_o_mode)3, 0> const&) const' (C:/Xilinx/Vitis_HLS/2022.1/common/technology/autopilot\ap_fixed_base.h:1393:333)
+INFO: [HLS 214-131] Inlining function 'ap_fixed_base<15, 3, true, (ap_q_mode)2, (ap_o_mode)3, 0>::RType<15, 3, true>::plus ap_fixed_base<15, 3, true, (ap_q_mode)2, (ap_o_mode)3, 0>::operator+<15, 3, true, (ap_q_mode)2, (ap_o_mode)3, 0>(ap_fixed_base<15, 3, true, (ap_q_mode)2, (ap_o_mode)3, 0> const&) const' into 'ap_fixed_base<15, 3, true, (ap_q_mode)2, (ap_o_mode)3, 0>& ap_fixed_base<15, 3, true, (ap_q_mode)2, (ap_o_mode)3, 0>::operator+=<15, 3, true, (ap_q_mode)2, (ap_o_mode)3, 0>(ap_fixed_base<15, 3, true, (ap_q_mode)2, (ap_o_mode)3, 0> const&)' (C:/Xilinx/Vitis_HLS/2022.1/common/technology/autopilot\ap_fixed_base.h:1413:248)
+INFO: [HLS 214-131] Inlining function 'ap_fixed_base<15, 3, true, (ap_q_mode)2, (ap_o_mode)3, 0>& ap_fixed_base<15, 3, true, (ap_q_mode)2, (ap_o_mode)3, 0>::operator=<16, 4, true, (ap_q_mode)5, (ap_o_mode)3, 0>(ap_fixed_base<16, 4, true, (ap_q_mode)5, (ap_o_mode)3, 0> const&)' into 'ap_fixed_base<15, 3, true, (ap_q_mode)2, (ap_o_mode)3, 0>& ap_fixed_base<15, 3, true, (ap_q_mode)2, (ap_o_mode)3, 0>::operator+=<15, 3, true, (ap_q_mode)2, (ap_o_mode)3, 0>(ap_fixed_base<15, 3, true, (ap_q_mode)2, (ap_o_mode)3, 0> const&)' (C:/Xilinx/Vitis_HLS/2022.1/common/technology/autopilot\ap_fixed_base.h:1413:246)
+INFO: [HLS 214-131] Inlining function 'ap_fixed_base<16, 4, true, (ap_q_mode)5, (ap_o_mode)3, 0>::ap_fixed_base(int)' into 'ap_fixed_base<15, 3, true, (ap_q_mode)2, (ap_o_mode)3, 0>::RType<15, 3, true>::minus ap_fixed_base<15, 3, true, (ap_q_mode)2, (ap_o_mode)3, 0>::operator-<15, 3, true, (ap_q_mode)2, (ap_o_mode)3, 0>(ap_fixed_base<15, 3, true, (ap_q_mode)2, (ap_o_mode)3, 0> const&) const' (C:/Xilinx/Vitis_HLS/2022.1/common/technology/autopilot\ap_fixed_base.h:1394:327)
+INFO: [HLS 214-131] Inlining function 'ap_fixed<16, 4, (ap_q_mode)5, (ap_o_mode)3, 0>::ap_fixed<16, 4, true, (ap_q_mode)5, (ap_o_mode)3, 0>(ap_fixed_base<16, 4, true, (ap_q_mode)5, (ap_o_mode)3, 0> const&)' into 'ap_fixed_base<15, 3, true, (ap_q_mode)2, (ap_o_mode)3, 0>::RType<15, 3, true>::minus ap_fixed_base<15, 3, true, (ap_q_mode)2, (ap_o_mode)3, 0>::operator-<15, 3, true, (ap_q_mode)2, (ap_o_mode)3, 0>(ap_fixed_base<15, 3, true, (ap_q_mode)2, (ap_o_mode)3, 0> const&) const' (C:/Xilinx/Vitis_HLS/2022.1/common/technology/autopilot\ap_fixed_base.h:1394:387)
+INFO: [HLS 214-131] Inlining function 'ap_fixed_base<16, 4, true, (ap_q_mode)5, (ap_o_mode)3, 0>::ap_fixed_base<15, 3, true, (ap_q_mode)2, (ap_o_mode)3, 0>(ap_fixed_base<15, 3, true, (ap_q_mode)2, (ap_o_mode)3, 0> const&)' into 'ap_fixed_base<15, 3, true, (ap_q_mode)2, (ap_o_mode)3, 0>::RType<15, 3, true>::minus ap_fixed_base<15, 3, true, (ap_q_mode)2, (ap_o_mode)3, 0>::operator-<15, 3, true, (ap_q_mode)2, (ap_o_mode)3, 0>(ap_fixed_base<15, 3, true, (ap_q_mode)2, (ap_o_mode)3, 0> const&) const' (C:/Xilinx/Vitis_HLS/2022.1/common/technology/autopilot\ap_fixed_base.h:1394:347)
+INFO: [HLS 214-131] Inlining function 'ap_fixed_base<16, 4, true, (ap_q_mode)5, (ap_o_mode)3, 0>::ap_fixed_base<15, 3, true, (ap_q_mode)2, (ap_o_mode)3, 0>(ap_fixed_base<15, 3, true, (ap_q_mode)2, (ap_o_mode)3, 0> const&)' into 'ap_fixed_base<15, 3, true, (ap_q_mode)2, (ap_o_mode)3, 0>::RType<15, 3, true>::minus ap_fixed_base<15, 3, true, (ap_q_mode)2, (ap_o_mode)3, 0>::operator-<15, 3, true, (ap_q_mode)2, (ap_o_mode)3, 0>(ap_fixed_base<15, 3, true, (ap_q_mode)2, (ap_o_mode)3, 0> const&) const' (C:/Xilinx/Vitis_HLS/2022.1/common/technology/autopilot\ap_fixed_base.h:1394:335)
+INFO: [HLS 214-131] Inlining function 'ap_fixed_base<15, 3, true, (ap_q_mode)2, (ap_o_mode)3, 0>::RType<15, 3, true>::minus ap_fixed_base<15, 3, true, (ap_q_mode)2, (ap_o_mode)3, 0>::operator-<15, 3, true, (ap_q_mode)2, (ap_o_mode)3, 0>(ap_fixed_base<15, 3, true, (ap_q_mode)2, (ap_o_mode)3, 0> const&) const' into 'ap_fixed_base<15, 3, true, (ap_q_mode)2, (ap_o_mode)3, 0>& ap_fixed_base<15, 3, true, (ap_q_mode)2, (ap_o_mode)3, 0>::operator-=<15, 3, true, (ap_q_mode)2, (ap_o_mode)3, 0>(ap_fixed_base<15, 3, true, (ap_q_mode)2, (ap_o_mode)3, 0> const&)' (C:/Xilinx/Vitis_HLS/2022.1/common/technology/autopilot\ap_fixed_base.h:1414:248)
+INFO: [HLS 214-131] Inlining function 'ap_fixed_base<15, 3, true, (ap_q_mode)2, (ap_o_mode)3, 0>& ap_fixed_base<15, 3, true, (ap_q_mode)2, (ap_o_mode)3, 0>::operator=<16, 4, true, (ap_q_mode)5, (ap_o_mode)3, 0>(ap_fixed_base<16, 4, true, (ap_q_mode)5, (ap_o_mode)3, 0> const&)' into 'ap_fixed_base<15, 3, true, (ap_q_mode)2, (ap_o_mode)3, 0>& ap_fixed_base<15, 3, true, (ap_q_mode)2, (ap_o_mode)3, 0>::operator-=<15, 3, true, (ap_q_mode)2, (ap_o_mode)3, 0>(ap_fixed_base<15, 3, true, (ap_q_mode)2, (ap_o_mode)3, 0> const&)' (C:/Xilinx/Vitis_HLS/2022.1/common/technology/autopilot\ap_fixed_base.h:1414:246)
+INFO: [HLS 214-131] Inlining function 'ap_fixed_base<32, 32, true, (ap_q_mode)5, (ap_o_mode)3, 0>::operator!() const' into 'ap_fixed_base<17, 5, true, (ap_q_mode)5, (ap_o_mode)3, 0>& ap_fixed_base<17, 5, true, (ap_q_mode)5, (ap_o_mode)3, 0>::operator=<32, 32, true, (ap_q_mode)5, (ap_o_mode)3, 0>(ap_fixed_base<32, 32, true, (ap_q_mode)5, (ap_o_mode)3, 0> const&)' (C:/Xilinx/Vitis_HLS/2022.1/common/technology/autopilot\ap_fixed_base.h:854:9)
+INFO: [HLS 214-131] Inlining function 'ap_fixed_base<17, 5, true, (ap_q_mode)5, (ap_o_mode)3, 0>& ap_fixed_base<17, 5, true, (ap_q_mode)5, (ap_o_mode)3, 0>::operator=<32, 32, true, (ap_q_mode)5, (ap_o_mode)3, 0>(ap_fixed_base<32, 32, true, (ap_q_mode)5, (ap_o_mode)3, 0> const&)' into 'ap_fixed_base<17, 5, true, (ap_q_mode)5, (ap_o_mode)3, 0>::ap_fixed_base(int)' (C:/Xilinx/Vitis_HLS/2022.1/common/technology/autopilot\ap_fixed_base.h:576:146)
+INFO: [HLS 214-131] Inlining function 'ap_fixed_base<16, 4, true, (ap_q_mode)5, (ap_o_mode)3, 0>::operator!() const' into 'ap_fixed_base<17, 5, true, (ap_q_mode)5, (ap_o_mode)3, 0>& ap_fixed_base<17, 5, true, (ap_q_mode)5, (ap_o_mode)3, 0>::operator=<16, 4, true, (ap_q_mode)5, (ap_o_mode)3, 0>(ap_fixed_base<16, 4, true, (ap_q_mode)5, (ap_o_mode)3, 0> const&)' (C:/Xilinx/Vitis_HLS/2022.1/common/technology/autopilot\ap_fixed_base.h:854:9)
+INFO: [HLS 214-131] Inlining function '_ZN8ssdm_intILi17ELb1EEC2EDq17_i' into 'ap_fixed_base<17, 5, true, (ap_q_mode)5, (ap_o_mode)3, 0>::ap_fixed_base<16, 4, true, (ap_q_mode)5, (ap_o_mode)3, 0>(ap_fixed_base<16, 4, true, (ap_q_mode)5, (ap_o_mode)3, 0> const&)' (C:/Xilinx/Vitis_HLS/2022.1/common/technology/autopilot\ap_fixed_base.h:447:80)
+INFO: [HLS 214-131] Inlining function 'ap_fixed_base<17, 5, true, (ap_q_mode)5, (ap_o_mode)3, 0>& ap_fixed_base<17, 5, true, (ap_q_mode)5, (ap_o_mode)3, 0>::operator=<16, 4, true, (ap_q_mode)5, (ap_o_mode)3, 0>(ap_fixed_base<16, 4, true, (ap_q_mode)5, (ap_o_mode)3, 0> const&)' into 'ap_fixed_base<17, 5, true, (ap_q_mode)5, (ap_o_mode)3, 0>::ap_fixed_base<16, 4, true, (ap_q_mode)5, (ap_o_mode)3, 0>(ap_fixed_base<16, 4, true, (ap_q_mode)5, (ap_o_mode)3, 0> const&)' (C:/Xilinx/Vitis_HLS/2022.1/common/technology/autopilot\ap_fixed_base.h:449:5)
+INFO: [HLS 214-131] Inlining function 'ap_fixed_base<15, 3, true, (ap_q_mode)2, (ap_o_mode)3, 0>::operator!() const' into 'ap_fixed_base<17, 5, true, (ap_q_mode)5, (ap_o_mode)3, 0>& ap_fixed_base<17, 5, true, (ap_q_mode)5, (ap_o_mode)3, 0>::operator=<15, 3, true, (ap_q_mode)2, (ap_o_mode)3, 0>(ap_fixed_base<15, 3, true, (ap_q_mode)2, (ap_o_mode)3, 0> const&)' (C:/Xilinx/Vitis_HLS/2022.1/common/technology/autopilot\ap_fixed_base.h:854:9)
+INFO: [HLS 214-131] Inlining function '_ZN8ssdm_intILi17ELb1EEC2EDq17_i' into 'ap_fixed_base<17, 5, true, (ap_q_mode)5, (ap_o_mode)3, 0>::ap_fixed_base<15, 3, true, (ap_q_mode)2, (ap_o_mode)3, 0>(ap_fixed_base<15, 3, true, (ap_q_mode)2, (ap_o_mode)3, 0> const&)' (C:/Xilinx/Vitis_HLS/2022.1/common/technology/autopilot\ap_fixed_base.h:447:80)
+INFO: [HLS 214-131] Inlining function 'ap_fixed_base<17, 5, true, (ap_q_mode)5, (ap_o_mode)3, 0>& ap_fixed_base<17, 5, true, (ap_q_mode)5, (ap_o_mode)3, 0>::operator=<15, 3, true, (ap_q_mode)2, (ap_o_mode)3, 0>(ap_fixed_base<15, 3, true, (ap_q_mode)2, (ap_o_mode)3, 0> const&)' into 'ap_fixed_base<17, 5, true, (ap_q_mode)5, (ap_o_mode)3, 0>::ap_fixed_base<15, 3, true, (ap_q_mode)2, (ap_o_mode)3, 0>(ap_fixed_base<15, 3, true, (ap_q_mode)2, (ap_o_mode)3, 0> const&)' (C:/Xilinx/Vitis_HLS/2022.1/common/technology/autopilot\ap_fixed_base.h:449:5)
+INFO: [HLS 214-131] Inlining function 'ap_fixed_base<17, 5, true, (ap_q_mode)5, (ap_o_mode)3, 0>::ap_fixed_base(int)' into 'ap_fixed_base<16, 4, true, (ap_q_mode)5, (ap_o_mode)3, 0>::RType<15, 3, true>::minus ap_fixed_base<16, 4, true, (ap_q_mode)5, (ap_o_mode)3, 0>::operator-<15, 3, true, (ap_q_mode)2, (ap_o_mode)3, 0>(ap_fixed_base<15, 3, true, (ap_q_mode)2, (ap_o_mode)3, 0> const&) const' (C:/Xilinx/Vitis_HLS/2022.1/common/technology/autopilot\ap_fixed_base.h:1394:327)
+INFO: [HLS 214-131] Inlining function 'ap_fixed<17, 5, (ap_q_mode)5, (ap_o_mode)3, 0>::ap_fixed<17, 5, true, (ap_q_mode)5, (ap_o_mode)3, 0>(ap_fixed_base<17, 5, true, (ap_q_mode)5, (ap_o_mode)3, 0> const&)' into 'ap_fixed_base<16, 4, true, (ap_q_mode)5, (ap_o_mode)3, 0>::RType<15, 3, true>::minus ap_fixed_base<16, 4, true, (ap_q_mode)5, (ap_o_mode)3, 0>::operator-<15, 3, true, (ap_q_mode)2, (ap_o_mode)3, 0>(ap_fixed_base<15, 3, true, (ap_q_mode)2, (ap_o_mode)3, 0> const&) const' (C:/Xilinx/Vitis_HLS/2022.1/common/technology/autopilot\ap_fixed_base.h:1394:387)
+INFO: [HLS 214-131] Inlining function 'ap_fixed_base<17, 5, true, (ap_q_mode)5, (ap_o_mode)3, 0>::ap_fixed_base<15, 3, true, (ap_q_mode)2, (ap_o_mode)3, 0>(ap_fixed_base<15, 3, true, (ap_q_mode)2, (ap_o_mode)3, 0> const&)' into 'ap_fixed_base<16, 4, true, (ap_q_mode)5, (ap_o_mode)3, 0>::RType<15, 3, true>::minus ap_fixed_base<16, 4, true, (ap_q_mode)5, (ap_o_mode)3, 0>::operator-<15, 3, true, (ap_q_mode)2, (ap_o_mode)3, 0>(ap_fixed_base<15, 3, true, (ap_q_mode)2, (ap_o_mode)3, 0> const&) const' (C:/Xilinx/Vitis_HLS/2022.1/common/technology/autopilot\ap_fixed_base.h:1394:347)
+INFO: [HLS 214-131] Inlining function 'ap_fixed_base<17, 5, true, (ap_q_mode)5, (ap_o_mode)3, 0>::ap_fixed_base<16, 4, true, (ap_q_mode)5, (ap_o_mode)3, 0>(ap_fixed_base<16, 4, true, (ap_q_mode)5, (ap_o_mode)3, 0> const&)' into 'ap_fixed_base<16, 4, true, (ap_q_mode)5, (ap_o_mode)3, 0>::RType<15, 3, true>::minus ap_fixed_base<16, 4, true, (ap_q_mode)5, (ap_o_mode)3, 0>::operator-<15, 3, true, (ap_q_mode)2, (ap_o_mode)3, 0>(ap_fixed_base<15, 3, true, (ap_q_mode)2, (ap_o_mode)3, 0> const&) const' (C:/Xilinx/Vitis_HLS/2022.1/common/technology/autopilot\ap_fixed_base.h:1394:335)
+INFO: [HLS 214-131] Inlining function 'ap_fixed_base<32, 32, true, (ap_q_mode)5, (ap_o_mode)3, 0>::operator!() const' into 'ap_fixed_base<18, 6, true, (ap_q_mode)5, (ap_o_mode)3, 0>& ap_fixed_base<18, 6, true, (ap_q_mode)5, (ap_o_mode)3, 0>::operator=<32, 32, true, (ap_q_mode)5, (ap_o_mode)3, 0>(ap_fixed_base<32, 32, true, (ap_q_mode)5, (ap_o_mode)3, 0> const&)' (C:/Xilinx/Vitis_HLS/2022.1/common/technology/autopilot\ap_fixed_base.h:854:9)
+INFO: [HLS 214-131] Inlining function 'ap_fixed_base<18, 6, true, (ap_q_mode)5, (ap_o_mode)3, 0>& ap_fixed_base<18, 6, true, (ap_q_mode)5, (ap_o_mode)3, 0>::operator=<32, 32, true, (ap_q_mode)5, (ap_o_mode)3, 0>(ap_fixed_base<32, 32, true, (ap_q_mode)5, (ap_o_mode)3, 0> const&)' into 'ap_fixed_base<18, 6, true, (ap_q_mode)5, (ap_o_mode)3, 0>::ap_fixed_base(int)' (C:/Xilinx/Vitis_HLS/2022.1/common/technology/autopilot\ap_fixed_base.h:576:146)
+INFO: [HLS 214-131] Inlining function 'ap_fixed_base<17, 5, true, (ap_q_mode)5, (ap_o_mode)3, 0>::operator!() const' into 'ap_fixed_base<18, 6, true, (ap_q_mode)5, (ap_o_mode)3, 0>& ap_fixed_base<18, 6, true, (ap_q_mode)5, (ap_o_mode)3, 0>::operator=<17, 5, true, (ap_q_mode)5, (ap_o_mode)3, 0>(ap_fixed_base<17, 5, true, (ap_q_mode)5, (ap_o_mode)3, 0> const&)' (C:/Xilinx/Vitis_HLS/2022.1/common/technology/autopilot\ap_fixed_base.h:854:9)
+INFO: [HLS 214-131] Inlining function '_ZN8ssdm_intILi18ELb1EEC2EDq18_i' into 'ap_fixed_base<18, 6, true, (ap_q_mode)5, (ap_o_mode)3, 0>::ap_fixed_base<17, 5, true, (ap_q_mode)5, (ap_o_mode)3, 0>(ap_fixed_base<17, 5, true, (ap_q_mode)5, (ap_o_mode)3, 0> const&)' (C:/Xilinx/Vitis_HLS/2022.1/common/technology/autopilot\ap_fixed_base.h:447:80)
+INFO: [HLS 214-131] Inlining function 'ap_fixed_base<18, 6, true, (ap_q_mode)5, (ap_o_mode)3, 0>& ap_fixed_base<18, 6, true, (ap_q_mode)5, (ap_o_mode)3, 0>::operator=<17, 5, true, (ap_q_mode)5, (ap_o_mode)3, 0>(ap_fixed_base<17, 5, true, (ap_q_mode)5, (ap_o_mode)3, 0> const&)' into 'ap_fixed_base<18, 6, true, (ap_q_mode)5, (ap_o_mode)3, 0>::ap_fixed_base<17, 5, true, (ap_q_mode)5, (ap_o_mode)3, 0>(ap_fixed_base<17, 5, true, (ap_q_mode)5, (ap_o_mode)3, 0> const&)' (C:/Xilinx/Vitis_HLS/2022.1/common/technology/autopilot\ap_fixed_base.h:449:5)
+INFO: [HLS 214-131] Inlining function 'ap_fixed_base<15, 3, true, (ap_q_mode)2, (ap_o_mode)3, 0>::operator!() const' into 'ap_fixed_base<18, 6, true, (ap_q_mode)5, (ap_o_mode)3, 0>& ap_fixed_base<18, 6, true, (ap_q_mode)5, (ap_o_mode)3, 0>::operator=<15, 3, true, (ap_q_mode)2, (ap_o_mode)3, 0>(ap_fixed_base<15, 3, true, (ap_q_mode)2, (ap_o_mode)3, 0> const&)' (C:/Xilinx/Vitis_HLS/2022.1/common/technology/autopilot\ap_fixed_base.h:854:9)
+INFO: [HLS 214-131] Inlining function '_ZN8ssdm_intILi18ELb1EEC2EDq18_i' into 'ap_fixed_base<18, 6, true, (ap_q_mode)5, (ap_o_mode)3, 0>::ap_fixed_base<15, 3, true, (ap_q_mode)2, (ap_o_mode)3, 0>(ap_fixed_base<15, 3, true, (ap_q_mode)2, (ap_o_mode)3, 0> const&)' (C:/Xilinx/Vitis_HLS/2022.1/common/technology/autopilot\ap_fixed_base.h:447:80)
+INFO: [HLS 214-131] Inlining function 'ap_fixed_base<18, 6, true, (ap_q_mode)5, (ap_o_mode)3, 0>& ap_fixed_base<18, 6, true, (ap_q_mode)5, (ap_o_mode)3, 0>::operator=<15, 3, true, (ap_q_mode)2, (ap_o_mode)3, 0>(ap_fixed_base<15, 3, true, (ap_q_mode)2, (ap_o_mode)3, 0> const&)' into 'ap_fixed_base<18, 6, true, (ap_q_mode)5, (ap_o_mode)3, 0>::ap_fixed_base<15, 3, true, (ap_q_mode)2, (ap_o_mode)3, 0>(ap_fixed_base<15, 3, true, (ap_q_mode)2, (ap_o_mode)3, 0> const&)' (C:/Xilinx/Vitis_HLS/2022.1/common/technology/autopilot\ap_fixed_base.h:449:5)
+INFO: [HLS 214-131] Inlining function 'ap_fixed_base<18, 6, true, (ap_q_mode)5, (ap_o_mode)3, 0>::ap_fixed_base(int)' into 'ap_fixed_base<17, 5, true, (ap_q_mode)5, (ap_o_mode)3, 0>::RType<15, 3, true>::minus ap_fixed_base<17, 5, true, (ap_q_mode)5, (ap_o_mode)3, 0>::operator-<15, 3, true, (ap_q_mode)2, (ap_o_mode)3, 0>(ap_fixed_base<15, 3, true, (ap_q_mode)2, (ap_o_mode)3, 0> const&) const' (C:/Xilinx/Vitis_HLS/2022.1/common/technology/autopilot\ap_fixed_base.h:1394:327)
+INFO: [HLS 214-131] Inlining function 'ap_fixed<18, 6, (ap_q_mode)5, (ap_o_mode)3, 0>::ap_fixed<18, 6, true, (ap_q_mode)5, (ap_o_mode)3, 0>(ap_fixed_base<18, 6, true, (ap_q_mode)5, (ap_o_mode)3, 0> const&)' into 'ap_fixed_base<17, 5, true, (ap_q_mode)5, (ap_o_mode)3, 0>::RType<15, 3, true>::minus ap_fixed_base<17, 5, true, (ap_q_mode)5, (ap_o_mode)3, 0>::operator-<15, 3, true, (ap_q_mode)2, (ap_o_mode)3, 0>(ap_fixed_base<15, 3, true, (ap_q_mode)2, (ap_o_mode)3, 0> const&) const' (C:/Xilinx/Vitis_HLS/2022.1/common/technology/autopilot\ap_fixed_base.h:1394:387)
+INFO: [HLS 214-131] Inlining function 'ap_fixed_base<18, 6, true, (ap_q_mode)5, (ap_o_mode)3, 0>::ap_fixed_base<15, 3, true, (ap_q_mode)2, (ap_o_mode)3, 0>(ap_fixed_base<15, 3, true, (ap_q_mode)2, (ap_o_mode)3, 0> const&)' into 'ap_fixed_base<17, 5, true, (ap_q_mode)5, (ap_o_mode)3, 0>::RType<15, 3, true>::minus ap_fixed_base<17, 5, true, (ap_q_mode)5, (ap_o_mode)3, 0>::operator-<15, 3, true, (ap_q_mode)2, (ap_o_mode)3, 0>(ap_fixed_base<15, 3, true, (ap_q_mode)2, (ap_o_mode)3, 0> const&) const' (C:/Xilinx/Vitis_HLS/2022.1/common/technology/autopilot\ap_fixed_base.h:1394:347)
+INFO: [HLS 214-131] Inlining function 'ap_fixed_base<18, 6, true, (ap_q_mode)5, (ap_o_mode)3, 0>::ap_fixed_base<17, 5, true, (ap_q_mode)5, (ap_o_mode)3, 0>(ap_fixed_base<17, 5, true, (ap_q_mode)5, (ap_o_mode)3, 0> const&)' into 'ap_fixed_base<17, 5, true, (ap_q_mode)5, (ap_o_mode)3, 0>::RType<15, 3, true>::minus ap_fixed_base<17, 5, true, (ap_q_mode)5, (ap_o_mode)3, 0>::operator-<15, 3, true, (ap_q_mode)2, (ap_o_mode)3, 0>(ap_fixed_base<15, 3, true, (ap_q_mode)2, (ap_o_mode)3, 0> const&) const' (C:/Xilinx/Vitis_HLS/2022.1/common/technology/autopilot\ap_fixed_base.h:1394:335)
+INFO: [HLS 214-131] Inlining function 'ap_fixed_base<18, 6, true, (ap_q_mode)5, (ap_o_mode)3, 0>::operator!() const' into 'ap_fixed_base<15, 3, true, (ap_q_mode)2, (ap_o_mode)3, 0>& ap_fixed_base<15, 3, true, (ap_q_mode)2, (ap_o_mode)3, 0>::operator=<18, 6, true, (ap_q_mode)5, (ap_o_mode)3, 0>(ap_fixed_base<18, 6, true, (ap_q_mode)5, (ap_o_mode)3, 0> const&)' (C:/Xilinx/Vitis_HLS/2022.1/common/technology/autopilot\ap_fixed_base.h:854:9)
+INFO: [HLS 214-131] Inlining function '_ZN8ssdm_intILi15ELb1EEC2EDq15_i' into 'ap_fixed_base<15, 3, true, (ap_q_mode)2, (ap_o_mode)3, 0>::ap_fixed_base<18, 6, true, (ap_q_mode)5, (ap_o_mode)3, 0>(ap_fixed_base<18, 6, true, (ap_q_mode)5, (ap_o_mode)3, 0> const&)' (C:/Xilinx/Vitis_HLS/2022.1/common/technology/autopilot\ap_fixed_base.h:447:80)
+INFO: [HLS 214-131] Inlining function 'ap_fixed_base<15, 3, true, (ap_q_mode)2, (ap_o_mode)3, 0>& ap_fixed_base<15, 3, true, (ap_q_mode)2, (ap_o_mode)3, 0>::operator=<18, 6, true, (ap_q_mode)5, (ap_o_mode)3, 0>(ap_fixed_base<18, 6, true, (ap_q_mode)5, (ap_o_mode)3, 0> const&)' into 'ap_fixed_base<15, 3, true, (ap_q_mode)2, (ap_o_mode)3, 0>::ap_fixed_base<18, 6, true, (ap_q_mode)5, (ap_o_mode)3, 0>(ap_fixed_base<18, 6, true, (ap_q_mode)5, (ap_o_mode)3, 0> const&)' (C:/Xilinx/Vitis_HLS/2022.1/common/technology/autopilot\ap_fixed_base.h:449:5)
+INFO: [HLS 214-131] Inlining function 'ap_fixed_base<15, 3, true, (ap_q_mode)2, (ap_o_mode)3, 0>::ap_fixed_base<18, 6, true, (ap_q_mode)5, (ap_o_mode)3, 0>(ap_fixed_base<18, 6, true, (ap_q_mode)5, (ap_o_mode)3, 0> const&)' into 'ap_fixed<15, 3, (ap_q_mode)2, (ap_o_mode)3, 0>::ap_fixed<18, 6, true, (ap_q_mode)5, (ap_o_mode)3, 0>(ap_fixed_base<18, 6, true, (ap_q_mode)5, (ap_o_mode)3, 0> const&)' (C:/Xilinx/Vitis_HLS/2022.1/common/technology/autopilot\ap_fixed.h:75:9)
+INFO: [HLS 214-131] Inlining function 'ap_fixed<15, 3, (ap_q_mode)2, (ap_o_mode)3, 0>::ap_fixed(int)' into 'cordiccart2pol(ap_fixed<15, 3, (ap_q_mode)2, (ap_o_mode)3, 0>, ap_fixed<15, 3, (ap_q_mode)2, (ap_o_mode)3, 0>, ap_fixed<15, 3, (ap_q_mode)2, (ap_o_mode)3, 0>*, ap_fixed<15, 3, (ap_q_mode)2, (ap_o_mode)3, 0>*)' (cordic_v5/code_src/cordiccart2pol.cpp:16:19)
+INFO: [HLS 214-131] Inlining function 'ap_fixed<15, 3, (ap_q_mode)2, (ap_o_mode)3, 0>::ap_fixed<16, 4, true, (ap_q_mode)5, (ap_o_mode)3, 0>(ap_fixed_base<16, 4, true, (ap_q_mode)5, (ap_o_mode)3, 0> const&)' into 'cordiccart2pol(ap_fixed<15, 3, (ap_q_mode)2, (ap_o_mode)3, 0>, ap_fixed<15, 3, (ap_q_mode)2, (ap_o_mode)3, 0>, ap_fixed<15, 3, (ap_q_mode)2, (ap_o_mode)3, 0>*, ap_fixed<15, 3, (ap_q_mode)2, (ap_o_mode)3, 0>*)' (cordic_v5/code_src/cordiccart2pol.cpp:56:17)
+INFO: [HLS 214-131] Inlining function 'ap_fixed_base<15, 3, true, (ap_q_mode)2, (ap_o_mode)3, 0>::RType<15, 3, true>::minus ap_fixed_base<15, 3, true, (ap_q_mode)2, (ap_o_mode)3, 0>::operator-<15, 3, true, (ap_q_mode)2, (ap_o_mode)3, 0>(ap_fixed_base<15, 3, true, (ap_q_mode)2, (ap_o_mode)3, 0> const&) const' into 'cordiccart2pol(ap_fixed<15, 3, (ap_q_mode)2, (ap_o_mode)3, 0>, ap_fixed<15, 3, (ap_q_mode)2, (ap_o_mode)3, 0>, ap_fixed<15, 3, (ap_q_mode)2, (ap_o_mode)3, 0>*, ap_fixed<15, 3, (ap_q_mode)2, (ap_o_mode)3, 0>*)' (cordic_v5/code_src/cordiccart2pol.cpp:56:27)
+INFO: [HLS 214-131] Inlining function 'ap_fixed<15, 3, (ap_q_mode)2, (ap_o_mode)3, 0>::ap_fixed(double)' into 'cordiccart2pol(ap_fixed<15, 3, (ap_q_mode)2, (ap_o_mode)3, 0>, ap_fixed<15, 3, (ap_q_mode)2, (ap_o_mode)3, 0>, ap_fixed<15, 3, (ap_q_mode)2, (ap_o_mode)3, 0>*, ap_fixed<15, 3, (ap_q_mode)2, (ap_o_mode)3, 0>*)' (cordic_v5/code_src/cordiccart2pol.cpp:56:29)
+INFO: [HLS 214-131] Inlining function 'bool operator>=<15, 3, true, (ap_q_mode)2, (ap_o_mode)3, 0>(ap_fixed_base<15, 3, true, (ap_q_mode)2, (ap_o_mode)3, 0> const&, int)' into 'cordiccart2pol(ap_fixed<15, 3, (ap_q_mode)2, (ap_o_mode)3, 0>, ap_fixed<15, 3, (ap_q_mode)2, (ap_o_mode)3, 0>, ap_fixed<15, 3, (ap_q_mode)2, (ap_o_mode)3, 0>*, ap_fixed<15, 3, (ap_q_mode)2, (ap_o_mode)3, 0>*)' (cordic_v5/code_src/cordiccart2pol.cpp:21:6)
+INFO: [HLS 214-131] Inlining function 'ap_fixed<15, 3, (ap_q_mode)2, (ap_o_mode)3, 0>::ap_fixed<16, 4, true, (ap_q_mode)5, (ap_o_mode)3, 0>(ap_fixed_base<16, 4, true, (ap_q_mode)5, (ap_o_mode)3, 0> const&)' into 'cordiccart2pol(ap_fixed<15, 3, (ap_q_mode)2, (ap_o_mode)3, 0>, ap_fixed<15, 3, (ap_q_mode)2, (ap_o_mode)3, 0>, ap_fixed<15, 3, (ap_q_mode)2, (ap_o_mode)3, 0>*, ap_fixed<15, 3, (ap_q_mode)2, (ap_o_mode)3, 0>*)' (cordic_v5/code_src/cordiccart2pol.cpp:55:21)
+INFO: [HLS 214-131] Inlining function 'ap_fixed_base<15, 3, true, (ap_q_mode)2, (ap_o_mode)3, 0>::RType<15, 3, true>::plus ap_fixed_base<15, 3, true, (ap_q_mode)2, (ap_o_mode)3, 0>::operator+<15, 3, true, (ap_q_mode)2, (ap_o_mode)3, 0>(ap_fixed_base<15, 3, true, (ap_q_mode)2, (ap_o_mode)3, 0> const&) const' into 'cordiccart2pol(ap_fixed<15, 3, (ap_q_mode)2, (ap_o_mode)3, 0>, ap_fixed<15, 3, (ap_q_mode)2, (ap_o_mode)3, 0>, ap_fixed<15, 3, (ap_q_mode)2, (ap_o_mode)3, 0>*, ap_fixed<15, 3, (ap_q_mode)2, (ap_o_mode)3, 0>*)' (cordic_v5/code_src/cordiccart2pol.cpp:55:43)
+INFO: [HLS 214-131] Inlining function 'ap_fixed<15, 3, (ap_q_mode)2, (ap_o_mode)3, 0>::ap_fixed(double)' into 'cordiccart2pol(ap_fixed<15, 3, (ap_q_mode)2, (ap_o_mode)3, 0>, ap_fixed<15, 3, (ap_q_mode)2, (ap_o_mode)3, 0>, ap_fixed<15, 3, (ap_q_mode)2, (ap_o_mode)3, 0>*, ap_fixed<15, 3, (ap_q_mode)2, (ap_o_mode)3, 0>*)' (cordic_v5/code_src/cordiccart2pol.cpp:55:21)
+INFO: [HLS 214-131] Inlining function 'ap_fixed_base<15, 3, true, (ap_q_mode)2, (ap_o_mode)3, 0>::operator-() const' into 'cordiccart2pol(ap_fixed<15, 3, (ap_q_mode)2, (ap_o_mode)3, 0>, ap_fixed<15, 3, (ap_q_mode)2, (ap_o_mode)3, 0>, ap_fixed<15, 3, (ap_q_mode)2, (ap_o_mode)3, 0>*, ap_fixed<15, 3, (ap_q_mode)2, (ap_o_mode)3, 0>*)' (cordic_v5/code_src/cordiccart2pol.cpp:26:14)
+INFO: [HLS 214-131] Inlining function 'bool operator>=<15, 3, true, (ap_q_mode)2, (ap_o_mode)3, 0>(ap_fixed_base<15, 3, true, (ap_q_mode)2, (ap_o_mode)3, 0> const&, int)' into 'cordiccart2pol(ap_fixed<15, 3, (ap_q_mode)2, (ap_o_mode)3, 0>, ap_fixed<15, 3, (ap_q_mode)2, (ap_o_mode)3, 0>, ap_fixed<15, 3, (ap_q_mode)2, (ap_o_mode)3, 0>*, ap_fixed<15, 3, (ap_q_mode)2, (ap_o_mode)3, 0>*)' (cordic_v5/code_src/cordiccart2pol.cpp:55:7)
+INFO: [HLS 214-131] Inlining function 'bool operator>=<15, 3, true, (ap_q_mode)2, (ap_o_mode)3, 0>(ap_fixed_base<15, 3, true, (ap_q_mode)2, (ap_o_mode)3, 0> const&, int)' into 'cordiccart2pol(ap_fixed<15, 3, (ap_q_mode)2, (ap_o_mode)3, 0>, ap_fixed<15, 3, (ap_q_mode)2, (ap_o_mode)3, 0>, ap_fixed<15, 3, (ap_q_mode)2, (ap_o_mode)3, 0>*, ap_fixed<15, 3, (ap_q_mode)2, (ap_o_mode)3, 0>*)' (cordic_v5/code_src/cordiccart2pol.cpp:53:6)
+INFO: [HLS 214-131] Inlining function 'ap_fixed<15, 3, (ap_q_mode)2, (ap_o_mode)3, 0>::ap_fixed<18, 6, true, (ap_q_mode)5, (ap_o_mode)3, 0>(ap_fixed_base<18, 6, true, (ap_q_mode)5, (ap_o_mode)3, 0> const&)' into 'cordiccart2pol(ap_fixed<15, 3, (ap_q_mode)2, (ap_o_mode)3, 0>, ap_fixed<15, 3, (ap_q_mode)2, (ap_o_mode)3, 0>, ap_fixed<15, 3, (ap_q_mode)2, (ap_o_mode)3, 0>*, ap_fixed<15, 3, (ap_q_mode)2, (ap_o_mode)3, 0>*)' (cordic_v5/code_src/cordiccart2pol.cpp:49:7)
+INFO: [HLS 214-131] Inlining function 'ap_fixed_base<17, 5, true, (ap_q_mode)5, (ap_o_mode)3, 0>::RType<15, 3, true>::minus ap_fixed_base<17, 5, true, (ap_q_mode)5, (ap_o_mode)3, 0>::operator-<15, 3, true, (ap_q_mode)2, (ap_o_mode)3, 0>(ap_fixed_base<15, 3, true, (ap_q_mode)2, (ap_o_mode)3, 0> const&) const' into 'cordiccart2pol(ap_fixed<15, 3, (ap_q_mode)2, (ap_o_mode)3, 0>, ap_fixed<15, 3, (ap_q_mode)2, (ap_o_mode)3, 0>, ap_fixed<15, 3, (ap_q_mode)2, (ap_o_mode)3, 0>*, ap_fixed<15, 3, (ap_q_mode)2, (ap_o_mode)3, 0>*)' (cordic_v5/code_src/cordiccart2pol.cpp:49:53)
+INFO: [HLS 214-131] Inlining function 'ap_fixed_base<15, 3, true, (ap_q_mode)2, (ap_o_mode)3, 0>::operator>>(int) const' into 'cordiccart2pol(ap_fixed<15, 3, (ap_q_mode)2, (ap_o_mode)3, 0>, ap_fixed<15, 3, (ap_q_mode)2, (ap_o_mode)3, 0>, ap_fixed<15, 3, (ap_q_mode)2, (ap_o_mode)3, 0>*, ap_fixed<15, 3, (ap_q_mode)2, (ap_o_mode)3, 0>*)' (cordic_v5/code_src/cordiccart2pol.cpp:49:64)
+INFO: [HLS 214-131] Inlining function 'ap_fixed_base<16, 4, true, (ap_q_mode)5, (ap_o_mode)3, 0>::RType<15, 3, true>::minus ap_fixed_base<16, 4, true, (ap_q_mode)5, (ap_o_mode)3, 0>::operator-<15, 3, true, (ap_q_mode)2, (ap_o_mode)3, 0>(ap_fixed_base<15, 3, true, (ap_q_mode)2, (ap_o_mode)3, 0> const&) const' into 'cordiccart2pol(ap_fixed<15, 3, (ap_q_mode)2, (ap_o_mode)3, 0>, ap_fixed<15, 3, (ap_q_mode)2, (ap_o_mode)3, 0>, ap_fixed<15, 3, (ap_q_mode)2, (ap_o_mode)3, 0>*, ap_fixed<15, 3, (ap_q_mode)2, (ap_o_mode)3, 0>*)' (cordic_v5/code_src/cordiccart2pol.cpp:49:37)
+INFO: [HLS 214-131] Inlining function 'ap_fixed_base<15, 3, true, (ap_q_mode)2, (ap_o_mode)3, 0>::operator>>(int) const' into 'cordiccart2pol(ap_fixed<15, 3, (ap_q_mode)2, (ap_o_mode)3, 0>, ap_fixed<15, 3, (ap_q_mode)2, (ap_o_mode)3, 0>, ap_fixed<15, 3, (ap_q_mode)2, (ap_o_mode)3, 0>*, ap_fixed<15, 3, (ap_q_mode)2, (ap_o_mode)3, 0>*)' (cordic_v5/code_src/cordiccart2pol.cpp:49:48)
+INFO: [HLS 214-131] Inlining function 'ap_fixed_base<15, 3, true, (ap_q_mode)2, (ap_o_mode)3, 0>::RType<15, 3, true>::plus ap_fixed_base<15, 3, true, (ap_q_mode)2, (ap_o_mode)3, 0>::operator+<15, 3, true, (ap_q_mode)2, (ap_o_mode)3, 0>(ap_fixed_base<15, 3, true, (ap_q_mode)2, (ap_o_mode)3, 0> const&) const' into 'cordiccart2pol(ap_fixed<15, 3, (ap_q_mode)2, (ap_o_mode)3, 0>, ap_fixed<15, 3, (ap_q_mode)2, (ap_o_mode)3, 0>, ap_fixed<15, 3, (ap_q_mode)2, (ap_o_mode)3, 0>*, ap_fixed<15, 3, (ap_q_mode)2, (ap_o_mode)3, 0>*)' (cordic_v5/code_src/cordiccart2pol.cpp:49:21)
+INFO: [HLS 214-131] Inlining function 'ap_fixed_base<15, 3, true, (ap_q_mode)2, (ap_o_mode)3, 0>::operator>>(int) const' into 'cordiccart2pol(ap_fixed<15, 3, (ap_q_mode)2, (ap_o_mode)3, 0>, ap_fixed<15, 3, (ap_q_mode)2, (ap_o_mode)3, 0>, ap_fixed<15, 3, (ap_q_mode)2, (ap_o_mode)3, 0>*, ap_fixed<15, 3, (ap_q_mode)2, (ap_o_mode)3, 0>*)' (cordic_v5/code_src/cordiccart2pol.cpp:49:32)
+INFO: [HLS 214-131] Inlining function 'ap_fixed_base<15, 3, true, (ap_q_mode)2, (ap_o_mode)3, 0>::operator>>(int) const' into 'cordiccart2pol(ap_fixed<15, 3, (ap_q_mode)2, (ap_o_mode)3, 0>, ap_fixed<15, 3, (ap_q_mode)2, (ap_o_mode)3, 0>, ap_fixed<15, 3, (ap_q_mode)2, (ap_o_mode)3, 0>*, ap_fixed<15, 3, (ap_q_mode)2, (ap_o_mode)3, 0>*)' (cordic_v5/code_src/cordiccart2pol.cpp:49:16)
+INFO: [HLS 214-131] Inlining function 'ap_fixed_base<15, 3, true, (ap_q_mode)2, (ap_o_mode)3, 0>& ap_fixed_base<15, 3, true, (ap_q_mode)2, (ap_o_mode)3, 0>::operator-=<15, 3, true, (ap_q_mode)2, (ap_o_mode)3, 0>(ap_fixed_base<15, 3, true, (ap_q_mode)2, (ap_o_mode)3, 0> const&)' into 'cordiccart2pol(ap_fixed<15, 3, (ap_q_mode)2, (ap_o_mode)3, 0>, ap_fixed<15, 3, (ap_q_mode)2, (ap_o_mode)3, 0>, ap_fixed<15, 3, (ap_q_mode)2, (ap_o_mode)3, 0>*, ap_fixed<15, 3, (ap_q_mode)2, (ap_o_mode)3, 0>*)' (cordic_v5/code_src/cordiccart2pol.cpp:44:14)
+INFO: [HLS 214-131] Inlining function 'ap_fixed_base<15, 3, true, (ap_q_mode)2, (ap_o_mode)3, 0>& ap_fixed_base<15, 3, true, (ap_q_mode)2, (ap_o_mode)3, 0>::operator+=<15, 3, true, (ap_q_mode)2, (ap_o_mode)3, 0>(ap_fixed_base<15, 3, true, (ap_q_mode)2, (ap_o_mode)3, 0> const&)' into 'cordiccart2pol(ap_fixed<15, 3, (ap_q_mode)2, (ap_o_mode)3, 0>, ap_fixed<15, 3, (ap_q_mode)2, (ap_o_mode)3, 0>, ap_fixed<15, 3, (ap_q_mode)2, (ap_o_mode)3, 0>*, ap_fixed<15, 3, (ap_q_mode)2, (ap_o_mode)3, 0>*)' (cordic_v5/code_src/cordiccart2pol.cpp:43:13)
+INFO: [HLS 214-131] Inlining function 'ap_fixed_base<15, 3, true, (ap_q_mode)2, (ap_o_mode)3, 0>& ap_fixed_base<15, 3, true, (ap_q_mode)2, (ap_o_mode)3, 0>::operator-=<15, 3, true, (ap_q_mode)2, (ap_o_mode)3, 0>(ap_fixed_base<15, 3, true, (ap_q_mode)2, (ap_o_mode)3, 0> const&)' into 'cordiccart2pol(ap_fixed<15, 3, (ap_q_mode)2, (ap_o_mode)3, 0>, ap_fixed<15, 3, (ap_q_mode)2, (ap_o_mode)3, 0>, ap_fixed<15, 3, (ap_q_mode)2, (ap_o_mode)3, 0>*, ap_fixed<15, 3, (ap_q_mode)2, (ap_o_mode)3, 0>*)' (cordic_v5/code_src/cordiccart2pol.cpp:42:13)
+INFO: [HLS 214-131] Inlining function 'ap_fixed_base<15, 3, true, (ap_q_mode)2, (ap_o_mode)3, 0>& ap_fixed_base<15, 3, true, (ap_q_mode)2, (ap_o_mode)3, 0>::operator+=<15, 3, true, (ap_q_mode)2, (ap_o_mode)3, 0>(ap_fixed_base<15, 3, true, (ap_q_mode)2, (ap_o_mode)3, 0> const&)' into 'cordiccart2pol(ap_fixed<15, 3, (ap_q_mode)2, (ap_o_mode)3, 0>, ap_fixed<15, 3, (ap_q_mode)2, (ap_o_mode)3, 0>, ap_fixed<15, 3, (ap_q_mode)2, (ap_o_mode)3, 0>*, ap_fixed<15, 3, (ap_q_mode)2, (ap_o_mode)3, 0>*)' (cordic_v5/code_src/cordiccart2pol.cpp:39:14)
+INFO: [HLS 214-131] Inlining function 'ap_fixed_base<15, 3, true, (ap_q_mode)2, (ap_o_mode)3, 0>& ap_fixed_base<15, 3, true, (ap_q_mode)2, (ap_o_mode)3, 0>::operator-=<15, 3, true, (ap_q_mode)2, (ap_o_mode)3, 0>(ap_fixed_base<15, 3, true, (ap_q_mode)2, (ap_o_mode)3, 0> const&)' into 'cordiccart2pol(ap_fixed<15, 3, (ap_q_mode)2, (ap_o_mode)3, 0>, ap_fixed<15, 3, (ap_q_mode)2, (ap_o_mode)3, 0>, ap_fixed<15, 3, (ap_q_mode)2, (ap_o_mode)3, 0>*, ap_fixed<15, 3, (ap_q_mode)2, (ap_o_mode)3, 0>*)' (cordic_v5/code_src/cordiccart2pol.cpp:38:13)
+INFO: [HLS 214-131] Inlining function 'ap_fixed_base<15, 3, true, (ap_q_mode)2, (ap_o_mode)3, 0>& ap_fixed_base<15, 3, true, (ap_q_mode)2, (ap_o_mode)3, 0>::operator+=<15, 3, true, (ap_q_mode)2, (ap_o_mode)3, 0>(ap_fixed_base<15, 3, true, (ap_q_mode)2, (ap_o_mode)3, 0> const&)' into 'cordiccart2pol(ap_fixed<15, 3, (ap_q_mode)2, (ap_o_mode)3, 0>, ap_fixed<15, 3, (ap_q_mode)2, (ap_o_mode)3, 0>, ap_fixed<15, 3, (ap_q_mode)2, (ap_o_mode)3, 0>*, ap_fixed<15, 3, (ap_q_mode)2, (ap_o_mode)3, 0>*)' (cordic_v5/code_src/cordiccart2pol.cpp:37:13)
+INFO: [HLS 214-131] Inlining function 'bool operator>=<15, 3, true, (ap_q_mode)2, (ap_o_mode)3, 0>(ap_fixed_base<15, 3, true, (ap_q_mode)2, (ap_o_mode)3, 0> const&, int)' into 'cordiccart2pol(ap_fixed<15, 3, (ap_q_mode)2, (ap_o_mode)3, 0>, ap_fixed<15, 3, (ap_q_mode)2, (ap_o_mode)3, 0>, ap_fixed<15, 3, (ap_q_mode)2, (ap_o_mode)3, 0>*, ap_fixed<15, 3, (ap_q_mode)2, (ap_o_mode)3, 0>*)' (cordic_v5/code_src/cordiccart2pol.cpp:36:14)
+INFO: [HLS 214-131] Inlining function 'ap_fixed<15, 3, (ap_q_mode)2, (ap_o_mode)3, 0>::ap_fixed<15, 3, true, (ap_q_mode)2, (ap_o_mode)3, 0>(ap_fixed_base<15, 3, true, (ap_q_mode)2, (ap_o_mode)3, 0> const&)' into 'cordiccart2pol(ap_fixed<15, 3, (ap_q_mode)2, (ap_o_mode)3, 0>, ap_fixed<15, 3, (ap_q_mode)2, (ap_o_mode)3, 0>, ap_fixed<15, 3, (ap_q_mode)2, (ap_o_mode)3, 0>*, ap_fixed<15, 3, (ap_q_mode)2, (ap_o_mode)3, 0>*)' (cordic_v5/code_src/cordiccart2pol.cpp:34:13)
+INFO: [HLS 214-131] Inlining function 'ap_fixed_base<15, 3, true, (ap_q_mode)2, (ap_o_mode)3, 0>::operator>>(int) const' into 'cordiccart2pol(ap_fixed<15, 3, (ap_q_mode)2, (ap_o_mode)3, 0>, ap_fixed<15, 3, (ap_q_mode)2, (ap_o_mode)3, 0>, ap_fixed<15, 3, (ap_q_mode)2, (ap_o_mode)3, 0>*, ap_fixed<15, 3, (ap_q_mode)2, (ap_o_mode)3, 0>*)' (cordic_v5/code_src/cordiccart2pol.cpp:34:22)
+INFO: [HLS 214-131] Inlining function 'ap_fixed<15, 3, (ap_q_mode)2, (ap_o_mode)3, 0>::ap_fixed<15, 3, true, (ap_q_mode)2, (ap_o_mode)3, 0>(ap_fixed_base<15, 3, true, (ap_q_mode)2, (ap_o_mode)3, 0> const&)' into 'cordiccart2pol(ap_fixed<15, 3, (ap_q_mode)2, (ap_o_mode)3, 0>, ap_fixed<15, 3, (ap_q_mode)2, (ap_o_mode)3, 0>, ap_fixed<15, 3, (ap_q_mode)2, (ap_o_mode)3, 0>*, ap_fixed<15, 3, (ap_q_mode)2, (ap_o_mode)3, 0>*)' (cordic_v5/code_src/cordiccart2pol.cpp:33:13)
+INFO: [HLS 214-131] Inlining function 'ap_fixed_base<15, 3, true, (ap_q_mode)2, (ap_o_mode)3, 0>::operator>>(int) const' into 'cordiccart2pol(ap_fixed<15, 3, (ap_q_mode)2, (ap_o_mode)3, 0>, ap_fixed<15, 3, (ap_q_mode)2, (ap_o_mode)3, 0>, ap_fixed<15, 3, (ap_q_mode)2, (ap_o_mode)3, 0>*, ap_fixed<15, 3, (ap_q_mode)2, (ap_o_mode)3, 0>*)' (cordic_v5/code_src/cordiccart2pol.cpp:33:22)
+INFO: [HLS 214-131] Inlining function 'ap_fixed<15, 3, (ap_q_mode)2, (ap_o_mode)3, 0>::ap_fixed<16, 4, true, (ap_q_mode)5, (ap_o_mode)3, 0>(ap_fixed_base<16, 4, true, (ap_q_mode)5, (ap_o_mode)3, 0> const&)' into 'cordiccart2pol(ap_fixed<15, 3, (ap_q_mode)2, (ap_o_mode)3, 0>, ap_fixed<15, 3, (ap_q_mode)2, (ap_o_mode)3, 0>, ap_fixed<15, 3, (ap_q_mode)2, (ap_o_mode)3, 0>*, ap_fixed<15, 3, (ap_q_mode)2, (ap_o_mode)3, 0>*)' (cordic_v5/code_src/cordiccart2pol.cpp:27:14)
+INFO: [HLS 214-131] Inlining function 'ap_fixed_base<15, 3, true, (ap_q_mode)2, (ap_o_mode)3, 0>::operator-() const' into 'cordiccart2pol(ap_fixed<15, 3, (ap_q_mode)2, (ap_o_mode)3, 0>, ap_fixed<15, 3, (ap_q_mode)2, (ap_o_mode)3, 0>, ap_fixed<15, 3, (ap_q_mode)2, (ap_o_mode)3, 0>*, ap_fixed<15, 3, (ap_q_mode)2, (ap_o_mode)3, 0>*)' (cordic_v5/code_src/cordiccart2pol.cpp:27:14)
+INFO: [HLS 214-131] Inlining function 'ap_fixed<15, 3, (ap_q_mode)2, (ap_o_mode)3, 0>::ap_fixed<16, 4, true, (ap_q_mode)5, (ap_o_mode)3, 0>(ap_fixed_base<16, 4, true, (ap_q_mode)5, (ap_o_mode)3, 0> const&)' into 'cordiccart2pol(ap_fixed<15, 3, (ap_q_mode)2, (ap_o_mode)3, 0>, ap_fixed<15, 3, (ap_q_mode)2, (ap_o_mode)3, 0>, ap_fixed<15, 3, (ap_q_mode)2, (ap_o_mode)3, 0>*, ap_fixed<15, 3, (ap_q_mode)2, (ap_o_mode)3, 0>*)' (cordic_v5/code_src/cordiccart2pol.cpp:26:14)
+INFO: [HLS 214-186] Unrolling loop 'cordic_loop' (cordic_v5/code_src/cordiccart2pol.cpp:32:2) in function 'cordiccart2pol' completely with a factor of 11 (cordic_v5/code_src/cordiccart2pol.cpp:15:0)
+INFO: [HLS 214-178] Inlining function 'ap_fixed_base<15, 3, true, (ap_q_mode)2, (ap_o_mode)3, 0>::ap_fixed_base(double)' into 'cordiccart2pol(ap_fixed<15, 3, (ap_q_mode)2, (ap_o_mode)3, 0>, ap_fixed<15, 3, (ap_q_mode)2, (ap_o_mode)3, 0>, ap_fixed<15, 3, (ap_q_mode)2, (ap_o_mode)3, 0>*, ap_fixed<15, 3, (ap_q_mode)2, (ap_o_mode)3, 0>*)' (cordic_v5/code_src/cordiccart2pol.cpp:15:0)
+INFO: [HLS 214-241] Aggregating scalar variable 'theta' with compact=bit mode in 15-bits (cordic_v5/code_src/cordiccart2pol.cpp:15:0)
+INFO: [HLS 214-241] Aggregating scalar variable 'r' with compact=bit mode in 15-bits (cordic_v5/code_src/cordiccart2pol.cpp:15:0)
+INFO-FLOW: DBG:PUTS: copy_raw_kernel_xml ap_link_39: kernel.xml not generated: C:/Users/Alan/Desktop/hls_workspace/lab/labC/cordic_v5/solution1/.autopilot/db/kernel.internal.xml
+INFO: [HLS 200-111] Finished Compiling Optimization and Transform: CPU user time: 1 seconds. CPU system time: 0 seconds. Elapsed time: 7.654 seconds; current allocated memory: 1.381 GB.
+INFO: [HLS 200-111] Finished Checking Pragmas: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.004 seconds; current allocated memory: 1.381 GB.
+Execute       opt_and_import_c a -opt_level=2 -skip_syncheck=0 -ng=0 -keep_printf=0 
+Execute         cleanup_all_models 
+INFO: [HLS 200-10] Starting code transformations ...
+INFO-FLOW: Running Standard Transforms...
+Execute         transform -hls -share-std-xform -demangle-name -inline-byval-memcpy -always-inline -promote-dbg-pointer -interface-preproc -mem2reg -scalarrepl -mem2reg -keep-read-access -instcombine -dce -promote-dbg-pointer -bitop-raise -loop-simplify -indvarspre -indvars -loop-simplify -xunroll -constprop -instcombine -simplifycfg -indvars -simplifycfg -dce -globaldce -basicaa -simplifycfg -mem2reg -globalopt -global-constprop -deadargelim -instcombine -simplifycfg -scalarrepl -instcombine -reassociate -licm -simplifycfg -loop-simplify -indvars -instcombine -simplifycfg -mem2reg -loop-simplify -indvars -instcombine -gvn -gvn -instcombine -adce -break-crit-edges -simplifycfg -loop-delete -global-array-opt -dce -dse -adce -find-syn-modules -top cordiccart2pol -deadargelim -mem2reg -instcombine -dce -presyn-prepare -auto-rom-infer -interface-preproc -syn-check -check-rec-only -find-region -simplifycfg -func-extr -function-inline -globaldce -mem2reg -instcombine -dce -gvn -globaldce -adce -adse -constprop -instcombine -bit-constprop -instcombine -dce -simplifycfg -bitop-raise -simplifycfg -dce -loop-delete -reassociate -globalopt -global-privatize -mem2reg -dce -global-constprop -pointer-simplify -constprop -dce -func-inst -deadargelim -auto-shift-reg-idiom -promote-dbg-pointer -norm-name C:/Users/Alan/Desktop/hls_workspace/lab/labC/cordic_v5/solution1/.autopilot/db/a.g.0.bc -o C:/Users/Alan/Desktop/hls_workspace/lab/labC/cordic_v5/solution1/.autopilot/db/a.g.1.bc -f -phase std-opt 
+Command         transform done; 0.174 sec.
+INFO: [HLS 200-111] Finished Standard Transforms: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.196 seconds; current allocated memory: 1.381 GB.
+INFO: [HLS 200-10] Checking synthesizability ...
+INFO-FLOW: Checking Synthesizability 1/2..
+Execute         transform -hls -syn-check -check-rec-only -scalarrepl -norm-name -dce -mem2reg -instcombine -function-uniquify -directive-preproc -mem2reg -dse -dce -auto-rom-infer -dce -pag -array-normalize -instcombine -dce -array-seg-normalize -instcombine -dce -data-pack -instcombine -dce -inst-simplify -array-flatten -instcombine -dce -array-burst -dce -deadargelim -promote-global-argument -simplifycfg -mem2reg -globaldce -dce -deadargelim -dce -instcombine -function-inline -globaldce -dce -doublePtrSimplify -doublePtrElim -dce -doublePtrSimplify -promote-dbg-pointer -dce -scalarrepl -dse -adse -instcombine -ptrLegalization -simplifycfg -dce -instcombine -pointer-simplify -ptrArgReplace -dce -instcombine -resolve-double-ptr -scalarrepl -norm-name -dce -mem2reg -instcombine -ptrLegalization -simplifycfg -deadargelim -instcombine -dce -inst-simplify -function-uniquify -directive-preproc -mem2reg -dse -dce -globaldce C:/Users/Alan/Desktop/hls_workspace/lab/labC/cordic_v5/solution1/.autopilot/db/a.g.1.bc -o C:/Users/Alan/Desktop/hls_workspace/lab/labC/cordic_v5/solution1/.autopilot/db/a.g.2.prechk.bc -f 
+Command         transform done; 0.137 sec.
+INFO-FLOW: Checking Synthesizability 2/2..
+Execute         transform -syn-check C:/Users/Alan/Desktop/hls_workspace/lab/labC/cordic_v5/solution1/.autopilot/db/a.g.2.prechk.bc -o C:/Users/Alan/Desktop/hls_workspace/lab/labC/cordic_v5/solution1/.autopilot/db/a.g.2.bc -f -phase syn-check 
+Command         transform done; 0.144 sec.
+INFO: [HLS 200-111] Finished Checking Synthesizability: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.301 seconds; current allocated memory: 1.381 GB.
+INFO-FLOW: Compiler optimizing ...
+INFO-FLOW: Share syncheck's 1.bc for syn flow: copy C:/Users/Alan/Desktop/hls_workspace/lab/labC/cordic_v5/solution1/.autopilot/db/a.g.1.bc to C:/Users/Alan/Desktop/hls_workspace/lab/labC/cordic_v5/solution1/.autopilot/db/a.o.1.bc
+INFO-FLOW: Presyn 1...
+Execute         transform -hls -tmp C:/Users/Alan/Desktop/hls_workspace/lab/labC/cordic_v5/solution1/.autopilot/db -interface-port-rename -function-uniquify -directive-preproc -mem2reg -dse -dce -scalarrepl -norm-name -deadargelim -mem2reg -instcombine -dce -simplifycfg -auto-rom-infer -dce -function-uniquify -resource-proc -clib-intrinsic-prepare -dce -func-buffer -dce -pag -array-normalize -func-legal -instcombine -gvn -constprop -dce -simplifycfg -mem2reg -globaldce -resolve-double-ptr -dce -deadargelim -dce -instcombine -ptrArgReplace -mem2reg -dce -array-seg-normalize -deadargelim -instcombine -dce -function-uniquify -directive-preproc -mem2reg -dse -dce -pointer-simplify -dce -port-alignment -dce -interface-preproc -data-pack -instcombine -dce -basicaa -aggr-aa -aggrmodref-aa -aggr-aa -gvn -gvn -basicaa -aggr-aa -aggrmodref-aa -aggr-aa -dse -adse -adce -loop-simplify -indvars -instcombine -gvn -loop-simplify -mem2reg -dce -find-region -instcombine -auto-loop-pipeline -inst-simplify -interface-preproc -cfgopt -instcombine -indvars -auto-loop-unroll -loop-simplify -loop-bound -xunroll -constprop -instcombine -simplifycfg -indvars -simplifycfg -dce -globaldce -clean-region -attach-range -gvn -inst-simplify -constprop -simplifycfg -dce -pointer-simplify -dce -globalopt -constprop -dce -array-promote -scalar-auto-dep-elim -constprop -dce -ptrArgReplace -mem2reg -simplifycfg -dce -instcombine -dce -array-transform-check -array-reshape -instcombine -simplifycfg -dce -ptrArgReplace -deadargelim -mem2reg -instcombine -simplifycfg -dce -indvars -loop-simplify -loop-bound -xunroll -constprop -instcombine -simplifycfg -indvars -simplifycfg -dce -globaldce -basicaa -aggr-aa -aggrmodref-aa -aggr-aa -dse -duplicate-dataflow-processes -globaldce -instcombine -array-partition -prepare-dynamic-array-partition -instcombine -simplifycfg -dce -ptrArgReplace -global-constprop -deadargelim -mem2reg -func-legal -dce -global-constprop -deadargelim -mem2reg -simplifycfg -dce -merge-param -deadargelim -globalopt -constprop -dce -array-promote -scalar-auto-dep-elim -constprop -dce -ptrArgReplace -mem2reg -simplifycfg -dce -mem-intrinsic-preproc -dce -global-internalize -global-privatize -mem2reg -globaldce -promote-global-argument -ptrArgReplace -mem2reg -dce -globalopt -mergereturn -simplify-global-access -mem2reg -dce -pointer-simplify -dce -functionattrs -basicaa -aggr-aa -aggrmodref-aa -aggr-aa -gvn -gvn -basicaa -aggr-aa -aggrmodref-aa -aggr-aa -dse -adse -adce -dce -norm-name -basicaa -aggr-aa -aggrmodref-aa -aggr-aa -accesses-merge -function-inline -complex-op-raise -inst-simplify -globaldce -func-inst -constprop -instcombine -simplifycfg -dce -func-legal -dce -loop-bound -arraycheck -bitwidthmin2 -bitwidthmin2 -on-by-dataflow -loop-delete -instcombine -simplifycfg -globaldce -dce -gvn -deadargelim -dce -loop-simplify -clean-region -simplifycfg -propagate-stable-arguments -loop-stream -instcombine -simplifycfg -dce -globaldce -duplicate-dataflow-processes -stream-intrinsic-preproc -dce -check-ap-stream -loop-simplify -eliminate-keepreads -extract-dataflow-in-loop -loop-simplify -dce -gvn -deadargelim -dse -duplicate-dataflow-processes -check-dataflow-syntax -legalize-stream-variable -legalize-global -extract-subproc -dce -dead-channel-elimination -canonicalize-gep -globaldce -dce -gvn -hls-dead-arg-elim -deadargelim -directive-preproc -annotate-dataflow-channels -canonicalize-dataflow -dce -globaldce -scalar-preprocessing -scalar-propagation2 -deadargelim -globaldce -mem2reg -check-dataflow-channels -function-stream -dce -globaldce -prop-fifo-spec -internal-stream-gen -canonicalize-gep -globaldce -dce -gvn -deadargelim -mergereturn -indvars -loop-simplify -instcombine -array-stream -array-seg-normalize -array-partition -func-legal -instcombine -simplifycfg -dce -bundle-memfifo-ops -deadargelim -function-uniquify -directive-preproc -mem2reg -dse -dce -group-axi-access -licm -simplifycfg -dce -loop-delete -hls-display -norm-name C:/Users/Alan/Desktop/hls_workspace/lab/labC/cordic_v5/solution1/.autopilot/db/a.o.1.bc -o C:/Users/Alan/Desktop/hls_workspace/lab/labC/cordic_v5/solution1/.autopilot/db/a.o.1.tmp.bc -f 
+Command         transform done; 0.301 sec.
+INFO-FLOW: Presyn 2...
+Execute         transform -hls -keep-callgraph -scalarrepl -mem2reg -port-alignment -attach-range -dce -pipe-mux-gen -indvars -loop-bound -inst-simplify -instcombine -dce -merge-array-access -mem2reg -dce -clean-region -mergereturn -if-conv -instcombine -dce -constprop -basicaa -aggr-aa -aggrmodref-aa -aggr-aa -gvn -gvn -basicaa -aggr-aa -aggrmodref-aa -aggr-aa -dse -adse -adce -scalarrepl -mem2reg -global-constprop -deadargelim -deadargelim -instcombine -dce -simplifycfg -ptrArgReplace -mem2reg -function-inline -globaldce -mem2reg -instcombine -dce -expr-balance -instcombine -dce -bitwidthmin2 -bitwidthmin2 -interface-preproc -directive-preproc -inst-rectify -instcombine -dce -functionattrs -constprop -instcombine -bit-constprop -simplify-global-access -globalopt -globaldce -inst-simplify -instcombine -elimdeaddata -dce -loop-delete -simplifycfg -loop-simplify -auto-burst -barrier -norm-name C:/Users/Alan/Desktop/hls_workspace/lab/labC/cordic_v5/solution1/.autopilot/db/a.o.1.tmp.bc -o C:/Users/Alan/Desktop/hls_workspace/lab/labC/cordic_v5/solution1/.autopilot/db/a.o.2.bc -f -phase presyn 
+INFO: [XFORM 203-401] Performing if-conversion on hyperblock from (cordic_v5/code_src/cordiccart2pol.cpp:15:16) to (cordic_v5/code_src/cordiccart2pol.cpp:58:1) in function 'cordiccart2pol'... converting 32 basic blocks.
+INFO: [XFORM 203-11] Balancing expressions in function 'cordiccart2pol' (cordic_v5/code_src/cordiccart2pol.cpp:15:1)...21 expression(s) balanced.
+Command         transform done; 0.158 sec.
+INFO: [HLS 200-111] Finished Loop, function and other optimizations: CPU user time: 1 seconds. CPU system time: 0 seconds. Elapsed time: 0.469 seconds; current allocated memory: 1.381 GB.
+Execute         get_config_compile -enable_auto_rewind 
+Execute         get_config_compile -enable_loop_extract 
+INFO-FLOW: Building ssdm...
+Execute         transform -hls -function-uniquify -auto-function-inline -globaldce -ptrArgReplace -mem2reg -dce -reset-lda -loop-simplify -indvars -aggr-aa -licm -loop-dep -loop-bound -licm -loop-simplify -loop-sink-hoist -flattenloopnest -array-flatten -gvn -instcombine -dce -array-map -dce -func-legal -gvn -adce -instcombine -cfgopt -simplifycfg -loop-simplify -array-burst -promote-global-argument -dce -array-seg-normalize -basicaa -aggrmodref-aa -globalsmodref-aa -aggr-aa -gvn -gvn -basicaa -aggrmodref-aa -globalsmodref-aa -aggr-aa -dse -adse -adce -licm -inst-simplify -dce -globaldce -instcombine -array-stream -eliminate-keepreads -instcombine -dce -deadargelim -doublePtrSimplify -doublePtrElim -dce -doublePtrSimplify -promote-dbg-pointer -dce -scalarrepl -mem2reg -norm-name -mem2reg -instcombine -dse -adse -adce -ptrLegalization -dce -auto-rom-infer -array-flatten -dce -instcombine -check-doubleptr -loop-rot -constprop -cfgopt -simplifycfg -loop-simplify -indvars -pointer-simplify -dce -loop-bound -loop-simplify -loop-preproc -constprop -global-constprop -gvn -mem2reg -instcombine -dce -loop-bound -loop-merge -dce -deadargelim -dce -canonicalize-dataflow -dce -deadargelim -globaldce -mem2reg -bram-byte-enable -load-elim -read-loop-dep -loop-simplify -loop-extract-inner -directive-preproc -bitwidthmin2 -bitwidthmin2 -read-loop-dep -interface-preproc -directive-preproc -interface-gen -bram-byte-enable-spec-prop -deadargelim -inst-simplify -dce -gvn -mem2reg -instcombine -dce -adse -loop-bound -instcombine -cfgopt -simplifycfg -loop-simplify -clean-region -io-protocol -find-region -mem2reg -bitop-raise -complex-op-raise -inst-simplify -inst-rectify -instcombine -adce -deadargelim -float-op-raise -loop-simplify -phi-opt -bitop-raise -cfgopt -simplifycfg -strip-dead-prototypes -interface-lower -bitop-lower -intrinsic-lower -auto-function-inline -basicaa -aggrmodref-aa -globalsmodref-aa -aggr-aa -inst-simplify -simplifycfg -loop-simplify -mergereturn -inst-simplify -inst-rectify -dce -load-elim -bitop-lower -float-op-raise -fma-raise -loop-rewind -pointer-simplify -dce -cfgopt -dce -loop-bound -loop-dep -read-loop-dep -dce -dyn-mem-reuse -dce -recurrence-min -dce -share-scalar-alloca -deadargelim -dce -check-stream -norm-name -legalize -validate-dataflow -inst-clarity -bitwidth -dump-loop-dep-to-ir -check-all-ssdm -cdfg-build C:/Users/Alan/Desktop/hls_workspace/lab/labC/cordic_v5/solution1/.autopilot/db/a.o.2.bc -o C:/Users/Alan/Desktop/hls_workspace/lab/labC/cordic_v5/solution1/.autopilot/db/a.o.3.bc -f -phase build-ssdm 
+Command         transform done; 0.145 sec.
+INFO: [HLS 200-111] Finished Architecture Synthesis: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.148 seconds; current allocated memory: 1.381 GB.
+INFO-FLOW: Finish building internal data model.
+Command       opt_and_import_c done; 1.141 sec.
+Command     elaborate done; 14.967 sec.
+Execute     ap_eval exec zip -j C:/Users/Alan/Desktop/hls_workspace/lab/labC/cordic_v5/solution1/.autopilot/db/dut.hcp $dbDir/a.o.3.bc $dbDir/${topname}.rtl_wrap.cfg.tcl $dbDir/apatb_${topname}.cpp $dbDir/apatb_${topname}_util.cpp $dbDir/apatb_${topname}_ir.ll $dbDir/mapper_${topname}.cpp $dbDir/top-io-fe.xml $dbDir/kernel.internal.xml $workdir/../hls.app 
+Command     ap_eval done; 0.104 sec.
+Execute     autosyn -from_csynth_design=1 
+INFO: [HLS 200-10] Starting hardware synthesis ...
+INFO-FLOW: Synthesizing C/C++ design ...
+INFO: [HLS 200-10] Synthesizing 'cordiccart2pol' ...
+Execute       ap_set_top_model cordiccart2pol 
+Execute       get_model_list cordiccart2pol -filter all-wo-channel -topdown 
+Execute       preproc_iomode -model cordiccart2pol 
+Execute       get_model_list cordiccart2pol -filter all-wo-channel 
+INFO-FLOW: Model list for configure: cordiccart2pol
+INFO-FLOW: Configuring Module : cordiccart2pol ...
+Execute       set_default_model cordiccart2pol 
+Execute       apply_spec_resource_limit cordiccart2pol 
+INFO-FLOW: Model list for preprocess: cordiccart2pol
+INFO-FLOW: Preprocessing Module: cordiccart2pol ...
+Execute       set_default_model cordiccart2pol 
+Execute       cdfg_preprocess -model cordiccart2pol 
+Execute       rtl_gen_preprocess cordiccart2pol 
+INFO-FLOW: Model list for synthesis: cordiccart2pol
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'cordiccart2pol' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+Execute       set_default_model cordiccart2pol 
+Execute       schedule -model cordiccart2pol 
+INFO: [SCHED 204-11] Starting scheduling ...
+WARNING: [HLS 200-871] Estimated clock period (3.87375ns) exceeds the target (target clock period: 1000ns, clock uncertainty: 997ns, effective delay budget: 3ns).
+WARNING: [HLS 200-1016] The critical path in module 'cordiccart2pol' consists of the following:	'sub' operation ('sub_ln859') [177]  (3.87 ns)
+
+INFO: [SCHED 204-11] Finished scheduling.
+Command       schedule done; 0.304 sec.
+INFO: [HLS 200-111] Finished Scheduling: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.469 seconds; current allocated memory: 1.381 GB.
+Execute       syn_report -verbosereport -o C:/Users/Alan/Desktop/hls_workspace/lab/labC/cordic_v5/solution1/.autopilot/db/cordiccart2pol.verbose.sched.rpt 
+Execute         AP::get_flow_target_display_name
+Execute           get_solution -flow_target 
+Command       syn_report done; 0.117 sec.
+Execute       db_write -o C:/Users/Alan/Desktop/hls_workspace/lab/labC/cordic_v5/solution1/.autopilot/db/cordiccart2pol.sched.adb -f 
+INFO-FLOW: Finish scheduling cordiccart2pol.
+Execute       set_default_model cordiccart2pol 
+Execute       bind -model cordiccart2pol 
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+Command       bind done; 0.294 sec.
+INFO: [HLS 200-111] Finished Binding: CPU user time: 1 seconds. CPU system time: 0 seconds. Elapsed time: 0.451 seconds; current allocated memory: 1.381 GB.
+Execute       syn_report -verbosereport -o C:/Users/Alan/Desktop/hls_workspace/lab/labC/cordic_v5/solution1/.autopilot/db/cordiccart2pol.verbose.bind.rpt 
+Execute         AP::get_flow_target_display_name
+Execute           get_solution -flow_target 
+Command       syn_report done; 0.72 sec.
+Execute       db_write -o C:/Users/Alan/Desktop/hls_workspace/lab/labC/cordic_v5/solution1/.autopilot/db/cordiccart2pol.bind.adb -f 
+INFO-FLOW: Finish binding cordiccart2pol.
+Execute       get_model_list cordiccart2pol -filter all-wo-channel 
+INFO-FLOW: Preprocessing for RTLGen ...
+Execute       rtl_gen_preprocess cordiccart2pol 
+INFO-FLOW: Model list for RTL generation: cordiccart2pol
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'cordiccart2pol' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+Execute       get_config_rtl -module_prefix 
+Execute       get_config_rtl -module_prefix 
+Execute       get_config_rtl -module_auto_prefix 
+Execute       create_rtl_model cordiccart2pol -top_prefix  -sub_prefix cordiccart2pol_ -mg_file C:/Users/Alan/Desktop/hls_workspace/lab/labC/cordic_v5/solution1/.autopilot/db/cordiccart2pol.compgen.tcl 
+INFO: [RTGEN 206-500] Setting interface mode on port 'cordiccart2pol/x' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'cordiccart2pol/y' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'cordiccart2pol/r' to 'ap_vld'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'cordiccart2pol/theta' to 'ap_vld'.
+INFO: [RTGEN 206-500] Setting interface mode on function 'cordiccart2pol' to 'ap_ctrl_hs'.
+INFO: [RTGEN 206-100] Finished creating RTL model for 'cordiccart2pol'.
+Command       create_rtl_model done; 0.152 sec.
+INFO: [HLS 200-111] Finished Creating RTL model: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.98 seconds; current allocated memory: 1.381 GB.
+Execute       source C:/Users/Alan/Desktop/hls_workspace/lab/labC/cordic_v5/solution1/.autopilot/db/cordiccart2pol.rtl_wrap.cfg.tcl 
+Execute       gen_rtl cordiccart2pol -istop -style xilinx -f -lang vhdl -o C:/Users/Alan/Desktop/hls_workspace/lab/labC/cordic_v5/solution1/syn/vhdl/cordiccart2pol 
+Command       gen_rtl done; 0.246 sec.
+Execute       gen_rtl cordiccart2pol -istop -style xilinx -f -lang vlog -o C:/Users/Alan/Desktop/hls_workspace/lab/labC/cordic_v5/solution1/syn/verilog/cordiccart2pol 
+Command       gen_rtl done; 0.102 sec.
+Execute       syn_report -csynth -model cordiccart2pol -o C:/Users/Alan/Desktop/hls_workspace/lab/labC/cordic_v5/solution1/syn/report/cordiccart2pol_csynth.rpt 
+Execute         AP::get_flow_target_display_name
+Execute           get_solution -flow_target 
+Command       syn_report done; 0.107 sec.
+Execute       syn_report -rtlxml -model cordiccart2pol -o C:/Users/Alan/Desktop/hls_workspace/lab/labC/cordic_v5/solution1/syn/report/cordiccart2pol_csynth.xml 
+Execute         get_solution -flow_target
+Execute           get_solution -flow_target 
+Execute       syn_report -verbosereport -model cordiccart2pol -o C:/Users/Alan/Desktop/hls_workspace/lab/labC/cordic_v5/solution1/.autopilot/db/cordiccart2pol.verbose.rpt 
+Execute         AP::get_flow_target_display_name
+Execute           get_solution -flow_target 
+Command       syn_report done; 0.426 sec.
+Execute       db_write -model cordiccart2pol -f -o C:/Users/Alan/Desktop/hls_workspace/lab/labC/cordic_v5/solution1/.autopilot/db/cordiccart2pol.adb 
+Command       db_write done; 0.116 sec.
+Execute       db_write -model cordiccart2pol -bindview -o C:/Users/Alan/Desktop/hls_workspace/lab/labC/cordic_v5/solution1/.autopilot/db/design.bindinfo.xml 
+Execute       gen_tb_info cordiccart2pol -p C:/Users/Alan/Desktop/hls_workspace/lab/labC/cordic_v5/solution1/.autopilot/db -o C:/Users/Alan/Desktop/hls_workspace/lab/labC/cordic_v5/solution1/.autopilot/db/cordiccart2pol 
+Execute       export_constraint_db -f -tool general -o C:/Users/Alan/Desktop/hls_workspace/lab/labC/cordic_v5/solution1/.autopilot/db/cordiccart2pol.constraint.tcl 
+Execute       syn_report -designview -model cordiccart2pol -o C:/Users/Alan/Desktop/hls_workspace/lab/labC/cordic_v5/solution1/.autopilot/db/cordiccart2pol.design.xml 
+Command       syn_report done; 0.163 sec.
+Execute       syn_report -csynthDesign -model cordiccart2pol -o C:/Users/Alan/Desktop/hls_workspace/lab/labC/cordic_v5/solution1/syn/report/csynth.rpt 
+Execute         AP::get_flow_target_display_name
+Execute           get_solution -flow_target 
+Execute       get_config_rtl -disable_wave_debug 
+Execute       syn_report -wcfg -model cordiccart2pol -o C:/Users/Alan/Desktop/hls_workspace/lab/labC/cordic_v5/solution1/.autopilot/db/cordiccart2pol_dataflow_ana.wcfg 
+Execute       syn_report -protoinst -model cordiccart2pol -o C:/Users/Alan/Desktop/hls_workspace/lab/labC/cordic_v5/solution1/.autopilot/db/cordiccart2pol.protoinst 
+Execute       get_config_debug -directory 
+Execute       sc_get_clocks cordiccart2pol 
+Execute       get_config_export -vivado_clock 
+Execute       get_config_rtl -module_prefix 
+Execute       get_config_rtl -module_prefix 
+Execute       get_config_rtl -module_auto_prefix 
+Execute       sc_get_portdomain cordiccart2pol 
+INFO-FLOW: Model list for RTL component generation: cordiccart2pol
+INFO-FLOW: Handling components in module [cordiccart2pol] ... 
+Execute       source C:/Users/Alan/Desktop/hls_workspace/lab/labC/cordic_v5/solution1/.autopilot/db/cordiccart2pol.compgen.tcl 
+INFO-FLOW: Append model cordiccart2pol
+INFO-FLOW: Generating RTL model list ...
+INFO-FLOW: All models in this session: cordiccart2pol
+INFO-FLOW: Generating C:/Users/Alan/Desktop/hls_workspace/lab/labC/cordic_v5/solution1/.autopilot/db/autopilot.rtl.models.txt file...
+INFO-FLOW: To file: write model cordiccart2pol
+INFO-FLOW: Generating C:/Users/Alan/Desktop/hls_workspace/lab/labC/cordic_v5/solution1/.autopilot/db/autopilot.rtl.models.tcl file...
+INFO-FLOW: Finished generating RTL model list.
+
+
+INFO-FLOW: RTL Generation done.
+INFO-FLOW: CAS Generation done.
+INFO-FLOW: CBC Generation done.
+INFO-FLOW: DBG:PROC: ::AESL_AUTOMG::auto_generate_csynth_design
+Execute       get_top 
+Execute       get_config_export -ipname 
+Execute       get_config_export -xo 
+Execute       get_config_export -format 
+Execute       get_config_rtl -module_auto_prefix 
+INFO-FLOW: DBG:PUTS: read_platform_lib C:/Users/Alan/Desktop/hls_workspace/lab/labC/cordic_v5/solution1/.autopilot/db/global.setting.tcl
+Execute       source C:/Xilinx/Vitis_HLS/2022.1/common/technology/generic/autopilot/common.gen 
+Execute         source C:/Xilinx/Vitis_HLS/2022.1/common/technology/generic/autopilot/APCoreGen.gen 
+Execute       source C:/Xilinx/Vitis_HLS/2022.1/common/technology/generic/autopilot/op.gen 
+Execute       source C:/Xilinx/Vitis_HLS/2022.1/common/technology/generic/autopilot/op_simcore.gen 
+Execute       source C:/Xilinx/Vitis_HLS/2022.1/common/technology/generic/autopilot/interface.gen 
+Execute       source C:/Users/Alan/Desktop/hls_workspace/lab/labC/cordic_v5/solution1/.autopilot/db/global.setting.tcl 
+Execute       source C:/Xilinx/Vitis_HLS/2022.1/common/technology/xilinx/common/xilinx.gen 
+Execute         source C:/Xilinx/Vitis_HLS/2022.1/common/technology/xilinx/interface/plb46.gen 
+Execute         source C:/Xilinx/Vitis_HLS/2022.1/common/technology/xilinx/interface/axi4.gen 
+Execute         source C:/Xilinx/Vitis_HLS/2022.1/common/technology/xilinx/interface/nativeAXI4.gen 
+Execute           source C:/Xilinx/Vitis_HLS/2022.1/common/technology/xilinx/interface/saxilite.gen 
+Execute         source C:/Xilinx/Vitis_HLS/2022.1/common/technology/xilinx/scripts/xilinxcoregen.gen 
+Execute         source C:/Xilinx/Vitis_HLS/2022.1/common/technology/xilinx/interface/XilEDKCoreGen.gen 
+Execute         source C:/Xilinx/Vitis_HLS/2022.1/common/technology/xilinx/ip/dds_compiler.gen 
+Execute         source C:/Xilinx/Vitis_HLS/2022.1/common/technology/xilinx/ip/util.gen 
+Execute         source C:/Xilinx/Vitis_HLS/2022.1/common/technology/xilinx/ip/xfft.gen 
+Execute         source C:/Xilinx/Vitis_HLS/2022.1/common/technology/xilinx/ip/xfir.gen 
+Execute         source C:/Xilinx/Vitis_HLS/2022.1/common/technology/xilinx/DSP48/dsp48.gen 
+Command       ap_source done; 0.128 sec.
+INFO-FLOW: DBG:PUTS:   using AESL_AUTOCG::g_clock_period=1000.000 (was NA)
+INFO-FLOW: DBG:PROC: ::AESL_AUTOMG::generate_ip_cores gen_sim_model='1' gen_fp_models='0' gen_for_export='0' dstSCDir='' dstVhdlDir='C:/Users/Alan/Desktop/hls_workspace/lab/labC/cordic_v5/solution1/.autopilot/db/vhdl' dstVlogDir='C:/Users/Alan/Desktop/hls_workspace/lab/labC/cordic_v5/solution1/.autopilot/db/vlog' tclDir='C:/Users/Alan/Desktop/hls_workspace/lab/labC/cordic_v5/solution1/.autopilot/db' modelList='cordiccart2pol
+' expOnly='0'
+Execute       source C:/Users/Alan/Desktop/hls_workspace/lab/labC/cordic_v5/solution1/.autopilot/db/global.setting.tcl 
+Execute       ap_part_info -name xc7z020-clg400-1 -data names -quiet 
+Execute       ap_part_info -name xc7z020-clg400-1 -data info -quiet 
+Command       ap_part_info done; 0.102 sec.
+Execute       source C:/Users/Alan/Desktop/hls_workspace/lab/labC/cordic_v5/solution1/.autopilot/db/global.setting.tcl 
+Execute       source C:/Users/Alan/Desktop/hls_workspace/lab/labC/cordic_v5/solution1/.autopilot/db/global.setting.tcl 
+Execute       source C:/Users/Alan/Desktop/hls_workspace/lab/labC/cordic_v5/solution1/.autopilot/db/cordiccart2pol.compgen.tcl 
+INFO: [HLS 200-111] Finished Generating all RTL models: CPU user time: 2 seconds. CPU system time: 1 seconds. Elapsed time: 1.921 seconds; current allocated memory: 1.381 GB.
+INFO-FLOW: DBG:PROC: ::HLSREPORTS::create_csynth_xml bind_info_var='bind_info' RtlSubPrefix='cordiccart2pol_' outfile=''
+INFO-FLOW: Running: create_csynth_xml read xml data
+INFO-FLOW: Done: create_csynth_xml read xml data time: 0 seconds per iteration
+INFO-FLOW: Running: create_csynth_xml bind info
+INFO-FLOW: Done: create_csynth_xml bind info time: 0 seconds per iteration
+INFO-FLOW: Running: create_csynth_xml config info
+Execute       get_config_op mul -impl 
+Execute       get_config_op mul -latency 
+Execute       get_config_op mul -precision 
+Execute       get_config_op add -impl 
+Execute       get_config_op add -latency 
+Execute       get_config_op add -precision 
+Execute       get_config_op sub -impl 
+Execute       get_config_op sub -latency 
+Execute       get_config_op sub -precision 
+Execute       get_config_op fadd -impl 
+Execute       get_config_op fadd -latency 
+Execute       get_config_op fadd -precision 
+Execute       get_config_op fsub -impl 
+Execute       get_config_op fsub -latency 
+Execute       get_config_op fsub -precision 
+Execute       get_config_op fdiv -impl 
+Execute       get_config_op fdiv -latency 
+Execute       get_config_op fdiv -precision 
+Execute       get_config_op fexp -impl 
+Execute       get_config_op fexp -latency 
+Execute       get_config_op fexp -precision 
+Execute       get_config_op flog -impl 
+Execute       get_config_op flog -latency 
+Execute       get_config_op flog -precision 
+Execute       get_config_op fmul -impl 
+Execute       get_config_op fmul -latency 
+Execute       get_config_op fmul -precision 
+Execute       get_config_op frsqrt -impl 
+Execute       get_config_op frsqrt -latency 
+Execute       get_config_op frsqrt -precision 
+Execute       get_config_op frecip -impl 
+Execute       get_config_op frecip -latency 
+Execute       get_config_op frecip -precision 
+Execute       get_config_op fsqrt -impl 
+Execute       get_config_op fsqrt -latency 
+Execute       get_config_op fsqrt -precision 
+Execute       get_config_op dadd -impl 
+Execute       get_config_op dadd -latency 
+Execute       get_config_op dadd -precision 
+Execute       get_config_op dsub -impl 
+Execute       get_config_op dsub -latency 
+Execute       get_config_op dsub -precision 
+Execute       get_config_op ddiv -impl 
+Execute       get_config_op ddiv -latency 
+Execute       get_config_op ddiv -precision 
+Execute       get_config_op dexp -impl 
+Execute       get_config_op dexp -latency 
+Execute       get_config_op dexp -precision 
+Execute       get_config_op dlog -impl 
+Execute       get_config_op dlog -latency 
+Execute       get_config_op dlog -precision 
+Execute       get_config_op dmul -impl 
+Execute       get_config_op dmul -latency 
+Execute       get_config_op dmul -precision 
+Execute       get_config_op drsqrt -impl 
+Execute       get_config_op drsqrt -latency 
+Execute       get_config_op drsqrt -precision 
+Execute       get_config_op drecip -impl 
+Execute       get_config_op drecip -latency 
+Execute       get_config_op drecip -precision 
+Execute       get_config_op dsqrt -impl 
+Execute       get_config_op dsqrt -latency 
+Execute       get_config_op dsqrt -precision 
+Execute       get_config_op hadd -impl 
+Execute       get_config_op hadd -latency 
+Execute       get_config_op hadd -precision 
+Execute       get_config_op hsub -impl 
+Execute       get_config_op hsub -latency 
+Execute       get_config_op hsub -precision 
+Execute       get_config_op hdiv -impl 
+Execute       get_config_op hdiv -latency 
+Execute       get_config_op hdiv -precision 
+Execute       get_config_op hmul -impl 
+Execute       get_config_op hmul -latency 
+Execute       get_config_op hmul -precision 
+Execute       get_config_op hsqrt -impl 
+Execute       get_config_op hsqrt -latency 
+Execute       get_config_op hsqrt -precision 
+Execute       get_config_op facc -impl 
+Execute       get_config_op facc -latency 
+Execute       get_config_op facc -precision 
+Execute       get_config_op fmacc -impl 
+Execute       get_config_op fmacc -latency 
+Execute       get_config_op fmacc -precision 
+Execute       get_config_op fmadd -impl 
+Execute       get_config_op fmadd -latency 
+Execute       get_config_op fmadd -precision 
+Execute       get_config_storage fifo -auto_srl_max_bits 
+Execute       get_config_storage fifo -auto_srl_max_depth 
+Execute       get_config_storage fifo -impl 
+Execute       get_solution -flow_target 
+Execute       get_config_array_partition -complete_threshold 
+Execute       get_config_array_partition -throughput_driven 
+Execute       get_config_compile -enable_auto_rewind 
+Execute       get_config_compile -ignore_long_run_time 
+Execute       get_config_compile -name_max_length 
+Execute       get_config_compile -no_signed_zeros 
+Execute       get_config_compile -pipeline_loops 
+Execute       get_config_compile -pipeline_style 
+Execute       get_config_compile -pragma_strict_mode 
+Execute       get_config_compile -pre_tcl 
+Execute       get_config_compile -unsafe_math_optimizations 
+Execute       get_config_dataflow -default_channel 
+Execute       get_config_dataflow -disable_fifo_sizing_opt 
+Execute       get_config_dataflow -fifo_depth 
+Execute       get_config_dataflow -override_user_fifo_depth 
+Execute       get_config_dataflow -scalar_fifo_depth 
+Execute       get_config_dataflow -start_fifo_depth 
+Execute       get_config_dataflow -strict_mode 
+Execute       get_config_dataflow -strict_stable_sync 
+Execute       get_config_dataflow -task_level_fifo_depth 
+Execute       get_config_debug -directory 
+Execute       get_config_debug -enable 
+Execute       get_config_export -description 
+Execute       get_config_export -display_name 
+Execute       get_config_export -format 
+Execute       get_config_export -ip_xdc_file 
+Execute       get_config_export -ip_xdc_ooc_file 
+Execute       get_config_export -ipname 
+Execute       get_config_export -library 
+Execute       get_config_export -output 
+Execute       get_config_export -rtl 
+Execute       get_config_export -taxonomy 
+Execute       get_config_export -vendor 
+Execute       get_config_export -version 
+Execute       get_config_export -vivado_clock 
+Execute       get_config_export -vivado_impl_strategy 
+Execute       get_config_export -vivado_max_timing_paths 
+Execute       get_config_export -vivado_optimization_level 
+Execute       get_config_export -vivado_pblock 
+Execute       get_config_export -vivado_phys_opt 
+Execute       get_config_export -vivado_report_level 
+Execute       get_config_export -vivado_synth_design_args 
+Execute       get_config_export -vivado_synth_strategy 
+Execute       get_config_interface -clock_enable 
+Execute       get_config_interface -default_slave_interface 
+Execute       get_config_interface -m_axi_addr64 
+Execute       get_config_interface -m_axi_alignment_byte_size 
+Execute       get_config_interface -m_axi_auto_max_ports 
+Execute       get_config_interface -m_axi_buffer_impl 
+Execute       get_config_interface -m_axi_conservative_mode 
+Execute       get_config_interface -m_axi_flush_mode 
+Execute       get_config_interface -m_axi_latency 
+Execute       get_config_interface -m_axi_max_bitwidth 
+Execute       get_config_interface -m_axi_max_read_burst_length 
+Execute       get_config_interface -m_axi_max_widen_bitwidth 
+Execute       get_config_interface -m_axi_max_write_burst_length 
+Execute       get_config_interface -m_axi_min_bitwidth 
+Execute       get_config_interface -m_axi_num_read_outstanding 
+Execute       get_config_interface -m_axi_num_write_outstanding 
+Execute       get_config_interface -m_axi_offset 
+Execute       get_config_interface -register_io 
+Execute       get_config_interface -s_axilite_auto_restart_counter 
+Execute       get_config_interface -s_axilite_data64 
+Execute       get_config_interface -s_axilite_interrupt_mode 
+Execute       get_config_interface -s_axilite_mailbox 
+Execute       get_config_interface -s_axilite_status_regs 
+Execute       get_config_interface -s_axilite_sw_reset 
+Execute       get_config_rtl -deadlock_detection 
+Execute       get_config_rtl -header 
+Execute       get_config_rtl -kernel_profile 
+Execute       get_config_rtl -module_auto_prefix 
+Execute       get_config_rtl -module_prefix 
+Execute       get_config_rtl -mult_keep_attribute 
+Execute       get_config_rtl -register_all_io 
+Execute       get_config_rtl -register_reset_num 
+Execute       get_config_rtl -reset 
+Execute       get_config_rtl -reset_async 
+Execute       get_config_rtl -reset_level 
+Execute       get_config_schedule -enable_dsp_full_reg 
+Execute       get_config_unroll -tripcount_threshold 
+INFO-FLOW: Done: create_csynth_xml config info time: 0.2 seconds per iteration
+INFO-FLOW: Running: create_csynth_xml write xml
+INFO-FLOW: Done: create_csynth_xml write xml time: 0 seconds per iteration
+INFO-FLOW: DBG:PUTS:      create_csynth_xml wrote csynth_xml=C:/Users/Alan/Desktop/hls_workspace/lab/labC/cordic_v5/solution1/syn/report/csynth.xml
+INFO-FLOW: DBG:PROC: ::AP::DESIGN_DATA::generate_json generate_bd_files='0' generate_xo_files='0' modelList='cordiccart2pol
+' rtl_lang='both' bootstrap_tcl='false' outdir='' outfilename=''
+Execute       source C:/Users/Alan/Desktop/hls_workspace/lab/labC/cordic_v5/solution1/.autopilot/db/global.setting.tcl 
+Execute       source C:/Users/Alan/Desktop/hls_workspace/lab/labC/cordic_v5/solution1/.autopilot/db/global.setting.tcl 
+Execute       get_solution -flow_target 
+Execute       get_config_export -xo 
+Execute       get_config_export -format 
+Execute       source C:/Users/Alan/Desktop/hls_workspace/lab/labC/cordic_v5/solution1/.autopilot/db/top-io-be.tcl 
+Execute       source C:/Users/Alan/Desktop/hls_workspace/lab/labC/cordic_v5/solution1/.autopilot/db/cordiccart2pol.tbgen.tcl 
+Execute       source C:/Users/Alan/Desktop/hls_workspace/lab/labC/cordic_v5/solution1/.autopilot/db/cordiccart2pol.rtl_wrap.cfg.tcl 
+Execute       source C:/Users/Alan/Desktop/hls_workspace/lab/labC/cordic_v5/solution1/.autopilot/db/cordiccart2pol.compgen.dataonly.tcl 
+Execute       get_config_export -format 
+Execute       get_config_export -vendor 
+Execute       get_config_export -library 
+Execute       get_config_export -version 
+Execute       get_config_export -ipname 
+Execute       get_config_export -taxonomy 
+Execute       get_config_export -description 
+Execute       get_config_export -display_name 
+Execute       source C:/Users/Alan/Desktop/hls_workspace/lab/labC/cordic_v5/solution1/.autopilot/db/cordiccart2pol.tbgen.tcl 
+Execute       source C:/Users/Alan/Desktop/hls_workspace/lab/labC/cordic_v5/solution1/.autopilot/db/global.setting.tcl 
+Execute       ap_part_info -name xc7z020-clg400-1 -data names -quiet 
+Execute       ap_part_info -name xc7z020-clg400-1 -data info -quiet 
+Execute       get_solution -flow_target 
+Execute       get_config_rtl -kernel_profile 
+Execute       get_config_rtl -kernel_profile 
+Execute       get_config_rtl -stall_sig_gen 
+Execute       get_config_rtl -profile 
+Execute       source C:/Users/Alan/Desktop/hls_workspace/lab/labC/cordic_v5/solution1/.autopilot/db/cordiccart2pol.constraint.tcl 
+Execute       sc_get_clocks cordiccart2pol 
+Execute       source C:/Users/Alan/Desktop/hls_workspace/lab/labC/cordic_v5/solution1/.autopilot/db/global.setting.tcl 
+Execute       get_config_export -ip_xdc_file 
+Execute       get_config_export -ip_xdc_ooc_file 
+Execute       get_config_debug -directory 
+INFO-FLOW: DBG:PROC: ::HLSREPORTS::add_csynth_report_sections bind_info_dict='adapter_nodes {} report_dict {TOPINST cordiccart2pol MODULE2INSTS {cordiccart2pol cordiccart2pol} INST2MODULE {cordiccart2pol cordiccart2pol} INSTDATA {cordiccart2pol {DEPTH 1 CHILDREN {}}} MODULEDATA {cordiccart2pol {BINDINFO {{BINDTYPE op ID {} IMPL fabric LATENCY 0 OPTYPE sub PRAGMA {} RTLNAME x_cordic_V_fu_156_p2 SOURCE {C:/Xilinx/Vitis_HLS/2022.1/common/technology/autopilot\ap_fixed_base.h:859} VARIABLE x_cordic_V LOOP {} BUNDLEDNAME {} DSP 0 BRAM 0 URAM 0 DISPNAME {bind_op sub}} {BINDTYPE op ID {} IMPL fabric LATENCY 0 OPTYPE sub PRAGMA {} RTLNAME y_cordic_V_fu_162_p2 SOURCE {C:/Xilinx/Vitis_HLS/2022.1/common/technology/autopilot\ap_fixed_base.h:859} VARIABLE y_cordic_V LOOP {} BUNDLEDNAME {} DSP 0 BRAM 0 URAM 0 DISPNAME {bind_op sub}} {BINDTYPE op ID {} IMPL fabric LATENCY 0 OPTYPE add PRAGMA {} RTLNAME x_cordic_V_36_fu_200_p2 SOURCE {C:/Xilinx/Vitis_HLS/2022.1/common/technology/autopilot\ap_fixed_base.h:859} VARIABLE x_cordic_V_36 LOOP {} BUNDLEDNAME {} DSP 0 BRAM 0 URAM 0 DISPNAME {bind_op add}} {BINDTYPE op ID {} IMPL fabric LATENCY 0 OPTYPE sub PRAGMA {} RTLNAME y_cordic_V_2_fu_204_p2 SOURCE {C:/Xilinx/Vitis_HLS/2022.1/common/technology/autopilot\ap_fixed_base.h:859} VARIABLE y_cordic_V_2 LOOP {} BUNDLEDNAME {} DSP 0 BRAM 0 URAM 0 DISPNAME {bind_op sub}} {BINDTYPE op ID {} IMPL fabric LATENCY 0 OPTYPE sub PRAGMA {} RTLNAME x_cordic_V_3_fu_208_p2 SOURCE {C:/Xilinx/Vitis_HLS/2022.1/common/technology/autopilot\ap_fixed_base.h:859} VARIABLE x_cordic_V_3 LOOP {} BUNDLEDNAME {} DSP 0 BRAM 0 URAM 0 DISPNAME {bind_op sub}} {BINDTYPE op ID {} IMPL fabric LATENCY 0 OPTYPE add PRAGMA {} RTLNAME x_cordic_V_5_fu_260_p2 SOURCE {C:/Xilinx/Vitis_HLS/2022.1/common/technology/autopilot\ap_fixed_base.h:859} VARIABLE x_cordic_V_5 LOOP {} BUNDLEDNAME {} DSP 0 BRAM 0 URAM 0 DISPNAME {bind_op add}} {BINDTYPE op ID {} IMPL fabric LATENCY 0 OPTYPE sub PRAGMA {} RTLNAME y_cordic_V_5_fu_265_p2 SOURCE {C:/Xilinx/Vitis_HLS/2022.1/common/technology/autopilot\ap_fixed_base.h:859} VARIABLE y_cordic_V_5 LOOP {} BUNDLEDNAME {} DSP 0 BRAM 0 URAM 0 DISPNAME {bind_op sub}} {BINDTYPE op ID {} IMPL fabric LATENCY 0 OPTYPE sub PRAGMA {} RTLNAME x_cordic_V_6_fu_270_p2 SOURCE {C:/Xilinx/Vitis_HLS/2022.1/common/technology/autopilot\ap_fixed_base.h:859} VARIABLE x_cordic_V_6 LOOP {} BUNDLEDNAME {} DSP 0 BRAM 0 URAM 0 DISPNAME {bind_op sub}} {BINDTYPE op ID {} IMPL fabric LATENCY 0 OPTYPE add PRAGMA {} RTLNAME y_cordic_V_6_fu_275_p2 SOURCE {C:/Xilinx/Vitis_HLS/2022.1/common/technology/autopilot\ap_fixed_base.h:859} VARIABLE y_cordic_V_6 LOOP {} BUNDLEDNAME {} DSP 0 BRAM 0 URAM 0 DISPNAME {bind_op add}} {BINDTYPE op ID {} IMPL fabric LATENCY 0 OPTYPE add PRAGMA {} RTLNAME x_cordic_V_8_fu_336_p2 SOURCE {C:/Xilinx/Vitis_HLS/2022.1/common/technology/autopilot\ap_fixed_base.h:859} VARIABLE x_cordic_V_8 LOOP {} BUNDLEDNAME {} DSP 0 BRAM 0 URAM 0 DISPNAME {bind_op add}} {BINDTYPE op ID {} IMPL fabric LATENCY 0 OPTYPE sub PRAGMA {} RTLNAME y_cordic_V_8_fu_341_p2 SOURCE {C:/Xilinx/Vitis_HLS/2022.1/common/technology/autopilot\ap_fixed_base.h:859} VARIABLE y_cordic_V_8 LOOP {} BUNDLEDNAME {} DSP 0 BRAM 0 URAM 0 DISPNAME {bind_op sub}} {BINDTYPE op ID {} IMPL fabric LATENCY 0 OPTYPE sub PRAGMA {} RTLNAME x_cordic_V_9_fu_346_p2 SOURCE {C:/Xilinx/Vitis_HLS/2022.1/common/technology/autopilot\ap_fixed_base.h:859} VARIABLE x_cordic_V_9 LOOP {} BUNDLEDNAME {} DSP 0 BRAM 0 URAM 0 DISPNAME {bind_op sub}} {BINDTYPE op ID {} IMPL fabric LATENCY 0 OPTYPE add PRAGMA {} RTLNAME y_cordic_V_9_fu_351_p2 SOURCE {C:/Xilinx/Vitis_HLS/2022.1/common/technology/autopilot\ap_fixed_base.h:859} VARIABLE y_cordic_V_9 LOOP {} BUNDLEDNAME {} DSP 0 BRAM 0 URAM 0 DISPNAME {bind_op add}} {BINDTYPE op ID {} IMPL fabric LATENCY 0 OPTYPE add PRAGMA {} RTLNAME x_cordic_V_11_fu_412_p2 SOURCE {C:/Xilinx/Vitis_HLS/2022.1/common/technology/autopilot\ap_fixed_base.h:859} VARIABLE x_cordic_V_11 LOOP {} BUNDLEDNAME {} DSP 0 BRAM 0 URAM 0 DISPNAME {bind_op add}} {BINDTYPE op ID {} IMPL fabric LATENCY 0 OPTYPE sub PRAGMA {} RTLNAME y_cordic_V_11_fu_417_p2 SOURCE {C:/Xilinx/Vitis_HLS/2022.1/common/technology/autopilot\ap_fixed_base.h:859} VARIABLE y_cordic_V_11 LOOP {} BUNDLEDNAME {} DSP 0 BRAM 0 URAM 0 DISPNAME {bind_op sub}} {BINDTYPE op ID {} IMPL fabric LATENCY 0 OPTYPE sub PRAGMA {} RTLNAME x_cordic_V_12_fu_422_p2 SOURCE {C:/Xilinx/Vitis_HLS/2022.1/common/technology/autopilot\ap_fixed_base.h:859} VARIABLE x_cordic_V_12 LOOP {} BUNDLEDNAME {} DSP 0 BRAM 0 URAM 0 DISPNAME {bind_op sub}} {BINDTYPE op ID {} IMPL fabric LATENCY 0 OPTYPE add PRAGMA {} RTLNAME y_cordic_V_12_fu_427_p2 SOURCE {C:/Xilinx/Vitis_HLS/2022.1/common/technology/autopilot\ap_fixed_base.h:859} VARIABLE y_cordic_V_12 LOOP {} BUNDLEDNAME {} DSP 0 BRAM 0 URAM 0 DISPNAME {bind_op add}} {BINDTYPE op ID {} IMPL fabric LATENCY 0 OPTYPE add PRAGMA {} RTLNAME x_cordic_V_14_fu_480_p2 SOURCE {C:/Xilinx/Vitis_HLS/2022.1/common/technology/autopilot\ap_fixed_base.h:859} VARIABLE x_cordic_V_14 LOOP {} BUNDLEDNAME {} DSP 0 BRAM 0 URAM 0 DISPNAME {bind_op add}} {BINDTYPE op ID {} IMPL fabric LATENCY 0 OPTYPE sub PRAGMA {} RTLNAME y_cordic_V_14_fu_485_p2 SOURCE {C:/Xilinx/Vitis_HLS/2022.1/common/technology/autopilot\ap_fixed_base.h:859} VARIABLE y_cordic_V_14 LOOP {} BUNDLEDNAME {} DSP 0 BRAM 0 URAM 0 DISPNAME {bind_op sub}} {BINDTYPE op ID {} IMPL fabric LATENCY 0 OPTYPE sub PRAGMA {} RTLNAME x_cordic_V_15_fu_490_p2 SOURCE {C:/Xilinx/Vitis_HLS/2022.1/common/technology/autopilot\ap_fixed_base.h:859} VARIABLE x_cordic_V_15 LOOP {} BUNDLEDNAME {} DSP 0 BRAM 0 URAM 0 DISPNAME {bind_op sub}} {BINDTYPE op ID {} IMPL fabric LATENCY 0 OPTYPE add PRAGMA {} RTLNAME y_cordic_V_15_fu_495_p2 SOURCE {C:/Xilinx/Vitis_HLS/2022.1/common/technology/autopilot\ap_fixed_base.h:859} VARIABLE y_cordic_V_15 LOOP {} BUNDLEDNAME {} DSP 0 BRAM 0 URAM 0 DISPNAME {bind_op add}} {BINDTYPE op ID {} IMPL fabric LATENCY 0 OPTYPE add PRAGMA {} RTLNAME x_cordic_V_17_fu_562_p2 SOURCE {C:/Xilinx/Vitis_HLS/2022.1/common/technology/autopilot\ap_fixed_base.h:859} VARIABLE x_cordic_V_17 LOOP {} BUNDLEDNAME {} DSP 0 BRAM 0 URAM 0 DISPNAME {bind_op add}} {BINDTYPE op ID {} IMPL fabric LATENCY 0 OPTYPE sub PRAGMA {} RTLNAME y_cordic_V_17_fu_567_p2 SOURCE {C:/Xilinx/Vitis_HLS/2022.1/common/technology/autopilot\ap_fixed_base.h:859} VARIABLE y_cordic_V_17 LOOP {} BUNDLEDNAME {} DSP 0 BRAM 0 URAM 0 DISPNAME {bind_op sub}} {BINDTYPE op ID {} IMPL fabric LATENCY 0 OPTYPE sub PRAGMA {} RTLNAME x_cordic_V_18_fu_573_p2 SOURCE {C:/Xilinx/Vitis_HLS/2022.1/common/technology/autopilot\ap_fixed_base.h:859} VARIABLE x_cordic_V_18 LOOP {} BUNDLEDNAME {} DSP 0 BRAM 0 URAM 0 DISPNAME {bind_op sub}} {BINDTYPE op ID {} IMPL fabric LATENCY 0 OPTYPE add PRAGMA {} RTLNAME y_cordic_V_18_fu_578_p2 SOURCE {C:/Xilinx/Vitis_HLS/2022.1/common/technology/autopilot\ap_fixed_base.h:859} VARIABLE y_cordic_V_18 LOOP {} BUNDLEDNAME {} DSP 0 BRAM 0 URAM 0 DISPNAME {bind_op add}} {BINDTYPE op ID {} IMPL fabric LATENCY 0 OPTYPE add PRAGMA {} RTLNAME x_cordic_V_20_fu_652_p2 SOURCE {C:/Xilinx/Vitis_HLS/2022.1/common/technology/autopilot\ap_fixed_base.h:859} VARIABLE x_cordic_V_20 LOOP {} BUNDLEDNAME {} DSP 0 BRAM 0 URAM 0 DISPNAME {bind_op add}} {BINDTYPE op ID {} IMPL fabric LATENCY 0 OPTYPE sub PRAGMA {} RTLNAME y_cordic_V_20_fu_658_p2 SOURCE {C:/Xilinx/Vitis_HLS/2022.1/common/technology/autopilot\ap_fixed_base.h:859} VARIABLE y_cordic_V_20 LOOP {} BUNDLEDNAME {} DSP 0 BRAM 0 URAM 0 DISPNAME {bind_op sub}} {BINDTYPE op ID {} IMPL fabric LATENCY 0 OPTYPE sub PRAGMA {} RTLNAME x_cordic_V_21_fu_664_p2 SOURCE {C:/Xilinx/Vitis_HLS/2022.1/common/technology/autopilot\ap_fixed_base.h:859} VARIABLE x_cordic_V_21 LOOP {} BUNDLEDNAME {} DSP 0 BRAM 0 URAM 0 DISPNAME {bind_op sub}} {BINDTYPE op ID {} IMPL fabric LATENCY 0 OPTYPE add PRAGMA {} RTLNAME y_cordic_V_21_fu_670_p2 SOURCE {C:/Xilinx/Vitis_HLS/2022.1/common/technology/autopilot\ap_fixed_base.h:859} VARIABLE y_cordic_V_21 LOOP {} BUNDLEDNAME {} DSP 0 BRAM 0 URAM 0 DISPNAME {bind_op add}} {BINDTYPE op ID {} IMPL fabric LATENCY 0 OPTYPE add PRAGMA {} RTLNAME x_cordic_V_23_fu_730_p2 SOURCE {C:/Xilinx/Vitis_HLS/2022.1/common/technology/autopilot\ap_fixed_base.h:859} VARIABLE x_cordic_V_23 LOOP {} BUNDLEDNAME {} DSP 0 BRAM 0 URAM 0 DISPNAME {bind_op add}} {BINDTYPE op ID {} IMPL fabric LATENCY 0 OPTYPE sub PRAGMA {} RTLNAME y_cordic_V_23_fu_736_p2 SOURCE {C:/Xilinx/Vitis_HLS/2022.1/common/technology/autopilot\ap_fixed_base.h:859} VARIABLE y_cordic_V_23 LOOP {} BUNDLEDNAME {} DSP 0 BRAM 0 URAM 0 DISPNAME {bind_op sub}} {BINDTYPE op ID {} IMPL fabric LATENCY 0 OPTYPE sub PRAGMA {} RTLNAME x_cordic_V_24_fu_742_p2 SOURCE {C:/Xilinx/Vitis_HLS/2022.1/common/technology/autopilot\ap_fixed_base.h:859} VARIABLE x_cordic_V_24 LOOP {} BUNDLEDNAME {} DSP 0 BRAM 0 URAM 0 DISPNAME {bind_op sub}} {BINDTYPE op ID {} IMPL fabric LATENCY 0 OPTYPE add PRAGMA {} RTLNAME y_cordic_V_24_fu_748_p2 SOURCE {C:/Xilinx/Vitis_HLS/2022.1/common/technology/autopilot\ap_fixed_base.h:859} VARIABLE y_cordic_V_24 LOOP {} BUNDLEDNAME {} DSP 0 BRAM 0 URAM 0 DISPNAME {bind_op add}} {BINDTYPE op ID {} IMPL fabric LATENCY 0 OPTYPE add PRAGMA {} RTLNAME x_cordic_V_26_fu_808_p2 SOURCE {C:/Xilinx/Vitis_HLS/2022.1/common/technology/autopilot\ap_fixed_base.h:859} VARIABLE x_cordic_V_26 LOOP {} BUNDLEDNAME {} DSP 0 BRAM 0 URAM 0 DISPNAME {bind_op add}} {BINDTYPE op ID {} IMPL fabric LATENCY 0 OPTYPE sub PRAGMA {} RTLNAME y_cordic_V_26_fu_814_p2 SOURCE {C:/Xilinx/Vitis_HLS/2022.1/common/technology/autopilot\ap_fixed_base.h:859} VARIABLE y_cordic_V_26 LOOP {} BUNDLEDNAME {} DSP 0 BRAM 0 URAM 0 DISPNAME {bind_op sub}} {BINDTYPE op ID {} IMPL fabric LATENCY 0 OPTYPE sub PRAGMA {} RTLNAME x_cordic_V_27_fu_820_p2 SOURCE {C:/Xilinx/Vitis_HLS/2022.1/common/technology/autopilot\ap_fixed_base.h:859} VARIABLE x_cordic_V_27 LOOP {} BUNDLEDNAME {} DSP 0 BRAM 0 URAM 0 DISPNAME {bind_op sub}} {BINDTYPE op ID {} IMPL fabric LATENCY 0 OPTYPE add PRAGMA {} RTLNAME y_cordic_V_27_fu_826_p2 SOURCE {C:/Xilinx/Vitis_HLS/2022.1/common/technology/autopilot\ap_fixed_base.h:859} VARIABLE y_cordic_V_27 LOOP {} BUNDLEDNAME {} DSP 0 BRAM 0 URAM 0 DISPNAME {bind_op add}} {BINDTYPE op ID {} IMPL fabric LATENCY 0 OPTYPE add PRAGMA {} RTLNAME x_cordic_V_29_fu_886_p2 SOURCE {C:/Xilinx/Vitis_HLS/2022.1/common/technology/autopilot\ap_fixed_base.h:859} VARIABLE x_cordic_V_29 LOOP {} BUNDLEDNAME {} DSP 0 BRAM 0 URAM 0 DISPNAME {bind_op add}} {BINDTYPE op ID {} IMPL fabric LATENCY 0 OPTYPE sub PRAGMA {} RTLNAME y_cordic_V_29_fu_892_p2 SOURCE {C:/Xilinx/Vitis_HLS/2022.1/common/technology/autopilot\ap_fixed_base.h:859} VARIABLE y_cordic_V_29 LOOP {} BUNDLEDNAME {} DSP 0 BRAM 0 URAM 0 DISPNAME {bind_op sub}} {BINDTYPE op ID {} IMPL fabric LATENCY 0 OPTYPE sub PRAGMA {} RTLNAME x_cordic_V_30_fu_898_p2 SOURCE {C:/Xilinx/Vitis_HLS/2022.1/common/technology/autopilot\ap_fixed_base.h:859} VARIABLE x_cordic_V_30 LOOP {} BUNDLEDNAME {} DSP 0 BRAM 0 URAM 0 DISPNAME {bind_op sub}} {BINDTYPE op ID {} IMPL fabric LATENCY 0 OPTYPE add PRAGMA {} RTLNAME y_cordic_V_30_fu_904_p2 SOURCE {C:/Xilinx/Vitis_HLS/2022.1/common/technology/autopilot\ap_fixed_base.h:859} VARIABLE y_cordic_V_30 LOOP {} BUNDLEDNAME {} DSP 0 BRAM 0 URAM 0 DISPNAME {bind_op add}} {BINDTYPE op ID {} IMPL fabric LATENCY 0 OPTYPE add PRAGMA {} RTLNAME x_cordic_V_32_fu_1013_p2 SOURCE {C:/Xilinx/Vitis_HLS/2022.1/common/technology/autopilot\ap_fixed_base.h:859} VARIABLE x_cordic_V_32 LOOP {} BUNDLEDNAME {} DSP 0 BRAM 0 URAM 0 DISPNAME {bind_op add}} {BINDTYPE op ID {} IMPL fabric LATENCY 0 OPTYPE sub PRAGMA {} RTLNAME x_cordic_V_33_fu_1019_p2 SOURCE {C:/Xilinx/Vitis_HLS/2022.1/common/technology/autopilot\ap_fixed_base.h:859} VARIABLE x_cordic_V_33 LOOP {} BUNDLEDNAME {} DSP 0 BRAM 0 URAM 0 DISPNAME {bind_op sub}} {BINDTYPE op ID {} IMPL fabric LATENCY 0 OPTYPE add PRAGMA {} RTLNAME add_ln36_5_fu_600_p2 SOURCE cordic_v5/code_src/cordiccart2pol.cpp:36 VARIABLE add_ln36_5 LOOP {} BUNDLEDNAME {} DSP 0 BRAM 0 URAM 0 DISPNAME {bind_op add}} {BINDTYPE op ID {} IMPL fabric LATENCY 0 OPTYPE add PRAGMA {} RTLNAME add_ln1394_fu_1125_p2 SOURCE {C:/Xilinx/Vitis_HLS/2022.1/common/technology/autopilot\ap_fixed_base.h:1394} VARIABLE add_ln1394 LOOP {} BUNDLEDNAME {} DSP 0 BRAM 0 URAM 0 DISPNAME {bind_op add}} {BINDTYPE op ID {} IMPL fabric LATENCY 0 OPTYPE add PRAGMA {} RTLNAME add_ln55_fu_1184_p2 SOURCE cordic_v5/code_src/cordiccart2pol.cpp:55 VARIABLE add_ln55 LOOP {} BUNDLEDNAME {} DSP 0 BRAM 0 URAM 0 DISPNAME {bind_op add}}} AREA {DSP 0 BRAM 0 URAM 0}}}}'
+INFO-FLOW: DBG:PUTS:      update_csynth_reports json2rpt_hw_sw_interfaces
+INFO-FLOW: Running: gen_csynth_sec_pragma
+INFO-FLOW: Done: gen_csynth_sec_pragma time: 0 seconds per iteration
+INFO-FLOW: DBG:PUTS:      update_csynth_reports wrote xml
+INFO-FLOW: DBG:PUTS:      update_csynth_reports appended to csynth rpt file
+INFO: [HLS 200-111] Finished Updating report files: CPU user time: 0 seconds. CPU system time: 0 seconds. Elapsed time: 0.687 seconds; current allocated memory: 1.381 GB.
+INFO: [VHDL 208-304] Generating VHDL RTL for cordiccart2pol.
+INFO: [VLOG 209-307] Generating Verilog RTL for cordiccart2pol.
+Execute       syn_report -model cordiccart2pol -printsummary 
+INFO: [HLS 200-789] **** Estimated Fmax: 258.15 MHz
+Command     autosyn done; 4.493 sec.
+Command   csynth_design done; 19.577 sec.
+INFO: [HLS 200-111] Finished Command csynth_design CPU user time: 5 seconds. CPU system time: 1 seconds. Elapsed time: 19.577 seconds; current allocated memory: 0.000 MB.
+Command ap_source done; 23.018 sec.
+Execute cleanup_all 
+INFO-FLOW: Workspace C:/Users/Alan/Desktop/hls_workspace/lab/labC/cordic_v5/solution1 opened at Sun Nov 13 17:46:03 +0800 2022
+Execute     ap_set_clock -name default -period 1000 -default=false 
+INFO: [SYN 201-201] Setting up clock 'default' with a period of 1000ns.
+Execute     ap_set_clock -name default -uncertainty 997 
+INFO: [SYN 201-201] Setting up clock 'default' with an uncertainty of 997ns.
+Execute     set_part xc7z020clg400-1 
+Execute       create_platform xc7z020clg400-1 -board  
+DBG:HLSDevice: Trying to load device library: C:/Xilinx/Vitis_HLS/2022.1\lib\win64.o\librdi_hlsvwrap.dll
+DBG:HLSDevice: first parts/arch.xml in RDI_DATADIR: C:/Xilinx/Vivado/2022.1/data/parts/arch.xml
+DBG:HLSDevice: init success
+INFO: [HLS 200-1611] Setting target device to 'xc7z020-clg400-1'
+Command       create_platform done; 3.235 sec.
+Execute       source C:/Xilinx/Vitis_HLS/2022.1/common/technology/xilinx/common/xilinx.gen 
+Execute         source C:/Xilinx/Vitis_HLS/2022.1/common/technology/xilinx/interface/plb46.gen 
+Execute         source C:/Xilinx/Vitis_HLS/2022.1/common/technology/xilinx/interface/axi4.gen 
+Execute         source C:/Xilinx/Vitis_HLS/2022.1/common/technology/xilinx/interface/nativeAXI4.gen 
+Execute           source C:/Xilinx/Vitis_HLS/2022.1/common/technology/xilinx/interface/saxilite.gen 
+Execute         source C:/Xilinx/Vitis_HLS/2022.1/common/technology/xilinx/scripts/xilinxcoregen.gen 
+Execute         source C:/Xilinx/Vitis_HLS/2022.1/common/technology/xilinx/interface/XilEDKCoreGen.gen 
+Execute         source C:/Xilinx/Vitis_HLS/2022.1/common/technology/xilinx/ip/dds_compiler.gen 
+Execute         source C:/Xilinx/Vitis_HLS/2022.1/common/technology/xilinx/ip/util.gen 
+Execute         source C:/Xilinx/Vitis_HLS/2022.1/common/technology/xilinx/ip/xfft.gen 
+Execute         source C:/Xilinx/Vitis_HLS/2022.1/common/technology/xilinx/ip/xfir.gen 
+Execute         source C:/Xilinx/Vitis_HLS/2022.1/common/technology/xilinx/DSP48/dsp48.gen 
+Command       ap_source done; 0.114 sec.
+Execute       ap_part_info -name xc7z020-clg400-1 -data info 
+Execute       config_compile -quiet -complex-mul-dsp=0 
+Command     set_part done; 3.404 sec.
+Execute     send_msg_by_id INFO @200-1505@%s%s  vivado 
+INFO: [HLS 200-1505] Using flow_target 'vivado'
+Execute     get_config_interface -m_axi_latency 
+Execute     get_config_interface -m_axi_alignment_byte_size 
+Execute     get_config_interface -m_axi_max_widen_bitwidth 
+Execute     get_config_interface -default_interface 
+Execute     get_config_rtl -register_reset_num 
+Command   open_solution done; 3.429 sec.
+Execute   set_part xc7z020clg400-1 
+INFO: [HLS 200-1510] Running: set_part xc7z020clg400-1 
+Execute     create_platform xc7z020clg400-1 -board  
+Execute     source C:/Xilinx/Vitis_HLS/2022.1/common/technology/xilinx/common/xilinx.gen 
+Execute       source C:/Xilinx/Vitis_HLS/2022.1/common/technology/xilinx/interface/plb46.gen 
+Execute       source C:/Xilinx/Vitis_HLS/2022.1/common/technology/xilinx/interface/axi4.gen 
+Execute       source C:/Xilinx/Vitis_HLS/2022.1/common/technology/xilinx/interface/nativeAXI4.gen 
+Execute         source C:/Xilinx/Vitis_HLS/2022.1/common/technology/xilinx/interface/saxilite.gen 
+Execute       source C:/Xilinx/Vitis_HLS/2022.1/common/technology/xilinx/scripts/xilinxcoregen.gen 
+Execute       source C:/Xilinx/Vitis_HLS/2022.1/common/technology/xilinx/interface/XilEDKCoreGen.gen 
+Execute       source C:/Xilinx/Vitis_HLS/2022.1/common/technology/xilinx/ip/dds_compiler.gen 
+Execute       source C:/Xilinx/Vitis_HLS/2022.1/common/technology/xilinx/ip/util.gen 
+Execute       source C:/Xilinx/Vitis_HLS/2022.1/common/technology/xilinx/ip/xfft.gen 
+Execute       source C:/Xilinx/Vitis_HLS/2022.1/common/technology/xilinx/ip/xfir.gen 
+Execute       source C:/Xilinx/Vitis_HLS/2022.1/common/technology/xilinx/DSP48/dsp48.gen 
+Command     ap_source done; 0.116 sec.
+Execute     ap_part_info -name xc7z020-clg400-1 -data info 
+Execute     config_compile -quiet -complex-mul-dsp=0 
+Command   set_part done; 0.213 sec.
+Execute   create_clock -period 1000 -name default 
+INFO: [HLS 200-1510] Running: create_clock -period 1000 -name default 
+Execute     ap_set_clock -name default -period 1000 -default=false 
+INFO: [SYN 201-201] Setting up clock 'default' with a period of 1000ns.
+Execute   set_clock_uncertainty 997 
+INFO: [HLS 200-1510] Running: set_clock_uncertainty 997 
+Execute   source ./cordic_v5/solution1/directives.tcl 
+INFO: [HLS 200-1510] Running: source ./cordic_v5/solution1/directives.tcl
+Execute     set_directive_unroll cordiccart2pol/cordic_loop 
+INFO: [HLS 200-1510] Running: set_directive_unroll cordiccart2pol/cordic_loop 
+Execute     set_directive_stream -depth 1 -type fifo cordiccart2pol r_out1 
+INFO: [HLS 200-1510] Running: set_directive_stream -depth 1 -type fifo cordiccart2pol r_out1 
+Execute     set_directive_top -name cordiccart2pol cordiccart2pol 
+INFO: [HLS 200-1510] Running: set_directive_top -name cordiccart2pol cordiccart2pol 
+Execute     set_directive_stream -depth 1 -type fifo cordiccart2pol r_out2 
+INFO: [HLS 200-1510] Running: set_directive_stream -depth 1 -type fifo cordiccart2pol r_out2 
+Execute   cosim_design -trace_level all 
+INFO: [HLS 200-1510] Running: cosim_design -trace_level all 
+Execute     source C:/Users/Alan/Desktop/hls_workspace/lab/labC/cordic_v5/solution1/.autopilot/db/global.setting.tcl 
+Execute     source C:/Users/Alan/Desktop/hls_workspace/lab/labC/cordic_v5/solution1/.autopilot/db/global.setting.tcl 
+Execute     source C:/Users/Alan/Desktop/hls_workspace/lab/labC/cordic_v5/solution1/.autopilot/db/global.setting.tcl 
+INFO-FLOW: DBG:PUTS: read_platform_lib C:/Users/Alan/Desktop/hls_workspace/lab/labC/cordic_v5/solution1/.autopilot/db/global.setting.tcl
+Execute     source C:/Xilinx/Vitis_HLS/2022.1/common/technology/generic/autopilot/common.gen 
+Execute       source C:/Xilinx/Vitis_HLS/2022.1/common/technology/generic/autopilot/APCoreGen.gen 
+Execute     source C:/Xilinx/Vitis_HLS/2022.1/common/technology/generic/autopilot/op.gen 
+Execute     source C:/Xilinx/Vitis_HLS/2022.1/common/technology/generic/autopilot/op_simcore.gen 
+Execute     source C:/Xilinx/Vitis_HLS/2022.1/common/technology/generic/autopilot/interface.gen 
+Execute     source C:/Users/Alan/Desktop/hls_workspace/lab/labC/cordic_v5/solution1/.autopilot/db/global.setting.tcl 
+Execute     source C:/Xilinx/Vitis_HLS/2022.1/common/technology/xilinx/common/xilinx.gen 
+Execute       source C:/Xilinx/Vitis_HLS/2022.1/common/technology/xilinx/interface/plb46.gen 
+Execute       source C:/Xilinx/Vitis_HLS/2022.1/common/technology/xilinx/interface/axi4.gen 
+Execute       source C:/Xilinx/Vitis_HLS/2022.1/common/technology/xilinx/interface/nativeAXI4.gen 
+Execute         source C:/Xilinx/Vitis_HLS/2022.1/common/technology/xilinx/interface/saxilite.gen 
+Execute       source C:/Xilinx/Vitis_HLS/2022.1/common/technology/xilinx/scripts/xilinxcoregen.gen 
+Execute       source C:/Xilinx/Vitis_HLS/2022.1/common/technology/xilinx/interface/XilEDKCoreGen.gen 
+Execute       source C:/Xilinx/Vitis_HLS/2022.1/common/technology/xilinx/ip/dds_compiler.gen 
+Execute       source C:/Xilinx/Vitis_HLS/2022.1/common/technology/xilinx/ip/util.gen 
+Execute       source C:/Xilinx/Vitis_HLS/2022.1/common/technology/xilinx/ip/xfft.gen 
+Execute       source C:/Xilinx/Vitis_HLS/2022.1/common/technology/xilinx/ip/xfir.gen 
+Execute       source C:/Xilinx/Vitis_HLS/2022.1/common/technology/xilinx/DSP48/dsp48.gen 
+Command     ap_source done; 0.11 sec.
+INFO-FLOW: DBG:PUTS:   using AESL_AUTOCG::g_clock_period=1000.000 (was NA)
+Execute     ap_part_info -name xc7z020-clg400-1 -data names -quiet 
+Execute     ap_part_info -name xc7z020-clg400-1 -data info -quiet 
+Execute     source C:/Users/Alan/Desktop/hls_workspace/lab/labC/cordic_v5/solution1/.autopilot/db/global.setting.tcl 
+Execute     source C:/Users/Alan/Desktop/hls_workspace/lab/labC/cordic_v5/solution1/.autopilot/db/cordiccart2pol.rtl_wrap.cfg.tcl 
+Execute     source C:/Users/Alan/Desktop/hls_workspace/lab/labC/cordic_v5/solution1/.autopilot/db/cordiccart2pol.tbgen.tcl 
+Execute     source C:/Users/Alan/Desktop/hls_workspace/lab/labC/cordic_v5/solution1/.autopilot/db/cordiccart2pol.tbgen.tcl 
+Execute     source C:/Users/Alan/Desktop/hls_workspace/lab/labC/cordic_v5/solution1/.autopilot/db/cordiccart2pol.tbgen.tcl 
+Execute     source C:/Users/Alan/Desktop/hls_workspace/lab/labC/cordic_v5/solution1/.autopilot/db/cordiccart2pol.tbgen.tcl 
+INFO: [COSIM 212-47] Using XSIM for RTL simulation.
+INFO: [COSIM 212-14] Instrumenting C test bench ...
+Execute     ap_part_info -name xc7z020-clg400-1 -data info 
+INFO-FLOW: TB processing: C:/Users/Alan/Desktop/hls_workspace/lab/labC/cordic_v5/code_src/cordiccart2pol_test.cpp C:/Users/Alan/Desktop/hls_workspace/lab/labC/cordic_v5/solution1/./sim/autowrap/testbench/cordiccart2pol_test.cpp_pre.cpp
+Execute     clang_tidy xilinx-tb-process -desc tb-process C:/Users/Alan/Desktop/hls_workspace/lab/labC/cordic_v5/solution1/./sim/autowrap/testbench/cordiccart2pol_test.cpp_pre.cpp.tb.cpp std=c++14 
+INFO-FLOW: exec C:/Xilinx/Vitis_HLS/2022.1/win64/tools/clang-3.9-csynth/bin/clang-tidy -header-filter=.* --checks=-*,xilinx-tb-process -fix-errors C:/Users/Alan/Desktop/hls_workspace/lab/labC/cordic_v5/solution1/./sim/autowrap/testbench/cordiccart2pol_test.cpp_pre.cpp.tb.cpp -- -std=c++14 -fhls -ferror-limit=0
+Command     clang_tidy done; 2.099 sec.
+Execute     ap_part_info -name xc7z020-clg400-1 -data info 
+INFO-FLOW: TB processing: C:/Users/Alan/Desktop/hls_workspace/lab/labC/cordic_v5/code_src/cordiccart2pol.cpp C:/Users/Alan/Desktop/hls_workspace/lab/labC/cordic_v5/solution1/./sim/autowrap/testbench/cordiccart2pol.cpp_pre.cpp
+Execute     clang_tidy xilinx-tb-process -desc tb-process C:/Users/Alan/Desktop/hls_workspace/lab/labC/cordic_v5/solution1/./sim/autowrap/testbench/cordiccart2pol.cpp_pre.cpp.tb.cpp std=c++14 
+INFO-FLOW: exec C:/Xilinx/Vitis_HLS/2022.1/win64/tools/clang-3.9-csynth/bin/clang-tidy -header-filter=.* --checks=-*,xilinx-tb-process -fix-errors C:/Users/Alan/Desktop/hls_workspace/lab/labC/cordic_v5/solution1/./sim/autowrap/testbench/cordiccart2pol.cpp_pre.cpp.tb.cpp -- -std=c++14 -fhls -ferror-limit=0
+Command     clang_tidy done; 3.196 sec.
+Execute     source C:/Users/Alan/Desktop/hls_workspace/lab/labC/cordic_v5/solution1/.autopilot/db/global.setting.tcl 
+Execute     source C:/Users/Alan/Desktop/hls_workspace/lab/labC/cordic_v5/solution1/.autopilot/db/cordiccart2pol.rtl_wrap.cfg.tcl 
+Execute     source C:/Users/Alan/Desktop/hls_workspace/lab/labC/cordic_v5/solution1/.autopilot/db/cordiccart2pol.rtl_wrap.cfg.tcl 
+Execute     source C:/Users/Alan/Desktop/hls_workspace/lab/labC/cordic_v5/solution1/.autopilot/db/cordiccart2pol.rtl_wrap.cfg.tcl 
+Execute     source C:/Users/Alan/Desktop/hls_workspace/lab/labC/cordic_v5/solution1/.autopilot/db/cordiccart2pol.tbgen.tcl 
+Execute     source C:/Users/Alan/Desktop/hls_workspace/lab/labC/cordic_v5/solution1/.autopilot/db/cordiccart2pol.tbgen.tcl 
+Execute     ap_part_info -name xc7z020-clg400-1 -data info 
+Execute     source .run_sim.tcl 
+INFO: [COSIM 212-302] Starting C TB testing ... 
+Command     ap_source done; 0.842 sec.
+INFO: [COSIM 212-333] Generating C post check test bench ...
+Execute     ap_part_info -name xc7z020-clg400-1 -data info 
+INFO: [COSIM 212-12] Generating RTL test bench ...
+Execute     source ../tv/cdatafile/ref.tcl 
+Execute     source C:/Users/Alan/Desktop/hls_workspace/lab/labC/cordic_v5/solution1/.autopilot/db/cordiccart2pol.tbgen.tcl 
+Execute     source C:/Users/Alan/Desktop/hls_workspace/lab/labC/cordic_v5/solution1/.autopilot/db/cordiccart2pol.tbgen.tcl 
+Execute     source C:/Users/Alan/Desktop/hls_workspace/lab/labC/cordic_v5/solution1/.autopilot/db/cordiccart2pol.tbgen.tcl 
+Execute     source C:/Users/Alan/Desktop/hls_workspace/lab/labC/cordic_v5/solution1/.autopilot/db/cordiccart2pol.tbgen.tcl 
+Execute     source ../tv/cdatafile/ref.tcl 
+Execute     source C:/Users/Alan/Desktop/hls_workspace/lab/labC/cordic_v5/solution1/.autopilot/db/cordiccart2pol.tbgen.tcl 
+Execute     source C:/Users/Alan/Desktop/hls_workspace/lab/labC/cordic_v5/solution1/.autopilot/db/cordiccart2pol.tbgen.tcl 
+Execute     source C:/Users/Alan/Desktop/hls_workspace/lab/labC/cordic_v5/solution1/.autopilot/db/cordiccart2pol.tbgen.tcl 
+Execute     source C:/Users/Alan/Desktop/hls_workspace/lab/labC/cordic_v5/solution1/.autopilot/db/cordiccart2pol.tbgen.tcl 
+Execute     source C:/Users/Alan/Desktop/hls_workspace/lab/labC/cordic_v5/solution1/.autopilot/db/cordiccart2pol.tbgen.tcl 
+Execute     source C:/Users/Alan/Desktop/hls_workspace/lab/labC/cordic_v5/solution1/.autopilot/db/cordiccart2pol.tbgen.tcl 
+Execute     source C:/Users/Alan/Desktop/hls_workspace/lab/labC/cordic_v5/solution1/.autopilot/db/cordiccart2pol.tbgen.tcl 
+Execute     source C:/Users/Alan/Desktop/hls_workspace/lab/labC/cordic_v5/solution1/.autopilot/db/cordiccart2pol.tbgen.tcl 
+Execute     source C:/Users/Alan/Desktop/hls_workspace/lab/labC/cordic_v5/solution1/.autopilot/db/cordiccart2pol.tbgen.tcl 
+Execute     source C:/Users/Alan/Desktop/hls_workspace/lab/labC/cordic_v5/solution1/.autopilot/db/cordiccart2pol.tbgen.tcl 
+Execute     source C:/Users/Alan/Desktop/hls_workspace/lab/labC/cordic_v5/solution1/.autopilot/db/cordiccart2pol.tbgen.tcl 
+Execute     source C:/Users/Alan/Desktop/hls_workspace/lab/labC/cordic_v5/solution1/.autopilot/db/cordiccart2pol.tbgen.tcl 
+Execute     source C:/Users/Alan/Desktop/hls_workspace/lab/labC/cordic_v5/solution1/.autopilot/db/cordiccart2pol.tbgen.tcl 
+INFO: [COSIM 212-1] *** C/RTL co-simulation file generation completed. ***
+Execute     source .run_sim.tcl 
+Execute       source check_sim.tcl 
+Execute       source dataflow_monitor_API.tcl 
+Execute       source .sim.status.tcl 
+INFO: [COSIM 212-323] Starting verilog simulation. 
+INFO: [COSIM 212-15] Starting XSIM ...
+INFO: [COSIM 212-316] Starting C post checking ...
+Command     ap_source done; 8.496 sec.
+INFO: [COSIM 212-1000] *** C/RTL co-simulation finished: PASS ***
+Command   cosim_design done; 26.465 sec.
+INFO: [HLS 200-111] Finished Command cosim_design CPU user time: 1 seconds. CPU system time: 0 seconds. Elapsed time: 26.465 seconds; current allocated memory: 0.000 MB.
+Command ap_source done; 30.163 sec.
+Execute cleanup_all 

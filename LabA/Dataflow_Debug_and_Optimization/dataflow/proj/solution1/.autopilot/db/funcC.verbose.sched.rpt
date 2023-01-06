@@ -1,0 +1,157 @@
+
+
+================================================================
+== Vitis HLS Report for 'funcC'
+================================================================
+* Date:           Thu Oct 13 09:29:16 2022
+
+* Version:        2022.1 (Build 3526262 on Mon Apr 18 15:47:01 MDT 2022)
+* Project:        proj
+* Solution:       solution1 (Vivado IP Flow Target)
+* Product family: virtexuplus
+* Target device:  xcvu9p-flga2104-2-i
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing: 
+    * Summary: 
+    +--------+---------+----------+------------+
+    |  Clock |  Target | Estimated| Uncertainty|
+    +--------+---------+----------+------------+
+    |ap_clk  |  5.00 ns|  1.305 ns|     1.35 ns|
+    +--------+---------+----------+------------+
+
++ Latency: 
+    * Summary: 
+    +---------+---------+----------+----------+-----+-----+------------------------------------------+
+    |  Latency (cycles) |  Latency (absolute) |  Interval |                 Pipeline                 |
+    |   min   |   max   |    min   |    max   | min | max |                   Type                   |
+    +---------+---------+----------+----------+-----+-----+------------------------------------------+
+    |       50|       51|  0.250 us|  0.255 us|   50|   50|  loop rewind stp(delay=0 clock cycles(s))|
+    +---------+---------+----------+----------+-----+-----+------------------------------------------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        +----------+---------+---------+----------+-----------+-----------+------+----------+
+        |          |  Latency (cycles) | Iteration|  Initiation Interval  | Trip |          |
+        | Loop Name|   min   |   max   |  Latency |  achieved |   target  | Count| Pipelined|
+        +----------+---------+---------+----------+-----------+-----------+------+----------+
+        |- Loop0   |       50|       50|         2|          1|          1|    50|       yes|
+        +----------+---------+---------+----------+-----------+-----------+------+----------+
+
+============================================================
++ Verbose Summary: Synthesis Manager
+============================================================
+InlineROM: 1
+ExposeGlobal: 0
+============================================================
++ Verbose Summary: CDFG Model
+============================================================
+IsTopModel: 0
+ResetActiveHigh: 1
+IsCombinational: 2
+IsDatapathOnly: 0
+HasWiredReturn: 1
+HasMFsm: 2
+HasVarLatency: 1
+IsPipeline: 0
+IsRtlPipelined: 0
+IsInstanceOverlapped: 0
+IsDontTouch: 0
+HasImplIP: 0
+IsGatedGlobalClock: 0
+
++ Individual pipeline summary: 
+  * Pipeline-0: initiation interval (II) = 1, depth = 2
+
+
+============================================================
++ Verbose Summary: Schedule
+============================================================
+* Number of FSM states : 3
+* Pipeline : 1
+  Pipeline-0 : II = 1, D = 2, States = { 2 3 }
+* Dataflow Pipeline: 0
+
+* FSM state transitions: 
+1 --> 2 
+2 --> 3 
+3 --> 2 
+
+* FSM state operations: 
+
+State 1 <SV = 0> <Delay = 0.38>
+ST_1 : Operation 4 [1/1] (0.38ns)   --->   "%br_ln58 = br void %for.inc.split" [diamond.cpp:58]   --->   Operation 4 'br' 'br_ln58' <Predicate = true> <Delay = 0.38>
+
+State 2 <SV = 1> <Delay = 1.30>
+ST_2 : Operation 5 [1/1] (0.00ns)   --->   "%i1 = phi i7 0, void %entry, i7 %i, void %for.inc.split, i7 0, void %for.end"   --->   Operation 5 'phi' 'i1' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 6 [1/1] (0.00ns)   --->   "%zext_ln58 = zext i7 %i1" [diamond.cpp:58]   --->   Operation 6 'zext' 'zext_ln58' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 7 [1/1] (0.00ns)   --->   "%in_addr = getelementptr i6 %in_r, i64 0, i64 %zext_ln58" [diamond.cpp:62]   --->   Operation 7 'getelementptr' 'in_addr' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 8 [2/2] (0.56ns)   --->   "%in_load = load i7 %in_addr" [diamond.cpp:62]   --->   Operation 8 'load' 'in_load' <Predicate = true> <Delay = 0.56> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 0.56> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 6> <Depth = 100> <RAM>
+ST_2 : Operation 9 [1/1] (0.00ns)   --->   "%or_ln58 = or i7 %i1, i7 1" [diamond.cpp:58]   --->   Operation 9 'or' 'or_ln58' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 10 [1/1] (0.00ns)   --->   "%zext_ln62 = zext i7 %or_ln58" [diamond.cpp:62]   --->   Operation 10 'zext' 'zext_ln62' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 11 [1/1] (0.00ns)   --->   "%in_addr_1 = getelementptr i6 %in_r, i64 0, i64 %zext_ln62" [diamond.cpp:62]   --->   Operation 11 'getelementptr' 'in_addr_1' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 12 [2/2] (0.56ns)   --->   "%in_load_1 = load i7 %in_addr_1" [diamond.cpp:62]   --->   Operation 12 'load' 'in_load_1' <Predicate = true> <Delay = 0.56> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 0.56> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 6> <Depth = 100> <RAM>
+ST_2 : Operation 13 [1/1] (0.70ns)   --->   "%i = add i7 %i1, i7 2" [diamond.cpp:58]   --->   Operation 13 'add' 'i' <Predicate = true> <Delay = 0.70> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 0.70> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 14 [1/1] (0.59ns)   --->   "%icmp_ln58 = icmp_ult  i7 %i, i7 100" [diamond.cpp:58]   --->   Operation 14 'icmp' 'icmp_ln58' <Predicate = true> <Delay = 0.59> <CoreInst = "Cmp">   --->   Core 9 'Cmp' <Latency = 0> <II = 1> <Delay = 0.59> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 15 [1/1] (0.00ns)   --->   "%br_ln58 = br i1 %icmp_ln58, void %for.end, void %for.inc.split" [diamond.cpp:58]   --->   Operation 15 'br' 'br_ln58' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 16 [1/1] (0.00ns)   --->   "%br_ln64 = br void %for.inc.split" [diamond.cpp:64]   --->   Operation 16 'br' 'br_ln64' <Predicate = (!icmp_ln58)> <Delay = 0.00>
+
+State 3 <SV = 2> <Delay = 1.13>
+ST_3 : Operation 17 [1/1] (0.00ns)   --->   "%empty = speclooptripcount i32 @_ssdm_op_SpecLoopTripCount, i64 50, i64 50, i64 50"   --->   Operation 17 'speclooptripcount' 'empty' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 18 [1/1] (0.00ns)   --->   "%specpipeline_ln60 = specpipeline void @_ssdm_op_SpecPipeline, i32 4294967295, i32 0, i32 0, i32 0, void @empty_0" [diamond.cpp:60]   --->   Operation 18 'specpipeline' 'specpipeline_ln60' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 19 [1/1] (0.00ns)   --->   "%specloopname_ln58 = specloopname void @_ssdm_op_SpecLoopName, void @empty_2" [diamond.cpp:58]   --->   Operation 19 'specloopname' 'specloopname_ln58' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 20 [1/2] (0.56ns)   --->   "%in_load = load i7 %in_addr" [diamond.cpp:62]   --->   Operation 20 'load' 'in_load' <Predicate = true> <Delay = 0.56> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 0.56> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 6> <Depth = 100> <RAM>
+ST_3 : Operation 21 [1/1] (0.00ns)   --->   "%shl_ln = bitconcatenate i7 @_ssdm_op_BitConcatenate.i7.i6.i1, i6 %in_load, i1 0" [diamond.cpp:62]   --->   Operation 21 'bitconcatenate' 'shl_ln' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 22 [1/1] (0.00ns)   --->   "%out_addr = getelementptr i7 %out_r, i64 0, i64 %zext_ln58" [diamond.cpp:62]   --->   Operation 22 'getelementptr' 'out_addr' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 23 [1/1] (0.56ns)   --->   "%store_ln62 = store i7 %shl_ln, i7 %out_addr" [diamond.cpp:62]   --->   Operation 23 'store' 'store_ln62' <Predicate = true> <Delay = 0.56> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 0.56> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 7> <Depth = 100> <RAM>
+ST_3 : Operation 24 [1/2] (0.56ns)   --->   "%in_load_1 = load i7 %in_addr_1" [diamond.cpp:62]   --->   Operation 24 'load' 'in_load_1' <Predicate = true> <Delay = 0.56> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 0.56> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 6> <Depth = 100> <RAM>
+ST_3 : Operation 25 [1/1] (0.00ns)   --->   "%shl_ln62_1 = bitconcatenate i7 @_ssdm_op_BitConcatenate.i7.i6.i1, i6 %in_load_1, i1 0" [diamond.cpp:62]   --->   Operation 25 'bitconcatenate' 'shl_ln62_1' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 26 [1/1] (0.00ns)   --->   "%out_addr_1 = getelementptr i7 %out_r, i64 0, i64 %zext_ln62" [diamond.cpp:62]   --->   Operation 26 'getelementptr' 'out_addr_1' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 27 [1/1] (0.56ns)   --->   "%store_ln62 = store i7 %shl_ln62_1, i7 %out_addr_1" [diamond.cpp:62]   --->   Operation 27 'store' 'store_ln62' <Predicate = true> <Delay = 0.56> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 0.56> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 7> <Depth = 100> <RAM>
+ST_3 : Operation 28 [1/1] (0.00ns)   --->   "%return_ln64 = return void @_ssdm_op_Return" [diamond.cpp:64]   --->   Operation 28 'return' 'return_ln64' <Predicate = (!icmp_ln58)> <Delay = 0.00>
+
+
+============================================================
++ Verbose Summary: Timing violations
+============================================================
+Target clock period: 5ns, clock uncertainty: 1.35ns.
+
+ <State 1>: 0.387ns
+The critical path consists of the following:
+	multiplexor before 'phi' operation ('i') with incoming values : ('i', diamond.cpp:58) [5]  (0.387 ns)
+
+ <State 2>: 1.31ns
+The critical path consists of the following:
+	'phi' operation ('i') with incoming values : ('i', diamond.cpp:58) [5]  (0 ns)
+	'add' operation ('i', diamond.cpp:58) [22]  (0.706 ns)
+	'icmp' operation ('icmp_ln58', diamond.cpp:58) [23]  (0.6 ns)
+
+ <State 3>: 1.14ns
+The critical path consists of the following:
+	'load' operation ('in_load', diamond.cpp:62) on array 'in_r' [11]  (0.569 ns)
+	'store' operation ('store_ln62', diamond.cpp:62) of variable 'shl_ln', diamond.cpp:62 on array 'out_r' [14]  (0.569 ns)
+
+
+============================================================
++ Verbose Summary: Binding
+============================================================
+N/A
+* FSMD analyzer results:
+  - Output states:
+ - Input state : 
+  - Chain level:
+	State 1
+	State 2
+	State 3
+
+
+============================================================
++ Verbose Summary: Datapath Resource usage 
+============================================================
+N/A

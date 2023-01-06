@@ -1,0 +1,343 @@
+
+
+================================================================
+== Vivado HLS Report for 'matrixmul'
+================================================================
+* Date:           Tue Oct 18 19:56:22 2022
+
+* Version:        2020.1 (Build 2897737 on Wed May 27 20:21:37 MDT 2020)
+* Project:        Brutal_matrix_multiplication
+* Solution:       solution5_sol3_with_RESHAPE
+* Product family: zynq
+* Target device:  xc7z020-clg400-1
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing: 
+    * Summary: 
+    +--------+----------+----------+------------+
+    |  Clock |  Target  | Estimated| Uncertainty|
+    +--------+----------+----------+------------+
+    |ap_clk  | 10.00 ns | 8.742 ns |   1.25 ns  |
+    +--------+----------+----------+------------+
+
++ Latency: 
+    * Summary: 
+    +---------+---------+-----------+-----------+------+------+---------+
+    |  Latency (cycles) |   Latency (absolute)  |   Interval  | Pipeline|
+    |   min   |   max   |    min    |    max    |  min |  max |   Type  |
+    +---------+---------+-----------+-----------+------+------+---------+
+    |     1030|     1030| 10.300 us | 10.300 us |  1030|  1030|   none  |
+    +---------+---------+-----------+-----------+------+------+---------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        +-----------+---------+---------+----------+-----------+-----------+------+----------+
+        |           |  Latency (cycles) | Iteration|  Initiation Interval  | Trip |          |
+        | Loop Name |   min   |   max   |  Latency |  achieved |   target  | Count| Pipelined|
+        +-----------+---------+---------+----------+-----------+-----------+------+----------+
+        |- row_col  |     1028|     1028|         6|          1|          1|  1024|    yes   |
+        +-----------+---------+---------+----------+-----------+-----------+------+----------+
+
+============================================================
++ Verbose Summary: Synthesis Manager
+============================================================
+InlineROM: 1
+ExposeGlobal: 0
+============================================================
++ Verbose Summary: CDFG Model
+============================================================
+IsTopModel: 1
+ResetActiveHigh: 1
+IsCombinational: 0
+IsDatapathOnly: 0
+HasWiredReturn: 1
+HasMFsm: 0
+HasVarLatency: 1
+IsPipeline: 0
+IsRtlPipelined: 0
+IsInstanceOverlapped: 0
+IsDontTouch: 0
+HasImplIP: 0
+IsGatedGlobalClock: 0
+
++ Individual pipeline summary: 
+  * Pipeline-0: initiation interval (II) = 1, depth = 6
+
+
+============================================================
++ Verbose Summary: Schedule
+============================================================
+* Number of FSM states : 8
+* Pipeline : 1
+  Pipeline-0 : II = 1, D = 6, States = { 2 3 4 5 6 7 }
+* Dataflow Pipeline: 0
+
+* FSM state transitions: 
+1 --> 2 
+2 --> 8 3 
+3 --> 4 
+4 --> 5 
+5 --> 6 
+6 --> 7 
+7 --> 2 
+8 --> 
+
+* FSM state operations: 
+
+State 1 <SV = 0> <Delay = 1.76>
+ST_1 : Operation 9 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecBitsMap([32 x i1024]* %B), !map !14"   --->   Operation 9 'specbitsmap' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 10 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecBitsMap([32 x i1024]* %A), !map !176"   --->   Operation 10 'specbitsmap' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 11 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecBitsMap([1024 x i32]* %AB), !map !305"   --->   Operation 11 'specbitsmap' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 12 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecTopModule([10 x i8]* @matrixmul_str) nounwind"   --->   Operation 12 'spectopmodule' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 13 [1/1] (1.76ns)   --->   "br label %1" [Brutal_design.cpp:11]   --->   Operation 13 'br' <Predicate = true> <Delay = 1.76>
+
+State 2 <SV = 1> <Delay = 6.26>
+ST_2 : Operation 14 [1/1] (0.00ns)   --->   "%indvar_flatten = phi i11 [ 0, %0 ], [ %add_ln11, %col ]" [Brutal_design.cpp:11]   --->   Operation 14 'phi' 'indvar_flatten' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 15 [1/1] (0.00ns)   --->   "%i_0 = phi i6 [ 0, %0 ], [ %select_ln17_1, %col ]" [Brutal_design.cpp:17]   --->   Operation 15 'phi' 'i_0' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 16 [1/1] (0.00ns)   --->   "%j_0 = phi i6 [ 0, %0 ], [ %j, %col ]"   --->   Operation 16 'phi' 'j_0' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 17 [1/1] (1.88ns)   --->   "%icmp_ln11 = icmp eq i11 %indvar_flatten, -1024" [Brutal_design.cpp:11]   --->   Operation 17 'icmp' 'icmp_ln11' <Predicate = true> <Delay = 1.88> <Core = "Cmp">   --->   Core 25 'Cmp' <Latency = 0> <II = 1> <Delay = 1.42> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 18 [1/1] (1.63ns)   --->   "%add_ln11 = add i11 %indvar_flatten, 1" [Brutal_design.cpp:11]   --->   Operation 18 'add' 'add_ln11' <Predicate = true> <Delay = 1.63> <Core = "AddSub">   --->   Core 14 'AddSub' <Latency = 0> <II = 1> <Delay = 1.82> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 19 [1/1] (0.00ns)   --->   "br i1 %icmp_ln11, label %2, label %col" [Brutal_design.cpp:11]   --->   Operation 19 'br' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 20 [1/1] (1.82ns)   --->   "%i = add i6 1, %i_0" [Brutal_design.cpp:11]   --->   Operation 20 'add' 'i' <Predicate = (!icmp_ln11)> <Delay = 1.82> <Core = "AddSub">   --->   Core 14 'AddSub' <Latency = 0> <II = 1> <Delay = 1.82> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 21 [1/1] (1.42ns)   --->   "%icmp_ln12 = icmp eq i6 %j_0, -32" [Brutal_design.cpp:12]   --->   Operation 21 'icmp' 'icmp_ln12' <Predicate = (!icmp_ln11)> <Delay = 1.42> <Core = "Cmp">   --->   Core 25 'Cmp' <Latency = 0> <II = 1> <Delay = 1.42> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 22 [1/1] (1.18ns)   --->   "%select_ln17 = select i1 %icmp_ln12, i6 0, i6 %j_0" [Brutal_design.cpp:17]   --->   Operation 22 'select' 'select_ln17' <Predicate = (!icmp_ln11)> <Delay = 1.18> <Core = "Sel">   --->   Core 26 'Sel' <Latency = 0> <II = 1> <Delay = 1.18> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+ST_2 : Operation 23 [1/1] (1.18ns)   --->   "%select_ln17_1 = select i1 %icmp_ln12, i6 %i, i6 %i_0" [Brutal_design.cpp:17]   --->   Operation 23 'select' 'select_ln17_1' <Predicate = (!icmp_ln11)> <Delay = 1.18> <Core = "Sel">   --->   Core 26 'Sel' <Latency = 0> <II = 1> <Delay = 1.18> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+ST_2 : Operation 24 [1/1] (0.00ns)   --->   "%zext_ln17 = zext i6 %select_ln17_1 to i64" [Brutal_design.cpp:17]   --->   Operation 24 'zext' 'zext_ln17' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_2 : Operation 25 [1/1] (0.00ns)   --->   "%zext_ln17_1 = zext i6 %select_ln17 to i64" [Brutal_design.cpp:17]   --->   Operation 25 'zext' 'zext_ln17_1' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_2 : Operation 26 [1/1] (0.00ns)   --->   "%A_addr = getelementptr [32 x i1024]* %A, i64 0, i64 %zext_ln17" [Brutal_design.cpp:17]   --->   Operation 26 'getelementptr' 'A_addr' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_2 : Operation 27 [2/2] (3.25ns)   --->   "%A_load = load i1024* %A_addr, align 8" [Brutal_design.cpp:17]   --->   Operation 27 'load' 'A_load' <Predicate = (!icmp_ln11)> <Delay = 3.25> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 1024> <RAM>
+ST_2 : Operation 28 [1/1] (0.00ns)   --->   "%B_addr = getelementptr [32 x i1024]* %B, i64 0, i64 %zext_ln17_1" [Brutal_design.cpp:17]   --->   Operation 28 'getelementptr' 'B_addr' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_2 : Operation 29 [2/2] (3.25ns)   --->   "%B_load = load i1024* %B_addr, align 8" [Brutal_design.cpp:17]   --->   Operation 29 'load' 'B_load' <Predicate = (!icmp_ln11)> <Delay = 3.25> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 1024> <RAM>
+ST_2 : Operation 30 [1/1] (1.82ns)   --->   "%j = add i6 1, %select_ln17" [Brutal_design.cpp:12]   --->   Operation 30 'add' 'j' <Predicate = (!icmp_ln11)> <Delay = 1.82> <Core = "AddSub">   --->   Core 14 'AddSub' <Latency = 0> <II = 1> <Delay = 1.82> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+
+State 3 <SV = 2> <Delay = 3.25>
+ST_3 : Operation 31 [1/2] (3.25ns)   --->   "%A_load = load i1024* %A_addr, align 8" [Brutal_design.cpp:17]   --->   Operation 31 'load' 'A_load' <Predicate = (!icmp_ln11)> <Delay = 3.25> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 1024> <RAM>
+ST_3 : Operation 32 [1/1] (0.00ns)   --->   "%trunc_ln17 = trunc i1024 %A_load to i32" [Brutal_design.cpp:17]   --->   Operation 32 'trunc' 'trunc_ln17' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_3 : Operation 33 [1/2] (3.25ns)   --->   "%B_load = load i1024* %B_addr, align 8" [Brutal_design.cpp:17]   --->   Operation 33 'load' 'B_load' <Predicate = (!icmp_ln11)> <Delay = 3.25> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 1024> <RAM>
+ST_3 : Operation 34 [1/1] (0.00ns)   --->   "%trunc_ln17_1 = trunc i1024 %B_load to i32" [Brutal_design.cpp:17]   --->   Operation 34 'trunc' 'trunc_ln17_1' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_3 : Operation 35 [1/1] (0.00ns)   --->   "%tmp_4 = call i32 @_ssdm_op_PartSelect.i32.i1024.i32.i32(i1024 %A_load, i32 32, i32 63)" [Brutal_design.cpp:17]   --->   Operation 35 'partselect' 'tmp_4' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_3 : Operation 36 [1/1] (0.00ns)   --->   "%tmp_5 = call i32 @_ssdm_op_PartSelect.i32.i1024.i32.i32(i1024 %B_load, i32 32, i32 63)" [Brutal_design.cpp:17]   --->   Operation 36 'partselect' 'tmp_5' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_3 : Operation 37 [1/1] (0.00ns)   --->   "%tmp_6 = call i32 @_ssdm_op_PartSelect.i32.i1024.i32.i32(i1024 %A_load, i32 64, i32 95)" [Brutal_design.cpp:17]   --->   Operation 37 'partselect' 'tmp_6' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_3 : Operation 38 [1/1] (0.00ns)   --->   "%tmp_7 = call i32 @_ssdm_op_PartSelect.i32.i1024.i32.i32(i1024 %B_load, i32 64, i32 95)" [Brutal_design.cpp:17]   --->   Operation 38 'partselect' 'tmp_7' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_3 : Operation 39 [1/1] (0.00ns)   --->   "%tmp_8 = call i32 @_ssdm_op_PartSelect.i32.i1024.i32.i32(i1024 %A_load, i32 96, i32 127)" [Brutal_design.cpp:17]   --->   Operation 39 'partselect' 'tmp_8' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_3 : Operation 40 [1/1] (0.00ns)   --->   "%tmp_9 = call i32 @_ssdm_op_PartSelect.i32.i1024.i32.i32(i1024 %B_load, i32 96, i32 127)" [Brutal_design.cpp:17]   --->   Operation 40 'partselect' 'tmp_9' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_3 : Operation 41 [1/1] (0.00ns)   --->   "%tmp_s = call i32 @_ssdm_op_PartSelect.i32.i1024.i32.i32(i1024 %A_load, i32 128, i32 159)" [Brutal_design.cpp:17]   --->   Operation 41 'partselect' 'tmp_s' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_3 : Operation 42 [1/1] (0.00ns)   --->   "%tmp_2 = call i32 @_ssdm_op_PartSelect.i32.i1024.i32.i32(i1024 %B_load, i32 128, i32 159)" [Brutal_design.cpp:17]   --->   Operation 42 'partselect' 'tmp_2' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_3 : Operation 43 [1/1] (0.00ns)   --->   "%tmp_3 = call i32 @_ssdm_op_PartSelect.i32.i1024.i32.i32(i1024 %A_load, i32 160, i32 191)" [Brutal_design.cpp:17]   --->   Operation 43 'partselect' 'tmp_3' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_3 : Operation 44 [1/1] (0.00ns)   --->   "%tmp_10 = call i32 @_ssdm_op_PartSelect.i32.i1024.i32.i32(i1024 %B_load, i32 160, i32 191)" [Brutal_design.cpp:17]   --->   Operation 44 'partselect' 'tmp_10' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_3 : Operation 45 [1/1] (0.00ns)   --->   "%tmp_11 = call i32 @_ssdm_op_PartSelect.i32.i1024.i32.i32(i1024 %A_load, i32 192, i32 223)" [Brutal_design.cpp:17]   --->   Operation 45 'partselect' 'tmp_11' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_3 : Operation 46 [1/1] (0.00ns)   --->   "%tmp_12 = call i32 @_ssdm_op_PartSelect.i32.i1024.i32.i32(i1024 %B_load, i32 192, i32 223)" [Brutal_design.cpp:17]   --->   Operation 46 'partselect' 'tmp_12' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_3 : Operation 47 [1/1] (0.00ns)   --->   "%tmp_13 = call i32 @_ssdm_op_PartSelect.i32.i1024.i32.i32(i1024 %A_load, i32 224, i32 255)" [Brutal_design.cpp:17]   --->   Operation 47 'partselect' 'tmp_13' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_3 : Operation 48 [1/1] (0.00ns)   --->   "%tmp_14 = call i32 @_ssdm_op_PartSelect.i32.i1024.i32.i32(i1024 %B_load, i32 224, i32 255)" [Brutal_design.cpp:17]   --->   Operation 48 'partselect' 'tmp_14' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_3 : Operation 49 [1/1] (0.00ns)   --->   "%tmp_15 = call i32 @_ssdm_op_PartSelect.i32.i1024.i32.i32(i1024 %A_load, i32 256, i32 287)" [Brutal_design.cpp:17]   --->   Operation 49 'partselect' 'tmp_15' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_3 : Operation 50 [1/1] (0.00ns)   --->   "%tmp_16 = call i32 @_ssdm_op_PartSelect.i32.i1024.i32.i32(i1024 %B_load, i32 256, i32 287)" [Brutal_design.cpp:17]   --->   Operation 50 'partselect' 'tmp_16' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_3 : Operation 51 [1/1] (0.00ns)   --->   "%tmp_17 = call i32 @_ssdm_op_PartSelect.i32.i1024.i32.i32(i1024 %A_load, i32 288, i32 319)" [Brutal_design.cpp:17]   --->   Operation 51 'partselect' 'tmp_17' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_3 : Operation 52 [1/1] (0.00ns)   --->   "%tmp_18 = call i32 @_ssdm_op_PartSelect.i32.i1024.i32.i32(i1024 %B_load, i32 288, i32 319)" [Brutal_design.cpp:17]   --->   Operation 52 'partselect' 'tmp_18' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_3 : Operation 53 [1/1] (0.00ns)   --->   "%tmp_19 = call i32 @_ssdm_op_PartSelect.i32.i1024.i32.i32(i1024 %A_load, i32 320, i32 351)" [Brutal_design.cpp:17]   --->   Operation 53 'partselect' 'tmp_19' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_3 : Operation 54 [1/1] (0.00ns)   --->   "%tmp_20 = call i32 @_ssdm_op_PartSelect.i32.i1024.i32.i32(i1024 %B_load, i32 320, i32 351)" [Brutal_design.cpp:17]   --->   Operation 54 'partselect' 'tmp_20' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_3 : Operation 55 [1/1] (0.00ns)   --->   "%tmp_21 = call i32 @_ssdm_op_PartSelect.i32.i1024.i32.i32(i1024 %A_load, i32 352, i32 383)" [Brutal_design.cpp:17]   --->   Operation 55 'partselect' 'tmp_21' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_3 : Operation 56 [1/1] (0.00ns)   --->   "%tmp_22 = call i32 @_ssdm_op_PartSelect.i32.i1024.i32.i32(i1024 %B_load, i32 352, i32 383)" [Brutal_design.cpp:17]   --->   Operation 56 'partselect' 'tmp_22' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_3 : Operation 57 [1/1] (0.00ns)   --->   "%tmp_23 = call i32 @_ssdm_op_PartSelect.i32.i1024.i32.i32(i1024 %A_load, i32 384, i32 415)" [Brutal_design.cpp:17]   --->   Operation 57 'partselect' 'tmp_23' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_3 : Operation 58 [1/1] (0.00ns)   --->   "%tmp_24 = call i32 @_ssdm_op_PartSelect.i32.i1024.i32.i32(i1024 %B_load, i32 384, i32 415)" [Brutal_design.cpp:17]   --->   Operation 58 'partselect' 'tmp_24' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_3 : Operation 59 [1/1] (0.00ns)   --->   "%tmp_25 = call i32 @_ssdm_op_PartSelect.i32.i1024.i32.i32(i1024 %A_load, i32 416, i32 447)" [Brutal_design.cpp:17]   --->   Operation 59 'partselect' 'tmp_25' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_3 : Operation 60 [1/1] (0.00ns)   --->   "%tmp_26 = call i32 @_ssdm_op_PartSelect.i32.i1024.i32.i32(i1024 %B_load, i32 416, i32 447)" [Brutal_design.cpp:17]   --->   Operation 60 'partselect' 'tmp_26' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_3 : Operation 61 [1/1] (0.00ns)   --->   "%tmp_27 = call i32 @_ssdm_op_PartSelect.i32.i1024.i32.i32(i1024 %A_load, i32 448, i32 479)" [Brutal_design.cpp:17]   --->   Operation 61 'partselect' 'tmp_27' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_3 : Operation 62 [1/1] (0.00ns)   --->   "%tmp_28 = call i32 @_ssdm_op_PartSelect.i32.i1024.i32.i32(i1024 %B_load, i32 448, i32 479)" [Brutal_design.cpp:17]   --->   Operation 62 'partselect' 'tmp_28' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_3 : Operation 63 [1/1] (0.00ns)   --->   "%tmp_29 = call i32 @_ssdm_op_PartSelect.i32.i1024.i32.i32(i1024 %A_load, i32 480, i32 511)" [Brutal_design.cpp:17]   --->   Operation 63 'partselect' 'tmp_29' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_3 : Operation 64 [1/1] (0.00ns)   --->   "%tmp_30 = call i32 @_ssdm_op_PartSelect.i32.i1024.i32.i32(i1024 %B_load, i32 480, i32 511)" [Brutal_design.cpp:17]   --->   Operation 64 'partselect' 'tmp_30' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_3 : Operation 65 [1/1] (0.00ns)   --->   "%tmp_31 = call i32 @_ssdm_op_PartSelect.i32.i1024.i32.i32(i1024 %A_load, i32 512, i32 543)" [Brutal_design.cpp:17]   --->   Operation 65 'partselect' 'tmp_31' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_3 : Operation 66 [1/1] (0.00ns)   --->   "%tmp_32 = call i32 @_ssdm_op_PartSelect.i32.i1024.i32.i32(i1024 %B_load, i32 512, i32 543)" [Brutal_design.cpp:17]   --->   Operation 66 'partselect' 'tmp_32' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_3 : Operation 67 [1/1] (0.00ns)   --->   "%tmp_33 = call i32 @_ssdm_op_PartSelect.i32.i1024.i32.i32(i1024 %A_load, i32 544, i32 575)" [Brutal_design.cpp:17]   --->   Operation 67 'partselect' 'tmp_33' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_3 : Operation 68 [1/1] (0.00ns)   --->   "%tmp_34 = call i32 @_ssdm_op_PartSelect.i32.i1024.i32.i32(i1024 %B_load, i32 544, i32 575)" [Brutal_design.cpp:17]   --->   Operation 68 'partselect' 'tmp_34' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_3 : Operation 69 [1/1] (0.00ns)   --->   "%tmp_35 = call i32 @_ssdm_op_PartSelect.i32.i1024.i32.i32(i1024 %A_load, i32 576, i32 607)" [Brutal_design.cpp:17]   --->   Operation 69 'partselect' 'tmp_35' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_3 : Operation 70 [1/1] (0.00ns)   --->   "%tmp_36 = call i32 @_ssdm_op_PartSelect.i32.i1024.i32.i32(i1024 %B_load, i32 576, i32 607)" [Brutal_design.cpp:17]   --->   Operation 70 'partselect' 'tmp_36' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_3 : Operation 71 [1/1] (0.00ns)   --->   "%tmp_37 = call i32 @_ssdm_op_PartSelect.i32.i1024.i32.i32(i1024 %A_load, i32 608, i32 639)" [Brutal_design.cpp:17]   --->   Operation 71 'partselect' 'tmp_37' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_3 : Operation 72 [1/1] (0.00ns)   --->   "%tmp_38 = call i32 @_ssdm_op_PartSelect.i32.i1024.i32.i32(i1024 %B_load, i32 608, i32 639)" [Brutal_design.cpp:17]   --->   Operation 72 'partselect' 'tmp_38' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_3 : Operation 73 [1/1] (0.00ns)   --->   "%tmp_39 = call i32 @_ssdm_op_PartSelect.i32.i1024.i32.i32(i1024 %A_load, i32 640, i32 671)" [Brutal_design.cpp:17]   --->   Operation 73 'partselect' 'tmp_39' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_3 : Operation 74 [1/1] (0.00ns)   --->   "%tmp_40 = call i32 @_ssdm_op_PartSelect.i32.i1024.i32.i32(i1024 %B_load, i32 640, i32 671)" [Brutal_design.cpp:17]   --->   Operation 74 'partselect' 'tmp_40' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_3 : Operation 75 [1/1] (0.00ns)   --->   "%tmp_41 = call i32 @_ssdm_op_PartSelect.i32.i1024.i32.i32(i1024 %A_load, i32 672, i32 703)" [Brutal_design.cpp:17]   --->   Operation 75 'partselect' 'tmp_41' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_3 : Operation 76 [1/1] (0.00ns)   --->   "%tmp_42 = call i32 @_ssdm_op_PartSelect.i32.i1024.i32.i32(i1024 %B_load, i32 672, i32 703)" [Brutal_design.cpp:17]   --->   Operation 76 'partselect' 'tmp_42' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_3 : Operation 77 [1/1] (0.00ns)   --->   "%tmp_43 = call i32 @_ssdm_op_PartSelect.i32.i1024.i32.i32(i1024 %A_load, i32 704, i32 735)" [Brutal_design.cpp:17]   --->   Operation 77 'partselect' 'tmp_43' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_3 : Operation 78 [1/1] (0.00ns)   --->   "%tmp_44 = call i32 @_ssdm_op_PartSelect.i32.i1024.i32.i32(i1024 %B_load, i32 704, i32 735)" [Brutal_design.cpp:17]   --->   Operation 78 'partselect' 'tmp_44' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_3 : Operation 79 [1/1] (0.00ns)   --->   "%tmp_45 = call i32 @_ssdm_op_PartSelect.i32.i1024.i32.i32(i1024 %A_load, i32 736, i32 767)" [Brutal_design.cpp:17]   --->   Operation 79 'partselect' 'tmp_45' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_3 : Operation 80 [1/1] (0.00ns)   --->   "%tmp_46 = call i32 @_ssdm_op_PartSelect.i32.i1024.i32.i32(i1024 %B_load, i32 736, i32 767)" [Brutal_design.cpp:17]   --->   Operation 80 'partselect' 'tmp_46' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_3 : Operation 81 [1/1] (0.00ns)   --->   "%tmp_47 = call i32 @_ssdm_op_PartSelect.i32.i1024.i32.i32(i1024 %A_load, i32 768, i32 799)" [Brutal_design.cpp:17]   --->   Operation 81 'partselect' 'tmp_47' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_3 : Operation 82 [1/1] (0.00ns)   --->   "%tmp_48 = call i32 @_ssdm_op_PartSelect.i32.i1024.i32.i32(i1024 %B_load, i32 768, i32 799)" [Brutal_design.cpp:17]   --->   Operation 82 'partselect' 'tmp_48' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_3 : Operation 83 [1/1] (0.00ns)   --->   "%tmp_49 = call i32 @_ssdm_op_PartSelect.i32.i1024.i32.i32(i1024 %A_load, i32 800, i32 831)" [Brutal_design.cpp:17]   --->   Operation 83 'partselect' 'tmp_49' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_3 : Operation 84 [1/1] (0.00ns)   --->   "%tmp_50 = call i32 @_ssdm_op_PartSelect.i32.i1024.i32.i32(i1024 %B_load, i32 800, i32 831)" [Brutal_design.cpp:17]   --->   Operation 84 'partselect' 'tmp_50' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_3 : Operation 85 [1/1] (0.00ns)   --->   "%tmp_51 = call i32 @_ssdm_op_PartSelect.i32.i1024.i32.i32(i1024 %A_load, i32 832, i32 863)" [Brutal_design.cpp:17]   --->   Operation 85 'partselect' 'tmp_51' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_3 : Operation 86 [1/1] (0.00ns)   --->   "%tmp_52 = call i32 @_ssdm_op_PartSelect.i32.i1024.i32.i32(i1024 %B_load, i32 832, i32 863)" [Brutal_design.cpp:17]   --->   Operation 86 'partselect' 'tmp_52' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_3 : Operation 87 [1/1] (0.00ns)   --->   "%tmp_53 = call i32 @_ssdm_op_PartSelect.i32.i1024.i32.i32(i1024 %A_load, i32 864, i32 895)" [Brutal_design.cpp:17]   --->   Operation 87 'partselect' 'tmp_53' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_3 : Operation 88 [1/1] (0.00ns)   --->   "%tmp_54 = call i32 @_ssdm_op_PartSelect.i32.i1024.i32.i32(i1024 %B_load, i32 864, i32 895)" [Brutal_design.cpp:17]   --->   Operation 88 'partselect' 'tmp_54' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_3 : Operation 89 [1/1] (0.00ns)   --->   "%tmp_55 = call i32 @_ssdm_op_PartSelect.i32.i1024.i32.i32(i1024 %A_load, i32 896, i32 927)" [Brutal_design.cpp:17]   --->   Operation 89 'partselect' 'tmp_55' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_3 : Operation 90 [1/1] (0.00ns)   --->   "%tmp_56 = call i32 @_ssdm_op_PartSelect.i32.i1024.i32.i32(i1024 %B_load, i32 896, i32 927)" [Brutal_design.cpp:17]   --->   Operation 90 'partselect' 'tmp_56' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_3 : Operation 91 [1/1] (0.00ns)   --->   "%tmp_57 = call i32 @_ssdm_op_PartSelect.i32.i1024.i32.i32(i1024 %A_load, i32 928, i32 959)" [Brutal_design.cpp:17]   --->   Operation 91 'partselect' 'tmp_57' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_3 : Operation 92 [1/1] (0.00ns)   --->   "%tmp_58 = call i32 @_ssdm_op_PartSelect.i32.i1024.i32.i32(i1024 %B_load, i32 928, i32 959)" [Brutal_design.cpp:17]   --->   Operation 92 'partselect' 'tmp_58' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_3 : Operation 93 [1/1] (0.00ns)   --->   "%tmp_59 = call i32 @_ssdm_op_PartSelect.i32.i1024.i32.i32(i1024 %A_load, i32 960, i32 991)" [Brutal_design.cpp:17]   --->   Operation 93 'partselect' 'tmp_59' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_3 : Operation 94 [1/1] (0.00ns)   --->   "%tmp_60 = call i32 @_ssdm_op_PartSelect.i32.i1024.i32.i32(i1024 %B_load, i32 960, i32 991)" [Brutal_design.cpp:17]   --->   Operation 94 'partselect' 'tmp_60' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_3 : Operation 95 [1/1] (0.00ns)   --->   "%tmp_61 = call i32 @_ssdm_op_PartSelect.i32.i1024.i32.i32(i1024 %A_load, i32 992, i32 1023)" [Brutal_design.cpp:17]   --->   Operation 95 'partselect' 'tmp_61' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_3 : Operation 96 [1/1] (0.00ns)   --->   "%tmp_62 = call i32 @_ssdm_op_PartSelect.i32.i1024.i32.i32(i1024 %B_load, i32 992, i32 1023)" [Brutal_design.cpp:17]   --->   Operation 96 'partselect' 'tmp_62' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+
+State 4 <SV = 3> <Delay = 8.51>
+ST_4 : Operation 97 [1/1] (8.51ns)   --->   "%mul_ln17 = mul nsw i32 %trunc_ln17_1, %trunc_ln17" [Brutal_design.cpp:17]   --->   Operation 97 'mul' 'mul_ln17' <Predicate = (!icmp_ln11)> <Delay = 8.51> <Core = "Mul">   --->   Core 16 'Mul' <Latency = 0> <II = 1> <Delay = 8.51> <FuncUnit> <Opcode : 'mul'> <InPorts = 2> <OutPorts = 1>
+ST_4 : Operation 98 [1/1] (8.51ns)   --->   "%mul_ln17_1 = mul nsw i32 %tmp_5, %tmp_4" [Brutal_design.cpp:17]   --->   Operation 98 'mul' 'mul_ln17_1' <Predicate = (!icmp_ln11)> <Delay = 8.51> <Core = "Mul">   --->   Core 16 'Mul' <Latency = 0> <II = 1> <Delay = 8.51> <FuncUnit> <Opcode : 'mul'> <InPorts = 2> <OutPorts = 1>
+ST_4 : Operation 99 [1/1] (8.51ns)   --->   "%mul_ln17_2 = mul nsw i32 %tmp_7, %tmp_6" [Brutal_design.cpp:17]   --->   Operation 99 'mul' 'mul_ln17_2' <Predicate = (!icmp_ln11)> <Delay = 8.51> <Core = "Mul">   --->   Core 16 'Mul' <Latency = 0> <II = 1> <Delay = 8.51> <FuncUnit> <Opcode : 'mul'> <InPorts = 2> <OutPorts = 1>
+ST_4 : Operation 100 [1/1] (8.51ns)   --->   "%mul_ln17_3 = mul nsw i32 %tmp_9, %tmp_8" [Brutal_design.cpp:17]   --->   Operation 100 'mul' 'mul_ln17_3' <Predicate = (!icmp_ln11)> <Delay = 8.51> <Core = "Mul">   --->   Core 16 'Mul' <Latency = 0> <II = 1> <Delay = 8.51> <FuncUnit> <Opcode : 'mul'> <InPorts = 2> <OutPorts = 1>
+ST_4 : Operation 101 [1/1] (8.51ns)   --->   "%mul_ln17_4 = mul nsw i32 %tmp_2, %tmp_s" [Brutal_design.cpp:17]   --->   Operation 101 'mul' 'mul_ln17_4' <Predicate = (!icmp_ln11)> <Delay = 8.51> <Core = "Mul">   --->   Core 16 'Mul' <Latency = 0> <II = 1> <Delay = 8.51> <FuncUnit> <Opcode : 'mul'> <InPorts = 2> <OutPorts = 1>
+ST_4 : Operation 102 [1/1] (8.51ns)   --->   "%mul_ln17_5 = mul nsw i32 %tmp_10, %tmp_3" [Brutal_design.cpp:17]   --->   Operation 102 'mul' 'mul_ln17_5' <Predicate = (!icmp_ln11)> <Delay = 8.51> <Core = "Mul">   --->   Core 16 'Mul' <Latency = 0> <II = 1> <Delay = 8.51> <FuncUnit> <Opcode : 'mul'> <InPorts = 2> <OutPorts = 1>
+ST_4 : Operation 103 [1/1] (8.51ns)   --->   "%mul_ln17_6 = mul nsw i32 %tmp_12, %tmp_11" [Brutal_design.cpp:17]   --->   Operation 103 'mul' 'mul_ln17_6' <Predicate = (!icmp_ln11)> <Delay = 8.51> <Core = "Mul">   --->   Core 16 'Mul' <Latency = 0> <II = 1> <Delay = 8.51> <FuncUnit> <Opcode : 'mul'> <InPorts = 2> <OutPorts = 1>
+ST_4 : Operation 104 [1/1] (8.51ns)   --->   "%mul_ln17_7 = mul nsw i32 %tmp_14, %tmp_13" [Brutal_design.cpp:17]   --->   Operation 104 'mul' 'mul_ln17_7' <Predicate = (!icmp_ln11)> <Delay = 8.51> <Core = "Mul">   --->   Core 16 'Mul' <Latency = 0> <II = 1> <Delay = 8.51> <FuncUnit> <Opcode : 'mul'> <InPorts = 2> <OutPorts = 1>
+ST_4 : Operation 105 [1/1] (8.51ns)   --->   "%mul_ln17_8 = mul nsw i32 %tmp_16, %tmp_15" [Brutal_design.cpp:17]   --->   Operation 105 'mul' 'mul_ln17_8' <Predicate = (!icmp_ln11)> <Delay = 8.51> <Core = "Mul">   --->   Core 16 'Mul' <Latency = 0> <II = 1> <Delay = 8.51> <FuncUnit> <Opcode : 'mul'> <InPorts = 2> <OutPorts = 1>
+ST_4 : Operation 106 [1/1] (8.51ns)   --->   "%mul_ln17_9 = mul nsw i32 %tmp_18, %tmp_17" [Brutal_design.cpp:17]   --->   Operation 106 'mul' 'mul_ln17_9' <Predicate = (!icmp_ln11)> <Delay = 8.51> <Core = "Mul">   --->   Core 16 'Mul' <Latency = 0> <II = 1> <Delay = 8.51> <FuncUnit> <Opcode : 'mul'> <InPorts = 2> <OutPorts = 1>
+ST_4 : Operation 107 [1/1] (8.51ns)   --->   "%mul_ln17_10 = mul nsw i32 %tmp_20, %tmp_19" [Brutal_design.cpp:17]   --->   Operation 107 'mul' 'mul_ln17_10' <Predicate = (!icmp_ln11)> <Delay = 8.51> <Core = "Mul">   --->   Core 16 'Mul' <Latency = 0> <II = 1> <Delay = 8.51> <FuncUnit> <Opcode : 'mul'> <InPorts = 2> <OutPorts = 1>
+ST_4 : Operation 108 [1/1] (8.51ns)   --->   "%mul_ln17_11 = mul nsw i32 %tmp_22, %tmp_21" [Brutal_design.cpp:17]   --->   Operation 108 'mul' 'mul_ln17_11' <Predicate = (!icmp_ln11)> <Delay = 8.51> <Core = "Mul">   --->   Core 16 'Mul' <Latency = 0> <II = 1> <Delay = 8.51> <FuncUnit> <Opcode : 'mul'> <InPorts = 2> <OutPorts = 1>
+ST_4 : Operation 109 [1/1] (8.51ns)   --->   "%mul_ln17_12 = mul nsw i32 %tmp_24, %tmp_23" [Brutal_design.cpp:17]   --->   Operation 109 'mul' 'mul_ln17_12' <Predicate = (!icmp_ln11)> <Delay = 8.51> <Core = "Mul">   --->   Core 16 'Mul' <Latency = 0> <II = 1> <Delay = 8.51> <FuncUnit> <Opcode : 'mul'> <InPorts = 2> <OutPorts = 1>
+ST_4 : Operation 110 [1/1] (8.51ns)   --->   "%mul_ln17_13 = mul nsw i32 %tmp_26, %tmp_25" [Brutal_design.cpp:17]   --->   Operation 110 'mul' 'mul_ln17_13' <Predicate = (!icmp_ln11)> <Delay = 8.51> <Core = "Mul">   --->   Core 16 'Mul' <Latency = 0> <II = 1> <Delay = 8.51> <FuncUnit> <Opcode : 'mul'> <InPorts = 2> <OutPorts = 1>
+ST_4 : Operation 111 [1/1] (8.51ns)   --->   "%mul_ln17_14 = mul nsw i32 %tmp_28, %tmp_27" [Brutal_design.cpp:17]   --->   Operation 111 'mul' 'mul_ln17_14' <Predicate = (!icmp_ln11)> <Delay = 8.51> <Core = "Mul">   --->   Core 16 'Mul' <Latency = 0> <II = 1> <Delay = 8.51> <FuncUnit> <Opcode : 'mul'> <InPorts = 2> <OutPorts = 1>
+ST_4 : Operation 112 [1/1] (8.51ns)   --->   "%mul_ln17_15 = mul nsw i32 %tmp_30, %tmp_29" [Brutal_design.cpp:17]   --->   Operation 112 'mul' 'mul_ln17_15' <Predicate = (!icmp_ln11)> <Delay = 8.51> <Core = "Mul">   --->   Core 16 'Mul' <Latency = 0> <II = 1> <Delay = 8.51> <FuncUnit> <Opcode : 'mul'> <InPorts = 2> <OutPorts = 1>
+ST_4 : Operation 113 [1/1] (8.51ns)   --->   "%mul_ln17_16 = mul nsw i32 %tmp_32, %tmp_31" [Brutal_design.cpp:17]   --->   Operation 113 'mul' 'mul_ln17_16' <Predicate = (!icmp_ln11)> <Delay = 8.51> <Core = "Mul">   --->   Core 16 'Mul' <Latency = 0> <II = 1> <Delay = 8.51> <FuncUnit> <Opcode : 'mul'> <InPorts = 2> <OutPorts = 1>
+ST_4 : Operation 114 [1/1] (8.51ns)   --->   "%mul_ln17_17 = mul nsw i32 %tmp_34, %tmp_33" [Brutal_design.cpp:17]   --->   Operation 114 'mul' 'mul_ln17_17' <Predicate = (!icmp_ln11)> <Delay = 8.51> <Core = "Mul">   --->   Core 16 'Mul' <Latency = 0> <II = 1> <Delay = 8.51> <FuncUnit> <Opcode : 'mul'> <InPorts = 2> <OutPorts = 1>
+ST_4 : Operation 115 [1/1] (8.51ns)   --->   "%mul_ln17_18 = mul nsw i32 %tmp_36, %tmp_35" [Brutal_design.cpp:17]   --->   Operation 115 'mul' 'mul_ln17_18' <Predicate = (!icmp_ln11)> <Delay = 8.51> <Core = "Mul">   --->   Core 16 'Mul' <Latency = 0> <II = 1> <Delay = 8.51> <FuncUnit> <Opcode : 'mul'> <InPorts = 2> <OutPorts = 1>
+ST_4 : Operation 116 [1/1] (8.51ns)   --->   "%mul_ln17_19 = mul nsw i32 %tmp_38, %tmp_37" [Brutal_design.cpp:17]   --->   Operation 116 'mul' 'mul_ln17_19' <Predicate = (!icmp_ln11)> <Delay = 8.51> <Core = "Mul">   --->   Core 16 'Mul' <Latency = 0> <II = 1> <Delay = 8.51> <FuncUnit> <Opcode : 'mul'> <InPorts = 2> <OutPorts = 1>
+ST_4 : Operation 117 [1/1] (8.51ns)   --->   "%mul_ln17_20 = mul nsw i32 %tmp_40, %tmp_39" [Brutal_design.cpp:17]   --->   Operation 117 'mul' 'mul_ln17_20' <Predicate = (!icmp_ln11)> <Delay = 8.51> <Core = "Mul">   --->   Core 16 'Mul' <Latency = 0> <II = 1> <Delay = 8.51> <FuncUnit> <Opcode : 'mul'> <InPorts = 2> <OutPorts = 1>
+ST_4 : Operation 118 [1/1] (8.51ns)   --->   "%mul_ln17_21 = mul nsw i32 %tmp_42, %tmp_41" [Brutal_design.cpp:17]   --->   Operation 118 'mul' 'mul_ln17_21' <Predicate = (!icmp_ln11)> <Delay = 8.51> <Core = "Mul">   --->   Core 16 'Mul' <Latency = 0> <II = 1> <Delay = 8.51> <FuncUnit> <Opcode : 'mul'> <InPorts = 2> <OutPorts = 1>
+ST_4 : Operation 119 [1/1] (8.51ns)   --->   "%mul_ln17_22 = mul nsw i32 %tmp_44, %tmp_43" [Brutal_design.cpp:17]   --->   Operation 119 'mul' 'mul_ln17_22' <Predicate = (!icmp_ln11)> <Delay = 8.51> <Core = "Mul">   --->   Core 16 'Mul' <Latency = 0> <II = 1> <Delay = 8.51> <FuncUnit> <Opcode : 'mul'> <InPorts = 2> <OutPorts = 1>
+ST_4 : Operation 120 [1/1] (8.51ns)   --->   "%mul_ln17_23 = mul nsw i32 %tmp_46, %tmp_45" [Brutal_design.cpp:17]   --->   Operation 120 'mul' 'mul_ln17_23' <Predicate = (!icmp_ln11)> <Delay = 8.51> <Core = "Mul">   --->   Core 16 'Mul' <Latency = 0> <II = 1> <Delay = 8.51> <FuncUnit> <Opcode : 'mul'> <InPorts = 2> <OutPorts = 1>
+ST_4 : Operation 121 [1/1] (8.51ns)   --->   "%mul_ln17_24 = mul nsw i32 %tmp_48, %tmp_47" [Brutal_design.cpp:17]   --->   Operation 121 'mul' 'mul_ln17_24' <Predicate = (!icmp_ln11)> <Delay = 8.51> <Core = "Mul">   --->   Core 16 'Mul' <Latency = 0> <II = 1> <Delay = 8.51> <FuncUnit> <Opcode : 'mul'> <InPorts = 2> <OutPorts = 1>
+ST_4 : Operation 122 [1/1] (8.51ns)   --->   "%mul_ln17_25 = mul nsw i32 %tmp_50, %tmp_49" [Brutal_design.cpp:17]   --->   Operation 122 'mul' 'mul_ln17_25' <Predicate = (!icmp_ln11)> <Delay = 8.51> <Core = "Mul">   --->   Core 16 'Mul' <Latency = 0> <II = 1> <Delay = 8.51> <FuncUnit> <Opcode : 'mul'> <InPorts = 2> <OutPorts = 1>
+ST_4 : Operation 123 [1/1] (8.51ns)   --->   "%mul_ln17_26 = mul nsw i32 %tmp_52, %tmp_51" [Brutal_design.cpp:17]   --->   Operation 123 'mul' 'mul_ln17_26' <Predicate = (!icmp_ln11)> <Delay = 8.51> <Core = "Mul">   --->   Core 16 'Mul' <Latency = 0> <II = 1> <Delay = 8.51> <FuncUnit> <Opcode : 'mul'> <InPorts = 2> <OutPorts = 1>
+ST_4 : Operation 124 [1/1] (8.51ns)   --->   "%mul_ln17_27 = mul nsw i32 %tmp_54, %tmp_53" [Brutal_design.cpp:17]   --->   Operation 124 'mul' 'mul_ln17_27' <Predicate = (!icmp_ln11)> <Delay = 8.51> <Core = "Mul">   --->   Core 16 'Mul' <Latency = 0> <II = 1> <Delay = 8.51> <FuncUnit> <Opcode : 'mul'> <InPorts = 2> <OutPorts = 1>
+ST_4 : Operation 125 [1/1] (8.51ns)   --->   "%mul_ln17_28 = mul nsw i32 %tmp_56, %tmp_55" [Brutal_design.cpp:17]   --->   Operation 125 'mul' 'mul_ln17_28' <Predicate = (!icmp_ln11)> <Delay = 8.51> <Core = "Mul">   --->   Core 16 'Mul' <Latency = 0> <II = 1> <Delay = 8.51> <FuncUnit> <Opcode : 'mul'> <InPorts = 2> <OutPorts = 1>
+ST_4 : Operation 126 [1/1] (8.51ns)   --->   "%mul_ln17_29 = mul nsw i32 %tmp_58, %tmp_57" [Brutal_design.cpp:17]   --->   Operation 126 'mul' 'mul_ln17_29' <Predicate = (!icmp_ln11)> <Delay = 8.51> <Core = "Mul">   --->   Core 16 'Mul' <Latency = 0> <II = 1> <Delay = 8.51> <FuncUnit> <Opcode : 'mul'> <InPorts = 2> <OutPorts = 1>
+ST_4 : Operation 127 [1/1] (8.51ns)   --->   "%mul_ln17_30 = mul nsw i32 %tmp_60, %tmp_59" [Brutal_design.cpp:17]   --->   Operation 127 'mul' 'mul_ln17_30' <Predicate = (!icmp_ln11)> <Delay = 8.51> <Core = "Mul">   --->   Core 16 'Mul' <Latency = 0> <II = 1> <Delay = 8.51> <FuncUnit> <Opcode : 'mul'> <InPorts = 2> <OutPorts = 1>
+ST_4 : Operation 128 [1/1] (8.51ns)   --->   "%mul_ln17_31 = mul nsw i32 %tmp_62, %tmp_61" [Brutal_design.cpp:17]   --->   Operation 128 'mul' 'mul_ln17_31' <Predicate = (!icmp_ln11)> <Delay = 8.51> <Core = "Mul">   --->   Core 16 'Mul' <Latency = 0> <II = 1> <Delay = 8.51> <FuncUnit> <Opcode : 'mul'> <InPorts = 2> <OutPorts = 1>
+
+State 5 <SV = 4> <Delay = 6.92>
+ST_5 : Operation 129 [1/1] (2.55ns)   --->   "%add_ln17 = add i32 %mul_ln17_1, %mul_ln17" [Brutal_design.cpp:17]   --->   Operation 129 'add' 'add_ln17' <Predicate = (!icmp_ln11)> <Delay = 2.55> <Core = "AddSub">   --->   Core 14 'AddSub' <Latency = 0> <II = 1> <Delay = 1.82> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_5 : Operation 130 [1/1] (0.00ns) (grouped into TernaryAdder)   --->   "%add_ln17_1 = add i32 %mul_ln17_3, %mul_ln17_2" [Brutal_design.cpp:17]   --->   Operation 130 'add' 'add_ln17_1' <Predicate = (!icmp_ln11)> <Delay = 0.00> <Core = "TAddSub">   --->   Core 83 'TAddSub' <Latency = 0> <II = 1> <Delay = 2.18> <IPBlock> <Opcode : 'add' 'sub'> <InPorts = 3> <OutPorts = 1> <Sync> <CReg>
+ST_5 : Operation 131 [1/1] (4.37ns) (root node of TernaryAdder)   --->   "%add_ln17_2 = add i32 %add_ln17, %add_ln17_1" [Brutal_design.cpp:17]   --->   Operation 131 'add' 'add_ln17_2' <Predicate = (!icmp_ln11)> <Delay = 4.37> <Core = "TAddSub">   --->   Core 83 'TAddSub' <Latency = 0> <II = 1> <Delay = 2.18> <IPBlock> <Opcode : 'add' 'sub'> <InPorts = 3> <OutPorts = 1> <Sync> <CReg>
+ST_5 : Operation 132 [1/1] (2.55ns)   --->   "%add_ln17_3 = add i32 %mul_ln17_5, %mul_ln17_4" [Brutal_design.cpp:17]   --->   Operation 132 'add' 'add_ln17_3' <Predicate = (!icmp_ln11)> <Delay = 2.55> <Core = "AddSub">   --->   Core 14 'AddSub' <Latency = 0> <II = 1> <Delay = 1.82> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_5 : Operation 133 [1/1] (2.55ns)   --->   "%add_ln17_4 = add i32 %mul_ln17_7, %mul_ln17_6" [Brutal_design.cpp:17]   --->   Operation 133 'add' 'add_ln17_4' <Predicate = (!icmp_ln11)> <Delay = 2.55> <Core = "AddSub">   --->   Core 14 'AddSub' <Latency = 0> <II = 1> <Delay = 1.82> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_5 : Operation 134 [1/1] (2.55ns)   --->   "%add_ln17_7 = add i32 %mul_ln17_9, %mul_ln17_8" [Brutal_design.cpp:17]   --->   Operation 134 'add' 'add_ln17_7' <Predicate = (!icmp_ln11)> <Delay = 2.55> <Core = "AddSub">   --->   Core 14 'AddSub' <Latency = 0> <II = 1> <Delay = 1.82> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_5 : Operation 135 [1/1] (0.00ns) (grouped into TernaryAdder)   --->   "%add_ln17_8 = add i32 %mul_ln17_11, %mul_ln17_10" [Brutal_design.cpp:17]   --->   Operation 135 'add' 'add_ln17_8' <Predicate = (!icmp_ln11)> <Delay = 0.00> <Core = "TAddSub">   --->   Core 83 'TAddSub' <Latency = 0> <II = 1> <Delay = 2.18> <IPBlock> <Opcode : 'add' 'sub'> <InPorts = 3> <OutPorts = 1> <Sync> <CReg>
+ST_5 : Operation 136 [1/1] (4.37ns) (root node of TernaryAdder)   --->   "%add_ln17_9 = add i32 %add_ln17_7, %add_ln17_8" [Brutal_design.cpp:17]   --->   Operation 136 'add' 'add_ln17_9' <Predicate = (!icmp_ln11)> <Delay = 4.37> <Core = "TAddSub">   --->   Core 83 'TAddSub' <Latency = 0> <II = 1> <Delay = 2.18> <IPBlock> <Opcode : 'add' 'sub'> <InPorts = 3> <OutPorts = 1> <Sync> <CReg>
+ST_5 : Operation 137 [1/1] (2.55ns)   --->   "%add_ln17_10 = add i32 %mul_ln17_13, %mul_ln17_12" [Brutal_design.cpp:17]   --->   Operation 137 'add' 'add_ln17_10' <Predicate = (!icmp_ln11)> <Delay = 2.55> <Core = "AddSub">   --->   Core 14 'AddSub' <Latency = 0> <II = 1> <Delay = 1.82> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_5 : Operation 138 [1/1] (0.00ns) (grouped into TernaryAdder)   --->   "%add_ln17_11 = add i32 %mul_ln17_15, %mul_ln17_14" [Brutal_design.cpp:17]   --->   Operation 138 'add' 'add_ln17_11' <Predicate = (!icmp_ln11)> <Delay = 0.00> <Core = "TAddSub">   --->   Core 83 'TAddSub' <Latency = 0> <II = 1> <Delay = 2.18> <IPBlock> <Opcode : 'add' 'sub'> <InPorts = 3> <OutPorts = 1> <Sync> <CReg>
+ST_5 : Operation 139 [1/1] (4.37ns) (root node of TernaryAdder)   --->   "%add_ln17_12 = add i32 %add_ln17_10, %add_ln17_11" [Brutal_design.cpp:17]   --->   Operation 139 'add' 'add_ln17_12' <Predicate = (!icmp_ln11)> <Delay = 4.37> <Core = "TAddSub">   --->   Core 83 'TAddSub' <Latency = 0> <II = 1> <Delay = 2.18> <IPBlock> <Opcode : 'add' 'sub'> <InPorts = 3> <OutPorts = 1> <Sync> <CReg>
+ST_5 : Operation 140 [1/1] (2.55ns)   --->   "%add_ln17_15 = add i32 %mul_ln17_17, %mul_ln17_16" [Brutal_design.cpp:17]   --->   Operation 140 'add' 'add_ln17_15' <Predicate = (!icmp_ln11)> <Delay = 2.55> <Core = "AddSub">   --->   Core 14 'AddSub' <Latency = 0> <II = 1> <Delay = 1.82> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_5 : Operation 141 [1/1] (0.00ns) (grouped into TernaryAdder)   --->   "%add_ln17_16 = add i32 %mul_ln17_19, %mul_ln17_18" [Brutal_design.cpp:17]   --->   Operation 141 'add' 'add_ln17_16' <Predicate = (!icmp_ln11)> <Delay = 0.00> <Core = "TAddSub">   --->   Core 83 'TAddSub' <Latency = 0> <II = 1> <Delay = 2.18> <IPBlock> <Opcode : 'add' 'sub'> <InPorts = 3> <OutPorts = 1> <Sync> <CReg>
+ST_5 : Operation 142 [1/1] (4.37ns) (root node of TernaryAdder)   --->   "%add_ln17_17 = add i32 %add_ln17_15, %add_ln17_16" [Brutal_design.cpp:17]   --->   Operation 142 'add' 'add_ln17_17' <Predicate = (!icmp_ln11)> <Delay = 4.37> <Core = "TAddSub">   --->   Core 83 'TAddSub' <Latency = 0> <II = 1> <Delay = 2.18> <IPBlock> <Opcode : 'add' 'sub'> <InPorts = 3> <OutPorts = 1> <Sync> <CReg>
+ST_5 : Operation 143 [1/1] (2.55ns)   --->   "%add_ln17_18 = add i32 %mul_ln17_21, %mul_ln17_20" [Brutal_design.cpp:17]   --->   Operation 143 'add' 'add_ln17_18' <Predicate = (!icmp_ln11)> <Delay = 2.55> <Core = "AddSub">   --->   Core 14 'AddSub' <Latency = 0> <II = 1> <Delay = 1.82> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_5 : Operation 144 [1/1] (2.55ns)   --->   "%add_ln17_19 = add i32 %mul_ln17_23, %mul_ln17_22" [Brutal_design.cpp:17]   --->   Operation 144 'add' 'add_ln17_19' <Predicate = (!icmp_ln11)> <Delay = 2.55> <Core = "AddSub">   --->   Core 14 'AddSub' <Latency = 0> <II = 1> <Delay = 1.82> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_5 : Operation 145 [1/1] (2.55ns)   --->   "%add_ln17_22 = add i32 %mul_ln17_25, %mul_ln17_24" [Brutal_design.cpp:17]   --->   Operation 145 'add' 'add_ln17_22' <Predicate = (!icmp_ln11)> <Delay = 2.55> <Core = "AddSub">   --->   Core 14 'AddSub' <Latency = 0> <II = 1> <Delay = 1.82> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_5 : Operation 146 [1/1] (0.00ns) (grouped into TernaryAdder)   --->   "%add_ln17_23 = add i32 %mul_ln17_27, %mul_ln17_26" [Brutal_design.cpp:17]   --->   Operation 146 'add' 'add_ln17_23' <Predicate = (!icmp_ln11)> <Delay = 0.00> <Core = "TAddSub">   --->   Core 83 'TAddSub' <Latency = 0> <II = 1> <Delay = 2.18> <IPBlock> <Opcode : 'add' 'sub'> <InPorts = 3> <OutPorts = 1> <Sync> <CReg>
+ST_5 : Operation 147 [1/1] (4.37ns) (root node of TernaryAdder)   --->   "%add_ln17_24 = add i32 %add_ln17_22, %add_ln17_23" [Brutal_design.cpp:17]   --->   Operation 147 'add' 'add_ln17_24' <Predicate = (!icmp_ln11)> <Delay = 4.37> <Core = "TAddSub">   --->   Core 83 'TAddSub' <Latency = 0> <II = 1> <Delay = 2.18> <IPBlock> <Opcode : 'add' 'sub'> <InPorts = 3> <OutPorts = 1> <Sync> <CReg>
+ST_5 : Operation 148 [1/1] (2.55ns)   --->   "%add_ln17_25 = add i32 %mul_ln17_29, %mul_ln17_28" [Brutal_design.cpp:17]   --->   Operation 148 'add' 'add_ln17_25' <Predicate = (!icmp_ln11)> <Delay = 2.55> <Core = "AddSub">   --->   Core 14 'AddSub' <Latency = 0> <II = 1> <Delay = 1.82> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_5 : Operation 149 [1/1] (2.55ns)   --->   "%add_ln17_26 = add i32 %mul_ln17_31, %mul_ln17_30" [Brutal_design.cpp:17]   --->   Operation 149 'add' 'add_ln17_26' <Predicate = (!icmp_ln11)> <Delay = 2.55> <Core = "AddSub">   --->   Core 14 'AddSub' <Latency = 0> <II = 1> <Delay = 1.82> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+
+State 6 <SV = 5> <Delay = 8.74>
+ST_6 : Operation 150 [1/1] (0.00ns) (grouped into TernaryAdder)   --->   "%add_ln17_5 = add i32 %add_ln17_3, %add_ln17_4" [Brutal_design.cpp:17]   --->   Operation 150 'add' 'add_ln17_5' <Predicate = (!icmp_ln11)> <Delay = 0.00> <Core = "TAddSub">   --->   Core 83 'TAddSub' <Latency = 0> <II = 1> <Delay = 2.18> <IPBlock> <Opcode : 'add' 'sub'> <InPorts = 3> <OutPorts = 1> <Sync> <CReg>
+ST_6 : Operation 151 [1/1] (4.37ns) (root node of TernaryAdder)   --->   "%add_ln17_6 = add i32 %add_ln17_2, %add_ln17_5" [Brutal_design.cpp:17]   --->   Operation 151 'add' 'add_ln17_6' <Predicate = (!icmp_ln11)> <Delay = 4.37> <Core = "TAddSub">   --->   Core 83 'TAddSub' <Latency = 0> <II = 1> <Delay = 2.18> <IPBlock> <Opcode : 'add' 'sub'> <InPorts = 3> <OutPorts = 1> <Sync> <CReg>
+ST_6 : Operation 152 [1/1] (0.00ns) (grouped into TernaryAdder)   --->   "%add_ln17_13 = add i32 %add_ln17_9, %add_ln17_12" [Brutal_design.cpp:17]   --->   Operation 152 'add' 'add_ln17_13' <Predicate = (!icmp_ln11)> <Delay = 0.00> <Core = "TAddSub">   --->   Core 83 'TAddSub' <Latency = 0> <II = 1> <Delay = 2.18> <IPBlock> <Opcode : 'add' 'sub'> <InPorts = 3> <OutPorts = 1> <Sync> <CReg>
+ST_6 : Operation 153 [1/1] (4.37ns) (root node of TernaryAdder)   --->   "%add_ln17_14 = add i32 %add_ln17_6, %add_ln17_13" [Brutal_design.cpp:17]   --->   Operation 153 'add' 'add_ln17_14' <Predicate = (!icmp_ln11)> <Delay = 4.37> <Core = "TAddSub">   --->   Core 83 'TAddSub' <Latency = 0> <II = 1> <Delay = 2.18> <IPBlock> <Opcode : 'add' 'sub'> <InPorts = 3> <OutPorts = 1> <Sync> <CReg>
+ST_6 : Operation 154 [1/1] (0.00ns) (grouped into TernaryAdder)   --->   "%add_ln17_20 = add i32 %add_ln17_18, %add_ln17_19" [Brutal_design.cpp:17]   --->   Operation 154 'add' 'add_ln17_20' <Predicate = (!icmp_ln11)> <Delay = 0.00> <Core = "TAddSub">   --->   Core 83 'TAddSub' <Latency = 0> <II = 1> <Delay = 2.18> <IPBlock> <Opcode : 'add' 'sub'> <InPorts = 3> <OutPorts = 1> <Sync> <CReg>
+ST_6 : Operation 155 [1/1] (4.37ns) (root node of TernaryAdder)   --->   "%add_ln17_21 = add i32 %add_ln17_17, %add_ln17_20" [Brutal_design.cpp:17]   --->   Operation 155 'add' 'add_ln17_21' <Predicate = (!icmp_ln11)> <Delay = 4.37> <Core = "TAddSub">   --->   Core 83 'TAddSub' <Latency = 0> <II = 1> <Delay = 2.18> <IPBlock> <Opcode : 'add' 'sub'> <InPorts = 3> <OutPorts = 1> <Sync> <CReg>
+ST_6 : Operation 156 [1/1] (0.00ns) (grouped into TernaryAdder)   --->   "%add_ln17_27 = add i32 %add_ln17_25, %add_ln17_26" [Brutal_design.cpp:17]   --->   Operation 156 'add' 'add_ln17_27' <Predicate = (!icmp_ln11)> <Delay = 0.00> <Core = "TAddSub">   --->   Core 83 'TAddSub' <Latency = 0> <II = 1> <Delay = 2.18> <IPBlock> <Opcode : 'add' 'sub'> <InPorts = 3> <OutPorts = 1> <Sync> <CReg>
+ST_6 : Operation 157 [1/1] (4.37ns) (root node of TernaryAdder)   --->   "%add_ln17_28 = add i32 %add_ln17_24, %add_ln17_27" [Brutal_design.cpp:17]   --->   Operation 157 'add' 'add_ln17_28' <Predicate = (!icmp_ln11)> <Delay = 4.37> <Core = "TAddSub">   --->   Core 83 'TAddSub' <Latency = 0> <II = 1> <Delay = 2.18> <IPBlock> <Opcode : 'add' 'sub'> <InPorts = 3> <OutPorts = 1> <Sync> <CReg>
+
+State 7 <SV = 6> <Delay = 7.62>
+ST_7 : Operation 158 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecLoopName([8 x i8]* @row_col_str)"   --->   Operation 158 'specloopname' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_7 : Operation 159 [1/1] (0.00ns)   --->   "%empty = call i32 (...)* @_ssdm_op_SpecLoopTripCount(i64 1024, i64 1024, i64 1024)"   --->   Operation 159 'speclooptripcount' 'empty' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_7 : Operation 160 [1/1] (0.00ns)   --->   "%tmp = call i11 @_ssdm_op_BitConcatenate.i11.i6.i5(i6 %select_ln17_1, i5 0)" [Brutal_design.cpp:19]   --->   Operation 160 'bitconcatenate' 'tmp' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_7 : Operation 161 [1/1] (0.00ns)   --->   "%zext_ln12 = zext i11 %tmp to i12" [Brutal_design.cpp:12]   --->   Operation 161 'zext' 'zext_ln12' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_7 : Operation 162 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecLoopName([4 x i8]* @p_str3) nounwind" [Brutal_design.cpp:12]   --->   Operation 162 'specloopname' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_7 : Operation 163 [1/1] (0.00ns)   --->   "%tmp_1 = call i32 (...)* @_ssdm_op_SpecRegionBegin([4 x i8]* @p_str3) nounwind" [Brutal_design.cpp:12]   --->   Operation 163 'specregionbegin' 'tmp_1' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_7 : Operation 164 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecPipeline(i32 -1, i32 1, i32 1, i32 0, [1 x i8]* @p_str1) nounwind" [Brutal_design.cpp:13]   --->   Operation 164 'specpipeline' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_7 : Operation 165 [1/1] (0.00ns)   --->   "%zext_ln19 = zext i6 %select_ln17 to i12" [Brutal_design.cpp:19]   --->   Operation 165 'zext' 'zext_ln19' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_7 : Operation 166 [1/1] (1.63ns)   --->   "%add_ln19 = add i12 %zext_ln12, %zext_ln19" [Brutal_design.cpp:19]   --->   Operation 166 'add' 'add_ln19' <Predicate = (!icmp_ln11)> <Delay = 1.63> <Core = "AddSub">   --->   Core 14 'AddSub' <Latency = 0> <II = 1> <Delay = 1.82> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_7 : Operation 167 [1/1] (0.00ns)   --->   "%zext_ln19_1 = zext i12 %add_ln19 to i64" [Brutal_design.cpp:19]   --->   Operation 167 'zext' 'zext_ln19_1' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_7 : Operation 168 [1/1] (0.00ns)   --->   "%AB_addr = getelementptr [1024 x i32]* %AB, i64 0, i64 %zext_ln19_1" [Brutal_design.cpp:19]   --->   Operation 168 'getelementptr' 'AB_addr' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_7 : Operation 169 [1/1] (0.00ns) (grouped into TernaryAdder)   --->   "%add_ln17_29 = add i32 %add_ln17_21, %add_ln17_28" [Brutal_design.cpp:17]   --->   Operation 169 'add' 'add_ln17_29' <Predicate = (!icmp_ln11)> <Delay = 0.00> <Core = "TAddSub">   --->   Core 83 'TAddSub' <Latency = 0> <II = 1> <Delay = 2.18> <IPBlock> <Opcode : 'add' 'sub'> <InPorts = 3> <OutPorts = 1> <Sync> <CReg>
+ST_7 : Operation 170 [1/1] (4.37ns) (root node of TernaryAdder)   --->   "%add_ln17_30 = add nsw i32 %add_ln17_14, %add_ln17_29" [Brutal_design.cpp:17]   --->   Operation 170 'add' 'add_ln17_30' <Predicate = (!icmp_ln11)> <Delay = 4.37> <Core = "TAddSub">   --->   Core 83 'TAddSub' <Latency = 0> <II = 1> <Delay = 2.18> <IPBlock> <Opcode : 'add' 'sub'> <InPorts = 3> <OutPorts = 1> <Sync> <CReg>
+ST_7 : Operation 171 [1/1] (3.25ns)   --->   "store i32 %add_ln17_30, i32* %AB_addr, align 4" [Brutal_design.cpp:19]   --->   Operation 171 'store' <Predicate = (!icmp_ln11)> <Delay = 3.25> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 1024> <RAM>
+ST_7 : Operation 172 [1/1] (0.00ns)   --->   "%empty_4 = call i32 (...)* @_ssdm_op_SpecRegionEnd([4 x i8]* @p_str3, i32 %tmp_1) nounwind" [Brutal_design.cpp:20]   --->   Operation 172 'specregionend' 'empty_4' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+ST_7 : Operation 173 [1/1] (0.00ns)   --->   "br label %1"   --->   Operation 173 'br' <Predicate = (!icmp_ln11)> <Delay = 0.00>
+
+State 8 <SV = 2> <Delay = 0.00>
+ST_8 : Operation 174 [1/1] (0.00ns)   --->   "ret void" [Brutal_design.cpp:22]   --->   Operation 174 'ret' <Predicate = true> <Delay = 0.00>
+
+
+============================================================
++ Verbose Summary: Timing violations
+============================================================
+Target clock period: 10ns, clock uncertainty: 1.25ns.
+
+ <State 1>: 1.77ns
+The critical path consists of the following:
+	multiplexor before 'phi' operation ('indvar_flatten', Brutal_design.cpp:11) with incoming values : ('add_ln11', Brutal_design.cpp:11) [10]  (1.77 ns)
+
+ <State 2>: 6.27ns
+The critical path consists of the following:
+	'phi' operation ('i_0', Brutal_design.cpp:17) with incoming values : ('select_ln17_1', Brutal_design.cpp:17) [11]  (0 ns)
+	'add' operation ('i', Brutal_design.cpp:11) [17]  (1.83 ns)
+	'select' operation ('select_ln17_1', Brutal_design.cpp:17) [22]  (1.19 ns)
+	'getelementptr' operation ('A_addr', Brutal_design.cpp:17) [34]  (0 ns)
+	'load' operation ('A_load', Brutal_design.cpp:17) on array 'A' [35]  (3.25 ns)
+
+ <State 3>: 3.25ns
+The critical path consists of the following:
+	'load' operation ('A_load', Brutal_design.cpp:17) on array 'A' [35]  (3.25 ns)
+
+ <State 4>: 8.51ns
+The critical path consists of the following:
+	'mul' operation ('mul_ln17', Brutal_design.cpp:17) [40]  (8.51 ns)
+
+ <State 5>: 6.92ns
+The critical path consists of the following:
+	'add' operation ('add_ln17', Brutal_design.cpp:17) [134]  (2.55 ns)
+	'add' operation ('add_ln17_2', Brutal_design.cpp:17) [136]  (4.37 ns)
+
+ <State 6>: 8.74ns
+The critical path consists of the following:
+	'add' operation ('add_ln17_5', Brutal_design.cpp:17) [139]  (0 ns)
+	'add' operation ('add_ln17_6', Brutal_design.cpp:17) [140]  (4.37 ns)
+	'add' operation ('add_ln17_14', Brutal_design.cpp:17) [148]  (4.37 ns)
+
+ <State 7>: 7.62ns
+The critical path consists of the following:
+	'add' operation ('add_ln17_29', Brutal_design.cpp:17) [163]  (0 ns)
+	'add' operation ('add_ln17_30', Brutal_design.cpp:17) [164]  (4.37 ns)
+	'store' operation ('store_ln19', Brutal_design.cpp:19) of variable 'add_ln17_30', Brutal_design.cpp:17 on array 'AB' [165]  (3.25 ns)
+
+ <State 8>: 0ns
+The critical path consists of the following:
+
+
+============================================================
++ Verbose Summary: Binding
+============================================================
+N/A
+* FSMD analyzer results:
+  - Output states:
+ - Input state : 
+  - Chain level:
+	State 1
+	State 2
+	State 3
+	State 4
+	State 5
+	State 6
+	State 7
+	State 8
+
+
+============================================================
++ Verbose Summary: Datapath Resource usage 
+============================================================
+N/A

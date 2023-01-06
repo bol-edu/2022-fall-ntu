@@ -1,0 +1,167 @@
+
+
+================================================================
+== Vitis HLS Report for 'funcD'
+================================================================
+* Date:           Thu Oct 13 09:29:16 2022
+
+* Version:        2022.1 (Build 3526262 on Mon Apr 18 15:47:01 MDT 2022)
+* Project:        proj
+* Solution:       solution1 (Vivado IP Flow Target)
+* Product family: virtexuplus
+* Target device:  xcvu9p-flga2104-2-i
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing: 
+    * Summary: 
+    +--------+---------+----------+------------+
+    |  Clock |  Target | Estimated| Uncertainty|
+    +--------+---------+----------+------------+
+    |ap_clk  |  5.00 ns|  1.843 ns|     1.35 ns|
+    +--------+---------+----------+------------+
+
++ Latency: 
+    * Summary: 
+    +---------+---------+----------+----------+-----+-----+------------------------------------------+
+    |  Latency (cycles) |  Latency (absolute) |  Interval |                 Pipeline                 |
+    |   min   |   max   |    min   |    max   | min | max |                   Type                   |
+    +---------+---------+----------+----------+-----+-----+------------------------------------------+
+    |       50|       51|  0.250 us|  0.255 us|   50|   50|  loop rewind stp(delay=0 clock cycles(s))|
+    +---------+---------+----------+----------+-----+-----+------------------------------------------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        +----------+---------+---------+----------+-----------+-----------+------+----------+
+        |          |  Latency (cycles) | Iteration|  Initiation Interval  | Trip |          |
+        | Loop Name|   min   |   max   |  Latency |  achieved |   target  | Count| Pipelined|
+        +----------+---------+---------+----------+-----------+-----------+------+----------+
+        |- Loop0   |       50|       50|         2|          1|          1|    50|       yes|
+        +----------+---------+---------+----------+-----------+-----------+------+----------+
+
+============================================================
++ Verbose Summary: Synthesis Manager
+============================================================
+InlineROM: 1
+ExposeGlobal: 0
+============================================================
++ Verbose Summary: CDFG Model
+============================================================
+IsTopModel: 0
+ResetActiveHigh: 1
+IsCombinational: 2
+IsDatapathOnly: 0
+HasWiredReturn: 1
+HasMFsm: 2
+HasVarLatency: 1
+IsPipeline: 0
+IsRtlPipelined: 0
+IsInstanceOverlapped: 0
+IsDontTouch: 0
+HasImplIP: 0
+IsGatedGlobalClock: 0
+
++ Individual pipeline summary: 
+  * Pipeline-0: initiation interval (II) = 1, depth = 2
+
+
+============================================================
++ Verbose Summary: Schedule
+============================================================
+* Number of FSM states : 3
+* Pipeline : 1
+  Pipeline-0 : II = 1, D = 2, States = { 2 3 }
+* Dataflow Pipeline: 0
+
+* FSM state transitions: 
+1 --> 2 
+2 --> 3 
+3 --> 2 
+
+* FSM state operations: 
+
+State 1 <SV = 0> <Delay = 0.38>
+ST_1 : Operation 4 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i8 %vecOut, void @empty, i32 0, i32 0, void @empty_0, i32 4294967295, i32 0, void @empty_0, void @empty_0, void @empty_0, i32 0, i32 0, i32 0, i32 0, void @empty_0, void @empty_0, i32 4294967295, i32 0"   --->   Operation 4 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 5 [1/1] (0.38ns)   --->   "%br_ln69 = br void %for.inc.split" [diamond.cpp:69]   --->   Operation 5 'br' 'br_ln69' <Predicate = true> <Delay = 0.38>
+
+State 2 <SV = 1> <Delay = 1.30>
+ST_2 : Operation 6 [1/1] (0.00ns)   --->   "%i1 = phi i7 0, void %entry, i7 %i, void %for.inc.split, i7 0, void %for.end"   --->   Operation 6 'phi' 'i1' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 7 [1/1] (0.00ns)   --->   "%zext_ln69 = zext i7 %i1" [diamond.cpp:69]   --->   Operation 7 'zext' 'zext_ln69' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 8 [1/1] (0.00ns)   --->   "%in1_addr = getelementptr i8 %in1, i64 0, i64 %zext_ln69" [diamond.cpp:73]   --->   Operation 8 'getelementptr' 'in1_addr' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 9 [2/2] (0.56ns)   --->   "%in1_load = load i7 %in1_addr" [diamond.cpp:73]   --->   Operation 9 'load' 'in1_load' <Predicate = true> <Delay = 0.56> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 0.56> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 100> <RAM>
+ST_2 : Operation 10 [1/1] (0.00ns)   --->   "%in2_addr = getelementptr i7 %in2, i64 0, i64 %zext_ln69" [diamond.cpp:73]   --->   Operation 10 'getelementptr' 'in2_addr' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 11 [2/2] (0.56ns)   --->   "%in2_load = load i7 %in2_addr" [diamond.cpp:73]   --->   Operation 11 'load' 'in2_load' <Predicate = true> <Delay = 0.56> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 0.56> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 7> <Depth = 100> <RAM>
+ST_2 : Operation 12 [1/1] (0.00ns)   --->   "%or_ln69 = or i7 %i1, i7 1" [diamond.cpp:69]   --->   Operation 12 'or' 'or_ln69' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 13 [1/1] (0.00ns)   --->   "%zext_ln73 = zext i7 %or_ln69" [diamond.cpp:73]   --->   Operation 13 'zext' 'zext_ln73' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 14 [1/1] (0.00ns)   --->   "%in1_addr_1 = getelementptr i8 %in1, i64 0, i64 %zext_ln73" [diamond.cpp:73]   --->   Operation 14 'getelementptr' 'in1_addr_1' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 15 [2/2] (0.56ns)   --->   "%in1_load_1 = load i7 %in1_addr_1" [diamond.cpp:73]   --->   Operation 15 'load' 'in1_load_1' <Predicate = true> <Delay = 0.56> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 0.56> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 100> <RAM>
+ST_2 : Operation 16 [1/1] (0.00ns)   --->   "%in2_addr_1 = getelementptr i7 %in2, i64 0, i64 %zext_ln73" [diamond.cpp:73]   --->   Operation 16 'getelementptr' 'in2_addr_1' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 17 [2/2] (0.56ns)   --->   "%in2_load_1 = load i7 %in2_addr_1" [diamond.cpp:73]   --->   Operation 17 'load' 'in2_load_1' <Predicate = true> <Delay = 0.56> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 0.56> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 7> <Depth = 100> <RAM>
+ST_2 : Operation 18 [1/1] (0.70ns)   --->   "%i = add i7 %i1, i7 2" [diamond.cpp:69]   --->   Operation 18 'add' 'i' <Predicate = true> <Delay = 0.70> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 0.70> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 19 [1/1] (0.59ns)   --->   "%icmp_ln69 = icmp_ult  i7 %i, i7 100" [diamond.cpp:69]   --->   Operation 19 'icmp' 'icmp_ln69' <Predicate = true> <Delay = 0.59> <CoreInst = "Cmp">   --->   Core 9 'Cmp' <Latency = 0> <II = 1> <Delay = 0.59> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 20 [1/1] (0.00ns)   --->   "%br_ln69 = br i1 %icmp_ln69, void %for.end, void %for.inc.split" [diamond.cpp:69]   --->   Operation 20 'br' 'br_ln69' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 21 [1/1] (0.00ns)   --->   "%br_ln75 = br void %for.inc.split" [diamond.cpp:75]   --->   Operation 21 'br' 'br_ln75' <Predicate = (!icmp_ln69)> <Delay = 0.00>
+
+State 3 <SV = 2> <Delay = 1.84>
+ST_3 : Operation 22 [1/1] (0.00ns)   --->   "%empty = speclooptripcount i32 @_ssdm_op_SpecLoopTripCount, i64 50, i64 50, i64 50"   --->   Operation 22 'speclooptripcount' 'empty' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 23 [1/1] (0.00ns)   --->   "%specpipeline_ln71 = specpipeline void @_ssdm_op_SpecPipeline, i32 4294967295, i32 0, i32 0, i32 0, void @empty_0" [diamond.cpp:71]   --->   Operation 23 'specpipeline' 'specpipeline_ln71' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 24 [1/1] (0.00ns)   --->   "%specloopname_ln69 = specloopname void @_ssdm_op_SpecLoopName, void @empty_2" [diamond.cpp:69]   --->   Operation 24 'specloopname' 'specloopname_ln69' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 25 [1/2] (0.56ns)   --->   "%in1_load = load i7 %in1_addr" [diamond.cpp:73]   --->   Operation 25 'load' 'in1_load' <Predicate = true> <Delay = 0.56> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 0.56> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 100> <RAM>
+ST_3 : Operation 26 [1/2] (0.56ns)   --->   "%in2_load = load i7 %in2_addr" [diamond.cpp:73]   --->   Operation 26 'load' 'in2_load' <Predicate = true> <Delay = 0.56> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 0.56> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 7> <Depth = 100> <RAM>
+ST_3 : Operation 27 [1/1] (0.00ns)   --->   "%shl_ln = bitconcatenate i8 @_ssdm_op_BitConcatenate.i8.i7.i1, i7 %in2_load, i1 0" [diamond.cpp:73]   --->   Operation 27 'bitconcatenate' 'shl_ln' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 28 [1/1] (0.70ns)   --->   "%add_ln73 = add i8 %in1_load, i8 %shl_ln" [diamond.cpp:73]   --->   Operation 28 'add' 'add_ln73' <Predicate = true> <Delay = 0.70> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 0.70> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_3 : Operation 29 [1/1] (0.00ns)   --->   "%vecOut_addr = getelementptr i8 %vecOut, i64 0, i64 %zext_ln69" [diamond.cpp:73]   --->   Operation 29 'getelementptr' 'vecOut_addr' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 30 [1/1] (0.56ns)   --->   "%store_ln73 = store i8 %add_ln73, i7 %vecOut_addr" [diamond.cpp:73]   --->   Operation 30 'store' 'store_ln73' <Predicate = true> <Delay = 0.56> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 0.56> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 100> <RAM>
+ST_3 : Operation 31 [1/2] (0.56ns)   --->   "%in1_load_1 = load i7 %in1_addr_1" [diamond.cpp:73]   --->   Operation 31 'load' 'in1_load_1' <Predicate = true> <Delay = 0.56> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 0.56> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 100> <RAM>
+ST_3 : Operation 32 [1/2] (0.56ns)   --->   "%in2_load_1 = load i7 %in2_addr_1" [diamond.cpp:73]   --->   Operation 32 'load' 'in2_load_1' <Predicate = true> <Delay = 0.56> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 0.56> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 7> <Depth = 100> <RAM>
+ST_3 : Operation 33 [1/1] (0.00ns)   --->   "%shl_ln73_1 = bitconcatenate i8 @_ssdm_op_BitConcatenate.i8.i7.i1, i7 %in2_load_1, i1 0" [diamond.cpp:73]   --->   Operation 33 'bitconcatenate' 'shl_ln73_1' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 34 [1/1] (0.70ns)   --->   "%add_ln73_1 = add i8 %in1_load_1, i8 %shl_ln73_1" [diamond.cpp:73]   --->   Operation 34 'add' 'add_ln73_1' <Predicate = true> <Delay = 0.70> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 0.70> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_3 : Operation 35 [1/1] (0.00ns)   --->   "%vecOut_addr_1 = getelementptr i8 %vecOut, i64 0, i64 %zext_ln73" [diamond.cpp:73]   --->   Operation 35 'getelementptr' 'vecOut_addr_1' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 36 [1/1] (0.56ns)   --->   "%store_ln73 = store i8 %add_ln73_1, i7 %vecOut_addr_1" [diamond.cpp:73]   --->   Operation 36 'store' 'store_ln73' <Predicate = true> <Delay = 0.56> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 0.56> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 8> <Depth = 100> <RAM>
+ST_3 : Operation 37 [1/1] (0.00ns)   --->   "%return_ln75 = return void @_ssdm_op_Return" [diamond.cpp:75]   --->   Operation 37 'return' 'return_ln75' <Predicate = (!icmp_ln69)> <Delay = 0.00>
+
+
+============================================================
++ Verbose Summary: Timing violations
+============================================================
+Target clock period: 5ns, clock uncertainty: 1.35ns.
+
+ <State 1>: 0.387ns
+The critical path consists of the following:
+	multiplexor before 'phi' operation ('i') with incoming values : ('i', diamond.cpp:69) [7]  (0.387 ns)
+
+ <State 2>: 1.31ns
+The critical path consists of the following:
+	'phi' operation ('i') with incoming values : ('i', diamond.cpp:69) [7]  (0 ns)
+	'add' operation ('i', diamond.cpp:69) [30]  (0.706 ns)
+	'icmp' operation ('icmp_ln69', diamond.cpp:69) [31]  (0.6 ns)
+
+ <State 3>: 1.84ns
+The critical path consists of the following:
+	'load' operation ('in1_load', diamond.cpp:73) on array 'in1' [13]  (0.569 ns)
+	'add' operation ('add_ln73', diamond.cpp:73) [17]  (0.705 ns)
+	'store' operation ('store_ln73', diamond.cpp:73) of variable 'add_ln73', diamond.cpp:73 on array 'vecOut' [19]  (0.569 ns)
+
+
+============================================================
++ Verbose Summary: Binding
+============================================================
+N/A
+* FSMD analyzer results:
+  - Output states:
+ - Input state : 
+  - Chain level:
+	State 1
+	State 2
+	State 3
+
+
+============================================================
++ Verbose Summary: Datapath Resource usage 
+============================================================
+N/A

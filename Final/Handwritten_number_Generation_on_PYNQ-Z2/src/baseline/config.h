@@ -1,0 +1,23 @@
+#ifndef CONFIG
+#define CONFIG
+#include "ap_int.h"
+
+typedef int8_t DTYPE;
+
+#define FC1_INPUT_SIZE	100
+#define FC1_OUTPUT_SIZE	256
+#define FC2_INPUT_SIZE	256
+#define FC2_OUTPUT_SIZE	512
+#define FC3_INPUT_SIZE	512
+#define FC3_OUTPUT_SIZE	784
+
+#define INPUT_SCALE	0.0172
+#define INPUT_ZEROP	58
+#define FC1_SCALE	0.03486945480108261
+#define FC1_ZEROP	0
+#define FC2_SCALE 	0.16982942819595337
+#define FC2_ZEROP	0
+#define FC3_SCALE 	0.6684179902076721
+#define FC3_ZEROP	106
+
+#endif

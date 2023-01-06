@@ -1,0 +1,186 @@
+
+
+================================================================
+== Synthesis Summary Report of 'hdc_maxi'
+================================================================
++ General Information: 
+    * Date:           Thu Jan  5 05:21:26 2023
+    * Version:        2022.1 (Build 3526262 on Mon Apr 18 15:48:16 MDT 2022)
+    * Project:        AAHLS_Final_Project_deploy
+    * Solution:       solution1 (Vivado IP Flow Target)
+    * Product family: zynq
+    * Target device:  xc7z020-clg400-1
+    
+
++ Performance & Resource Estimates: 
+    
+    PS: '+' for module; 'o' for loop; '*' for dataflow
+    +--------------------------------------------------------+------+------+---------+-----------+----------+---------+------+----------+----------+---------+-------------+-------------+-----+
+    |                         Modules                        | Issue|      | Latency |  Latency  | Iteration|         | Trip |          |          |         |             |             |     |
+    |                         & Loops                        | Type | Slack| (cycles)|    (ns)   |  Latency | Interval| Count| Pipelined|   BRAM   |   DSP   |      FF     |     LUT     | URAM|
+    +--------------------------------------------------------+------+------+---------+-----------+----------+---------+------+----------+----------+---------+-------------+-------------+-----+
+    |+ hdc_maxi                                              |     -|  0.12|   181627|  1.816e+06|         -|   181628|     -|        no|  38 (13%)|  2 (~0%)|  35581 (33%)|  40555 (76%)|    -|
+    | + hdc_maxi_Pipeline_VITIS_LOOP_15_1                    |     -|  1.03|     1002|  1.002e+04|         -|     1002|     -|        no|         -|        -|  32780 (30%)|  16714 (31%)|    -|
+    |  o VITIS_LOOP_15_1                                     |     -|  7.30|     1000|  1.000e+04|         1|        1|  1000|       yes|         -|        -|            -|            -|    -|
+    | + hdc_maxi_Pipeline_VITIS_LOOP_21_2_VITIS_LOOP_22_3    |     -|  0.42|     5004|  5.004e+04|         -|     5004|     -|        no|         -|  1 (~0%)|    307 (~0%)|     692 (1%)|    -|
+    |  o VITIS_LOOP_21_2_VITIS_LOOP_22_3                     |     -|  7.30|     5002|  5.002e+04|         4|        1|  5000|       yes|         -|        -|            -|            -|    -|
+    | o hdc_maxi_label0                                      |     -|  7.30|   175613|  1.756e+06|     87781|        -|     2|        no|         -|        -|            -|            -|    -|
+    |  + hdc_maxi_Pipeline_VITIS_LOOP_40_5                   |     -|  1.11|      322|  3.220e+03|         -|      322|     -|        no|         -|        -|    545 (~0%)|    2438 (4%)|    -|
+    |   o VITIS_LOOP_40_5                                    |     -|  7.30|      320|  3.200e+03|         2|        1|   320|       yes|         -|        -|            -|            -|    -|
+    |  + hdc_maxi_Pipeline_VITIS_LOOP_68_9_VITIS_LOOP_70_10  |     -|  0.12|     1907|  1.907e+04|         -|     1907|     -|        no|         -|  1 (~0%)|    698 (~0%)|    1452 (2%)|    -|
+    |   o VITIS_LOOP_68_9_VITIS_LOOP_70_10                   |     -|  7.30|     1905|  1.905e+04|         6|        1|  1900|       yes|         -|        -|            -|            -|    -|
+    |  o VITIS_LOOP_46_6_VITIS_LOOP_48_7                     |     -|  7.30|    85500|  8.550e+05|        45|        -|  1900|        no|         -|        -|            -|            -|    -|
+    |   + hdc_maxi_Pipeline_VITIS_LOOP_51_8                  |     -|  0.80|       37|    370.000|         -|       37|     -|        no|         -|        -|    751 (~0%)|  17272 (32%)|    -|
+    |    o VITIS_LOOP_51_8                                   |     -|  7.30|       35|    350.000|         5|        1|    32|       yes|         -|        -|            -|            -|    -|
+    +--------------------------------------------------------+------+------+---------+-----------+----------+---------+------+----------+----------+---------+-------------+-------------+-----+
+
+
+================================================================
+== HW Interfaces
+================================================================
+* S_AXILITE Interfaces
++---------------+------------+---------------+
+| Interface     | Data Width | Address Width |
++---------------+------------+---------------+
+| s_axi_control | 32         | 4             |
++---------------+------------+---------------+
+
+* S_AXILITE Registers
++---------------+----------+--------+-------+--------+----------------------------------+----------------------------------------------------------------------+
+| Interface     | Register | Offset | Width | Access | Description                      | Bit Fields                                                           |
++---------------+----------+--------+-------+--------+----------------------------------+----------------------------------------------------------------------+
+| s_axi_control | CTRL     | 0x00   | 32    | RW     | Control signals                  | 0=AP_START 1=AP_DONE 2=AP_IDLE 3=AP_READY 7=AUTO_RESTART 9=INTERRUPT |
+| s_axi_control | GIER     | 0x04   | 32    | RW     | Global Interrupt Enable Register | 0=Enable                                                             |
+| s_axi_control | IP_IER   | 0x08   | 32    | RW     | IP Interrupt Enable Register     | 0=CHAN0_INT_EN 1=CHAN1_INT_EN                                        |
+| s_axi_control | IP_ISR   | 0x0c   | 32    | RW     | IP Interrupt Status Register     | 0=CHAN0_INT_ST 1=CHAN1_INT_ST                                        |
++---------------+----------+--------+-------+--------+----------------------------------+----------------------------------------------------------------------+
+
+* AXIS
++----------------+---------------+-------+-------+-----+-------+-------+--------+-------+-------+--------+
+| Interface      | Register Mode | TDATA | TDEST | TID | TKEEP | TLAST | TREADY | TSTRB | TUSER | TVALID |
++----------------+---------------+-------+-------+-----+-------+-------+--------+-------+-------+--------+
+| AM_out         | both          | 32    | 1     | 1   | 4     | 1     | 1      | 4     | 1     | 1      |
+| IM             | both          | 32    | 1     | 1   | 4     | 1     | 1      | 4     | 1     | 1      |
+| test_data      | both          | 32    | 1     | 1   | 4     | 1     | 1      | 4     | 1     | 1      |
+| test_label_out | both          | 32    | 1     | 1   | 4     | 1     | 1      | 4     | 1     | 1      |
++----------------+---------------+-------+-------+-----+-------+-------+--------+-------+-------+--------+
+
+* TOP LEVEL CONTROL
++-----------+------------+-----------+
+| Interface | Type       | Ports     |
++-----------+------------+-----------+
+| ap_clk    | clock      | ap_clk    |
+| ap_rst_n  | reset      | ap_rst_n  |
+| interrupt | interrupt  | interrupt |
+| ap_ctrl   | ap_ctrl_hs |           |
++-----------+------------+-----------+
+
+
+================================================================
+== SW I/O Information
+================================================================
+* Top Function Arguments
++----------------+-----------+--------------------------------------------+
+| Argument       | Direction | Datatype                                   |
++----------------+-----------+--------------------------------------------+
+| test_data      | in        | stream<hls::axis<ap_int<32>, 1, 1, 1>, 0>* |
+| test_label_out | out       | stream<hls::axis<ap_int<32>, 1, 1, 1>, 0>* |
+| IM             | in        | stream<hls::axis<ap_int<32>, 1, 1, 1>, 0>* |
+| AM_out         | in        | stream<hls::axis<ap_int<32>, 1, 1, 1>, 0>* |
++----------------+-----------+--------------------------------------------+
+
+* SW-to-HW Mapping
++----------------+----------------+-----------+
+| Argument       | HW Interface   | HW Type   |
++----------------+----------------+-----------+
+| test_data      | test_data      | interface |
+| test_label_out | test_label_out | interface |
+| IM             | IM             | interface |
+| AM_out         | AM_out         | interface |
++----------------+----------------+-----------+
+
+
+================================================================
+== M_AXI Burst Information
+================================================================
+ Note: All burst requests might be further partitioned into multiple requests during RTL generation based on max_read_burst_length or max_write_burst_length settings.
+
+  No burst in design
+
+================================================================
+== Bind Op Report
+================================================================
++-------------------------------------------------------+-----+--------+---------------+-----+--------+---------+
+| Name                                                  | DSP | Pragma | Variable      | Op  | Impl   | Latency |
++-------------------------------------------------------+-----+--------+---------------+-----+--------+---------+
+| + hdc_maxi                                            | 2   |        |               |     |        |         |
+|   d_2_fu_1242_p2                                      | -   |        | d_2           | add | fabric | 0       |
+|   add_ln46_1_fu_1272_p2                               | -   |        | add_ln46_1    | add | fabric | 0       |
+|   add_ln46_fu_1278_p2                                 | -   |        | add_ln46      | add | fabric | 0       |
+|   add_ln55_fu_1309_p2                                 | -   |        | add_ln55      | add | fabric | 0       |
+|   sub_ln61_fu_1364_p2                                 | -   |        | sub_ln61      | sub | fabric | 0       |
+|   add_ln48_fu_1400_p2                                 | -   |        | add_ln48      | add | fabric | 0       |
+|  + hdc_maxi_Pipeline_VITIS_LOOP_15_1                  | 0   |        |               |     |        |         |
+|    add_ln15_fu_142_p2                                 | -   |        | add_ln15      | add | fabric | 0       |
+|  + hdc_maxi_Pipeline_VITIS_LOOP_21_2_VITIS_LOOP_22_3  | 1   |        |               |     |        |         |
+|    add_ln21_1_fu_152_p2                               | -   |        | add_ln21_1    | add | fabric | 0       |
+|    add_ln21_fu_164_p2                                 | -   |        | add_ln21      | add | fabric | 0       |
+|    mac_muladd_3ns_8ns_8ns_11_4_1_U12                  | 1   |        | mul_ln24      | mul | dsp48  | 3       |
+|    mac_muladd_3ns_8ns_8ns_11_4_1_U12                  | 1   |        | add_ln24      | add | dsp48  | 3       |
+|    add_ln22_fu_236_p2                                 | -   |        | add_ln22      | add | fabric | 0       |
+|  + hdc_maxi_Pipeline_VITIS_LOOP_40_5                  | 0   |        |               |     |        |         |
+|    add_ln40_fu_200_p2                                 | -   |        | add_ln40      | add | fabric | 0       |
+|  + hdc_maxi_Pipeline_VITIS_LOOP_68_9_VITIS_LOOP_70_10 | 1   |        |               |     |        |         |
+|    add_ln68_1_fu_159_p2                               | -   |        | add_ln68_1    | add | fabric | 0       |
+|    add_ln68_fu_168_p2                                 | -   |        | add_ln68      | add | fabric | 0       |
+|    mac_muladd_3ns_8ns_7ns_11_4_1_U42                  | 1   |        | mul_ln74      | mul | dsp48  | 3       |
+|    mac_muladd_3ns_8ns_7ns_11_4_1_U42                  | 1   |        | add_ln74      | add | dsp48  | 3       |
+|    dot_product_5_fu_340_p2                            | -   |        | dot_product_5 | add | fabric | 0       |
+|    dot_product_6_fu_345_p2                            | -   |        | dot_product_6 | sub | fabric | 0       |
+|    add_ln70_fu_214_p2                                 | -   |        | add_ln70      | add | fabric | 0       |
+|  + hdc_maxi_Pipeline_VITIS_LOOP_51_8                  | 0   |        |               |     |        |         |
+|    add_ln55_1_fu_153_p2                               | -   |        | add_ln55_1    | add | fabric | 0       |
+|    tmp_3_fu_350_p2                                    | -   |        | tmp_3         | add | fabric | 0       |
+|    tmp_4_fu_355_p2                                    | -   |        | tmp_4         | sub | fabric | 0       |
+|    add_ln55_3_fu_196_p2                               | -   |        | add_ln55_3    | add | fabric | 0       |
+|    tmp_7_fu_367_p2                                    | -   |        | tmp_7         | add | fabric | 0       |
+|    tmp_8_fu_372_p2                                    | -   |        | tmp_8         | sub | fabric | 0       |
+|    add_ln51_fu_202_p2                                 | -   |        | add_ln51      | add | fabric | 0       |
++-------------------------------------------------------+-----+--------+---------------+-----+--------+---------+
+
+
+================================================================
+== Bind Storage Report
+================================================================
++-----------------+------+------+--------+-------------+---------+------+---------+
+| Name            | BRAM | URAM | Pragma | Variable    | Storage | Impl | Latency |
++-----------------+------+------+--------+-------------+---------+------+---------+
+| + hdc_maxi      | 38   | 0    |        |             |         |      |         |
+|   AM_U          | 15   | -    |        | AM          | ram_1p  | auto | 1       |
+|   ngram_U       | 8    | -    |        | ngram       | ram_t2p | auto | 1       |
+|   test_data_d_U | 29   | -    |        | test_data_d | ram_1p  | auto | 1       |
++-----------------+------+------+--------+-------------+---------+------+---------+
+
+
+================================================================
+== Pragma Report
+================================================================
+* Valid Pragma Syntax
++---------------+-----------------------------------------------+--------------------------------------------------------------------------------+
+| Type          | Options                                       | Location                                                                       |
++---------------+-----------------------------------------------+--------------------------------------------------------------------------------+
+| interface     | axis register both port=test_data             | AAHLS_Final_Project_deploy/HDC.cpp:8 in hdc_maxi, test_data                    |
+| interface     | axis register both port=test_label_out        | AAHLS_Final_Project_deploy/HDC.cpp:9 in hdc_maxi, test_label_out               |
+| interface     | axis register both port=IM                    | AAHLS_Final_Project_deploy/HDC.cpp:10 in hdc_maxi, IM                          |
+| interface     | axis register both port=AM_out                | AAHLS_Final_Project_deploy/HDC.cpp:11 in hdc_maxi, AM_out                      |
+| interface     | s_axilite port=return                         | AAHLS_Final_Project_deploy/HDC.cpp:12 in hdc_maxi, return                      |
+| unroll        | factor=380                                    | AAHLS_Final_Project_deploy/HDC.cpp:35 in hdc_maxi                              |
+| unroll        | factor=2                                      | AAHLS_Final_Project_deploy/HDC.cpp:52 in hdc_maxi                              |
+| dependence    | variable=ngram type=inter direction=RAW false | AAHLS_Final_Project_deploy/HDC.cpp:59 in hdc_maxi, ngram                       |
+| array_reshape | variable=AM cyclic factor=4 dim=2             | AAHLS_Final_Project_deploy/solution1/directives.tcl:10 in hdc_maxi, AM         |
+| array_reshape | variable=new_IM cyclic factor=256 dim=1       | AAHLS_Final_Project_deploy/solution1/directives.tcl:7 in hdc_maxi, new_IM      |
+| array_reshape | variable=ngram cyclic factor=4 dim=1          | AAHLS_Final_Project_deploy/solution1/directives.tcl:9 in hdc_maxi, ngram       |
+| array_reshape | variable=test_data_d cyclic factor=16 dim=1   | AAHLS_Final_Project_deploy/solution1/directives.tcl:8 in hdc_maxi, test_data_d |
++---------------+-----------------------------------------------+--------------------------------------------------------------------------------+
+
+

@@ -1,0 +1,192 @@
+
+
+================================================================
+== Vitis HLS Report for 'NonMaximumSuppression'
+================================================================
+* Date:           Sun Nov 13 19:24:44 2022
+
+* Version:        2022.2 (Build 3670227 on Oct 13 2022)
+* Project:        canny
+* Solution:       solution1 (Vivado IP Flow Target)
+* Product family: zynq
+* Target device:  xc7z020-clg400-1
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing: 
+    * Summary: 
+    +--------+----------+----------+------------+
+    |  Clock |  Target  | Estimated| Uncertainty|
+    +--------+----------+----------+------------+
+    |ap_clk  |  10.00 ns|  3.871 ns|     6.13 ns|
+    +--------+----------+----------+------------+
+
++ Latency: 
+    * Summary: 
+    +---------+---------+----------+----------+-------+-------+---------+
+    |  Latency (cycles) |  Latency (absolute) |    Interval   | Pipeline|
+    |   min   |   max   |    min   |    max   |  min  |  max  |   Type  |
+    +---------+---------+----------+----------+-------+-------+---------+
+    |    16397|    16397|  0.164 ms|  0.164 ms|  16397|  16397|       no|
+    +---------+---------+----------+----------+-------+-------+---------+
+
+    + Detail: 
+        * Instance: 
+        +-----------------------------------------------------------+-------------------------------------------------+---------+---------+----------+----------+-------+-------+---------+
+        |                                                           |                                                 |  Latency (cycles) |  Latency (absolute) |    Interval   | Pipeline|
+        |                          Instance                         |                      Module                     |   min   |   max   |    min   |    max   |  min  |  max  |   Type  |
+        +-----------------------------------------------------------+-------------------------------------------------+---------+---------+----------+----------+-------+-------+---------+
+        |grp_NonMaximumSuppression_Pipeline_VITIS_LOOP_193_1_fu_74  |NonMaximumSuppression_Pipeline_VITIS_LOOP_193_1  |    16391|    16391|  0.164 ms|  0.164 ms|  16391|  16391|       no|
+        +-----------------------------------------------------------+-------------------------------------------------+---------+---------+----------+----------+-------+-------+---------+
+
+        * Loop: 
+        N/A
+
+
+
+================================================================
+== Utilization Estimates
+================================================================
+* Summary: 
++-----------------+---------+-----+--------+-------+-----+
+|       Name      | BRAM_18K| DSP |   FF   |  LUT  | URAM|
++-----------------+---------+-----+--------+-------+-----+
+|DSP              |        -|    -|       -|      -|    -|
+|Expression       |        -|    -|       0|      2|    -|
+|FIFO             |        -|    -|       -|      -|    -|
+|Instance         |        -|    6|    1459|   1088|    -|
+|Memory           |       12|    -|       0|      0|    0|
+|Multiplexer      |        -|    -|       -|    105|    -|
+|Register         |        -|    -|     129|      -|    -|
++-----------------+---------+-----+--------+-------+-----+
+|Total            |       12|    6|    1588|   1195|    0|
++-----------------+---------+-----+--------+-------+-----+
+|Available        |      280|  220|  106400|  53200|    0|
++-----------------+---------+-----+--------+-------+-----+
+|Utilization (%)  |        4|    2|       1|      2|    0|
++-----------------+---------+-----+--------+-------+-----+
+
++ Detail: 
+    * Instance: 
+    +-----------------------------------------------------------+-------------------------------------------------+---------+----+------+------+-----+
+    |                          Instance                         |                      Module                     | BRAM_18K| DSP|  FF  |  LUT | URAM|
+    +-----------------------------------------------------------+-------------------------------------------------+---------+----+------+------+-----+
+    |grp_NonMaximumSuppression_Pipeline_VITIS_LOOP_193_1_fu_74  |NonMaximumSuppression_Pipeline_VITIS_LOOP_193_1  |        0|   0|  1357|  1088|    0|
+    |mul_32s_32s_32_5_1_U96                                     |mul_32s_32s_32_5_1                               |        0|   3|    51|     0|    0|
+    |mul_32s_32s_32_5_1_U97                                     |mul_32s_32s_32_5_1                               |        0|   3|    51|     0|    0|
+    +-----------------------------------------------------------+-------------------------------------------------+---------+----+------+------+-----+
+    |Total                                                      |                                                 |        0|   6|  1459|  1088|    0|
+    +-----------------------------------------------------------+-------------------------------------------------+---------+----+------+------+-----+
+
+    * DSP: 
+    N/A
+
+    * Memory: 
+    +----------------------+----------------------------------------------------+---------+---+----+-----+------+-----+------+-------------+
+    |        Memory        |                       Module                       | BRAM_18K| FF| LUT| URAM| Words| Bits| Banks| W*Bits*Banks|
+    +----------------------+----------------------------------------------------+---------+---+----+-----+------+-----+------+-------------+
+    |LineBuff_mag_U        |NonMaximumSuppression_LineBuff_mag_RAM_AUTO_1R1W    |        3|  0|   0|    0|   128|   90|     1|        11520|
+    |LineBuff_tan_y_U      |NonMaximumSuppression_LineBuff_tan_y_RAM_AUTO_1R1W  |        3|  0|   0|    0|   128|   96|     1|        12288|
+    |LineBuff_tan_x_225_U  |NonMaximumSuppression_LineBuff_tan_y_RAM_AUTO_1R1W  |        3|  0|   0|    0|   128|   96|     1|        12288|
+    |LineBuff_tan_x_675_U  |NonMaximumSuppression_LineBuff_tan_y_RAM_AUTO_1R1W  |        3|  0|   0|    0|   128|   96|     1|        12288|
+    +----------------------+----------------------------------------------------+---------+---+----+-----+------+-----+------+-------------+
+    |Total                 |                                                    |       12|  0|   0|    0|   512|  378|     4|        48384|
+    +----------------------+----------------------------------------------------+---------+---+----+-----+------+-----+------+-------------+
+
+    * FIFO: 
+    N/A
+
+    * Expression: 
+    +-----------------+----------+----+---+----+------------+------------+
+    |  Variable Name  | Operation| DSP| FF| LUT| Bitwidth P0| Bitwidth P1|
+    +-----------------+----------+----+---+----+------------+------------+
+    |ap_block_state1  |        or|   0|  0|   2|           1|           1|
+    +-----------------+----------+----+---+----+------------+------------+
+    |Total            |          |   0|  0|   2|           1|           1|
+    +-----------------+----------+----+---+----+------------+------------+
+
+    * Multiplexer: 
+    +--------------------+----+-----------+-----+-----------+
+    |        Name        | LUT| Input Size| Bits| Total Bits|
+    +--------------------+----+-----------+-----+-----------+
+    |ap_NS_fsm           |  42|          8|    1|          8|
+    |ap_done             |   9|          2|    1|          2|
+    |lowerThresh_blk_n   |   9|          2|    1|          2|
+    |magnitude_read      |   9|          2|    1|          2|
+    |tangent_x_225_read  |   9|          2|    1|          2|
+    |tangent_x_675_read  |   9|          2|    1|          2|
+    |tangent_y_read      |   9|          2|    1|          2|
+    |upperThresh_blk_n   |   9|          2|    1|          2|
+    +--------------------+----+-----------+-----+-----------+
+    |Total               | 105|         22|    8|         22|
+    +--------------------+----+-----------+-----+-----------+
+
+    * Register: 
+    +------------------------------------------------------------------------+----+----+-----+-----------+
+    |                                  Name                                  | FF | LUT| Bits| Const Bits|
+    +------------------------------------------------------------------------+----+----+-----+-----------+
+    |ap_CS_fsm                                                               |   7|   0|    7|          0|
+    |ap_done_reg                                                             |   1|   0|    1|          0|
+    |grp_NonMaximumSuppression_Pipeline_VITIS_LOOP_193_1_fu_74_ap_start_reg  |   1|   0|    1|          0|
+    |lowerThresh_read_reg_116                                                |  32|   0|   32|          0|
+    |lowerThresh_scale_reg_133                                               |  28|   0|   32|          4|
+    |upperThresh_read_reg_122                                                |  32|   0|   32|          0|
+    |upperThresh_scale_reg_128                                               |  28|   0|   32|          4|
+    +------------------------------------------------------------------------+----+----+-----+-----------+
+    |Total                                                                   | 129|   0|  137|          8|
+    +------------------------------------------------------------------------+----+----+-----+-----------+
+
+
+
+================================================================
+== Interface
+================================================================
+* Summary: 
++------------------------------+-----+-----+------------+-----------------------+--------------+
+|           RTL Ports          | Dir | Bits|  Protocol  |     Source Object     |    C Type    |
++------------------------------+-----+-----+------------+-----------------------+--------------+
+|ap_clk                        |   in|    1|  ap_ctrl_hs|  NonMaximumSuppression|  return value|
+|ap_rst                        |   in|    1|  ap_ctrl_hs|  NonMaximumSuppression|  return value|
+|ap_start                      |   in|    1|  ap_ctrl_hs|  NonMaximumSuppression|  return value|
+|ap_done                       |  out|    1|  ap_ctrl_hs|  NonMaximumSuppression|  return value|
+|ap_continue                   |   in|    1|  ap_ctrl_hs|  NonMaximumSuppression|  return value|
+|ap_idle                       |  out|    1|  ap_ctrl_hs|  NonMaximumSuppression|  return value|
+|ap_ready                      |  out|    1|  ap_ctrl_hs|  NonMaximumSuppression|  return value|
+|magnitude_dout                |   in|   26|     ap_fifo|              magnitude|       pointer|
+|magnitude_num_data_valid      |   in|   15|     ap_fifo|              magnitude|       pointer|
+|magnitude_fifo_cap            |   in|   15|     ap_fifo|              magnitude|       pointer|
+|magnitude_empty_n             |   in|    1|     ap_fifo|              magnitude|       pointer|
+|magnitude_read                |  out|    1|     ap_fifo|              magnitude|       pointer|
+|tangent_y_dout                |   in|   32|     ap_fifo|              tangent_y|       pointer|
+|tangent_y_num_data_valid      |   in|   15|     ap_fifo|              tangent_y|       pointer|
+|tangent_y_fifo_cap            |   in|   15|     ap_fifo|              tangent_y|       pointer|
+|tangent_y_empty_n             |   in|    1|     ap_fifo|              tangent_y|       pointer|
+|tangent_y_read                |  out|    1|     ap_fifo|              tangent_y|       pointer|
+|tangent_x_225_dout            |   in|   32|     ap_fifo|          tangent_x_225|       pointer|
+|tangent_x_225_num_data_valid  |   in|   15|     ap_fifo|          tangent_x_225|       pointer|
+|tangent_x_225_fifo_cap        |   in|   15|     ap_fifo|          tangent_x_225|       pointer|
+|tangent_x_225_empty_n         |   in|    1|     ap_fifo|          tangent_x_225|       pointer|
+|tangent_x_225_read            |  out|    1|     ap_fifo|          tangent_x_225|       pointer|
+|tangent_x_675_dout            |   in|   32|     ap_fifo|          tangent_x_675|       pointer|
+|tangent_x_675_num_data_valid  |   in|   15|     ap_fifo|          tangent_x_675|       pointer|
+|tangent_x_675_fifo_cap        |   in|   15|     ap_fifo|          tangent_x_675|       pointer|
+|tangent_x_675_empty_n         |   in|    1|     ap_fifo|          tangent_x_675|       pointer|
+|tangent_x_675_read            |  out|    1|     ap_fifo|          tangent_x_675|       pointer|
+|upperThresh_dout              |   in|   32|     ap_fifo|            upperThresh|       pointer|
+|upperThresh_num_data_valid    |   in|    3|     ap_fifo|            upperThresh|       pointer|
+|upperThresh_fifo_cap          |   in|    3|     ap_fifo|            upperThresh|       pointer|
+|upperThresh_empty_n           |   in|    1|     ap_fifo|            upperThresh|       pointer|
+|upperThresh_read              |  out|    1|     ap_fifo|            upperThresh|       pointer|
+|lowerThresh_dout              |   in|   32|     ap_fifo|            lowerThresh|       pointer|
+|lowerThresh_num_data_valid    |   in|    3|     ap_fifo|            lowerThresh|       pointer|
+|lowerThresh_fifo_cap          |   in|    3|     ap_fifo|            lowerThresh|       pointer|
+|lowerThresh_empty_n           |   in|    1|     ap_fifo|            lowerThresh|       pointer|
+|lowerThresh_read              |  out|    1|     ap_fifo|            lowerThresh|       pointer|
+|dst_address0                  |  out|   14|   ap_memory|                    dst|         array|
+|dst_ce0                       |  out|    1|   ap_memory|                    dst|         array|
+|dst_we0                       |  out|    1|   ap_memory|                    dst|         array|
+|dst_d0                        |  out|   32|   ap_memory|                    dst|         array|
++------------------------------+-----+-----+------------+-----------------------+--------------+
+

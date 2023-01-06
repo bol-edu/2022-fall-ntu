@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cdfg:DBCdfg xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:cdfg="http://www.autoesl.com/DBCdfg" timeStamp="1668338683180">
+  <ports id="1" name="upperThresh" type="PortType" coreId="1953394531" bitwidth="32">
+    <dataOutputObjs>read</dataOutputObjs>
+  </ports>
+  <ports id="2" name="upperThresh_c" type="PortType" coreName="FIFO_SRL" coreId="16" bitwidth="32" direction="DirOut" iftype="IfTypeRom">
+    <dataInputObjs>write</dataInputObjs>
+  </ports>
+  <ports id="3" name="lowerThresh" type="PortType" coreId="1953394531" bitwidth="32">
+    <dataOutputObjs>read</dataOutputObjs>
+  </ports>
+  <ports id="4" name="lowerThresh_c" type="PortType" coreName="FIFO_SRL" coreId="1953394531" bitwidth="32" direction="DirOut" iftype="IfTypeRom">
+    <dataInputObjs>write</dataInputObjs>
+  </ports>
+  <edges id="15" source_obj="//@ports.2" sink_obj="//@blocks.0/@node_objs.0"/>
+  <edges id="17" source_obj="//@ports.0" sink_obj="//@blocks.0/@node_objs.1"/>
+  <edges id="20" source_obj="//@blocks.0/@node_objs.2" sink_obj="//@ports.3"/>
+  <edges id="21" source_obj="//@blocks.0/@node_objs.0" sink_obj="//@blocks.0/@node_objs.2"/>
+  <edges id="23" source_obj="//@blocks.0/@node_objs.3" sink_obj="//@ports.1"/>
+  <edges id="24" source_obj="//@blocks.0/@node_objs.1" sink_obj="//@blocks.0/@node_objs.3"/>
+  <blocks id="12" name="entry_proc" type="BlockType">
+    <node_objs xsi:type="cdfg:CdfgNode" id="6" name="lowerThresh_read" coreId="2349225400" bitwidth="32" opcode="read" m_display="0" m_topoIndex="1" m_clusterGroupNumber="-1">
+      <dataInputObjs>lowerThresh</dataInputObjs>
+      <dataOutputObjs>write</dataOutputObjs>
+    </node_objs>
+    <node_objs xsi:type="cdfg:CdfgNode" id="7" name="upperThresh_read" coreId="2349224840" bitwidth="32" opcode="read" m_display="0" m_topoIndex="2" m_clusterGroupNumber="-1">
+      <dataInputObjs>upperThresh</dataInputObjs>
+      <dataOutputObjs>write</dataOutputObjs>
+    </node_objs>
+    <node_objs xsi:type="cdfg:CdfgNode" id="8" name="lowerThresh_c_write_ln0" coreName="FIFO_SRL" implIndex="srl" control="no" opType="fifo" coreId="81" opcode="write" m_display="0" m_delay="1.93" m_topoIndex="3" m_clusterGroupNumber="-1">
+      <dataInputObjs>read</dataInputObjs>
+      <dataOutputObjs>lowerThresh_c</dataOutputObjs>
+    </node_objs>
+    <node_objs xsi:type="cdfg:CdfgNode" id="10" name="upperThresh_c_write_ln0" coreName="FIFO_SRL" implIndex="srl" control="no" opType="fifo" coreId="81" opcode="write" m_display="0" m_delay="1.93" m_topoIndex="4" m_clusterGroupNumber="-1">
+      <dataInputObjs>read</dataInputObjs>
+      <dataOutputObjs>upperThresh_c</dataOutputObjs>
+    </node_objs>
+    <node_objs xsi:type="cdfg:CdfgNode" id="11" name="_ln0" coreId="2349220920" opcode="ret" m_display="0" m_topoIndex="5" m_clusterGroupNumber="-1"/>
+  </blocks>
+  <ScheduleInfo time="0"/>
+  <ioNodes realName="lowerThresh_read_read_fu_28">
+    <nodeIds>6</nodeIds>
+  </ioNodes>
+  <ioNodes realName="upperThresh_read_read_fu_34">
+    <nodeIds>7</nodeIds>
+  </ioNodes>
+  <ioNodes realName="write_ln0_write_fu_40">
+    <nodeIds>8</nodeIds>
+  </ioNodes>
+  <ioNodes realName="write_ln0_write_fu_48">
+    <nodeIds>10</nodeIds>
+  </ioNodes>
+  <ioPorts name="lowerThresh">
+    <contents name="read">
+      <nodeIds>6</nodeIds>
+    </contents>
+  </ioPorts>
+  <ioPorts name="lowerThresh_c">
+    <contents name="write">
+      <nodeIds>8</nodeIds>
+    </contents>
+  </ioPorts>
+  <ioPorts name="upperThresh">
+    <contents name="read">
+      <nodeIds>7</nodeIds>
+    </contents>
+  </ioPorts>
+  <ioPorts name="upperThresh_c">
+    <contents name="write">
+      <nodeIds>10</nodeIds>
+    </contents>
+  </ioPorts>
+  <fsm>
+    <states id="1">
+      <operations id="5" stage="1" latency="1"/>
+      <operations id="6" stage="1" latency="1"/>
+      <operations id="7" stage="1" latency="1"/>
+      <operations id="8" stage="1" latency="1"/>
+      <operations id="9" stage="1" latency="1"/>
+      <operations id="10" stage="1" latency="1"/>
+      <operations id="11" stage="1" latency="1"/>
+    </states>
+  </fsm>
+  <CFGRegionsRoot>
+    <cfgRegions mId="1" mTag="entry_proc" mII="-1" mDepth="-1" mMinTripCount="-1" mMaxTripCount="-1">
+      <basicBlocks>12</basicBlocks>
+      <mDfPipe/>
+    </cfgRegions>
+  </CFGRegionsRoot>
+</cdfg:DBCdfg>

@@ -1,0 +1,255 @@
+
+
+================================================================
+== Vivado HLS Report for 'fir'
+================================================================
+* Date:           Thu Oct 20 22:24:50 2022
+
+* Version:        2020.1 (Build 2897737 on Wed May 27 20:21:37 MDT 2020)
+* Project:        baseline
+* Solution:       loop_unrolling_MAC4
+* Product family: zynq
+* Target device:  xc7z020-clg400-1
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing: 
+    * Summary: 
+    +--------+----------+----------+------------+
+    |  Clock |  Target  | Estimated| Uncertainty|
+    +--------+----------+----------+------------+
+    |ap_clk  | 10.00 ns | 8.510 ns |   1.25 ns  |
+    +--------+----------+----------+------------+
+
++ Latency: 
+    * Summary: 
+    +---------+---------+----------+----------+-----+-----+---------+
+    |  Latency (cycles) |  Latency (absolute) |  Interval | Pipeline|
+    |   min   |   max   |    min   |    max   | min | max |   Type  |
+    +---------+---------+----------+----------+-----+-----+---------+
+    |      416|      416| 4.160 us | 4.160 us |  416|  416|   none  |
+    +---------+---------+----------+----------+-----+-----+---------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        +----------+---------+---------+----------+-----------+-----------+------+----------+
+        |          |  Latency (cycles) | Iteration|  Initiation Interval  | Trip |          |
+        | Loop Name|   min   |   max   |  Latency |  achieved |   target  | Count| Pipelined|
+        +----------+---------+---------+----------+-----------+-----------+------+----------+
+        |- TDL     |      254|      254|         2|          -|          -|   127|    no    |
+        |- MAC     |      160|      160|         5|          -|          -|    32|    no    |
+        +----------+---------+---------+----------+-----------+-----------+------+----------+
+
+============================================================
++ Verbose Summary: Synthesis Manager
+============================================================
+InlineROM: 1
+ExposeGlobal: 0
+============================================================
++ Verbose Summary: CDFG Model
+============================================================
+IsTopModel: 1
+ResetActiveHigh: 1
+IsCombinational: 0
+IsDatapathOnly: 0
+HasWiredReturn: 1
+HasMFsm: 0
+HasVarLatency: 1
+IsPipeline: 0
+IsRtlPipelined: 0
+IsInstanceOverlapped: 0
+IsDontTouch: 0
+HasImplIP: 0
+IsGatedGlobalClock: 0
+
+
+============================================================
++ Verbose Summary: Schedule
+============================================================
+* Number of FSM states : 8
+* Pipeline : 0
+* Dataflow Pipeline: 0
+
+* FSM state transitions: 
+1 --> 2 
+2 --> 3 4 
+3 --> 2 
+4 --> 5 
+5 --> 6 
+6 --> 7 
+7 --> 8 
+8 --> 4 
+
+* FSM state operations: 
+
+State 1 <SV = 0> <Delay = 1.76>
+ST_1 : Operation 9 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecBitsMap(i32* %y) nounwind, !map !7"   --->   Operation 9 'specbitsmap' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 10 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecBitsMap(i32 %x) nounwind, !map !13"   --->   Operation 10 'specbitsmap' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 11 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecTopModule([4 x i8]* @fir_str) nounwind"   --->   Operation 11 'spectopmodule' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 12 [1/1] (0.00ns)   --->   "%x_read = call i32 @_ssdm_op_Read.ap_auto.i32(i32 %x) nounwind" [fir.cpp:16]   --->   Operation 12 'read' 'x_read' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 13 [1/1] (1.76ns)   --->   "br label %0" [fir.cpp:30]   --->   Operation 13 'br' <Predicate = true> <Delay = 1.76>
+
+State 2 <SV = 1> <Delay = 5.12>
+ST_2 : Operation 14 [1/1] (0.00ns)   --->   "%i_0 = phi i7 [ %i, %1 ], [ -1, %.preheader ]"   --->   Operation 14 'phi' 'i_0' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 15 [1/1] (1.48ns)   --->   "%icmp_ln30 = icmp eq i7 %i_0, 0" [fir.cpp:30]   --->   Operation 15 'icmp' 'icmp_ln30' <Predicate = true> <Delay = 1.48> <Core = "Cmp">   --->   Core 25 'Cmp' <Latency = 0> <II = 1> <Delay = 1.48> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 16 [1/1] (0.00ns)   --->   "%empty = call i32 (...)* @_ssdm_op_SpecLoopTripCount(i64 127, i64 127, i64 127) nounwind"   --->   Operation 16 'speclooptripcount' 'empty' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 17 [1/1] (0.00ns)   --->   "br i1 %icmp_ln30, label %2, label %1" [fir.cpp:30]   --->   Operation 17 'br' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 18 [1/1] (1.87ns)   --->   "%i = add i7 %i_0, -1" [fir.cpp:31]   --->   Operation 18 'add' 'i' <Predicate = (!icmp_ln30)> <Delay = 1.87> <Core = "AddSub">   --->   Core 14 'AddSub' <Latency = 0> <II = 1> <Delay = 1.91> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 19 [1/1] (0.00ns)   --->   "%zext_ln31 = zext i7 %i to i64" [fir.cpp:31]   --->   Operation 19 'zext' 'zext_ln31' <Predicate = (!icmp_ln30)> <Delay = 0.00>
+ST_2 : Operation 20 [1/1] (0.00ns)   --->   "%shift_reg_addr = getelementptr inbounds [128 x i32]* @shift_reg, i64 0, i64 %zext_ln31" [fir.cpp:31]   --->   Operation 20 'getelementptr' 'shift_reg_addr' <Predicate = (!icmp_ln30)> <Delay = 0.00>
+ST_2 : Operation 21 [2/2] (3.25ns)   --->   "%shift_reg_load = load i32* %shift_reg_addr, align 4" [fir.cpp:31]   --->   Operation 21 'load' 'shift_reg_load' <Predicate = (!icmp_ln30)> <Delay = 3.25> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 128> <RAM>
+ST_2 : Operation 22 [1/1] (3.25ns)   --->   "store i32 %x_read, i32* getelementptr inbounds ([128 x i32]* @shift_reg, i64 0, i64 0), align 16" [fir.cpp:33]   --->   Operation 22 'store' <Predicate = (icmp_ln30)> <Delay = 3.25> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 128> <RAM>
+ST_2 : Operation 23 [1/1] (1.76ns)   --->   "br label %3" [fir.cpp:37]   --->   Operation 23 'br' <Predicate = (icmp_ln30)> <Delay = 1.76>
+
+State 3 <SV = 2> <Delay = 6.50>
+ST_3 : Operation 24 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecLoopName([4 x i8]* @p_str) nounwind" [fir.cpp:30]   --->   Operation 24 'specloopname' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 25 [1/2] (3.25ns)   --->   "%shift_reg_load = load i32* %shift_reg_addr, align 4" [fir.cpp:31]   --->   Operation 25 'load' 'shift_reg_load' <Predicate = true> <Delay = 3.25> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 128> <RAM>
+ST_3 : Operation 26 [1/1] (0.00ns)   --->   "%zext_ln31_1 = zext i7 %i_0 to i64" [fir.cpp:31]   --->   Operation 26 'zext' 'zext_ln31_1' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 27 [1/1] (0.00ns)   --->   "%shift_reg_addr_1 = getelementptr inbounds [128 x i32]* @shift_reg, i64 0, i64 %zext_ln31_1" [fir.cpp:31]   --->   Operation 27 'getelementptr' 'shift_reg_addr_1' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 28 [1/1] (3.25ns)   --->   "store i32 %shift_reg_load, i32* %shift_reg_addr_1, align 4" [fir.cpp:31]   --->   Operation 28 'store' <Predicate = true> <Delay = 3.25> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 128> <RAM>
+ST_3 : Operation 29 [1/1] (0.00ns)   --->   "br label %0" [fir.cpp:30]   --->   Operation 29 'br' <Predicate = true> <Delay = 0.00>
+
+State 4 <SV = 2> <Delay = 5.16>
+ST_4 : Operation 30 [1/1] (0.00ns)   --->   "%acc_0_0 = phi i32 [ 0, %2 ], [ %add_ln38_3, %4 ]" [fir.cpp:38]   --->   Operation 30 'phi' 'acc_0_0' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 31 [1/1] (0.00ns)   --->   "%i_1_0 = phi i8 [ 127, %2 ], [ %add_ln37_3, %4 ]" [fir.cpp:37]   --->   Operation 31 'phi' 'i_1_0' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 32 [1/1] (0.00ns)   --->   "%i_1_0_cast = sext i8 %i_1_0 to i32" [fir.cpp:37]   --->   Operation 32 'sext' 'i_1_0_cast' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 33 [1/1] (0.00ns)   --->   "%empty_2 = call i32 (...)* @_ssdm_op_SpecLoopTripCount(i64 32, i64 32, i64 32) nounwind"   --->   Operation 33 'speclooptripcount' 'empty_2' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 34 [1/1] (0.00ns)   --->   "%tmp = call i1 @_ssdm_op_BitSelect.i1.i8.i32(i8 %i_1_0, i32 7)" [fir.cpp:37]   --->   Operation 34 'bitselect' 'tmp' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 35 [1/1] (0.00ns)   --->   "br i1 %tmp, label %5, label %4" [fir.cpp:37]   --->   Operation 35 'br' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 36 [1/1] (0.00ns)   --->   "%zext_ln38 = zext i32 %i_1_0_cast to i64" [fir.cpp:38]   --->   Operation 36 'zext' 'zext_ln38' <Predicate = (!tmp)> <Delay = 0.00>
+ST_4 : Operation 37 [1/1] (0.00ns)   --->   "%shift_reg_addr_2 = getelementptr inbounds [128 x i32]* @shift_reg, i64 0, i64 %zext_ln38" [fir.cpp:38]   --->   Operation 37 'getelementptr' 'shift_reg_addr_2' <Predicate = (!tmp)> <Delay = 0.00>
+ST_4 : Operation 38 [2/2] (3.25ns)   --->   "%shift_reg_load_1 = load i32* %shift_reg_addr_2, align 4" [fir.cpp:38]   --->   Operation 38 'load' 'shift_reg_load_1' <Predicate = (!tmp)> <Delay = 3.25> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 128> <RAM>
+ST_4 : Operation 39 [1/1] (0.00ns)   --->   "%c_addr = getelementptr [128 x i5]* @c, i64 0, i64 %zext_ln38" [fir.cpp:38]   --->   Operation 39 'getelementptr' 'c_addr' <Predicate = (!tmp)> <Delay = 0.00>
+ST_4 : Operation 40 [2/2] (3.25ns)   --->   "%c_load = load i5* %c_addr, align 1" [fir.cpp:38]   --->   Operation 40 'load' 'c_load' <Predicate = (!tmp)> <Delay = 3.25> <Core = "ROM_nP">   --->   Core 52 'ROM_nP' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load'> <Ports = 0> <Width = 5> <Depth = 128> <ROM>
+ST_4 : Operation 41 [1/1] (1.91ns)   --->   "%add_ln37 = add i8 %i_1_0, -1" [fir.cpp:37]   --->   Operation 41 'add' 'add_ln37' <Predicate = (!tmp)> <Delay = 1.91> <Core = "AddSub">   --->   Core 14 'AddSub' <Latency = 0> <II = 1> <Delay = 1.91> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_4 : Operation 42 [1/1] (0.00ns)   --->   "%sext_ln37 = sext i8 %add_ln37 to i32" [fir.cpp:37]   --->   Operation 42 'sext' 'sext_ln37' <Predicate = (!tmp)> <Delay = 0.00>
+ST_4 : Operation 43 [1/1] (0.00ns)   --->   "%zext_ln38_1 = zext i32 %sext_ln37 to i64" [fir.cpp:38]   --->   Operation 43 'zext' 'zext_ln38_1' <Predicate = (!tmp)> <Delay = 0.00>
+ST_4 : Operation 44 [1/1] (0.00ns)   --->   "%shift_reg_addr_3 = getelementptr inbounds [128 x i32]* @shift_reg, i64 0, i64 %zext_ln38_1" [fir.cpp:38]   --->   Operation 44 'getelementptr' 'shift_reg_addr_3' <Predicate = (!tmp)> <Delay = 0.00>
+ST_4 : Operation 45 [2/2] (3.25ns)   --->   "%shift_reg_load_2 = load i32* %shift_reg_addr_3, align 4" [fir.cpp:38]   --->   Operation 45 'load' 'shift_reg_load_2' <Predicate = (!tmp)> <Delay = 3.25> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 128> <RAM>
+ST_4 : Operation 46 [1/1] (0.00ns)   --->   "%c_addr_1 = getelementptr [128 x i5]* @c, i64 0, i64 %zext_ln38_1" [fir.cpp:38]   --->   Operation 46 'getelementptr' 'c_addr_1' <Predicate = (!tmp)> <Delay = 0.00>
+ST_4 : Operation 47 [2/2] (3.25ns)   --->   "%c_load_1 = load i5* %c_addr_1, align 1" [fir.cpp:38]   --->   Operation 47 'load' 'c_load_1' <Predicate = (!tmp)> <Delay = 3.25> <Core = "ROM_nP">   --->   Core 52 'ROM_nP' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load'> <Ports = 0> <Width = 5> <Depth = 128> <ROM>
+ST_4 : Operation 48 [1/1] (0.00ns)   --->   "call void @_ssdm_op_Write.ap_auto.i32P(i32* %y, i32 %acc_0_0) nounwind" [fir.cpp:41]   --->   Operation 48 'write' <Predicate = (tmp)> <Delay = 0.00>
+ST_4 : Operation 49 [1/1] (0.00ns)   --->   "ret void" [fir.cpp:42]   --->   Operation 49 'ret' <Predicate = (tmp)> <Delay = 0.00>
+
+State 5 <SV = 3> <Delay = 5.16>
+ST_5 : Operation 50 [1/2] (3.25ns)   --->   "%shift_reg_load_1 = load i32* %shift_reg_addr_2, align 4" [fir.cpp:38]   --->   Operation 50 'load' 'shift_reg_load_1' <Predicate = true> <Delay = 3.25> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 128> <RAM>
+ST_5 : Operation 51 [1/2] (3.25ns)   --->   "%c_load = load i5* %c_addr, align 1" [fir.cpp:38]   --->   Operation 51 'load' 'c_load' <Predicate = true> <Delay = 3.25> <Core = "ROM_nP">   --->   Core 52 'ROM_nP' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load'> <Ports = 0> <Width = 5> <Depth = 128> <ROM>
+ST_5 : Operation 52 [1/2] (3.25ns)   --->   "%shift_reg_load_2 = load i32* %shift_reg_addr_3, align 4" [fir.cpp:38]   --->   Operation 52 'load' 'shift_reg_load_2' <Predicate = true> <Delay = 3.25> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 128> <RAM>
+ST_5 : Operation 53 [1/2] (3.25ns)   --->   "%c_load_1 = load i5* %c_addr_1, align 1" [fir.cpp:38]   --->   Operation 53 'load' 'c_load_1' <Predicate = true> <Delay = 3.25> <Core = "ROM_nP">   --->   Core 52 'ROM_nP' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load'> <Ports = 0> <Width = 5> <Depth = 128> <ROM>
+ST_5 : Operation 54 [1/1] (1.91ns)   --->   "%add_ln37_1 = add i8 %i_1_0, -2" [fir.cpp:37]   --->   Operation 54 'add' 'add_ln37_1' <Predicate = true> <Delay = 1.91> <Core = "AddSub">   --->   Core 14 'AddSub' <Latency = 0> <II = 1> <Delay = 1.91> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_5 : Operation 55 [1/1] (0.00ns)   --->   "%sext_ln37_1 = sext i8 %add_ln37_1 to i32" [fir.cpp:37]   --->   Operation 55 'sext' 'sext_ln37_1' <Predicate = true> <Delay = 0.00>
+ST_5 : Operation 56 [1/1] (0.00ns)   --->   "%zext_ln38_2 = zext i32 %sext_ln37_1 to i64" [fir.cpp:38]   --->   Operation 56 'zext' 'zext_ln38_2' <Predicate = true> <Delay = 0.00>
+ST_5 : Operation 57 [1/1] (0.00ns)   --->   "%shift_reg_addr_4 = getelementptr inbounds [128 x i32]* @shift_reg, i64 0, i64 %zext_ln38_2" [fir.cpp:38]   --->   Operation 57 'getelementptr' 'shift_reg_addr_4' <Predicate = true> <Delay = 0.00>
+ST_5 : Operation 58 [2/2] (3.25ns)   --->   "%shift_reg_load_3 = load i32* %shift_reg_addr_4, align 4" [fir.cpp:38]   --->   Operation 58 'load' 'shift_reg_load_3' <Predicate = true> <Delay = 3.25> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 128> <RAM>
+ST_5 : Operation 59 [1/1] (0.00ns)   --->   "%c_addr_2 = getelementptr [128 x i5]* @c, i64 0, i64 %zext_ln38_2" [fir.cpp:38]   --->   Operation 59 'getelementptr' 'c_addr_2' <Predicate = true> <Delay = 0.00>
+ST_5 : Operation 60 [2/2] (3.25ns)   --->   "%c_load_2 = load i5* %c_addr_2, align 1" [fir.cpp:38]   --->   Operation 60 'load' 'c_load_2' <Predicate = true> <Delay = 3.25> <Core = "ROM_nP">   --->   Core 52 'ROM_nP' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load'> <Ports = 0> <Width = 5> <Depth = 128> <ROM>
+ST_5 : Operation 61 [1/1] (1.91ns)   --->   "%add_ln37_2 = add i8 %i_1_0, -3" [fir.cpp:37]   --->   Operation 61 'add' 'add_ln37_2' <Predicate = true> <Delay = 1.91> <Core = "AddSub">   --->   Core 14 'AddSub' <Latency = 0> <II = 1> <Delay = 1.91> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_5 : Operation 62 [1/1] (0.00ns)   --->   "%sext_ln37_2 = sext i8 %add_ln37_2 to i32" [fir.cpp:37]   --->   Operation 62 'sext' 'sext_ln37_2' <Predicate = true> <Delay = 0.00>
+ST_5 : Operation 63 [1/1] (0.00ns)   --->   "%zext_ln38_3 = zext i32 %sext_ln37_2 to i64" [fir.cpp:38]   --->   Operation 63 'zext' 'zext_ln38_3' <Predicate = true> <Delay = 0.00>
+ST_5 : Operation 64 [1/1] (0.00ns)   --->   "%shift_reg_addr_5 = getelementptr inbounds [128 x i32]* @shift_reg, i64 0, i64 %zext_ln38_3" [fir.cpp:38]   --->   Operation 64 'getelementptr' 'shift_reg_addr_5' <Predicate = true> <Delay = 0.00>
+ST_5 : Operation 65 [2/2] (3.25ns)   --->   "%shift_reg_load_4 = load i32* %shift_reg_addr_5, align 4" [fir.cpp:38]   --->   Operation 65 'load' 'shift_reg_load_4' <Predicate = true> <Delay = 3.25> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 128> <RAM>
+ST_5 : Operation 66 [1/1] (0.00ns)   --->   "%c_addr_3 = getelementptr [128 x i5]* @c, i64 0, i64 %zext_ln38_3" [fir.cpp:38]   --->   Operation 66 'getelementptr' 'c_addr_3' <Predicate = true> <Delay = 0.00>
+ST_5 : Operation 67 [2/2] (3.25ns)   --->   "%c_load_3 = load i5* %c_addr_3, align 1" [fir.cpp:38]   --->   Operation 67 'load' 'c_load_3' <Predicate = true> <Delay = 3.25> <Core = "ROM_nP">   --->   Core 52 'ROM_nP' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load'> <Ports = 0> <Width = 5> <Depth = 128> <ROM>
+ST_5 : Operation 68 [1/1] (1.91ns)   --->   "%add_ln37_3 = add i8 %i_1_0, -4" [fir.cpp:37]   --->   Operation 68 'add' 'add_ln37_3' <Predicate = true> <Delay = 1.91> <Core = "AddSub">   --->   Core 14 'AddSub' <Latency = 0> <II = 1> <Delay = 1.91> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+
+State 6 <SV = 4> <Delay = 8.51>
+ST_6 : Operation 69 [1/1] (0.00ns)   --->   "%sext_ln38 = sext i5 %c_load to i32" [fir.cpp:38]   --->   Operation 69 'sext' 'sext_ln38' <Predicate = true> <Delay = 0.00>
+ST_6 : Operation 70 [1/1] (8.51ns)   --->   "%mul_ln38 = mul nsw i32 %shift_reg_load_1, %sext_ln38" [fir.cpp:38]   --->   Operation 70 'mul' 'mul_ln38' <Predicate = true> <Delay = 8.51> <Core = "Mul">   --->   Core 16 'Mul' <Latency = 0> <II = 1> <Delay = 8.51> <FuncUnit> <Opcode : 'mul'> <InPorts = 2> <OutPorts = 1>
+ST_6 : Operation 71 [1/1] (0.00ns)   --->   "%sext_ln38_1 = sext i5 %c_load_1 to i32" [fir.cpp:38]   --->   Operation 71 'sext' 'sext_ln38_1' <Predicate = true> <Delay = 0.00>
+ST_6 : Operation 72 [1/1] (8.51ns)   --->   "%mul_ln38_1 = mul nsw i32 %shift_reg_load_2, %sext_ln38_1" [fir.cpp:38]   --->   Operation 72 'mul' 'mul_ln38_1' <Predicate = true> <Delay = 8.51> <Core = "Mul">   --->   Core 16 'Mul' <Latency = 0> <II = 1> <Delay = 8.51> <FuncUnit> <Opcode : 'mul'> <InPorts = 2> <OutPorts = 1>
+ST_6 : Operation 73 [1/2] (3.25ns)   --->   "%shift_reg_load_3 = load i32* %shift_reg_addr_4, align 4" [fir.cpp:38]   --->   Operation 73 'load' 'shift_reg_load_3' <Predicate = true> <Delay = 3.25> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 128> <RAM>
+ST_6 : Operation 74 [1/2] (3.25ns)   --->   "%c_load_2 = load i5* %c_addr_2, align 1" [fir.cpp:38]   --->   Operation 74 'load' 'c_load_2' <Predicate = true> <Delay = 3.25> <Core = "ROM_nP">   --->   Core 52 'ROM_nP' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load'> <Ports = 0> <Width = 5> <Depth = 128> <ROM>
+ST_6 : Operation 75 [1/2] (3.25ns)   --->   "%shift_reg_load_4 = load i32* %shift_reg_addr_5, align 4" [fir.cpp:38]   --->   Operation 75 'load' 'shift_reg_load_4' <Predicate = true> <Delay = 3.25> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 128> <RAM>
+ST_6 : Operation 76 [1/2] (3.25ns)   --->   "%c_load_3 = load i5* %c_addr_3, align 1" [fir.cpp:38]   --->   Operation 76 'load' 'c_load_3' <Predicate = true> <Delay = 3.25> <Core = "ROM_nP">   --->   Core 52 'ROM_nP' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load'> <Ports = 0> <Width = 5> <Depth = 128> <ROM>
+
+State 7 <SV = 5> <Delay = 8.51>
+ST_7 : Operation 77 [1/1] (0.00ns)   --->   "%sext_ln38_2 = sext i5 %c_load_2 to i32" [fir.cpp:38]   --->   Operation 77 'sext' 'sext_ln38_2' <Predicate = true> <Delay = 0.00>
+ST_7 : Operation 78 [1/1] (8.51ns)   --->   "%mul_ln38_2 = mul nsw i32 %shift_reg_load_3, %sext_ln38_2" [fir.cpp:38]   --->   Operation 78 'mul' 'mul_ln38_2' <Predicate = true> <Delay = 8.51> <Core = "Mul">   --->   Core 16 'Mul' <Latency = 0> <II = 1> <Delay = 8.51> <FuncUnit> <Opcode : 'mul'> <InPorts = 2> <OutPorts = 1>
+ST_7 : Operation 79 [1/1] (0.00ns)   --->   "%sext_ln38_3 = sext i5 %c_load_3 to i32" [fir.cpp:38]   --->   Operation 79 'sext' 'sext_ln38_3' <Predicate = true> <Delay = 0.00>
+ST_7 : Operation 80 [1/1] (8.51ns)   --->   "%mul_ln38_3 = mul nsw i32 %shift_reg_load_4, %sext_ln38_3" [fir.cpp:38]   --->   Operation 80 'mul' 'mul_ln38_3' <Predicate = true> <Delay = 8.51> <Core = "Mul">   --->   Core 16 'Mul' <Latency = 0> <II = 1> <Delay = 8.51> <FuncUnit> <Opcode : 'mul'> <InPorts = 2> <OutPorts = 1>
+ST_7 : Operation 81 [1/1] (2.55ns)   --->   "%add_ln38 = add i32 %mul_ln38, %mul_ln38_1" [fir.cpp:38]   --->   Operation 81 'add' 'add_ln38' <Predicate = true> <Delay = 2.55> <Core = "AddSub">   --->   Core 14 'AddSub' <Latency = 0> <II = 1> <Delay = 1.91> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+
+State 8 <SV = 6> <Delay = 6.92>
+ST_8 : Operation 82 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecLoopName([4 x i8]* @p_str1) nounwind" [fir.cpp:37]   --->   Operation 82 'specloopname' <Predicate = true> <Delay = 0.00>
+ST_8 : Operation 83 [1/1] (2.55ns)   --->   "%add_ln38_1 = add i32 %mul_ln38_2, %mul_ln38_3" [fir.cpp:38]   --->   Operation 83 'add' 'add_ln38_1' <Predicate = true> <Delay = 2.55> <Core = "AddSub">   --->   Core 14 'AddSub' <Latency = 0> <II = 1> <Delay = 1.91> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_8 : Operation 84 [1/1] (0.00ns) (grouped into TernaryAdder)   --->   "%add_ln38_2 = add nsw i32 %add_ln38_1, %add_ln38" [fir.cpp:38]   --->   Operation 84 'add' 'add_ln38_2' <Predicate = true> <Delay = 0.00> <Core = "TAddSub">   --->   Core 83 'TAddSub' <Latency = 0> <II = 1> <Delay = 2.18> <IPBlock> <Opcode : 'add' 'sub'> <InPorts = 3> <OutPorts = 1> <Sync> <CReg>
+ST_8 : Operation 85 [1/1] (4.37ns) (root node of TernaryAdder)   --->   "%add_ln38_3 = add nsw i32 %acc_0_0, %add_ln38_2" [fir.cpp:38]   --->   Operation 85 'add' 'add_ln38_3' <Predicate = true> <Delay = 4.37> <Core = "TAddSub">   --->   Core 83 'TAddSub' <Latency = 0> <II = 1> <Delay = 2.18> <IPBlock> <Opcode : 'add' 'sub'> <InPorts = 3> <OutPorts = 1> <Sync> <CReg>
+ST_8 : Operation 86 [1/1] (0.00ns)   --->   "br label %3" [fir.cpp:37]   --->   Operation 86 'br' <Predicate = true> <Delay = 0.00>
+
+
+============================================================
++ Verbose Summary: Timing violations
+============================================================
+Target clock period: 10ns, clock uncertainty: 1.25ns.
+
+ <State 1>: 1.77ns
+The critical path consists of the following:
+	multiplexor before 'phi' operation ('i') with incoming values : ('i', fir.cpp:31) [13]  (1.77 ns)
+
+ <State 2>: 5.12ns
+The critical path consists of the following:
+	'phi' operation ('i') with incoming values : ('i', fir.cpp:31) [13]  (0 ns)
+	'add' operation ('i', fir.cpp:31) [19]  (1.87 ns)
+	'getelementptr' operation ('shift_reg_addr', fir.cpp:31) [21]  (0 ns)
+	'load' operation ('shift_reg_load', fir.cpp:31) on array 'shift_reg' [22]  (3.25 ns)
+
+ <State 3>: 6.51ns
+The critical path consists of the following:
+	'load' operation ('shift_reg_load', fir.cpp:31) on array 'shift_reg' [22]  (3.25 ns)
+	'store' operation ('store_ln31', fir.cpp:31) of variable 'shift_reg_load', fir.cpp:31 on array 'shift_reg' [25]  (3.25 ns)
+
+ <State 4>: 5.17ns
+The critical path consists of the following:
+	'phi' operation ('i_1_0', fir.cpp:37) with incoming values : ('add_ln37_3', fir.cpp:37) [32]  (0 ns)
+	'add' operation ('add_ln37', fir.cpp:37) [46]  (1.92 ns)
+	'getelementptr' operation ('shift_reg_addr_3', fir.cpp:38) [49]  (0 ns)
+	'load' operation ('shift_reg_load_2', fir.cpp:38) on array 'shift_reg' [50]  (3.25 ns)
+
+ <State 5>: 5.17ns
+The critical path consists of the following:
+	'add' operation ('add_ln37_1', fir.cpp:37) [55]  (1.92 ns)
+	'getelementptr' operation ('shift_reg_addr_4', fir.cpp:38) [58]  (0 ns)
+	'load' operation ('shift_reg_load_3', fir.cpp:38) on array 'shift_reg' [59]  (3.25 ns)
+
+ <State 6>: 8.51ns
+The critical path consists of the following:
+	'mul' operation ('mul_ln38', fir.cpp:38) [45]  (8.51 ns)
+
+ <State 7>: 8.51ns
+The critical path consists of the following:
+	'mul' operation ('mul_ln38_2', fir.cpp:38) [63]  (8.51 ns)
+
+ <State 8>: 6.92ns
+The critical path consists of the following:
+	'add' operation ('add_ln38_1', fir.cpp:38) [74]  (2.55 ns)
+	'add' operation ('add_ln38_2', fir.cpp:38) [75]  (0 ns)
+	'add' operation ('add_ln38_3', fir.cpp:38) [76]  (4.37 ns)
+
+
+============================================================
++ Verbose Summary: Binding
+============================================================
+N/A
+* FSMD analyzer results:
+  - Output states:
+ - Input state : 
+  - Chain level:
+	State 1
+	State 2
+	State 3
+	State 4
+	State 5
+	State 6
+	State 7
+	State 8
+
+
+============================================================
++ Verbose Summary: Datapath Resource usage 
+============================================================
+N/A

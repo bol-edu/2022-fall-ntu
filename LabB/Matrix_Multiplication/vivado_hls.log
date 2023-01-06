@@ -1,0 +1,199 @@
+INFO: [HLS 200-10] Running 'C:/Users/kevin/Desktop/Vivado/2020.1/bin/unwrapped/win64.o/vivado_hls.exe'
+INFO: [HLS 200-10] For user 'kevin' on host 'desktop-b6s694l' (Windows NT_amd64 version 6.2) on Wed Oct 19 18:16:08 +0800 2022
+INFO: [HLS 200-10] In directory 'C:/Users/kevin/Desktop/Vivado/2020.1/Matrix_Multiplication/script'
+Sourcing Tcl script 'C:/Users/kevin/Desktop/Vivado/2020.1/Matrix_Multiplication/script/BlockMatrix_multiplication/solution4/csynth.tcl'
+INFO: [HLS 200-10] Opening project 'C:/Users/kevin/Desktop/Vivado/2020.1/Matrix_Multiplication/script/BlockMatrix_multiplication'.
+INFO: [HLS 200-10] Adding design file 'BlockMatrix_design.cpp' to the project
+INFO: [HLS 200-10] Adding design file 'BlockMatrix_design.h' to the project
+INFO: [HLS 200-10] Adding test bench file 'BlockBatrix_testbench.cpp' to the project
+INFO: [HLS 200-10] Adding test bench file 'matrixmultiplication.gold.dat' to the project
+INFO: [HLS 200-10] Opening solution 'C:/Users/kevin/Desktop/Vivado/2020.1/Matrix_Multiplication/script/BlockMatrix_multiplication/solution4'.
+INFO: [SYN 201-201] Setting up clock 'default' with a period of 10ns.
+INFO: [HLS 200-10] Setting target device to 'xc7z020-clg400-1'
+INFO: [SCHED 204-61] Option 'relax_ii_for_timing' is enabled, will increase II to preserve clock frequency constraints.
+INFO: [HLS 200-10] Analyzing design file 'BlockMatrix_design.cpp' ... 
+WARNING: [HLS 214-111] Static scalars and arrays declared inside a dataflow region will be treated like local variables: BlockMatrix_design.cpp:11:18
+WARNING: [HLS 214-114] Since the only kind of statements allowed in a canonical dataflow region are variable declarations and function calls, the compiler may not be able to correctly handle the region: BlockMatrix_design.cpp:12:5
+WARNING: [HLS 214-114] Since the only kind of statements allowed in a canonical dataflow region are variable declarations and function calls, the compiler may not be able to correctly handle the region: BlockMatrix_design.cpp:22:5
+WARNING: [HLS 214-114] Since the only kind of statements allowed in a canonical dataflow region are variable declarations and function calls, the compiler may not be able to correctly handle the region: BlockMatrix_design.cpp:32:5
+WARNING: [HLS 200-471] Dataflow form checks found 4 issue(s) in file BlockMatrix_design.cpp
+INFO: [HLS 200-111] Finished Linking Time (s): cpu = 00:00:04 ; elapsed = 00:00:11 . Memory (MB): peak = 955.746 ; gain = 859.520
+INFO: [HLS 200-111] Finished Checking Pragmas Time (s): cpu = 00:00:04 ; elapsed = 00:00:11 . Memory (MB): peak = 955.746 ; gain = 859.520
+INFO: [HLS 200-10] Starting code transformations ...
+INFO: [HLS 200-111] Finished Standard Transforms Time (s): cpu = 00:00:04 ; elapsed = 00:00:11 . Memory (MB): peak = 955.746 ; gain = 859.520
+INFO: [HLS 200-10] Checking synthesizability ...
+INFO: [HLS 200-111] Finished Checking Synthesizability Time (s): cpu = 00:00:04 ; elapsed = 00:00:11 . Memory (MB): peak = 955.746 ; gain = 859.520
+INFO: [XFORM 203-502] Unrolling all sub-loops inside loop 'loadA' (BlockMatrix_design.cpp:13) in function 'blockmatmul' for pipelining.
+WARNING: [XFORM 203-505] Ignored pipeline directive for loop 'Loop-2.1' (BlockMatrix_design.cpp:15) because its parent loop or function is pipelined.
+INFO: [XFORM 203-502] Unrolling all sub-loops inside loop 'partialsum' (BlockMatrix_design.cpp:22) in function 'blockmatmul' for pipelining.
+INFO: [XFORM 203-502] Unrolling all sub-loops inside loop 'writeoutput' (BlockMatrix_design.cpp:32) in function 'blockmatmul' for pipelining.
+INFO: [HLS 200-489] Unrolling loop 'Loop-2.1' (BlockMatrix_design.cpp:15) in function 'blockmatmul' completely with a factor of 4.
+INFO: [HLS 200-489] Unrolling loop 'ps_i' (BlockMatrix_design.cpp:25) in function 'blockmatmul' completely with a factor of 4.
+INFO: [HLS 200-489] Unrolling loop 'ps_j' (BlockMatrix_design.cpp:26) in function 'blockmatmul' completely with a factor of 4.
+INFO: [HLS 200-489] Unrolling loop 'Loop-4.1' (BlockMatrix_design.cpp:33) in function 'blockmatmul' completely with a factor of 4.
+INFO: [XFORM 203-102] Partitioning array 'A' in dimension 1 automatically.
+INFO: [XFORM 203-131] Reshaping array 'AB' (BlockMatrix_design.cpp:7) in dimension 1 completely.
+INFO: [XFORM 203-131] Reshaping array 'AB' (BlockMatrix_design.cpp:7) in dimension 2 completely.
+INFO: [XFORM 203-102] Automatically partitioning streamed array 'Arows.V.a' (BlockMatrix_design.cpp:5) .
+INFO: [XFORM 203-102] Automatically partitioning streamed array 'Bcols.V.a' (BlockMatrix_design.cpp:5) .
+INFO: [XFORM 203-101] Partitioning array 'tmp.a' in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'tmp.a.1' in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'Arows.V.a' (BlockMatrix_design.cpp:5) in dimension 1 completely.
+INFO: [XFORM 203-101] Partitioning array 'Bcols.V.a' (BlockMatrix_design.cpp:5) in dimension 1 completely.
+INFO: [XFORM 203-721] Change variable 'A.3' to FIFO automatically.
+INFO: [XFORM 203-721] Change variable 'A.2' to FIFO automatically.
+INFO: [XFORM 203-721] Change variable 'A.1' to FIFO automatically.
+INFO: [XFORM 203-721] Change variable 'A.0' to FIFO automatically.
+INFO: [XFORM 203-721] Changing loop 'Loop_memset_AB_proc' to a process function for dataflow in function 'blockmatmul'.
+INFO: [XFORM 203-721] Changing loop 'Loop_partialsum_proc' (BlockMatrix_design.cpp:22) to a process function for dataflow in function 'blockmatmul'.
+INFO: [XFORM 203-721] Changing loop 'Loop_writeoutput_proc' (BlockMatrix_design.cpp:32) to a process function for dataflow in function 'blockmatmul'.
+INFO: [XFORM 203-712] Applying dataflow to function 'blockmatmul', detected/extracted 5 process function(s): 
+	 'blockmatmul.entry17'
+	 'Loop_memset_AB_proc'
+	 'Block_blockmatmul_meminst.i.exit_proc16'
+	 'Loop_partialsum_proc'
+	 'Loop_writeoutput_proc'.
+INFO: [HLS 200-111] Finished Pre-synthesis Time (s): cpu = 00:00:05 ; elapsed = 00:00:12 . Memory (MB): peak = 955.746 ; gain = 859.520
+INFO: [XFORM 203-603] Evaluating the output(s) of a call to function 'Loop_memset_AB_proc' in function 'blockmatmul' and propagating its result(s) since all actual argument(s) to the function are constants.
+WARNING: [XFORM 203-631] Renaming function 'Loop_writeoutput_proc' to 'Loop_writeoutput_pro' (BlockMatrix_design.cpp:32:49)
+WARNING: [XFORM 203-631] Renaming function 'Block_blockmatmul_meminst.i.exit_proc16' to 'Block_blockmatmul_me' (BlockMatrix_design.cpp:5:41)
+INFO: [HLS 200-111] Finished Architecture Synthesis Time (s): cpu = 00:00:06 ; elapsed = 00:00:13 . Memory (MB): peak = 955.746 ; gain = 859.520
+INFO: [HLS 200-10] Starting hardware synthesis ...
+INFO: [HLS 200-10] Synthesizing 'blockmatmul' ...
+WARNING: [SYN 201-103] Legalizing function name 'blockmatmul.entry5' to 'blockmatmul_entry5'.
+WARNING: [SYN 201-103] Legalizing function name 'blockmatmul.entry17' to 'blockmatmul_entry17'.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'blockmatmul_entry5' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111]  Elapsed time: 13.37 seconds; current allocated memory: 162.194 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111]  Elapsed time: 0.102 seconds; current allocated memory: 162.244 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'blockmatmul_entry17' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111]  Elapsed time: 0.211 seconds; current allocated memory: 162.274 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111]  Elapsed time: 0.085 seconds; current allocated memory: 162.327 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'Block_blockmatmul_me' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-61] Pipelining loop 'loadA'.
+INFO: [SCHED 204-61] Pipelining result : Target II = 1, Final II = 1, Depth = 2.
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111]  Elapsed time: 0.46 seconds; current allocated memory: 162.401 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111]  Elapsed time: 0.115 seconds; current allocated memory: 162.553 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'Loop_partialsum_proc' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-61] Pipelining loop 'partialsum'.
+INFO: [SCHED 204-61] Pipelining result : Target II = 1, Final II = 1, Depth = 4.
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111]  Elapsed time: 0.43 seconds; current allocated memory: 162.892 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111]  Elapsed time: 0.103 seconds; current allocated memory: 163.244 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'Loop_writeoutput_pro' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-61] Pipelining loop 'writeoutput'.
+WARNING: [SCHED 204-69] Unable to schedule 'store' operation ('ABpartial_out_addr_2_write_ln34', BlockMatrix_design.cpp:34) of variable 'trunc_ln34_3', BlockMatrix_design.cpp:34 on array 'ABpartial_out' due to limited memory ports. Please consider using a memory core with more ports or partitioning the array 'ABpartial_out'.
+INFO: [SCHED 204-61] Pipelining result : Target II = 1, Final II = 2, Depth = 3.
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111]  Elapsed time: 0.211 seconds; current allocated memory: 163.716 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111]  Elapsed time: 0.107 seconds; current allocated memory: 164.048 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-42] -- Implementing module 'blockmatmul' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [SCHED 204-11] Starting scheduling ...
+INFO: [SCHED 204-11] Finished scheduling.
+INFO: [HLS 200-111]  Elapsed time: 0.167 seconds; current allocated memory: 164.170 MB.
+INFO: [BIND 205-100] Starting micro-architecture generation ...
+INFO: [BIND 205-101] Performing variable lifetime analysis.
+INFO: [BIND 205-101] Exploring resource sharing.
+INFO: [BIND 205-101] Binding ...
+INFO: [BIND 205-100] Finished micro-architecture generation.
+INFO: [HLS 200-111]  Elapsed time: 0.152 seconds; current allocated memory: 164.460 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'blockmatmul_entry5' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-100] Finished creating RTL model for 'blockmatmul_entry5'.
+INFO: [HLS 200-111]  Elapsed time: 0.185 seconds; current allocated memory: 164.689 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'blockmatmul_entry17' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-100] Finished creating RTL model for 'blockmatmul_entry17'.
+INFO: [HLS 200-111]  Elapsed time: 0.089 seconds; current allocated memory: 164.923 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'Block_blockmatmul_me' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-100] Finished creating RTL model for 'Block_blockmatmul_me'.
+INFO: [HLS 200-111]  Elapsed time: 0.11 seconds; current allocated memory: 165.357 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'Loop_partialsum_proc' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-100] Finished creating RTL model for 'Loop_partialsum_proc'.
+INFO: [HLS 200-111]  Elapsed time: 0.192 seconds; current allocated memory: 166.404 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'Loop_writeoutput_pro' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-100] Finished creating RTL model for 'Loop_writeoutput_pro'.
+INFO: [HLS 200-111]  Elapsed time: 0.442 seconds; current allocated memory: 168.210 MB.
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [HLS 200-10] -- Generating RTL for module 'blockmatmul' 
+INFO: [HLS 200-10] ----------------------------------------------------------------
+INFO: [RTGEN 206-500] Setting interface mode on port 'blockmatmul/Arows_V_a_0' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'blockmatmul/Arows_V_a_1' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'blockmatmul/Arows_V_a_2' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'blockmatmul/Arows_V_a_3' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'blockmatmul/Bcols_V_a_0' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'blockmatmul/Bcols_V_a_1' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'blockmatmul/Bcols_V_a_2' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'blockmatmul/Bcols_V_a_3' to 'ap_fifo'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'blockmatmul/ABpartial_out' to 'ap_memory'.
+INFO: [RTGEN 206-500] Setting interface mode on port 'blockmatmul/it' to 'ap_none'.
+INFO: [RTGEN 206-500] Setting interface mode on function 'blockmatmul' to 'ap_ctrl_hs'.
+INFO: [SYN 201-210] Renamed object name 'start_for_blockmatmul_entry17_U0' to 'start_for_blockmabkb' due to the length limit 20
+INFO: [RTGEN 206-100] Finished creating RTL model for 'blockmatmul'.
+INFO: [HLS 200-111]  Elapsed time: 0.889 seconds; current allocated memory: 170.219 MB.
+INFO: [HLS 200-790] **** Loop Constraint Status: All loop constraints were NOT satisfied.
+INFO: [HLS 200-789] **** Estimated Fmax: 117.51 MHz
+INFO: [RTMG 210-285] Implementing FIFO 'it_c1_U(fifo_w32_d2_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'it_c_U(fifo_w32_d2_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'A_0_U(fifo_w32_d8_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'A_1_U(fifo_w32_d8_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'A_2_U(fifo_w32_d8_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'A_3_U(fifo_w32_d8_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'tmp_U(fifo_w512_d2_A)' using Shift Registers.
+INFO: [RTMG 210-285] Implementing FIFO 'start_for_blockmabkb_U(start_for_blockmabkb)' using Shift Registers.
+INFO: [HLS 200-111] Finished generating all RTL models Time (s): cpu = 00:00:12 ; elapsed = 00:00:21 . Memory (MB): peak = 955.746 ; gain = 859.520
+INFO: [VHDL 208-304] Generating VHDL RTL for blockmatmul.
+INFO: [VLOG 209-307] Generating Verilog RTL for blockmatmul.
+INFO: [HLS 200-112] Total elapsed time: 21.304 seconds; peak allocated memory: 170.219 MB.

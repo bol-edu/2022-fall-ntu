@@ -1,0 +1,273 @@
+
+
+================================================================
+== Vivado HLS Report for 'matrixmul'
+================================================================
+* Date:           Fri Oct 14 02:03:58 2022
+
+* Version:        2020.1 (Build 2897737 on Wed May 27 20:21:37 MDT 2020)
+* Project:        matrixmul_prj
+* Solution:       solution1_wo_rewind
+* Product family: virtexuplus
+* Target device:  xcvu9p-flgb2104-1-e
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing: 
+    * Summary: 
+    +--------+----------+----------+------------+
+    |  Clock |  Target  | Estimated| Uncertainty|
+    +--------+----------+----------+------------+
+    |ap_clk  | 13.33 ns | 8.742 ns |   1.67 ns  |
+    +--------+----------+----------+------------+
+
++ Latency: 
+    * Summary: 
+    +---------+---------+----------+----------+-----+-----+---------+
+    |  Latency (cycles) |  Latency (absolute) |  Interval | Pipeline|
+    |   min   |   max   |    min   |    max   | min | max |   Type  |
+    +---------+---------+----------+----------+-----+-----+---------+
+    |       12|       12| 0.160 us | 0.160 us |   12|   12|   none  |
+    +---------+---------+----------+----------+-----+-----+---------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        +-----------+---------+---------+----------+-----------+-----------+------+----------+
+        |           |  Latency (cycles) | Iteration|  Initiation Interval  | Trip |          |
+        | Loop Name |   min   |   max   |  Latency |  achieved |   target  | Count| Pipelined|
+        +-----------+---------+---------+----------+-----------+-----------+------+----------+
+        |- Row_Col  |       10|       10|         3|          1|          1|     9|    yes   |
+        +-----------+---------+---------+----------+-----------+-----------+------+----------+
+
+============================================================
++ Verbose Summary: Synthesis Manager
+============================================================
+InlineROM: 1
+ExposeGlobal: 0
+============================================================
++ Verbose Summary: CDFG Model
+============================================================
+IsTopModel: 1
+ResetActiveHigh: 1
+IsCombinational: 0
+IsDatapathOnly: 0
+HasWiredReturn: 1
+HasMFsm: 0
+HasVarLatency: 1
+IsPipeline: 0
+IsRtlPipelined: 0
+IsInstanceOverlapped: 0
+IsDontTouch: 0
+HasImplIP: 0
+IsGatedGlobalClock: 0
+
++ Individual pipeline summary: 
+  * Pipeline-0: initiation interval (II) = 1, depth = 3
+
+
+============================================================
++ Verbose Summary: Schedule
+============================================================
+* Number of FSM states : 5
+* Pipeline : 1
+  Pipeline-0 : II = 1, D = 3, States = { 2 3 4 }
+* Dataflow Pipeline: 0
+
+* FSM state transitions: 
+1 --> 2 
+2 --> 5 3 
+3 --> 4 
+4 --> 2 
+5 --> 
+
+* FSM state operations: 
+
+State 1 <SV = 0> <Delay = 0.73>
+ST_1 : Operation 6 [1/1] (0.00ns)   --->   "%a_row_0 = alloca i8"   --->   Operation 6 'alloca' 'a_row_0' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 7 [1/1] (0.00ns)   --->   "%a_row_1_1 = alloca i8"   --->   Operation 7 'alloca' 'a_row_1_1' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 8 [1/1] (0.00ns)   --->   "%a_row_2_1 = alloca i8"   --->   Operation 8 'alloca' 'a_row_2_1' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 9 [1/1] (0.00ns)   --->   "%b_copy_0_2_2 = alloca i8"   --->   Operation 9 'alloca' 'b_copy_0_2_2' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 10 [1/1] (0.00ns)   --->   "%b_copy_0_2_3 = alloca i8"   --->   Operation 10 'alloca' 'b_copy_0_2_3' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 11 [1/1] (0.00ns)   --->   "%b_copy_0_2_1 = alloca i8"   --->   Operation 11 'alloca' 'b_copy_0_2_1' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 12 [1/1] (0.00ns)   --->   "%b_copy_1_2_2 = alloca i8"   --->   Operation 12 'alloca' 'b_copy_1_2_2' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 13 [1/1] (0.00ns)   --->   "%b_copy_1_2_3 = alloca i8"   --->   Operation 13 'alloca' 'b_copy_1_2_3' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 14 [1/1] (0.00ns)   --->   "%b_copy_1_2_1 = alloca i8"   --->   Operation 14 'alloca' 'b_copy_1_2_1' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 15 [1/1] (0.00ns)   --->   "%b_copy_2_2_2 = alloca i8"   --->   Operation 15 'alloca' 'b_copy_2_2_2' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 16 [1/1] (0.00ns)   --->   "%b_copy_2_2_3 = alloca i8"   --->   Operation 16 'alloca' 'b_copy_2_2_3' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 17 [1/1] (0.00ns)   --->   "%b_copy_2_2_1 = alloca i8"   --->   Operation 17 'alloca' 'b_copy_2_2_1' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 18 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecBitsMap(i24* %a), !map !7"   --->   Operation 18 'specbitsmap' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 19 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecBitsMap(i24* %b), !map !24"   --->   Operation 19 'specbitsmap' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 20 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecBitsMap(i16* %res), !map !37"   --->   Operation 20 'specbitsmap' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 21 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecTopModule([10 x i8]* @matrixmul_str) nounwind"   --->   Operation 21 'spectopmodule' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 22 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecInterface(i24* %a, [8 x i8]* @p_str2, i32 0, i32 0, [1 x i8]* @p_str1, i32 0, i32 0, [1 x i8]* @p_str1, [1 x i8]* @p_str1, [1 x i8]* @p_str1, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @p_str1, [1 x i8]* @p_str1)"   --->   Operation 22 'specinterface' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 23 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecInterface(i24* %b, [8 x i8]* @p_str2, i32 0, i32 0, [1 x i8]* @p_str1, i32 0, i32 0, [1 x i8]* @p_str1, [1 x i8]* @p_str1, [1 x i8]* @p_str1, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @p_str1, [1 x i8]* @p_str1)"   --->   Operation 23 'specinterface' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 24 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecInterface(i16* %res, [8 x i8]* @p_str2, i32 0, i32 0, [1 x i8]* @p_str1, i32 0, i32 0, [1 x i8]* @p_str1, [1 x i8]* @p_str1, [1 x i8]* @p_str1, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @p_str1, [1 x i8]* @p_str1)" [matrixmul.cpp:57]   --->   Operation 24 'specinterface' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 25 [1/1] (0.73ns)   --->   "br label %1" [matrixmul.cpp:63]   --->   Operation 25 'br' <Predicate = true> <Delay = 0.73>
+
+State 2 <SV = 1> <Delay = 1.36>
+ST_2 : Operation 26 [1/1] (0.00ns)   --->   "%indvar_flatten = phi i4 [ 0, %0 ], [ %add_ln63, %Col_end ]" [matrixmul.cpp:63]   --->   Operation 26 'phi' 'indvar_flatten' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 27 [1/1] (0.00ns)   --->   "%i_0 = phi i2 [ 0, %0 ], [ %select_ln63, %Col_end ]" [matrixmul.cpp:63]   --->   Operation 27 'phi' 'i_0' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 28 [1/1] (0.00ns)   --->   "%j_0 = phi i2 [ 0, %0 ], [ %j, %Col_end ]"   --->   Operation 28 'phi' 'j_0' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 29 [1/1] (0.72ns)   --->   "%icmp_ln63 = icmp eq i4 %indvar_flatten, -7" [matrixmul.cpp:63]   --->   Operation 29 'icmp' 'icmp_ln63' <Predicate = true> <Delay = 0.72> <Core = "Cmp">   --->   Core 25 'Cmp' <Latency = 0> <II = 1> <Delay = 0.39> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 30 [1/1] (0.80ns)   --->   "%add_ln63 = add i4 %indvar_flatten, 1" [matrixmul.cpp:63]   --->   Operation 30 'add' 'add_ln63' <Predicate = true> <Delay = 0.80> <Core = "AddSub">   --->   Core 14 'AddSub' <Latency = 0> <II = 1> <Delay = 0.62> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 31 [1/1] (0.00ns)   --->   "br i1 %icmp_ln63, label %2, label %Col_begin" [matrixmul.cpp:63]   --->   Operation 31 'br' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 32 [1/1] (0.39ns)   --->   "%icmp_ln65 = icmp eq i2 %j_0, -1" [matrixmul.cpp:65]   --->   Operation 32 'icmp' 'icmp_ln65' <Predicate = (!icmp_ln63)> <Delay = 0.39> <Core = "Cmp">   --->   Core 25 'Cmp' <Latency = 0> <II = 1> <Delay = 0.39> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 33 [1/1] (0.34ns)   --->   "%select_ln75 = select i1 %icmp_ln65, i2 0, i2 %j_0" [matrixmul.cpp:75]   --->   Operation 33 'select' 'select_ln75' <Predicate = (!icmp_ln63)> <Delay = 0.34> <Core = "Sel">   --->   Core 26 'Sel' <Latency = 0> <II = 1> <Delay = 0.40> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+ST_2 : Operation 34 [1/1] (0.62ns)   --->   "%add_ln63_1 = add i2 %i_0, 1" [matrixmul.cpp:63]   --->   Operation 34 'add' 'add_ln63_1' <Predicate = (!icmp_ln63)> <Delay = 0.62> <Core = "AddSub">   --->   Core 14 'AddSub' <Latency = 0> <II = 1> <Delay = 0.62> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 35 [1/1] (0.39ns)   --->   "%icmp_ln75 = icmp eq i2 %add_ln63_1, 0" [matrixmul.cpp:75]   --->   Operation 35 'icmp' 'icmp_ln75' <Predicate = (!icmp_ln63)> <Delay = 0.39> <Core = "Cmp">   --->   Core 25 'Cmp' <Latency = 0> <II = 1> <Delay = 0.39> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 36 [1/1] (0.39ns)   --->   "%icmp_ln75_1 = icmp eq i2 %i_0, 0" [matrixmul.cpp:75]   --->   Operation 36 'icmp' 'icmp_ln75_1' <Predicate = (!icmp_ln63)> <Delay = 0.39> <Core = "Cmp">   --->   Core 25 'Cmp' <Latency = 0> <II = 1> <Delay = 0.39> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 37 [1/1] (0.34ns)   --->   "%select_ln75_1 = select i1 %icmp_ln65, i1 %icmp_ln75, i1 %icmp_ln75_1" [matrixmul.cpp:75]   --->   Operation 37 'select' 'select_ln75_1' <Predicate = (!icmp_ln63)> <Delay = 0.34> <Core = "Sel">   --->   Core 26 'Sel' <Latency = 0> <II = 1> <Delay = 0.40> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+ST_2 : Operation 38 [1/1] (0.34ns)   --->   "%select_ln63 = select i1 %icmp_ln65, i2 %add_ln63_1, i2 %i_0" [matrixmul.cpp:63]   --->   Operation 38 'select' 'select_ln63' <Predicate = (!icmp_ln63)> <Delay = 0.34> <Core = "Sel">   --->   Core 26 'Sel' <Latency = 0> <II = 1> <Delay = 0.40> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+ST_2 : Operation 39 [1/1] (0.39ns)   --->   "%icmp_ln70 = icmp eq i2 %select_ln75, 0" [matrixmul.cpp:70]   --->   Operation 39 'icmp' 'icmp_ln70' <Predicate = (!icmp_ln63)> <Delay = 0.39> <Core = "Cmp">   --->   Core 25 'Cmp' <Latency = 0> <II = 1> <Delay = 0.39> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 40 [1/1] (0.00ns)   --->   "br i1 %select_ln75_1, label %.preheader.preheader_ifconv, label %Col_end" [matrixmul.cpp:75]   --->   Operation 40 'br' <Predicate = (!icmp_ln63)> <Delay = 0.00>
+ST_2 : Operation 41 [1/1] (0.62ns)   --->   "%j = add i2 %select_ln75, 1" [matrixmul.cpp:65]   --->   Operation 41 'add' 'j' <Predicate = (!icmp_ln63)> <Delay = 0.62> <Core = "AddSub">   --->   Core 14 'AddSub' <Latency = 0> <II = 1> <Delay = 0.62> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+
+State 3 <SV = 2> <Delay = 2.50>
+ST_3 : Operation 42 [1/1] (0.00ns)   --->   "br i1 %icmp_ln70, label %.preheader1.0, label %.loopexit2" [matrixmul.cpp:70]   --->   Operation 42 'br' <Predicate = (!icmp_ln63)> <Delay = 0.00>
+ST_3 : Operation 43 [1/1] (2.10ns)   --->   "%a_read = call i24 @_ssdm_op_Read.ap_fifo.volatile.i24P(i24* %a)" [matrixmul.cpp:72]   --->   Operation 43 'read' 'a_read' <Predicate = (icmp_ln70)> <Delay = 2.10> <Core = "FIFO">   --->   Core 32 'FIFO' <Latency = 0> <II = 1> <Delay = 2.10> <Storage> <Opcode : 'read' 'write' 'nbread' 'nbwrite'> <Ports = 0> <Width = 16> <Depth = 0> <FIFO>
+ST_3 : Operation 44 [1/1] (0.00ns)   --->   "%a_row_0_1 = trunc i24 %a_read to i8" [matrixmul.cpp:72]   --->   Operation 44 'trunc' 'a_row_0_1' <Predicate = (icmp_ln70)> <Delay = 0.00>
+ST_3 : Operation 45 [1/1] (0.00ns)   --->   "%a_row_1 = call i8 @_ssdm_op_PartSelect.i8.i24.i32.i32(i24 %a_read, i32 8, i32 15)" [matrixmul.cpp:72]   --->   Operation 45 'partselect' 'a_row_1' <Predicate = (icmp_ln70)> <Delay = 0.00>
+ST_3 : Operation 46 [1/1] (0.00ns)   --->   "%a_row_2 = call i8 @_ssdm_op_PartSelect.i8.i24.i32.i32(i24 %a_read, i32 16, i32 23)" [matrixmul.cpp:72]   --->   Operation 46 'partselect' 'a_row_2' <Predicate = (icmp_ln70)> <Delay = 0.00>
+ST_3 : Operation 47 [1/1] (0.00ns)   --->   "store i8 %a_row_2, i8* %a_row_2_1" [matrixmul.cpp:72]   --->   Operation 47 'store' <Predicate = (icmp_ln70)> <Delay = 0.00>
+ST_3 : Operation 48 [1/1] (0.00ns)   --->   "store i8 %a_row_1, i8* %a_row_1_1" [matrixmul.cpp:72]   --->   Operation 48 'store' <Predicate = (icmp_ln70)> <Delay = 0.00>
+ST_3 : Operation 49 [1/1] (0.00ns)   --->   "store i8 %a_row_0_1, i8* %a_row_0" [matrixmul.cpp:72]   --->   Operation 49 'store' <Predicate = (icmp_ln70)> <Delay = 0.00>
+ST_3 : Operation 50 [1/1] (0.00ns)   --->   "br label %.loopexit2"   --->   Operation 50 'br' <Predicate = (icmp_ln70)> <Delay = 0.00>
+ST_3 : Operation 51 [1/1] (0.00ns)   --->   "%b_copy_0_2_2_load = load i8* %b_copy_0_2_2" [matrixmul.cpp:77]   --->   Operation 51 'load' 'b_copy_0_2_2_load' <Predicate = (!icmp_ln70 & select_ln75_1)> <Delay = 0.00>
+ST_3 : Operation 52 [1/1] (0.00ns)   --->   "%b_copy_0_2_3_load = load i8* %b_copy_0_2_3" [matrixmul.cpp:77]   --->   Operation 52 'load' 'b_copy_0_2_3_load' <Predicate = (select_ln75_1)> <Delay = 0.00>
+ST_3 : Operation 53 [1/1] (0.00ns)   --->   "%b_copy_0_2_1_load = load i8* %b_copy_0_2_1" [matrixmul.cpp:77]   --->   Operation 53 'load' 'b_copy_0_2_1_load' <Predicate = (select_ln75_1)> <Delay = 0.00>
+ST_3 : Operation 54 [1/1] (0.00ns)   --->   "%b_copy_1_2_2_load = load i8* %b_copy_1_2_2" [matrixmul.cpp:77]   --->   Operation 54 'load' 'b_copy_1_2_2_load' <Predicate = (!icmp_ln70 & select_ln75_1)> <Delay = 0.00>
+ST_3 : Operation 55 [1/1] (0.00ns)   --->   "%b_copy_1_2_3_load = load i8* %b_copy_1_2_3" [matrixmul.cpp:77]   --->   Operation 55 'load' 'b_copy_1_2_3_load' <Predicate = (select_ln75_1)> <Delay = 0.00>
+ST_3 : Operation 56 [1/1] (0.00ns)   --->   "%b_copy_1_2_1_load = load i8* %b_copy_1_2_1" [matrixmul.cpp:77]   --->   Operation 56 'load' 'b_copy_1_2_1_load' <Predicate = (select_ln75_1)> <Delay = 0.00>
+ST_3 : Operation 57 [1/1] (0.00ns)   --->   "%b_copy_2_2_2_load = load i8* %b_copy_2_2_2" [matrixmul.cpp:77]   --->   Operation 57 'load' 'b_copy_2_2_2_load' <Predicate = (!icmp_ln70 & select_ln75_1)> <Delay = 0.00>
+ST_3 : Operation 58 [1/1] (0.00ns)   --->   "%b_copy_2_2_3_load = load i8* %b_copy_2_2_3" [matrixmul.cpp:77]   --->   Operation 58 'load' 'b_copy_2_2_3_load' <Predicate = (select_ln75_1)> <Delay = 0.00>
+ST_3 : Operation 59 [1/1] (0.00ns)   --->   "%b_copy_2_2_1_load = load i8* %b_copy_2_2_1" [matrixmul.cpp:77]   --->   Operation 59 'load' 'b_copy_2_2_1_load' <Predicate = (select_ln75_1)> <Delay = 0.00>
+ST_3 : Operation 60 [1/1] (2.10ns)   --->   "%b_read = call i24 @_ssdm_op_Read.ap_fifo.volatile.i24P(i24* %b)" [matrixmul.cpp:77]   --->   Operation 60 'read' 'b_read' <Predicate = (select_ln75_1)> <Delay = 2.10> <Core = "FIFO">   --->   Core 32 'FIFO' <Latency = 0> <II = 1> <Delay = 2.10> <Storage> <Opcode : 'read' 'write' 'nbread' 'nbwrite'> <Ports = 0> <Width = 16> <Depth = 0> <FIFO>
+ST_3 : Operation 61 [1/1] (0.00ns)   --->   "%b_copy_0_2_9 = trunc i24 %b_read to i8" [matrixmul.cpp:77]   --->   Operation 61 'trunc' 'b_copy_0_2_9' <Predicate = (select_ln75_1)> <Delay = 0.00>
+ST_3 : Operation 62 [1/1] (0.00ns)   --->   "%b_copy_1_2_9 = call i8 @_ssdm_op_PartSelect.i8.i24.i32.i32(i24 %b_read, i32 8, i32 15)" [matrixmul.cpp:77]   --->   Operation 62 'partselect' 'b_copy_1_2_9' <Predicate = (select_ln75_1)> <Delay = 0.00>
+ST_3 : Operation 63 [1/1] (0.00ns)   --->   "%b_copy_2_2_9 = call i8 @_ssdm_op_PartSelect.i8.i24.i32.i32(i24 %b_read, i32 16, i32 23)" [matrixmul.cpp:77]   --->   Operation 63 'partselect' 'b_copy_2_2_9' <Predicate = (select_ln75_1)> <Delay = 0.00>
+ST_3 : Operation 64 [1/1] (0.39ns)   --->   "%icmp_ln77 = icmp eq i2 %select_ln75, 1" [matrixmul.cpp:77]   --->   Operation 64 'icmp' 'icmp_ln77' <Predicate = (select_ln75_1)> <Delay = 0.39> <Core = "Cmp">   --->   Core 25 'Cmp' <Latency = 0> <II = 1> <Delay = 0.39> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_3 : Operation 65 [1/1] (0.00ns) (grouped into LUT with out node b_copy_2_2_5)   --->   "%b_copy_2_2 = select i1 %icmp_ln77, i8 %b_copy_2_2_1_load, i8 %b_copy_2_2_9" [matrixmul.cpp:77]   --->   Operation 65 'select' 'b_copy_2_2' <Predicate = (!icmp_ln70 & select_ln75_1)> <Delay = 0.00> <Core = "Sel">   --->   Core 26 'Sel' <Latency = 0> <II = 1> <Delay = 0.40> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+ST_3 : Operation 66 [1/1] (0.40ns) (out node of the LUT)   --->   "%b_copy_2_2_5 = select i1 %icmp_ln70, i8 %b_copy_2_2_1_load, i8 %b_copy_2_2" [matrixmul.cpp:77]   --->   Operation 66 'select' 'b_copy_2_2_5' <Predicate = (select_ln75_1)> <Delay = 0.40> <Core = "Sel">   --->   Core 26 'Sel' <Latency = 0> <II = 1> <Delay = 0.40> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+ST_3 : Operation 67 [1/1] (0.00ns) (grouped into LUT with out node b_copy_2_2_7)   --->   "%b_copy_2_2_6 = select i1 %icmp_ln77, i8 %b_copy_2_2_9, i8 %b_copy_2_2_3_load" [matrixmul.cpp:77]   --->   Operation 67 'select' 'b_copy_2_2_6' <Predicate = (!icmp_ln70 & select_ln75_1)> <Delay = 0.00> <Core = "Sel">   --->   Core 26 'Sel' <Latency = 0> <II = 1> <Delay = 0.40> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+ST_3 : Operation 68 [1/1] (0.40ns) (out node of the LUT)   --->   "%b_copy_2_2_7 = select i1 %icmp_ln70, i8 %b_copy_2_2_3_load, i8 %b_copy_2_2_6" [matrixmul.cpp:77]   --->   Operation 68 'select' 'b_copy_2_2_7' <Predicate = (select_ln75_1)> <Delay = 0.40> <Core = "Sel">   --->   Core 26 'Sel' <Latency = 0> <II = 1> <Delay = 0.40> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+ST_3 : Operation 69 [1/1] (0.40ns)   --->   "%b_copy_2_2_8 = select i1 %icmp_ln70, i8 %b_copy_2_2_9, i8 %b_copy_2_2_2_load" [matrixmul.cpp:77]   --->   Operation 69 'select' 'b_copy_2_2_8' <Predicate = (select_ln75_1)> <Delay = 0.40> <Core = "Sel">   --->   Core 26 'Sel' <Latency = 0> <II = 1> <Delay = 0.40> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+ST_3 : Operation 70 [1/1] (0.00ns) (grouped into LUT with out node b_copy_1_2_5)   --->   "%b_copy_1_2 = select i1 %icmp_ln77, i8 %b_copy_1_2_1_load, i8 %b_copy_1_2_9" [matrixmul.cpp:77]   --->   Operation 70 'select' 'b_copy_1_2' <Predicate = (!icmp_ln70 & select_ln75_1)> <Delay = 0.00> <Core = "Sel">   --->   Core 26 'Sel' <Latency = 0> <II = 1> <Delay = 0.40> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+ST_3 : Operation 71 [1/1] (0.40ns) (out node of the LUT)   --->   "%b_copy_1_2_5 = select i1 %icmp_ln70, i8 %b_copy_1_2_1_load, i8 %b_copy_1_2" [matrixmul.cpp:77]   --->   Operation 71 'select' 'b_copy_1_2_5' <Predicate = (select_ln75_1)> <Delay = 0.40> <Core = "Sel">   --->   Core 26 'Sel' <Latency = 0> <II = 1> <Delay = 0.40> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+ST_3 : Operation 72 [1/1] (0.00ns) (grouped into LUT with out node b_copy_1_2_7)   --->   "%b_copy_1_2_6 = select i1 %icmp_ln77, i8 %b_copy_1_2_9, i8 %b_copy_1_2_3_load" [matrixmul.cpp:77]   --->   Operation 72 'select' 'b_copy_1_2_6' <Predicate = (!icmp_ln70 & select_ln75_1)> <Delay = 0.00> <Core = "Sel">   --->   Core 26 'Sel' <Latency = 0> <II = 1> <Delay = 0.40> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+ST_3 : Operation 73 [1/1] (0.40ns) (out node of the LUT)   --->   "%b_copy_1_2_7 = select i1 %icmp_ln70, i8 %b_copy_1_2_3_load, i8 %b_copy_1_2_6" [matrixmul.cpp:77]   --->   Operation 73 'select' 'b_copy_1_2_7' <Predicate = (select_ln75_1)> <Delay = 0.40> <Core = "Sel">   --->   Core 26 'Sel' <Latency = 0> <II = 1> <Delay = 0.40> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+ST_3 : Operation 74 [1/1] (0.40ns)   --->   "%b_copy_1_2_8 = select i1 %icmp_ln70, i8 %b_copy_1_2_9, i8 %b_copy_1_2_2_load" [matrixmul.cpp:77]   --->   Operation 74 'select' 'b_copy_1_2_8' <Predicate = (select_ln75_1)> <Delay = 0.40> <Core = "Sel">   --->   Core 26 'Sel' <Latency = 0> <II = 1> <Delay = 0.40> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+ST_3 : Operation 75 [1/1] (0.00ns) (grouped into LUT with out node b_copy_0_2_5)   --->   "%b_copy_0_2 = select i1 %icmp_ln77, i8 %b_copy_0_2_1_load, i8 %b_copy_0_2_9" [matrixmul.cpp:77]   --->   Operation 75 'select' 'b_copy_0_2' <Predicate = (!icmp_ln70 & select_ln75_1)> <Delay = 0.00> <Core = "Sel">   --->   Core 26 'Sel' <Latency = 0> <II = 1> <Delay = 0.40> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+ST_3 : Operation 76 [1/1] (0.40ns) (out node of the LUT)   --->   "%b_copy_0_2_5 = select i1 %icmp_ln70, i8 %b_copy_0_2_1_load, i8 %b_copy_0_2" [matrixmul.cpp:77]   --->   Operation 76 'select' 'b_copy_0_2_5' <Predicate = (select_ln75_1)> <Delay = 0.40> <Core = "Sel">   --->   Core 26 'Sel' <Latency = 0> <II = 1> <Delay = 0.40> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+ST_3 : Operation 77 [1/1] (0.00ns) (grouped into LUT with out node b_copy_0_2_7)   --->   "%b_copy_0_2_6 = select i1 %icmp_ln77, i8 %b_copy_0_2_9, i8 %b_copy_0_2_3_load" [matrixmul.cpp:77]   --->   Operation 77 'select' 'b_copy_0_2_6' <Predicate = (!icmp_ln70 & select_ln75_1)> <Delay = 0.00> <Core = "Sel">   --->   Core 26 'Sel' <Latency = 0> <II = 1> <Delay = 0.40> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+ST_3 : Operation 78 [1/1] (0.40ns) (out node of the LUT)   --->   "%b_copy_0_2_7 = select i1 %icmp_ln70, i8 %b_copy_0_2_3_load, i8 %b_copy_0_2_6" [matrixmul.cpp:77]   --->   Operation 78 'select' 'b_copy_0_2_7' <Predicate = (select_ln75_1)> <Delay = 0.40> <Core = "Sel">   --->   Core 26 'Sel' <Latency = 0> <II = 1> <Delay = 0.40> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+ST_3 : Operation 79 [1/1] (0.40ns)   --->   "%b_copy_0_2_8 = select i1 %icmp_ln70, i8 %b_copy_0_2_9, i8 %b_copy_0_2_2_load" [matrixmul.cpp:77]   --->   Operation 79 'select' 'b_copy_0_2_8' <Predicate = (select_ln75_1)> <Delay = 0.40> <Core = "Sel">   --->   Core 26 'Sel' <Latency = 0> <II = 1> <Delay = 0.40> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+ST_3 : Operation 80 [1/1] (0.00ns)   --->   "store i8 %b_copy_2_2_5, i8* %b_copy_2_2_1" [matrixmul.cpp:77]   --->   Operation 80 'store' <Predicate = (select_ln75_1)> <Delay = 0.00>
+ST_3 : Operation 81 [1/1] (0.00ns)   --->   "store i8 %b_copy_2_2_7, i8* %b_copy_2_2_3" [matrixmul.cpp:77]   --->   Operation 81 'store' <Predicate = (select_ln75_1)> <Delay = 0.00>
+ST_3 : Operation 82 [1/1] (0.00ns)   --->   "store i8 %b_copy_2_2_8, i8* %b_copy_2_2_2" [matrixmul.cpp:77]   --->   Operation 82 'store' <Predicate = (select_ln75_1)> <Delay = 0.00>
+ST_3 : Operation 83 [1/1] (0.00ns)   --->   "store i8 %b_copy_1_2_5, i8* %b_copy_1_2_1" [matrixmul.cpp:77]   --->   Operation 83 'store' <Predicate = (select_ln75_1)> <Delay = 0.00>
+ST_3 : Operation 84 [1/1] (0.00ns)   --->   "store i8 %b_copy_1_2_7, i8* %b_copy_1_2_3" [matrixmul.cpp:77]   --->   Operation 84 'store' <Predicate = (select_ln75_1)> <Delay = 0.00>
+ST_3 : Operation 85 [1/1] (0.00ns)   --->   "store i8 %b_copy_1_2_8, i8* %b_copy_1_2_2" [matrixmul.cpp:77]   --->   Operation 85 'store' <Predicate = (select_ln75_1)> <Delay = 0.00>
+ST_3 : Operation 86 [1/1] (0.00ns)   --->   "store i8 %b_copy_0_2_5, i8* %b_copy_0_2_1" [matrixmul.cpp:77]   --->   Operation 86 'store' <Predicate = (select_ln75_1)> <Delay = 0.00>
+ST_3 : Operation 87 [1/1] (0.00ns)   --->   "store i8 %b_copy_0_2_7, i8* %b_copy_0_2_3" [matrixmul.cpp:77]   --->   Operation 87 'store' <Predicate = (select_ln75_1)> <Delay = 0.00>
+ST_3 : Operation 88 [1/1] (0.00ns)   --->   "store i8 %b_copy_0_2_8, i8* %b_copy_0_2_2" [matrixmul.cpp:77]   --->   Operation 88 'store' <Predicate = (select_ln75_1)> <Delay = 0.00>
+ST_3 : Operation 89 [1/1] (0.00ns)   --->   "br label %Col_end"   --->   Operation 89 'br' <Predicate = (select_ln75_1)> <Delay = 0.00>
+
+State 4 <SV = 3> <Delay = 8.74>
+ST_4 : Operation 90 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecLoopName([8 x i8]* @Row_Col_str)"   --->   Operation 90 'specloopname' <Predicate = (!icmp_ln63)> <Delay = 0.00>
+ST_4 : Operation 91 [1/1] (0.00ns)   --->   "%empty_6 = call i32 (...)* @_ssdm_op_SpecLoopTripCount(i64 9, i64 9, i64 9)"   --->   Operation 91 'speclooptripcount' 'empty_6' <Predicate = (!icmp_ln63)> <Delay = 0.00>
+ST_4 : Operation 92 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecLoopName([4 x i8]* @p_str4) nounwind" [matrixmul.cpp:65]   --->   Operation 92 'specloopname' <Predicate = (!icmp_ln63)> <Delay = 0.00>
+ST_4 : Operation 93 [1/1] (0.00ns)   --->   "%tmp_3 = call i32 (...)* @_ssdm_op_SpecRegionBegin([4 x i8]* @p_str4) nounwind" [matrixmul.cpp:65]   --->   Operation 93 'specregionbegin' 'tmp_3' <Predicate = (!icmp_ln63)> <Delay = 0.00>
+ST_4 : Operation 94 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecPipeline(i32 -1, i32 1, i32 1, i32 0, [1 x i8]* @p_str1) nounwind" [matrixmul.cpp:66]   --->   Operation 94 'specpipeline' <Predicate = (!icmp_ln63)> <Delay = 0.00>
+ST_4 : Operation 95 [1/1] (0.00ns)   --->   "%a_row_0_load = load i8* %a_row_0" [matrixmul.cpp:82]   --->   Operation 95 'load' 'a_row_0_load' <Predicate = (!icmp_ln63)> <Delay = 0.00>
+ST_4 : Operation 96 [1/1] (0.00ns)   --->   "%a_row_1_1_load = load i8* %a_row_1_1" [matrixmul.cpp:82]   --->   Operation 96 'load' 'a_row_1_1_load' <Predicate = (!icmp_ln63)> <Delay = 0.00>
+ST_4 : Operation 97 [1/1] (0.00ns)   --->   "%a_row_2_1_load = load i8* %a_row_2_1" [matrixmul.cpp:82]   --->   Operation 97 'load' 'a_row_2_1_load' <Predicate = (!icmp_ln63)> <Delay = 0.00>
+ST_4 : Operation 98 [1/1] (0.00ns)   --->   "%b_copy_0_2_2_load_1 = load i8* %b_copy_0_2_2" [matrixmul.cpp:80]   --->   Operation 98 'load' 'b_copy_0_2_2_load_1' <Predicate = (!icmp_ln63)> <Delay = 0.00>
+ST_4 : Operation 99 [1/1] (0.00ns)   --->   "%b_copy_0_2_3_load_1 = load i8* %b_copy_0_2_3" [matrixmul.cpp:80]   --->   Operation 99 'load' 'b_copy_0_2_3_load_1' <Predicate = (!icmp_ln63)> <Delay = 0.00>
+ST_4 : Operation 100 [1/1] (0.00ns)   --->   "%b_copy_0_2_1_load_1 = load i8* %b_copy_0_2_1" [matrixmul.cpp:80]   --->   Operation 100 'load' 'b_copy_0_2_1_load_1' <Predicate = (!icmp_ln63)> <Delay = 0.00>
+ST_4 : Operation 101 [1/1] (0.00ns)   --->   "%b_copy_1_2_2_load_1 = load i8* %b_copy_1_2_2" [matrixmul.cpp:80]   --->   Operation 101 'load' 'b_copy_1_2_2_load_1' <Predicate = (!icmp_ln63)> <Delay = 0.00>
+ST_4 : Operation 102 [1/1] (0.00ns)   --->   "%b_copy_1_2_3_load_1 = load i8* %b_copy_1_2_3" [matrixmul.cpp:80]   --->   Operation 102 'load' 'b_copy_1_2_3_load_1' <Predicate = (!icmp_ln63)> <Delay = 0.00>
+ST_4 : Operation 103 [1/1] (0.00ns)   --->   "%b_copy_1_2_1_load_1 = load i8* %b_copy_1_2_1" [matrixmul.cpp:80]   --->   Operation 103 'load' 'b_copy_1_2_1_load_1' <Predicate = (!icmp_ln63)> <Delay = 0.00>
+ST_4 : Operation 104 [1/1] (0.00ns)   --->   "%b_copy_2_2_2_load_1 = load i8* %b_copy_2_2_2" [matrixmul.cpp:80]   --->   Operation 104 'load' 'b_copy_2_2_2_load_1' <Predicate = (!icmp_ln63)> <Delay = 0.00>
+ST_4 : Operation 105 [1/1] (0.00ns)   --->   "%b_copy_2_2_3_load_1 = load i8* %b_copy_2_2_3" [matrixmul.cpp:80]   --->   Operation 105 'load' 'b_copy_2_2_3_load_1' <Predicate = (!icmp_ln63)> <Delay = 0.00>
+ST_4 : Operation 106 [1/1] (0.00ns)   --->   "%b_copy_2_2_1_load_1 = load i8* %b_copy_2_2_1" [matrixmul.cpp:80]   --->   Operation 106 'load' 'b_copy_2_2_1_load_1' <Predicate = (!icmp_ln63)> <Delay = 0.00>
+ST_4 : Operation 107 [1/1] (0.00ns)   --->   "%sext_ln82 = sext i8 %a_row_0_load to i16" [matrixmul.cpp:82]   --->   Operation 107 'sext' 'sext_ln82' <Predicate = (!icmp_ln63)> <Delay = 0.00>
+ST_4 : Operation 108 [1/1] (0.53ns)   --->   "%tmp_1 = call i8 @_ssdm_op_Mux.ap_auto.3i8.i2(i8 %b_copy_0_2_2_load_1, i8 %b_copy_0_2_3_load_1, i8 %b_copy_0_2_1_load_1, i2 %select_ln75)" [matrixmul.cpp:80]   --->   Operation 108 'mux' 'tmp_1' <Predicate = (!icmp_ln63)> <Delay = 0.53> <Core = "MuxnS">   --->   Core 31 'MuxnS' <Latency = 0> <II = 1> <Delay = 0.53> <FuncUnit> <Opcode : 'mux'> <InPorts = 2> <OutPorts = 1>
+ST_4 : Operation 109 [1/1] (0.00ns)   --->   "%sext_ln82_1 = sext i8 %tmp_1 to i16" [matrixmul.cpp:82]   --->   Operation 109 'sext' 'sext_ln82_1' <Predicate = (!icmp_ln63)> <Delay = 0.00>
+ST_4 : Operation 110 [1/1] (0.63ns) (grouped into DSP with root node add_ln82_1)   --->   "%mul_ln82 = mul i16 %sext_ln82, %sext_ln82_1" [matrixmul.cpp:82]   --->   Operation 110 'mul' 'mul_ln82' <Predicate = (!icmp_ln63)> <Delay = 0.63> <Core = "DSP48">   --->   Core 88 'DSP48' <Latency = 0> <II = 1> <Delay = 2.84> <IPBlock> <Opcode : 'mul' 'add' 'sub' 'select'> <InPorts = 2> <OutPorts = 1> <Sync> <CReg>
+ST_4 : Operation 111 [1/1] (0.00ns)   --->   "%sext_ln82_2 = sext i8 %a_row_1_1_load to i16" [matrixmul.cpp:82]   --->   Operation 111 'sext' 'sext_ln82_2' <Predicate = (!icmp_ln63)> <Delay = 0.00>
+ST_4 : Operation 112 [1/1] (0.53ns)   --->   "%tmp_2 = call i8 @_ssdm_op_Mux.ap_auto.3i8.i2(i8 %b_copy_1_2_2_load_1, i8 %b_copy_1_2_3_load_1, i8 %b_copy_1_2_1_load_1, i2 %select_ln75)" [matrixmul.cpp:80]   --->   Operation 112 'mux' 'tmp_2' <Predicate = (!icmp_ln63)> <Delay = 0.53> <Core = "MuxnS">   --->   Core 31 'MuxnS' <Latency = 0> <II = 1> <Delay = 0.53> <FuncUnit> <Opcode : 'mux'> <InPorts = 2> <OutPorts = 1>
+ST_4 : Operation 113 [1/1] (0.00ns)   --->   "%sext_ln82_3 = sext i8 %tmp_2 to i16" [matrixmul.cpp:82]   --->   Operation 113 'sext' 'sext_ln82_3' <Predicate = (!icmp_ln63)> <Delay = 0.00>
+ST_4 : Operation 114 [1/1] (1.69ns)   --->   "%mul_ln82_1 = mul i16 %sext_ln82_2, %sext_ln82_3" [matrixmul.cpp:82]   --->   Operation 114 'mul' 'mul_ln82_1' <Predicate = (!icmp_ln63)> <Delay = 1.69> <Core = "Mul">   --->   Core 16 'Mul' <Latency = 0> <II = 1> <Delay = 1.69> <FuncUnit> <Opcode : 'mul'> <InPorts = 2> <OutPorts = 1>
+ST_4 : Operation 115 [1/1] (0.00ns)   --->   "%sext_ln82_4 = sext i8 %a_row_2_1_load to i16" [matrixmul.cpp:82]   --->   Operation 115 'sext' 'sext_ln82_4' <Predicate = (!icmp_ln63)> <Delay = 0.00>
+ST_4 : Operation 116 [1/1] (0.53ns)   --->   "%tmp_4 = call i8 @_ssdm_op_Mux.ap_auto.3i8.i2(i8 %b_copy_2_2_2_load_1, i8 %b_copy_2_2_3_load_1, i8 %b_copy_2_2_1_load_1, i2 %select_ln75)" [matrixmul.cpp:80]   --->   Operation 116 'mux' 'tmp_4' <Predicate = (!icmp_ln63)> <Delay = 0.53> <Core = "MuxnS">   --->   Core 31 'MuxnS' <Latency = 0> <II = 1> <Delay = 0.53> <FuncUnit> <Opcode : 'mux'> <InPorts = 2> <OutPorts = 1>
+ST_4 : Operation 117 [1/1] (0.00ns)   --->   "%sext_ln82_5 = sext i8 %tmp_4 to i16" [matrixmul.cpp:82]   --->   Operation 117 'sext' 'sext_ln82_5' <Predicate = (!icmp_ln63)> <Delay = 0.00>
+ST_4 : Operation 118 [1/1] (0.63ns) (grouped into DSP with root node add_ln82)   --->   "%mul_ln82_2 = mul i16 %sext_ln82_4, %sext_ln82_5" [matrixmul.cpp:82]   --->   Operation 118 'mul' 'mul_ln82_2' <Predicate = (!icmp_ln63)> <Delay = 0.63> <Core = "DSP48">   --->   Core 88 'DSP48' <Latency = 0> <II = 1> <Delay = 2.84> <IPBlock> <Opcode : 'mul' 'add' 'sub' 'select'> <InPorts = 2> <OutPorts = 1> <Sync> <CReg>
+ST_4 : Operation 119 [1/1] (2.20ns) (root node of the DSP)   --->   "%add_ln82 = add i16 %mul_ln82_1, %mul_ln82_2" [matrixmul.cpp:82]   --->   Operation 119 'add' 'add_ln82' <Predicate = (!icmp_ln63)> <Delay = 2.20> <Core = "DSP48">   --->   Core 88 'DSP48' <Latency = 0> <II = 1> <Delay = 2.84> <IPBlock> <Opcode : 'mul' 'add' 'sub' 'select'> <InPorts = 2> <OutPorts = 1> <Sync> <CReg>
+ST_4 : Operation 120 [1/1] (2.20ns) (root node of the DSP)   --->   "%add_ln82_1 = add i16 %add_ln82, %mul_ln82" [matrixmul.cpp:82]   --->   Operation 120 'add' 'add_ln82_1' <Predicate = (!icmp_ln63)> <Delay = 2.20> <Core = "DSP48">   --->   Core 88 'DSP48' <Latency = 0> <II = 1> <Delay = 2.84> <IPBlock> <Opcode : 'mul' 'add' 'sub' 'select'> <InPorts = 2> <OutPorts = 1> <Sync> <CReg>
+ST_4 : Operation 121 [1/1] (2.10ns)   --->   "call void @_ssdm_op_Write.ap_fifo.volatile.i16P(i16* %res, i16 %add_ln82_1)" [matrixmul.cpp:82]   --->   Operation 121 'write' <Predicate = (!icmp_ln63)> <Delay = 2.10> <Core = "FIFO">   --->   Core 32 'FIFO' <Latency = 0> <II = 1> <Delay = 2.10> <Storage> <Opcode : 'read' 'write' 'nbread' 'nbwrite'> <Ports = 0> <Width = 16> <Depth = 0> <FIFO>
+ST_4 : Operation 122 [1/1] (0.00ns)   --->   "%empty = call i32 (...)* @_ssdm_op_SpecRegionEnd([4 x i8]* @p_str4, i32 %tmp_3) nounwind" [matrixmul.cpp:83]   --->   Operation 122 'specregionend' 'empty' <Predicate = (!icmp_ln63)> <Delay = 0.00>
+ST_4 : Operation 123 [1/1] (0.00ns)   --->   "br label %1"   --->   Operation 123 'br' <Predicate = (!icmp_ln63)> <Delay = 0.00>
+
+State 5 <SV = 2> <Delay = 0.00>
+ST_5 : Operation 124 [1/1] (0.00ns)   --->   "ret void" [matrixmul.cpp:85]   --->   Operation 124 'ret' <Predicate = true> <Delay = 0.00>
+
+
+============================================================
++ Verbose Summary: Timing violations
+============================================================
+Target clock period: 13.3ns, clock uncertainty: 1.67ns.
+
+ <State 1>: 0.736ns
+The critical path consists of the following:
+	multiplexor before 'phi' operation ('indvar_flatten', matrixmul.cpp:63) with incoming values : ('add_ln63', matrixmul.cpp:63) [25]  (0.736 ns)
+
+ <State 2>: 1.36ns
+The critical path consists of the following:
+	'phi' operation ('i_0', matrixmul.cpp:63) with incoming values : ('select_ln63', matrixmul.cpp:63) [26]  (0 ns)
+	'add' operation ('add_ln63_1', matrixmul.cpp:63) [36]  (0.621 ns)
+	'icmp' operation ('icmp_ln75', matrixmul.cpp:75) [37]  (0.399 ns)
+	'select' operation ('select_ln75_1', matrixmul.cpp:75) [39]  (0.345 ns)
+
+ <State 3>: 2.5ns
+The critical path consists of the following:
+	fifo read on port 'b' (matrixmul.cpp:77) [67]  (2.1 ns)
+	'select' operation ('b_copy[2][2]', matrixmul.cpp:77) [72]  (0 ns)
+	'select' operation ('b_copy[2][2]', matrixmul.cpp:77) [73]  (0.4 ns)
+
+ <State 4>: 8.74ns
+The critical path consists of the following:
+	'load' operation ('b_copy_1_2_2_load_1', matrixmul.cpp:80) on local variable 'b_copy[1][2]' [104]  (0 ns)
+	'mux' operation ('tmp_2', matrixmul.cpp:80) [115]  (0.534 ns)
+	'mul' operation ('mul_ln82_1', matrixmul.cpp:82) [117]  (1.69 ns)
+	'add' operation of DSP[122] ('add_ln82', matrixmul.cpp:82) [122]  (2.21 ns)
+	'add' operation of DSP[123] ('add_ln82_1', matrixmul.cpp:82) [123]  (2.21 ns)
+	fifo write on port 'res' (matrixmul.cpp:82) [124]  (2.1 ns)
+
+ <State 5>: 0ns
+The critical path consists of the following:
+
+
+============================================================
++ Verbose Summary: Binding
+============================================================
+N/A
+* FSMD analyzer results:
+  - Output states:
+ - Input state : 
+  - Chain level:
+	State 1
+	State 2
+	State 3
+	State 4
+	State 5
+
+
+============================================================
++ Verbose Summary: Datapath Resource usage 
+============================================================
+N/A

@@ -1,0 +1,164 @@
+
+
+================================================================
+== Vivado HLS Report for 'blockmatmul'
+================================================================
+* Date:           Wed Oct 19 18:03:38 2022
+
+* Version:        2020.1 (Build 2897737 on Wed May 27 20:21:37 MDT 2020)
+* Project:        BlockMatrix_multiplication
+* Solution:       solution2
+* Product family: zynq
+* Target device:  xc7z020-clg400-1
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing: 
+    * Summary: 
+    +--------+----------+----------+------------+
+    |  Clock |  Target  | Estimated| Uncertainty|
+    +--------+----------+----------+------------+
+    |ap_clk  | 10.00 ns | 8.510 ns |   1.25 ns  |
+    +--------+----------+----------+------------+
+
++ Latency: 
+    * Summary: 
+    +---------+---------+----------+----------+-----+-----+----------+
+    |  Latency (cycles) |  Latency (absolute) |  Interval | Pipeline |
+    |   min   |   max   |    min   |    max   | min | max |   Type   |
+    +---------+---------+----------+----------+-----+-----+----------+
+    |      198|      215| 1.980 us | 2.150 us |  199|  216| dataflow |
+    +---------+---------+----------+----------+-----+-----+----------+
+
+    + Detail: 
+        * Instance: 
+        +-------------------------+----------------------+---------+---------+----------+----------+-----+-----+---------+
+        |                         |                      |  Latency (cycles) |  Latency (absolute) |  Interval | Pipeline|
+        |         Instance        |        Module        |   min   |   max   |    min   |    max   | min | max |   Type  |
+        +-------------------------+----------------------+---------+---------+----------+----------+-----+-----+---------+
+        |Loop_memset_AB_proc8_U0  |Loop_memset_AB_proc8  |      198|      215| 1.980 us | 2.150 us |  198|  215|   none  |
+        |Loop_writeoutput_pro_U0  |Loop_writeoutput_pro  |       10|       10| 0.100 us | 0.100 us |   10|   10|   none  |
+        +-------------------------+----------------------+---------+---------+----------+----------+-----+-----+---------+
+
+        * Loop: 
+        N/A
+
+
+
+================================================================
+== Utilization Estimates
+================================================================
+* Summary: 
++-----------------+---------+-------+--------+-------+-----+
+|       Name      | BRAM_18K| DSP48E|   FF   |  LUT  | URAM|
++-----------------+---------+-------+--------+-------+-----+
+|DSP              |        -|      -|       -|      -|    -|
+|Expression       |        -|      -|       0|      2|    -|
+|FIFO             |        -|      -|       -|      -|    -|
+|Instance         |        2|     12|     547|    935|    0|
+|Memory           |        2|      -|       0|      0|    0|
+|Multiplexer      |        -|      -|       -|      -|    -|
+|Register         |        -|      -|       -|      -|    -|
++-----------------+---------+-------+--------+-------+-----+
+|Total            |        4|     12|     547|    937|    0|
++-----------------+---------+-------+--------+-------+-----+
+|Available        |      280|    220|  106400|  53200|    0|
++-----------------+---------+-------+--------+-------+-----+
+|Utilization (%)  |        1|      5|   ~0   |      1|    0|
++-----------------+---------+-------+--------+-------+-----+
+
++ Detail: 
+    * Instance: 
+    +-------------------------+----------------------+---------+-------+-----+-----+-----+
+    |         Instance        |        Module        | BRAM_18K| DSP48E|  FF | LUT | URAM|
+    +-------------------------+----------------------+---------+-------+-----+-----+-----+
+    |Loop_memset_AB_proc8_U0  |Loop_memset_AB_proc8  |        2|     12|  518|  772|    0|
+    |Loop_writeoutput_pro_U0  |Loop_writeoutput_pro  |        0|      0|   29|  163|    0|
+    +-------------------------+----------------------+---------+-------+-----+-----+-----+
+    |Total                    |                      |        2|     12|  547|  935|    0|
+    +-------------------------+----------------------+---------+-------+-----+-----+-----+
+
+    * DSP48E: 
+    N/A
+
+    * Memory: 
+    +-------+----------------+---------+---+----+-----+------+-----+------+-------------+
+    | Memory|     Module     | BRAM_18K| FF| LUT| URAM| Words| Bits| Banks| W*Bits*Banks|
+    +-------+----------------+---------+---+----+-----+------+-----+------+-------------+
+    |AB_U   |blockmatmul_AB  |        2|  0|   0|    0|    16|   32|     2|         1024|
+    +-------+----------------+---------+---+----+-----+------+-----+------+-------------+
+    |Total  |                |        2|  0|   0|    0|    16|   32|     2|         1024|
+    +-------+----------------+---------+---+----+-----+------+-----+------+-------------+
+
+    * FIFO: 
+    N/A
+
+    * Expression: 
+    +--------------+----------+-------+---+----+------------+------------+
+    | Variable Name| Operation| DSP48E| FF| LUT| Bitwidth P0| Bitwidth P1|
+    +--------------+----------+-------+---+----+------------+------------+
+    |ap_idle       |    and   |      0|  0|   2|           1|           1|
+    +--------------+----------+-------+---+----+------------+------------+
+    |Total         |          |      0|  0|   2|           1|           1|
+    +--------------+----------+-------+---+----+------------+------------+
+
+    * Multiplexer: 
+    N/A
+
+    * Register: 
+    N/A
+
+
+
+================================================================
+== Interface
+================================================================
+* Summary: 
++------------------------+-----+-----+------------+---------------+--------------+
+|        RTL Ports       | Dir | Bits|  Protocol  | Source Object |    C Type    |
++------------------------+-----+-----+------------+---------------+--------------+
+|ap_clk                  |  in |    1| ap_ctrl_hs |  blockmatmul  | return value |
+|ap_rst                  |  in |    1| ap_ctrl_hs |  blockmatmul  | return value |
+|ap_start                |  in |    1| ap_ctrl_hs |  blockmatmul  | return value |
+|ap_done                 | out |    1| ap_ctrl_hs |  blockmatmul  | return value |
+|ap_ready                | out |    1| ap_ctrl_hs |  blockmatmul  | return value |
+|ap_idle                 | out |    1| ap_ctrl_hs |  blockmatmul  | return value |
+|Arows_V_a_0_dout        |  in |   32|   ap_fifo  |  Arows_V_a_0  |    pointer   |
+|Arows_V_a_0_empty_n     |  in |    1|   ap_fifo  |  Arows_V_a_0  |    pointer   |
+|Arows_V_a_0_read        | out |    1|   ap_fifo  |  Arows_V_a_0  |    pointer   |
+|Arows_V_a_1_dout        |  in |   32|   ap_fifo  |  Arows_V_a_1  |    pointer   |
+|Arows_V_a_1_empty_n     |  in |    1|   ap_fifo  |  Arows_V_a_1  |    pointer   |
+|Arows_V_a_1_read        | out |    1|   ap_fifo  |  Arows_V_a_1  |    pointer   |
+|Arows_V_a_2_dout        |  in |   32|   ap_fifo  |  Arows_V_a_2  |    pointer   |
+|Arows_V_a_2_empty_n     |  in |    1|   ap_fifo  |  Arows_V_a_2  |    pointer   |
+|Arows_V_a_2_read        | out |    1|   ap_fifo  |  Arows_V_a_2  |    pointer   |
+|Arows_V_a_3_dout        |  in |   32|   ap_fifo  |  Arows_V_a_3  |    pointer   |
+|Arows_V_a_3_empty_n     |  in |    1|   ap_fifo  |  Arows_V_a_3  |    pointer   |
+|Arows_V_a_3_read        | out |    1|   ap_fifo  |  Arows_V_a_3  |    pointer   |
+|Bcols_V_a_0_dout        |  in |   32|   ap_fifo  |  Bcols_V_a_0  |    pointer   |
+|Bcols_V_a_0_empty_n     |  in |    1|   ap_fifo  |  Bcols_V_a_0  |    pointer   |
+|Bcols_V_a_0_read        | out |    1|   ap_fifo  |  Bcols_V_a_0  |    pointer   |
+|Bcols_V_a_1_dout        |  in |   32|   ap_fifo  |  Bcols_V_a_1  |    pointer   |
+|Bcols_V_a_1_empty_n     |  in |    1|   ap_fifo  |  Bcols_V_a_1  |    pointer   |
+|Bcols_V_a_1_read        | out |    1|   ap_fifo  |  Bcols_V_a_1  |    pointer   |
+|Bcols_V_a_2_dout        |  in |   32|   ap_fifo  |  Bcols_V_a_2  |    pointer   |
+|Bcols_V_a_2_empty_n     |  in |    1|   ap_fifo  |  Bcols_V_a_2  |    pointer   |
+|Bcols_V_a_2_read        | out |    1|   ap_fifo  |  Bcols_V_a_2  |    pointer   |
+|Bcols_V_a_3_dout        |  in |   32|   ap_fifo  |  Bcols_V_a_3  |    pointer   |
+|Bcols_V_a_3_empty_n     |  in |    1|   ap_fifo  |  Bcols_V_a_3  |    pointer   |
+|Bcols_V_a_3_read        | out |    1|   ap_fifo  |  Bcols_V_a_3  |    pointer   |
+|ABpartial_out_address0  | out |    4|  ap_memory | ABpartial_out |     array    |
+|ABpartial_out_ce0       | out |    1|  ap_memory | ABpartial_out |     array    |
+|ABpartial_out_d0        | out |   32|  ap_memory | ABpartial_out |     array    |
+|ABpartial_out_q0        |  in |   32|  ap_memory | ABpartial_out |     array    |
+|ABpartial_out_we0       | out |    1|  ap_memory | ABpartial_out |     array    |
+|ABpartial_out_address1  | out |    4|  ap_memory | ABpartial_out |     array    |
+|ABpartial_out_ce1       | out |    1|  ap_memory | ABpartial_out |     array    |
+|ABpartial_out_d1        | out |   32|  ap_memory | ABpartial_out |     array    |
+|ABpartial_out_q1        |  in |   32|  ap_memory | ABpartial_out |     array    |
+|ABpartial_out_we1       | out |    1|  ap_memory | ABpartial_out |     array    |
+|it                      |  in |   32|   ap_none  |       it      |    scalar    |
++------------------------+-----+-----+------------+---------------+--------------+
+

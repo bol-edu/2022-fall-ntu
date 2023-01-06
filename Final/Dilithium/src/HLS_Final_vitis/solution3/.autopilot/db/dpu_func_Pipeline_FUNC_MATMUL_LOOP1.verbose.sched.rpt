@@ -1,0 +1,237 @@
+
+
+================================================================
+== Vitis HLS Report for 'dpu_func_Pipeline_FUNC_MATMUL_LOOP1'
+================================================================
+* Date:           Thu Dec 29 13:17:30 2022
+
+* Version:        2022.1 (Build 3526262 on Mon Apr 18 15:48:16 MDT 2022)
+* Project:        HLS_final_vitis
+* Solution:       solution3 (Vivado IP Flow Target)
+* Product family: virtexuplus
+* Target device:  xcvu11p-flga2577-1-e
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing: 
+    * Summary: 
+    +--------+----------+----------+------------+
+    |  Clock |  Target  | Estimated| Uncertainty|
+    +--------+----------+----------+------------+
+    |ap_clk  |  10.00 ns|  7.121 ns|     2.70 ns|
+    +--------+----------+----------+------------+
+
++ Latency: 
+    * Summary: 
+    +---------+---------+----------+----------+-----+-----+---------+
+    |  Latency (cycles) |  Latency (absolute) |  Interval | Pipeline|
+    |   min   |   max   |    min   |    max   | min | max |   Type  |
+    +---------+---------+----------+----------+-----+-----+---------+
+    |       37|       44|  0.370 us|  0.440 us|   37|   44|       no|
+    +---------+---------+----------+----------+-----+-----+---------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        +---------------------+---------+---------+----------+-----------+-----------+-------+----------+
+        |                     |  Latency (cycles) | Iteration|  Initiation Interval  |  Trip |          |
+        |      Loop Name      |   min   |   max   |  Latency |  achieved |   target  | Count | Pipelined|
+        +---------------------+---------+---------+----------+-----------+-----------+-------+----------+
+        |- FUNC_MATMUL_LOOP1  |       35|       42|         8|          7|          1|  5 ~ 6|       yes|
+        +---------------------+---------+---------+----------+-----------+-----------+-------+----------+
+
+============================================================
++ Verbose Summary: Synthesis Manager
+============================================================
+InlineROM: 1
+ExposeGlobal: 0
+============================================================
++ Verbose Summary: CDFG Model
+============================================================
+IsTopModel: 0
+ResetActiveHigh: 1
+IsCombinational: 0
+IsDatapathOnly: 0
+HasWiredReturn: 1
+HasMFsm: 2
+HasVarLatency: 1
+IsPipeline: 0
+IsRtlPipelined: 0
+IsInstanceOverlapped: 0
+IsDontTouch: 0
+HasImplIP: 0
+IsGatedGlobalClock: 0
+
++ Individual pipeline summary: 
+  * Pipeline-0: initiation interval (II) = 7, depth = 8
+
+
+============================================================
++ Verbose Summary: Schedule
+============================================================
+* Number of FSM states : 8
+* Pipeline : 1
+  Pipeline-0 : II = 7, D = 8, States = { 1 2 3 4 5 6 7 8 }
+* Dataflow Pipeline: 0
+
+* FSM state transitions: 
+1 --> 2 
+2 --> 3 
+3 --> 4 
+4 --> 5 
+5 --> 6 
+6 --> 7 
+7 --> 8 
+8 --> 
+
+* FSM state operations: 
+
+State 1 <SV = 0> <Delay = 1.17>
+ST_1 : Operation 11 [1/1] (0.00ns)   --->   "%i_48 = alloca i32 1"   --->   Operation 11 'alloca' 'i_48' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 12 [1/1] (0.00ns)   --->   "%this_1_10 = alloca i32 1"   --->   Operation 12 'alloca' 'this_1_10' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 13 [1/1] (0.00ns)   --->   "%this_4_10 = alloca i32 1"   --->   Operation 13 'alloca' 'this_4_10' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 14 [1/1] (0.00ns)   --->   "%this_3_10 = alloca i32 1"   --->   Operation 14 'alloca' 'this_3_10' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 15 [1/1] (0.00ns)   --->   "%specbramwithbyteenable_ln0 = specbramwithbyteenable void @_ssdm_op_SpecBRAMWithByteEnable, i8192 %this_0"   --->   Operation 15 'specbramwithbyteenable' 'specbramwithbyteenable_ln0' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 16 [1/1] (0.00ns)   --->   "%addr2_cast_cast_read = read i6 @_ssdm_op_Read.ap_auto.i6, i6 %addr2_cast_cast"   --->   Operation 16 'read' 'addr2_cast_cast_read' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 17 [1/1] (0.00ns)   --->   "%zext_ln217_2_read = read i5 @_ssdm_op_Read.ap_auto.i5, i5 %zext_ln217_2"   --->   Operation 17 'read' 'zext_ln217_2_read' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 18 [1/1] (0.00ns)   --->   "%addr1_read = read i8 @_ssdm_op_Read.ap_auto.i8, i8 %addr1"   --->   Operation 18 'read' 'addr1_read' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 19 [1/1] (0.00ns)   --->   "%itr_cast_read = read i3 @_ssdm_op_Read.ap_auto.i3, i3 %itr_cast"   --->   Operation 19 'read' 'itr_cast_read' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 20 [1/1] (0.00ns)   --->   "%this_1_9_read = read i8192 @_ssdm_op_Read.ap_auto.i8192, i8192 %this_1_9"   --->   Operation 20 'read' 'this_1_9_read' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 21 [1/1] (0.00ns)   --->   "%this_4_9_read = read i8192 @_ssdm_op_Read.ap_auto.i8192, i8192 %this_4_9"   --->   Operation 21 'read' 'this_4_9_read' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 22 [1/1] (0.00ns)   --->   "%this_3_9_read = read i8192 @_ssdm_op_Read.ap_auto.i8192, i8192 %this_3_9"   --->   Operation 22 'read' 'this_3_9_read' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 23 [1/1] (0.00ns)   --->   "%addr2_cast_cast_cast = zext i6 %addr2_cast_cast_read"   --->   Operation 23 'zext' 'addr2_cast_cast_cast' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 24 [1/1] (0.00ns)   --->   "%zext_ln217_2_cast = zext i5 %zext_ln217_2_read"   --->   Operation 24 'zext' 'zext_ln217_2_cast' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 25 [1/1] (0.00ns)   --->   "%specmemcore_ln0 = specmemcore void @_ssdm_op_SpecMemCore, i8192 %this_0, i64 666, i64 210, i64 18446744073709551615"   --->   Operation 25 'specmemcore' 'specmemcore_ln0' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 26 [1/1] (0.46ns)   --->   "%store_ln0 = store i8192 %this_3_9_read, i8192 %this_3_10"   --->   Operation 26 'store' 'store_ln0' <Predicate = true> <Delay = 0.46>
+ST_1 : Operation 27 [1/1] (0.46ns)   --->   "%store_ln0 = store i8192 %this_4_9_read, i8192 %this_4_10"   --->   Operation 27 'store' 'store_ln0' <Predicate = true> <Delay = 0.46>
+ST_1 : Operation 28 [1/1] (0.46ns)   --->   "%store_ln0 = store i8192 %this_1_9_read, i8192 %this_1_10"   --->   Operation 28 'store' 'store_ln0' <Predicate = true> <Delay = 0.46>
+ST_1 : Operation 29 [1/1] (0.46ns)   --->   "%store_ln0 = store i3 0, i3 %i_48"   --->   Operation 29 'store' 'store_ln0' <Predicate = true> <Delay = 0.46>
+ST_1 : Operation 30 [1/1] (0.00ns)   --->   "%br_ln0 = br void %for.inc157"   --->   Operation 30 'br' 'br_ln0' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 31 [1/1] (0.00ns)   --->   "%i = load i3 %i_48" [HLS_Final_vitis_src/dpu.cpp:215]   --->   Operation 31 'load' 'i' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 32 [1/1] (0.00ns)   --->   "%specpipeline_ln0 = specpipeline void @_ssdm_op_SpecPipeline, i32 4294967295, i32 0, i32 1, i32 0, void @p_str"   --->   Operation 32 'specpipeline' 'specpipeline_ln0' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 33 [1/1] (0.56ns)   --->   "%icmp_ln215 = icmp_eq  i3 %i, i3 %itr_cast_read" [HLS_Final_vitis_src/dpu.cpp:215]   --->   Operation 33 'icmp' 'icmp_ln215' <Predicate = true> <Delay = 0.56> <CoreInst = "Cmp">   --->   Core 9 'Cmp' <Latency = 0> <II = 1> <Delay = 0.56> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 34 [1/1] (0.00ns)   --->   "%speclooptripcount_ln0 = speclooptripcount void @_ssdm_op_SpecLoopTripCount, i64 5, i64 6, i64 0"   --->   Operation 34 'speclooptripcount' 'speclooptripcount_ln0' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 35 [1/1] (0.71ns)   --->   "%i_63 = add i3 %i, i3 1" [HLS_Final_vitis_src/dpu.cpp:215]   --->   Operation 35 'add' 'i_63' <Predicate = true> <Delay = 0.71> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 0.71> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 36 [1/1] (0.00ns)   --->   "%br_ln215 = br i1 %icmp_ln215, void %for.inc157.split, void %FUNC_MATMUL_LOOP2.loopexit.exitStub" [HLS_Final_vitis_src/dpu.cpp:215]   --->   Operation 36 'br' 'br_ln215' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 37 [1/1] (0.00ns)   --->   "%zext_ln217 = zext i3 %i" [HLS_Final_vitis_src/dpu.cpp:217]   --->   Operation 37 'zext' 'zext_ln217' <Predicate = (!icmp_ln215)> <Delay = 0.00>
+ST_1 : Operation 38 [1/1] (0.00ns) (grouped into TernaryAdder)   --->   "%add_ln217 = add i8 %zext_ln217_2_cast, i8 %addr1_read" [HLS_Final_vitis_src/dpu.cpp:217]   --->   Operation 38 'add' 'add_ln217' <Predicate = (!icmp_ln215)> <Delay = 0.00> <CoreInst = "TAddSub">   --->   Core 10 'TAddSub' <Latency = 0> <II = 1> <Delay = 0.51> <IPBlock> <Opcode : 'add' 'sub'> <InPorts = 3> <OutPorts = 1> <Sync> <CReg>
+ST_1 : Operation 39 [1/1] (1.02ns) (root node of TernaryAdder)   --->   "%add_ln217_1 = add i8 %add_ln217, i8 %zext_ln217" [HLS_Final_vitis_src/dpu.cpp:217]   --->   Operation 39 'add' 'add_ln217_1' <Predicate = (!icmp_ln215)> <Delay = 1.02> <CoreInst = "TAddSub">   --->   Core 10 'TAddSub' <Latency = 0> <II = 1> <Delay = 0.51> <IPBlock> <Opcode : 'add' 'sub'> <InPorts = 3> <OutPorts = 1> <Sync> <CReg>
+ST_1 : Operation 40 [1/1] (0.46ns)   --->   "%store_ln215 = store i3 %i_63, i3 %i_48" [HLS_Final_vitis_src/dpu.cpp:215]   --->   Operation 40 'store' 'store_ln215' <Predicate = (!icmp_ln215)> <Delay = 0.46>
+ST_1 : Operation 65 [1/1] (0.00ns)   --->   "%this_1_10_load = load i8192 %this_1_10"   --->   Operation 65 'load' 'this_1_10_load' <Predicate = (icmp_ln215)> <Delay = 0.00>
+ST_1 : Operation 66 [1/1] (0.00ns)   --->   "%this_4_10_load = load i8192 %this_4_10"   --->   Operation 66 'load' 'this_4_10_load' <Predicate = (icmp_ln215)> <Delay = 0.00>
+ST_1 : Operation 67 [1/1] (0.00ns)   --->   "%this_3_10_load = load i8192 %this_3_10"   --->   Operation 67 'load' 'this_3_10_load' <Predicate = (icmp_ln215)> <Delay = 0.00>
+ST_1 : Operation 68 [1/1] (0.00ns)   --->   "%write_ln0 = write void @_ssdm_op_Write.ap_auto.i8192P0A, i8192 %this_3_10_out, i8192 %this_3_10_load"   --->   Operation 68 'write' 'write_ln0' <Predicate = (icmp_ln215)> <Delay = 0.00>
+ST_1 : Operation 69 [1/1] (0.00ns)   --->   "%write_ln0 = write void @_ssdm_op_Write.ap_auto.i8192P0A, i8192 %this_4_10_out, i8192 %this_4_10_load"   --->   Operation 69 'write' 'write_ln0' <Predicate = (icmp_ln215)> <Delay = 0.00>
+ST_1 : Operation 70 [1/1] (0.00ns)   --->   "%write_ln0 = write void @_ssdm_op_Write.ap_auto.i8192P0A, i8192 %this_1_10_out, i8192 %this_1_10_load"   --->   Operation 70 'write' 'write_ln0' <Predicate = (icmp_ln215)> <Delay = 0.00>
+ST_1 : Operation 71 [1/1] (0.00ns)   --->   "%ret_ln0 = ret"   --->   Operation 71 'ret' 'ret_ln0' <Predicate = (icmp_ln215)> <Delay = 0.00>
+
+State 2 <SV = 1> <Delay = 1.29>
+ST_2 : Operation 41 [2/2] (1.29ns)   --->   "%call_ret = call i8192 @read_p1, i8192 %this_0, i8 %add_ln217_1" [HLS_Final_vitis_src/dpu.cpp:217]   --->   Operation 41 'call' 'call_ret' <Predicate = (!icmp_ln215)> <Delay = 1.29> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+
+State 3 <SV = 2> <Delay = 1.29>
+ST_3 : Operation 42 [1/2] (1.29ns)   --->   "%call_ret = call i8192 @read_p1, i8192 %this_0, i8 %add_ln217_1" [HLS_Final_vitis_src/dpu.cpp:217]   --->   Operation 42 'call' 'call_ret' <Predicate = (!icmp_ln215)> <Delay = 1.29> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+
+State 4 <SV = 3> <Delay = 2.13>
+ST_4 : Operation 43 [1/1] (0.00ns)   --->   "%zext_ln217_1 = zext i3 %i" [HLS_Final_vitis_src/dpu.cpp:217]   --->   Operation 43 'zext' 'zext_ln217_1' <Predicate = (!icmp_ln215)> <Delay = 0.00>
+ST_4 : Operation 44 [1/1] (0.84ns)   --->   "%add_ln218 = add i7 %zext_ln217_1, i7 %addr2_cast_cast_cast" [HLS_Final_vitis_src/dpu.cpp:218]   --->   Operation 44 'add' 'add_ln218' <Predicate = (!icmp_ln215)> <Delay = 0.84> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 0.84> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_4 : Operation 45 [1/1] (0.00ns)   --->   "%zext_ln218 = zext i7 %add_ln218" [HLS_Final_vitis_src/dpu.cpp:218]   --->   Operation 45 'zext' 'zext_ln218' <Predicate = (!icmp_ln215)> <Delay = 0.00>
+ST_4 : Operation 46 [2/2] (1.29ns)   --->   "%call_ret22 = call i8192 @read_p2, i8192 %this_0, i8 %zext_ln218" [HLS_Final_vitis_src/dpu.cpp:218]   --->   Operation 46 'call' 'call_ret22' <Predicate = (!icmp_ln215)> <Delay = 1.29> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+
+State 5 <SV = 4> <Delay = 7.12>
+ST_5 : Operation 47 [1/1] (0.00ns)   --->   "%this_4_10_load_1 = load i8192 %this_4_10" [HLS_Final_vitis_src/dpu.cpp:219]   --->   Operation 47 'load' 'this_4_10_load_1' <Predicate = (!icmp_ln215)> <Delay = 0.00>
+ST_5 : Operation 48 [1/1] (0.00ns)   --->   "%this_3_10_load_1 = load i8192 %this_3_10" [HLS_Final_vitis_src/dpu.cpp:219]   --->   Operation 48 'load' 'this_3_10_load_1' <Predicate = (!icmp_ln215)> <Delay = 0.00>
+ST_5 : Operation 49 [1/2] (1.29ns)   --->   "%call_ret22 = call i8192 @read_p2, i8192 %this_0, i8 %zext_ln218" [HLS_Final_vitis_src/dpu.cpp:218]   --->   Operation 49 'call' 'call_ret22' <Predicate = (!icmp_ln215)> <Delay = 1.29> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+ST_5 : Operation 50 [2/2] (5.82ns)   --->   "%call_ret23 = call i16384 @dpu_unit, i8192 %call_ret, i8192 %call_ret22, i8192 %this_3_10_load_1, i8192 %this_4_10_load_1, i8 2" [HLS_Final_vitis_src/dpu.cpp:219]   --->   Operation 50 'call' 'call_ret23' <Predicate = (!icmp_ln215)> <Delay = 5.82> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+
+State 6 <SV = 5> <Delay = 6.91>
+ST_6 : Operation 51 [1/2] (6.91ns)   --->   "%call_ret23 = call i16384 @dpu_unit, i8192 %call_ret, i8192 %call_ret22, i8192 %this_3_10_load_1, i8192 %this_4_10_load_1, i8 2" [HLS_Final_vitis_src/dpu.cpp:219]   --->   Operation 51 'call' 'call_ret23' <Predicate = (!icmp_ln215)> <Delay = 6.91> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+ST_6 : Operation 52 [1/1] (0.00ns)   --->   "%this_3_ret9 = extractvalue i16384 %call_ret23" [HLS_Final_vitis_src/dpu.cpp:219]   --->   Operation 52 'extractvalue' 'this_3_ret9' <Predicate = (!icmp_ln215)> <Delay = 0.00>
+ST_6 : Operation 53 [1/1] (0.00ns)   --->   "%this_4_ret9 = extractvalue i16384 %call_ret23" [HLS_Final_vitis_src/dpu.cpp:219]   --->   Operation 53 'extractvalue' 'this_4_ret9' <Predicate = (!icmp_ln215)> <Delay = 0.00>
+
+State 7 <SV = 6> <Delay = 2.15>
+ST_7 : Operation 54 [1/1] (0.85ns)   --->   "%add_ln220 = add i7 %zext_ln217_1, i7 76" [HLS_Final_vitis_src/dpu.cpp:220]   --->   Operation 54 'add' 'add_ln220' <Predicate = (!icmp_ln215)> <Delay = 0.85> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 0.85> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_7 : Operation 55 [1/1] (0.00ns)   --->   "%zext_ln220 = zext i7 %add_ln220" [HLS_Final_vitis_src/dpu.cpp:220]   --->   Operation 55 'zext' 'zext_ln220' <Predicate = (!icmp_ln215)> <Delay = 0.00>
+ST_7 : Operation 56 [1/1] (1.29ns)   --->   "%call_ln220 = call void @write_p3, i8192 %this_0, i8192 %this_3_ret9, i8 %zext_ln220" [HLS_Final_vitis_src/dpu.cpp:220]   --->   Operation 56 'call' 'call_ln220' <Predicate = (!icmp_ln215)> <Delay = 1.29> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+ST_7 : Operation 57 [1/1] (0.46ns)   --->   "%store_ln215 = store i8192 %this_3_ret9, i8192 %this_3_10" [HLS_Final_vitis_src/dpu.cpp:215]   --->   Operation 57 'store' 'store_ln215' <Predicate = (!icmp_ln215)> <Delay = 0.46>
+ST_7 : Operation 58 [1/1] (0.46ns)   --->   "%store_ln215 = store i8192 %this_4_ret9, i8192 %this_4_10" [HLS_Final_vitis_src/dpu.cpp:215]   --->   Operation 58 'store' 'store_ln215' <Predicate = (!icmp_ln215)> <Delay = 0.46>
+
+State 8 <SV = 7> <Delay = 2.15>
+ST_8 : Operation 59 [1/1] (0.00ns)   --->   "%specloopname_ln215 = specloopname void @_ssdm_op_SpecLoopName, void @empty_38" [HLS_Final_vitis_src/dpu.cpp:215]   --->   Operation 59 'specloopname' 'specloopname_ln215' <Predicate = true> <Delay = 0.00>
+ST_8 : Operation 60 [1/1] (0.85ns)   --->   "%add_ln221 = add i7 %zext_ln217_1, i7 82" [HLS_Final_vitis_src/dpu.cpp:221]   --->   Operation 60 'add' 'add_ln221' <Predicate = true> <Delay = 0.85> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 0.85> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_8 : Operation 61 [1/1] (0.00ns)   --->   "%zext_ln221 = zext i7 %add_ln221" [HLS_Final_vitis_src/dpu.cpp:221]   --->   Operation 61 'zext' 'zext_ln221' <Predicate = true> <Delay = 0.00>
+ST_8 : Operation 62 [1/1] (1.29ns)   --->   "%call_ln221 = call void @write_p4, i8192 %this_0, i8192 %this_4_ret9, i8 %zext_ln221" [HLS_Final_vitis_src/dpu.cpp:221]   --->   Operation 62 'call' 'call_ln221' <Predicate = true> <Delay = 1.29> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+ST_8 : Operation 63 [1/1] (0.46ns)   --->   "%store_ln215 = store i8192 %call_ret, i8192 %this_1_10" [HLS_Final_vitis_src/dpu.cpp:215]   --->   Operation 63 'store' 'store_ln215' <Predicate = true> <Delay = 0.46>
+ST_8 : Operation 64 [1/1] (0.00ns)   --->   "%br_ln215 = br void %for.inc157" [HLS_Final_vitis_src/dpu.cpp:215]   --->   Operation 64 'br' 'br_ln215' <Predicate = true> <Delay = 0.00>
+
+
+============================================================
++ Verbose Summary: Timing violations
+============================================================
+Target clock period: 10ns, clock uncertainty: 2.7ns.
+
+ <State 1>: 1.18ns
+The critical path consists of the following:
+	'alloca' operation ('i') [12]  (0 ns)
+	'load' operation ('i', HLS_Final_vitis_src/dpu.cpp:215) on local variable 'i' [33]  (0 ns)
+	'add' operation ('i', HLS_Final_vitis_src/dpu.cpp:215) [37]  (0.715 ns)
+	'store' operation ('store_ln215', HLS_Final_vitis_src/dpu.cpp:215) of variable 'i', HLS_Final_vitis_src/dpu.cpp:215 on local variable 'i' [63]  (0.46 ns)
+
+ <State 2>: 1.3ns
+The critical path consists of the following:
+	'call' operation ('call_ret', HLS_Final_vitis_src/dpu.cpp:217) to 'read_p1' [47]  (1.3 ns)
+
+ <State 3>: 1.3ns
+The critical path consists of the following:
+	'call' operation ('call_ret', HLS_Final_vitis_src/dpu.cpp:217) to 'read_p1' [47]  (1.3 ns)
+
+ <State 4>: 2.14ns
+The critical path consists of the following:
+	'add' operation ('add_ln218', HLS_Final_vitis_src/dpu.cpp:218) [48]  (0.84 ns)
+	'call' operation ('call_ret22', HLS_Final_vitis_src/dpu.cpp:218) to 'read_p2' [50]  (1.3 ns)
+
+ <State 5>: 7.12ns
+The critical path consists of the following:
+	'call' operation ('call_ret22', HLS_Final_vitis_src/dpu.cpp:218) to 'read_p2' [50]  (1.3 ns)
+	'call' operation ('call_ret23', HLS_Final_vitis_src/dpu.cpp:219) to 'dpu_unit' [51]  (5.82 ns)
+
+ <State 6>: 6.91ns
+The critical path consists of the following:
+	'call' operation ('call_ret23', HLS_Final_vitis_src/dpu.cpp:219) to 'dpu_unit' [51]  (6.91 ns)
+
+ <State 7>: 2.15ns
+The critical path consists of the following:
+	'add' operation ('add_ln220', HLS_Final_vitis_src/dpu.cpp:220) [54]  (0.856 ns)
+	'call' operation ('call_ln220', HLS_Final_vitis_src/dpu.cpp:220) to 'write_p3' [56]  (1.3 ns)
+
+ <State 8>: 2.15ns
+The critical path consists of the following:
+	'add' operation ('add_ln221', HLS_Final_vitis_src/dpu.cpp:221) [57]  (0.856 ns)
+	'call' operation ('call_ln221', HLS_Final_vitis_src/dpu.cpp:221) to 'write_p4' [59]  (1.3 ns)
+
+
+============================================================
++ Verbose Summary: Binding
+============================================================
+N/A
+* FSMD analyzer results:
+  - Output states:
+ - Input state : 
+  - Chain level:
+	State 1
+	State 2
+	State 3
+	State 4
+	State 5
+	State 6
+	State 7
+	State 8
+
+
+============================================================
++ Verbose Summary: Datapath Resource usage 
+============================================================
+N/A

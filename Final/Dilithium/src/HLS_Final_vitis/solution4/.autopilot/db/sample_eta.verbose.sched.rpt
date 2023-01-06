@@ -1,0 +1,298 @@
+
+
+================================================================
+== Vitis HLS Report for 'sample_eta'
+================================================================
+* Date:           Thu Dec 29 14:47:16 2022
+
+* Version:        2022.1 (Build 3526262 on Mon Apr 18 15:48:16 MDT 2022)
+* Project:        HLS_final_vitis
+* Solution:       solution4 (Vivado IP Flow Target)
+* Product family: virtexuplus
+* Target device:  xcvu11p-flga2577-1-e
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing: 
+    * Summary: 
+    +--------+----------+----------+------------+
+    |  Clock |  Target  | Estimated| Uncertainty|
+    +--------+----------+----------+------------+
+    |ap_clk  |  10.00 ns|  5.461 ns|     2.70 ns|
+    +--------+----------+----------+------------+
+
++ Latency: 
+    * Summary: 
+    +---------+---------+----------+----------+-----+-----+---------+
+    |  Latency (cycles) |  Latency (absolute) |  Interval | Pipeline|
+    |   min   |   max   |    min   |    max   | min | max |   Type  |
+    +---------+---------+----------+----------+-----+-----+---------+
+    |        ?|        ?|         ?|         ?|    ?|    ?|       no|
+    +---------+---------+----------+----------+-----+-----+---------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        +--------------------+---------+---------+-----------+-----------+-----------+-------+----------+
+        |                    |  Latency (cycles) | Iteration |  Initiation Interval  |  Trip |          |
+        |      Loop Name     |   min   |   max   |  Latency  |  achieved |   target  | Count | Pipelined|
+        +--------------------+---------+---------+-----------+-----------+-----------+-------+----------+
+        |- VITIS_LOOP_321_1  |       25|       25|          1|          -|          -|     25|        no|
+        |- VITIS_LOOP_530_1  |        0|      968|  147 ~ 484|          -|          -|  0 ~ 2|        no|
+        +--------------------+---------+---------+-----------+-----------+-----------+-------+----------+
+
+============================================================
++ Verbose Summary: Synthesis Manager
+============================================================
+InlineROM: 1
+ExposeGlobal: 0
+============================================================
++ Verbose Summary: CDFG Model
+============================================================
+IsTopModel: 0
+ResetActiveHigh: 1
+IsCombinational: 0
+IsDatapathOnly: 0
+HasWiredReturn: 1
+HasMFsm: 0
+HasVarLatency: 1
+IsPipeline: 0
+IsRtlPipelined: 0
+IsInstanceOverlapped: 0
+IsDontTouch: 0
+HasImplIP: 0
+IsGatedGlobalClock: 0
+
+
+============================================================
++ Verbose Summary: Schedule
+============================================================
+* Number of FSM states : 16
+* Pipeline : 0
+* Dataflow Pipeline: 0
+
+* FSM state transitions: 
+1 --> 2 
+2 --> 3 2 
+3 --> 4 
+4 --> 5 
+5 --> 6 
+6 --> 7 
+7 --> 8 
+8 --> 9 
+9 --> 10 
+10 --> 11 
+11 --> 12 
+12 --> 13 
+13 --> 14 
+14 --> 15 
+15 --> 16 
+16 --> 10 
+
+* FSM state operations: 
+
+State 1 <SV = 0> <Delay = 0.46>
+ST_1 : Operation 17 [1/1] (0.00ns)   --->   "%i_20 = alloca i32 1"   --->   Operation 17 'alloca' 'i_20' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 18 [1/1] (0.00ns)   --->   "%nonce_read = read i4 @_ssdm_op_Read.ap_auto.i4, i4 %nonce"   --->   Operation 18 'read' 'nonce_read' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 19 [1/1] (0.00ns)   --->   "%ctr_1_loc = alloca i64 1"   --->   Operation 19 'alloca' 'ctr_1_loc' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 20 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i8 %seedbuf, void @empty_68, i32 0, i32 0, void @empty_69, i32 4294967295, i32 0, void @empty_69, void @empty_69, void @empty_69, i32 0, i32 0, i32 0, i32 0, void @empty_69, void @empty_69, i32 4294967295, i32 0"   --->   Operation 20 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 21 [1/1] (0.00ns)   --->   "%buf = alloca i64 1" [HLS_Final_vitis_src/spu.cpp:525]   --->   Operation 21 'alloca' 'buf' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 22 [1/1] (0.46ns)   --->   "%store_ln321 = store i5 0, i5 %i_20" [HLS_Final_vitis_src/spu.cpp:321]   --->   Operation 22 'store' 'store_ln321' <Predicate = true> <Delay = 0.46>
+ST_1 : Operation 23 [1/1] (0.00ns)   --->   "%br_ln321 = br void %for.inc.i.i" [HLS_Final_vitis_src/spu.cpp:321]   --->   Operation 23 'br' 'br_ln321' <Predicate = true> <Delay = 0.00>
+
+State 2 <SV = 1> <Delay = 2.01>
+ST_2 : Operation 24 [1/1] (0.00ns)   --->   "%i_21 = load i5 %i_20" [HLS_Final_vitis_src/spu.cpp:321]   --->   Operation 24 'load' 'i_21' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 25 [1/1] (0.00ns)   --->   "%zext_ln321 = zext i5 %i_21" [HLS_Final_vitis_src/spu.cpp:321]   --->   Operation 25 'zext' 'zext_ln321' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 26 [1/1] (0.72ns)   --->   "%icmp_ln321 = icmp_eq  i5 %i_21, i5 25" [HLS_Final_vitis_src/spu.cpp:321]   --->   Operation 26 'icmp' 'icmp_ln321' <Predicate = true> <Delay = 0.72> <CoreInst = "Cmp">   --->   Core 9 'Cmp' <Latency = 0> <II = 1> <Delay = 0.72> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 27 [1/1] (0.00ns)   --->   "%speclooptripcount_ln0 = speclooptripcount void @_ssdm_op_SpecLoopTripCount, i64 25, i64 25, i64 25"   --->   Operation 27 'speclooptripcount' 'speclooptripcount_ln0' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 28 [1/1] (0.82ns)   --->   "%add_ln321 = add i5 %i_21, i5 1" [HLS_Final_vitis_src/spu.cpp:321]   --->   Operation 28 'add' 'add_ln321' <Predicate = true> <Delay = 0.82> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 0.82> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 29 [1/1] (0.00ns)   --->   "%br_ln321 = br i1 %icmp_ln321, void %for.inc.i.i.split, void %_ZN3SPU11stream_initEjPKht.27.exit" [HLS_Final_vitis_src/spu.cpp:321]   --->   Operation 29 'br' 'br_ln321' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 30 [1/1] (0.00ns)   --->   "%specloopname_ln320 = specloopname void @_ssdm_op_SpecLoopName, void @empty" [HLS_Final_vitis_src/spu.cpp:320]   --->   Operation 30 'specloopname' 'specloopname_ln320' <Predicate = (!icmp_ln321)> <Delay = 0.00>
+ST_2 : Operation 31 [1/1] (0.00ns)   --->   "%this_s_addr_3 = getelementptr i64 %this_s, i64 0, i64 %zext_ln321" [HLS_Final_vitis_src/spu.cpp:321]   --->   Operation 31 'getelementptr' 'this_s_addr_3' <Predicate = (!icmp_ln321)> <Delay = 0.00>
+ST_2 : Operation 32 [1/1] (1.29ns)   --->   "%store_ln321 = store i64 0, i5 %this_s_addr_3" [HLS_Final_vitis_src/spu.cpp:321]   --->   Operation 32 'store' 'store_ln321' <Predicate = (!icmp_ln321)> <Delay = 1.29> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 1.29> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 25> <RAM>
+ST_2 : Operation 33 [1/1] (0.46ns)   --->   "%store_ln321 = store i5 %add_ln321, i5 %i_20" [HLS_Final_vitis_src/spu.cpp:321]   --->   Operation 33 'store' 'store_ln321' <Predicate = (!icmp_ln321)> <Delay = 0.46>
+ST_2 : Operation 34 [1/1] (0.00ns)   --->   "%br_ln321 = br void %for.inc.i.i" [HLS_Final_vitis_src/spu.cpp:321]   --->   Operation 34 'br' 'br_ln321' <Predicate = (!icmp_ln321)> <Delay = 0.00>
+ST_2 : Operation 35 [1/1] (0.00ns)   --->   "%ctr = alloca i32 1"   --->   Operation 35 'alloca' 'ctr' <Predicate = (icmp_ln321)> <Delay = 0.00>
+ST_2 : Operation 36 [2/2] (0.00ns)   --->   "%call_ret = call i10 @shake_absorb.1, i64 %this_s, i9 128, i8 %seedbuf, i6 32, i64 %KeccakF_RoundConstants" [HLS_Final_vitis_src/spu.cpp:335]   --->   Operation 36 'call' 'call_ret' <Predicate = (icmp_ln321)> <Delay = 0.00> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+ST_2 : Operation 37 [1/1] (0.46ns)   --->   "%store_ln530 = store i32 0, i32 %ctr" [HLS_Final_vitis_src/spu.cpp:530]   --->   Operation 37 'store' 'store_ln530' <Predicate = (icmp_ln321)> <Delay = 0.46>
+
+State 3 <SV = 2> <Delay = 1.36>
+ST_3 : Operation 38 [1/2] (1.36ns)   --->   "%call_ret = call i10 @shake_absorb.1, i64 %this_s, i9 128, i8 %seedbuf, i6 32, i64 %KeccakF_RoundConstants" [HLS_Final_vitis_src/spu.cpp:335]   --->   Operation 38 'call' 'call_ret' <Predicate = true> <Delay = 1.36> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+
+State 4 <SV = 3> <Delay = 0.00>
+ST_4 : Operation 39 [2/2] (0.00ns)   --->   "%call_ret6 = call i8 @shake_absorb, i64 %this_s, i10 %call_ret, i4 %nonce_read, i3 0, i64 %KeccakF_RoundConstants" [HLS_Final_vitis_src/spu.cpp:336]   --->   Operation 39 'call' 'call_ret6' <Predicate = true> <Delay = 0.00> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+
+State 5 <SV = 4> <Delay = 1.33>
+ST_5 : Operation 40 [1/2] (1.33ns)   --->   "%call_ret6 = call i8 @shake_absorb, i64 %this_s, i10 %call_ret, i4 %nonce_read, i3 0, i64 %KeccakF_RoundConstants" [HLS_Final_vitis_src/spu.cpp:336]   --->   Operation 40 'call' 'call_ret6' <Predicate = true> <Delay = 1.33> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+ST_5 : Operation 41 [1/1] (0.00ns)   --->   "%i = partselect i5 @_ssdm_op_PartSelect.i5.i8.i32.i32, i8 %call_ret6, i32 3, i32 7" [HLS_Final_vitis_src/spu.cpp:400]   --->   Operation 41 'partselect' 'i' <Predicate = true> <Delay = 0.00>
+
+State 6 <SV = 5> <Delay = 1.29>
+ST_6 : Operation 42 [1/1] (0.00ns)   --->   "%zext_ln402_1 = zext i5 %i" [HLS_Final_vitis_src/spu.cpp:402]   --->   Operation 42 'zext' 'zext_ln402_1' <Predicate = true> <Delay = 0.00>
+ST_6 : Operation 43 [1/1] (0.00ns)   --->   "%this_s_addr = getelementptr i64 %this_s, i64 0, i64 %zext_ln402_1" [HLS_Final_vitis_src/spu.cpp:402]   --->   Operation 43 'getelementptr' 'this_s_addr' <Predicate = true> <Delay = 0.00>
+ST_6 : Operation 44 [2/2] (1.29ns)   --->   "%this_s_load = load i5 %this_s_addr" [HLS_Final_vitis_src/spu.cpp:402]   --->   Operation 44 'load' 'this_s_load' <Predicate = true> <Delay = 1.29> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 1.29> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 25> <RAM>
+
+State 7 <SV = 6> <Delay = 3.33>
+ST_7 : Operation 45 [1/1] (0.00ns) (grouped into LUT with out node xor_ln402)   --->   "%trunc_ln402 = trunc i8 %call_ret6" [HLS_Final_vitis_src/spu.cpp:402]   --->   Operation 45 'trunc' 'trunc_ln402' <Predicate = true> <Delay = 0.00>
+ST_7 : Operation 46 [1/1] (0.00ns) (grouped into LUT with out node xor_ln402)   --->   "%shl_ln = bitconcatenate i6 @_ssdm_op_BitConcatenate.i6.i3.i3, i3 %trunc_ln402, i3 0" [HLS_Final_vitis_src/spu.cpp:402]   --->   Operation 46 'bitconcatenate' 'shl_ln' <Predicate = true> <Delay = 0.00>
+ST_7 : Operation 47 [1/1] (0.00ns) (grouped into LUT with out node xor_ln402)   --->   "%zext_ln402 = zext i6 %shl_ln" [HLS_Final_vitis_src/spu.cpp:402]   --->   Operation 47 'zext' 'zext_ln402' <Predicate = true> <Delay = 0.00>
+ST_7 : Operation 48 [1/1] (0.00ns) (grouped into LUT with out node xor_ln402)   --->   "%shl_ln402 = shl i64 31, i64 %zext_ln402" [HLS_Final_vitis_src/spu.cpp:402]   --->   Operation 48 'shl' 'shl_ln402' <Predicate = true> <Delay = 0.00> <CoreInst = "Shifter">   --->   Core 75 'Shifter' <Latency = 0> <II = 1> <Delay = 0.74> <FuncUnit> <Opcode : 'shl' 'lshr' 'ashr'> <InPorts = 2> <OutPorts = 1>
+ST_7 : Operation 49 [1/2] (1.29ns)   --->   "%this_s_load = load i5 %this_s_addr" [HLS_Final_vitis_src/spu.cpp:402]   --->   Operation 49 'load' 'this_s_load' <Predicate = true> <Delay = 1.29> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 1.29> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 25> <RAM>
+ST_7 : Operation 50 [1/1] (0.74ns) (out node of the LUT)   --->   "%xor_ln402 = xor i64 %this_s_load, i64 %shl_ln402" [HLS_Final_vitis_src/spu.cpp:402]   --->   Operation 50 'xor' 'xor_ln402' <Predicate = true> <Delay = 0.74> <CoreInst = "LogicGate">   --->   Core 74 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.32> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_7 : Operation 51 [1/1] (1.29ns)   --->   "%store_ln402 = store i64 %xor_ln402, i5 %this_s_addr" [HLS_Final_vitis_src/spu.cpp:402]   --->   Operation 51 'store' 'store_ln402' <Predicate = true> <Delay = 1.29> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 1.29> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 25> <RAM>
+
+State 8 <SV = 7> <Delay = 1.29>
+ST_8 : Operation 52 [1/1] (0.00ns)   --->   "%this_s_addr_2 = getelementptr i64 %this_s, i64 0, i64 20" [HLS_Final_vitis_src/spu.cpp:403]   --->   Operation 52 'getelementptr' 'this_s_addr_2' <Predicate = true> <Delay = 0.00>
+ST_8 : Operation 53 [2/2] (1.29ns)   --->   "%this_s_load_2 = load i5 %this_s_addr_2" [HLS_Final_vitis_src/spu.cpp:403]   --->   Operation 53 'load' 'this_s_load_2' <Predicate = true> <Delay = 1.29> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 1.29> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 25> <RAM>
+
+State 9 <SV = 8> <Delay = 2.92>
+ST_9 : Operation 54 [1/2] (1.29ns)   --->   "%this_s_load_2 = load i5 %this_s_addr_2" [HLS_Final_vitis_src/spu.cpp:403]   --->   Operation 54 'load' 'this_s_load_2' <Predicate = true> <Delay = 1.29> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 1.29> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 25> <RAM>
+ST_9 : Operation 55 [1/1] (0.32ns)   --->   "%xor_ln403 = xor i64 %this_s_load_2, i64 9223372036854775808" [HLS_Final_vitis_src/spu.cpp:403]   --->   Operation 55 'xor' 'xor_ln403' <Predicate = true> <Delay = 0.32> <CoreInst = "LogicGate">   --->   Core 74 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.32> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_9 : Operation 56 [1/1] (1.29ns)   --->   "%store_ln403 = store i64 %xor_ln403, i5 %this_s_addr_2" [HLS_Final_vitis_src/spu.cpp:403]   --->   Operation 56 'store' 'store_ln403' <Predicate = true> <Delay = 1.29> <CoreInst = "RAM">   --->   Core 83 'RAM' <Latency = 1> <II = 1> <Delay = 1.29> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 64> <Depth = 25> <RAM>
+ST_9 : Operation 57 [1/1] (0.00ns)   --->   "%br_ln530 = br void %while.cond" [HLS_Final_vitis_src/spu.cpp:530]   --->   Operation 57 'br' 'br_ln530' <Predicate = true> <Delay = 0.00>
+
+State 10 <SV = 9> <Delay = 0.87>
+ST_10 : Operation 58 [1/1] (0.00ns)   --->   "%ctr_7 = load i32 %ctr" [HLS_Final_vitis_src/spu.cpp:530]   --->   Operation 58 'load' 'ctr_7' <Predicate = true> <Delay = 0.00>
+ST_10 : Operation 59 [1/1] (0.00ns)   --->   "%trunc_ln530 = trunc i32 %ctr_7" [HLS_Final_vitis_src/spu.cpp:530]   --->   Operation 59 'trunc' 'trunc_ln530' <Predicate = true> <Delay = 0.00>
+ST_10 : Operation 60 [1/1] (0.00ns)   --->   "%tmp = partselect i24 @_ssdm_op_PartSelect.i24.i32.i32.i32, i32 %ctr_7, i32 8, i32 31" [HLS_Final_vitis_src/spu.cpp:530]   --->   Operation 60 'partselect' 'tmp' <Predicate = true> <Delay = 0.00>
+ST_10 : Operation 61 [1/1] (0.87ns)   --->   "%icmp_ln530 = icmp_eq  i24 %tmp, i24 0" [HLS_Final_vitis_src/spu.cpp:530]   --->   Operation 61 'icmp' 'icmp_ln530' <Predicate = true> <Delay = 0.87> <CoreInst = "Cmp">   --->   Core 9 'Cmp' <Latency = 0> <II = 1> <Delay = 0.87> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_10 : Operation 62 [1/1] (0.00ns)   --->   "%br_ln530 = br i1 %icmp_ln530, void %while.end, void %VITIS_LOOP_417_2.i" [HLS_Final_vitis_src/spu.cpp:530]   --->   Operation 62 'br' 'br_ln530' <Predicate = true> <Delay = 0.00>
+ST_10 : Operation 63 [2/2] (0.00ns)   --->   "%call_ln416 = call void @KeccakF1600_StatePermute, i64 %this_s, i64 %KeccakF_RoundConstants" [HLS_Final_vitis_src/spu.cpp:416]   --->   Operation 63 'call' 'call_ln416' <Predicate = (icmp_ln530)> <Delay = 0.00> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+ST_10 : Operation 64 [1/1] (0.00ns)   --->   "%ret_ln0 = ret"   --->   Operation 64 'ret' 'ret_ln0' <Predicate = (!icmp_ln530)> <Delay = 0.00>
+
+State 11 <SV = 10> <Delay = 0.00>
+ST_11 : Operation 65 [1/2] (0.00ns)   --->   "%call_ln416 = call void @KeccakF1600_StatePermute, i64 %this_s, i64 %KeccakF_RoundConstants" [HLS_Final_vitis_src/spu.cpp:416]   --->   Operation 65 'call' 'call_ln416' <Predicate = true> <Delay = 0.00> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+
+State 12 <SV = 11> <Delay = 0.00>
+ST_12 : Operation 66 [2/2] (0.00ns)   --->   "%call_ln0 = call void @sample_eta_Pipeline_VITIS_LOOP_417_2, i64 %this_s, i8 %buf"   --->   Operation 66 'call' 'call_ln0' <Predicate = true> <Delay = 0.00> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+
+State 13 <SV = 12> <Delay = 0.00>
+ST_13 : Operation 67 [1/2] (0.00ns)   --->   "%call_ln0 = call void @sample_eta_Pipeline_VITIS_LOOP_417_2, i64 %this_s, i8 %buf"   --->   Operation 67 'call' 'call_ln0' <Predicate = true> <Delay = 0.00> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+
+State 14 <SV = 13> <Delay = 0.46>
+ST_14 : Operation 68 [2/2] (0.46ns)   --->   "%targetBlock = call i1 @sample_eta_Pipeline_VITIS_LOOP_533_2, i8 %trunc_ln530, i8 %buf, i4 %a, i32 %ctr_1_loc" [HLS_Final_vitis_src/spu.cpp:530]   --->   Operation 68 'call' 'targetBlock' <Predicate = true> <Delay = 0.46> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+
+State 15 <SV = 14> <Delay = 0.46>
+ST_15 : Operation 69 [1/2] (0.46ns)   --->   "%targetBlock = call i1 @sample_eta_Pipeline_VITIS_LOOP_533_2, i8 %trunc_ln530, i8 %buf, i4 %a, i32 %ctr_1_loc" [HLS_Final_vitis_src/spu.cpp:530]   --->   Operation 69 'call' 'targetBlock' <Predicate = true> <Delay = 0.46> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+
+State 16 <SV = 15> <Delay = 0.74>
+ST_16 : Operation 70 [1/1] (0.00ns)   --->   "%speclooptripcount_ln531 = speclooptripcount void @_ssdm_op_SpecLoopTripCount, i64 0, i64 2, i64 1" [HLS_Final_vitis_src/spu.cpp:531]   --->   Operation 70 'speclooptripcount' 'speclooptripcount_ln531' <Predicate = true> <Delay = 0.00>
+ST_16 : Operation 71 [1/1] (0.00ns)   --->   "%specloopname_ln0 = specloopname void @_ssdm_op_SpecLoopName, void @empty_53" [HLS_Final_vitis_src/spu.cpp:0]   --->   Operation 71 'specloopname' 'specloopname_ln0' <Predicate = true> <Delay = 0.00>
+ST_16 : Operation 72 [1/1] (0.00ns)   --->   "%ctr_1_loc_load = load i32 %ctr_1_loc"   --->   Operation 72 'load' 'ctr_1_loc_load' <Predicate = (targetBlock)> <Delay = 0.00>
+ST_16 : Operation 73 [1/1] (0.28ns)   --->   "%ctr_8 = select i1 %targetBlock, i32 %ctr_1_loc_load, i32 256" [HLS_Final_vitis_src/spu.cpp:533]   --->   Operation 73 'select' 'ctr_8' <Predicate = true> <Delay = 0.28> <CoreInst = "Sel">   --->   Core 73 'Sel' <Latency = 0> <II = 1> <Delay = 0.28> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+ST_16 : Operation 74 [1/1] (0.46ns)   --->   "%store_ln530 = store i32 %ctr_8, i32 %ctr" [HLS_Final_vitis_src/spu.cpp:530]   --->   Operation 74 'store' 'store_ln530' <Predicate = true> <Delay = 0.46>
+ST_16 : Operation 75 [1/1] (0.00ns)   --->   "%br_ln530 = br void %while.cond" [HLS_Final_vitis_src/spu.cpp:530]   --->   Operation 75 'br' 'br_ln530' <Predicate = true> <Delay = 0.00>
+
+
+============================================================
++ Verbose Summary: Timing violations
+============================================================
+Target clock period: 10ns, clock uncertainty: 2.7ns.
+
+ <State 1>: 0.46ns
+The critical path consists of the following:
+	'alloca' operation ('i') [6]  (0 ns)
+	'store' operation ('store_ln321', HLS_Final_vitis_src/spu.cpp:321) of constant 0 on local variable 'i' [11]  (0.46 ns)
+
+ <State 2>: 2.02ns
+The critical path consists of the following:
+	'load' operation ('i', HLS_Final_vitis_src/spu.cpp:321) on local variable 'i' [14]  (0 ns)
+	'getelementptr' operation ('this_s_addr_3', HLS_Final_vitis_src/spu.cpp:321) [22]  (0 ns)
+	'store' operation ('store_ln321', HLS_Final_vitis_src/spu.cpp:321) of constant 0 on array 'this_s' [23]  (1.3 ns)
+	blocking operation 0.72 ns on control path)
+
+ <State 3>: 1.36ns
+The critical path consists of the following:
+	'call' operation ('call_ret', HLS_Final_vitis_src/spu.cpp:335) to 'shake_absorb.1' [28]  (1.36 ns)
+
+ <State 4>: 0ns
+The critical path consists of the following:
+
+ <State 5>: 1.33ns
+The critical path consists of the following:
+	'call' operation ('call_ret6', HLS_Final_vitis_src/spu.cpp:336) to 'shake_absorb' [29]  (1.33 ns)
+
+ <State 6>: 1.3ns
+The critical path consists of the following:
+	'getelementptr' operation ('this_s_addr', HLS_Final_vitis_src/spu.cpp:402) [36]  (0 ns)
+	'load' operation ('this_s_load', HLS_Final_vitis_src/spu.cpp:402) on array 'this_s' [37]  (1.3 ns)
+
+ <State 7>: 3.34ns
+The critical path consists of the following:
+	'load' operation ('this_s_load', HLS_Final_vitis_src/spu.cpp:402) on array 'this_s' [37]  (1.3 ns)
+	'xor' operation ('xor_ln402', HLS_Final_vitis_src/spu.cpp:402) [38]  (0.744 ns)
+	'store' operation ('store_ln402', HLS_Final_vitis_src/spu.cpp:402) of variable 'xor_ln402', HLS_Final_vitis_src/spu.cpp:402 on array 'this_s' [39]  (1.3 ns)
+
+ <State 8>: 1.3ns
+The critical path consists of the following:
+	'getelementptr' operation ('this_s_addr_2', HLS_Final_vitis_src/spu.cpp:403) [40]  (0 ns)
+	'load' operation ('this_s_load_2', HLS_Final_vitis_src/spu.cpp:403) on array 'this_s' [41]  (1.3 ns)
+
+ <State 9>: 2.92ns
+The critical path consists of the following:
+	'load' operation ('this_s_load_2', HLS_Final_vitis_src/spu.cpp:403) on array 'this_s' [41]  (1.3 ns)
+	'xor' operation ('xor_ln403', HLS_Final_vitis_src/spu.cpp:403) [42]  (0.326 ns)
+	'store' operation ('store_ln403', HLS_Final_vitis_src/spu.cpp:403) of variable 'xor_ln403', HLS_Final_vitis_src/spu.cpp:403 on array 'this_s' [43]  (1.3 ns)
+
+ <State 10>: 0.876ns
+The critical path consists of the following:
+	'load' operation ('ctr', HLS_Final_vitis_src/spu.cpp:530) on local variable 'ctr' [47]  (0 ns)
+	'icmp' operation ('icmp_ln530', HLS_Final_vitis_src/spu.cpp:530) [50]  (0.876 ns)
+
+ <State 11>: 0ns
+The critical path consists of the following:
+
+ <State 12>: 0ns
+The critical path consists of the following:
+
+ <State 13>: 0ns
+The critical path consists of the following:
+
+ <State 14>: 0.46ns
+The critical path consists of the following:
+	'call' operation ('targetBlock', HLS_Final_vitis_src/spu.cpp:530) to 'sample_eta_Pipeline_VITIS_LOOP_533_2' [57]  (0.46 ns)
+
+ <State 15>: 0.46ns
+The critical path consists of the following:
+	'call' operation ('targetBlock', HLS_Final_vitis_src/spu.cpp:530) to 'sample_eta_Pipeline_VITIS_LOOP_533_2' [57]  (0.46 ns)
+
+ <State 16>: 0.746ns
+The critical path consists of the following:
+	'load' operation ('ctr_1_loc_load') on local variable 'ctr_1_loc' [58]  (0 ns)
+	'select' operation ('ctr', HLS_Final_vitis_src/spu.cpp:533) [59]  (0.286 ns)
+	'store' operation ('store_ln530', HLS_Final_vitis_src/spu.cpp:530) of variable 'ctr', HLS_Final_vitis_src/spu.cpp:533 on local variable 'ctr' [60]  (0.46 ns)
+
+
+============================================================
++ Verbose Summary: Binding
+============================================================
+N/A
+* FSMD analyzer results:
+  - Output states:
+ - Input state : 
+  - Chain level:
+	State 1
+	State 2
+	State 3
+	State 4
+	State 5
+	State 6
+	State 7
+	State 8
+	State 9
+	State 10
+	State 11
+	State 12
+	State 13
+	State 14
+	State 15
+	State 16
+
+
+============================================================
++ Verbose Summary: Datapath Resource usage 
+============================================================
+N/A

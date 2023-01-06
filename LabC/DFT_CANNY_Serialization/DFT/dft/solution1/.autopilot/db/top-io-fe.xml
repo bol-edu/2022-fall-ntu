@@ -1,0 +1,47 @@
+<root versionMajor = "1" versionMinor = "5">
+  <kernel src_name="dft" language="c" hwCtrl="ap_ctrl_chain" mem_layout="fpga64-xilinx-none">
+    <args>
+      <arg id="0" access_type="r" src_name="X_R" src_type="float*" src_isptr="1" src_bitwidth="32" src_size_or_depth="1024">
+        <hw hw_usage="data" hw_interface="AXI-Stream" hw_name="X_R" hw_bitwidth="32" hw_size_or_depth="0" hw_kernel_support="true">
+          <constraint constraint_type="pragma interface" mode="axis" register_option="1" register_mode="both"/>
+        </hw>
+      </arg>
+      <arg id="1" access_type="r" src_name="X_I" src_type="float*" src_isptr="1" src_bitwidth="32" src_size_or_depth="1024">
+        <hw hw_usage="data" hw_interface="AXI-Stream" hw_name="X_I" hw_bitwidth="32" hw_size_or_depth="0" hw_kernel_support="true">
+          <constraint constraint_type="pragma interface" mode="axis" register_option="1" register_mode="both"/>
+        </hw>
+      </arg>
+      <arg id="2" access_type="w" src_name="OUT_R" src_type="float*" src_isptr="1" src_bitwidth="32" src_size_or_depth="1024">
+        <hw hw_usage="data" hw_interface="S_AXILite" hw_name="control" hw_bitwidth="32" hw_size_or_depth="256" hw_kernel_support="true">
+          <constraint constraint_type="pragma interface" mode="s_axilite" register_option="0" offset="1024"/>
+        </hw>
+        <hw hw_usage="data" hw_interface="BRAM" hw_name="OUT_R_1" hw_bitwidth="32" hw_size_or_depth="256" hw_kernel_support="false">
+          <constraint constraint_type="pragma interface" mode="ap_memory" register_option="0"/>
+        </hw>
+        <hw hw_usage="data" hw_interface="BRAM" hw_name="OUT_R_2" hw_bitwidth="32" hw_size_or_depth="256" hw_kernel_support="false">
+          <constraint constraint_type="pragma interface" mode="ap_memory" register_option="0"/>
+        </hw>
+        <hw hw_usage="data" hw_interface="BRAM" hw_name="OUT_R_3" hw_bitwidth="32" hw_size_or_depth="256" hw_kernel_support="false">
+          <constraint constraint_type="pragma interface" mode="ap_memory" register_option="0"/>
+        </hw>
+      </arg>
+      <arg id="3" access_type="w" src_name="OUT_I" src_type="float*" src_isptr="1" src_bitwidth="32" src_size_or_depth="1024">
+        <hw hw_usage="data" hw_interface="S_AXILite" hw_name="control" hw_bitwidth="32" hw_size_or_depth="256" hw_kernel_support="true">
+          <constraint constraint_type="pragma interface" mode="s_axilite" register_option="0" offset="2048"/>
+        </hw>
+        <hw hw_usage="data" hw_interface="BRAM" hw_name="OUT_I_1" hw_bitwidth="32" hw_size_or_depth="256" hw_kernel_support="false">
+          <constraint constraint_type="pragma interface" mode="ap_memory" register_option="0"/>
+        </hw>
+        <hw hw_usage="data" hw_interface="BRAM" hw_name="OUT_I_2" hw_bitwidth="32" hw_size_or_depth="256" hw_kernel_support="false">
+          <constraint constraint_type="pragma interface" mode="ap_memory" register_option="0"/>
+        </hw>
+        <hw hw_usage="data" hw_interface="BRAM" hw_name="OUT_I_3" hw_bitwidth="32" hw_size_or_depth="256" hw_kernel_support="false">
+          <constraint constraint_type="pragma interface" mode="ap_memory" register_option="0"/>
+        </hw>
+      </arg>
+    </args>
+    <return src_type="void" src_bitwidth="0" offset="0x0">
+      <hw hw_usage="data" hw_interface="" hw_name="" hw_bitwidth="0" hw_kernel_support="true"/>
+    </return>
+  </kernel>
+</root>

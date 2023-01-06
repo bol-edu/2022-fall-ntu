@@ -1,0 +1,208 @@
+
+
+================================================================
+== Vitis HLS Report for 'dpu_func_Pipeline_FUNC_NTT_LOOP4'
+================================================================
+* Date:           Thu Dec 29 02:47:07 2022
+
+* Version:        2022.1 (Build 3526262 on Mon Apr 18 15:48:16 MDT 2022)
+* Project:        HLS_final_vitis
+* Solution:       solution1 (Vivado IP Flow Target)
+* Product family: virtexuplus
+* Target device:  xcvu11p-flga2577-1-e
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing: 
+    * Summary: 
+    +--------+----------+----------+------------+
+    |  Clock |  Target  | Estimated| Uncertainty|
+    +--------+----------+----------+------------+
+    |ap_clk  |  10.00 ns|  7.121 ns|     2.70 ns|
+    +--------+----------+----------+------------+
+
++ Latency: 
+    * Summary: 
+    +---------+---------+----------+----------+-----+-----+---------+
+    |  Latency (cycles) |  Latency (absolute) |  Interval | Pipeline|
+    |   min   |   max   |    min   |    max   | min | max |   Type  |
+    +---------+---------+----------+----------+-----+-----+---------+
+    |      167|      200|  1.670 us|  2.000 us|  167|  200|       no|
+    +---------+---------+----------+----------+-----+-----+---------+
+
+    + Detail: 
+        * Instance: 
+        +----------------------------+----------+---------+---------+-----------+-----------+-----+-----+---------+
+        |                            |          |  Latency (cycles) |   Latency (absolute)  |  Interval | Pipeline|
+        |          Instance          |  Module  |   min   |   max   |    min    |    max    | min | max |   Type  |
+        +----------------------------+----------+---------+---------+-----------+-----------+-----+-----+---------+
+        |grp_read_p1_fu_164          |read_p1   |        1|        1|  10.000 ns|  10.000 ns|    1|    1|      yes|
+        |grp_read_p2_fu_171          |read_p2   |        1|        1|  10.000 ns|  10.000 ns|    1|    1|      yes|
+        |grp_dpu_unit_fu_178         |dpu_unit  |       27|       27|   0.270 us|   0.270 us|    1|    1|      yes|
+        |call_ln330_write_p3_fu_187  |write_p3  |        0|        0|       0 ns|       0 ns|    1|    1|      yes|
+        +----------------------------+----------+---------+---------+-----------+-----------+-----+-----+---------+
+
+        * Loop: 
+        +------------------+---------+---------+----------+-----------+-----------+-------+----------+
+        |                  |  Latency (cycles) | Iteration|  Initiation Interval  |  Trip |          |
+        |     Loop Name    |   min   |   max   |  Latency |  achieved |   target  | Count | Pipelined|
+        +------------------+---------+---------+----------+-----------+-----------+-------+----------+
+        |- FUNC_NTT_LOOP4  |      165|      198|        34|         33|          1|  5 ~ 6|       yes|
+        +------------------+---------+---------+----------+-----------+-----------+-------+----------+
+
+
+
+================================================================
+== Utilization Estimates
+================================================================
+* Summary: 
++---------------------+---------+------+---------+---------+-----+
+|         Name        | BRAM_18K|  DSP |    FF   |   LUT   | URAM|
++---------------------+---------+------+---------+---------+-----+
+|DSP                  |        -|     -|        -|        -|    -|
+|Expression           |        -|     -|        0|       63|    -|
+|FIFO                 |        -|     -|        -|        -|    -|
+|Instance             |        -|     -|        4|       13|    -|
+|Memory               |        -|     -|        -|        -|    -|
+|Multiplexer          |        -|     -|        -|      293|    -|
+|Register             |        -|     -|    49209|        -|    -|
++---------------------+---------+------+---------+---------+-----+
+|Total                |        0|     0|    49213|      369|    0|
++---------------------+---------+------+---------+---------+-----+
+|Available SLR        |     1344|  3072|   864000|   432000|  320|
++---------------------+---------+------+---------+---------+-----+
+|Utilization SLR (%)  |        0|     0|        5|       ~0|    0|
++---------------------+---------+------+---------+---------+-----+
+|Available            |     4032|  9216|  2592000|  1296000|  960|
++---------------------+---------+------+---------+---------+-----+
+|Utilization (%)      |        0|     0|        1|       ~0|    0|
++---------------------+---------+------+---------+---------+-----+
+
++ Detail: 
+    * Instance: 
+    +----------------------------+----------+---------+----+---+----+-----+
+    |          Instance          |  Module  | BRAM_18K| DSP| FF| LUT| URAM|
+    +----------------------------+----------+---------+----+---+----+-----+
+    |grp_read_p1_fu_164          |read_p1   |        0|   0|  2|   2|    0|
+    |grp_read_p2_fu_171          |read_p2   |        0|   0|  2|   2|    0|
+    |call_ln330_write_p3_fu_187  |write_p3  |        0|   0|  0|   9|    0|
+    +----------------------------+----------+---------+----+---+----+-----+
+    |Total                       |          |        0|   0|  4|  13|    0|
+    +----------------------------+----------+---------+----+---+----+-----+
+
+    * DSP: 
+    N/A
+
+    * Memory: 
+    N/A
+
+    * FIFO: 
+    N/A
+
+    * Expression: 
+    +----------------------+----------+----+---+----+------------+------------+
+    |     Variable Name    | Operation| DSP| FF| LUT| Bitwidth P0| Bitwidth P1|
+    +----------------------+----------+----+---+----+------------+------------+
+    |add_ln327_fu_246_p2   |         +|   0|  0|  14|           7|           7|
+    |add_ln328_fu_262_p2   |         +|   0|  0|  14|           7|           7|
+    |add_ln330_fu_257_p2   |         +|   0|  0|  15|           8|           8|
+    |i_45_fu_229_p2        |         +|   0|  0|  10|           3|           1|
+    |icmp_ln325_fu_223_p2  |      icmp|   0|  0|   8|           3|           3|
+    |ap_enable_pp0         |       xor|   0|  0|   2|           1|           2|
+    +----------------------+----------+----+---+----+------------+------------+
+    |Total                 |          |   0|  0|  63|          29|          28|
+    +----------------------+----------+----+---+----+------------+------------+
+
+    * Multiplexer: 
+    +-----------------------------+-----+-----------+------+-----------+
+    |             Name            | LUT | Input Size| Bits | Total Bits|
+    +-----------------------------+-----+-----------+------+-----------+
+    |ap_NS_fsm                    |  154|         34|     1|         34|
+    |ap_done_int                  |    9|          2|     1|          2|
+    |ap_enable_reg_pp0_iter0      |    9|          2|     1|          2|
+    |ap_enable_reg_pp0_iter0_reg  |    9|          2|     1|          2|
+    |ap_enable_reg_pp0_iter1      |    9|          2|     1|          2|
+    |ap_sig_allocacmp_i_44        |    9|          2|     3|          6|
+    |i_fu_80                      |    9|          2|     3|          6|
+    |this_0_address0              |   20|          4|     8|         32|
+    |this_0_ce0                   |   20|          4|     1|          4|
+    |this_0_we0                   |    9|          2|  1024|       2048|
+    |this_1_23_fu_88              |    9|          2|  8192|      16384|
+    |this_2_12_fu_84              |    9|          2|  8192|      16384|
+    |this_3_24_fu_96              |    9|          2|  8192|      16384|
+    |this_4_24_fu_92              |    9|          2|  8192|      16384|
+    +-----------------------------+-----+-----------+------+-----------+
+    |Total                        |  293|         64| 33812|      67674|
+    +-----------------------------+-----+-----------+------+-----------+
+
+    * Register: 
+    +-----------------------------------------+------+----+------+-----------+
+    |                   Name                  |  FF  | LUT| Bits | Const Bits|
+    +-----------------------------------------+------+----+------+-----------+
+    |add_ln330_reg_376                        |     8|   0|     8|          0|
+    |ap_CS_fsm                                |    33|   0|    33|          0|
+    |ap_done_reg                              |     1|   0|     1|          0|
+    |ap_enable_reg_pp0_iter0_reg              |     1|   0|     1|          0|
+    |ap_enable_reg_pp0_iter1                  |     1|   0|     1|          0|
+    |call_ln330_write_p3_fu_187_ap_start_reg  |     1|   0|     1|          0|
+    |call_ret7_reg_387                        |  8192|   0|  8192|          0|
+    |call_ret_reg_381                         |  8192|   0|  8192|          0|
+    |grp_read_p1_fu_164_ap_start_reg          |     1|   0|     1|          0|
+    |grp_read_p2_fu_171_ap_start_reg          |     1|   0|     1|          0|
+    |i_44_reg_361                             |     3|   0|     3|          0|
+    |i_fu_80                                  |     3|   0|     3|          0|
+    |icmp_ln325_reg_367                       |     1|   0|     1|          0|
+    |this_1_23_fu_88                          |  8192|   0|  8192|          0|
+    |this_2_12_fu_84                          |  8192|   0|  8192|          0|
+    |this_3_24_fu_96                          |  8192|   0|  8192|          0|
+    |this_4_24_fu_92                          |  8192|   0|  8192|          0|
+    |zext_ln327_1_reg_371                     |     3|   0|     7|          4|
+    +-----------------------------------------+------+----+------+-----------+
+    |Total                                    | 49209|   0| 49213|          4|
+    +-----------------------------------------+------+----+------+-----------+
+
+
+
+================================================================
+== Interface
+================================================================
+* Summary: 
++--------------------------------+-----+------+------------+----------------------------------+--------------+
+|            RTL Ports           | Dir | Bits |  Protocol  |           Source Object          |    C Type    |
++--------------------------------+-----+------+------------+----------------------------------+--------------+
+|ap_clk                          |   in|     1|  ap_ctrl_hs|  dpu_func_Pipeline_FUNC_NTT_LOOP4|  return value|
+|ap_rst                          |   in|     1|  ap_ctrl_hs|  dpu_func_Pipeline_FUNC_NTT_LOOP4|  return value|
+|ap_start                        |   in|     1|  ap_ctrl_hs|  dpu_func_Pipeline_FUNC_NTT_LOOP4|  return value|
+|ap_done                         |  out|     1|  ap_ctrl_hs|  dpu_func_Pipeline_FUNC_NTT_LOOP4|  return value|
+|ap_idle                         |  out|     1|  ap_ctrl_hs|  dpu_func_Pipeline_FUNC_NTT_LOOP4|  return value|
+|ap_ready                        |  out|     1|  ap_ctrl_hs|  dpu_func_Pipeline_FUNC_NTT_LOOP4|  return value|
+|grp_dpu_unit_fu_2775_p_din1     |  out|  8192|  ap_ctrl_hs|  dpu_func_Pipeline_FUNC_NTT_LOOP4|  return value|
+|grp_dpu_unit_fu_2775_p_din2     |  out|  8192|  ap_ctrl_hs|  dpu_func_Pipeline_FUNC_NTT_LOOP4|  return value|
+|grp_dpu_unit_fu_2775_p_din3     |  out|  8192|  ap_ctrl_hs|  dpu_func_Pipeline_FUNC_NTT_LOOP4|  return value|
+|grp_dpu_unit_fu_2775_p_din4     |  out|     8|  ap_ctrl_hs|  dpu_func_Pipeline_FUNC_NTT_LOOP4|  return value|
+|grp_dpu_unit_fu_2775_p_dout0_0  |   in|  8192|  ap_ctrl_hs|  dpu_func_Pipeline_FUNC_NTT_LOOP4|  return value|
+|grp_dpu_unit_fu_2775_p_dout0_1  |   in|  8192|  ap_ctrl_hs|  dpu_func_Pipeline_FUNC_NTT_LOOP4|  return value|
+|grp_dpu_unit_fu_2775_p_ce       |  out|     1|  ap_ctrl_hs|  dpu_func_Pipeline_FUNC_NTT_LOOP4|  return value|
+|this_3_23_reload                |   in|  8192|     ap_none|                  this_3_23_reload|        scalar|
+|this_4_23_reload                |   in|  8192|     ap_none|                  this_4_23_reload|        scalar|
+|this_1_22_reload                |   in|  8192|     ap_none|                  this_1_22_reload|        scalar|
+|call_ret42                      |   in|  8192|     ap_none|                        call_ret42|        scalar|
+|trunc_ln54                      |   in|     3|     ap_none|                        trunc_ln54|        scalar|
+|this_0_address0                 |  out|     8|   ap_memory|                            this_0|         array|
+|this_0_ce0                      |  out|     1|   ap_memory|                            this_0|         array|
+|this_0_we0                      |  out|  1024|   ap_memory|                            this_0|         array|
+|this_0_d0                       |  out|  8192|   ap_memory|                            this_0|         array|
+|this_0_q0                       |   in|  8192|   ap_memory|                            this_0|         array|
+|addr1                           |   in|     8|     ap_none|                             addr1|        scalar|
+|this_3_24_out                   |  out|  8192|      ap_vld|                     this_3_24_out|       pointer|
+|this_3_24_out_ap_vld            |  out|     1|      ap_vld|                     this_3_24_out|       pointer|
+|this_4_24_out                   |  out|  8192|      ap_vld|                     this_4_24_out|       pointer|
+|this_4_24_out_ap_vld            |  out|     1|      ap_vld|                     this_4_24_out|       pointer|
+|this_1_23_out                   |  out|  8192|      ap_vld|                     this_1_23_out|       pointer|
+|this_1_23_out_ap_vld            |  out|     1|      ap_vld|                     this_1_23_out|       pointer|
+|this_2_12_out                   |  out|  8192|      ap_vld|                     this_2_12_out|       pointer|
+|this_2_12_out_ap_vld            |  out|     1|      ap_vld|                     this_2_12_out|       pointer|
++--------------------------------+-----+------+------------+----------------------------------+--------------+
+

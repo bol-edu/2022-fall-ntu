@@ -1,0 +1,136 @@
+
+
+================================================================
+== Vitis HLS Report for 'adders_io'
+================================================================
+* Date:           Tue Oct 11 16:20:06 2022
+
+* Version:        2022.1 (Build 3526262 on Mon Apr 18 15:48:16 MDT 2022)
+* Project:        adders_io_prj
+* Solution:       solution1 (Vivado IP Flow Target)
+* Product family: zynq
+* Target device:  xc7z020-clg400-1
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing: 
+    * Summary: 
+    +--------+----------+----------+------------+
+    |  Clock |  Target  | Estimated| Uncertainty|
+    +--------+----------+----------+------------+
+    |ap_clk  |  10.00 ns|  4.371 ns|     2.70 ns|
+    +--------+----------+----------+------------+
+
++ Latency: 
+    * Summary: 
+    +---------+---------+-----------+-----------+-----+-----+---------+
+    |  Latency (cycles) |   Latency (absolute)  |  Interval | Pipeline|
+    |   min   |   max   |    min    |    max    | min | max |   Type  |
+    +---------+---------+-----------+-----------+-----+-----+---------+
+    |        2|        2|  20.000 ns|  20.000 ns|    3|    3|       no|
+    +---------+---------+-----------+-----------+-----+-----+---------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        N/A
+
+============================================================
++ Verbose Summary: Synthesis Manager
+============================================================
+InlineROM: 1
+ExposeGlobal: 0
+============================================================
++ Verbose Summary: CDFG Model
+============================================================
+IsTopModel: 1
+ResetActiveHigh: 1
+IsCombinational: 0
+IsDatapathOnly: 0
+HasWiredReturn: 1
+HasMFsm: 0
+HasVarLatency: 1
+IsPipeline: 0
+IsRtlPipelined: 0
+IsInstanceOverlapped: 0
+IsDontTouch: 0
+HasImplIP: 0
+IsGatedGlobalClock: 0
+
+
+============================================================
++ Verbose Summary: Schedule
+============================================================
+* Number of FSM states : 3
+* Pipeline : 0
+* Dataflow Pipeline: 0
+
+* FSM state transitions: 
+1 --> 2 
+2 --> 3 
+3 --> 
+
+* FSM state operations: 
+
+State 1 <SV = 0> <Delay = 0.00>
+ST_1 : Operation 4 [1/1] (0.00ns)   --->   "%in1_read = read i32 @_ssdm_op_Read.ap_vld.i32, i32 %in1" [adders_io.c:48]   --->   Operation 4 'read' 'in1_read' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 5 [2/2] (0.00ns)   --->   "%in_out1_read = read i32 @_ssdm_op_Read.ap_hs.i32P0A, i32 %in_out1" [adders_io.c:50]   --->   Operation 5 'read' 'in_out1_read' <Predicate = true> <Delay = 0.00>
+
+State 2 <SV = 1> <Delay = 4.37>
+ST_2 : Operation 6 [1/1] (0.00ns)   --->   "%in2_read = read i32 @_ssdm_op_Read.ap_ack.i32, i32 %in2" [adders_io.c:48]   --->   Operation 6 'read' 'in2_read' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 7 [1/2] (0.00ns)   --->   "%in_out1_read = read i32 @_ssdm_op_Read.ap_hs.i32P0A, i32 %in_out1" [adders_io.c:50]   --->   Operation 7 'read' 'in_out1_read' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 8 [1/1] (0.00ns) (grouped into TernaryAdder)   --->   "%add_ln50 = add i32 %in2_read, i32 %in1_read" [adders_io.c:50]   --->   Operation 8 'add' 'add_ln50' <Predicate = true> <Delay = 0.00> <CoreInst = "TAddSub">   --->   Core 10 'TAddSub' <Latency = 0> <II = 1> <Delay = 2.18> <IPBlock> <Opcode : 'add' 'sub'> <InPorts = 3> <OutPorts = 1> <Sync> <CReg>
+ST_2 : Operation 9 [1/1] (4.37ns) (root node of TernaryAdder)   --->   "%add_ln50_1 = add i32 %add_ln50, i32 %in_out1_read" [adders_io.c:50]   --->   Operation 9 'add' 'add_ln50_1' <Predicate = true> <Delay = 4.37> <CoreInst = "TAddSub">   --->   Core 10 'TAddSub' <Latency = 0> <II = 1> <Delay = 2.18> <IPBlock> <Opcode : 'add' 'sub'> <InPorts = 3> <OutPorts = 1> <Sync> <CReg>
+ST_2 : Operation 10 [2/2] (0.00ns)   --->   "%write_ln50 = write void @_ssdm_op_Write.ap_hs.i32P0A, i32 %in_out1, i32 %add_ln50_1" [adders_io.c:50]   --->   Operation 10 'write' 'write_ln50' <Predicate = true> <Delay = 0.00>
+
+State 3 <SV = 2> <Delay = 0.00>
+ST_3 : Operation 11 [1/1] (0.00ns)   --->   "%spectopmodule_ln48 = spectopmodule void @_ssdm_op_SpecTopModule, void @empty_3" [adders_io.c:48]   --->   Operation 11 'spectopmodule' 'spectopmodule_ln48' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 12 [1/1] (0.00ns)   --->   "%specbitsmap_ln0 = specbitsmap void @_ssdm_op_SpecBitsMap, i32 %in1"   --->   Operation 12 'specbitsmap' 'specbitsmap_ln0' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 13 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i32 %in1, void @empty, i32 0, i32 0, void @empty_0, i32 0, i32 0, void @empty_0, void @empty_0, void @empty_0, i32 0, i32 0, i32 0, i32 0, void @empty_0, void @empty_0, i32 4294967295, i32 0"   --->   Operation 13 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 14 [1/1] (0.00ns)   --->   "%specbitsmap_ln0 = specbitsmap void @_ssdm_op_SpecBitsMap, i32 %in2"   --->   Operation 14 'specbitsmap' 'specbitsmap_ln0' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 15 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i32 %in2, void @empty_1, i32 0, i32 0, void @empty_0, i32 0, i32 0, void @empty_0, void @empty_0, void @empty_0, i32 0, i32 0, i32 0, i32 0, void @empty_0, void @empty_0, i32 4294967295, i32 0"   --->   Operation 15 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 16 [1/1] (0.00ns)   --->   "%specbitsmap_ln0 = specbitsmap void @_ssdm_op_SpecBitsMap, i32 %in_out1"   --->   Operation 16 'specbitsmap' 'specbitsmap_ln0' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 17 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i32 %in_out1, void @empty_2, i32 0, i32 0, void @empty_0, i32 0, i32 0, void @empty_0, void @empty_0, void @empty_0, i32 0, i32 0, i32 0, i32 0, void @empty_0, void @empty_0, i32 4294967295, i32 0"   --->   Operation 17 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 18 [1/2] (0.00ns)   --->   "%write_ln50 = write void @_ssdm_op_Write.ap_hs.i32P0A, i32 %in_out1, i32 %add_ln50_1" [adders_io.c:50]   --->   Operation 18 'write' 'write_ln50' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 19 [1/1] (0.00ns)   --->   "%ret_ln53 = ret" [adders_io.c:53]   --->   Operation 19 'ret' 'ret_ln53' <Predicate = true> <Delay = 0.00>
+
+
+============================================================
++ Verbose Summary: Timing violations
+============================================================
+Target clock period: 10ns, clock uncertainty: 2.7ns.
+
+ <State 1>: 0ns
+The critical path consists of the following:
+
+ <State 2>: 4.37ns
+The critical path consists of the following:
+	wire read operation ('in2', adders_io.c:48) on port 'in2' (adders_io.c:48) [11]  (0 ns)
+	'add' operation ('add_ln50', adders_io.c:50) [14]  (0 ns)
+	'add' operation ('add_ln50_1', adders_io.c:50) [15]  (4.37 ns)
+
+ <State 3>: 0ns
+The critical path consists of the following:
+
+
+============================================================
++ Verbose Summary: Binding
+============================================================
+N/A
+* FSMD analyzer results:
+  - Output states:
+ - Input state : 
+  - Chain level:
+	State 1
+	State 2
+	State 3
+
+
+============================================================
++ Verbose Summary: Datapath Resource usage 
+============================================================
+N/A

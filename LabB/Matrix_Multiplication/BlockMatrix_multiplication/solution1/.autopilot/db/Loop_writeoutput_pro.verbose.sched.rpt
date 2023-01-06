@@ -1,0 +1,188 @@
+
+
+================================================================
+== Vivado HLS Report for 'Loop_writeoutput_pro'
+================================================================
+* Date:           Wed Oct 19 04:02:43 2022
+
+* Version:        2020.1 (Build 2897737 on Wed May 27 20:21:37 MDT 2020)
+* Project:        BlockMatrix_multiplication
+* Solution:       solution1
+* Product family: zynq
+* Target device:  xc7z020-clg400-1
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing: 
+    * Summary: 
+    +--------+----------+----------+------------+
+    |  Clock |  Target  | Estimated| Uncertainty|
+    +--------+----------+----------+------------+
+    |ap_clk  | 10.00 ns | 4.644 ns |   1.25 ns  |
+    +--------+----------+----------+------------+
+
++ Latency: 
+    * Summary: 
+    +---------+---------+----------+----------+-----+-----+---------+
+    |  Latency (cycles) |  Latency (absolute) |  Interval | Pipeline|
+    |   min   |   max   |    min   |    max   | min | max |   Type  |
+    +---------+---------+----------+----------+-----+-----+---------+
+    |       10|       10| 0.100 us | 0.100 us |   10|   10|   none  |
+    +---------+---------+----------+----------+-----+-----+---------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        +---------------+---------+---------+----------+-----------+-----------+------+----------+
+        |               |  Latency (cycles) | Iteration|  Initiation Interval  | Trip |          |
+        |   Loop Name   |   min   |   max   |  Latency |  achieved |   target  | Count| Pipelined|
+        +---------------+---------+---------+----------+-----------+-----------+------+----------+
+        |- writeoutput  |        8|        8|         3|          2|          1|     4|    yes   |
+        +---------------+---------+---------+----------+-----------+-----------+------+----------+
+
+============================================================
++ Verbose Summary: Synthesis Manager
+============================================================
+InlineROM: 1
+ExposeGlobal: 0
+============================================================
++ Verbose Summary: CDFG Model
+============================================================
+IsTopModel: 0
+ResetActiveHigh: 1
+IsCombinational: 2
+IsDatapathOnly: 0
+HasWiredReturn: 1
+HasMFsm: 0
+HasVarLatency: 1
+IsPipeline: 0
+IsRtlPipelined: 0
+IsInstanceOverlapped: 0
+IsDontTouch: 0
+HasImplIP: 0
+IsGatedGlobalClock: 0
+
++ Individual pipeline summary: 
+  * Pipeline-0: initiation interval (II) = 2, depth = 3
+
+
+============================================================
++ Verbose Summary: Schedule
+============================================================
+* Number of FSM states : 5
+* Pipeline : 1
+  Pipeline-0 : II = 2, D = 3, States = { 2 3 4 }
+* Dataflow Pipeline: 0
+
+* FSM state transitions: 
+1 --> 2 
+2 --> 5 3 
+3 --> 4 
+4 --> 2 
+5 --> 
+
+* FSM state operations: 
+
+State 1 <SV = 0> <Delay = 1.76>
+ST_1 : Operation 6 [1/1] (1.76ns)   --->   "br label %.preheader"   --->   Operation 6 'br' <Predicate = true> <Delay = 1.76>
+
+State 2 <SV = 1> <Delay = 2.32>
+ST_2 : Operation 7 [1/1] (0.00ns)   --->   "%i3_0 = phi i3 [ %i, %writeoutput ], [ 0, %newFuncRoot ]"   --->   Operation 7 'phi' 'i3_0' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 8 [1/1] (1.13ns)   --->   "%icmp_ln33 = icmp eq i3 %i3_0, -4" [BlockMatrix_design.cpp:33]   --->   Operation 8 'icmp' 'icmp_ln33' <Predicate = true> <Delay = 1.13> <Core = "Cmp">   --->   Core 25 'Cmp' <Latency = 0> <II = 1> <Delay = 1.13> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 9 [1/1] (0.00ns)   --->   "%empty = call i32 (...)* @_ssdm_op_SpecLoopTripCount(i64 4, i64 4, i64 4)"   --->   Operation 9 'speclooptripcount' 'empty' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 10 [1/1] (1.65ns)   --->   "%i = add i3 %i3_0, 1" [BlockMatrix_design.cpp:33]   --->   Operation 10 'add' 'i' <Predicate = true> <Delay = 1.65> <Core = "AddSub">   --->   Core 14 'AddSub' <Latency = 0> <II = 1> <Delay = 1.65> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 11 [1/1] (0.00ns)   --->   "br i1 %icmp_ln33, label %.exitStub, label %writeoutput" [BlockMatrix_design.cpp:33]   --->   Operation 11 'br' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 12 [1/1] (0.00ns)   --->   "%tmp = call i5 @_ssdm_op_BitConcatenate.i5.i3.i2(i3 %i3_0, i2 0)" [BlockMatrix_design.cpp:35]   --->   Operation 12 'bitconcatenate' 'tmp' <Predicate = (!icmp_ln33)> <Delay = 0.00>
+ST_2 : Operation 13 [1/1] (0.00ns)   --->   "%zext_ln35 = zext i5 %tmp to i64" [BlockMatrix_design.cpp:35]   --->   Operation 13 'zext' 'zext_ln35' <Predicate = (!icmp_ln33)> <Delay = 0.00>
+ST_2 : Operation 14 [1/1] (0.00ns)   --->   "%AB_addr = getelementptr [16 x i32]* %AB, i64 0, i64 %zext_ln35" [BlockMatrix_design.cpp:35]   --->   Operation 14 'getelementptr' 'AB_addr' <Predicate = (!icmp_ln33)> <Delay = 0.00>
+ST_2 : Operation 15 [1/1] (0.00ns)   --->   "%or_ln35 = or i5 %tmp, 1" [BlockMatrix_design.cpp:35]   --->   Operation 15 'or' 'or_ln35' <Predicate = (!icmp_ln33)> <Delay = 0.00>
+ST_2 : Operation 16 [1/1] (0.00ns)   --->   "%tmp_1 = call i64 @_ssdm_op_BitConcatenate.i64.i59.i5(i59 0, i5 %or_ln35)" [BlockMatrix_design.cpp:35]   --->   Operation 16 'bitconcatenate' 'tmp_1' <Predicate = (!icmp_ln33)> <Delay = 0.00>
+ST_2 : Operation 17 [1/1] (0.00ns)   --->   "%AB_addr_1 = getelementptr [16 x i32]* %AB, i64 0, i64 %tmp_1" [BlockMatrix_design.cpp:35]   --->   Operation 17 'getelementptr' 'AB_addr_1' <Predicate = (!icmp_ln33)> <Delay = 0.00>
+ST_2 : Operation 18 [2/2] (2.32ns)   --->   "%AB_load = load i32* %AB_addr, align 16" [BlockMatrix_design.cpp:35]   --->   Operation 18 'load' 'AB_load' <Predicate = (!icmp_ln33)> <Delay = 2.32> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 2.32> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 16> <RAM>
+ST_2 : Operation 19 [2/2] (2.32ns)   --->   "%AB_load_1 = load i32* %AB_addr_1, align 4" [BlockMatrix_design.cpp:35]   --->   Operation 19 'load' 'AB_load_1' <Predicate = (!icmp_ln33)> <Delay = 2.32> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 2.32> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 16> <RAM>
+
+State 3 <SV = 2> <Delay = 4.64>
+ST_3 : Operation 20 [1/1] (0.00ns)   --->   "%or_ln35_1 = or i5 %tmp, 2" [BlockMatrix_design.cpp:35]   --->   Operation 20 'or' 'or_ln35_1' <Predicate = (!icmp_ln33)> <Delay = 0.00>
+ST_3 : Operation 21 [1/1] (0.00ns)   --->   "%tmp_3 = call i64 @_ssdm_op_BitConcatenate.i64.i59.i5(i59 0, i5 %or_ln35_1)" [BlockMatrix_design.cpp:35]   --->   Operation 21 'bitconcatenate' 'tmp_3' <Predicate = (!icmp_ln33)> <Delay = 0.00>
+ST_3 : Operation 22 [1/1] (0.00ns)   --->   "%AB_addr_2 = getelementptr [16 x i32]* %AB, i64 0, i64 %tmp_3" [BlockMatrix_design.cpp:35]   --->   Operation 22 'getelementptr' 'AB_addr_2' <Predicate = (!icmp_ln33)> <Delay = 0.00>
+ST_3 : Operation 23 [1/1] (0.00ns)   --->   "%or_ln35_2 = or i5 %tmp, 3" [BlockMatrix_design.cpp:35]   --->   Operation 23 'or' 'or_ln35_2' <Predicate = (!icmp_ln33)> <Delay = 0.00>
+ST_3 : Operation 24 [1/1] (0.00ns)   --->   "%tmp_4 = call i64 @_ssdm_op_BitConcatenate.i64.i59.i5(i59 0, i5 %or_ln35_2)" [BlockMatrix_design.cpp:35]   --->   Operation 24 'bitconcatenate' 'tmp_4' <Predicate = (!icmp_ln33)> <Delay = 0.00>
+ST_3 : Operation 25 [1/1] (0.00ns)   --->   "%AB_addr_3 = getelementptr [16 x i32]* %AB, i64 0, i64 %tmp_4" [BlockMatrix_design.cpp:35]   --->   Operation 25 'getelementptr' 'AB_addr_3' <Predicate = (!icmp_ln33)> <Delay = 0.00>
+ST_3 : Operation 26 [1/1] (0.00ns)   --->   "%ABpartial_out_addr = getelementptr [16 x i32]* %ABpartial_out, i64 0, i64 %zext_ln35" [BlockMatrix_design.cpp:35]   --->   Operation 26 'getelementptr' 'ABpartial_out_addr' <Predicate = (!icmp_ln33)> <Delay = 0.00>
+ST_3 : Operation 27 [1/1] (0.00ns)   --->   "%ABpartial_out_addr_1 = getelementptr [16 x i32]* %ABpartial_out, i64 0, i64 %tmp_1" [BlockMatrix_design.cpp:35]   --->   Operation 27 'getelementptr' 'ABpartial_out_addr_1' <Predicate = (!icmp_ln33)> <Delay = 0.00>
+ST_3 : Operation 28 [1/2] (2.32ns)   --->   "%AB_load = load i32* %AB_addr, align 16" [BlockMatrix_design.cpp:35]   --->   Operation 28 'load' 'AB_load' <Predicate = (!icmp_ln33)> <Delay = 2.32> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 2.32> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 16> <RAM>
+ST_3 : Operation 29 [1/1] (2.32ns)   --->   "store i32 %AB_load, i32* %ABpartial_out_addr, align 4" [BlockMatrix_design.cpp:35]   --->   Operation 29 'store' <Predicate = (!icmp_ln33)> <Delay = 2.32> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 2.32> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 16> <RAM>
+ST_3 : Operation 30 [1/2] (2.32ns)   --->   "%AB_load_1 = load i32* %AB_addr_1, align 4" [BlockMatrix_design.cpp:35]   --->   Operation 30 'load' 'AB_load_1' <Predicate = (!icmp_ln33)> <Delay = 2.32> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 2.32> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 16> <RAM>
+ST_3 : Operation 31 [1/1] (2.32ns)   --->   "store i32 %AB_load_1, i32* %ABpartial_out_addr_1, align 4" [BlockMatrix_design.cpp:35]   --->   Operation 31 'store' <Predicate = (!icmp_ln33)> <Delay = 2.32> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 2.32> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 16> <RAM>
+ST_3 : Operation 32 [2/2] (2.32ns)   --->   "%AB_load_2 = load i32* %AB_addr_2, align 8" [BlockMatrix_design.cpp:35]   --->   Operation 32 'load' 'AB_load_2' <Predicate = (!icmp_ln33)> <Delay = 2.32> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 2.32> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 16> <RAM>
+ST_3 : Operation 33 [2/2] (2.32ns)   --->   "%AB_load_3 = load i32* %AB_addr_3, align 4" [BlockMatrix_design.cpp:35]   --->   Operation 33 'load' 'AB_load_3' <Predicate = (!icmp_ln33)> <Delay = 2.32> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 2.32> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 16> <RAM>
+
+State 4 <SV = 3> <Delay = 4.64>
+ST_4 : Operation 34 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecLoopName([12 x i8]* @p_str6) nounwind" [BlockMatrix_design.cpp:33]   --->   Operation 34 'specloopname' <Predicate = (!icmp_ln33)> <Delay = 0.00>
+ST_4 : Operation 35 [1/1] (0.00ns)   --->   "%tmp_2 = call i32 (...)* @_ssdm_op_SpecRegionBegin([12 x i8]* @p_str6)" [BlockMatrix_design.cpp:33]   --->   Operation 35 'specregionbegin' 'tmp_2' <Predicate = (!icmp_ln33)> <Delay = 0.00>
+ST_4 : Operation 36 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecPipeline(i32 -1, i32 1, i32 1, i32 0, [1 x i8]* @p_str) nounwind" [BlockMatrix_design.cpp:34]   --->   Operation 36 'specpipeline' <Predicate = (!icmp_ln33)> <Delay = 0.00>
+ST_4 : Operation 37 [1/1] (0.00ns)   --->   "%ABpartial_out_addr_2 = getelementptr [16 x i32]* %ABpartial_out, i64 0, i64 %tmp_3" [BlockMatrix_design.cpp:35]   --->   Operation 37 'getelementptr' 'ABpartial_out_addr_2' <Predicate = (!icmp_ln33)> <Delay = 0.00>
+ST_4 : Operation 38 [1/1] (0.00ns)   --->   "%ABpartial_out_addr_3 = getelementptr [16 x i32]* %ABpartial_out, i64 0, i64 %tmp_4" [BlockMatrix_design.cpp:35]   --->   Operation 38 'getelementptr' 'ABpartial_out_addr_3' <Predicate = (!icmp_ln33)> <Delay = 0.00>
+ST_4 : Operation 39 [1/2] (2.32ns)   --->   "%AB_load_2 = load i32* %AB_addr_2, align 8" [BlockMatrix_design.cpp:35]   --->   Operation 39 'load' 'AB_load_2' <Predicate = (!icmp_ln33)> <Delay = 2.32> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 2.32> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 16> <RAM>
+ST_4 : Operation 40 [1/1] (2.32ns)   --->   "store i32 %AB_load_2, i32* %ABpartial_out_addr_2, align 4" [BlockMatrix_design.cpp:35]   --->   Operation 40 'store' <Predicate = (!icmp_ln33)> <Delay = 2.32> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 2.32> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 16> <RAM>
+ST_4 : Operation 41 [1/2] (2.32ns)   --->   "%AB_load_3 = load i32* %AB_addr_3, align 4" [BlockMatrix_design.cpp:35]   --->   Operation 41 'load' 'AB_load_3' <Predicate = (!icmp_ln33)> <Delay = 2.32> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 2.32> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 16> <RAM>
+ST_4 : Operation 42 [1/1] (2.32ns)   --->   "store i32 %AB_load_3, i32* %ABpartial_out_addr_3, align 4" [BlockMatrix_design.cpp:35]   --->   Operation 42 'store' <Predicate = (!icmp_ln33)> <Delay = 2.32> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 2.32> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 16> <RAM>
+ST_4 : Operation 43 [1/1] (0.00ns)   --->   "%empty_28 = call i32 (...)* @_ssdm_op_SpecRegionEnd([12 x i8]* @p_str6, i32 %tmp_2)" [BlockMatrix_design.cpp:37]   --->   Operation 43 'specregionend' 'empty_28' <Predicate = (!icmp_ln33)> <Delay = 0.00>
+ST_4 : Operation 44 [1/1] (0.00ns)   --->   "br label %.preheader" [BlockMatrix_design.cpp:33]   --->   Operation 44 'br' <Predicate = (!icmp_ln33)> <Delay = 0.00>
+
+State 5 <SV = 2> <Delay = 0.00>
+ST_5 : Operation 45 [1/1] (0.00ns)   --->   "ret void"   --->   Operation 45 'ret' <Predicate = true> <Delay = 0.00>
+
+
+============================================================
++ Verbose Summary: Timing violations
+============================================================
+Target clock period: 10ns, clock uncertainty: 1.25ns.
+
+ <State 1>: 1.77ns
+The critical path consists of the following:
+	multiplexor before 'phi' operation ('i') with incoming values : ('i', BlockMatrix_design.cpp:33) [5]  (1.77 ns)
+
+ <State 2>: 2.32ns
+The critical path consists of the following:
+	'phi' operation ('i') with incoming values : ('i', BlockMatrix_design.cpp:33) [5]  (0 ns)
+	'getelementptr' operation ('AB_addr', BlockMatrix_design.cpp:35) [16]  (0 ns)
+	'load' operation ('AB_load', BlockMatrix_design.cpp:35) on array 'AB' [30]  (2.32 ns)
+
+ <State 3>: 4.64ns
+The critical path consists of the following:
+	'load' operation ('AB_load', BlockMatrix_design.cpp:35) on array 'AB' [30]  (2.32 ns)
+	'store' operation ('store_ln35', BlockMatrix_design.cpp:35) of variable 'AB_load', BlockMatrix_design.cpp:35 on array 'ABpartial_out' [31]  (2.32 ns)
+
+ <State 4>: 4.64ns
+The critical path consists of the following:
+	'load' operation ('AB_load_2', BlockMatrix_design.cpp:35) on array 'AB' [34]  (2.32 ns)
+	'store' operation ('store_ln35', BlockMatrix_design.cpp:35) of variable 'AB_load_2', BlockMatrix_design.cpp:35 on array 'ABpartial_out' [35]  (2.32 ns)
+
+ <State 5>: 0ns
+The critical path consists of the following:
+
+
+============================================================
++ Verbose Summary: Binding
+============================================================
+N/A
+* FSMD analyzer results:
+  - Output states:
+ - Input state : 
+  - Chain level:
+	State 1
+	State 2
+	State 3
+	State 4
+	State 5
+
+
+============================================================
++ Verbose Summary: Datapath Resource usage 
+============================================================
+N/A

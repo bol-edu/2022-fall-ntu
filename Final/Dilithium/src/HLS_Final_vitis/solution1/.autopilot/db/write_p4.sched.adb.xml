@@ -1,0 +1,144 @@
+<stg><name>write_p4</name>
+
+
+<trans_list>
+</trans_list>
+
+
+
+<state_list>
+
+<state id="1" st_id="1">
+
+<operation id="2" st_id="1" stage="1" lat="1">
+<core>NULL</core>
+<MemPortIdVec></MemPortIdVec>
+<condition id="-1">
+<or_exp><and_exp></and_exp></or_exp>
+</condition>
+
+<Node id="4" bw="0" op_0_bw="0" op_1_bw="8192">
+<![CDATA[
+entry:0 %specbramwithbyteenable_ln0 = specbramwithbyteenable void @_ssdm_op_SpecBRAMWithByteEnable, i8192 %this_pMem
+
+]]></Node>
+<StgValue><ssdm name="specbramwithbyteenable_ln0"/></StgValue>
+</operation>
+
+<operation id="3" st_id="1" stage="1" lat="1">
+<core>NULL</core>
+<MemPortIdVec></MemPortIdVec>
+<condition id="-1">
+<or_exp><and_exp></and_exp></or_exp>
+</condition>
+
+<Node id="5" bw="8" op_0_bw="8" op_1_bw="8">
+<![CDATA[
+entry:1 %addr_read = read i8 @_ssdm_op_Read.ap_auto.i8, i8 %addr
+
+]]></Node>
+<StgValue><ssdm name="addr_read"/></StgValue>
+</operation>
+
+<operation id="4" st_id="1" stage="1" lat="1">
+<core>NULL</core>
+<MemPortIdVec></MemPortIdVec>
+<condition id="-1">
+<or_exp><and_exp></and_exp></or_exp>
+</condition>
+
+<Node id="6" bw="8192" op_0_bw="8192" op_1_bw="8192">
+<![CDATA[
+entry:2 %p_read_1 = read i8192 @_ssdm_op_Read.ap_auto.i8192, i8192 %p_read
+
+]]></Node>
+<StgValue><ssdm name="p_read_1"/></StgValue>
+</operation>
+
+<operation id="5" st_id="1" stage="1" lat="1">
+<core>NULL</core>
+<MemPortIdVec></MemPortIdVec>
+<condition id="-1">
+<or_exp><and_exp></and_exp></or_exp>
+</condition>
+
+<Node id="7" bw="0" op_0_bw="0" op_1_bw="8192" op_2_bw="64" op_3_bw="64" op_4_bw="64">
+<![CDATA[
+entry:3 %specmemcore_ln0 = specmemcore void @_ssdm_op_SpecMemCore, i8192 %this_pMem, i64 666, i64 210, i64 18446744073709551615
+
+]]></Node>
+<StgValue><ssdm name="specmemcore_ln0"/></StgValue>
+</operation>
+
+<operation id="6" st_id="1" stage="1" lat="1">
+<core>NULL</core>
+<MemPortIdVec></MemPortIdVec>
+<condition id="-1">
+<or_exp><and_exp></and_exp></or_exp>
+</condition>
+
+<Node id="8" bw="64" op_0_bw="8">
+<![CDATA[
+entry:4 %idxprom2 = zext i8 %addr_read
+
+]]></Node>
+<StgValue><ssdm name="idxprom2"/></StgValue>
+</operation>
+
+<operation id="7" st_id="1" stage="1" lat="1">
+<core>NULL</core>
+<MemPortIdVec></MemPortIdVec>
+<condition id="-1">
+<or_exp><and_exp></and_exp></or_exp>
+</condition>
+
+<Node id="9" bw="8" op_0_bw="8192" op_1_bw="64" op_2_bw="64">
+<![CDATA[
+entry:5 %this_pMem_addr = getelementptr i8192 %this_pMem, i64 0, i64 %idxprom2
+
+]]></Node>
+<StgValue><ssdm name="this_pMem_addr"/></StgValue>
+</operation>
+
+<operation id="8" st_id="1" stage="1" lat="1">
+<core>RAM_T2P_BRAM</core>
+<MemPortIdVec></MemPortIdVec>
+<condition id="-1">
+<or_exp><and_exp></and_exp></or_exp>
+</condition>
+
+<Node id="10" bw="0" op_0_bw="0" op_1_bw="8" op_2_bw="8192" op_3_bw="1024">
+<![CDATA[
+entry:6 %store_ln86 = store void @_ssdm_op_Write.bram.i8192, i8 %this_pMem_addr, i8192 %p_read_1, i1024 179769313486231590772930519078902473361797697894230657273430081157732675805500963132708477322407536021120113879871393357658789768814416622492847430639474124377767893424865485276302219601246094119453082952085005768838150682342462881473913110540827237163350510684586298239947245938479716304835356329624224137215
+
+]]></Node>
+<StgValue><ssdm name="store_ln86"/></StgValue>
+</operation>
+
+<operation id="9" st_id="1" stage="1" lat="1">
+<core>NULL</core>
+<MemPortIdVec></MemPortIdVec>
+<condition id="-1">
+<or_exp><and_exp></and_exp></or_exp>
+</condition>
+
+<Node id="11" bw="0">
+<![CDATA[
+entry:7 %ret_ln88 = ret
+
+]]></Node>
+<StgValue><ssdm name="ret_ln88"/></StgValue>
+</operation>
+</state>
+</state_list>
+
+
+<ports>
+</ports>
+
+
+<dataflows>
+</dataflows>
+
+
+</stg>

@@ -1,0 +1,172 @@
+
+
+================================================================
+== Vitis HLS Report for 'shake_absorb_3'
+================================================================
+* Date:           Thu Dec 29 12:32:40 2022
+
+* Version:        2022.1 (Build 3526262 on Mon Apr 18 15:48:16 MDT 2022)
+* Project:        HLS_final_vitis
+* Solution:       solution2 (Vivado IP Flow Target)
+* Product family: virtexuplus
+* Target device:  xcvu11p-flga2577-1-e
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing: 
+    * Summary: 
+    +--------+----------+----------+------------+
+    |  Clock |  Target  | Estimated| Uncertainty|
+    +--------+----------+----------+------------+
+    |ap_clk  |  10.00 ns|  3.387 ns|     2.70 ns|
+    +--------+----------+----------+------------+
+
++ Latency: 
+    * Summary: 
+    +---------+---------+-----------+-----------+------+------+---------+
+    |  Latency (cycles) |   Latency (absolute)  |   Interval  | Pipeline|
+    |   min   |   max   |    min    |    max    |  min |  max |   Type  |
+    +---------+---------+-----------+-----------+------+------+---------+
+    |     1764|     1764|  17.640 us|  17.640 us|  1764|  1764|       no|
+    +---------+---------+-----------+-----------+------+------+---------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        +--------------------+---------+---------+----------+-----------+-----------+------+----------+
+        |                    |  Latency (cycles) | Iteration|  Initiation Interval  | Trip |          |
+        |      Loop Name     |   min   |   max   |  Latency |  achieved |   target  | Count| Pipelined|
+        +--------------------+---------+---------+----------+-----------+-----------+------+----------+
+        |- VITIS_LOOP_368_3  |     1736|     1736|       124|          -|          -|    14|        no|
+        +--------------------+---------+---------+----------+-----------+-----------+------+----------+
+
+============================================================
++ Verbose Summary: Synthesis Manager
+============================================================
+InlineROM: 1
+ExposeGlobal: 0
+============================================================
++ Verbose Summary: CDFG Model
+============================================================
+IsTopModel: 0
+ResetActiveHigh: 1
+IsCombinational: 0
+IsDatapathOnly: 0
+HasWiredReturn: 1
+HasMFsm: 0
+HasVarLatency: 1
+IsPipeline: 0
+IsRtlPipelined: 0
+IsInstanceOverlapped: 0
+IsDontTouch: 0
+HasImplIP: 0
+IsGatedGlobalClock: 0
+
+
+============================================================
++ Verbose Summary: Schedule
+============================================================
+* Number of FSM states : 6
+* Pipeline : 0
+* Dataflow Pipeline: 0
+
+* FSM state transitions: 
+1 --> 2 
+2 --> 3 6 
+3 --> 4 
+4 --> 5 
+5 --> 2 
+6 --> 
+
+* FSM state operations: 
+
+State 1 <SV = 0> <Delay = 0.46>
+ST_1 : Operation 7 [1/1] (0.00ns)   --->   "%idx98 = alloca i32 1"   --->   Operation 7 'alloca' 'idx98' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 8 [1/1] (0.00ns)   --->   "%mlen_assign = alloca i32 1"   --->   Operation 8 'alloca' 'mlen_assign' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 9 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i8 %pk, void @empty_69, i32 0, i32 0, void @empty_70, i32 4294967295, i32 0, void @empty_70, void @empty_70, void @empty_70, i32 0, i32 0, i32 0, i32 0, void @empty_70, void @empty_70, i32 4294967295, i32 0"   --->   Operation 9 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 10 [1/1] (0.46ns)   --->   "%store_ln340 = store i11 1952, i11 %mlen_assign" [HLS_Final_vitis_src/spu.cpp:340]   --->   Operation 10 'store' 'store_ln340' <Predicate = true> <Delay = 0.46>
+ST_1 : Operation 11 [1/1] (0.46ns)   --->   "%store_ln340 = store i11 0, i11 %idx98" [HLS_Final_vitis_src/spu.cpp:340]   --->   Operation 11 'store' 'store_ln340' <Predicate = true> <Delay = 0.46>
+ST_1 : Operation 12 [1/1] (0.00ns)   --->   "%br_ln340 = br void %while.cond41" [HLS_Final_vitis_src/spu.cpp:340]   --->   Operation 12 'br' 'br_ln340' <Predicate = true> <Delay = 0.00>
+
+State 2 <SV = 1> <Delay = 3.06>
+ST_2 : Operation 13 [1/1] (0.00ns)   --->   "%mlen_assign_load = load i11 %mlen_assign" [HLS_Final_vitis_src/spu.cpp:368]   --->   Operation 13 'load' 'mlen_assign_load' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 14 [1/1] (0.79ns)   --->   "%icmp_ln368 = icmp_ugt  i11 %mlen_assign_load, i11 135" [HLS_Final_vitis_src/spu.cpp:368]   --->   Operation 14 'icmp' 'icmp_ln368' <Predicate = true> <Delay = 0.79> <CoreInst = "Cmp">   --->   Core 9 'Cmp' <Latency = 0> <II = 1> <Delay = 0.79> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 15 [1/1] (0.00ns)   --->   "%speclooptripcount_ln0 = speclooptripcount void @_ssdm_op_SpecLoopTripCount, i64 14, i64 14, i64 14"   --->   Operation 15 'speclooptripcount' 'speclooptripcount_ln0' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 16 [1/1] (0.00ns)   --->   "%br_ln368 = br i1 %icmp_ln368, void %for.inc81.preheader, void %for.body48.lr.ph" [HLS_Final_vitis_src/spu.cpp:368]   --->   Operation 16 'br' 'br_ln368' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 17 [1/1] (0.00ns)   --->   "%idx98_load = load i11 %idx98" [HLS_Final_vitis_src/spu.cpp:371]   --->   Operation 17 'load' 'idx98_load' <Predicate = (icmp_ln368)> <Delay = 0.00>
+ST_2 : Operation 18 [2/2] (2.26ns)   --->   "%call_ln371 = call void @shake_absorb.3_Pipeline_VITIS_LOOP_369_4, i11 %idx98_load, i8 %pk, i64 %this_s" [HLS_Final_vitis_src/spu.cpp:371]   --->   Operation 18 'call' 'call_ln371' <Predicate = (icmp_ln368)> <Delay = 2.26> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+ST_2 : Operation 19 [1/1] (0.96ns)   --->   "%add_ln371 = add i11 %idx98_load, i11 136" [HLS_Final_vitis_src/spu.cpp:371]   --->   Operation 19 'add' 'add_ln371' <Predicate = (icmp_ln368)> <Delay = 0.96> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 0.96> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 20 [1/1] (0.96ns)   --->   "%add_ln368 = add i11 %mlen_assign_load, i11 1912" [HLS_Final_vitis_src/spu.cpp:368]   --->   Operation 20 'add' 'add_ln368' <Predicate = (icmp_ln368)> <Delay = 0.96> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 0.96> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 21 [1/1] (0.46ns)   --->   "%store_ln368 = store i11 %add_ln368, i11 %mlen_assign" [HLS_Final_vitis_src/spu.cpp:368]   --->   Operation 21 'store' 'store_ln368' <Predicate = (icmp_ln368)> <Delay = 0.46>
+ST_2 : Operation 22 [1/1] (0.46ns)   --->   "%store_ln368 = store i11 %add_ln371, i11 %idx98" [HLS_Final_vitis_src/spu.cpp:368]   --->   Operation 22 'store' 'store_ln368' <Predicate = (icmp_ln368)> <Delay = 0.46>
+ST_2 : Operation 23 [2/2] (0.00ns)   --->   "%call_ln0 = call void @shake_absorb.3_Pipeline_VITIS_LOOP_376_5, i8 %pk, i64 %this_s"   --->   Operation 23 'call' 'call_ln0' <Predicate = (!icmp_ln368)> <Delay = 0.00> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+
+State 3 <SV = 2> <Delay = 0.00>
+ST_3 : Operation 24 [1/2] (0.00ns)   --->   "%call_ln371 = call void @shake_absorb.3_Pipeline_VITIS_LOOP_369_4, i11 %idx98_load, i8 %pk, i64 %this_s" [HLS_Final_vitis_src/spu.cpp:371]   --->   Operation 24 'call' 'call_ln371' <Predicate = true> <Delay = 0.00> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+
+State 4 <SV = 3> <Delay = 0.00>
+ST_4 : Operation 25 [2/2] (0.00ns)   --->   "%call_ln373 = call void @KeccakF1600_StatePermute, i64 %this_s, i64 %KeccakF_RoundConstants" [HLS_Final_vitis_src/spu.cpp:373]   --->   Operation 25 'call' 'call_ln373' <Predicate = true> <Delay = 0.00> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+
+State 5 <SV = 4> <Delay = 0.00>
+ST_5 : Operation 26 [1/1] (0.00ns)   --->   "%specloopname_ln342 = specloopname void @_ssdm_op_SpecLoopName, void @empty_21" [HLS_Final_vitis_src/spu.cpp:342]   --->   Operation 26 'specloopname' 'specloopname_ln342' <Predicate = true> <Delay = 0.00>
+ST_5 : Operation 27 [1/2] (0.00ns)   --->   "%call_ln373 = call void @KeccakF1600_StatePermute, i64 %this_s, i64 %KeccakF_RoundConstants" [HLS_Final_vitis_src/spu.cpp:373]   --->   Operation 27 'call' 'call_ln373' <Predicate = true> <Delay = 0.00> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+ST_5 : Operation 28 [1/1] (0.00ns)   --->   "%br_ln368 = br void %while.cond41" [HLS_Final_vitis_src/spu.cpp:368]   --->   Operation 28 'br' 'br_ln368' <Predicate = true> <Delay = 0.00>
+
+State 6 <SV = 2> <Delay = 0.00>
+ST_6 : Operation 29 [1/2] (0.00ns)   --->   "%call_ln0 = call void @shake_absorb.3_Pipeline_VITIS_LOOP_376_5, i8 %pk, i64 %this_s"   --->   Operation 29 'call' 'call_ln0' <Predicate = true> <Delay = 0.00> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+ST_6 : Operation 30 [1/1] (0.00ns)   --->   "%ret_ln0 = ret"   --->   Operation 30 'ret' 'ret_ln0' <Predicate = true> <Delay = 0.00>
+
+
+============================================================
++ Verbose Summary: Timing violations
+============================================================
+Target clock period: 10ns, clock uncertainty: 2.7ns.
+
+ <State 1>: 0.46ns
+The critical path consists of the following:
+	'alloca' operation ('mlen') [5]  (0 ns)
+	'store' operation ('store_ln340', HLS_Final_vitis_src/spu.cpp:340) of constant 1952 on local variable 'mlen' [7]  (0.46 ns)
+
+ <State 2>: 3.06ns
+The critical path consists of the following:
+	'load' operation ('idx98_load', HLS_Final_vitis_src/spu.cpp:371) on local variable 'idx98' [16]  (0 ns)
+	'call' operation ('call_ln371', HLS_Final_vitis_src/spu.cpp:371) to 'shake_absorb.3_Pipeline_VITIS_LOOP_369_4' [18]  (2.26 ns)
+	blocking operation 0.799 ns on control path)
+
+ <State 3>: 0ns
+The critical path consists of the following:
+
+ <State 4>: 0ns
+The critical path consists of the following:
+
+ <State 5>: 0ns
+The critical path consists of the following:
+
+ <State 6>: 0ns
+The critical path consists of the following:
+
+
+============================================================
++ Verbose Summary: Binding
+============================================================
+N/A
+* FSMD analyzer results:
+  - Output states:
+ - Input state : 
+  - Chain level:
+	State 1
+	State 2
+	State 3
+	State 4
+	State 5
+	State 6
+
+
+============================================================
++ Verbose Summary: Datapath Resource usage 
+============================================================
+N/A

@@ -1,0 +1,153 @@
+
+
+================================================================
+== Synthesis Summary Report of 'cordiccart2pol'
+================================================================
++ General Information: 
+    * Date:           Sun Nov 13 17:45:40 2022
+    * Version:        2022.1 (Build 3526262 on Mon Apr 18 15:48:16 MDT 2022)
+    * Project:        cordic_v5
+    * Solution:       solution1 (Vivado IP Flow Target)
+    * Product family: zynq
+    * Target device:  xc7z020-clg400-1
+    
+
++ Performance & Resource Estimates: 
+    
+    PS: '+' for module; 'o' for loop; '*' for dataflow
+    +------------------+--------+-------+---------+-----------+----------+---------+------+----------+------+----+-----------+-----------+-----+
+    |      Modules     |  Issue |       | Latency |  Latency  | Iteration|         | Trip |          |      |    |           |           |     |
+    |      & Loops     |  Type  | Slack | (cycles)|    (ns)   |  Latency | Interval| Count| Pipelined| BRAM | DSP|     FF    |    LUT    | URAM|
+    +------------------+--------+-------+---------+-----------+----------+---------+------+----------+------+----+-----------+-----------+-----+
+    |+ cordiccart2pol  |  Timing|  -0.87|       14|  1.400e+04|         -|       15|     -|        no|     -|   -|  780 (~0%)|  1597 (3%)|    -|
+    +------------------+--------+-------+---------+-----------+----------+---------+------+----------+------+----+-----------+-----------+-----+
+
+
+================================================================
+== HW Interfaces
+================================================================
+* REGISTER
++-----------+---------+----------+
+| Interface | Mode    | Bitwidth |
++-----------+---------+----------+
+| r         | ap_none | 15       |
+| theta     | ap_none | 15       |
+| x         | ap_none | 15       |
+| y         | ap_none | 15       |
++-----------+---------+----------+
+
+* TOP LEVEL CONTROL
++-----------+------------+-----------------------------------+
+| Interface | Type       | Ports                             |
++-----------+------------+-----------------------------------+
+| ap_clk    | clock      | ap_clk                            |
+| ap_rst    | reset      | ap_rst                            |
+| ap_ctrl   | ap_ctrl_hs | ap_done ap_idle ap_ready ap_start |
++-----------+------------+-----------------------------------+
+
+
+================================================================
+== SW I/O Information
+================================================================
+* Top Function Arguments
++----------+-----------+----------------------------------------------+
+| Argument | Direction | Datatype                                     |
++----------+-----------+----------------------------------------------+
+| x        | in        | ap_fixed<15, 3, AP_RND_MIN_INF, AP_WRAP, 0>  |
+| y        | in        | ap_fixed<15, 3, AP_RND_MIN_INF, AP_WRAP, 0>  |
+| r        | out       | ap_fixed<15, 3, AP_RND_MIN_INF, AP_WRAP, 0>* |
+| theta    | out       | ap_fixed<15, 3, AP_RND_MIN_INF, AP_WRAP, 0>* |
++----------+-----------+----------------------------------------------+
+
+* SW-to-HW Mapping
++----------+--------------+---------+
+| Argument | HW Interface | HW Type |
++----------+--------------+---------+
+| x        | x            | port    |
+| y        | y            | port    |
+| r        | r            | port    |
+| r        | r_ap_vld     | port    |
+| theta    | theta        | port    |
+| theta    | theta_ap_vld | port    |
++----------+--------------+---------+
+
+
+================================================================
+== M_AXI Burst Information
+================================================================
+ Note: All burst requests might be further partitioned into multiple requests during RTL generation based on max_read_burst_length or max_write_burst_length settings.
+
+  No burst in design
+
+================================================================
+== Bind Op Report
+================================================================
++----------------------------+-----+--------+---------------+-----+--------+---------+
+| Name                       | DSP | Pragma | Variable      | Op  | Impl   | Latency |
++----------------------------+-----+--------+---------------+-----+--------+---------+
+| + cordiccart2pol           | 0   |        |               |     |        |         |
+|   x_cordic_V_fu_156_p2     | -   |        | x_cordic_V    | sub | fabric | 0       |
+|   y_cordic_V_fu_162_p2     | -   |        | y_cordic_V    | sub | fabric | 0       |
+|   x_cordic_V_36_fu_200_p2  | -   |        | x_cordic_V_36 | add | fabric | 0       |
+|   y_cordic_V_2_fu_204_p2   | -   |        | y_cordic_V_2  | sub | fabric | 0       |
+|   x_cordic_V_3_fu_208_p2   | -   |        | x_cordic_V_3  | sub | fabric | 0       |
+|   x_cordic_V_5_fu_260_p2   | -   |        | x_cordic_V_5  | add | fabric | 0       |
+|   y_cordic_V_5_fu_265_p2   | -   |        | y_cordic_V_5  | sub | fabric | 0       |
+|   x_cordic_V_6_fu_270_p2   | -   |        | x_cordic_V_6  | sub | fabric | 0       |
+|   y_cordic_V_6_fu_275_p2   | -   |        | y_cordic_V_6  | add | fabric | 0       |
+|   x_cordic_V_8_fu_336_p2   | -   |        | x_cordic_V_8  | add | fabric | 0       |
+|   y_cordic_V_8_fu_341_p2   | -   |        | y_cordic_V_8  | sub | fabric | 0       |
+|   x_cordic_V_9_fu_346_p2   | -   |        | x_cordic_V_9  | sub | fabric | 0       |
+|   y_cordic_V_9_fu_351_p2   | -   |        | y_cordic_V_9  | add | fabric | 0       |
+|   x_cordic_V_11_fu_412_p2  | -   |        | x_cordic_V_11 | add | fabric | 0       |
+|   y_cordic_V_11_fu_417_p2  | -   |        | y_cordic_V_11 | sub | fabric | 0       |
+|   x_cordic_V_12_fu_422_p2  | -   |        | x_cordic_V_12 | sub | fabric | 0       |
+|   y_cordic_V_12_fu_427_p2  | -   |        | y_cordic_V_12 | add | fabric | 0       |
+|   x_cordic_V_14_fu_480_p2  | -   |        | x_cordic_V_14 | add | fabric | 0       |
+|   y_cordic_V_14_fu_485_p2  | -   |        | y_cordic_V_14 | sub | fabric | 0       |
+|   x_cordic_V_15_fu_490_p2  | -   |        | x_cordic_V_15 | sub | fabric | 0       |
+|   y_cordic_V_15_fu_495_p2  | -   |        | y_cordic_V_15 | add | fabric | 0       |
+|   x_cordic_V_17_fu_562_p2  | -   |        | x_cordic_V_17 | add | fabric | 0       |
+|   y_cordic_V_17_fu_567_p2  | -   |        | y_cordic_V_17 | sub | fabric | 0       |
+|   x_cordic_V_18_fu_573_p2  | -   |        | x_cordic_V_18 | sub | fabric | 0       |
+|   y_cordic_V_18_fu_578_p2  | -   |        | y_cordic_V_18 | add | fabric | 0       |
+|   x_cordic_V_20_fu_652_p2  | -   |        | x_cordic_V_20 | add | fabric | 0       |
+|   y_cordic_V_20_fu_658_p2  | -   |        | y_cordic_V_20 | sub | fabric | 0       |
+|   x_cordic_V_21_fu_664_p2  | -   |        | x_cordic_V_21 | sub | fabric | 0       |
+|   y_cordic_V_21_fu_670_p2  | -   |        | y_cordic_V_21 | add | fabric | 0       |
+|   x_cordic_V_23_fu_730_p2  | -   |        | x_cordic_V_23 | add | fabric | 0       |
+|   y_cordic_V_23_fu_736_p2  | -   |        | y_cordic_V_23 | sub | fabric | 0       |
+|   x_cordic_V_24_fu_742_p2  | -   |        | x_cordic_V_24 | sub | fabric | 0       |
+|   y_cordic_V_24_fu_748_p2  | -   |        | y_cordic_V_24 | add | fabric | 0       |
+|   x_cordic_V_26_fu_808_p2  | -   |        | x_cordic_V_26 | add | fabric | 0       |
+|   y_cordic_V_26_fu_814_p2  | -   |        | y_cordic_V_26 | sub | fabric | 0       |
+|   x_cordic_V_27_fu_820_p2  | -   |        | x_cordic_V_27 | sub | fabric | 0       |
+|   y_cordic_V_27_fu_826_p2  | -   |        | y_cordic_V_27 | add | fabric | 0       |
+|   x_cordic_V_29_fu_886_p2  | -   |        | x_cordic_V_29 | add | fabric | 0       |
+|   y_cordic_V_29_fu_892_p2  | -   |        | y_cordic_V_29 | sub | fabric | 0       |
+|   x_cordic_V_30_fu_898_p2  | -   |        | x_cordic_V_30 | sub | fabric | 0       |
+|   y_cordic_V_30_fu_904_p2  | -   |        | y_cordic_V_30 | add | fabric | 0       |
+|   x_cordic_V_32_fu_1013_p2 | -   |        | x_cordic_V_32 | add | fabric | 0       |
+|   x_cordic_V_33_fu_1019_p2 | -   |        | x_cordic_V_33 | sub | fabric | 0       |
+|   add_ln36_5_fu_600_p2     | -   |        | add_ln36_5    | add | fabric | 0       |
+|   add_ln1394_fu_1125_p2    | -   |        | add_ln1394    | add | fabric | 0       |
+|   add_ln55_fu_1184_p2      | -   |        | add_ln55      | add | fabric | 0       |
++----------------------------+-----+--------+---------------+-----+--------+---------+
+
+
+================================================================
+== Bind Storage Report
+================================================================
+  No bind storage info in design
+
+================================================================
+== Pragma Report
+================================================================
+* Valid Pragma Syntax
++--------+---------+--------------------------------------------------------+
+| Type   | Options | Location                                               |
++--------+---------+--------------------------------------------------------+
+| unroll |         | cordic_v5/solution1/directives.tcl:6 in cordiccart2pol |
++--------+---------+--------------------------------------------------------+
+
+

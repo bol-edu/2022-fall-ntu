@@ -1,0 +1,175 @@
+
+
+================================================================
+== Vitis HLS Report for 'fft_exec_Pipeline_All_Loop'
+================================================================
+* Date:           Fri Oct 21 23:29:00 2022
+
+* Version:        2022.1 (Build 3526262 on Mon Apr 18 15:48:16 MDT 2022)
+* Project:        hls_restructured
+* Solution:       solution1 (Vivado IP Flow Target)
+* Product family: zynq
+* Target device:  xc7z020-clg400-1
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing: 
+    * Summary: 
+    +--------+----------+----------+------------+
+    |  Clock |  Target  | Estimated| Uncertainty|
+    +--------+----------+----------+------------+
+    |ap_clk  |  10.00 ns|  6.508 ns|     2.70 ns|
+    +--------+----------+----------+------------+
+
++ Latency: 
+    * Summary: 
+    +---------+---------+-----------+-----------+------+------+---------+
+    |  Latency (cycles) |   Latency (absolute)  |   Interval  | Pipeline|
+    |   min   |   max   |    min    |    max    |  min |  max |   Type  |
+    +---------+---------+-----------+-----------+------+------+---------+
+    |     1026|     1026|  10.260 us|  10.260 us|  1026|  1026|       no|
+    +---------+---------+-----------+-----------+------+------+---------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        +------------+---------+---------+----------+-----------+-----------+------+----------+
+        |            |  Latency (cycles) | Iteration|  Initiation Interval  | Trip |          |
+        |  Loop Name |   min   |   max   |  Latency |  achieved |   target  | Count| Pipelined|
+        +------------+---------+---------+----------+-----------+-----------+------+----------+
+        |- All_Loop  |     1024|     1024|         2|          1|          1|  1024|       yes|
+        +------------+---------+---------+----------+-----------+-----------+------+----------+
+
+
+
+================================================================
+== Utilization Estimates
+================================================================
+* Summary: 
++-----------------+---------+-----+--------+-------+-----+
+|       Name      | BRAM_18K| DSP |   FF   |  LUT  | URAM|
++-----------------+---------+-----+--------+-------+-----+
+|DSP              |        -|    -|       -|      -|    -|
+|Expression       |        -|    -|       0|     26|    -|
+|FIFO             |        -|    -|       -|      -|    -|
+|Instance         |        -|    -|       -|      -|    -|
+|Memory           |        -|    -|       -|      -|    -|
+|Multiplexer      |        -|    -|       -|     36|    -|
+|Register         |        -|    -|      24|      -|    -|
++-----------------+---------+-----+--------+-------+-----+
+|Total            |        0|    0|      24|     62|    0|
++-----------------+---------+-----+--------+-------+-----+
+|Available        |      280|  220|  106400|  53200|    0|
++-----------------+---------+-----+--------+-------+-----+
+|Utilization (%)  |        0|    0|      ~0|     ~0|    0|
++-----------------+---------+-----+--------+-------+-----+
+
++ Detail: 
+    * Instance: 
+    N/A
+
+    * DSP: 
+    N/A
+
+    * Memory: 
+    N/A
+
+    * FIFO: 
+    N/A
+
+    * Expression: 
+    +---------------------+----------+----+---+----+------------+------------+
+    |    Variable Name    | Operation| DSP| FF| LUT| Bitwidth P0| Bitwidth P1|
+    +---------------------+----------+----+---+----+------------+------------+
+    |i_2_fu_216_p2        |         +|   0|  0|  12|          11|           1|
+    |icmp_ln90_fu_210_p2  |      icmp|   0|  0|  12|          11|          12|
+    |ap_enable_pp0        |       xor|   0|  0|   2|           1|           2|
+    +---------------------+----------+----+---+----+------------+------------+
+    |Total                |          |   0|  0|  26|          23|          15|
+    +---------------------+----------+----+---+----+------------+------------+
+
+    * Multiplexer: 
+    +-------------------------+----+-----------+-----+-----------+
+    |           Name          | LUT| Input Size| Bits| Total Bits|
+    +-------------------------+----+-----------+-----+-----------+
+    |ap_done_int              |   9|          2|    1|          2|
+    |ap_enable_reg_pp0_iter1  |   9|          2|    1|          2|
+    |ap_sig_allocacmp_i_1     |   9|          2|   11|         22|
+    |i_fu_60                  |   9|          2|   11|         22|
+    +-------------------------+----+-----------+-----+-----------+
+    |Total                    |  36|          8|   24|         48|
+    +-------------------------+----+-----------+-----+-----------+
+
+    * Register: 
+    +-------------------------+----+----+-----+-----------+
+    |           Name          | FF | LUT| Bits| Const Bits|
+    +-------------------------+----+----+-----+-----------+
+    |ap_CS_fsm                |   1|   0|    1|          0|
+    |ap_done_reg              |   1|   0|    1|          0|
+    |ap_enable_reg_pp0_iter1  |   1|   0|    1|          0|
+    |i_fu_60                  |  11|   0|   11|          0|
+    |lshr_ln_reg_282          |   8|   0|    8|          0|
+    |trunc_ln93_reg_278       |   2|   0|    2|          0|
+    +-------------------------+----+----+-----+-----------+
+    |Total                    |  24|   0|   24|          0|
+    +-------------------------+----+----+-----+-----------+
+
+
+
+================================================================
+== Interface
+================================================================
+* Summary: 
++---------------------+-----+-----+------------+----------------------------+--------------+
+|      RTL Ports      | Dir | Bits|  Protocol  |        Source Object       |    C Type    |
++---------------------+-----+-----+------------+----------------------------+--------------+
+|ap_clk               |   in|    1|  ap_ctrl_hs|  fft_exec_Pipeline_All_Loop|  return value|
+|ap_rst               |   in|    1|  ap_ctrl_hs|  fft_exec_Pipeline_All_Loop|  return value|
+|ap_start             |   in|    1|  ap_ctrl_hs|  fft_exec_Pipeline_All_Loop|  return value|
+|ap_done              |  out|    1|  ap_ctrl_hs|  fft_exec_Pipeline_All_Loop|  return value|
+|ap_idle              |  out|    1|  ap_ctrl_hs|  fft_exec_Pipeline_All_Loop|  return value|
+|ap_ready             |  out|    1|  ap_ctrl_hs|  fft_exec_Pipeline_All_Loop|  return value|
+|Stage0_I_address0    |  out|    8|   ap_memory|                    Stage0_I|         array|
+|Stage0_I_ce0         |  out|    1|   ap_memory|                    Stage0_I|         array|
+|Stage0_I_we0         |  out|    1|   ap_memory|                    Stage0_I|         array|
+|Stage0_I_d0          |  out|   32|   ap_memory|                    Stage0_I|         array|
+|X_R_address0         |  out|   10|   ap_memory|                         X_R|         array|
+|X_R_ce0              |  out|    1|   ap_memory|                         X_R|         array|
+|X_R_q0               |   in|   32|   ap_memory|                         X_R|         array|
+|Stage0_R_address0    |  out|    8|   ap_memory|                    Stage0_R|         array|
+|Stage0_R_ce0         |  out|    1|   ap_memory|                    Stage0_R|         array|
+|Stage0_R_we0         |  out|    1|   ap_memory|                    Stage0_R|         array|
+|Stage0_R_d0          |  out|   32|   ap_memory|                    Stage0_R|         array|
+|Stage0_R_1_address0  |  out|    8|   ap_memory|                  Stage0_R_1|         array|
+|Stage0_R_1_ce0       |  out|    1|   ap_memory|                  Stage0_R_1|         array|
+|Stage0_R_1_we0       |  out|    1|   ap_memory|                  Stage0_R_1|         array|
+|Stage0_R_1_d0        |  out|   32|   ap_memory|                  Stage0_R_1|         array|
+|Stage0_R_2_address0  |  out|    8|   ap_memory|                  Stage0_R_2|         array|
+|Stage0_R_2_ce0       |  out|    1|   ap_memory|                  Stage0_R_2|         array|
+|Stage0_R_2_we0       |  out|    1|   ap_memory|                  Stage0_R_2|         array|
+|Stage0_R_2_d0        |  out|   32|   ap_memory|                  Stage0_R_2|         array|
+|Stage0_R_3_address0  |  out|    8|   ap_memory|                  Stage0_R_3|         array|
+|Stage0_R_3_ce0       |  out|    1|   ap_memory|                  Stage0_R_3|         array|
+|Stage0_R_3_we0       |  out|    1|   ap_memory|                  Stage0_R_3|         array|
+|Stage0_R_3_d0        |  out|   32|   ap_memory|                  Stage0_R_3|         array|
+|X_I_address0         |  out|   10|   ap_memory|                         X_I|         array|
+|X_I_ce0              |  out|    1|   ap_memory|                         X_I|         array|
+|X_I_q0               |   in|   32|   ap_memory|                         X_I|         array|
+|Stage0_I_1_address0  |  out|    8|   ap_memory|                  Stage0_I_1|         array|
+|Stage0_I_1_ce0       |  out|    1|   ap_memory|                  Stage0_I_1|         array|
+|Stage0_I_1_we0       |  out|    1|   ap_memory|                  Stage0_I_1|         array|
+|Stage0_I_1_d0        |  out|   32|   ap_memory|                  Stage0_I_1|         array|
+|Stage0_I_2_address0  |  out|    8|   ap_memory|                  Stage0_I_2|         array|
+|Stage0_I_2_ce0       |  out|    1|   ap_memory|                  Stage0_I_2|         array|
+|Stage0_I_2_we0       |  out|    1|   ap_memory|                  Stage0_I_2|         array|
+|Stage0_I_2_d0        |  out|   32|   ap_memory|                  Stage0_I_2|         array|
+|Stage0_I_3_address0  |  out|    8|   ap_memory|                  Stage0_I_3|         array|
+|Stage0_I_3_ce0       |  out|    1|   ap_memory|                  Stage0_I_3|         array|
+|Stage0_I_3_we0       |  out|    1|   ap_memory|                  Stage0_I_3|         array|
+|Stage0_I_3_d0        |  out|   32|   ap_memory|                  Stage0_I_3|         array|
++---------------------+-----+-----+------------+----------------------------+--------------+
+

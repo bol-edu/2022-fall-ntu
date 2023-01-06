@@ -1,0 +1,194 @@
+
+
+================================================================
+== Vitis HLS Report for 'hdc_maxi_Pipeline_VITIS_LOOP_21_2_VITIS_LOOP_22_3'
+================================================================
+* Date:           Thu Jan  5 05:21:18 2023
+
+* Version:        2022.1 (Build 3526262 on Mon Apr 18 15:48:16 MDT 2022)
+* Project:        AAHLS_Final_Project_deploy
+* Solution:       solution1 (Vivado IP Flow Target)
+* Product family: zynq
+* Target device:  xc7z020-clg400-1
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing: 
+    * Summary: 
+    +--------+----------+----------+------------+
+    |  Clock |  Target  | Estimated| Uncertainty|
+    +--------+----------+----------+------------+
+    |ap_clk  |  10.00 ns|  6.877 ns|     2.70 ns|
+    +--------+----------+----------+------------+
+
++ Latency: 
+    * Summary: 
+    +---------+---------+-----------+-----------+------+------+---------+
+    |  Latency (cycles) |   Latency (absolute)  |   Interval  | Pipeline|
+    |   min   |   max   |    min    |    max    |  min |  max |   Type  |
+    +---------+---------+-----------+-----------+------+------+---------+
+    |     5004|     5004|  50.040 us|  50.040 us|  5004|  5004|       no|
+    +---------+---------+-----------+-----------+------+------+---------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        +-----------------------------------+---------+---------+----------+-----------+-----------+------+----------+
+        |                                   |  Latency (cycles) | Iteration|  Initiation Interval  | Trip |          |
+        |             Loop Name             |   min   |   max   |  Latency |  achieved |   target  | Count| Pipelined|
+        +-----------------------------------+---------+---------+----------+-----------+-----------+------+----------+
+        |- VITIS_LOOP_21_2_VITIS_LOOP_22_3  |     5002|     5002|         4|          1|          1|  5000|       yes|
+        +-----------------------------------+---------+---------+----------+-----------+-----------+------+----------+
+
+============================================================
++ Verbose Summary: Synthesis Manager
+============================================================
+InlineROM: 1
+ExposeGlobal: 0
+============================================================
++ Verbose Summary: CDFG Model
+============================================================
+IsTopModel: 0
+ResetActiveHigh: 1
+IsCombinational: 0
+IsDatapathOnly: 0
+HasWiredReturn: 1
+HasMFsm: 2
+HasVarLatency: 1
+IsPipeline: 0
+IsRtlPipelined: 0
+IsInstanceOverlapped: 0
+IsDontTouch: 0
+HasImplIP: 0
+IsGatedGlobalClock: 0
+
++ Individual pipeline summary: 
+  * Pipeline-0: initiation interval (II) = 1, depth = 4
+
+
+============================================================
++ Verbose Summary: Schedule
+============================================================
+* Number of FSM states : 4
+* Pipeline : 1
+  Pipeline-0 : II = 1, D = 4, States = { 1 2 3 4 }
+* Dataflow Pipeline: 0
+
+* FSM state transitions: 
+1 --> 2 
+2 --> 3 
+3 --> 4 
+4 --> 
+
+* FSM state operations: 
+
+State 1 <SV = 0> <Delay = 6.87>
+ST_1 : Operation 7 [1/1] (0.00ns)   --->   "%j = alloca i32 1"   --->   Operation 7 'alloca' 'j' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 8 [1/1] (0.00ns)   --->   "%i_1 = alloca i32 1"   --->   Operation 8 'alloca' 'i_1' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 9 [1/1] (0.00ns)   --->   "%indvar_flatten = alloca i32 1"   --->   Operation 9 'alloca' 'indvar_flatten' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 10 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i1 %AM_out_V_dest_V, i1 %AM_out_V_id_V, i1 %AM_out_V_last_V, i1 %AM_out_V_user_V, i4 %AM_out_V_strb_V, i4 %AM_out_V_keep_V, i32 %AM_out_V_data_V, void @empty, i32 0, i32 0, void @empty_0, i32 0, i32 0, void @empty_1, void @empty_1, void @empty_1, i32 0, i32 0, i32 0, i32 0, void @empty_1, void @empty_1, i32 4294967295, i32 0"   --->   Operation 10 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 11 [1/1] (1.58ns)   --->   "%store_ln0 = store i13 0, i13 %indvar_flatten"   --->   Operation 11 'store' 'store_ln0' <Predicate = true> <Delay = 1.58>
+ST_1 : Operation 12 [1/1] (1.58ns)   --->   "%store_ln0 = store i3 0, i3 %i_1"   --->   Operation 12 'store' 'store_ln0' <Predicate = true> <Delay = 1.58>
+ST_1 : Operation 13 [1/1] (1.58ns)   --->   "%store_ln0 = store i10 0, i10 %j"   --->   Operation 13 'store' 'store_ln0' <Predicate = true> <Delay = 1.58>
+ST_1 : Operation 14 [1/1] (0.00ns)   --->   "%br_ln0 = br void %for.inc18"   --->   Operation 14 'br' 'br_ln0' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 15 [1/1] (0.00ns)   --->   "%indvar_flatten_load = load i13 %indvar_flatten" [AAHLS_Final_Project_deploy/HDC.cpp:21]   --->   Operation 15 'load' 'indvar_flatten_load' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 16 [1/1] (0.00ns)   --->   "%specpipeline_ln0 = specpipeline void @_ssdm_op_SpecPipeline, i32 4294967295, i32 0, i32 1, i32 0, void @p_str"   --->   Operation 16 'specpipeline' 'specpipeline_ln0' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 17 [1/1] (2.09ns)   --->   "%icmp_ln21 = icmp_eq  i13 %indvar_flatten_load, i13 5000" [AAHLS_Final_Project_deploy/HDC.cpp:21]   --->   Operation 17 'icmp' 'icmp_ln21' <Predicate = true> <Delay = 2.09> <CoreInst = "Cmp">   --->   Core 9 'Cmp' <Latency = 0> <II = 1> <Delay = 2.09> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 18 [1/1] (1.67ns)   --->   "%add_ln21_1 = add i13 %indvar_flatten_load, i13 1" [AAHLS_Final_Project_deploy/HDC.cpp:21]   --->   Operation 18 'add' 'add_ln21_1' <Predicate = true> <Delay = 1.67> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 1.67> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 19 [1/1] (0.00ns)   --->   "%br_ln21 = br i1 %icmp_ln21, void %for.inc21, void %hdc_maxi_label0.exitStub" [AAHLS_Final_Project_deploy/HDC.cpp:21]   --->   Operation 19 'br' 'br_ln21' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 20 [1/1] (0.00ns)   --->   "%j_load = load i10 %j" [AAHLS_Final_Project_deploy/HDC.cpp:22]   --->   Operation 20 'load' 'j_load' <Predicate = (!icmp_ln21)> <Delay = 0.00>
+ST_1 : Operation 21 [1/1] (0.00ns)   --->   "%i_1_load = load i3 %i_1" [AAHLS_Final_Project_deploy/HDC.cpp:21]   --->   Operation 21 'load' 'i_1_load' <Predicate = (!icmp_ln21)> <Delay = 0.00>
+ST_1 : Operation 22 [1/1] (1.65ns)   --->   "%add_ln21 = add i3 %i_1_load, i3 1" [AAHLS_Final_Project_deploy/HDC.cpp:21]   --->   Operation 22 'add' 'add_ln21' <Predicate = (!icmp_ln21)> <Delay = 1.65> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 1.65> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 23 [1/1] (1.77ns)   --->   "%icmp_ln22 = icmp_eq  i10 %j_load, i10 1000" [AAHLS_Final_Project_deploy/HDC.cpp:22]   --->   Operation 23 'icmp' 'icmp_ln22' <Predicate = (!icmp_ln21)> <Delay = 1.77> <CoreInst = "Cmp">   --->   Core 9 'Cmp' <Latency = 0> <II = 1> <Delay = 1.77> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 24 [1/1] (0.68ns)   --->   "%select_ln21 = select i1 %icmp_ln22, i10 0, i10 %j_load" [AAHLS_Final_Project_deploy/HDC.cpp:21]   --->   Operation 24 'select' 'select_ln21' <Predicate = (!icmp_ln21)> <Delay = 0.68> <CoreInst = "Sel">   --->   Core 73 'Sel' <Latency = 0> <II = 1> <Delay = 0.68> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+ST_1 : Operation 25 [1/1] (0.98ns)   --->   "%select_ln21_1 = select i1 %icmp_ln22, i3 %add_ln21, i3 %i_1_load" [AAHLS_Final_Project_deploy/HDC.cpp:21]   --->   Operation 25 'select' 'select_ln21_1' <Predicate = (!icmp_ln21)> <Delay = 0.98> <CoreInst = "Sel">   --->   Core 73 'Sel' <Latency = 0> <II = 1> <Delay = 0.98> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+ST_1 : Operation 26 [1/1] (0.00ns)   --->   "%zext_ln24 = zext i3 %select_ln21_1" [AAHLS_Final_Project_deploy/HDC.cpp:24]   --->   Operation 26 'zext' 'zext_ln24' <Predicate = (!icmp_ln21)> <Delay = 0.00>
+ST_1 : Operation 27 [3/3] (1.05ns) (grouped into DSP with root node add_ln24)   --->   "%mul_ln24 = mul i11 %zext_ln24, i11 250" [AAHLS_Final_Project_deploy/HDC.cpp:24]   --->   Operation 27 'mul' 'mul_ln24' <Predicate = (!icmp_ln21)> <Delay = 1.05> <CoreInst = "DSP48">   --->   Core 119 'DSP48' <Latency = 3> <II = 1> <Delay = 2.15> <IPBlock> <Opcode : 'mul' 'add' 'sub' 'select'> <InPorts = 0> <OutPorts = 1> <Sync> <CReg>
+ST_1 : Operation 28 [1/1] (0.00ns)   --->   "%empty_33 = read i44 @_ssdm_op_Read.axis.volatile.i32P0A.i4P0A.i4P0A.i1P0A.i1P0A.i1P0A.i1P0A, i32 %AM_out_V_data_V, i4 %AM_out_V_keep_V, i4 %AM_out_V_strb_V, i1 %AM_out_V_user_V, i1 %AM_out_V_last_V, i1 %AM_out_V_id_V, i1 %AM_out_V_dest_V"   --->   Operation 28 'read' 'empty_33' <Predicate = (!icmp_ln21)> <Delay = 0.00> <CoreInst = "axis">   --->   Core 115 'axis' <Latency = 0> <II = 1> <Delay = 1.00> <Adapter> <Opcode : >
+ST_1 : Operation 29 [1/1] (0.00ns) (grouped into LUT with out node shl_ln24)   --->   "%tmp_data_V = extractvalue i44 %empty_33"   --->   Operation 29 'extractvalue' 'tmp_data_V' <Predicate = (!icmp_ln21)> <Delay = 0.00>
+ST_1 : Operation 30 [1/1] (0.00ns)   --->   "%trunc_ln24 = trunc i10 %select_ln21" [AAHLS_Final_Project_deploy/HDC.cpp:24]   --->   Operation 30 'trunc' 'trunc_ln24' <Predicate = (!icmp_ln21)> <Delay = 0.00>
+ST_1 : Operation 31 [1/1] (0.00ns) (grouped into LUT with out node shl_ln24)   --->   "%shl_ln1 = bitconcatenate i7 @_ssdm_op_BitConcatenate.i7.i2.i5, i2 %trunc_ln24, i5 0" [AAHLS_Final_Project_deploy/HDC.cpp:24]   --->   Operation 31 'bitconcatenate' 'shl_ln1' <Predicate = (!icmp_ln21)> <Delay = 0.00>
+ST_1 : Operation 32 [1/1] (0.00ns)   --->   "%lshr_ln = partselect i8 @_ssdm_op_PartSelect.i8.i10.i32.i32, i10 %select_ln21, i32 2, i32 9" [AAHLS_Final_Project_deploy/HDC.cpp:24]   --->   Operation 32 'partselect' 'lshr_ln' <Predicate = (!icmp_ln21)> <Delay = 0.00>
+ST_1 : Operation 33 [1/1] (0.00ns) (grouped into LUT with out node shl_ln24)   --->   "%zext_ln24_3 = zext i7 %shl_ln1" [AAHLS_Final_Project_deploy/HDC.cpp:24]   --->   Operation 33 'zext' 'zext_ln24_3' <Predicate = (!icmp_ln21)> <Delay = 0.00>
+ST_1 : Operation 34 [1/1] (0.00ns) (grouped into LUT with out node shl_ln24)   --->   "%zext_ln24_4 = zext i32 %tmp_data_V" [AAHLS_Final_Project_deploy/HDC.cpp:24]   --->   Operation 34 'zext' 'zext_ln24_4' <Predicate = (!icmp_ln21)> <Delay = 0.00>
+ST_1 : Operation 35 [1/1] (4.42ns) (out node of the LUT)   --->   "%shl_ln24 = shl i128 %zext_ln24_4, i128 %zext_ln24_3" [AAHLS_Final_Project_deploy/HDC.cpp:24]   --->   Operation 35 'shl' 'shl_ln24' <Predicate = (!icmp_ln21)> <Delay = 4.42> <CoreInst = "Shifter">   --->   Core 75 'Shifter' <Latency = 0> <II = 1> <Delay = 4.42> <FuncUnit> <Opcode : 'shl' 'lshr' 'ashr'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 36 [1/1] (1.73ns)   --->   "%add_ln22 = add i10 %select_ln21, i10 1" [AAHLS_Final_Project_deploy/HDC.cpp:22]   --->   Operation 36 'add' 'add_ln22' <Predicate = (!icmp_ln21)> <Delay = 1.73> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 1.73> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 37 [1/1] (1.58ns)   --->   "%store_ln22 = store i13 %add_ln21_1, i13 %indvar_flatten" [AAHLS_Final_Project_deploy/HDC.cpp:22]   --->   Operation 37 'store' 'store_ln22' <Predicate = (!icmp_ln21)> <Delay = 1.58>
+ST_1 : Operation 38 [1/1] (1.58ns)   --->   "%store_ln22 = store i3 %select_ln21_1, i3 %i_1" [AAHLS_Final_Project_deploy/HDC.cpp:22]   --->   Operation 38 'store' 'store_ln22' <Predicate = (!icmp_ln21)> <Delay = 1.58>
+ST_1 : Operation 39 [1/1] (1.58ns)   --->   "%store_ln22 = store i10 %add_ln22, i10 %j" [AAHLS_Final_Project_deploy/HDC.cpp:22]   --->   Operation 39 'store' 'store_ln22' <Predicate = (!icmp_ln21)> <Delay = 1.58>
+
+State 2 <SV = 1> <Delay = 1.05>
+ST_2 : Operation 40 [2/3] (1.05ns) (grouped into DSP with root node add_ln24)   --->   "%mul_ln24 = mul i11 %zext_ln24, i11 250" [AAHLS_Final_Project_deploy/HDC.cpp:24]   --->   Operation 40 'mul' 'mul_ln24' <Predicate = true> <Delay = 1.05> <CoreInst = "DSP48">   --->   Core 119 'DSP48' <Latency = 3> <II = 1> <Delay = 2.15> <IPBlock> <Opcode : 'mul' 'add' 'sub' 'select'> <InPorts = 0> <OutPorts = 1> <Sync> <CReg>
+
+State 3 <SV = 2> <Delay = 2.10>
+ST_3 : Operation 41 [1/3] (0.00ns) (grouped into DSP with root node add_ln24)   --->   "%mul_ln24 = mul i11 %zext_ln24, i11 250" [AAHLS_Final_Project_deploy/HDC.cpp:24]   --->   Operation 41 'mul' 'mul_ln24' <Predicate = true> <Delay = 0.00> <CoreInst = "DSP48">   --->   Core 119 'DSP48' <Latency = 3> <II = 1> <Delay = 2.15> <IPBlock> <Opcode : 'mul' 'add' 'sub' 'select'> <InPorts = 0> <OutPorts = 1> <Sync> <CReg>
+ST_3 : Operation 42 [1/1] (0.00ns)   --->   "%zext_ln24_1 = zext i8 %lshr_ln" [AAHLS_Final_Project_deploy/HDC.cpp:24]   --->   Operation 42 'zext' 'zext_ln24_1' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 43 [2/2] (2.10ns) (root node of the DSP)   --->   "%add_ln24 = add i11 %mul_ln24, i11 %zext_ln24_1" [AAHLS_Final_Project_deploy/HDC.cpp:24]   --->   Operation 43 'add' 'add_ln24' <Predicate = true> <Delay = 2.10> <CoreInst = "DSP48">   --->   Core 119 'DSP48' <Latency = 3> <II = 1> <Delay = 2.15> <IPBlock> <Opcode : 'mul' 'add' 'sub' 'select'> <InPorts = 0> <OutPorts = 1> <Sync> <CReg>
+ST_3 : Operation 57 [1/1] (0.00ns)   --->   "%ret_ln0 = ret"   --->   Operation 57 'ret' 'ret_ln0' <Predicate = (icmp_ln21)> <Delay = 0.00>
+
+State 4 <SV = 3> <Delay = 5.92>
+ST_4 : Operation 44 [1/1] (0.00ns)   --->   "%specloopname_ln0 = specloopname void @_ssdm_op_SpecLoopName, void @VITIS_LOOP_21_2_VITIS_LOOP_22_3_str"   --->   Operation 44 'specloopname' 'specloopname_ln0' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 45 [1/1] (0.00ns)   --->   "%empty = speclooptripcount i32 @_ssdm_op_SpecLoopTripCount, i64 5000, i64 5000, i64 5000"   --->   Operation 45 'speclooptripcount' 'empty' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 46 [1/1] (0.00ns)   --->   "%specpipeline_ln0 = specpipeline void @_ssdm_op_SpecPipeline, i32 4294967295, i32 0, i32 1, i32 0, void @p_str"   --->   Operation 46 'specpipeline' 'specpipeline_ln0' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 47 [1/1] (0.00ns)   --->   "%specloopname_ln23 = specloopname void @_ssdm_op_SpecLoopName, void @empty_10" [AAHLS_Final_Project_deploy/HDC.cpp:23]   --->   Operation 47 'specloopname' 'specloopname_ln23' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 48 [1/2] (2.10ns) (root node of the DSP)   --->   "%add_ln24 = add i11 %mul_ln24, i11 %zext_ln24_1" [AAHLS_Final_Project_deploy/HDC.cpp:24]   --->   Operation 48 'add' 'add_ln24' <Predicate = true> <Delay = 2.10> <CoreInst = "DSP48">   --->   Core 119 'DSP48' <Latency = 3> <II = 1> <Delay = 2.15> <IPBlock> <Opcode : 'mul' 'add' 'sub' 'select'> <InPorts = 0> <OutPorts = 1> <Sync> <CReg>
+ST_4 : Operation 49 [1/1] (0.00ns)   --->   "%zext_ln24_2 = zext i11 %add_ln24" [AAHLS_Final_Project_deploy/HDC.cpp:24]   --->   Operation 49 'zext' 'zext_ln24_2' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 50 [1/1] (0.00ns)   --->   "%AM_addr = getelementptr i128 %AM, i64 0, i64 %zext_ln24_2" [AAHLS_Final_Project_deploy/HDC.cpp:24]   --->   Operation 50 'getelementptr' 'AM_addr' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 51 [1/1] (0.00ns)   --->   "%specbramwithbyteenable_ln24 = specbramwithbyteenable void @_ssdm_op_SpecBRAMWithByteEnable, i128 %AM" [AAHLS_Final_Project_deploy/HDC.cpp:24]   --->   Operation 51 'specbramwithbyteenable' 'specbramwithbyteenable_ln24' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 52 [1/1] (0.00ns)   --->   "%udiv = bitconcatenate i4 @_ssdm_op_BitConcatenate.i4.i2.i2, i2 %trunc_ln24, i2 0" [AAHLS_Final_Project_deploy/HDC.cpp:24]   --->   Operation 52 'bitconcatenate' 'udiv' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 53 [1/1] (0.00ns)   --->   "%zext_ln24_5 = zext i4 %udiv" [AAHLS_Final_Project_deploy/HDC.cpp:24]   --->   Operation 53 'zext' 'zext_ln24_5' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 54 [1/1] (2.66ns)   --->   "%shl_ln24_1 = shl i16 15, i16 %zext_ln24_5" [AAHLS_Final_Project_deploy/HDC.cpp:24]   --->   Operation 54 'shl' 'shl_ln24_1' <Predicate = true> <Delay = 2.66> <CoreInst = "Shifter">   --->   Core 75 'Shifter' <Latency = 0> <II = 1> <Delay = 2.66> <FuncUnit> <Opcode : 'shl' 'lshr' 'ashr'> <InPorts = 2> <OutPorts = 1>
+ST_4 : Operation 55 [1/1] (3.25ns)   --->   "%store_ln24 = store void @_ssdm_op_Write.bram.i128, i11 %AM_addr, i128 %shl_ln24, i16 %shl_ln24_1" [AAHLS_Final_Project_deploy/HDC.cpp:24]   --->   Operation 55 'store' 'store_ln24' <Predicate = true> <Delay = 3.25> <CoreInst = "RAM">   --->   Core 82 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 128> <Depth = 1250> <RAM>
+ST_4 : Operation 56 [1/1] (0.00ns)   --->   "%br_ln22 = br void %for.inc18" [AAHLS_Final_Project_deploy/HDC.cpp:22]   --->   Operation 56 'br' 'br_ln22' <Predicate = true> <Delay = 0.00>
+
+
+============================================================
++ Verbose Summary: Timing violations
+============================================================
+Target clock period: 10ns, clock uncertainty: 2.7ns.
+
+ <State 1>: 6.88ns
+The critical path consists of the following:
+	'alloca' operation ('j') [9]  (0 ns)
+	'load' operation ('j_load', AAHLS_Final_Project_deploy/HDC.cpp:22) on local variable 'j' [24]  (0 ns)
+	'icmp' operation ('icmp_ln22', AAHLS_Final_Project_deploy/HDC.cpp:22) [29]  (1.77 ns)
+	'select' operation ('select_ln21', AAHLS_Final_Project_deploy/HDC.cpp:21) [30]  (0.687 ns)
+	'shl' operation ('shl_ln24', AAHLS_Final_Project_deploy/HDC.cpp:24) [47]  (4.42 ns)
+
+ <State 2>: 1.05ns
+The critical path consists of the following:
+	'mul' operation of DSP[42] ('mul_ln24', AAHLS_Final_Project_deploy/HDC.cpp:24) [33]  (1.05 ns)
+
+ <State 3>: 2.1ns
+The critical path consists of the following:
+	'mul' operation of DSP[42] ('mul_ln24', AAHLS_Final_Project_deploy/HDC.cpp:24) [33]  (0 ns)
+	'add' operation of DSP[42] ('add_ln24', AAHLS_Final_Project_deploy/HDC.cpp:24) [42]  (2.1 ns)
+
+ <State 4>: 5.92ns
+The critical path consists of the following:
+	'shl' operation ('shl_ln24_1', AAHLS_Final_Project_deploy/HDC.cpp:24) [51]  (2.67 ns)
+	'store' operation ('store_ln24', AAHLS_Final_Project_deploy/HDC.cpp:24) of constant <constant:_ssdm_op_Write.bram.i128> on array 'AM' [52]  (3.25 ns)
+
+
+============================================================
++ Verbose Summary: Binding
+============================================================
+N/A
+* FSMD analyzer results:
+  - Output states:
+ - Input state : 
+  - Chain level:
+	State 1
+	State 2
+	State 3
+	State 4
+
+
+============================================================
++ Verbose Summary: Datapath Resource usage 
+============================================================
+N/A
