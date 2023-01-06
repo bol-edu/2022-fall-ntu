@@ -1,0 +1,157 @@
+
+
+================================================================
+== Vitis HLS Report for 'fft_Pipeline_2'
+================================================================
+* Date:           Fri Oct 21 23:28:46 2022
+
+* Version:        2022.1 (Build 3526262 on Mon Apr 18 15:48:16 MDT 2022)
+* Project:        hls_restructured
+* Solution:       solution1 (Vivado IP Flow Target)
+* Product family: zynq
+* Target device:  xc7z020-clg400-1
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing: 
+    * Summary: 
+    +--------+----------+----------+------------+
+    |  Clock |  Target  | Estimated| Uncertainty|
+    +--------+----------+----------+------------+
+    |ap_clk  |  10.00 ns|  7.300 ns|     2.70 ns|
+    +--------+----------+----------+------------+
+
++ Latency: 
+    * Summary: 
+    +---------+---------+-----------+-----------+------+------+---------+
+    |  Latency (cycles) |   Latency (absolute)  |   Interval  | Pipeline|
+    |   min   |   max   |    min    |    max    |  min |  max |   Type  |
+    +---------+---------+-----------+-----------+------+------+---------+
+    |     1027|     1027|  10.270 us|  10.270 us|  1027|  1027|       no|
+    +---------+---------+-----------+-----------+------+------+---------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        +----------+---------+---------+----------+-----------+-----------+------+----------+
+        |          |  Latency (cycles) | Iteration|  Initiation Interval  | Trip |          |
+        | Loop Name|   min   |   max   |  Latency |  achieved |   target  | Count| Pipelined|
+        +----------+---------+---------+----------+-----------+-----------+------+----------+
+        |- Loop 1  |     1025|     1025|         3|          1|          1|  1024|       yes|
+        +----------+---------+---------+----------+-----------+-----------+------+----------+
+
+============================================================
++ Verbose Summary: Synthesis Manager
+============================================================
+InlineROM: 1
+ExposeGlobal: 0
+============================================================
++ Verbose Summary: CDFG Model
+============================================================
+IsTopModel: 0
+ResetActiveHigh: 1
+IsCombinational: 0
+IsDatapathOnly: 0
+HasWiredReturn: 1
+HasMFsm: 2
+HasVarLatency: 1
+IsPipeline: 0
+IsRtlPipelined: 0
+IsInstanceOverlapped: 0
+IsDontTouch: 0
+HasImplIP: 0
+IsGatedGlobalClock: 0
+
++ Individual pipeline summary: 
+  * Pipeline-0: initiation interval (II) = 1, depth = 3
+
+
+============================================================
++ Verbose Summary: Schedule
+============================================================
+* Number of FSM states : 3
+* Pipeline : 1
+  Pipeline-0 : II = 1, D = 3, States = { 1 2 3 }
+* Dataflow Pipeline: 0
+
+* FSM state transitions: 
+1 --> 2 
+2 --> 3 
+3 --> 
+
+* FSM state operations: 
+
+State 1 <SV = 0> <Delay = 3.46>
+ST_1 : Operation 6 [1/1] (0.00ns)   --->   "%loop_index6 = alloca i32 1"   --->   Operation 6 'alloca' 'loop_index6' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 7 [1/1] (0.00ns)   --->   "%sext_ln34_read = read i62 @_ssdm_op_Read.ap_auto.i62, i62 %sext_ln34"   --->   Operation 7 'read' 'sext_ln34_read' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 8 [1/1] (0.00ns)   --->   "%sext_ln34_cast = sext i62 %sext_ln34_read"   --->   Operation 8 'sext' 'sext_ln34_cast' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 9 [1/1] (0.00ns)   --->   "%specinterface_ln0 = specinterface void @_ssdm_op_SpecInterface, i32 %input_0, void @empty, i32 0, i32 0, void @empty_0, i32 0, i32 0, void @empty_3, void @empty_2, void @empty_0, i32 16, i32 16, i32 16, i32 16, void @empty_0, void @empty_0, i32 4294967295, i32 0"   --->   Operation 9 'specinterface' 'specinterface_ln0' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 10 [1/1] (1.58ns)   --->   "%store_ln0 = store i11 0, i11 %loop_index6"   --->   Operation 10 'store' 'store_ln0' <Predicate = true> <Delay = 1.58>
+ST_1 : Operation 11 [1/1] (0.00ns)   --->   "%br_ln0 = br void %load-store-loop5"   --->   Operation 11 'br' 'br_ln0' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 12 [1/1] (0.00ns)   --->   "%loop_index6_load = load i11 %loop_index6"   --->   Operation 12 'load' 'loop_index6_load' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 13 [1/1] (1.88ns)   --->   "%exitcond118 = icmp_eq  i11 %loop_index6_load, i11 1024"   --->   Operation 13 'icmp' 'exitcond118' <Predicate = true> <Delay = 1.88> <CoreInst = "Cmp">   --->   Core 9 'Cmp' <Latency = 0> <II = 1> <Delay = 1.88> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 14 [1/1] (1.63ns)   --->   "%empty_49 = add i11 %loop_index6_load, i11 1"   --->   Operation 14 'add' 'empty_49' <Predicate = true> <Delay = 1.63> <CoreInst = "Adder">   --->   Core 1 'Adder' <Latency = 0> <II = 1> <Delay = 1.63> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_1 : Operation 15 [1/1] (0.00ns)   --->   "%br_ln0 = br i1 %exitcond118, void %load-store-loop5.split, void %memcpy-split4.exitStub"   --->   Operation 15 'br' 'br_ln0' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 16 [1/1] (1.58ns)   --->   "%store_ln0 = store i11 %empty_49, i11 %loop_index6"   --->   Operation 16 'store' 'store_ln0' <Predicate = (!exitcond118)> <Delay = 1.58>
+
+State 2 <SV = 1> <Delay = 7.30>
+ST_2 : Operation 17 [1/1] (0.00ns)   --->   "%specbitsmap_ln0 = specbitsmap void @_ssdm_op_SpecBitsMap, i32 %input_0"   --->   Operation 17 'specbitsmap' 'specbitsmap_ln0' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 18 [1/1] (0.00ns)   --->   "%input_0_addr = getelementptr i32 %input_0, i64 %sext_ln34_cast" [fft.cpp:34]   --->   Operation 18 'getelementptr' 'input_0_addr' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 19 [1/1] (0.00ns)   --->   "%specpipeline_ln0 = specpipeline void @_ssdm_op_SpecPipeline, i32 4294967295, i32 0, i32 1, i32 0, void @p_str"   --->   Operation 19 'specpipeline' 'specpipeline_ln0' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 20 [1/1] (0.00ns)   --->   "%empty = speclooptripcount i32 @_ssdm_op_SpecLoopTripCount, i64 1024, i64 1024, i64 1024"   --->   Operation 20 'speclooptripcount' 'empty' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 21 [1/1] (7.30ns)   --->   "%input_0_addr_read = read i32 @_ssdm_op_Read.m_axi.p1i32, i32 %input_0_addr" [fft.cpp:34]   --->   Operation 21 'read' 'input_0_addr_read' <Predicate = (!exitcond118)> <Delay = 7.30> <CoreInst = "m_axi">   --->   Core 113 'm_axi' <Latency = 0> <II = 1> <Delay = 1.00> <Adapter> <Opcode : 'read' 'write' 'readreq' 'writereq' 'writeresp'>
+ST_2 : Operation 27 [1/1] (0.00ns)   --->   "%ret_ln0 = ret"   --->   Operation 27 'ret' 'ret_ln0' <Predicate = (exitcond118)> <Delay = 0.00>
+
+State 3 <SV = 2> <Delay = 3.25>
+ST_3 : Operation 22 [1/1] (0.00ns)   --->   "%loop_index6_cast = zext i11 %loop_index6_load"   --->   Operation 22 'zext' 'loop_index6_cast' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 23 [1/1] (0.00ns)   --->   "%empty_50 = bitcast i32 %input_0_addr_read" [fft.cpp:34]   --->   Operation 23 'bitcast' 'empty_50' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 24 [1/1] (0.00ns)   --->   "%X_I_i_addr = getelementptr i32 %X_I_i, i64 0, i64 %loop_index6_cast"   --->   Operation 24 'getelementptr' 'X_I_i_addr' <Predicate = true> <Delay = 0.00>
+ST_3 : Operation 25 [1/1] (3.25ns)   --->   "%store_ln34 = store i32 %empty_50, i10 %X_I_i_addr" [fft.cpp:34]   --->   Operation 25 'store' 'store_ln34' <Predicate = true> <Delay = 3.25> <CoreInst = "RAM">   --->   Core 82 'RAM' <Latency = 1> <II = 1> <Delay = 3.25> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 32> <Depth = 1024> <RAM>
+ST_3 : Operation 26 [1/1] (0.00ns)   --->   "%br_ln0 = br void %load-store-loop5"   --->   Operation 26 'br' 'br_ln0' <Predicate = true> <Delay = 0.00>
+
+
+============================================================
++ Verbose Summary: Timing violations
+============================================================
+Target clock period: 10ns, clock uncertainty: 2.7ns.
+
+ <State 1>: 3.47ns
+The critical path consists of the following:
+	'alloca' operation ('loop_index6') [4]  (0 ns)
+	'load' operation ('loop_index6_load') on local variable 'loop_index6' [11]  (0 ns)
+	'add' operation ('empty_49') [17]  (1.64 ns)
+	'store' operation ('store_ln0') of variable 'empty_49' on local variable 'loop_index6' [25]  (1.59 ns)
+	blocking operation 0.241 ns on control path)
+
+ <State 2>: 7.3ns
+The critical path consists of the following:
+	'getelementptr' operation ('input_0_addr', fft.cpp:34) [13]  (0 ns)
+	bus read operation ('input_0_addr_read', fft.cpp:34) on port 'input_0' (fft.cpp:34) [21]  (7.3 ns)
+
+ <State 3>: 3.25ns
+The critical path consists of the following:
+	'getelementptr' operation ('X_I_i_addr') [23]  (0 ns)
+	'store' operation ('store_ln34', fft.cpp:34) of variable 'empty_50', fft.cpp:34 on array 'X_I_i' [24]  (3.25 ns)
+
+
+============================================================
++ Verbose Summary: Binding
+============================================================
+N/A
+* FSMD analyzer results:
+  - Output states:
+ - Input state : 
+  - Chain level:
+	State 1
+	State 2
+	State 3
+
+
+============================================================
++ Verbose Summary: Datapath Resource usage 
+============================================================
+N/A
