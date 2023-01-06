@@ -85,10 +85,12 @@ For Lab #C, students compete on the Customized Computing Challenge (CCC) [[4]](#
 | :----------------------------------------------------------: | :---------------------: |
 | [Fast Object Detection from Point Clouds for Autonomous Driving](https://github.com/poppin-mice/AAHLS_Final_PointPillars) | 陳奕達、戴妤珊、蔡岳峰 |
 | [EMG-based Gesture Recognition using Hyperdimensional Computing (HDC)](https://github.com/alanlo980510/HLS_final) | 張承洋、羅翊誠、王婕恩 |
-| [EMG-based Gesture Recognition using Hyperdimensional Computing (HDC)] | 林亮昕、林祐丞 |
-| [Cordic, FAST, Serialization](https://github.com/alanlo980510/HLS_LabC) | 羅翊誠、張承洋、王婕恩 |
-| [DFT, CANNY, Serialization](https://github.com/lspss9950101/HLS-LabC) | 王景平、黃其澤、陳維隆 |
-| [DFT, HARRIS, Betweenness](https://github.com/Chang-Tun-Yu/HLS-Team4-LabC) | 朱怡蓁、張惇宥 |
+| [Dilithium](https://github.com/konosuba-lin/HLS_Dilithium) | 林亮昕、林祐丞 |
+| [The Hardware Acceleration of Monocular Visual Odometry](https://github.com/Chang-Tun-Yu/Mono-Visual-Odometry-by-HLS) | 張惇宥、朱怡蓁、許家維 |
+| [Object Detection Inference on PYNQ-Z2](https://github.com/Anderson-Wu/Object-Detection-Inference-On-PYNQ-Z2) | 范詠為、林子軒、吳泓毅 |
+| [Message Communication](https://github.com/ChiTseHuang/Message-Communication) | 王景平、黃其澤、陳維隆 |
+| [High Accuracy Image Classifier Inference on PYNQ-Z2](https://github.com/PAN-YI-HSUAN/2022_HLS/tree/main/ResNet-Image_Classifier_on_PYNQZ2) | 吳秉軒、曾維雋、潘奕亘|
+| [Handwritten number Generation on PYNQ-Z2](https://github.com/alankuo04/AAHLS_Final) | 王少群、郭霖璟、張凱茗|
 
 
 ## References
